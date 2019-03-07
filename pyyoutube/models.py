@@ -47,6 +47,34 @@ class AccessToken(BaseModel):
             if param == 'scope':
                 self.scope = self.scope.split(' ')
 
+    def __repr__(self):
+        return "AccessToken(access_token={token}, expires_in={ex})".format(
+            token=self.access_token,
+            ex=self.expires_in
+        )
+
+
+class UserProfile(BaseModel):
+    def __init__(self, **kwargs):
+        BaseModel.__init__(self, **kwargs)
+        self.param_defaults = {
+            'id': None,
+            'name': None,
+            'given_name': None,
+            'family_name': None,
+            'picture': None,
+            'locale': None
+        }
+
+        for (param, value) in self.param_defaults.items():
+            setattr(self, param, kwargs.get(param, value))
+
+    def __repr__(self):
+        return "User(ID={u_id}, name={name})".format(
+            u_id=self.id,
+            name=self.name
+        )
+
 
 class Thumbnail(BaseModel):
     """a class for the image resource.

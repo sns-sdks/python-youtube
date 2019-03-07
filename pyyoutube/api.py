@@ -11,7 +11,7 @@ import requests
 from requests.models import Response
 
 from pyyoutube.error import ErrorMessage, PyYouTubeException
-from pyyoutube.models import AccessToken
+from pyyoutube.models import AccessToken, UserProfile
 
 
 class Api(object):
@@ -31,7 +31,7 @@ class Api(object):
 
     def __init__(
             self, client_id, client_secret, api_key=None,
-            access_token=None, timeout=None
+            access_token=None, timeout=None, proxies=None
     ):
         """
         This Api provide two method to work. Use api key or use access token.
@@ -47,6 +47,9 @@ class Api(object):
                 If you not provide api key, you can do authorization to get an access token.
             timeout(int, optional)
                 The request timeout.
+            proxies(dict, optional)
+                If you want use proxy, need point this param.
+                param style like requests lib style.
 
         Returns:
             YouTube Api instance.
@@ -58,6 +61,7 @@ class Api(object):
         self._timeout = timeout
         self.session = requests.Session()
         self.scope = None
+        self.proxies = proxies
 
         if self._timeout is None:
             self._timeout = self.DEFAULT_TIMEOUT
@@ -194,7 +198,8 @@ class Api(object):
                 self.EXCHANGE_ACCESS_TOKEN_URL,
                 data=params,
                 headers=headers,
-                timeout=self._timeout
+                timeout=self._timeout,
+                proxies=self.proxies
             )
         except requests.HTTPError as e:
             raise PyYouTubeException(ErrorMessage(
@@ -230,3 +235,97 @@ class Api(object):
         if 'error' in data:
             raise PyYouTubeException(response)
         return data
+
+    def _request(self, resource, method=None, args=None, post_args=None, enforce_auth=True):
+        """
+        Main request sender.
+
+        Args:
+            resource(str)
+                Resource field is which type data you want to retrieve.
+                Such as channels，videos and so on.
+            method(str, optional)
+                The method this request to send request.
+                Default is 'GET'
+            args(dict, optional)
+                The url params for this request.
+            post_args(dict, optional)
+                The Post params for this request.
+            enforce_auth(bool, optional)
+                Whether use google credentials
+
+        Returns:
+            response
+        """
+        if method is None:
+            method = 'GET'
+
+        if args is None:
+            args = dict()
+
+        if post_args is not None:
+            method = 'POST'
+
+        key = None
+        access_token = None
+        if self._access_token is not None:
+            key = 'access_token'
+            access_token = self._access_token
+        if self._api_key is not None:
+            key = 'key'
+            access_token = self._api_key
+        if access_token is None and enforce_auth:
+            raise PyYouTubeException(ErrorMessage(
+                status_code=10004,
+                message='You must provide your credentials.'
+            ))
+
+        if enforce_auth:
+            if method == 'POST' and key not in post_args:
+                post_args[key] = access_token
+            elif method == 'GET' and key not in args:
+                args[key] = access_token
+
+        try:
+            response = self.session.request(
+                method=method,
+                url=self.BASE_URL + resource,
+                timeout=self._timeout,
+                params=args,
+                data=post_args,
+                proxies=self.proxies
+            )
+        except requests.HTTPError as e:
+            raise PyYouTubeException(ErrorMessage(
+                status_code=10000,
+                message=e.read()
+            ))
+        else:
+            return response
+
+    def get_profile(self, return_json=False):
+        """
+
+        """
+        if self._access_token is None:
+            raise PyYouTubeException(ErrorMessage(
+                status_code=10005,
+                message='Get profile Must need access token.'
+            ))
+        try:
+            response = self.session.get(
+                'https://www.googleapis.com/oauth2/v1/userinfo',
+                params={'access_token': self._access_token},
+                timeout=self._timeout,
+                proxies=self.proxies
+            )
+        except requests.HTTPError as e:
+            raise PyYouTubeException(ErrorMessage(
+                status_code=10000,
+                message=e.read()
+            ))
+        data = self._parse_response(response)
+        if return_json:
+            return data
+        else:
+            return UserProfile.new_from_json_dict(data)
