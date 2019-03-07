@@ -1,6 +1,6 @@
 Python YouTube
 
-A Python  wrapper around for YouTube Graph API.
+A Python wrapper around for YouTube Data API.
 
 ======
 THANKS
@@ -14,4 +14,4 @@ Thanks a lot for Python-Twitter Developers.
 Introduction
 ============
 
-Library provides a service to easy use Facebook web api.
+Library provides a service to easy use YouTube web api.
