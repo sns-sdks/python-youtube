@@ -8,13 +8,14 @@ ErrorMessage = namedtuple(
 
 class PyYouTubeException(Exception):
     """
+    This is a return demo:
     {'error': {'errors': [{'domain': 'youtube.parameter',
     'reason': 'missingRequiredParameter',
     'message': 'No filter selected. Expected one of: forUsername, managedByMe, categoryId, mine, mySubscribers, id, idParam',
     'locationType': 'parameter',
     'location': ''}],
-  'code': 400,
-  'message': 'No filter selected. Expected one of: forUsername, managedByMe, categoryId, mine, mySubscribers, id, idParam'}}
+    'code': 400,
+    'message': 'No filter selected. Expected one of: forUsername, managedByMe, categoryId, mine, mySubscribers, id, idParam'}}
     """
 
     def __init__(self, response):

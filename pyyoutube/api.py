@@ -11,7 +11,7 @@ import requests
 from requests.models import Response
 
 from pyyoutube.error import ErrorMessage, PyYouTubeException
-from pyyoutube.models import AccessToken, UserProfile
+from pyyoutube.models import AccessToken, UserProfile, Channel, Video
 
 
 class Api(object):
@@ -222,7 +222,7 @@ class Api(object):
             return AccessToken.new_from_json_dict(data)
 
     @staticmethod
-    def _parse_response(response):
+    def _parse_response(response, api=False):
         """
         Parse response data and check whether errors exists.
         Args:
@@ -234,6 +234,12 @@ class Api(object):
         data = response.json()
         if 'error' in data:
             raise PyYouTubeException(response)
+        if api:
+            items = data['items']
+            if isinstance(items, dict) or len(items) == 0:
+                raise PyYouTubeException(response)
+            else:
+                return items[0]
         return data
 
     def _request(self, resource, method=None, args=None, post_args=None, enforce_auth=True):
@@ -329,3 +335,85 @@ class Api(object):
             return data
         else:
             return UserProfile.new_from_json_dict(data)
+
+    def get_channel_info(self, channel_id=None, channel_name=None, return_json=False):
+        """
+        Retrieve data from YouTube Data API for channel which you given.
+
+        Args:
+            channel_id (str, optional)
+                The id for youtube channel. Id always likes: UCLA_DiR1FfKNvjuUpBHmylQ
+            channel_name (str, optional)
+                The name for youtube channel.
+                If id and name all given, will use id first.
+            return_json(bool, optional)
+                The return data type. If you set True JSON data will be returned.
+                False will return pyyoutube.Channel
+        Returns:
+            The data for you given channel.
+        """
+        if channel_name is not None:
+            args = {
+                'forUsername': channel_name,
+                'part': 'id,snippet,contentDetails,statistics'
+            }
+        elif channel_id is not None:
+            args = {
+                'id': channel_id,
+                'part': 'id,snippet,contentDetails,statistics'
+            }
+        else:
+            raise PyYouTubeException(ErrorMessage(
+                status_code=10005,
+                message='Specify at least one of channel id or username'
+            ))
+
+        resp = self._request(
+            resource='channels',
+            method='GET',
+            args=args
+        )
+
+        data = self._parse_response(resp, api=True)
+        if return_json:
+            return data
+        else:
+            return Channel.new_from_json_dict(data)
+
+    def get_video_info(self, video_id=None, return_json=False):
+        """
+        Retrieve data from YouTube Data Api for video which you point.
+
+        Args:
+            video_id (str)
+                The video's ID which you want to get data.
+            return_json(bool, optional)
+                The return data type. If you set True JSON data will be returned.
+                False will return pyyoutube.Video
+        Returns:
+            The data for you given video.
+        """
+
+        if video_id is None:
+            raise PyYouTubeException(ErrorMessage(
+                status_code=10005,
+                message='Specify the id for the video.'
+            ))
+
+        args = {
+            'id': video_id,
+            'part': 'id,snippet,contentDetails,statistics'
+        }
+
+        resp = self._request(
+            resource='videos',
+            method='GET',
+            args=args
+        )
+
+        data = self._parse_response(resp, api=True)
+
+        if return_json:
+            return data
+        else:
+            return

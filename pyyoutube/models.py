@@ -22,7 +22,20 @@ class BaseModel(object):
         """ Create a dictionary representation of the object. To convert all model properties. """
         data = {}
         for (key, value) in self.param_defaults.items():
-            data[key] = getattr(self, key, None)
+            key_attr = getattr(self, key, None)
+            # Notice:
+            # Now have different handler to sub items
+            if isinstance(key_attr, (list, tuple, set)):
+                data[key] = list()
+                for sub_obj in key_attr:
+                    if getattr(sub_obj, 'as_dict', None):
+                        data[key].append(sub_obj.as_dict())
+                    else:
+                        data[key].append(sub_obj)
+            elif getattr(key_attr, 'as_dict', None):
+                data[key] = key_attr.as_dict()
+            elif key_attr is not None:
+                data[key] = getattr(self, key, None)
         return data
 
     def as_json_string(self):
@@ -141,6 +154,24 @@ class Localized(BaseModel):
         return "Localized(title={title}".format(title=self.title)
 
 
+class BaseSnippet(BaseModel):
+    def __init__(self, **kwargs):
+        BaseModel.__init__(self, **kwargs)
+        self.publishedAt = None
+        self.title = None
+        self.description = None
+        self.thumbnails = None
+        self.localized = None
+        self.defaultLanguage = None
+
+        for (param, value) in self.param_defaults.items():
+            setattr(self, param, kwargs.get(param, value))
+
+    @classmethod
+    def new_from_json_dict(cls, data, **kwargs):
+        raise NotImplemented
+
+
 class ChannelSnippet(BaseModel):
     """A class representing base info for channel
     """
@@ -202,6 +233,9 @@ class ChannelStatistics(BaseModel):
 
 class RelatedPlaylists(BaseModel):
     """A class representing channel's related playlist info
+    Some properties has been deprecated.
+    Refer:
+        https://developers.google.com/youtube/v3/docs/channels#contentDetails.relatedPlaylists
     """
 
     def __init__(self, **kwargs):
@@ -480,3 +514,8 @@ class Channel(BaseModel):
         c = cls(**json_data)
         c._json = data
         return c
+
+
+# class Video(BaseModel):
+#     def __init__(self, **kwargs):
+#         BaseModel.__init__(self, **kwargs)
