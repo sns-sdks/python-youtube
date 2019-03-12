@@ -239,7 +239,7 @@ class Api(object):
             if isinstance(items, dict) or len(items) == 0:
                 raise PyYouTubeException(response)
             else:
-                return items[0]
+                return items
         return data
 
     def _request(self, resource, method=None, args=None, post_args=None, enforce_auth=True):
@@ -378,7 +378,7 @@ class Api(object):
         if return_json:
             return data
         else:
-            return Channel.new_from_json_dict(data)
+            return Channel.new_from_json_dict(data[0])
 
     def get_video_info(self, video_id=None, return_json=False):
         """
@@ -416,4 +416,42 @@ class Api(object):
         if return_json:
             return data
         else:
-            return Video.new_from_json_dict(data)
+            return Video.new_from_json_dict(data[0])
+
+    def get_videos_info(self, video_ids=None, return_json=False):
+        """
+        Retrieve data from YouTube Data Api for video which you point.
+
+        Args:
+            video_ids (list)
+                The video's ID list you want to get data.
+            return_json(bool, optional)
+                The return data type. If you set True JSON data will be returned.
+                False will return pyyoutube.Video
+        Returns:
+            The data for you given video.
+        """
+
+        if video_ids is None or not isinstance(video_ids, (list, tuple)):
+            raise PyYouTubeException(ErrorMessage(
+                status_code=10005,
+                message='Specify the id for the video.'
+            ))
+
+        args = {
+            'id': ','.join(video_ids),
+            'part': 'id,snippet,contentDetails,statistics,status'
+        }
+
+        resp = self._request(
+            resource='videos',
+            method='GET',
+            args=args
+        )
+
+        data = self._parse_response(resp, api=True)
+
+        if return_json:
+            return data
+        else:
+            return [Video.new_from_json_dict(item) for item in data]

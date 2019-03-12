@@ -694,6 +694,7 @@ class Channel(BaseModel):
 
 
 class Video(BaseModel):
+    """ One video info instance """
     def __init__(self, **kwargs):
         BaseModel.__init__(self, **kwargs)
         self.param_defaults = {
