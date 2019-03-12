@@ -360,7 +360,7 @@ class Api(object):
         elif channel_id is not None:
             args = {
                 'id': channel_id,
-                'part': 'id,snippet,contentDetails,statistics'
+                'part': 'id,snippet,contentDetails,statistics,status'
             }
         else:
             raise PyYouTubeException(ErrorMessage(
@@ -402,7 +402,7 @@ class Api(object):
 
         args = {
             'id': video_id,
-            'part': 'id,snippet,contentDetails,statistics'
+            'part': 'id,snippet,contentDetails,statistics,status'
         }
 
         resp = self._request(
@@ -416,4 +416,4 @@ class Api(object):
         if return_json:
             return data
         else:
-            return
+            return Video.new_from_json_dict(data)
