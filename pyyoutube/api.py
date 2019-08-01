@@ -30,7 +30,7 @@ class Api(object):
     DEFAULT_TIMEOUT = 10
 
     def __init__(
-            self, client_id, client_secret, api_key=None,
+            self, client_id=None, client_secret=None, api_key=None,
             access_token=None, timeout=None, proxies=None
     ):
         """
@@ -62,6 +62,12 @@ class Api(object):
         self.session = requests.Session()
         self.scope = None
         self.proxies = proxies
+
+        if not ((self._client_id and self._client_secret) or self._api_key):
+            raise PyYouTubeException(ErrorMessage(
+                status_code=10001,
+                message='Must specify either client key info or api key.'
+            ))
 
         if self._timeout is None:
             self._timeout = self.DEFAULT_TIMEOUT
@@ -261,7 +267,7 @@ class Api(object):
                 Whether use google credentials
 
         Returns:
-            response
+            re`sponse
         """
         if method is None:
             method = 'GET'
