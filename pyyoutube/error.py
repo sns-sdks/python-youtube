@@ -35,9 +35,10 @@ class PyYouTubeException(Exception):
             self.status_code = self.response.status_code
             self.message = self.response.message
             self.error_type = 'PyYouTubeException'
-        else:
-            if 'error' in res:
-                self.status_code = res['error']['code']
-                self.message = res['error']['message']
-                if 'errors' in res['error']:
-                    self.error_type = res['error']['errors'][0]['reason']
+        elif callable(res):
+            error_data = res()
+            if 'error' in error_data:
+                self.status_code = error_data['error']['code']
+                self.message = error_data['error']['message']
+                if 'errors' in error_data['error']:
+                    self.error_type = error_data['error']['errors'][0]['reason']
