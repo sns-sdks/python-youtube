@@ -1,14 +1,10 @@
 """
     Main Api implementation.
 """
-try:
-    from urllib.parse import urlencode, urlparse, parse_qsl
-except ImportError:
-    from urllib import urlecode
-    from urlparse import urlparse, parse_qsl
 
+from urllib.parse import urlencode, urlparse, parse_qsl
 import requests
-from requests.models import Response
+from requests.models import Response  # noqa
 
 from pyyoutube.error import ErrorMessage, PyYouTubeException
 from pyyoutube.models import AccessToken, UserProfile, Channel, Video

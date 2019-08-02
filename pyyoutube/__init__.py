@@ -1,4 +1,4 @@
-from .models import (
+from .models import (  # noqa
     Thumbnail,
     Thumbnails,
     ChannelSnippet,
@@ -6,6 +6,6 @@ from .models import (
     Channel
 )
 
-from .api import Api
-from .error import ErrorMessage, PyYouTubeException
-from .utils.constants import CHANNEL_TOPICS
+from .api import Api  # noqa
+from .error import ErrorMessage, PyYouTubeException  # noqa
+from .utils.constants import CHANNEL_TOPICS  # noqa
