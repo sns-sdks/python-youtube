@@ -7,7 +7,7 @@ class TestApiCall(unittest.TestCase):
         self.api = pyyoutube.Api(
             client_id='xx',
             client_secret='xx',
-            api_key='AIzaSyD76JCSGXmMO-_rlAL_yGJuW_ZqsJX33Og'
+            api_key='xx'
         )
 
     def testGetChannel(self):
