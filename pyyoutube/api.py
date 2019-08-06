@@ -2,12 +2,16 @@
     Main Api implementation.
 """
 
+import datetime
 from urllib.parse import urlencode, urlparse, parse_qsl
+
+import pytz
 import requests
 from requests.models import Response  # noqa
 
 from pyyoutube.error import ErrorMessage, PyYouTubeException
 from pyyoutube.models import AccessToken, UserProfile, Channel, Video
+from pyyoutube.utils.quota_cost import LIST_DATA
 
 
 class Api(object):
@@ -24,10 +28,11 @@ class Api(object):
 
     DEFAULT_STATE = 'PyYouTube'
     DEFAULT_TIMEOUT = 10
+    DEFAULT_QUOTA = 10000  # this quota reset at 00:00:00(GMT-7) every day.
 
     def __init__(
             self, client_id=None, client_secret=None, api_key=None,
-            access_token=None, timeout=None, proxies=None
+            access_token=None, timeout=None, proxies=None, quota=None,
     ):
         """
         This Api provide two method to work. Use api key or use access token.
@@ -46,6 +51,8 @@ class Api(object):
             proxies(dict, optional)
                 If you want use proxy, need point this param.
                 param style like requests lib style.
+            quota(int, optional)
+                if your key has more quota. you can point this. Default is 10000
 
         Returns:
             YouTube Api instance.
@@ -58,6 +65,11 @@ class Api(object):
         self.session = requests.Session()
         self.scope = None
         self.proxies = proxies
+
+        self.quota = quota
+        if self.quota is None:
+            self.quota = self.DEFAULT_QUOTA
+        self.used_quota = 0
 
         if not ((self._client_id and self._client_secret) or self._api_key):
             raise PyYouTubeException(ErrorMessage(
@@ -263,7 +275,7 @@ class Api(object):
                 Whether use google credentials
 
         Returns:
-            re`sponse
+            response
         """
         if method is None:
             method = 'GET'
@@ -310,6 +322,37 @@ class Api(object):
             ))
         else:
             return response
+
+    def get_quota(self):
+        pst = pytz.timezone('US/Pacific')
+        now = datetime.datetime.now(pst)
+        reset_at = (now + datetime.timedelta(1)).replace(
+            hour=0, minute=0, second=0, microsecond=0
+        )
+        reset_in = (reset_at - now).total_seconds()
+        return f"Quota(Total={self.quota}, Used={self.used_quota}, ResetIn={reset_in})"
+
+    def calc_quota(self, resource, method='list', parts='', count=1):
+        """
+        :param resource: resources like videos, channels
+        :param method:
+        :param parts:
+        :param count:
+        :return:
+        """
+        if method == 'list':
+            quota_data = LIST_DATA
+        else:
+            return 0
+        cost = 1
+        if parts:
+            parts = parts.split(',')
+        for part in parts:
+            if part not in ['id']:
+                need_cost = quota_data.get(f'{resource}.{part}', 0)
+                cost += need_cost
+        cost = cost * count
+        self.used_quota += cost
 
     def get_profile(self, return_json=False):
         """
@@ -377,6 +420,10 @@ class Api(object):
         )
 
         data = self._parse_response(resp, api=True)
+        self.calc_quota(
+            resource='channels',
+            parts=args['part']
+        )
         if return_json:
             return data
         else:
@@ -414,7 +461,10 @@ class Api(object):
         )
 
         data = self._parse_response(resp, api=True)
-
+        self.calc_quota(
+            resource='videos',
+            parts=args['part']
+        )
         if return_json:
             return data
         else:
@@ -452,7 +502,11 @@ class Api(object):
         )
 
         data = self._parse_response(resp, api=True)
-
+        self.calc_quota(
+            resource='videos',
+            parts=args['part'],
+            count=len(video_ids)
+        )
         if return_json:
             return data
         else:

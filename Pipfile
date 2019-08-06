@@ -13,6 +13,7 @@ flake8 = "*"
 requests = "*"
 future = "*"
 requests-oauthlib = "*"
+pytz = "*"
 
 [requires]
 python_version = "3.7"
