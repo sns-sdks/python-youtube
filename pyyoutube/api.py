@@ -329,7 +329,7 @@ class Api(object):
         reset_at = (now + datetime.timedelta(1)).replace(
             hour=0, minute=0, second=0, microsecond=0
         )
-        reset_in = (reset_at - now).total_seconds()
+        reset_in = int((reset_at - now).total_seconds())
         return f"Quota(Total={self.quota}, Used={self.used_quota}, ResetIn={reset_in})"
 
     def calc_quota(self, resource, method='list', parts='', count=1):

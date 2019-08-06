@@ -14,6 +14,15 @@ class TestApiCall(unittest.TestCase):
             api_key='xx'
         )
 
+    def testCalcQuota(self):
+        self.api.calc_quota(
+            resource='videos',
+            parts='id,snippet,contentDetails,statistics,status',
+        )
+        self.assertEqual(9, self.api.used_quota)
+        print(self.api.get_quota())
+        self.assertEqual(True, '10000' in self.api.get_quota())
+
     @responses.activate
     def testGetChannel(self):
         with open('testdata/channel_info.json') as f:
