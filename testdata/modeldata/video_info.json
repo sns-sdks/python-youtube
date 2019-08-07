@@ -1,0 +1,85 @@
+{
+  "kind": "youtube#video",
+  "etag": "\"nlUZBA6NbTS7q9G8D1GljyfTIWI/gxqS4vP9wQ6WQqAj8OqIBoA53xo\"",
+  "id": "lDBbRDfrgnI",
+  "snippet": {
+    "publishedAt": "2019-07-18T22:14:26.000Z",
+    "channelId": "UCK8sQmJBp8GCxrOtXWBpyEA",
+    "title": "Here to help: Showtimes with Google Search (Spider-Man Far from Home)",
+    "description": "Find what you’re looking for #WithALittleHelp from Google — like showtimes to watch Spider-Man Far from Home.",
+    "thumbnails": {
+      "default": {
+        "url": "https://i.ytimg.com/vi/lDBbRDfrgnI/default.jpg",
+        "width": 120,
+        "height": 90
+      },
+      "medium": {
+        "url": "https://i.ytimg.com/vi/lDBbRDfrgnI/mqdefault.jpg",
+        "width": 320,
+        "height": 180
+      },
+      "high": {
+        "url": "https://i.ytimg.com/vi/lDBbRDfrgnI/hqdefault.jpg",
+        "width": 480,
+        "height": 360
+      },
+      "standard": {
+        "url": "https://i.ytimg.com/vi/lDBbRDfrgnI/sddefault.jpg",
+        "width": 640,
+        "height": 480
+      },
+      "maxres": {
+        "url": "https://i.ytimg.com/vi/lDBbRDfrgnI/maxresdefault.jpg",
+        "width": 1280,
+        "height": 720
+      }
+    },
+    "channelTitle": "Google",
+    "categoryId": "28",
+    "liveBroadcastContent": "none",
+    "localized": {
+      "title": "Here to help: Showtimes with Google Search (Spider-Man Far from Home)",
+      "description": "Find what you’re looking for #WithALittleHelp from Google — like showtimes to watch Spider-Man Far from Home."
+    },
+    "defaultAudioLanguage": "en"
+  },
+  "contentDetails": {
+    "duration": "PT16S",
+    "dimension": "2d",
+    "definition": "hd",
+    "caption": "false",
+    "licensedContent": false,
+    "projection": "rectangular"
+  },
+  "status": {
+    "uploadStatus": "processed",
+    "privacyStatus": "public",
+    "license": "creativeCommon",
+    "embeddable": true,
+    "publicStatsViewable": true
+  },
+  "statistics": {
+    "viewCount": "7188165",
+    "likeCount": "707",
+    "dislikeCount": "229",
+    "favoriteCount": "0",
+    "commentCount": "44"
+  },
+  "player": {
+    "embedHtml": "<iframe width=\"480\" height=\"270\" src=\"//www.youtube.com/embed/lDBbRDfrgnI\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>"
+  },
+  "topicDetails": {
+    "topicIds": [
+      "/m/019_rr",
+      "/m/07c1v"
+    ],
+    "relevantTopicIds": [
+      "/m/019_rr",
+      "/m/07c1v"
+    ],
+    "topicCategories": [
+      "https://en.wikipedia.org/wiki/Technology",
+      "https://en.wikipedia.org/wiki/Lifestyle_(sociology)"
+    ]
+  }
+}

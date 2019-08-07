@@ -6,7 +6,7 @@ import pyyoutube
 
 class ModelTest(unittest.TestCase):
     def setUp(self) -> None:
-        self.base_path = '../testdata/modeldata/'
+        self.base_path = 'testdata/modeldata/'
 
     def testAccessToken(self) -> None:
         with open(f'{self.base_path}access_token.json', 'r') as json_file:
@@ -79,3 +79,33 @@ class ModelTest(unittest.TestCase):
             channel_info = json.loads(json_file.read())
         m = pyyoutube.Channel.new_from_json_dict(channel_info)
         self.assertEqual(m.id, 'UCWJ2lWNubArHWmf3FIHbfcQ')
+
+    def testVideoSnippet(self) -> None:
+        with open(f'{self.base_path}video_snippet.json', 'r') as json_file:
+            video_snippet_info = json.loads(json_file.read())
+        m = pyyoutube.VideoSnippet.new_from_json_dict(video_snippet_info)
+        self.assertEqual(m.channelId, 'UCK8sQmJBp8GCxrOtXWBpyEA')
+
+    def testVideoStatistics(self) -> None:
+        with open(f'{self.base_path}video_statistics.json', 'r') as json_file:
+            video_statistics_info = json.loads(json_file.read())
+        m = pyyoutube.VideoStatistics.new_from_json_dict(video_statistics_info)
+        self.assertEqual(m.viewCount, '7188165')
+
+    def testVideoContentDetails(self) -> None:
+        with open(f'{self.base_path}video_content_details.json', 'r') as json_file:
+            content_details_info = json.loads(json_file.read())
+        m = pyyoutube.VideoContentDetails.new_from_json_dict(content_details_info)
+        self.assertEqual(m.duration, 'PT16S')
+
+    def testVideoStatus(self) -> None:
+        with open(f'{self.base_path}video_status.json', 'r') as json_file:
+            status_info = json.loads(json_file.read())
+        m = pyyoutube.VideoStatus.new_from_json_dict(status_info)
+        self.assertEqual(m.uploadStatus, 'processed')
+
+    def testVideo(self) -> None:
+        with open(f'{self.base_path}video_info.json', 'r') as json_file:
+            video_info = json.loads(json_file.read())
+        m = pyyoutube.Video.new_from_json_dict(video_info)
+        self.assertEqual(m.id, 'lDBbRDfrgnI')
