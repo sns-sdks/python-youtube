@@ -286,6 +286,9 @@ class RelatedPlaylists(BaseModel):
     def __init__(self, **kwargs):
         BaseModel.__init__(self, **kwargs)
         self.param_defaults = {
+            'favorites': None,
+            'watchHistory': None,
+            'watchLater': None,
             'uploads': None,
             'likes': None,
         }
@@ -695,6 +698,7 @@ class Channel(BaseModel):
 
 class Video(BaseModel):
     """ One video info instance """
+
     def __init__(self, **kwargs):
         BaseModel.__init__(self, **kwargs)
         self.param_defaults = {

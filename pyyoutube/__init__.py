@@ -8,6 +8,7 @@ from .models import (  # noqa
     VideoSnippet,
     ChannelStatistics,
     VideoStatistics,
+    RelatedPlaylists,
     ChannelContentDetails,
     VideoContentDetails,
     ChannelStatus,

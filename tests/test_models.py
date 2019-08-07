@@ -6,7 +6,7 @@ import pyyoutube
 
 class ModelTest(unittest.TestCase):
     def setUp(self) -> None:
-        self.base_path = 'testdata/modeldata/'
+        self.base_path = '../testdata/modeldata/'
 
     def testAccessToken(self) -> None:
         with open(f'{self.base_path}access_token.json', 'r') as json_file:
@@ -19,6 +19,60 @@ class ModelTest(unittest.TestCase):
             profile_info = json.loads(json_file.read())
         m = pyyoutube.UserProfile.new_from_json_dict(profile_info)
         self.assertEqual(m.id, '12345678910')
+
+    def testThumbnail(self) -> None:
+        with open(f'{self.base_path}thumbnail_info.json', 'r') as json_file:
+            thumbnail_info = json.loads(json_file.read())
+        m = pyyoutube.Thumbnail.new_from_json_dict(thumbnail_info)
+        self.assertEqual(
+            m.url,
+            'https://yt3.ggpht.com/a/AGF-l7-BBIcC888A2qYc3rB44rST01IEYDG3uzbU_A=s88-c-k-c0xffffffff-no-rj-mo'
+        )
+
+    def testThumbnails(self) -> None:
+        with open(f'{self.base_path}thumbnails_info.json', 'r') as json_file:
+            thumbnails_info = json.loads(json_file.read())
+        m = pyyoutube.Thumbnails.new_from_json_dict(thumbnails_info)
+        self.assertEqual(
+            m.high.url,
+            'https://yt3.ggpht.com/a/AGF-l7-BBIcC888A2qYc3rB44rST01IEYDG3uzbU_A=s800-c-k-c0xffffffff-no-rj-mo'
+        )
+
+    def testLocalized(self) -> None:
+        with open(f'{self.base_path}localized_info.json', 'r') as json_file:
+            localized_info = json.loads(json_file.read())
+        m = pyyoutube.Localized.new_from_json_dict(localized_info)
+        self.assertEqual(m.title, 'Google')
+
+    def testChannelSnippet(self) -> None:
+        with open(f'{self.base_path}channel_snippet.json', 'r') as json_file:
+            snippet_info = json.loads(json_file.read())
+        m = pyyoutube.ChannelSnippet.new_from_json_dict(snippet_info)
+        self.assertEqual(m.title, 'Google')
+
+    def testChannelStatistics(self) -> None:
+        with open(f'{self.base_path}channel_statistics.json', 'r') as json_file:
+            statistics_info = json.loads(json_file.read())
+        m = pyyoutube.ChannelStatistics.new_from_json_dict(statistics_info)
+        self.assertEqual(m.viewCount, '2485241484')
+
+    def testRelatedPlaylists(self) -> None:
+        with open(f'{self.base_path}related_playlists.json', 'r') as json_file:
+            related_playlists_info = json.loads(json_file.read())
+        m = pyyoutube.RelatedPlaylists.new_from_json_dict(related_playlists_info)
+        self.assertEqual(m.favorites, 'FLK8sQmJBp8GCxrOtXWBpyEA')
+
+    def testChannelContentDetails(self) -> None:
+        with open(f'{self.base_path}channel_content_details.json', 'r') as json_file:
+            content_details_info = json.loads(json_file.read())
+        m = pyyoutube.ChannelContentDetails.new_from_json_dict(content_details_info)
+        self.assertEqual(m.relatedPlaylists.favorites, 'FLK8sQmJBp8GCxrOtXWBpyEA')
+
+    def testChannelStatus(self) -> None:
+        with open(f'{self.base_path}channel_status.json', 'r') as json_file:
+            channel_status_info = json.loads(json_file.read())
+        m = pyyoutube.ChannelStatus.new_from_json_dict(channel_status_info)
+        self.assertEqual(m.privacyStatus, 'public')
 
     def testChannel(self) -> None:
         with open(f'{self.base_path}channel_info.json', 'r') as json_file:
