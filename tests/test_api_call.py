@@ -20,7 +20,6 @@ class TestApiCall(unittest.TestCase):
             parts='id,snippet,contentDetails,statistics,status',
         )
         self.assertEqual(9, self.api.used_quota)
-        print(self.api.get_quota())
         self.assertEqual(True, '10000' in self.api.get_quota())
 
     @responses.activate

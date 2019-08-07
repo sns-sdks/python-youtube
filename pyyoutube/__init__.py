@@ -1,9 +1,23 @@
 from .models import (  # noqa
+    AccessToken,
+    UserProfile,
     Thumbnail,
     Thumbnails,
-    ChannelSnippet,
     Localized,
-    Channel
+    ChannelSnippet,
+    VideoSnippet,
+    ChannelStatistics,
+    VideoStatistics,
+    ChannelContentDetails,
+    VideoContentDetails,
+    ChannelStatus,
+    VideoStatus,
+    ChannelBrandingChannel,
+    ChannelBrandingImage,
+    ChannelBrandingHint,
+    ChannelBrandingSetting,
+    Channel,
+    Video
 )
 
 from .api import Api  # noqa
