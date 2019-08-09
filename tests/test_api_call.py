@@ -8,6 +8,7 @@ class TestApiCall(unittest.TestCase):
     BASE_URL = 'https://www.googleapis.com/youtube/v3/'
 
     def setUp(self):
+        self.base_path = '../testdata/'
         self.api = pyyoutube.Api(
             client_id='xx',
             client_secret='xx',
@@ -24,7 +25,7 @@ class TestApiCall(unittest.TestCase):
 
     @responses.activate
     def testGetChannel(self):
-        with open('testdata/channel_info.json') as f:
+        with open(f'{self.base_path}channel_info.json') as f:
             res_data = f.read()
         responses.add(
             responses.GET,
@@ -33,13 +34,13 @@ class TestApiCall(unittest.TestCase):
             status=200
         )
         res = self.api.get_channel_info(
-            channel_name='Nba'
+            channel_name='GoogleDevelopers'
         )
-        self.assertEqual(res.id, 'UCWJ2lWNubArHWmf3FIHbfcQ')
+        self.assertEqual(res.id, 'UC_x5XG1OV2P6uZZ5FSM9Ttw')
 
     @responses.activate
     def testGetVideo(self):
-        with open('testdata/video_info.json') as f:
+        with open(f'{self.base_path}video_info.json') as f:
             res_data = f.read()
         responses.add(
             responses.GET,
@@ -48,12 +49,12 @@ class TestApiCall(unittest.TestCase):
             status=200
         )
         res = self.api.get_video_info(video_id='Ks-_Mh1QhMc')
-        self.assertEqual(res.id, 'Ks-_Mh1QhMc')
-        self.assertEqual(res.statistics.viewCount, '16729224')
+        self.assertEqual(res.id, 'D-lhorsDlUQ')
+        self.assertEqual(res.statistics.viewCount, '7920')
 
     @responses.activate
     def testGetVideos(self):
-        with open('testdata/videos_info.json') as f:
+        with open(f'{self.base_path}videos_info.json') as f:
             res_data = f.read()
         responses.add(
             responses.GET,
@@ -61,6 +62,6 @@ class TestApiCall(unittest.TestCase):
             body=res_data,
             status=200
         )
-        res = self.api.get_videos_info(video_ids=['c0KYU2j0TM4', 'eIho2S0ZahI'])
+        res = self.api.get_videos_info(video_ids=['ffdXLm8EaYg', 'plhVMWR33go'])
         self.assertEqual(len(res), 2)
-        self.assertEqual(res[0].id, 'c0KYU2j0TM4')
+        self.assertEqual(res[0].id, 'ffdXLm8EaYg')

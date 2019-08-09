@@ -1,6 +1,6 @@
 {
   "kind": "youtube#channelListResponse",
-  "etag": "\"Bdx4f4ps3xCOOo1WZ91nTLkRZ_c/k-yevtVMTNkoTgxpG7_UIVY9DfU\"",
+  "etag": "\"nlUZBA6NbTS7q9G8D1GljyfTIWI/WWLF5Y3lJlTvBIx34QOnjzeNMII\"",
   "pageInfo": {
     "totalResults": 1,
     "resultsPerPage": 5
@@ -8,49 +8,54 @@
   "items": [
     {
       "kind": "youtube#channel",
-      "etag": "\"Bdx4f4ps3xCOOo1WZ91nTLkRZ_c/J8scFiXTS5NqJepqbvoosnlO_4s\"",
-      "id": "UCWJ2lWNubArHWmf3FIHbfcQ",
+      "etag": "\"nlUZBA6NbTS7q9G8D1GljyfTIWI/yZtJv5ucDDCtFX-zy5AZpvEQ9v8\"",
+      "id": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
       "snippet": {
-        "title": "NBA",
-        "description": "National Basketball Association.  Official home of the most compelling basketball action from the NBA",
-        "customUrl": "nba",
-        "publishedAt": "2005-11-21T01:20:33.000Z",
+        "title": "Google Developers",
+        "description": "The Google Developers channel features talks from events, educational series, best practices, tips, and the latest updates across our products and platforms.",
+        "customUrl": "googlecode",
+        "publishedAt": "2007-08-23T00:34:43.000Z",
         "thumbnails": {
           "default": {
-            "url": "https://yt3.ggpht.com/a/AGF-l78U5c2H6ecI8vrMu9seGbF3K3fHJ7rtaU8n=s88-c-k-c0xffffffff-no-rj-mo",
+            "url": "https://yt3.ggpht.com/a/AGF-l78iFtAxyRZcUBzG91kbKMES19z-zGW5KT20_g=s88-c-k-c0xffffffff-no-rj-mo",
             "width": 88,
             "height": 88
           },
           "medium": {
-            "url": "https://yt3.ggpht.com/a/AGF-l78U5c2H6ecI8vrMu9seGbF3K3fHJ7rtaU8n=s240-c-k-c0xffffffff-no-rj-mo",
+            "url": "https://yt3.ggpht.com/a/AGF-l78iFtAxyRZcUBzG91kbKMES19z-zGW5KT20_g=s240-c-k-c0xffffffff-no-rj-mo",
             "width": 240,
             "height": 240
           },
           "high": {
-            "url": "https://yt3.ggpht.com/a/AGF-l78U5c2H6ecI8vrMu9seGbF3K3fHJ7rtaU8n=s800-c-k-c0xffffffff-no-rj-mo",
+            "url": "https://yt3.ggpht.com/a/AGF-l78iFtAxyRZcUBzG91kbKMES19z-zGW5KT20_g=s800-c-k-c0xffffffff-no-rj-mo",
             "width": 800,
             "height": 800
           }
         },
         "localized": {
-          "title": "NBA",
-          "description": "National Basketball Association.  Official home of the most compelling basketball action from the NBA"
+          "title": "Google Developers",
+          "description": "The Google Developers channel features talks from events, educational series, best practices, tips, and the latest updates across our products and platforms."
         },
         "country": "US"
       },
       "contentDetails": {
         "relatedPlaylists": {
-          "uploads": "UUWJ2lWNubArHWmf3FIHbfcQ",
+          "uploads": "UU_x5XG1OV2P6uZZ5FSM9Ttw",
           "watchHistory": "HL",
           "watchLater": "WL"
         }
       },
       "statistics": {
-        "viewCount": "5812690272",
+        "viewCount": "159668246",
         "commentCount": "0",
-        "subscriberCount": "11819219",
+        "subscriberCount": "1915106",
         "hiddenSubscriberCount": false,
-        "videoCount": "31266"
+        "videoCount": "5023"
+      },
+      "status": {
+        "privacyStatus": "public",
+        "isLinked": true,
+        "longUploadsStatus": "longUploadsUnspecified"
       }
     }
   ]

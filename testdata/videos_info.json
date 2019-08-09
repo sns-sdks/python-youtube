@@ -1,6 +1,6 @@
 {
   "kind": "youtube#videoListResponse",
-  "etag": "\"Bdx4f4ps3xCOOo1WZ91nTLkRZ_c/qBTxvyH7K4R0zOWKrxit9U8lcGU\"",
+  "etag": "\"nlUZBA6NbTS7q9G8D1GljyfTIWI/NSsEBa-BiuB45CFygDa7zAe22Us\"",
   "pageInfo": {
     "totalResults": 2,
     "resultsPerPage": 2
@@ -8,70 +8,84 @@
   "items": [
     {
       "kind": "youtube#video",
-      "etag": "\"Bdx4f4ps3xCOOo1WZ91nTLkRZ_c/aw2fjpQVmAq_uYkF194BpIoaIos\"",
-      "id": "c0KYU2j0TM4",
+      "etag": "\"nlUZBA6NbTS7q9G8D1GljyfTIWI/Qu-kH-IutRJCVblHkw2pmw7GxuM\"",
+      "id": "ffdXLm8EaYg",
       "snippet": {
-        "publishedAt": "2012-03-02T19:03:16.000Z",
-        "channelId": "UCAuUUnT6oDeKwE6v1NGQxug",
-        "title": "The power of introverts | Susan Cain",
-        "description": "http://www.ted.com In a culture where being social and outgoing are prized above all else, it can be difficult, even shameful, to be an introvert. But, as Susan Cain argues in this passionate talk, introverts bring extraordinary talents and abilities to the world, and should be encouraged and celebrated.\n\nGet TED Talks recommended just for you! Learn more at https://www.ted.com/signup.\n\nThe TED Talks channel features the best talks and performances from the TED Conference, where the world's leading thinkers and doers give the talk of their lives in 18 minutes (or less). Look for talks on Technology, Entertainment and Design -- plus science, business, global issues, the arts and more.\n\nFollow TED on Twitter: http://www.twitter.com/TEDTalks\nLike TED on Facebook: https://www.facebook.com/TED\n\nSubscribe to our channel: https://www.youtube.com/TED",
+        "publishedAt": "2019-06-11T19:30:02.000Z",
+        "channelId": "UCWJ2lWNubArHWmf3FIHbfcQ",
+        "title": "2019 NBA Finals Game 5 Mini-Movie",
+        "description": "The Golden State Warriors fend off elimination in Game 5 of the 2019 NBA Finals, winning 106-105. The Raptors now lead the series 3 games to 2.  The Warriors were led by Stephen Curry who scored 31 points and Klay Thompson who chipped in 26.  The series now shifts to Oakland for Game 6 and the final game at Oracle Arena.\n\nSubscribe to the NBA: http://bit.ly/2rCglzY\n\nFor news, stories, highlights and more, go to our official website at http://www.nba.com\n\nGet NBA LEAGUE PASS: https://nba.app.link/e/yGbauuaHeU",
         "thumbnails": {
           "default": {
-            "url": "https://i.ytimg.com/vi/c0KYU2j0TM4/default.jpg",
+            "url": "https://i.ytimg.com/vi/ffdXLm8EaYg/default.jpg",
             "width": 120,
             "height": 90
           },
           "medium": {
-            "url": "https://i.ytimg.com/vi/c0KYU2j0TM4/mqdefault.jpg",
+            "url": "https://i.ytimg.com/vi/ffdXLm8EaYg/mqdefault.jpg",
             "width": 320,
             "height": 180
           },
           "high": {
-            "url": "https://i.ytimg.com/vi/c0KYU2j0TM4/hqdefault.jpg",
+            "url": "https://i.ytimg.com/vi/ffdXLm8EaYg/hqdefault.jpg",
             "width": 480,
             "height": 360
           },
           "standard": {
-            "url": "https://i.ytimg.com/vi/c0KYU2j0TM4/sddefault.jpg",
+            "url": "https://i.ytimg.com/vi/ffdXLm8EaYg/sddefault.jpg",
             "width": 640,
             "height": 480
           },
           "maxres": {
-            "url": "https://i.ytimg.com/vi/c0KYU2j0TM4/maxresdefault.jpg",
+            "url": "https://i.ytimg.com/vi/ffdXLm8EaYg/maxresdefault.jpg",
             "width": 1280,
             "height": 720
           }
         },
-        "channelTitle": "TED",
+        "channelTitle": "NBA",
         "tags": [
-          "Susan Cain",
-          "culture",
-          "psychology",
-          "introvert",
-          "Quiet",
-          "Power of Introverts Book",
-          "extravert",
-          "TED",
-          "TED2012",
-          "TEDTalk",
-          "TEDTalks",
-          "TED Talk",
-          "TED Talks"
+          "nba",
+          "highlights",
+          "basketball",
+          "plays",
+          "amazing",
+          "sports",
+          "hoops",
+          "games",
+          "game",
+          "golden state warriors",
+          "klay thompson",
+          "toronto raptors",
+          "kawhi leonard",
+          "stephen curry",
+          "nba finals",
+          "2019",
+          "playoffs",
+          "mvp",
+          "clutch",
+          "kevin durant"
         ],
-        "categoryId": "22",
+        "categoryId": "17",
         "liveBroadcastContent": "none",
         "defaultLanguage": "en",
         "localized": {
-          "title": "The power of introverts | Susan Cain",
-          "description": "http://www.ted.com In a culture where being social and outgoing are prized above all else, it can be difficult, even shameful, to be an introvert. But, as Susan Cain argues in this passionate talk, introverts bring extraordinary talents and abilities to the world, and should be encouraged and celebrated.\n\nGet TED Talks recommended just for you! Learn more at https://www.ted.com/signup.\n\nThe TED Talks channel features the best talks and performances from the TED Conference, where the world's leading thinkers and doers give the talk of their lives in 18 minutes (or less). Look for talks on Technology, Entertainment and Design -- plus science, business, global issues, the arts and more.\n\nFollow TED on Twitter: http://www.twitter.com/TEDTalks\nLike TED on Facebook: https://www.facebook.com/TED\n\nSubscribe to our channel: https://www.youtube.com/TED"
-        }
+          "title": "2019 NBA Finals Game 5 Mini-Movie",
+          "description": "The Golden State Warriors fend off elimination in Game 5 of the 2019 NBA Finals, winning 106-105. The Raptors now lead the series 3 games to 2.  The Warriors were led by Stephen Curry who scored 31 points and Klay Thompson who chipped in 26.  The series now shifts to Oakland for Game 6 and the final game at Oracle Arena.\n\nSubscribe to the NBA: http://bit.ly/2rCglzY\n\nFor news, stories, highlights and more, go to our official website at http://www.nba.com\n\nGet NBA LEAGUE PASS: https://nba.app.link/e/yGbauuaHeU"
+        },
+        "defaultAudioLanguage": "en"
       },
       "contentDetails": {
-        "duration": "PT19M5S",
+        "duration": "PT6M42S",
         "dimension": "2d",
         "definition": "hd",
-        "caption": "true",
+        "caption": "false",
         "licensedContent": true,
+        "regionRestriction": {
+          "blocked": [
+            "CN",
+            "TW"
+          ]
+        },
         "projection": "rectangular"
       },
       "status": {
@@ -82,76 +96,106 @@
         "publicStatsViewable": true
       },
       "statistics": {
-        "viewCount": "9261157",
-        "likeCount": "189084",
-        "dislikeCount": "2483",
+        "viewCount": "707783",
+        "likeCount": "9244",
+        "dislikeCount": "249",
         "favoriteCount": "0",
-        "commentCount": "11398"
+        "commentCount": "765"
       }
     },
     {
       "kind": "youtube#video",
-      "etag": "\"Bdx4f4ps3xCOOo1WZ91nTLkRZ_c/GrsAyZWkrfro9Q5Em55v1I0IwU0\"",
-      "id": "eIho2S0ZahI",
+      "etag": "\"nlUZBA6NbTS7q9G8D1GljyfTIWI/5gcAJRFVPBdUa1b0jFTPWV9kHzI\"",
+      "id": "plhVMWR33go",
       "snippet": {
-        "publishedAt": "2014-06-27T15:10:18.000Z",
-        "channelId": "UCAuUUnT6oDeKwE6v1NGQxug",
-        "title": "How to speak so that people want to listen | Julian Treasure",
-        "description": "Have you ever felt like you're talking, but nobody is listening? Here's Julian Treasure to help you fix that. As the sound expert demonstrates some useful vocal exercises and shares tips on how to speak with empathy, he offers his vision for a sonorous world of listening and understanding.\n\nGet TED Talks recommended just for you! Learn more at https://www.ted.com/signup.\n\nThe TED Talks channel features the best talks and performances from the TED Conference, where the world's leading thinkers and doers give the talk of their lives in 18 minutes (or less). Look for talks on Technology, Entertainment and Design -- plus science, business, global issues, the arts and more.\n\nFollow TED on Twitter: http://www.twitter.com/TEDTalks\nLike TED on Facebook: https://www.facebook.com/TED\n\nSubscribe to our channel: https://www.youtube.com/TED",
+        "publishedAt": "2019-06-08T17:00:08.000Z",
+        "channelId": "UCWJ2lWNubArHWmf3FIHbfcQ",
+        "title": "2019 NBA Finals Game 4 Mini-Movie",
+        "description": "The Toronto Raptors take a commanding 3 games to 1 series lead in the 2019 NBA Finals with a 105-92 victory over the Golden State Warriors in Game 4.  Kawhi Leonard once again led the way for the Raptors with 36 points.  Klay Thompson returned to the lineup for the Warriors and scored 28 points in the loss.  The Raptors will look to close out the series in Game 5 back home in Toronto.\n\nSubscribe to the NBA: http://bit.ly/2rCglzY\n\nFor news, stories, highlights and more, go to our official website at http://www.nba.com\n\nGet NBA LEAGUE PASS: https://nba.app.link/e/yGbauuaHeU",
         "thumbnails": {
           "default": {
-            "url": "https://i.ytimg.com/vi/eIho2S0ZahI/default.jpg",
+            "url": "https://i.ytimg.com/vi/plhVMWR33go/default.jpg",
             "width": 120,
             "height": 90
           },
           "medium": {
-            "url": "https://i.ytimg.com/vi/eIho2S0ZahI/mqdefault.jpg",
+            "url": "https://i.ytimg.com/vi/plhVMWR33go/mqdefault.jpg",
             "width": 320,
             "height": 180
           },
           "high": {
-            "url": "https://i.ytimg.com/vi/eIho2S0ZahI/hqdefault.jpg",
+            "url": "https://i.ytimg.com/vi/plhVMWR33go/hqdefault.jpg",
             "width": 480,
             "height": 360
           },
           "standard": {
-            "url": "https://i.ytimg.com/vi/eIho2S0ZahI/sddefault.jpg",
+            "url": "https://i.ytimg.com/vi/plhVMWR33go/sddefault.jpg",
             "width": 640,
             "height": 480
           },
           "maxres": {
-            "url": "https://i.ytimg.com/vi/eIho2S0ZahI/maxresdefault.jpg",
+            "url": "https://i.ytimg.com/vi/plhVMWR33go/maxresdefault.jpg",
             "width": 1280,
             "height": 720
           }
         },
-        "channelTitle": "TED",
+        "channelTitle": "NBA",
         "tags": [
-          "TEDTalk",
-          "TEDTalks",
-          "TED Talk",
-          "TED Talks",
-          "TED",
-          "Julian Treasure",
-          "culture",
-          "sound",
-          "speech",
-          "TEDGlobal"
+          "nba",
+          "highlights",
+          "basketball",
+          "plays",
+          "amazing",
+          "sports",
+          "hoops",
+          "games",
+          "game",
+          "kawhi",
+          "nba finals",
+          "finals",
+          "steph curry",
+          "klay thompson",
+          "championship",
+          "kyle lowry",
+          "we the north",
+          "toronto",
+          "golden state",
+          "warriors",
+          "raptors",
+          "demarcus cousins",
+          "pascal siakam",
+          "game 4",
+          "oracle",
+          "strength in numbers",
+          "klaw",
+          "splash bros",
+          "title",
+          "marc gasol",
+          "draymond green",
+          "the 6",
+          "the bay"
         ],
-        "categoryId": "26",
+        "categoryId": "17",
         "liveBroadcastContent": "none",
         "defaultLanguage": "en",
         "localized": {
-          "title": "How to speak so that people want to listen | Julian Treasure",
-          "description": "Have you ever felt like you're talking, but nobody is listening? Here's Julian Treasure to help you fix that. As the sound expert demonstrates some useful vocal exercises and shares tips on how to speak with empathy, he offers his vision for a sonorous world of listening and understanding.\n\nGet TED Talks recommended just for you! Learn more at https://www.ted.com/signup.\n\nThe TED Talks channel features the best talks and performances from the TED Conference, where the world's leading thinkers and doers give the talk of their lives in 18 minutes (or less). Look for talks on Technology, Entertainment and Design -- plus science, business, global issues, the arts and more.\n\nFollow TED on Twitter: http://www.twitter.com/TEDTalks\nLike TED on Facebook: https://www.facebook.com/TED\n\nSubscribe to our channel: https://www.youtube.com/TED"
-        }
+          "title": "2019 NBA Finals Game 4 Mini-Movie",
+          "description": "The Toronto Raptors take a commanding 3 games to 1 series lead in the 2019 NBA Finals with a 105-92 victory over the Golden State Warriors in Game 4.  Kawhi Leonard once again led the way for the Raptors with 36 points.  Klay Thompson returned to the lineup for the Warriors and scored 28 points in the loss.  The Raptors will look to close out the series in Game 5 back home in Toronto.\n\nSubscribe to the NBA: http://bit.ly/2rCglzY\n\nFor news, stories, highlights and more, go to our official website at http://www.nba.com\n\nGet NBA LEAGUE PASS: https://nba.app.link/e/yGbauuaHeU"
+        },
+        "defaultAudioLanguage": "en"
       },
       "contentDetails": {
-        "duration": "PT9M59S",
+        "duration": "PT5M36S",
         "dimension": "2d",
         "definition": "hd",
-        "caption": "true",
+        "caption": "false",
         "licensedContent": true,
+        "regionRestriction": {
+          "blocked": [
+            "CN",
+            "TW"
+          ]
+        },
         "projection": "rectangular"
       },
       "status": {
@@ -162,11 +206,11 @@
         "publicStatsViewable": true
       },
       "statistics": {
-        "viewCount": "22424762",
-        "likeCount": "363354",
-        "dislikeCount": "7489",
+        "viewCount": "897455",
+        "likeCount": "12503",
+        "dislikeCount": "285",
         "favoriteCount": "0",
-        "commentCount": "6132"
+        "commentCount": "1413"
       }
     }
   ]
