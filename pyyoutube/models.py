@@ -158,6 +158,24 @@ class Localized(BaseModel):
         return "Localized(title={title}".format(title=self.title)
 
 
+class ResourceId(BaseModel):
+    """One ResourceId instance for playlistItem """
+
+    def __init__(self, **kwargs):
+        BaseModel.__init__(self, **kwargs)
+        self.param_defaults = {
+            'kind': None,
+            'videoId': None
+        }
+        for (param, value) in self.param_defaults.items():
+            setattr(self, param, kwargs.get(param, value))
+
+    def __repr__(self):
+        return "ResourceId(videoId={videoId},kind={title}".format(
+            videoId=self.videoId, title=self.title
+        )
+
+
 class ChannelSnippet(BaseModel):
     """A class representing base info for channel snippet
     """
@@ -266,6 +284,42 @@ class PlayListSnippet(BaseModel):
         )
 
 
+class PlaylistItemSnippet(BaseModel):
+    """One PlaylistItemSnippet instance """
+
+    def __init__(self, **kwargs):
+        BaseModel.__init__(self, **kwargs)
+        self.param_defaults = {
+            "publishedAt": None,
+            "channelId": None,
+            "title": None,
+            "description": None,
+            "thumbnails": None,
+            "channelTitle": None,
+            "playlistId": None,
+            "position": None,
+            "resourceId": None
+        }
+        self.initial(kwargs)
+
+    def __repr__(self):
+        return "PlaylistItemSnippet(title={title},description={description})".format(
+            title=self.title, description=self.description
+        )
+
+    @classmethod
+    def new_from_json_dict(cls, data, **kwargs):
+        thumbnails = data.get('thumbnails')
+        if thumbnails:
+            thumbnails = Thumbnails.new_from_json_dict(thumbnails)
+        resource_id = data.get('resourceId')
+        if resource_id:
+            resource_id = ResourceId.new_from_json_dict(resource_id)
+        return super(cls, cls).new_from_json_dict(
+            data=data, thumbnails=thumbnails, resource_id=resource_id
+        )
+
+
 class ChannelStatistics(BaseModel):
     """A class representing Channel's statistics data.
     """
@@ -288,8 +342,7 @@ class ChannelStatistics(BaseModel):
 
 
 class VideoStatistics(BaseModel):
-    """
-    """
+    """One VideoStatistics instance """
 
     def __init__(self, **kwargs):
         BaseModel.__init__(self, **kwargs)
@@ -500,6 +553,23 @@ class PlayListContentDetails(BaseModel):
         )
 
 
+class PlaylistItemContentDetails(BaseModel):
+    """One PlaylistItemContentDetails instance """
+
+    def __init__(self, **kwargs):
+        BaseModel.__init__(self, **kwargs)
+        self.param_defaults = {
+            'videoId': None,
+            'videoPublishedAt': None
+        }
+        self.initial(kwargs)
+
+    def __repr__(self):
+        return "PlaylistItemContentDetails(videoId={videoId},videoPublishedAt={videoPublishedAt)".format(
+            videoId=self.videoId, videoPublishedAt=self.videoPublishedAt
+        )
+
+
 class Topic(BaseModel):
     """A class representing Topic info"""
 
@@ -615,6 +685,20 @@ class PlayListStatus(BaseModel):
 
     def __repr__(self):
         return "PlayListStatus(privacyStatus={privacyStatus})".format(
+            privacyStatus=self.privacyStatus
+        )
+
+
+class PlaylistItemStatus(BaseModel):
+    def __init__(self, **kwargs):
+        BaseModel.__init__(self, **kwargs)
+        self.param_defaults = {
+            'privacyStatus': None
+        }
+        self.initial(kwargs)
+
+    def __repr__(self):
+        return "PlaylistItemStatus(privacyStatus={privacyStatus})".format(
             privacyStatus=self.privacyStatus
         )
 
@@ -814,7 +898,7 @@ class PlayList(BaseModel):
         self.initial(kwargs)
 
     def __repr__(self):
-        return "PlayList(id={p_id},kind={kind})".format(
+        return "Playlist(id={p_id},kind={kind})".format(
             p_id=self.id, kind=self.kind
         )
 
@@ -827,6 +911,44 @@ class PlayList(BaseModel):
             json_data['contentDetails'] = PlayListContentDetails.new_from_json_dict(data['contentDetails'])
         if 'status' in json_data:
             json_data['status'] = PlayListStatus.new_from_json_dict(data['status'])
+
+        if kwargs:
+            for key, val in kwargs.items():
+                json_data[key] = val
+        c = cls(**json_data)
+        c._json = data
+        return c
+
+
+class PlaylistItem(BaseModel):
+    """One PlaylistItem instance"""
+
+    def __init__(self, **kwargs):
+        BaseModel.__init__(self, **kwargs)
+        self.param_defaults = {
+            'kind': None,
+            'etag': None,
+            'id': None,
+            'snippet': None,
+            'contentDetails': None,
+            'status': None,
+        }
+        self.initial(kwargs)
+
+    def __repr__(self):
+        return "PlaylistItem(id={p_id},kind={kind})".format(
+            p_id=self.id, kind=self.kind
+        )
+
+    @classmethod
+    def new_from_json_dict(cls, data, **kwargs):
+        json_data = data.copy()
+        if 'snippet' in json_data:
+            json_data['snippet'] = PlaylistItemSnippet.new_from_json_dict(data['snippet'])
+        if 'contentDetails' in json_data:
+            json_data['contentDetails'] = PlaylistItemContentDetails.new_from_json_dict(data['contentDetails'])
+        if 'status' in json_data:
+            json_data['status'] = PlaylistItemStatus.new_from_json_dict(data['status'])
 
         if kwargs:
             for key, val in kwargs.items():

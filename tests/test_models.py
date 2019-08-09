@@ -113,5 +113,53 @@ class ModelTest(unittest.TestCase):
     def testPlayList(self) -> None:
         with open(f'{self.base_path}playlist_info.json', 'r') as json_file:
             playlist_info = json.loads(json_file.read())
-        m = pyyoutube.Video.new_from_json_dict(playlist_info)
+        m = pyyoutube.PlayList.new_from_json_dict(playlist_info)
         self.assertEqual(m.id, 'PLOU2XLYxmsIJpufeMHncnQvFOe0K3MhVp')
+
+    def testPlayListSnippet(self) -> None:
+        with open(f'{self.base_path}playlist_snippet.json', 'r') as json_file:
+            playlist_snippet = json.loads(json_file.read())
+        m = pyyoutube.PlayListSnippet.new_from_json_dict(playlist_snippet)
+        self.assertEqual(m.title, 'Assistant on Air')
+
+    def testPlayListStatus(self) -> None:
+        with open(f'{self.base_path}playlist_status.json', 'r') as json_file:
+            playlist_status = json.loads(json_file.read())
+        m = pyyoutube.PlayListStatus.new_from_json_dict(playlist_status)
+        self.assertEqual(m.privacyStatus, 'public')
+
+    def testPlayListContentDetails(self) -> None:
+        with open(f'{self.base_path}playlist_content_details.json', 'r') as json_file:
+            playlist_content_details = json.loads(json_file.read())
+        m = pyyoutube.PlayListContentDetails.new_from_json_dict(playlist_content_details)
+        self.assertEqual(m.itemCount, 4)
+
+    def testPlaylistItem(self) -> None:
+        with open(f'{self.base_path}playlist_item_info.json', 'r') as json_file:
+            playlist_item_info = json.loads(json_file.read())
+        m = pyyoutube.PlaylistItem.new_from_json_dict(playlist_item_info)
+        self.assertEqual(m.id, 'UExPVTJYTFl4bXNJSnB1ZmVNSG5jblF2Rk9lMEszTWhWcC41NkI0NEY2RDEwNTU3Q0M2')
+
+    def testResourceId(self) -> None:
+        with open(f'{self.base_path}resource_id_info.json', 'r') as json_file:
+            resource_id_info = json.loads(json_file.read())
+        m = pyyoutube.ResourceId.new_from_json_dict(resource_id_info)
+        self.assertEqual(m.videoId, 'D-lhorsDlUQ')
+
+    def testPlaylistItemSnippet(self) -> None:
+        with open(f'{self.base_path}playlist_item_snippet.json', 'r') as json_file:
+            playlist_item_snippet = json.loads(json_file.read())
+        m = pyyoutube.PlaylistItemSnippet.new_from_json_dict(playlist_item_snippet)
+        self.assertEqual(m.title, 'What are Actions on Google (Assistant on Air)')
+
+    def testPlaylistItemContentDetails(self) -> None:
+        with open(f'{self.base_path}playlist_item_content_details.json', 'r') as json_file:
+            playlist_item_content_details = json.loads(json_file.read())
+        m = pyyoutube.PlaylistItemContentDetails.new_from_json_dict(playlist_item_content_details)
+        self.assertEqual(m.videoId, 'D-lhorsDlUQ')
+
+    def testPlaylistItemStatus(self) -> None:
+        with open(f'{self.base_path}playlist_item_status.json', 'r') as json_file:
+            playlist_item_status = json.loads(json_file.read())
+        m = pyyoutube.PlaylistItemStatus.new_from_json_dict(playlist_item_status)
+        self.assertEqual(m.privacyStatus, 'public')

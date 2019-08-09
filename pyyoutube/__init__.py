@@ -19,7 +19,15 @@ from .models import (  # noqa
     ChannelBrandingSetting,
     Channel,
     Video,
-    PlayList
+    PlayList,
+    PlayListSnippet,
+    PlayListStatus,
+    PlayListContentDetails,
+    PlaylistItem,
+    ResourceId,
+    PlaylistItemSnippet,
+    PlaylistItemContentDetails,
+    PlaylistItemStatus,
 )
 
 from .api import Api  # noqa

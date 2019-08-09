@@ -1,0 +1,52 @@
+{
+  "kind": "youtube#playlistItem",
+  "etag": "\"nlUZBA6NbTS7q9G8D1GljyfTIWI/lAPls3tzYIP4Re0-vMkPDF4whaw\"",
+  "id": "UExPVTJYTFl4bXNJSnB1ZmVNSG5jblF2Rk9lMEszTWhWcC41NkI0NEY2RDEwNTU3Q0M2",
+  "snippet": {
+    "publishedAt": "2019-05-16T18:46:20.000Z",
+    "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+    "title": "What are Actions on Google (Assistant on Air)",
+    "description": "In the first episode of Assistant on Air, Luke Davis and guest Jessica Dene Early-Cha introduce the concept of Actions on Google, and talk about common terminology.\n\nActions on Google docs → http://bit.ly/2YabdS5\n\nSubscribe to Google Devs for the latest Actions on Google videos →  https://bit.ly/googledevs",
+    "thumbnails": {
+      "default": {
+        "url": "https://i.ytimg.com/vi/D-lhorsDlUQ/default.jpg",
+        "width": 120,
+        "height": 90
+      },
+      "medium": {
+        "url": "https://i.ytimg.com/vi/D-lhorsDlUQ/mqdefault.jpg",
+        "width": 320,
+        "height": 180
+      },
+      "high": {
+        "url": "https://i.ytimg.com/vi/D-lhorsDlUQ/hqdefault.jpg",
+        "width": 480,
+        "height": 360
+      },
+      "standard": {
+        "url": "https://i.ytimg.com/vi/D-lhorsDlUQ/sddefault.jpg",
+        "width": 640,
+        "height": 480
+      },
+      "maxres": {
+        "url": "https://i.ytimg.com/vi/D-lhorsDlUQ/maxresdefault.jpg",
+        "width": 1280,
+        "height": 720
+      }
+    },
+    "channelTitle": "Google Developers",
+    "playlistId": "PLOU2XLYxmsIJpufeMHncnQvFOe0K3MhVp",
+    "position": 0,
+    "resourceId": {
+      "kind": "youtube#video",
+      "videoId": "D-lhorsDlUQ"
+    }
+  },
+  "contentDetails": {
+    "videoId": "D-lhorsDlUQ",
+    "videoPublishedAt": "2019-03-21T20:37:49.000Z"
+  },
+  "status": {
+    "privacyStatus": "public"
+  }
+}
