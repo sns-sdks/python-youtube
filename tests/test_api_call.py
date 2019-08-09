@@ -58,6 +58,25 @@ class TestApiCall(unittest.TestCase):
         self.assertEqual(summary['totalResults'], 416)
 
     @responses.activate
+    def testGetPlaylistItems(self):
+        with open(f'{self.base_path}playlist_items_info.json') as f:
+            res_data = f.read()
+        responses.add(
+            responses.GET,
+            self.BASE_URL + 'playlistItems',
+            body=res_data,
+            status=200
+        )
+
+        playlist_items, summary = self.api.get_playlist_item(
+            playlist_id='PLOU2XLYxmsIJJVnHWmd1qfr0Caq4VZCu4',
+            limit=5,
+        )
+        self.assertEqual(len(playlist_items), 5)
+        self.assertEqual(playlist_items[0].id, 'UExPVTJYTFl4bXNJSkpWbkhXbWQxcWZyMENhcTRWWkN1NC4zRjM0MkVCRTg0MkYyQTM0')
+        self.assertEqual(summary['totalResults'], 23)
+
+    @responses.activate
     def testGetVideo(self):
         with open(f'{self.base_path}video_info.json') as f:
             res_data = f.read()

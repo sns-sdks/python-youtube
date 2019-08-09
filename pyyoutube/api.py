@@ -11,7 +11,8 @@ from requests.models import Response  # noqa
 
 from pyyoutube.error import ErrorMessage, PyYouTubeException
 from pyyoutube.models import (
-    AccessToken, UserProfile, Channel, Video, PlayList
+    AccessToken, UserProfile, Channel, Video,
+    PlayList, PlaylistItem
 )
 from pyyoutube.utils.quota_cost import LIST_DATA
 
@@ -523,6 +524,85 @@ class Api(object):
             if len(playlists) >= count:
                 break
         return playlists[:count], playlists_summary
+
+    def get_playlist_item(self,
+                          playlist_id=None,
+                          playlist_item_id=None,
+                          summary=True,
+                          count=5,
+                          limit=5,
+                          return_json=False):
+        """
+        Retrieve channel playlistItems info.
+        Provide two methods: by playlist ID, or by playlistItem id (ids)
+
+        Args:
+            playlist_id (str, optional)
+                If provide channel id, this will return pointed playlist's item info.
+            playlist_item_id (str,list optional)
+                If provide this. will return those playlistItem's info.
+            summary (bool, optional)
+                 If True will return playlist item summary of metadata.
+                 Notice this depend on your query.
+            count (int, optional)
+                The count will retrieve playlist items data.
+                Default is 5.
+            limit (int, optional)
+                Each request retrieve playlistItems from data api.
+                For playlistItem, this should not be more than 50.
+                Default is 5
+            return_json(bool, optional)
+                The return data type. If you set True JSON data will be returned.
+                False will return pyyoutube.PlayListItem
+        Returns:
+            return tuple.
+            (playlistItem data, playlistItem summary)
+        """
+        part = 'id,snippet,contentDetails,status'
+        args = {
+            'part': part,
+            'maxResults': limit
+        }
+        if playlist_id is not None:
+            args['playlistId'] = playlist_id
+        elif playlist_item_id is not None:
+            if isinstance(playlist_item_id, str):
+                p_id = playlist_item_id
+            elif isinstance(playlist_item_id, (list, tuple)):
+                p_id = ','.join(playlist_item_id)
+            else:
+                raise PyYouTubeException(ErrorMessage(
+                    status_code=10007,
+                    message='PlaylistItem must be single id or id list.'
+                ))
+            args['id'] = p_id
+        else:
+            raise PyYouTubeException(ErrorMessage(
+                status_code=10005,
+                message='Specify at least one of channel id or playlist id(id list)'
+            ))
+
+        playlist_items = []
+        playlist_items_summary = None
+        next_page_token = None
+        while True:
+            prev_page_token, next_page_token, data = self.paged_by_page_token(
+                resource='playlistItems',
+                args=args,
+                page_token=next_page_token,
+            )
+            items = self._parse_data(data)
+            if return_json:
+                playlist_items += items
+            else:
+                playlist_items += [PlaylistItem.new_from_json_dict(item) for item in items]
+            if summary:
+                playlist_items_summary = data.get('pageInfo', {})
+            if next_page_token is None:
+                break
+            if len(playlist_items) >= count:
+                break
+        return playlist_items[:count], playlist_items_summary
 
     def get_video_info(self, video_id=None, return_json=False):
         """
