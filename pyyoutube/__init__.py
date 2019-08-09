@@ -18,7 +18,8 @@ from .models import (  # noqa
     ChannelBrandingHint,
     ChannelBrandingSetting,
     Channel,
-    Video
+    Video,
+    PlayList
 )
 
 from .api import Api  # noqa

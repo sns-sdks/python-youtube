@@ -10,7 +10,9 @@ import requests
 from requests.models import Response  # noqa
 
 from pyyoutube.error import ErrorMessage, PyYouTubeException
-from pyyoutube.models import AccessToken, UserProfile, Channel, Video
+from pyyoutube.models import (
+    AccessToken, UserProfile, Channel, Video, PlayList
+)
 from pyyoutube.utils.quota_cost import LIST_DATA
 
 
@@ -428,6 +430,63 @@ class Api(object):
             return data
         else:
             return Channel.new_from_json_dict(data[0])
+
+    def get_playlist(self, channel_id=None, playlist_id=None, return_json=False):
+        """
+        Retrieve channel playlists info.
+        Provide two methods: by channel ID, or by playlist id (ids)
+
+        Args:
+            channel_id (str, optional)
+                if provide channel id, this will return pointed channel's playlist info.
+            playlist_id (str,list optional)
+                if provide this. will return those playlist's info.
+            return_json(bool, optional)
+                The return data type. If you set True JSON data will be returned.
+                False will return pyyoutube.PlayList
+        Returns:
+            The data for playlist.
+        """
+        part = 'id,snippet,contentDetails,status,localizations'
+        if channel_id is not None:
+            args = {
+                'channelId': channel_id,
+                'part': part,
+            }
+        elif playlist_id is not None:
+            if isinstance(playlist_id, str):
+                p_id = playlist_id
+            elif isinstance(playlist_id, (list, tuple)):
+                p_id = ','.join(playlist_id)
+            else:
+                raise PyYouTubeException(ErrorMessage(
+                    status_code=10007,
+                    message='Playlist must be single id or id list.'
+                ))
+            args = {
+                'id': p_id,
+                'part': part,
+            }
+        else:
+            raise PyYouTubeException(ErrorMessage(
+                status_code=10005,
+                message='Specify at least one of channel id or playlist id(id list)'
+            ))
+        resp = self._request(
+            resource='playlists',
+            method='GET',
+            args=args
+        )
+        data = self._parse_response(resp, api=True)
+        self.calc_quota(
+            resource='playlists',
+            parts=part,
+            count=len(data)
+        )
+        if return_json:
+            return data
+        else:
+            return [PlayList.new_from_json_dict(item) for item in data]
 
     def get_video_info(self, video_id=None, return_json=False):
         """

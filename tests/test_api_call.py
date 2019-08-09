@@ -8,7 +8,7 @@ class TestApiCall(unittest.TestCase):
     BASE_URL = 'https://www.googleapis.com/youtube/v3/'
 
     def setUp(self):
-        self.base_path = '../testdata/'
+        self.base_path = 'testdata/'
         self.api = pyyoutube.Api(
             client_id='xx',
             client_secret='xx',
@@ -37,6 +37,21 @@ class TestApiCall(unittest.TestCase):
             channel_name='GoogleDevelopers'
         )
         self.assertEqual(res.id, 'UC_x5XG1OV2P6uZZ5FSM9Ttw')
+
+    @responses.activate
+    def testGetPlaylist(self):
+        with open(f'{self.base_path}playlists_info.json') as f:
+            res_data = f.read()
+        responses.add(
+            responses.GET,
+            self.BASE_URL + 'playlists',
+            body=res_data,
+            status=200
+        )
+
+        resp = self.api.get_playlist(channel_id='UC_x5XG1OV2P6uZZ5FSM9Ttw')
+        self.assertEqual(len(resp), 5)
+        self.assertEqual(resp[0].id, 'PLOU2XLYxmsIJpufeMHncnQvFOe0K3MhVp')
 
     @responses.activate
     def testGetVideo(self):

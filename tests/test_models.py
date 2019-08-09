@@ -109,3 +109,9 @@ class ModelTest(unittest.TestCase):
             video_info = json.loads(json_file.read())
         m = pyyoutube.Video.new_from_json_dict(video_info)
         self.assertEqual(m.id, 'lDBbRDfrgnI')
+
+    def testPlayList(self) -> None:
+        with open(f'{self.base_path}playlist_info.json', 'r') as json_file:
+            playlist_info = json.loads(json_file.read())
+        m = pyyoutube.Video.new_from_json_dict(playlist_info)
+        self.assertEqual(m.id, 'PLOU2XLYxmsIJpufeMHncnQvFOe0K3MhVp')

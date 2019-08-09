@@ -10,6 +10,10 @@ LIST_DATA = {
     'channels.statistics': 2,
     'channels.status': 2,
     'channels.topicDetails': 2,
+    # playlist relative
+    'playlists.snippet': 2,
+    'playlists.contentDetails': 2,
+    'playlists.status': 2,
     # videos relative
     'videos.snippet': 2,
     'videos.contentDetails': 2,
