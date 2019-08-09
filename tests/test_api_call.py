@@ -49,9 +49,13 @@ class TestApiCall(unittest.TestCase):
             status=200
         )
 
-        resp = self.api.get_playlist(channel_id='UC_x5XG1OV2P6uZZ5FSM9Ttw')
-        self.assertEqual(len(resp), 5)
-        self.assertEqual(resp[0].id, 'PLOU2XLYxmsIJpufeMHncnQvFOe0K3MhVp')
+        playlists, summary = self.api.get_playlist(
+            channel_id='UC_x5XG1OV2P6uZZ5FSM9Ttw',
+            limit=5,
+        )
+        self.assertEqual(len(playlists), 5)
+        self.assertEqual(playlists[0].id, 'PLOU2XLYxmsIJpufeMHncnQvFOe0K3MhVp')
+        self.assertEqual(summary['totalResults'], 416)
 
     @responses.activate
     def testGetVideo(self):

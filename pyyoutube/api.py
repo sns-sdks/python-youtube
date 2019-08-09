@@ -237,8 +237,7 @@ class Api(object):
         else:
             return AccessToken.new_from_json_dict(data)
 
-    @staticmethod
-    def _parse_response(response, api=False):
+    def _parse_response(self, response, api=False):
         """
         Parse response data and check whether errors exists.
         Args:
@@ -251,12 +250,27 @@ class Api(object):
         if 'error' in data:
             raise PyYouTubeException(response)
         if api:
-            items = data['items']
-            if isinstance(items, dict) or len(items) == 0:
-                raise PyYouTubeException(response)
-            else:
-                return items
+            return self._parse_data(data)
         return data
+
+    @staticmethod
+    def _parse_data(data):
+        """
+        Parse resp data
+        Args:
+            data (dict)
+                The response data by response.json()
+        Return:
+             response's items
+        """
+        items = data['items']
+        if isinstance(items, dict) or len(items) == 0:
+            raise PyYouTubeException(ErrorMessage(
+                status_code=10002,
+                message='Response data not have items.'
+            ))
+        else:
+            return items
 
     def _request(self, resource, method=None, args=None, post_args=None, enforce_auth=True):
         """
@@ -431,28 +445,46 @@ class Api(object):
         else:
             return Channel.new_from_json_dict(data[0])
 
-    def get_playlist(self, channel_id=None, playlist_id=None, return_json=False):
+    def get_playlist(self,
+                     channel_id=None,
+                     playlist_id=None,
+                     summary=True,
+                     count=5,
+                     limit=5,
+                     return_json=False):
         """
         Retrieve channel playlists info.
         Provide two methods: by channel ID, or by playlist id (ids)
 
         Args:
             channel_id (str, optional)
-                if provide channel id, this will return pointed channel's playlist info.
+                If provide channel id, this will return pointed channel's playlist info.
             playlist_id (str,list optional)
-                if provide this. will return those playlist's info.
+                If provide this. will return those playlist's info.
+            summary (bool, optional)
+                 If True will return channel playlist summary of metadata.
+                 Notice this depend on your query.
+            count (int, optional)
+                The count will retrieve playlist data.
+                Default is 5.
+            limit (int, optional)
+                Each request retrieve playlists from data api.
+                For playlist, this should not be more than 50.
+                Default is 5
             return_json(bool, optional)
                 The return data type. If you set True JSON data will be returned.
                 False will return pyyoutube.PlayList
         Returns:
-            The data for playlist.
+            return tuple.
+            (playlist data, playlist summary)
         """
         part = 'id,snippet,contentDetails,status,localizations'
+        args = {
+            'part': part,
+            'maxResults': limit
+        }
         if channel_id is not None:
-            args = {
-                'channelId': channel_id,
-                'part': part,
-            }
+            args['channelId'] = channel_id
         elif playlist_id is not None:
             if isinstance(playlist_id, str):
                 p_id = playlist_id
@@ -463,30 +495,34 @@ class Api(object):
                     status_code=10007,
                     message='Playlist must be single id or id list.'
                 ))
-            args = {
-                'id': p_id,
-                'part': part,
-            }
+            args['id'] = p_id
         else:
             raise PyYouTubeException(ErrorMessage(
                 status_code=10005,
                 message='Specify at least one of channel id or playlist id(id list)'
             ))
-        resp = self._request(
-            resource='playlists',
-            method='GET',
-            args=args
-        )
-        data = self._parse_response(resp, api=True)
-        self.calc_quota(
-            resource='playlists',
-            parts=part,
-            count=len(data)
-        )
-        if return_json:
-            return data
-        else:
-            return [PlayList.new_from_json_dict(item) for item in data]
+
+        playlists = []
+        playlists_summary = None
+        next_page_token = None
+        while True:
+            prev_page_token, next_page_token, data = self.paged_by_page_token(
+                resource='playlists',
+                args=args,
+                page_token=next_page_token,
+            )
+            items = self._parse_data(data)
+            if return_json:
+                playlists += items
+            else:
+                playlists += [PlayList.new_from_json_dict(item) for item in items]
+            if summary:
+                playlists_summary = data.get('pageInfo', {})
+            if next_page_token is None:
+                break
+            if len(playlists) >= count:
+                break
+        return playlists[:count], playlists_summary
 
     def get_video_info(self, video_id=None, return_json=False):
         """
@@ -570,3 +606,34 @@ class Api(object):
             return data
         else:
             return [Video.new_from_json_dict(item) for item in data]
+
+    def paged_by_page_token(self,
+                            resource,
+                            args,
+                            page_token=None):
+        """
+        Response paged by response's page token. If not provide response token
+
+        Args:
+            resource (str)
+                The resource string need to retrieve data.
+            args (dict)
+                The args for api.
+            page_token (str, optional)
+                If token is None, this request is first (not have paged info.)
+        Returns:
+            Data api origin response.
+        """
+        if page_token is not None:
+            args['pageToken'] = page_token
+
+        resp = self._request(
+            resource=resource,
+            method='GET',
+            args=args
+        )
+        data = self._parse_response(resp)  # origin response
+        # set page token
+        next_page_token = data.get('nextPageToken')
+        prev_page_token = data.get('prevPageToken')
+        return prev_page_token, next_page_token, data
