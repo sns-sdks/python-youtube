@@ -38,30 +38,57 @@ Now only for api key::
 
 To fetch one youtube channel's data::
 
-    In [3]: res = api.get_channel_info(channel_name='Nba')
+    In [3]: res = api.get_channel_info(channel_name='GoogleDevelopers')
 
     In [4]: res
-    Out[5]: Channel(id=UCWJ2lWNubArHWmf3FIHbfcQ,kind=youtube#channel)
+    Out[5]: Channel(id=UC_x5XG1OV2P6uZZ5FSM9Ttw,kind=youtube#channel)
 
+To fetch youtube channel's playlists::
+
+    In [6]: res = api.get_playlist(channel_id='UC_x5XG1OV2P6uZZ5FSM9Ttw')
+
+    In [7]: res
+    Out[7]:
+    ([Playlist(id=PLOU2XLYxmsIJpufeMHncnQvFOe0K3MhVp,kind=youtube#playlist),
+      Playlist(id=PLOU2XLYxmsIJXsH2htG1g0NUjHGq62Q7i,kind=youtube#playlist),
+      Playlist(id=PLOU2XLYxmsIJJVnHWmd1qfr0Caq4VZCu4,kind=youtube#playlist),
+      Playlist(id=PLOU2XLYxmsIKW-llcbcFdpR9RjCfYHZaV,kind=youtube#playlist),
+      Playlist(id=PLOU2XLYxmsIIOSO0eWuj-6yQmdakarUzN,kind=youtube#playlist)],
+     {'totalResults': 416, 'resultsPerPage': 5})
+
+To fetch one playlist's items::
+
+    In [8]: res = api.get_playlist_item(playlist_id='PLOU2XLYxmsIJpufeMHncnQvFOe0K3MhVp')
+
+    In [9]: res
+    Out[9]:
+    ([PlaylistItem(id=UExPVTJYTFl4bXNJSnB1ZmVNSG5jblF2Rk9lMEszTWhWcC41NkI0NEY2RDEwNTU3Q0M2,kind=youtube#playlistItem),
+      PlaylistItem(id=UExPVTJYTFl4bXNJSnB1ZmVNSG5jblF2Rk9lMEszTWhWcC4yODlGNEE0NkRGMEEzMEQy,kind=youtube#playlistItem),
+      PlaylistItem(id=UExPVTJYTFl4bXNJSnB1ZmVNSG5jblF2Rk9lMEszTWhWcC4wMTcyMDhGQUE4NTIzM0Y5,kind=youtube#playlistItem),
+      PlaylistItem(id=UExPVTJYTFl4bXNJSnB1ZmVNSG5jblF2Rk9lMEszTWhWcC41MjE1MkI0OTQ2QzJGNzNG,kind=youtube#playlistItem)],
+     {'totalResults': 4, 'resultsPerPage': 5})
+
+    In [10]: res[0][1].snippet.resourceId
+    Out[10]: {'kind': 'youtube#video', 'videoId': 'cxABjSOa6RY'}
 
 To fetch one youtube video's data::
 
-    In [5]: res_v = api.get_video_info(video_id='Ks-_Mh1QhMc')
+    In [11]: res = api.get_video_info(video_id='cxABjSOa6RY')
 
-    In [6]: res_v
-    Out[6]: Video(id=Ks-_Mh1QhMc,kind=youtube#video)
+    In [12]: res
+    Out[12]: Video(id=cxABjSOa6RY,kind=youtube#video)
 
 To fetch many youtube video's data::
 
-    In [7]: res = api.get_videos_info(video_ids=['c0KYU2j0TM4', 'eIho2S0ZahI'])
+    In [13]: res = api.get_videos_info(video_ids=['cxABjSOa6RY', '21BbGGGrq9s'])
 
-    In [8]: res
-    Out[8]:
-    [Video(id=c0KYU2j0TM4,kind=youtube#video),
-     Video(id=eIho2S0ZahI,kind=youtube#video)]
+    In [14]: res
+    Out[14]:
+    [Video(id=cxABjSOa6RY,kind=youtube#video),
+     Video(id=21BbGGGrq9s,kind=youtube#video)]
 
 ====
 TODO
 ====
 
-on going
+- packing
