@@ -8,6 +8,7 @@ pytest = "*"
 twine = "*"
 responses = "*"
 flake8 = "*"
+wheel = "*"
 
 [packages]
 requests = "*"
