@@ -1,6 +1,6 @@
 Python YouTube
 
-A Python wrapper around for YouTube Data API.
+A Python wrapper around for YouTube Data API V3.
 
 .. image:: https://travis-ci.org/MerleLiuKun/python-youtube.svg?branch=master
     :target: https://travis-ci.org/MerleLiuKun/python-youtube
@@ -18,7 +18,7 @@ Thanks a lot for Python-Twitter Developers.
 Introduction
 ============
 
-Library provides a service to easy use YouTube web api.
+Library provides a service to easy use YouTube Data API V3.
 
 The api docs you can find on `YouTube Data API Reference <https://developers.google.com/youtube/v3/docs/>`_
 
@@ -91,4 +91,13 @@ To fetch many youtube video's data::
 TODO
 ====
 
-- packing
+Now this has follows api.
+
+- Channel Info
+- Playlist Info
+- PlaylistItem Info
+- Video Info
+
+Doing:
+
+- comments

@@ -12,4 +12,5 @@ matrix:
 install:
   - make env
 script:
+  - make lint
   - make test
