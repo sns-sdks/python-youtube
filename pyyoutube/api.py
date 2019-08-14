@@ -716,5 +716,5 @@ class Api(object):
         # set page token
         next_page_token = data.get('nextPageToken')
         prev_page_token = data.get('prevPageToken')
-        self.calc_quota(resource, parts=args['part'], count=len(data['item']))
+        self.calc_quota(resource, parts=args['part'], count=len(data['items']))
         return prev_page_token, next_page_token, data
