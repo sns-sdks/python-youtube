@@ -19,3 +19,6 @@ script:
 branches:
   except:
     - /^v?\d+\.\d+(\.\d+)?(-\S*)?$/
+
+after_success:
+  - codecov
