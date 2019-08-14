@@ -4,7 +4,9 @@ A Python wrapper around for YouTube Data API V3.
 
 .. image:: https://travis-ci.org/MerleLiuKun/python-youtube.svg?branch=master
     :target: https://travis-ci.org/MerleLiuKun/python-youtube
-    :alt: Build Status
+
+.. image:: https://codecov.io/gh/MerleLiuKun/python-youtube/branch/master/graph/badge.svg
+    :target: https://codecov.io/gh/MerleLiuKun/python-youtube
 
 ======
 THANKS
