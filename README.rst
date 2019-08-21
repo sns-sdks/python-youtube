@@ -22,6 +22,15 @@ Library provides a service to easy use YouTube Data API V3.
 
 The api docs you can find on `YouTube Data API Reference <https://developers.google.com/youtube/v3/docs/>`_
 
+==========
+Installing
+==========
+
+You can install this lib from `pypi`::
+
+    $pip install --upgrade python-youtube
+    ✨🍰✨✨🍰✨:sparkles: :cake: :sparkles:
+
 =====
 Using
 =====
