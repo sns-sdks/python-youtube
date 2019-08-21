@@ -9,6 +9,8 @@ twine = "*"
 responses = "*"
 flake8 = "*"
 wheel = "*"
+pytest-cov = "*"
+codecov = "*"
 
 [packages]
 requests = "*"
