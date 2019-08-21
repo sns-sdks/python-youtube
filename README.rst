@@ -31,7 +31,7 @@ Installing
 You can install this lib from `pypi`::
 
     $pip install --upgrade python-youtube
-    ✨🍰✨✨🍰✨:sparkles: :cake: :sparkles:
+    ✨🍰✨
 
 =====
 Using
