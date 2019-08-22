@@ -171,9 +171,7 @@ class ResourceId(BaseModel):
             setattr(self, param, kwargs.get(param, value))
 
     def __repr__(self):
-        return "ResourceId(videoId={videoId},kind={title}".format(
-            videoId=self.videoId, title=self.title
-        )
+        return f"ResourceId(videoId={self.videoId},kind={self.kind}"
 
 
 class ChannelSnippet(BaseModel):
@@ -565,9 +563,7 @@ class PlaylistItemContentDetails(BaseModel):
         self.initial(kwargs)
 
     def __repr__(self):
-        return "PlaylistItemContentDetails(videoId={videoId},videoPublishedAt={videoPublishedAt)".format(
-            videoId=self.videoId, videoPublishedAt=self.videoPublishedAt
-        )
+        return f"PlaylistItemContentDetails(videoId={self.videoId},videoPublishedAt={self.videoPublishedAt}"
 
 
 class Topic(BaseModel):
@@ -825,22 +821,24 @@ class Channel(BaseModel):
 
     @classmethod
     def new_from_json_dict(cls, data, **kwargs):
-        json_data = data.copy()
-        if 'snippet' in json_data:
-            json_data['snippet'] = ChannelSnippet.new_from_json_dict(data['snippet'])
-        if 'contentDetails' in json_data:
-            json_data['contentDetails'] = ChannelContentDetails.new_from_json_dict(data['contentDetails'])
-        if 'statistics' in json_data:
-            json_data['statistics'] = ChannelStatistics.new_from_json_dict(data['statistics'])
-        if 'status' in json_data:
-            json_data['status'] = ChannelStatus.new_from_json_dict(data['status'])
+        snippet = data.get('snippet')
+        if snippet is not None:
+            snippet = ChannelSnippet.new_from_json_dict(snippet)
+        content_details = data.get('contentDetails')
+        if content_details is not None:
+            content_details = ChannelContentDetails.new_from_json_dict(content_details)
+        statistics = data.get('statistics')
+        if statistics is not None:
+            statistics = ChannelStatistics.new_from_json_dict(statistics)
+        status = data.get('status')
+        if status is not None:
+            status = ChannelStatus.new_from_json_dict(status)
 
-        if kwargs:
-            for key, val in kwargs.items():
-                json_data[key] = val
-        c = cls(**json_data)
-        c._json = data
-        return c
+        return super().new_from_json_dict(
+            data=data, snippet=snippet,
+            contentDetails=content_details, statistics=statistics,
+            status=status
+        )
 
 
 class Video(BaseModel):
@@ -864,22 +862,23 @@ class Video(BaseModel):
 
     @classmethod
     def new_from_json_dict(cls, data, **kwargs):
-        json_data = data.copy()
-        if 'snippet' in json_data:
-            json_data['snippet'] = VideoSnippet.new_from_json_dict(data['snippet'])
-        if 'contentDetails' in json_data:
-            json_data['contentDetails'] = VideoContentDetails.new_from_json_dict(data['contentDetails'])
-        if 'statistics' in json_data:
-            json_data['statistics'] = VideoStatistics.new_from_json_dict(data['statistics'])
-        if 'status' in json_data:
-            json_data['status'] = VideoStatus.new_from_json_dict(data['status'])
-
-        if kwargs:
-            for key, val in kwargs.items():
-                json_data[key] = val
-        c = cls(**json_data)
-        c._json = data
-        return c
+        snippet = data.get('snippet')
+        if snippet is not None:
+            snippet = VideoSnippet.new_from_json_dict(snippet)
+        content_details = data.get('contentDetails')
+        if content_details is not None:
+            content_details = VideoContentDetails.new_from_json_dict(content_details)
+        statistics = data.get('statistics')
+        if statistics is not None:
+            statistics = VideoStatistics.new_from_json_dict(statistics)
+        status = data.get('status')
+        if status is not None:
+            status = VideoStatus.new_from_json_dict(status)
+        return super().new_from_json_dict(
+            data=data, snippet=snippet,
+            contentDetails=content_details, statistics=statistics,
+            status=status
+        )
 
 
 class PlayList(BaseModel):
@@ -904,20 +903,19 @@ class PlayList(BaseModel):
 
     @classmethod
     def new_from_json_dict(cls, data, **kwargs):
-        json_data = data.copy()
-        if 'snippet' in json_data:
-            json_data['snippet'] = PlayListSnippet.new_from_json_dict(data['snippet'])
-        if 'contentDetails' in json_data:
-            json_data['contentDetails'] = PlayListContentDetails.new_from_json_dict(data['contentDetails'])
-        if 'status' in json_data:
-            json_data['status'] = PlayListStatus.new_from_json_dict(data['status'])
-
-        if kwargs:
-            for key, val in kwargs.items():
-                json_data[key] = val
-        c = cls(**json_data)
-        c._json = data
-        return c
+        snippet = data.get('snippet')
+        if snippet is not None:
+            snippet = PlayListSnippet.new_from_json_dict(snippet)
+        content_details = data.get('contentDetails')
+        if content_details is not None:
+            content_details = PlayListContentDetails.new_from_json_dict(content_details)
+        status = data.get('status')
+        if status is not None:
+            status = PlayListStatus.new_from_json_dict(status)
+        return super().new_from_json_dict(
+            data=data, snippet=snippet,
+            contentDetails=content_details, status=status
+        )
 
 
 class PlaylistItem(BaseModel):
@@ -942,17 +940,77 @@ class PlaylistItem(BaseModel):
 
     @classmethod
     def new_from_json_dict(cls, data, **kwargs):
-        json_data = data.copy()
-        if 'snippet' in json_data:
-            json_data['snippet'] = PlaylistItemSnippet.new_from_json_dict(data['snippet'])
-        if 'contentDetails' in json_data:
-            json_data['contentDetails'] = PlaylistItemContentDetails.new_from_json_dict(data['contentDetails'])
-        if 'status' in json_data:
-            json_data['status'] = PlaylistItemStatus.new_from_json_dict(data['status'])
 
-        if kwargs:
-            for key, val in kwargs.items():
-                json_data[key] = val
-        c = cls(**json_data)
-        c._json = data
-        return c
+        snippet = data.get('snippet')
+        if snippet is not None:
+            snippet = PlaylistItemSnippet.new_from_json_dict(snippet)
+        content_details = data.get('contentDetails')
+        if content_details is not None:
+            content_details = PlaylistItemContentDetails.new_from_json_dict(content_details)
+        status = data.get('status')
+        if status is not None:
+            status = PlaylistItemStatus.new_from_json_dict(status)
+        return super().new_from_json_dict(
+            data=data, snippet=snippet,
+            contentDetails=content_details, status=status
+        )
+
+
+class CommentSnippet(BaseModel):
+    """
+    A class representing comment's snippet info.
+    Refer: https://developers.google.com/youtube/v3/docs/comments#snippet
+    """
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.param_defaults = {
+            'authorDisplayName': None,
+            'authorProfileImageUrl': None,
+            'authorChannelUrl': None,
+            'authorChannelId': None,
+            'channelId': None,
+            'videoId': None,
+            'textDisplay': None,
+            'textOriginal': None,
+            'parentId': None,
+            'canRate': None,
+            'viewerRating': None,
+            'likeCount': None,
+            'moderationStatus': None,
+            'publishedAt': None,
+            'updatedAt': None,
+        }
+        self.initial(kwargs)
+
+    def __repr__(self):
+        return f"CommentSnippet(author=f{self.authorDisplayName},likeCount={self.likeCount})"
+
+
+class Comment(BaseModel):
+    """
+    A class representing comment info.
+    Refer: https://developers.google.com/youtube/v3/docs/comments#resource
+    """
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.param_defaults = {
+            'kind': None,
+            'etag': None,
+            'id': None,
+            'snippet': None
+        }
+        self.initial(kwargs)
+
+    def __repr__(self):
+        return f"Comment(id={self.id},kind={self.kind})"
+
+    @classmethod
+    def new_from_json_dict(cls, data, **kwargs):
+        snippet = data.get('snippet')
+        if snippet is not None:
+            snippet = CommentSnippet.new_from_json_dict(snippet)
+        return super().new_from_json_dict(
+            data=data, snippet=snippet
+        )
