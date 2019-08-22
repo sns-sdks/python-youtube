@@ -17,6 +17,7 @@ requests = "*"
 future = "*"
 requests-oauthlib = "*"
 pytz = "*"
+isodate = "*"
 
 [requires]
 python_version = "3.7"
