@@ -316,3 +316,36 @@ class ModelTest(unittest.TestCase):
             self.fail(e)
 
         self.assertEqual(m.id, 'UgwxApqcfzZzF_C5Zqx4AaABAg')
+
+    def testCommentTreadSnippet(self) -> None:
+        with open(f'{self.base_path}comment_tread_snippet.json', 'rb') as json_file:
+            comment_tread_snippet = json.loads(json_file.read())
+        m = pyyoutube.CommentTreadSnippet.new_from_json_dict(comment_tread_snippet)
+        try:
+            m.__repr__()
+        except Exception as e:
+            self.fail(e)
+
+        self.assertEqual(m.videoId, 'D-lhorsDlUQ')
+
+    def testCommentTreadReplies(self) -> None:
+        with open(f'{self.base_path}comment_tread_replies.json', 'rb') as json_file:
+            comment_tread_replies = json.loads(json_file.read())
+        m = pyyoutube.CommentTreadReplies.new_from_json_dict(comment_tread_replies)
+        try:
+            m.__repr__()
+        except Exception as e:
+            self.fail(e)
+
+        self.assertEqual(len(m.comments), 1)
+
+    def testCommentTread(self) -> None:
+        with open(f'{self.base_path}comment_tread_info.json', 'rb') as json_file:
+            comment_tread_info = json.loads(json_file.read())
+        m = pyyoutube.CommentTread.new_from_json_dict(comment_tread_info)
+        try:
+            m.__repr__()
+        except Exception as e:
+            self.fail(e)
+
+        self.assertEqual(m.id, 'UgydxWWoeA7F1OdqypJ4AaABAg')
