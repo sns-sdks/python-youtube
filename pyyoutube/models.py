@@ -990,7 +990,7 @@ class CommentSnippet(BaseModel):
 class Comment(BaseModel):
     """
     A class representing comment info.
-    Refer: https://developers.google.com/youtube/v3/docs/comments#resource
+    Refer: https://developers.google.com/youtube/v3/docs/comments
     """
 
     def __init__(self, **kwargs):
@@ -1013,4 +1013,95 @@ class Comment(BaseModel):
             snippet = CommentSnippet.new_from_json_dict(snippet)
         return super().new_from_json_dict(
             data=data, snippet=snippet
+        )
+
+
+class CommentTreadSnippet(BaseModel):
+    """
+    A class representing comment tread snippet info.
+    Refer: https://developers.google.com/youtube/v3/docs/commentThreads#snippet
+    """
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.param_defaults = {
+            'channelId': None,
+            'videoId': None,
+            'topLevelComment': None,
+            'canReply': None,
+            'totalReplyCount': None,
+            'isPublic': None
+        }
+        self.initial(kwargs)
+
+    def __repr__(self):
+        return f'CommentTreadSnippet(channelId={self.channelId},videoId={self.videoId})'
+
+    @classmethod
+    def new_from_json_dict(cls, data, **kwargs):
+        top_level_comment = data.get('topLevelComment')
+        if top_level_comment is not None:
+            top_level_comment = Comment.new_from_json_dict(top_level_comment)
+
+        return super().new_from_json_dict(
+            data=data, topLevelComment=top_level_comment
+        )
+
+
+class CommentTreadReplies(BaseModel):
+    """
+    A class representing comment tread replies info.
+    Refer: https://developers.google.com/youtube/v3/docs/commentThreads#replies
+    """
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.param_defaults = {
+            'comments': [],
+        }
+        self.initial(kwargs)
+
+    def __repr__(self):
+        return f'Replies(count={len(self.comments)})'
+
+    @classmethod
+    def new_from_json_dict(cls, data, **kwargs):
+        comments = data.get('comments')
+        if comments is not None:
+            comments = [Comment.new_from_json_dict(item) for item in comments]
+        return super().new_from_json_dict(data=data, comments=comments)
+
+
+class CommentTread(BaseModel):
+    """
+    A class representing comment thread info.
+    Refer: https://developers.google.com/youtube/v3/docs/commentThreads
+    """
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.param_defaults = {
+            'kind': None,
+            'etag': None,
+            'id': None,
+            'snippet': None,
+            'replies': None,
+        }
+        self.initial(kwargs)
+
+    def __repr__(self):
+        return f"CommentTread(id={self.id},kind={self.kind})"
+
+    @classmethod
+    def new_from_json_dict(cls, data, **kwargs):
+        snippet = data.get('snippet')
+        if snippet is not None:
+            snippet = CommentTreadSnippet.new_from_json_dict(snippet)
+        replies = data.get('replies')
+        if replies is not None:
+            replies = CommentTreadReplies.new_from_json_dict(replies)
+
+        return super().new_from_json_dict(
+            data=data, snippet=snippet,
+            replies=replies
         )

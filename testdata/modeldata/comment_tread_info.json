@@ -1,0 +1,58 @@
+{
+  "kind": "youtube#commentThread",
+  "etag": "\"8jEFfXBrqiSrcF6Ee7MQuz8XuAM/Bu9ED8YytJP_F5IxgbsfRJg0CZI\"",
+  "id": "UgydxWWoeA7F1OdqypJ4AaABAg",
+  "snippet": {
+    "videoId": "D-lhorsDlUQ",
+    "topLevelComment": {
+      "kind": "youtube#comment",
+      "etag": "\"8jEFfXBrqiSrcF6Ee7MQuz8XuAM/Vcd3llXDKJW8UrWr8ndIHHDBk8g\"",
+      "id": "UgydxWWoeA7F1OdqypJ4AaABAg",
+      "snippet": {
+        "authorDisplayName": "Loren Robilio",
+        "authorProfileImageUrl": "https://yt3.ggpht.com/-dVa9HLlQcNs/AAAAAAAAAAI/AAAAAAAAAAA/lxKAIuHR-20/s28-c-k-no-mo-rj-c0xffffff/photo.jpg",
+        "authorChannelUrl": "http://www.youtube.com/channel/UCe9i1nJCcevTa6KJa55KYog",
+        "authorChannelId": {
+          "value": "UCe9i1nJCcevTa6KJa55KYog"
+        },
+        "videoId": "D-lhorsDlUQ",
+        "textDisplay": "<a href=\"http://actions.ai/\">Actions.ai</a>",
+        "textOriginal": "Actions.ai",
+        "canRate": true,
+        "viewerRating": "none",
+        "likeCount": 0,
+        "publishedAt": "2019-06-23T08:24:24.000Z",
+        "updatedAt": "2019-06-23T08:24:24.000Z"
+      }
+    },
+    "canReply": true,
+    "totalReplyCount": 1,
+    "isPublic": true
+  },
+  "replies": {
+    "comments": [
+      {
+        "kind": "youtube#comment",
+        "etag": "\"8jEFfXBrqiSrcF6Ee7MQuz8XuAM/Z_3RVDklwNvCP3pgufc11jc5ud0\"",
+        "id": "UgydxWWoeA7F1OdqypJ4AaABAg.8wWQ3tdHcFx8xcDheui-qb",
+        "snippet": {
+          "authorDisplayName": "Dian Anggraeni",
+          "authorProfileImageUrl": "https://yt3.ggpht.com/-WLAKDA-bqa8/AAAAAAAAAAI/AAAAAAAAAAA/4VOHyI34fuU/s28-c-k-no-mo-rj-c0xffffff/photo.jpg",
+          "authorChannelUrl": "http://www.youtube.com/channel/UCsl2A_QzcSnFD2hpCyVwXxA",
+          "authorChannelId": {
+            "value": "UCsl2A_QzcSnFD2hpCyVwXxA"
+          },
+          "videoId": "D-lhorsDlUQ",
+          "textDisplay": "#",
+          "textOriginal": "#",
+          "parentId": "UgydxWWoeA7F1OdqypJ4AaABAg",
+          "canRate": true,
+          "viewerRating": "none",
+          "likeCount": 1,
+          "publishedAt": "2019-07-20T20:22:27.000Z",
+          "updatedAt": "2019-07-20T20:22:27.000Z"
+        }
+      }
+    ]
+  }
+}
