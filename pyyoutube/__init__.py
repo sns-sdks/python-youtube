@@ -15,7 +15,6 @@ from .models import (  # noqa
     VideoStatus,
     ChannelBrandingChannel,
     ChannelBrandingImage,
-    ChannelBrandingHint,
     ChannelBrandingSetting,
     Channel,
     Video,

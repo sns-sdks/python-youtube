@@ -146,7 +146,8 @@ class ModelTest(unittest.TestCase):
         except Exception as e:
             self.fail(e)
 
-        self.assertEqual(m.channelId, 'UCK8sQmJBp8GCxrOtXWBpyEA')
+        self.assertEqual(m.channelId, 'UC_x5XG1OV2P6uZZ5FSM9Ttw')
+        self.assertEqual(m.as_dict(), video_snippet_info)
 
     def testVideoStatistics(self) -> None:
         with open(f'{self.base_path}video_statistics.json', 'r') as json_file:
@@ -338,6 +339,7 @@ class ModelTest(unittest.TestCase):
             self.fail(e)
 
         self.assertEqual(len(m.comments), 1)
+        self.assertEqual(comment_tread_replies, m.as_dict())
 
     def testCommentTread(self) -> None:
         with open(f'{self.base_path}comment_tread_info.json', 'rb') as json_file:
