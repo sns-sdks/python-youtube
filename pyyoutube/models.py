@@ -140,24 +140,6 @@ class Thumbnails(BaseModel):
         return super().new_from_json_dict(new_data)
 
 
-class Localized(BaseModel):
-    """
-    A class representing the channel snippet localized info.
-    Refer: https://developers.google.com/youtube/v3/docs/channels#snippet.localized
-    """
-
-    def __init__(self, **kwargs):
-        BaseModel.__init__(self, **kwargs)
-        self.param_defaults = {
-            'title': None,
-            'description': None
-        }
-        self.initial(kwargs)
-
-    def __repr__(self):
-        return f"Localized(title={self.title}"
-
-
 class ChannelBrandingChannel(BaseModel):
     """
     A class representing channel branding setting's channel info.
@@ -165,7 +147,7 @@ class ChannelBrandingChannel(BaseModel):
     """
 
     def __init__(self, **kwargs):
-        BaseModel.__init__(self, **kwargs)
+        super().__init__(**kwargs)
         self.param_defaults = {
             'title': None,
             'description': None,
@@ -188,6 +170,24 @@ class ChannelBrandingChannel(BaseModel):
         return f"ChannelBrandingChannel(title={self.title},description={self.description})"
 
 
+class ChannelBrandingHint(BaseModel):
+    """
+    A class representing channel branding setting's hint info.
+    Refer: https://developers.google.com/youtube/v3/docs/channels#brandingSettings.hints
+    """
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.param_defaults = {
+            'property': None,
+            'value': None,
+        }
+        self.initial(kwargs)
+
+    def __repr__(self):
+        return f"ChannelBrandingHint(property={self.property})"
+
+
 class ChannelBrandingImage(BaseModel):
     """
        A class representing channel branding setting's image info.
@@ -195,7 +195,7 @@ class ChannelBrandingImage(BaseModel):
     """
 
     def __init__(self, **kwargs):
-        BaseModel.__init__(self, **kwargs)
+        super().__init__(**kwargs)
         self.param_defaults = {
             'bannerImageUrl': None,
             'bannerMobileImageUrl': None,
@@ -232,6 +232,7 @@ class ChannelBrandingSetting(BaseModel):
         self.param_defaults = {
             'channel': None,
             'image': None,
+            'hints': None,
         }
         self.initial(kwargs)
 
@@ -243,8 +244,12 @@ class ChannelBrandingSetting(BaseModel):
         image = data.get('image')
         if image is not None:
             image = ChannelBrandingImage.new_from_json_dict(image)
+        hints = data.get('hints')
+        if hints is not None:
+            hints = [ChannelBrandingHint.new_from_json_dict(item) for item in hints]
         return super().new_from_json_dict(
-            data=data, channel=channel, image=image
+            data=data, channel=channel, image=image,
+            hints=hints
         )
 
 
@@ -255,7 +260,7 @@ class ChannelContentDetails(BaseModel):
     """
 
     def __init__(self, **kwargs):
-        BaseModel.__init__(self, **kwargs)
+        super().__init__(**kwargs)
         self.param_defaults = {
             'relatedPlaylists': None
         }
@@ -277,11 +282,11 @@ class ChannelContentDetails(BaseModel):
 class Topic(BaseModel):
     """
     A class representing Topic info.
-    Refer:
+    Refer: https://developers.google.com/youtube/v3/docs/channels#topicDetails.topicIds[]
     """
 
     def __init__(self, **kwargs):
-        BaseModel.__init__(self, **kwargs)
+        super().__init__(**kwargs)
         self.param_defaults = {
             'id': None,
             'description': None  # convert id to topic desc
@@ -289,27 +294,20 @@ class Topic(BaseModel):
         self.initial(kwargs)
 
     def __repr__(self):
-        return "Topic(id={t_id},description={desc})".format(t_id=self.id, desc=self.description)
+        return f"Topic(id={self.id},description={self.description})"
 
     @classmethod
     def new_from_json_dict(cls, data, **kwargs):
+        # custom to build topic info
         from pyyoutube import CHANNEL_TOPICS
         desc = CHANNEL_TOPICS.get(data)
-        json_data = {
-            'id': data,
-            'description': desc,
-        }
-        if kwargs:
-            for key, val in kwargs.items():
-                json_data[key] = val
-
-        c = cls(**json_data)
-        c.__json = data
-        return c
+        return super().new_from_json_dict(data={}, id=data, description=desc)
 
 
 class ChannelTopicDetails(BaseModel):
-    """A class representing channel's topic detail info
+    """
+    A class representing channel's topic detail info.
+    Refer: https://developers.google.com/youtube/v3/docs/channels#topicDetails
     """
 
     def __init__(self, **kwargs):
@@ -322,35 +320,42 @@ class ChannelTopicDetails(BaseModel):
         self.initial(kwargs)
 
     def __repr__(self):
-        if self.topicIds is not None:
-            display = self.topicIds[0]
-        else:
-            display = None
-        return "ChannelTopicDetails(topicIds={display})".format(display=display)
+        return f"ChannelTopicDetails(topicIds={self.topicIds})"
 
     @classmethod
     def new_from_json_dict(cls, data, **kwargs):
-        json_data = data.copy()
-        for key, value in data.items():
-            if key == 'topicIds':
-                json_data[key] = [Topic.new_from_json_dict(item) for item in value]
-            else:
-                json_data[key] = value
-        if kwargs:
-            for key, val in kwargs.items():
-                json_data[key] = val
-
-        c = cls(**json_data)
-        c.__json = data
-        return c
+        topic_ids = data.get('topicIds')
+        if topic_ids is not None:
+            topic_ids = [Topic.new_from_json_dict(item) for item in topic_ids]
+        return super().new_from_json_dict(data=data, topicIds=topic_ids)
 
 
-class ChannelSnippet(BaseModel):
-    """A class representing base info for channel snippet
+class Localized(BaseModel):
+    """
+    A class representing the channel snippet localized info.
+    Refer: https://developers.google.com/youtube/v3/docs/channels#snippet.localized
     """
 
     def __init__(self, **kwargs):
-        BaseModel.__init__(self, **kwargs)
+        super().__init__(**kwargs)
+        self.param_defaults = {
+            'title': None,
+            'description': None
+        }
+        self.initial(kwargs)
+
+    def __repr__(self):
+        return f"Localized(title={self.title}"
+
+
+class ChannelSnippet(BaseModel):
+    """
+    A class representing base info for channel snippet info.
+    Refer: https://developers.google.com/youtube/v3/docs/channels#snippet
+    """
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
         self.param_defaults = {
             'publishedAt': None,
             'title': None,
@@ -364,9 +369,7 @@ class ChannelSnippet(BaseModel):
         self.initial(kwargs)
 
     def __repr__(self):
-        return "ChannelSnippet(title={title}, description={description})".format(
-            title=self.title, description=self.description
-        )
+        return f"ChannelSnippet(title={self.title}, description={self.description})"
 
     @classmethod
     def new_from_json_dict(cls, data, **kwargs):
@@ -376,17 +379,19 @@ class ChannelSnippet(BaseModel):
         localized = data.get('localized')
         if localized:
             localized = Localized.new_from_json_dict(localized)
-        return super(cls, cls).new_from_json_dict(
+        return super().new_from_json_dict(
             data=data, thumbnails=thumbnails, localized=localized
         )
 
 
 class ChannelStatistics(BaseModel):
-    """A class representing Channel's statistics data.
+    """
+    A class representing Channel's statistics info.
+    Refer: https://developers.google.com/youtube/v3/docs/channels#statistics
     """
 
     def __init__(self, **kwargs):
-        BaseModel.__init__(self, **kwargs)
+        super().__init__(**kwargs)
         self.param_defaults = {
             'viewCount': None,
             'commentCount': None,
@@ -397,17 +402,17 @@ class ChannelStatistics(BaseModel):
         self.initial(kwargs)
 
     def __repr__(self):
-        return "ChannelStatistics(subscriberCount={subscriberCount}, viewCount={viewCount})".format(
-            subscriberCount=self.subscriberCount, viewCount=self.viewCount
-        )
+        return f"ChannelStatistics(subscriberCount={self.subscriberCount}, viewCount={self.viewCount})"
 
 
 class ChannelStatus(BaseModel):
-    """A class representing channel's status
+    """
+    A class representing channel's status info.
+    Refer: https://developers.google.com/youtube/v3/docs/channels#status
     """
 
     def __init__(self, **kwargs):
-        BaseModel.__init__(self, **kwargs)
+        super().__init__(**kwargs)
         self.param_defaults = {
             'privacyStatus': None,
             'isLinked': None,
@@ -416,12 +421,17 @@ class ChannelStatus(BaseModel):
         self.initial(kwargs)
 
     def __repr__(self):
-        return "ChannelStatus(privacyStatus={privacyStatus})".format(privacyStatus=self.privacyStatus)
+        return f"ChannelStatus(privacyStatus={self.privacyStatus})"
 
 
 class Channel(BaseModel):
+    """
+    A class representing channel's info.
+    Refer: https://developers.google.com/youtube/v3/docs/channels
+    """
+
     def __init__(self, **kwargs):
-        BaseModel.__init__(self, **kwargs)
+        super().__init__(**kwargs)
         self.param_defaults = {
             'kind': None,
             'etag': None,
@@ -436,7 +446,7 @@ class Channel(BaseModel):
         self.initial(kwargs)
 
     def __repr__(self):
-        return "Channel(id={c_id},kind={kind})".format(c_id=self.id, kind=self.kind)
+        return f"Channel(id={self.id},kind={self.kind})"
 
     @classmethod
     def new_from_json_dict(cls, data, **kwargs):
@@ -452,7 +462,6 @@ class Channel(BaseModel):
         status = data.get('status')
         if status is not None:
             status = ChannelStatus.new_from_json_dict(status)
-
         return super().new_from_json_dict(
             data=data, snippet=snippet,
             contentDetails=content_details, statistics=statistics,
@@ -461,7 +470,9 @@ class Channel(BaseModel):
 
 
 class VideoSnippet(BaseModel):
-    """A class representing base info for video snippet
+    """
+    A class representing the video snippet info.
+    Refer:
     """
 
     def __init__(self, **kwargs):
