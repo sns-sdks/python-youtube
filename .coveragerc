@@ -1,0 +1,2 @@
+[run]
+omit = pyyoutube/__version__.py

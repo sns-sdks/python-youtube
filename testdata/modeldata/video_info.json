@@ -1,85 +1,102 @@
 {
   "kind": "youtube#video",
-  "etag": "\"nlUZBA6NbTS7q9G8D1GljyfTIWI/gxqS4vP9wQ6WQqAj8OqIBoA53xo\"",
-  "id": "lDBbRDfrgnI",
+  "etag": "\"8jEFfXBrqiSrcF6Ee7MQuz8XuAM/ywRH8hhCtBBffWyVbxSDNA08vr0\"",
+  "id": "D-lhorsDlUQ",
   "snippet": {
-    "publishedAt": "2019-07-18T22:14:26.000Z",
-    "channelId": "UCK8sQmJBp8GCxrOtXWBpyEA",
-    "title": "Here to help: Showtimes with Google Search (Spider-Man Far from Home)",
-    "description": "Find what you’re looking for #WithALittleHelp from Google — like showtimes to watch Spider-Man Far from Home.",
+    "publishedAt": "2019-03-21T20:37:49.000Z",
+    "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+    "title": "What are Actions on Google (Assistant on Air)",
+    "description": "In the first episode of Assistant on Air, Luke Davis and guest Jessica Dene Early-Cha introduce the concept of Actions on Google, and talk about common terminology.\n\nActions on Google docs → http://bit.ly/2YabdS5\n\nSubscribe to Google Devs for the latest Actions on Google videos →  https://bit.ly/googledevs",
     "thumbnails": {
       "default": {
-        "url": "https://i.ytimg.com/vi/lDBbRDfrgnI/default.jpg",
+        "url": "https://i.ytimg.com/vi/D-lhorsDlUQ/default.jpg",
         "width": 120,
         "height": 90
       },
       "medium": {
-        "url": "https://i.ytimg.com/vi/lDBbRDfrgnI/mqdefault.jpg",
+        "url": "https://i.ytimg.com/vi/D-lhorsDlUQ/mqdefault.jpg",
         "width": 320,
         "height": 180
       },
       "high": {
-        "url": "https://i.ytimg.com/vi/lDBbRDfrgnI/hqdefault.jpg",
+        "url": "https://i.ytimg.com/vi/D-lhorsDlUQ/hqdefault.jpg",
         "width": 480,
         "height": 360
       },
       "standard": {
-        "url": "https://i.ytimg.com/vi/lDBbRDfrgnI/sddefault.jpg",
+        "url": "https://i.ytimg.com/vi/D-lhorsDlUQ/sddefault.jpg",
         "width": 640,
         "height": 480
       },
       "maxres": {
-        "url": "https://i.ytimg.com/vi/lDBbRDfrgnI/maxresdefault.jpg",
+        "url": "https://i.ytimg.com/vi/D-lhorsDlUQ/maxresdefault.jpg",
         "width": 1280,
         "height": 720
       }
     },
-    "channelTitle": "Google",
+    "channelTitle": "Google Developers",
+    "tags": [
+      "Google",
+      "developers",
+      "aog",
+      "Actions on Google",
+      "Assistant",
+      "Google Assistant",
+      "actions",
+      "google home",
+      "actions on google",
+      "google assistant developers",
+      "google assistant sdk",
+      "Actions on google developers",
+      "smarthome developers",
+      "common terminology",
+      "custom action on google",
+      "google assistant in your app",
+      "add google assistant",
+      "assistant on air",
+      "how to use google assistant on air",
+      "Actions on Google how to"
+    ],
     "categoryId": "28",
     "liveBroadcastContent": "none",
+    "defaultLanguage": "en",
     "localized": {
-      "title": "Here to help: Showtimes with Google Search (Spider-Man Far from Home)",
-      "description": "Find what you’re looking for #WithALittleHelp from Google — like showtimes to watch Spider-Man Far from Home."
+      "title": "What are Actions on Google (Assistant on Air)",
+      "description": "In the first episode of Assistant on Air, Luke Davis and guest Jessica Dene Early-Cha introduce the concept of Actions on Google, and talk about common terminology.\n\nActions on Google docs → http://bit.ly/2YabdS5\n\nSubscribe to Google Devs for the latest Actions on Google videos →  https://bit.ly/googledevs"
     },
     "defaultAudioLanguage": "en"
   },
   "contentDetails": {
-    "duration": "PT16S",
+    "duration": "PT21M7S",
     "dimension": "2d",
     "definition": "hd",
-    "caption": "false",
+    "caption": "true",
     "licensedContent": false,
     "projection": "rectangular"
   },
   "status": {
     "uploadStatus": "processed",
     "privacyStatus": "public",
-    "license": "creativeCommon",
+    "license": "youtube",
     "embeddable": true,
     "publicStatsViewable": true
   },
   "statistics": {
-    "viewCount": "7188165",
-    "likeCount": "707",
-    "dislikeCount": "229",
+    "viewCount": "8087",
+    "likeCount": "190",
+    "dislikeCount": "23",
     "favoriteCount": "0",
-    "commentCount": "44"
-  },
-  "player": {
-    "embedHtml": "<iframe width=\"480\" height=\"270\" src=\"//www.youtube.com/embed/lDBbRDfrgnI\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>"
+    "commentCount": "32"
   },
   "topicDetails": {
     "topicIds": [
-      "/m/019_rr",
-      "/m/07c1v"
+      "/m/02jjt"
     ],
     "relevantTopicIds": [
-      "/m/019_rr",
-      "/m/07c1v"
+      "/m/02jjt"
     ],
     "topicCategories": [
-      "https://en.wikipedia.org/wiki/Technology",
-      "https://en.wikipedia.org/wiki/Lifestyle_(sociology)"
+      "https://en.wikipedia.org/wiki/Entertainment"
     ]
   }
 }
