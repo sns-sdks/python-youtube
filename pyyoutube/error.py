@@ -43,5 +43,5 @@ class PyYouTubeException(Exception):
                 if 'errors' in error_data['error']:
                     self.error_type = error_data['error']['errors'][0]['reason']
 
-    def __repr__(self):
+    def __repr__(self):  # pragma: no cover
         return f'PyYouTubeException(status_code={self.status_code}, message={self.message})'
