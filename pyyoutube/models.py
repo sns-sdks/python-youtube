@@ -469,34 +469,88 @@ class Channel(BaseModel):
         )
 
 
-class VideoSnippet(BaseModel):
+class VideoContentDetails(BaseModel):
     """
-    A class representing the video snippet info.
-    Refer:
+    A class representing the video content details info.
+    Refer: https://developers.google.com/youtube/v3/docs/videos#contentDetails
     """
 
     def __init__(self, **kwargs):
-        BaseModel.__init__(self, **kwargs)
+        super().__init__(**kwargs)
         self.param_defaults = {
-            'publishedAt': None,
-            'title': None,
-            'description': None,
-            'defaultLanguage': None,
-            'channelId': None,
-            'channelTitle': None,
-            'tags': None,
-            'categoryId': None,
-            'liveBroadcastContent': None,
-            'defaultAudioLanguage': None,
-            'thumbnails': None,
-            'localized': None,
+            'duration': None,
+            'dimension': None,
+            'definition': None,
+            'caption': None,
+            'licensedContent': None,
+            'projection': None,
         }
         self.initial(kwargs)
 
     def __repr__(self):
-        return "VideoSnippet(title={title}, description={description})".format(
-            title=self.title, description=self.description
+        return f"VideoContentDetails(dimension={self.dimension},duration={self.duration})"
+
+
+class VideoTopicDetails(BaseModel):
+    """
+    A class representing video's topic detail info.
+    Refer: https://developers.google.com/youtube/v3/docs/videos#topicDetails
+    """
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.topicIds = None
+        self.param_defaults = {
+            'topicIds': None,
+            'relevantTopicIds': None,
+            'topicCategories': None
+        }
+        self.initial(kwargs)
+
+    def __repr__(self):
+        return f"VideoTopicDetails(topicIds={self.topicIds})"
+
+    @classmethod
+    def new_from_json_dict(cls, data, **kwargs):
+        topic_ids = data.get('topicIds')
+        if topic_ids is not None:
+            topic_ids = [Topic.new_from_json_dict(item) for item in topic_ids]
+        relevant_topic_ids = data.get('relevantTopicIds')
+        if relevant_topic_ids is not None:
+            relevant_topic_ids = [Topic.new_from_json_dict(item) for item in relevant_topic_ids]
+
+        return super().new_from_json_dict(
+            data=data, topicIds=topic_ids,
+            relevantTopicIds=relevant_topic_ids
         )
+
+
+class VideoSnippet(BaseModel):
+    """
+    A class representing the video snippet info.
+    Refer: https://developers.google.com/youtube/v3/docs/videos#snippet
+    """
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.param_defaults = {
+            'publishedAt': None,
+            'channelId': None,
+            'title': None,
+            'description': None,
+            'thumbnails': None,
+            'channelTitle': None,
+            'tags': None,
+            'categoryId': None,
+            'liveBroadcastContent': None,
+            'defaultLanguage': None,
+            'localized': None,
+            'defaultAudioLanguage': None,
+        }
+        self.initial(kwargs)
+
+    def __repr__(self):
+        return f"VideoSnippet(title={self.title}, description={self.description})"
 
     @classmethod
     def new_from_json_dict(cls, data, **kwargs):
@@ -506,85 +560,79 @@ class VideoSnippet(BaseModel):
         localized = data.get('localized')
         if localized:
             localized = Localized.new_from_json_dict(localized)
-        return super(cls, cls).new_from_json_dict(
+        return super().new_from_json_dict(
             data=data, thumbnails=thumbnails, localized=localized
         )
 
 
 class VideoStatistics(BaseModel):
-    """One VideoStatistics instance """
+    """
+    A class representing the video statistics info.
+    Refer: https://developers.google.com/youtube/v3/docs/videos#statistics
+    """
 
     def __init__(self, **kwargs):
-        BaseModel.__init__(self, **kwargs)
+        super().__init__(**kwargs)
         self.param_defaults = {
             'viewCount': None,
-            'commentCount': None,
             'likeCount': None,
             'dislikeCount': None,
-            'favoriteCount': None
+            'favoriteCount': None,  # This property has been deprecated.
+            'commentCount': None,
         }
         self.initial(kwargs)
 
     def __repr__(self):
-        return "VideoStatistics(viewCount={viewCount}, commentCount={commentCount})".format(
-            viewCount=self.viewCount, commentCount=self.commentCount
-        )
-
-
-class VideoContentDetails(BaseModel):
-    def __init__(self, **kwargs):
-        BaseModel.__init__(self, **kwargs)
-        self.param_defaults = {
-            'duration': None,
-            'dimension': None,
-            'caption': None,
-            'licensedContent': None,
-            'projection': None,
-            'hasCustomThumbnail': None,
-            'regionRestriction': None,
-            'contentRating': None,
-        }
-        self.initial(kwargs)
+        return f"VideoStatistics(viewCount={self.viewCount}, commentCount={self.commentCount})"
 
 
 class VideoStatus(BaseModel):
+    """
+    A class representing the video status info.
+    Refer: https://developers.google.com/youtube/v3/docs/videos#status
+    """
+
     def __init__(self, **kwargs):
-        BaseModel.__init__(self, **kwargs)
+        super().__init__(**kwargs)
         self.param_defaults = {
-            'privacyStatus': None,
             'uploadStatus': None,
             'failureReason': None,
             'rejectionReason': None,
+            'privacyStatus': None,
             'publishAt': None,
             'license': None,
             'embeddable': None,
+            'publicStatsViewable': None
         }
         self.initial(kwargs)
 
     def __repr__(self):
-        return "VideoStatus(privacyStatus={privacyStatus}, publishAt={publishAt})".format(
-            privacyStatus=self.privacyStatus, publishAt=self.publishAt
-        )
+        return f"VideoStatus(privacyStatus={self.privacyStatus}, publishAt={self.publishAt})"
 
 
 class Video(BaseModel):
-    """ One video info instance """
+    """
+    A class representing the video info.
+    # TODO now only handle the public info.
+    Refer: https://developers.google.com/youtube/v3/docs/videos
+    """
 
     def __init__(self, **kwargs):
-        BaseModel.__init__(self, **kwargs)
+        super().__init__(**kwargs)
         self.param_defaults = {
             'kind': None,
             'etag': None,
             'id': None,
             'snippet': None,
             'contentDetails': None,
-            'statistics': None,
             'status': None,
+            'statistics': None,
+            'topicDetails': None,
         }
         self.initial(kwargs)
 
     def __repr__(self):
-        return "Video(id={v_id},kind={kind})".format(v_id=self.id, kind=self.kind)
+        return f"Video(id={self.id},kind={self.kind})"
 
     @classmethod
     def new_from_json_dict(cls, data, **kwargs):
@@ -594,6 +642,9 @@ class Video(BaseModel):
         content_details = data.get('contentDetails')
         if content_details is not None:
             content_details = VideoContentDetails.new_from_json_dict(content_details)
+        topic_details = data.get('topicDetails')
+        if topic_details is not None:
+            topic_details = VideoTopicDetails.new_from_json_dict(topic_details)
         statistics = data.get('statistics')
         if statistics is not None:
             statistics = VideoStatistics.new_from_json_dict(statistics)
@@ -602,8 +653,8 @@ class Video(BaseModel):
             status = VideoStatus.new_from_json_dict(status)
         return super().new_from_json_dict(
             data=data, snippet=snippet,
-            contentDetails=content_details, statistics=statistics,
-            status=status
+            contentDetails=content_details, topicDetails=topic_details,
+            statistics=statistics, status=status
         )
 
 

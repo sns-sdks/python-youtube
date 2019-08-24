@@ -1,8 +1,8 @@
 {
-  "duration": "PT16S",
-  "dimension": "2d",
-  "definition": "hd",
-  "caption": "false",
-  "licensedContent": false,
-  "projection": "rectangular"
-}
+    "duration": "PT21M7S",
+    "dimension": "2d",
+    "definition": "hd",
+    "caption": "true",
+    "licensedContent": false,
+    "projection": "rectangular"
+  }

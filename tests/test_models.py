@@ -156,6 +156,31 @@ class ModelTest(unittest.TestCase):
         self.assertEqual(channel_info, m.as_dict())
         self.assertEqual(m.id, 'UC_x5XG1OV2P6uZZ5FSM9Ttw')
 
+    def testVideoContentDetails(self) -> None:
+        with open(f'{self.base_path}video_content_details.json', 'rb') as json_file:
+            content_details_info = json.loads(json_file.read())
+        m = pyyoutube.VideoContentDetails.new_from_json_dict(content_details_info)
+        try:
+            m.__repr__()
+        except Exception as e:
+            self.fail(e)
+
+        self.assertEqual(m.duration, 'PT21M7S')
+
+    def testVideoTopicDetails(self) -> None:
+        with open(f'{self.base_path}video_topic_details.json', 'rb') as json_file:
+            video_topic_details = json.loads(json_file.read())
+        m = pyyoutube.VideoTopicDetails.new_from_json_dict(video_topic_details)
+        try:
+            m.__repr__()
+            m.topicIds[0].__repr__()
+            m.relevantTopicIds[0].__repr__()
+        except Exception as e:
+            self.fail(e)
+        self.assertEqual(m.topicIds[0].id, '/m/02jjt')
+        self.assertEqual(m.topicIds[0].description, 'Entertainment (parent topic)')
+        self.assertEqual(len(m.topicCategories), 1)
+
     def testVideoSnippet(self) -> None:
         with open(f'{self.base_path}video_snippet.json', 'rb') as json_file:
             video_snippet_info = json.loads(json_file.read())
@@ -166,7 +191,6 @@ class ModelTest(unittest.TestCase):
             self.fail(e)
 
         self.assertEqual(m.channelId, 'UC_x5XG1OV2P6uZZ5FSM9Ttw')
-        self.assertEqual(m.as_dict(), video_snippet_info)
 
     def testVideoStatistics(self) -> None:
         with open(f'{self.base_path}video_statistics.json', 'rb') as json_file:
@@ -177,18 +201,7 @@ class ModelTest(unittest.TestCase):
         except Exception as e:
             self.fail(e)
 
-        self.assertEqual(m.viewCount, '7188165')
-
-    def testVideoContentDetails(self) -> None:
-        with open(f'{self.base_path}video_content_details.json', 'rb') as json_file:
-            content_details_info = json.loads(json_file.read())
-        m = pyyoutube.VideoContentDetails.new_from_json_dict(content_details_info)
-        try:
-            m.__repr__()
-        except Exception as e:
-            self.fail(e)
-
-        self.assertEqual(m.duration, 'PT16S')
+        self.assertEqual(m.viewCount, '8087')
 
     def testVideoStatus(self) -> None:
         with open(f'{self.base_path}video_status.json', 'rb') as json_file:
@@ -210,7 +223,8 @@ class ModelTest(unittest.TestCase):
         except Exception as e:
             self.fail(e)
 
-        self.assertEqual(m.id, 'lDBbRDfrgnI')
+        self.assertEqual(m.id, 'D-lhorsDlUQ')
+        self.assertEqual(video_info['id'], m.as_dict()['id'])
 
     def testPlayList(self) -> None:
         with open(f'{self.base_path}playlist_info.json', 'rb') as json_file:
