@@ -103,3 +103,58 @@ class TestApiCall(unittest.TestCase):
         res = self.api.get_videos_info(video_ids=['ffdXLm8EaYg', 'plhVMWR33go'])
         self.assertEqual(len(res), 2)
         self.assertEqual(res[0].id, 'ffdXLm8EaYg')
+
+    @responses.activate
+    def testGetCommentThreads(self) -> None:
+        with open(f'{self.base_path}comment_threads_by_all_to_channel_id.json') as f:
+            res_data_by_all = f.read()
+        with open(f'{self.base_path}comment_threads_by_video_id.json') as f:
+            res_data_by_video = f.read()
+        responses.add(
+            responses.GET,
+            self.BASE_URL + 'commentThreads',
+            body=res_data_by_all, status=200,
+        )
+        responses.add(
+            responses.GET,
+            self.BASE_URL + 'commentThreads',
+            body=res_data_by_video, status=200,
+        )
+        with self.assertRaises(pyyoutube.PyYouTubeException):
+            self.api.get_comment_threads()
+        with self.assertRaises(pyyoutube.PyYouTubeException):
+            self.api.get_comment_threads(channel_id='channel id', order='rev')
+
+        comment_threads = self.api.get_comment_threads(
+            all_to_channel_id='UC_x5XG1OV2P6uZZ5FSM9Ttw',
+            count=4,
+        )
+        self.assertEqual(len(comment_threads), 4)
+        self.assertEqual(comment_threads[0].id, 'UgzhytyP79_PwaDd4UB4AaABAg')
+
+        comment_threads_by_video = self.api.get_comment_threads(video_id='D-lhorsDlUQ', return_json=True)
+        self.assertEqual(len(comment_threads_by_video), 5)
+        self.assertEqual(comment_threads_by_video[0]['id'], 'UgydxWWoeA7F1OdqypJ4AaABAg')
+
+    @responses.activate
+    def testGetCommentThreadInfo(self) -> None:
+        with open(f'{self.base_path}comment_threads_by_id.json') as f:
+            res_data = f.read()
+
+        responses.add(
+            responses.GET,
+            self.BASE_URL + 'commentThreads',
+            body=res_data, status=200
+        )
+
+        with self.assertRaises(pyyoutube.PyYouTubeException):
+            self.api.get_comment_thread_info()
+
+        comment_threads = self.api.get_comment_thread_info('Ugz097FRhsQy5CVhAjp4AaABAg,UgzhytyP79_PwaDd4UB4AaABAg')
+        self.assertEqual(len(comment_threads), 2)
+
+        comment_threads = self.api.get_comment_thread_info(
+            'Ugz097FRhsQy5CVhAjp4AaABAg,UgzhytyP79_PwaDd4UB4AaABAg',
+            return_json=True
+        )
+        self.assertEqual(comment_threads[0]['id'], 'Ugz097FRhsQy5CVhAjp4AaABAg')

@@ -1,0 +1,718 @@
+{
+  "kind": "youtube#commentThreadListResponse",
+  "etag": "\"8jEFfXBrqiSrcF6Ee7MQuz8XuAM/fTZjEOk6Mbnejvo-GljU7p8351g\"",
+  "nextPageToken": "QURTSl9pMGgtbFVjb093MXVfUW1lWXVXcllYN0NMbE5MRU5SbnRiMjZRNExhWVZ2M2x1VlpfWV81M2ZNV1MwaDhIb0NSbHVOWmdMSlluNUxVVU9aTVFVVWNMZUNYUEJPeHM2RUJUVHdLdzFNYTZuX3haakZQZGJVQ18tcHI1cDVfZm8=",
+  "pageInfo": {
+    "totalResults": 20,
+    "resultsPerPage": 20
+  },
+  "items": [
+    {
+      "kind": "youtube#commentThread",
+      "etag": "\"8jEFfXBrqiSrcF6Ee7MQuz8XuAM/lmSg3efKrG3Bl2tQM39Cos6Hwoo\"",
+      "id": "UgzhytyP79_PwaDd4UB4AaABAg",
+      "snippet": {
+        "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+        "videoId": "Azt8Nc-mtKM",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "\"8jEFfXBrqiSrcF6Ee7MQuz8XuAM/hVDUVQz7qXyPQd3h9H-kPoceJNY\"",
+          "id": "UgzhytyP79_PwaDd4UB4AaABAg",
+          "snippet": {
+            "authorDisplayName": "asdf7692",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/-46C1T2dCUzM/AAAAAAAAAAI/AAAAAAAAAAA/y0-4fvhE0hM/s28-c-k-no-mo-rj-c0xffffff/photo.jpg",
+            "authorChannelUrl": "http://www.youtube.com/channel/UC9Prn_6KFp1xu-t-rf-K8cA",
+            "authorChannelId": {
+              "value": "UC9Prn_6KFp1xu-t-rf-K8cA"
+            },
+            "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+            "videoId": "Azt8Nc-mtKM",
+            "textDisplay": "wait, that&#39;s the guy that wrote my textbook!",
+            "textOriginal": "wait, that's the guy that wrote my textbook!",
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 0,
+            "publishedAt": "2019-08-23T23:12:09.000Z",
+            "updatedAt": "2019-08-23T23:12:09.000Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 0,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "\"8jEFfXBrqiSrcF6Ee7MQuz8XuAM/aXETe1fcQUIyfWLpPb5jDIqKXUA\"",
+      "id": "UgxE6j_nUNlYMy_zy7R4AaABAg",
+      "snippet": {
+        "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+        "videoId": "YbF8Q8LxAJs",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "\"8jEFfXBrqiSrcF6Ee7MQuz8XuAM/TF81Uzl4mF5HX5YPfj2s8nZP8RM\"",
+          "id": "UgxE6j_nUNlYMy_zy7R4AaABAg",
+          "snippet": {
+            "authorDisplayName": "Emmanuel Mtali",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/-pIZiyZIlCHM/AAAAAAAAAAI/AAAAAAAAAAA/mzd2BvmPrkM/s28-c-k-no-mo-rj-c0xffffff/photo.jpg",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCqe1ZlU9YxpIi_2XKFjcg1g",
+            "authorChannelId": {
+              "value": "UCqe1ZlU9YxpIi_2XKFjcg1g"
+            },
+            "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+            "videoId": "YbF8Q8LxAJs",
+            "textDisplay": "I want to be able to use IDE like that guy :)",
+            "textOriginal": "I want to be able to use IDE like that guy :)",
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 0,
+            "publishedAt": "2019-08-23T22:36:14.000Z",
+            "updatedAt": "2019-08-23T22:36:14.000Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 0,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "\"8jEFfXBrqiSrcF6Ee7MQuz8XuAM/MoFpKbvhnfMdjnhRw2txpbpPWjI\"",
+      "id": "UgwpW-4vURZSRbawXft4AaABAg",
+      "snippet": {
+        "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+        "videoId": "z_EgU_IpNkE",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "\"8jEFfXBrqiSrcF6Ee7MQuz8XuAM/2sCDKCbtSONZ_PgVR51nWsVXRis\"",
+          "id": "UgwpW-4vURZSRbawXft4AaABAg",
+          "snippet": {
+            "authorDisplayName": "Your Average Gamer",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/-sMyDNIuBC-s/AAAAAAAAAAI/AAAAAAAAAAA/yWB87w6-4IM/s28-c-k-no-mo-rj-c0xffffff/photo.jpg",
+            "authorChannelUrl": "http://www.youtube.com/channel/UC97pyJq9vWREbwkJ5NZnsGg",
+            "authorChannelId": {
+              "value": "UC97pyJq9vWREbwkJ5NZnsGg"
+            },
+            "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+            "videoId": "z_EgU_IpNkE",
+            "textDisplay": "I am the 9,000th yaaaay (no)",
+            "textOriginal": "I am the 9,000th yaaaay (no)",
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 1,
+            "publishedAt": "2019-08-23T20:25:37.000Z",
+            "updatedAt": "2019-08-23T20:25:37.000Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 0,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "\"8jEFfXBrqiSrcF6Ee7MQuz8XuAM/aNO1uDkzjrFYXSULi6E4CYCPJRw\"",
+      "id": "UgxUFyEVxBbWSIr7zrN4AaABAg",
+      "snippet": {
+        "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+        "videoId": "wvsE8jm1GzE",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "\"8jEFfXBrqiSrcF6Ee7MQuz8XuAM/t-5ywZku8vKh_NT9nEWJpWffGHs\"",
+          "id": "UgxUFyEVxBbWSIr7zrN4AaABAg",
+          "snippet": {
+            "authorDisplayName": "F. Dranka",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/-sUL7B6ob9x8/AAAAAAAAAAI/AAAAAAAAAAA/AtZZ97okR4c/s28-c-k-no-mo-rj-c0xffffff/photo.jpg",
+            "authorChannelUrl": "http://www.youtube.com/channel/UC2Ap75xqM1fz007JFNoin8w",
+            "authorChannelId": {
+              "value": "UC2Ap75xqM1fz007JFNoin8w"
+            },
+            "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+            "videoId": "wvsE8jm1GzE",
+            "textDisplay": "Truly awesome!",
+            "textOriginal": "Truly awesome!",
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 0,
+            "publishedAt": "2019-08-23T18:31:24.000Z",
+            "updatedAt": "2019-08-23T18:31:24.000Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 0,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "\"8jEFfXBrqiSrcF6Ee7MQuz8XuAM/XZiajg3k79sVIifxslZhXjf9P24\"",
+      "id": "Ugz097FRhsQy5CVhAjp4AaABAg",
+      "snippet": {
+        "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+        "videoId": "cD7NPxuuXYY",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "\"8jEFfXBrqiSrcF6Ee7MQuz8XuAM/6y0VZR4wtCx6k3eO72CfPNXuBac\"",
+          "id": "Ugz097FRhsQy5CVhAjp4AaABAg",
+          "snippet": {
+            "authorDisplayName": "Paulo José Martínez",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/-1gM871v6gjw/AAAAAAAAAAI/AAAAAAAAAAA/golxu5t1oGQ/s28-c-k-no-mo-rj-c0xffffff/photo.jpg",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCCz-SK7nwY_a3I2EqrplrLQ",
+            "authorChannelId": {
+              "value": "UCCz-SK7nwY_a3I2EqrplrLQ"
+            },
+            "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+            "videoId": "cD7NPxuuXYY",
+            "textDisplay": "I spend more than 3 days to understand how to fix gradle and react native in android studio. I need to know if exist a page that can see information about errors and how to fix. I am tired of visit Stack Overflow every day. help!",
+            "textOriginal": "I spend more than 3 days to understand how to fix gradle and react native in android studio. I need to know if exist a page that can see information about errors and how to fix. I am tired of visit Stack Overflow every day. help!",
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 0,
+            "publishedAt": "2019-08-23T14:06:16.000Z",
+            "updatedAt": "2019-08-23T14:06:16.000Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 0,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "\"8jEFfXBrqiSrcF6Ee7MQuz8XuAM/wjO7PsJBkOM8e1TDSDgYq1xxJxo\"",
+      "id": "UgzuaMBVKyNQBLD-Ve94AaABAg",
+      "snippet": {
+        "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+        "videoId": "kpcjBD1XDwU",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "\"8jEFfXBrqiSrcF6Ee7MQuz8XuAM/cU1I11Q0DfH6zXOqBOL5xEvP2fw\"",
+          "id": "UgzuaMBVKyNQBLD-Ve94AaABAg",
+          "snippet": {
+            "authorDisplayName": "Kit Mateyawa",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/-uOVFU0FAqJA/AAAAAAAAAAI/AAAAAAAAAAA/Rcqiy2P_YZw/s28-c-k-no-mo-rj-c0xffffff/photo.jpg",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCc2zrXBSTnyw0VxLjJgIc4w",
+            "authorChannelId": {
+              "value": "UCc2zrXBSTnyw0VxLjJgIc4w"
+            },
+            "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+            "videoId": "kpcjBD1XDwU",
+            "textDisplay": "Flutter is awesome ... now you just need to add a video livestream widget and a paypal payment system widget pretty please!!!!. But so far, it&#39;s such a time saver ... wow!!!",
+            "textOriginal": "Flutter is awesome ... now you just need to add a video livestream widget and a paypal payment system widget pretty please!!!!. But so far, it's such a time saver ... wow!!!",
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 0,
+            "publishedAt": "2019-08-23T08:29:11.000Z",
+            "updatedAt": "2019-08-23T08:30:28.000Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 0,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "\"8jEFfXBrqiSrcF6Ee7MQuz8XuAM/992Q4D7cFvDT0hlfTbFlOB8-eh0\"",
+      "id": "Ugy6Yy-HGrWFrB_ZQsN4AaABAg",
+      "snippet": {
+        "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+        "videoId": "TiCA0CEePyE",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "\"8jEFfXBrqiSrcF6Ee7MQuz8XuAM/MYHECZMD1jyGdgMXOWM9kKxt6xk\"",
+          "id": "Ugy6Yy-HGrWFrB_ZQsN4AaABAg",
+          "snippet": {
+            "authorDisplayName": "negin aryapour",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/-DehMdSrEpCw/AAAAAAAAAAI/AAAAAAAAAAA/OfWd_fHhsTs/s28-c-k-no-mo-rj-c0xffffff/photo.jpg",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCbuvoT2yRwuNna46Kde7KLg",
+            "authorChannelId": {
+              "value": "UCbuvoT2yRwuNna46Kde7KLg"
+            },
+            "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+            "videoId": "TiCA0CEePyE",
+            "textDisplay": "i have a problem .i did exactly what you did in this video but i got an Error: Not found: &#39;dart:ui&#39; why did it happen?and how can i fix it?",
+            "textOriginal": "i have a problem .i did exactly what you did in this video but i got an Error: Not found: 'dart:ui' why did it happen?and how can i fix it?",
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 0,
+            "publishedAt": "2019-08-23T08:16:19.000Z",
+            "updatedAt": "2019-08-23T08:17:55.000Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 0,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "\"8jEFfXBrqiSrcF6Ee7MQuz8XuAM/LgsHatJ-ByMUj9XSA0SNNcxng7A\"",
+      "id": "Ugx9Pt5966OQz_btGPB4AaABAg",
+      "snippet": {
+        "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+        "videoId": "cD7NPxuuXYY",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "\"8jEFfXBrqiSrcF6Ee7MQuz8XuAM/QKlwkOScvUxglXE8B0arfPqyDyI\"",
+          "id": "Ugx9Pt5966OQz_btGPB4AaABAg",
+          "snippet": {
+            "authorDisplayName": "SAPAN KUMAR",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/-tAtDIPK9t4c/AAAAAAAAAAI/AAAAAAAAAAA/BbYpMi7R16c/s28-c-k-no-mo-rj-c0xffffff/photo.jpg",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCk-ZxVsMGv78L-E7RZSZ8OQ",
+            "authorChannelId": {
+              "value": "UCk-ZxVsMGv78L-E7RZSZ8OQ"
+            },
+            "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+            "videoId": "cD7NPxuuXYY",
+            "textDisplay": "How do I fix gradle problem in andriod studio 3.5?",
+            "textOriginal": "How do I fix gradle problem in andriod studio 3.5?",
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 0,
+            "publishedAt": "2019-08-23T06:03:12.000Z",
+            "updatedAt": "2019-08-23T06:03:12.000Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 0,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "\"8jEFfXBrqiSrcF6Ee7MQuz8XuAM/SMkO9Fkt6keAIyI-64XleOULEw8\"",
+      "id": "Ugx9JNCQICxhf8gV92h4AaABAg",
+      "snippet": {
+        "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+        "videoId": "oXGL0rsaNf8",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "\"8jEFfXBrqiSrcF6Ee7MQuz8XuAM/TFAIhYhJlicmIGo-1-tV-ktCUDs\"",
+          "id": "Ugx9JNCQICxhf8gV92h4AaABAg",
+          "snippet": {
+            "authorDisplayName": "Nikita Egorov",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/-8BL8EOhfMvg/AAAAAAAAAAI/AAAAAAAAAAA/UC-1xiKGoxk/s28-c-k-no-mo-rj-c0xffffff/photo.jpg",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCIyfnE6AJ5oIk4SbjZnAnlg",
+            "authorChannelId": {
+              "value": "UCIyfnE6AJ5oIk4SbjZnAnlg"
+            },
+            "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+            "videoId": "oXGL0rsaNf8",
+            "textDisplay": "What I need to learn to work in Google?",
+            "textOriginal": "What I need to learn to work in Google?",
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 0,
+            "publishedAt": "2019-08-23T04:15:56.000Z",
+            "updatedAt": "2019-08-23T04:15:56.000Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 0,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "\"8jEFfXBrqiSrcF6Ee7MQuz8XuAM/wlDaVyb0fskWKoXcKrtjdRgiY80\"",
+      "id": "Ugy1VY9ivOv3nCDLMtd4AaABAg",
+      "snippet": {
+        "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+        "videoId": "Ty6VjgVHiko",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "\"8jEFfXBrqiSrcF6Ee7MQuz8XuAM/AF7YkYFVC1ikD5Qz1Iv46VnyfO8\"",
+          "id": "Ugy1VY9ivOv3nCDLMtd4AaABAg",
+          "snippet": {
+            "authorDisplayName": "Juan Reigosa",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/-ZRUKHQIPcv8/AAAAAAAAAAI/AAAAAAAAAAA/qGraj_rRWmM/s28-c-k-no-mo-rj-c0xffffff/photo.jpg",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCUXcYAoC3LRXB-5bYqK0atg",
+            "authorChannelId": {
+              "value": "UCUXcYAoC3LRXB-5bYqK0atg"
+            },
+            "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+            "videoId": "Ty6VjgVHiko",
+            "textDisplay": "I hate apple. Please make Sketch alternatives",
+            "textOriginal": "I hate apple. Please make Sketch alternatives",
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 0,
+            "publishedAt": "2019-08-23T03:58:38.000Z",
+            "updatedAt": "2019-08-23T03:58:38.000Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 0,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "\"8jEFfXBrqiSrcF6Ee7MQuz8XuAM/zG5Gz5CFekF_FKKyhX7CM3dwq5U\"",
+      "id": "UgyaQgKOvKL6BZFfNo14AaABAg",
+      "snippet": {
+        "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+        "videoId": "oXGL0rsaNf8",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "\"8jEFfXBrqiSrcF6Ee7MQuz8XuAM/oqR1PifZGZ550PuZFgQqBeiJoTI\"",
+          "id": "UgyaQgKOvKL6BZFfNo14AaABAg",
+          "snippet": {
+            "authorDisplayName": "HS GAMING",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/-n_erVk4ErK0/AAAAAAAAAAI/AAAAAAAAAAA/XkfeDCzSPNk/s28-c-k-no-mo-rj-c0xffffff/photo.jpg",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCMXwM1Bj4GxjFM_0Se9VG6A",
+            "authorChannelId": {
+              "value": "UCMXwM1Bj4GxjFM_0Se9VG6A"
+            },
+            "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+            "videoId": "oXGL0rsaNf8",
+            "textDisplay": "Helllo",
+            "textOriginal": "Helllo",
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 0,
+            "publishedAt": "2019-08-23T03:48:26.000Z",
+            "updatedAt": "2019-08-23T03:48:26.000Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 0,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "\"8jEFfXBrqiSrcF6Ee7MQuz8XuAM/QIWteidULNME43BLvvGlPUbhF-U\"",
+      "id": "UgwYjZXfNCUTKPq9CZp4AaABAg",
+      "snippet": {
+        "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+        "videoId": "oXGL0rsaNf8",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "\"8jEFfXBrqiSrcF6Ee7MQuz8XuAM/gNsBgyg9S3UA_SCziApstQJSzMA\"",
+          "id": "UgwYjZXfNCUTKPq9CZp4AaABAg",
+          "snippet": {
+            "authorDisplayName": "Rajveer Rupam",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/-IyFrevgPaJ8/AAAAAAAAAAI/AAAAAAAAAAA/ErMtd-HHJII/s28-c-k-no-mo-rj-c0xffffff/photo.jpg",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCFQo6kJLp-alCuLEoubmDIw",
+            "authorChannelId": {
+              "value": "UCFQo6kJLp-alCuLEoubmDIw"
+            },
+            "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+            "videoId": "oXGL0rsaNf8",
+            "textDisplay": "I want to be a developer but i don&#39;t have laptop yet!",
+            "textOriginal": "I want to be a developer but i don't have laptop yet!",
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 0,
+            "publishedAt": "2019-08-23T01:09:17.000Z",
+            "updatedAt": "2019-08-23T01:09:17.000Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 1,
+        "isPublic": true
+      },
+      "replies": {
+        "comments": [
+          {
+            "kind": "youtube#comment",
+            "etag": "\"8jEFfXBrqiSrcF6Ee7MQuz8XuAM/1_-dhnmY63Ut62xCWRhZyGcYU7E\"",
+            "id": "UgwYjZXfNCUTKPq9CZp4AaABAg.8yxhlQJogG18yz_cXK9Kcj",
+            "snippet": {
+              "authorDisplayName": "Marlon López",
+              "authorProfileImageUrl": "https://yt3.ggpht.com/-rjObpEI8ug0/AAAAAAAAAAI/AAAAAAAAAAA/2GLcRnCZ6oE/s28-c-k-no-mo-rj-c0xffffff/photo.jpg",
+              "authorChannelUrl": "http://www.youtube.com/channel/UCeciUl71bp9Fi4iB-Az3jDA",
+              "authorChannelId": {
+                "value": "UCeciUl71bp9Fi4iB-Az3jDA"
+              },
+              "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+              "videoId": "oXGL0rsaNf8",
+              "textDisplay": "Many of us learned using paper and reviewing some ideas and designs, you can start with some boon reading (imho)",
+              "textOriginal": "Many of us learned using paper and reviewing some ideas and designs, you can start with some boon reading (imho)",
+              "parentId": "UgwYjZXfNCUTKPq9CZp4AaABAg",
+              "canRate": true,
+              "viewerRating": "none",
+              "likeCount": 0,
+              "publishedAt": "2019-08-23T18:36:39.000Z",
+              "updatedAt": "2019-08-23T18:36:39.000Z"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "\"8jEFfXBrqiSrcF6Ee7MQuz8XuAM/Lb9gJ3GF1BOJBDr1YwCHJYH2Yv8\"",
+      "id": "UgxaGOh_-hGtyR01cl14AaABAg",
+      "snippet": {
+        "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+        "videoId": "oXGL0rsaNf8",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "\"8jEFfXBrqiSrcF6Ee7MQuz8XuAM/PWS2EL6yEcRuSQWB3JXf2m2Is3A\"",
+          "id": "UgxaGOh_-hGtyR01cl14AaABAg",
+          "snippet": {
+            "authorDisplayName": "tarantilia",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/-Bp7Hn6YtEmQ/AAAAAAAAAAI/AAAAAAAAAAA/m_BZOOWHhow/s28-c-k-no-mo-rj-c0xffffff/photo.jpg",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCvvRrQEQeYeGDmklTRXxdEQ",
+            "authorChannelId": {
+              "value": "UCvvRrQEQeYeGDmklTRXxdEQ"
+            },
+            "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+            "videoId": "oXGL0rsaNf8",
+            "textDisplay": "Thank you!",
+            "textOriginal": "Thank you!",
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 0,
+            "publishedAt": "2019-08-23T00:45:04.000Z",
+            "updatedAt": "2019-08-23T00:45:04.000Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 0,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "\"8jEFfXBrqiSrcF6Ee7MQuz8XuAM/QBJCWkmYdMy6CNiZ7MVePGvaqs0\"",
+      "id": "UgzW0-U5SqokjjsJZ1V4AaABAg",
+      "snippet": {
+        "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+        "videoId": "oXGL0rsaNf8",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "\"8jEFfXBrqiSrcF6Ee7MQuz8XuAM/2sOXVJbeEoIWWuCWbZfDiKh-8XA\"",
+          "id": "UgzW0-U5SqokjjsJZ1V4AaABAg",
+          "snippet": {
+            "authorDisplayName": "Sano Kei",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/-hY0RLClnA-E/AAAAAAAAAAI/AAAAAAAAAAA/-MhTgWHOlmw/s28-c-k-no-mo-rj-c0xffffff/photo.jpg",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCfhnJHIyTLtpAELjzxPUvKQ",
+            "authorChannelId": {
+              "value": "UCfhnJHIyTLtpAELjzxPUvKQ"
+            },
+            "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+            "videoId": "oXGL0rsaNf8",
+            "textDisplay": "I just wish they made google duplex&#39;s RNN open source ;-;",
+            "textOriginal": "I just wish they made google duplex's RNN open source ;-;",
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 0,
+            "publishedAt": "2019-08-23T00:02:41.000Z",
+            "updatedAt": "2019-08-23T00:02:41.000Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 0,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "\"8jEFfXBrqiSrcF6Ee7MQuz8XuAM/LUJQnizkr62vIUxPrvfL9Qx8_F0\"",
+      "id": "UgzV6tF28-K5F5TRYq14AaABAg",
+      "snippet": {
+        "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+        "videoId": "oXGL0rsaNf8",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "\"8jEFfXBrqiSrcF6Ee7MQuz8XuAM/kPILhmlGQpimNVzHZPYIUpvE6zA\"",
+          "id": "UgzV6tF28-K5F5TRYq14AaABAg",
+          "snippet": {
+            "authorDisplayName": "Mr, Boo Boo 1972",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/-GGdxuzl2muQ/AAAAAAAAAAI/AAAAAAAAAAA/GtX8pIjCSrI/s28-c-k-no-mo-rj-c0xffffff/photo.jpg",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCLlURkz-Qte5dVCPtWPCP7w",
+            "authorChannelId": {
+              "value": "UCLlURkz-Qte5dVCPtWPCP7w"
+            },
+            "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+            "videoId": "oXGL0rsaNf8",
+            "textDisplay": "Nice.  Way to go Google.  You guys and gals have really been bringing your game the past year or so... updates and new this snd that often and I&#39;m seriously loving it. Thanks Google  :)",
+            "textOriginal": "Nice.  Way to go Google.  You guys and gals have really been bringing your game the past year or so... updates and new this snd that often and I'm seriously loving it. Thanks Google  :)",
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 3,
+            "publishedAt": "2019-08-22T22:03:01.000Z",
+            "updatedAt": "2019-08-22T22:03:01.000Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 0,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "\"8jEFfXBrqiSrcF6Ee7MQuz8XuAM/4ds0yb9qZFN0tuLEhod1FcxLK5s\"",
+      "id": "UgwnyDp1gr_854HYPM94AaABAg",
+      "snippet": {
+        "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+        "videoId": "oXGL0rsaNf8",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "\"8jEFfXBrqiSrcF6Ee7MQuz8XuAM/WefdZYxZ5De5TOH79vmReKcGVkg\"",
+          "id": "UgwnyDp1gr_854HYPM94AaABAg",
+          "snippet": {
+            "authorDisplayName": "imokhai elias",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/-Ka3R5y8Cx0k/AAAAAAAAAAI/AAAAAAAAAAA/SzleFscfXFo/s28-c-k-no-mo-rj-c0xffffff/photo.jpg",
+            "authorChannelUrl": "http://www.youtube.com/channel/UC0-9J6TsWDNH_00pTcX8FvQ",
+            "authorChannelId": {
+              "value": "UC0-9J6TsWDNH_00pTcX8FvQ"
+            },
+            "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+            "videoId": "oXGL0rsaNf8",
+            "textDisplay": "💪",
+            "textOriginal": "💪",
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 0,
+            "publishedAt": "2019-08-22T21:18:11.000Z",
+            "updatedAt": "2019-08-22T21:18:11.000Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 0,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "\"8jEFfXBrqiSrcF6Ee7MQuz8XuAM/vbyUqinxomf8Q8-lsxptFuckNmo\"",
+      "id": "Ugx217uwbEM1MZnACY54AaABAg",
+      "snippet": {
+        "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+        "videoId": "oXGL0rsaNf8",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "\"8jEFfXBrqiSrcF6Ee7MQuz8XuAM/92VJzuhk4ek53D0WdTKGkKx54hg\"",
+          "id": "Ugx217uwbEM1MZnACY54AaABAg",
+          "snippet": {
+            "authorDisplayName": "Affan Waheed BigFan's",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/-RV764kLSP9U/AAAAAAAAAAI/AAAAAAAAAAA/0Aygmm7Kf08/s28-c-k-no-mo-rj-c0xffffff/photo.jpg",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCRS2KtRblgd7IWToKRBOEaQ",
+            "authorChannelId": {
+              "value": "UCRS2KtRblgd7IWToKRBOEaQ"
+            },
+            "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+            "videoId": "oXGL0rsaNf8",
+            "textDisplay": "oh",
+            "textOriginal": "oh",
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 0,
+            "publishedAt": "2019-08-22T21:16:35.000Z",
+            "updatedAt": "2019-08-22T21:16:35.000Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 0,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "\"8jEFfXBrqiSrcF6Ee7MQuz8XuAM/ssYIOwc_3vxA3lCkPCz3cLV3m-w\"",
+      "id": "UgzcorsNrWC4VFY_5qN4AaABAg",
+      "snippet": {
+        "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+        "videoId": "BZ7jY9gUIyo",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "\"8jEFfXBrqiSrcF6Ee7MQuz8XuAM/mUVB7n3FWWv3qZiHDJjwFZTavyc\"",
+          "id": "UgzcorsNrWC4VFY_5qN4AaABAg",
+          "snippet": {
+            "authorDisplayName": "Nishant Ghetiya",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/-DlkcxBUTIWY/AAAAAAAAAAI/AAAAAAAAAAA/ZRDeLPfCcFo/s28-c-k-no-mo-rj-c0xffffff/photo.jpg",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCxo_qpuMlKPZMB4FbWznFng",
+            "authorChannelId": {
+              "value": "UCxo_qpuMlKPZMB4FbWznFng"
+            },
+            "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+            "videoId": "BZ7jY9gUIyo",
+            "textDisplay": "Great amanda.. God always keeps smile on your face 😊",
+            "textOriginal": "Great amanda.. God always keeps smile on your face 😊",
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 0,
+            "publishedAt": "2019-08-22T20:30:27.000Z",
+            "updatedAt": "2019-08-22T20:30:27.000Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 0,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "\"8jEFfXBrqiSrcF6Ee7MQuz8XuAM/uGwoCuAh07_7C5sid127zM1XOFE\"",
+      "id": "UgzqXgHQEn60USKSSUt4AaABAg",
+      "snippet": {
+        "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+        "videoId": "-HUHRRYQl5k",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "\"8jEFfXBrqiSrcF6Ee7MQuz8XuAM/yBFVr-5dKWsRsY3oCTKCUNy-JQQ\"",
+          "id": "UgzqXgHQEn60USKSSUt4AaABAg",
+          "snippet": {
+            "authorDisplayName": "Mitai",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/-9wywMq7pYn8/AAAAAAAAAAI/AAAAAAAAAAA/9V2jvramqUo/s28-c-k-no-mo-rj-c0xffffff/photo.jpg",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCC2tv-f8u2L3rqDV--rlPpw",
+            "authorChannelId": {
+              "value": "UCC2tv-f8u2L3rqDV--rlPpw"
+            },
+            "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+            "videoId": "-HUHRRYQl5k",
+            "textDisplay": "please write an article how to use angulardart together with django rest framework",
+            "textOriginal": "please write an article how to use angulardart together with django rest framework",
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 0,
+            "publishedAt": "2019-08-22T18:27:43.000Z",
+            "updatedAt": "2019-08-22T18:27:43.000Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 0,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "\"8jEFfXBrqiSrcF6Ee7MQuz8XuAM/FkdM1l568FGH4aDgaBUski8a6rw\"",
+      "id": "UgwHBr4us3glg-Ps3CF4AaABAg",
+      "snippet": {
+        "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+        "videoId": "fq4N0hgOWzU",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "\"8jEFfXBrqiSrcF6Ee7MQuz8XuAM/0KoSPz1IetK33QPG6FxGJ_eh6As\"",
+          "id": "UgwHBr4us3glg-Ps3CF4AaABAg",
+          "snippet": {
+            "authorDisplayName": "ProBarokis",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/-8PI3Lf4teTI/AAAAAAAAAAI/AAAAAAAAAAA/-y1K1aH6xVE/s28-c-k-no-mo-rj-c0xffffff/photo.jpg",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCKjTONUb9jjRX00pCgehj8Q",
+            "authorChannelId": {
+              "value": "UCKjTONUb9jjRX00pCgehj8Q"
+            },
+            "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+            "videoId": "fq4N0hgOWzU",
+            "textDisplay": "Huh who that? why not integrate it into android studio?",
+            "textOriginal": "Huh who that? why not integrate it into android studio?",
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 0,
+            "publishedAt": "2019-08-22T17:19:31.000Z",
+            "updatedAt": "2019-08-22T17:20:53.000Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 0,
+        "isPublic": true
+      }
+    }
+  ]
+}
