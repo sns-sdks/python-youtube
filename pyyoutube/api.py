@@ -12,7 +12,7 @@ from requests.models import Response  # noqa
 from pyyoutube.error import ErrorMessage, PyYouTubeException
 from pyyoutube.models import (
     AccessToken, UserProfile, Channel, Video,
-    PlayList, PlaylistItem
+    PlayList, PlaylistItem, CommentThread, Comment
 )
 from pyyoutube.utils.quota_cost import LIST_DATA
 
@@ -398,6 +398,38 @@ class Api(object):
         else:
             return UserProfile.new_from_json_dict(data)
 
+    def paged_by_page_token(self,
+                            resource,
+                            args,
+                            page_token=None):
+        """
+        Response paged by response's page token. If not provide response token
+
+        Args:
+            resource (str)
+                The resource string need to retrieve data.
+            args (dict)
+                The args for api.
+            page_token (str, optional)
+                If token is None, this request is first (not have paged info.)
+        Returns:
+            Data api origin response.
+        """
+        if page_token is not None:
+            args['pageToken'] = page_token
+
+        resp = self._request(
+            resource=resource,
+            method='GET',
+            args=args
+        )
+        data = self._parse_response(resp)  # origin response
+        # set page token
+        next_page_token = data.get('nextPageToken')
+        prev_page_token = data.get('prevPageToken')
+        self.calc_quota(resource, parts=args['part'], count=len(data['items']))
+        return prev_page_token, next_page_token, data
+
     def get_channel_info(self, channel_id=None, channel_name=None, return_json=False):
         """
         Retrieve data from YouTube Data API for channel which you given.
@@ -687,34 +719,216 @@ class Api(object):
         else:
             return [Video.new_from_json_dict(item) for item in data]
 
-    def paged_by_page_token(self,
-                            resource,
-                            args,
-                            page_token=None):
+    def get_comment_threads(self,
+                            all_to_channel_id=None,
+                            channel_id=None,
+                            video_id=None,
+                            order='time',
+                            limit=20,
+                            count=20,
+                            return_json=False):
         """
-        Response paged by response's page token. If not provide response token
-
+        Retrieve the comment thread info by single id.
+        Refer: https://developers.google.com/youtube/v3/docs/commentThreads/list
         Args:
-            resource (str)
-                The resource string need to retrieve data.
-            args (dict)
-                The args for api.
-            page_token (str, optional)
-                If token is None, this request is first (not have paged info.)
+            all_to_channel_id (str, optional)
+                If you provide channel id by this parameter.
+                Will return all comment threads associated with the specified channel.
+                The response can include comments about the channel or about the channel's videos.
+            channel_id (str, optional)
+                If you provide channel id by this parameter.
+                Will return comment threads containing comments about the specified channel.
+                But not include comments about the channel's videos.
+            video_id (str, optional)
+                If you provide video id by this parameter.
+                Will return comment threads containing comments about the specified video.
+            order (str, optional)
+                Provide the response order type. Valid value are: time, relevance.
+                Default is time. order by the commented time.
+            limit (int, optional)
+                Each request retrieve comment threads from data api.
+                For comment threads, this should not be more than 100.
+                Default is 20.
+            count (int, optional)
+                The count will retrieve comment threads data.
+                Default is 20.
+            return_json(bool, optional)
+                The return data type. If you set True JSON data will be returned.
+                False will return pyyoutube.CommentThread.
         Returns:
-            Data api origin response.
+            The list data for you given comment thread.
         """
-        if page_token is not None:
-            args['pageToken'] = page_token
+        part = 'id,snippet,replies'
+        args = {
+            'part': part,
+            'maxResults': limit
+        }
+        if all_to_channel_id is not None:
+            args['allThreadsRelatedToChannelId'] = all_to_channel_id
+        elif channel_id is not None:
+            args['channelId'] = channel_id
+        elif video_id is not None:
+            args['videoId'] = video_id
+        else:
+            raise PyYouTubeException(ErrorMessage(
+                status_code=10007,
+                message='Target id must specify. either of all_to_channel_id, channel_id,video_id'
+            ))
+
+        if order not in ['time', 'relevance']:
+            raise PyYouTubeException(ErrorMessage(
+                status_code=10007,
+                message='Order type must be time or relevance.'
+            ))
+
+        comment_threads = []
+        next_page_token = None
+        while True:
+            _, next_page_token, data = self.paged_by_page_token(
+                resource='commentThreads',
+                args=args,
+                page_token=next_page_token,
+            )
+            items = self._parse_data(data)
+            if return_json:
+                comment_threads += items
+            else:
+                comment_threads += [CommentThread.new_from_json_dict(item) for item in items]
+            if next_page_token is None:
+                break
+            if len(comment_threads) >= count:
+                break
+        return comment_threads[:count]
+
+    def get_comment_thread_info(self,
+                                comment_thread_id=None,
+                                return_json=False):
+        """
+        Retrieve the comment thread info by single id.
+        Refer: https://developers.google.com/youtube/v3/docs/commentThreads/list
+        Args:
+            comment_thread_id (str)
+                The id parameter specifies a comma-separated list of comment thread IDs
+                for the resources that should be retrieved.
+            return_json(bool, optional)
+                The return data type. If you set True JSON data will be returned.
+                False will return pyyoutube.CommentThread.
+        Returns:
+            The list data for you given comment thread.
+        """
+        part = 'id,snippet,replies'
+        if comment_thread_id is None:
+            raise PyYouTubeException(ErrorMessage(
+                status_code=10005,
+                message='Must Specify the id for the video'
+            ))
+
+        args = {
+            'id': comment_thread_id,
+            'part': part
+        }
 
         resp = self._request(
-            resource=resource,
-            method='GET',
+            resource='commentThreads',
             args=args
         )
-        data = self._parse_response(resp)  # origin response
-        # set page token
-        next_page_token = data.get('nextPageToken')
-        prev_page_token = data.get('prevPageToken')
-        self.calc_quota(resource, parts=args['part'], count=len(data['items']))
-        return prev_page_token, next_page_token, data
+
+        data = self._parse_response(resp, api=True)
+        if return_json:
+            return data
+        else:
+            return [CommentThread.new_from_json_dict(item) for item in data]
+
+    def get_comments_by_parent(self,
+                               parent_id=None,
+                               limit=20,
+                               count=20,
+                               return_json=None):
+        """
+        Retrieve data from YouTube Data Api for top level comment which you point.
+        Refer: https://developers.google.com/youtube/v3/docs/comments/list
+
+        Args:
+            parent_id (str, optional)
+                Provide the ID of the comment for which replies should be retrieved.
+                Now YouTube currently supports replies only for top-level comments
+            limit (int, optional)
+                Each request retrieve comments from data api.
+                For comments, this should not be more than 100.
+                Default is 20.
+            count (int, optional)
+                The count will retrieve comments data.
+                Default is 20.
+            return_json(bool, optional)
+                The return data type. If you set True JSON data will be returned.
+                False will return pyyoutube.Comment.
+        Returns:
+            The list data for you given comment.
+        """
+        part = 'id,snippet'
+        args = {
+            'part': part,
+            'maxResults': limit,
+        }
+        if parent_id is not None:
+            args['parentId'] = parent_id
+        else:
+            raise PyYouTubeException(ErrorMessage(
+                status_code=10007,
+                message='Parent comment id must specified'
+            ))
+
+        comments = []
+        next_page_token = None
+        while True:
+            _, next_page_token, data = self.paged_by_page_token(
+                resource='comments',
+                args=args,
+                page_token=next_page_token,
+            )
+            items = self._parse_data(data)
+            if return_json:
+                comments += items
+            else:
+                comments += [Comment.new_from_json_dict(item) for item in items]
+            if len(comments) >= count:
+                break
+            if next_page_token is None:
+                break
+        return comments[:count]
+
+    def get_comment_info(self,
+                         comment_id=None,
+                         return_json=False):
+        """
+        Args:
+            comment_id (str, optional)
+                Provide a comma-separated list of comment IDs or just a comment id
+                for the resources that are being retrieved
+            return_json(bool, optional)
+                The return data type. If you set True JSON data will be returned.
+                False will return pyyoutube.Comment.
+        Returns:
+            The list data for you given comment id.
+        """
+        part = 'id,snippet'
+        args = {
+            'part': part,
+        }
+        if comment_id is not None:
+            args['id'] = comment_id
+        else:
+            raise PyYouTubeException(ErrorMessage(
+                status_code=10007,
+                message='Comment id must specified'
+            ))
+
+        resp = self._request(
+            resource='comments',
+            args=args
+        )
+        data = self._parse_response(resp, api=True)
+        if return_json:
+            return data
+        else:
+            return [Comment.new_from_json_dict(item) for item in data]

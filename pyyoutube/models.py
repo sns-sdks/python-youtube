@@ -995,7 +995,7 @@ class Comment(BaseModel):
         return super().new_from_json_dict(data=data, snippet=snippet)
 
 
-class CommentTreadSnippet(BaseModel):
+class CommentThreadSnippet(BaseModel):
     """
     A class representing comment tread snippet info.
     Refer: https://developers.google.com/youtube/v3/docs/commentThreads#snippet
@@ -1027,7 +1027,7 @@ class CommentTreadSnippet(BaseModel):
         )
 
 
-class CommentTreadReplies(BaseModel):
+class CommentThreadReplies(BaseModel):
     """
     A class representing comment tread replies info.
     Refer: https://developers.google.com/youtube/v3/docs/commentThreads#replies
@@ -1051,7 +1051,7 @@ class CommentTreadReplies(BaseModel):
         return super().new_from_json_dict(data=data, comments=comments)
 
 
-class CommentTread(BaseModel):
+class CommentThread(BaseModel):
     """
     A class representing comment thread info.
     Refer: https://developers.google.com/youtube/v3/docs/commentThreads
@@ -1075,10 +1075,10 @@ class CommentTread(BaseModel):
     def new_from_json_dict(cls, data, **kwargs):
         snippet = data.get('snippet')
         if snippet is not None:
-            snippet = CommentTreadSnippet.new_from_json_dict(snippet)
+            snippet = CommentThreadSnippet.new_from_json_dict(snippet)
         replies = data.get('replies')
         if replies is not None:
-            replies = CommentTreadReplies.new_from_json_dict(replies)
+            replies = CommentThreadReplies.new_from_json_dict(replies)
 
         return super().new_from_json_dict(
             data=data, snippet=snippet,

@@ -344,10 +344,10 @@ class ModelTest(unittest.TestCase):
 
         self.assertEqual(m.id, 'UgwxApqcfzZzF_C5Zqx4AaABAg')
 
-    def testCommentTreadSnippet(self) -> None:
-        with open(f'{self.base_path}comment_tread_snippet.json', 'rb') as json_file:
-            comment_tread_snippet = json.loads(json_file.read())
-        m = pyyoutube.CommentTreadSnippet.new_from_json_dict(comment_tread_snippet)
+    def testCommentThreadSnippet(self) -> None:
+        with open(f'{self.base_path}comment_thread_snippet.json', 'rb') as json_file:
+            comment_thread_snippet = json.loads(json_file.read())
+        m = pyyoutube.CommentThreadSnippet.new_from_json_dict(comment_thread_snippet)
         try:
             m.__repr__()
         except Exception as e:
@@ -355,22 +355,22 @@ class ModelTest(unittest.TestCase):
 
         self.assertEqual(m.videoId, 'D-lhorsDlUQ')
 
-    def testCommentTreadReplies(self) -> None:
-        with open(f'{self.base_path}comment_tread_replies.json', 'rb') as json_file:
-            comment_tread_replies = json.loads(json_file.read())
-        m = pyyoutube.CommentTreadReplies.new_from_json_dict(comment_tread_replies)
+    def testCommentThreadReplies(self) -> None:
+        with open(f'{self.base_path}comment_thread_replies.json', 'rb') as json_file:
+            comment_thread_replies = json.loads(json_file.read())
+        m = pyyoutube.CommentThreadReplies.new_from_json_dict(comment_thread_replies)
         try:
             m.__repr__()
         except Exception as e:
             self.fail(e)
 
         self.assertEqual(len(m.comments), 1)
-        self.assertEqual(comment_tread_replies, m.as_dict())
+        self.assertEqual(comment_thread_replies, m.as_dict())
 
-    def testCommentTread(self) -> None:
-        with open(f'{self.base_path}comment_tread_info.json', 'rb') as json_file:
-            comment_tread_info = json.loads(json_file.read())
-        m = pyyoutube.CommentTread.new_from_json_dict(comment_tread_info)
+    def testCommentThread(self) -> None:
+        with open(f'{self.base_path}comment_thread_info.json', 'rb') as json_file:
+            comment_thread_info = json.loads(json_file.read())
+        m = pyyoutube.CommentThread.new_from_json_dict(comment_thread_info)
         try:
             m.__repr__()
         except Exception as e:

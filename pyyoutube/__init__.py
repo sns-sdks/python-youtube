@@ -32,9 +32,9 @@ from .models import (  # noqa
     PlaylistItemStatus,
     CommentSnippet,
     Comment,
-    CommentTreadSnippet,
-    CommentTreadReplies,
-    CommentTread
+    CommentThreadSnippet,
+    CommentThreadReplies,
+    CommentThread
 )
 
 from .api import Api  # noqa
