@@ -8,6 +8,9 @@ A Python wrapper around for YouTube Data API V3.
 .. image:: https://codecov.io/gh/MerleLiuKun/python-youtube/branch/master/graph/badge.svg
     :target: https://codecov.io/gh/MerleLiuKun/python-youtube
 
+.. image:: https://img.shields.io/pypi/v/python-youtube.svg
+    :target: https://img.shields.io/pypi/v/python-youtube
+
 ======
 THANKS
 ======
