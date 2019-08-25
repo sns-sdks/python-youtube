@@ -750,7 +750,7 @@ class Api(object):
                 For comment threads, this should not be more than 100.
                 Default is 20.
             count (int, optional)
-                The count will retrieve playlist data.
+                The count will retrieve comment threads data.
                 Default is 20.
             return_json(bool, optional)
                 The return data type. If you set True JSON data will be returned.
@@ -838,3 +838,97 @@ class Api(object):
             return data
         else:
             return [CommentThread.new_from_json_dict(item) for item in data]
+
+    def get_comments_by_parent(self,
+                               parent_id=None,
+                               limit=20,
+                               count=20,
+                               return_json=None):
+        """
+        Retrieve data from YouTube Data Api for top level comment which you point.
+        Refer: https://developers.google.com/youtube/v3/docs/comments/list
+
+        Args:
+            parent_id (str, optional)
+                Provide the ID of the comment for which replies should be retrieved.
+                Now YouTube currently supports replies only for top-level comments
+            limit (int, optional)
+                Each request retrieve comments from data api.
+                For comments, this should not be more than 100.
+                Default is 20.
+            count (int, optional)
+                The count will retrieve comments data.
+                Default is 20.
+            return_json(bool, optional)
+                The return data type. If you set True JSON data will be returned.
+                False will return pyyoutube.Comment.
+        Returns:
+            The list data for you given comment.
+        """
+        part = 'id,snippet'
+        args = {
+            'part': part,
+            'maxResults': limit,
+        }
+        if parent_id is not None:
+            args['parentId'] = parent_id
+        else:
+            raise PyYouTubeException(ErrorMessage(
+                status_code=10007,
+                message='Parent comment id must specified'
+            ))
+
+        comments = []
+        next_page_token = None
+        while True:
+            _, next_page_token, data = self.paged_by_page_token(
+                resource='comments',
+                args=args,
+                page_token=next_page_token,
+            )
+            items = self._parse_data(data)
+            if return_json:
+                comments += items
+            else:
+                comments += [Comment.new_from_json_dict(item) for item in items]
+            if len(comments) >= count:
+                break
+            if next_page_token is None:
+                break
+        return comments[:count]
+
+    def get_comment_info(self,
+                         comment_id=None,
+                         return_json=False):
+        """
+        Args:
+            comment_id (str, optional)
+                Provide a comma-separated list of comment IDs or just a comment id
+                for the resources that are being retrieved
+            return_json(bool, optional)
+                The return data type. If you set True JSON data will be returned.
+                False will return pyyoutube.Comment.
+        Returns:
+            The list data for you given comment id.
+        """
+        part = 'id,snippet'
+        args = {
+            'part': part,
+        }
+        if comment_id is not None:
+            args['id'] = comment_id
+        else:
+            raise PyYouTubeException(ErrorMessage(
+                status_code=10007,
+                message='Comment id must specified'
+            ))
+
+        resp = self._request(
+            resource='comments',
+            args=args
+        )
+        data = self._parse_response(resp, api=True)
+        if return_json:
+            return data
+        else:
+            return [Comment.new_from_json_dict(item) for item in data]

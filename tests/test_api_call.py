@@ -158,3 +158,42 @@ class TestApiCall(unittest.TestCase):
             return_json=True
         )
         self.assertEqual(comment_threads[0]['id'], 'Ugz097FRhsQy5CVhAjp4AaABAg')
+
+    @responses.activate
+    def testGetCommentsByParent(self) -> None:
+        with open(f'{self.base_path}comments_by_parent_id.json') as f:
+            res_data_by_parent = f.read()
+        responses.add(
+            responses.GET,
+            self.BASE_URL + 'comments',
+            body=res_data_by_parent, status=200
+        )
+
+        with self.assertRaises(pyyoutube.PyYouTubeException):
+            self.api.get_comments_by_parent()
+
+        comments = self.api.get_comments_by_parent(parent_id='UgwYjZXfNCUTKPq9CZp4AaABAg', count=1)
+        self.assertEqual(len(comments), 1)
+
+        comments = self.api.get_comments_by_parent(parent_id='UgwYjZXfNCUTKPq9CZp4AaABAg', return_json=True)
+        self.assertEqual(comments[0]['id'], 'UgwYjZXfNCUTKPq9CZp4AaABAg.8yxhlQJogG18yz_cXK9Kcj')
+
+    @responses.activate
+    def testGetCommentInfo(self) -> None:
+        with open(f'{self.base_path}comments_by_id.json') as f:
+            res_data_by_id = f.read()
+        responses.add(
+            responses.GET,
+            self.BASE_URL + 'comments',
+            body=res_data_by_id, status=200
+        )
+        with self.assertRaises(pyyoutube.PyYouTubeException):
+            self.api.get_comment_info()
+
+        comments = self.api.get_comment_info(comment_id='UgxKREWxIgDrw8w2e_Z4AaABAg,UgyrVQaFfEdvaSzstj14AaABAg')
+        self.assertEqual(len(comments), 2)
+        comments = self.api.get_comment_info(
+            comment_id='UgxKREWxIgDrw8w2e_Z4AaABAg,UgyrVQaFfEdvaSzstj14AaABAg',
+            return_json=True
+        )
+        self.assertEqual(comments[0]['id'], 'UgxKREWxIgDrw8w2e_Z4AaABAg')
