@@ -98,6 +98,58 @@ To fetch many youtube video's data::
     [Video(id=cxABjSOa6RY,kind=youtube#video),
      Video(id=21BbGGGrq9s,kind=youtube#video)]
 
+Fetch comment thread info. You can use multi different parameter.
+If you want to get the channel and the channel's videos comment threads.
+You can provide target channel id with `all_to_channel_id` parameter. Like follows::
+
+    In [5]: resp = api.get_comment_threads(all_to_channel_id='UC_x5XG1OV2P6uZZ5FSM9Ttw', count=4)
+
+    In [6]: resp
+    Out[6]:
+    [CommentTread(id=UgzhytyP79_PwaDd4UB4AaABAg,kind=youtube#commentThread),
+     CommentTread(id=UgxE6j_nUNlYMy_zy7R4AaABAg,kind=youtube#commentThread),
+     CommentTread(id=UgwpW-4vURZSRbawXft4AaABAg,kind=youtube#commentThread),
+     CommentTread(id=UgxUFyEVxBbWSIr7zrN4AaABAg,kind=youtube#commentThread)]
+
+If you want to just get a channel comment threads. use `channel_id` instead of `all_to_channel_id`. Like follows::
+
+    In [7]: resp = api.get_comment_threads(channel_id='UC_x5XG1OV2P6uZZ5FSM9Ttw', count=4)
+
+If you want to get a video comment threads. You can provide target video id with `video_id`. Like follows::
+
+    In [7]: resp = api.get_comment_threads(video_id='D-lhorsDlUQ', count=2)
+
+    In [8]: resp
+    Out[8]:
+    [CommentTread(id=UgydxWWoeA7F1OdqypJ4AaABAg,kind=youtube#commentThread),
+     CommentTread(id=UgxKREWxIgDrw8w2e_Z4AaABAg,kind=youtube#commentThread)]
+
+If you want get comment thread detail info. You can provide comment thread id or comma-separated id list. Like follows::
+
+    In [8]: resp = api.get_comment_thread_info(comment_thread_id='Ugz097FRhsQy5CVhAjp4AaABAg,UgzhytyP79_PwaDd4UB4AaABAg')
+
+    In [9]: resp
+    Out[9]:
+    [CommentTread(id=Ugz097FRhsQy5CVhAjp4AaABAg,kind=youtube#commentThread),
+     CommentTread(id=UgzhytyP79_PwaDd4UB4AaABAg,kind=youtube#commentThread)]
+
+Fetch comments info. You can use multi different parameter.
+If you want to get top level's comment's replies. Like follows::
+
+    In [10]: resp = api.get_comments_by_parent(parent_id='UgwYjZXfNCUTKPq9CZp4AaABAg')
+
+    In [11]: resp
+    Out[11]: [Comment(id=UgwYjZXfNCUTKPq9CZp4AaABAg.8yxhlQJogG18yz_cXK9Kcj,kind=youtube#comment)]
+
+If want get comment detail info. You can provide comment id or comma-separated id list. Like follows::
+
+    In [12]: resp = api.get_comment_info(comment_id='UgxKREWxIgDrw8w2e_Z4AaABAg,UgyrVQaFfEdvaSzstj14AaABAg')
+
+    In [13]: resp
+    Out[13]:
+    [Comment(id=UgxKREWxIgDrw8w2e_Z4AaABAg,kind=youtube#comment),
+     Comment(id=UgyrVQaFfEdvaSzstj14AaABAg,kind=youtube#comment)]
+
 ====
 TODO
 ====
@@ -108,7 +160,9 @@ Now this has follows api.
 - Playlist Info
 - PlaylistItem Info
 - Video Info
+- Comment Thread Info
+- Comment Info
 
-Doing:
+Doing
 
-- comments
+- Refactor API.

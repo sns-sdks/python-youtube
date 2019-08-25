@@ -22,7 +22,7 @@ VERSION = '0.1.0'
 
 # What packages are required for this module to be executed?
 REQUIRED = [
-    'requests', 'future', 'requests-oauthlib', 'pytz', 'isodate'
+    'requests', 'future', 'requests-oauthlib', 'pytz', 'isodate', 'responses'
 ]
 
 # What packages are optional?
