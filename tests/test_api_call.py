@@ -1,3 +1,4 @@
+import json
 import unittest
 import pyyoutube
 
@@ -14,6 +15,49 @@ class TestApiCall(unittest.TestCase):
             client_secret='xx',
             api_key='xx'
         )
+
+    @responses.activate
+    def testOAuth(self):
+        with self.assertRaises(pyyoutube.PyYouTubeException):
+            pyyoutube.Api()
+
+        url, state = self.api.get_authorization_url()
+        self.assertEqual(state, 'PyYouTube')
+
+        redirect_response = (
+            'https://localhost/?state=PyYouTube&code=code'
+            '&scope=profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile#'
+        )
+        with open(f'{self.base_path}modeldata/access_token.json', 'rb') as json_file:
+            token_info = json.loads(json_file.read())
+        responses.add(
+            responses.POST,
+            self.api.EXCHANGE_ACCESS_TOKEN_URL,
+            json=token_info,
+            status=200
+        )
+        token = self.api.exchange_code_to_access_token(redirect_response)
+        self.assertEqual(token.access_token, 'access_token')
+        token_json = self.api.exchange_code_to_access_token(redirect_response, return_json=True)
+        self.assertEqual(token_json['id_token'], 'id_token')
+
+        refresh_token = self.api.refresh_token(token.refresh_token)
+        self.assertEqual(refresh_token.access_token, 'access_token')
+        refresh_token_json = self.api.refresh_token(token.refresh_token, return_json=True)
+        self.assertEqual(refresh_token_json['refresh_token'], 'refresh_token')
+
+    @responses.activate
+    def testGetProfile(self):
+        with open(f'{self.base_path}modeldata/user_profile.json', 'rb') as json_file:
+            user_info = json_file.read()
+        responses.add(
+            responses.GET, self.api.USER_INFO_URL,
+            body=user_info, status=200
+        )
+        profile = self.api.get_profile()
+        self.assertEqual(profile.given_name, 'kun')
+        profile_json = self.api.get_profile(return_json=True)
+        self.assertEqual(profile_json['given_name'], 'kun')
 
     def testCalcQuota(self):
         self.api.calc_quota(
