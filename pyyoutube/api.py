@@ -21,6 +21,7 @@ class Api(object):
     BASE_URL = 'https://www.googleapis.com/youtube/v3/'
     AUTHORIZATION_URL = 'https://accounts.google.com/o/oauth2/v2/auth'
     EXCHANGE_ACCESS_TOKEN_URL = 'https://www.googleapis.com/oauth2/v4/token'
+    USER_INFO_URL = 'https://www.googleapis.com/oauth2/v1/userinfo'
 
     DEFAULT_REDIRECT_URI = 'https://localhost/'
 
@@ -111,8 +112,6 @@ class Api(object):
             client_id=self._client_id, scope=self.scope,
             redirect_uri=redirect_uri, state=self.DEFAULT_STATE
         )
-        if kwargs is None:
-            kwargs = {}
         authorization_url, state = session.authorization_url(
             self.AUTHORIZATION_URL,
             access_type="offline", prompt="select_account",
@@ -311,19 +310,24 @@ class Api(object):
         cost = cost * count
         self.used_quota += cost
 
-    def get_profile(self, return_json=False):
+    def get_profile(self, access_token=None, return_json=False):
         """
         Get token user info.
+        Args:
+            access_token(str, optional)
+                If you not provide api key, you can do authorization to get an access token.
+            return_json(bool, optional)
+                The return data type. If you set True JSON data will be returned.
+                False will return pyyoutube.UserProfile
+        Returns:
+            The data for you given access token's user info.
         """
-        if self._access_token is None:
-            raise PyYouTubeException(ErrorMessage(
-                status_code=10005,
-                message='Get profile Must need access token.'
-            ))
+        if access_token is None:
+            access_token = self._access_token
         try:
             response = self.session.get(
-                'https://www.googleapis.com/oauth2/v1/userinfo',
-                params={'access_token': self._access_token},
+                self.USER_INFO_URL,
+                params={'access_token': access_token},
                 timeout=self._timeout,
                 proxies=self.proxies
             )
