@@ -121,17 +121,13 @@ class Api(object):
 
         return authorization_url, state
 
-    def exchange_code_to_access_token(self, authorization_response, scope=None, redirect_uri=None, return_json=False):
+    def exchange_code_to_access_token(self, authorization_response, redirect_uri=None, return_json=False):
         """
         Use the google auth response to get access token
 
         Args:
             authorization_response (str)
                 The response url for you give auth permission.
-            scope (list, optional)
-                The scope you want give permission.
-                If you not provide, will use default scope.
-                Notice this must equals to begin scope.
             redirect_uri (str, optional)
                 The redirect url you have point when do authorization step.
                 If you not provide will use default uri: https://localhost/
@@ -141,44 +137,41 @@ class Api(object):
         Return:
             Retrieved access token's info,  pyyoutube.AccessToken instance.
         """
+        if redirect_uri is None:
+            redirect_uri = self.DEFAULT_REDIRECT_URI
+
         session = OAuth2Session(
-            client_id=self._client_id, scope=scope,
+            client_id=self._client_id,
             redirect_uri=redirect_uri, state=self.DEFAULT_STATE
         )
-
         token = session.fetch_token(
             self.EXCHANGE_ACCESS_TOKEN_URL, client_secret=self._client_secret,
             authorization_response=authorization_response
         )
-
         if return_json:
             return token
+        else:
+            return AccessToken.new_from_json_dict(token)
 
-        return AccessToken.new_from_json_dict(token)
-
-    def refresh_token(self, refresh_token, scope=None, return_json=False):
+    def refresh_token(self, refresh_token, return_json=False):
         """
         Refresh token by api return refresh token.
         Args:
             refresh_token (str)
                 The refresh token which the api returns.
-            scope (list, optional)
-                The scope you want give permission.
-                If you not provide, will use default scope.
-                Notice this must equals to begin scope.
             return_json (bool, optional):
                 If True JSON data will be returned, instead of pyyoutube.AccessToken
         Return:
             Retrieved new access token's info,  pyyoutube.AccessToken instance.
         """
-        if scope is None:
-            scope = self.DEFAULT_SCOPE
-
-        session = OAuth2Session(
-            client_id=self._client_id, scope=scope, state=self.DEFAULT_STATE
-        )
+        session = OAuth2Session(client_id=self._client_id)
+        auth = {
+            'client_id': self._client_id,
+            'client_secret': self._client_secret,
+        }
         new_token = session.refresh_token(
-            self.EXCHANGE_ACCESS_TOKEN_URL, refresh_token=refresh_token
+            self.EXCHANGE_ACCESS_TOKEN_URL, refresh_token=refresh_token,
+            **auth
         )
 
         if return_json:

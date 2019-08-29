@@ -59,15 +59,11 @@ class AccessToken(BaseModel):
             'access_token': None,
             'expires_in': None,
             'refresh_token': None,
-            'scope': None,
+            'scope': None,  # Refer: https://developers.google.com/identity/protocols/googlescopes
             'token_type': None,
             'id_token': None
         }
-        for (param, value) in self.param_defaults.items():
-            setattr(self, param, kwargs.get(param, value))
-            # Refer https://developers.google.com/identity/protocols/googlescopes
-            if param == 'scope':
-                self.scope = self.scope.split(' ')
+        self.initial(kwargs)
 
     def __repr__(self):
         return f"AccessToken(access_token={self.access_token}, expires_in={self.expires_in})"
