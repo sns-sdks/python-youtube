@@ -159,6 +159,7 @@ TODO
 
 Now this has follows api.
 
+- OAuth Demo
 - Channel Info
 - Playlist Info
 - PlaylistItem Info
