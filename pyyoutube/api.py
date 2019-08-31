@@ -11,8 +11,8 @@ from requests_oauthlib.oauth2_session import OAuth2Session
 
 from pyyoutube.error import ErrorMessage, PyYouTubeException
 from pyyoutube.models import (
-    AccessToken, UserProfile, Channel, Video,
-    PlayList, PlaylistItem, CommentThread, Comment
+    AccessToken, Channel, Comment, CommentThread,
+    PlayList, PlaylistItem, UserProfile, Video
 )
 from pyyoutube.utils.quota_cost import LIST_DATA
 
