@@ -5,7 +5,7 @@
 import isodate
 from isodate.isoerror import ISO8601Error
 
-from pyyoutube.error import PyYouTubeException, ErrorMessage
+from pyyoutube.error import ErrorMessage, PyYouTubeException
 
 
 def get_video_duration(duration: str) -> int:
