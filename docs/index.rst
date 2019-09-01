@@ -17,6 +17,7 @@ Contents:
    :maxdepth: 1
 
    installation.rst
+   getting_started.rst
    models.rst
    pyyoutube.rst
 
