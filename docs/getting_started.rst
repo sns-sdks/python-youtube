@@ -63,6 +63,8 @@ Use this key. You can retrieve public data for YouTube data by our library::
     In [1]: import pyyoutube
     In [2]: api = pyyoutube.Api(api_key='your api key')
 
+If you want to get some examples to see, check out the `examples <https://github.com/sns-sdks/python-youtube/tree/master/examples>`_.
+If you have an open source application using python-youtube, send me a link and I am very happy to add a link to it here.
 
 But if you want to get user data by OAuth. You need create the credential for ``OAuth client ID``.
 
