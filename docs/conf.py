@@ -32,7 +32,7 @@ release = '0.4.0'
 extensions = [
     'sphinx.ext.autodoc',
 ]
-autodoc_mock_imports = ['requests_oauthlib']
+autodoc_mock_imports = ['requests_oauthlib', 'isodate']
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
