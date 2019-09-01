@@ -18,6 +18,8 @@ future = "*"
 requests-oauthlib = "*"
 pytz = "*"
 isodate = "*"
+sphinx = "*"
+sphinx-rtd-theme = "*"
 
 [requires]
 python_version = "3.7"

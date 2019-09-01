@@ -5,6 +5,7 @@ all: help env clean lint test build
 help:
 	@echo "  env         install all production dependencies"
 	@echo "  clean       remove unwanted stuff"
+	@echo "  docs        build documentation"
 	@echo "  lint        check style with flake8"
 	@echo "  test        run tests"
 
@@ -19,6 +20,9 @@ clean:
 	find . -name '*.pyc' -exec rm -f {} \;
 	find . -name '*.pyo' -exec rm -f {} \;
 	find . -name '*~' ! -name '*.un~' -exec rm -f {} \;
+
+docs:
+	$(MAKE) -C docs html
 
 lint:
 	flake8 --ignore E111,E124,E126,E221,E501,w504 --exclude .git,__pycache__

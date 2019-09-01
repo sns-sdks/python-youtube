@@ -872,7 +872,7 @@ class PlaylistItemStatus(BaseModel):
 
 class PlaylistItem(BaseModel):
     """
-     class representing the playlist item's info.
+    class representing the playlist item's info.
     Refer: https://developers.google.com/youtube/v3/docs/playlistItems
     """
 
