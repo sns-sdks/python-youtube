@@ -22,7 +22,7 @@ copyright = '2019, IkarosKun'
 author = 'IkarosKun'
 
 # The full version, including alpha/beta/rc tags
-release = '0.4.0'
+release = 'beta'
 
 # -- General configuration ---------------------------------------------------
 
