@@ -29,7 +29,13 @@ Introduction
 
 Library provides a service to easy use YouTube Data API V3.
 
-The api docs you can find on `YouTube Data API Reference <https://developers.google.com/youtube/v3/docs/>`_
+=============
+Documentation
+=============
+
+You can view the latest ``python-youtube`` documentation at: https://python-youtube.readthedocs.io/en/latest/.
+
+Also view the full ``YouTube DATA API`` docs at: https://google-developers.appspot.com/youtube/v3/docs/.
 
 ==========
 Installing
