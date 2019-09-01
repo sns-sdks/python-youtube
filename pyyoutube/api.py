@@ -98,6 +98,7 @@ class Api(object):
                 If you not provide, will use default scope.
             kwargs(dict, optional)
                 Some other params you want provide.
+
         Returns:
             The uri you can open on browser to do authorize.
         """
@@ -133,6 +134,7 @@ class Api(object):
             return_json(bool, optional)
                 The return data type. If you set True JSON data will be returned.
                 False will return pyyoutube.AccessToken
+
         Return:
             Retrieved access token's info,  pyyoutube.AccessToken instance.
         """
@@ -155,6 +157,7 @@ class Api(object):
     def refresh_token(self, refresh_token, return_json=False):
         """
         Refresh token by api return refresh token.
+
         Args:
             refresh_token (str)
                 The refresh token which the api returns.
@@ -181,6 +184,7 @@ class Api(object):
     def _parse_response(self, response, api=False):
         """
         Parse response data and check whether errors exists.
+
         Args:
             response (Response)
                 The response which the request return.
@@ -197,7 +201,8 @@ class Api(object):
     @staticmethod
     def _parse_data(data):
         """
-        Parse resp data
+        Parse resp data.
+
         Args:
             data (dict)
                 The response data by response.json()
@@ -313,6 +318,7 @@ class Api(object):
     def get_profile(self, access_token=None, return_json=False):
         """
         Get token user info.
+
         Args:
             access_token(str, optional)
                 If you not provide api key, you can do authorization to get an access token.
@@ -510,6 +516,7 @@ class Api(object):
                           return_json=False):
         """
         Retrieve channel playlistItems info.
+
         Provide two methods: by playlist ID, or by playlistItem id (ids)
 
         Args:
@@ -673,7 +680,9 @@ class Api(object):
                             return_json=False):
         """
         Retrieve the comment thread info by single id.
+
         Refer: https://developers.google.com/youtube/v3/docs/commentThreads/list
+
         Args:
             all_to_channel_id (str, optional)
                 If you provide channel id by this parameter.
@@ -749,7 +758,9 @@ class Api(object):
                                 return_json=False):
         """
         Retrieve the comment thread info by single id.
+
         Refer: https://developers.google.com/youtube/v3/docs/commentThreads/list
+
         Args:
             comment_thread_id (str)
                 The id parameter specifies a comma-separated list of comment thread IDs
@@ -790,6 +801,7 @@ class Api(object):
                                return_json=None):
         """
         Retrieve data from YouTube Data Api for top level comment which you point.
+
         Refer: https://developers.google.com/youtube/v3/docs/comments/list
 
         Args:
@@ -845,6 +857,8 @@ class Api(object):
                          comment_id=None,
                          return_json=False):
         """
+        Retrieve comment data by comment id.
+
         Args:
             comment_id (str, optional)
                 Provide a comma-separated list of comment IDs or just a comment id
