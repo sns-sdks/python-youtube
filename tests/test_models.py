@@ -377,3 +377,17 @@ class ModelTest(unittest.TestCase):
             self.fail(e)
 
         self.assertEqual(m.id, 'UgydxWWoeA7F1OdqypJ4AaABAg')
+
+    def testVideoCategory(self) -> None:
+        with open(f'{self.base_path}video_category_info.json', 'rb') as json_file:
+            video_category_info = json.loads(json_file.read())
+
+        m = pyyoutube.VideoCategory.new_from_json_dict(video_category_info)
+        try:
+            m.__repr__()
+            m.snippet.__repr__()
+        except Exception as e:
+            self.fail(e)
+
+        self.assertEqual(m.id, '17')
+        self.assertEqual(m.snippet.title, 'Sports')
