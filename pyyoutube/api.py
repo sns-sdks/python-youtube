@@ -12,7 +12,7 @@ from requests_oauthlib.oauth2_session import OAuth2Session
 from pyyoutube.error import ErrorMessage, PyYouTubeException
 from pyyoutube.models import (
     AccessToken, Channel, Comment, CommentThread,
-    PlayList, PlaylistItem, UserProfile, Video
+    PlayList, PlaylistItem, UserProfile, Video, VideoCategory
 )
 from pyyoutube.utils.quota_cost import LIST_DATA
 
@@ -210,7 +210,8 @@ class Api(object):
              response's items
         """
         items = data['items']
-        if isinstance(items, dict) or len(items) == 0:
+        # TODO need change
+        if isinstance(items, dict):
             raise PyYouTubeException(ErrorMessage(
                 status_code=10002,
                 message='Response data not have items.'
@@ -798,7 +799,7 @@ class Api(object):
                                parent_id=None,
                                limit=20,
                                count=20,
-                               return_json=None):
+                               return_json=False):
         """
         Retrieve data from YouTube Data Api for top level comment which you point.
 
@@ -890,3 +891,61 @@ class Api(object):
             return data
         else:
             return [Comment.new_from_json_dict(item) for item in data]
+
+    def get_video_categories(self,
+                             category_id=None,
+                             region_code=None,
+                             hl='en_US',
+                             return_json=False):
+        """
+        Retrieve a list of categories that can be associated with YouTube videos.
+
+        Refer: https://developers.google.com/youtube/v3/docs/videoCategories
+
+        Args:
+            category_id (str, optional)
+                Provide a comma-separated list of video category IDs or just a video category id
+                for the resources that are being retrieved.
+            region_code (str, optional)
+                Provide country code for the list of video categories available.
+                The country code is an ISO 3166-1 alpha-2 country code.
+            hl (str, optional)
+                Specifies the language that should be used for text values.
+                Default is en_US.
+            return_json (bool, optional)
+                The return data type. If you set True JSON data will be returned.
+                False will return pyyoutube.VideoCategory.
+        Returns:
+            The list of categories.
+        """
+        part = 'id,snippet'
+        args = {
+            'part': part,
+            'hl': hl,
+        }
+        if all([category_id, region_code]):
+            raise PyYouTubeException(ErrorMessage(
+                status_code=10008,
+                message='Incompatible parameters specified in the request: regionCode, category_id'
+            ))
+
+        if category_id is not None:
+            args['id'] = category_id
+        elif region_code is not None:
+            args['regionCode'] = region_code
+        else:
+            raise PyYouTubeException(ErrorMessage(
+                status_code=10007,
+                message='Must specified either category id or region code.'
+            ))
+
+        resp = self._request(
+            resource='videoCategories',
+            args=args
+        )
+
+        data = self._parse_response(resp, api=True)
+        if return_json:
+            return data
+        else:
+            return [VideoCategory.new_from_json_dict(item) for item in data]
