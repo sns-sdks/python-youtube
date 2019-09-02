@@ -241,3 +241,34 @@ class TestApiCall(unittest.TestCase):
             return_json=True
         )
         self.assertEqual(comments[0]['id'], 'UgxKREWxIgDrw8w2e_Z4AaABAg')
+
+    @responses.activate
+    def testGetVideoCategory(self) -> None:
+        with open(f'{self.base_path}video_categories_info_by_id.json') as f:
+            video_categories_by_id = json.loads(f.read().encode('utf-8'))
+        with open(f'{self.base_path}video_categories_info_by_region.json') as f:
+            video_categories_by_region = json.loads(f.read().encode('utf-8'))
+        responses.add(
+            responses.GET,
+            self.BASE_URL + 'videoCategories',
+            json=video_categories_by_id, status=200
+        )
+        responses.add(
+            responses.GET,
+            self.BASE_URL + 'videoCategories',
+            json=video_categories_by_region, status=200
+        )
+
+        with self.assertRaises(pyyoutube.PyYouTubeException):
+            self.api.get_video_categories()
+        with self.assertRaises(pyyoutube.PyYouTubeException):
+            self.api.get_video_categories(category_id='1', region_code='US')
+
+        video_categories = self.api.get_video_categories(
+            category_id='1,2', hl='zh_CN'
+        )
+        self.assertEqual(video_categories[1].snippet.title, '汽车')
+        video_categories = self.api.get_video_categories(
+            region_code='US', return_json=True
+        )
+        self.assertEqual(len(video_categories), 32)
