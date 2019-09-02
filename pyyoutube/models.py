@@ -1080,3 +1080,54 @@ class CommentThread(BaseModel):
             data=data, snippet=snippet,
             replies=replies
         )
+
+
+class VideoCategorySnippet(BaseModel):
+    """
+    A class representing video category snippet info.
+
+    Refer: https://developers.google.com/youtube/v3/docs/videoCategories#snippet
+    """
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.param_defaults = {
+            'channelId': None,
+            'title': None,
+            'assignable': None
+        }
+        self.initial(kwargs)
+
+    def __repr__(self):
+        return f"VideoCategorySnippet(title={self.title})"
+
+
+class VideoCategory(BaseModel):
+    """
+    A class representing video category info.
+
+    Refer: https://developers.google.com/youtube/v3/docs/videoCategories
+    """
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.param_defaults = {
+            'kind': None,
+            'etag': None,
+            'id': None,
+            'snippet': None
+        }
+        self.initial(kwargs)
+
+    def __repr__(self):
+        return f"VideoCategory(id={self.id},kind={self.kind})"
+
+    @classmethod
+    def new_from_json_dict(cls, data, **kwargs):
+        snippet = data.get('snippet')
+        if snippet is not None:
+            snippet = VideoCategorySnippet.new_from_json_dict(snippet)
+
+        return super().new_from_json_dict(
+            data=data, snippet=snippet
+        )
