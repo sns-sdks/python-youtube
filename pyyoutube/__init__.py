@@ -17,6 +17,7 @@ from .models import (  # noqa
     CommentThread,
     CommentThreadReplies,
     CommentThreadSnippet,
+    GuideCategory,
     Localized,
     PlayList,
     PlayListContentDetails,
@@ -37,6 +38,6 @@ from .models import (  # noqa
     VideoStatistics,
     VideoStatus,
     VideoTopicDetails,
-    VideoCategory,
+    VideoCategory
 )
 from .utils.constants import CHANNEL_TOPICS  # noqa
