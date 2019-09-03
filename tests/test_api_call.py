@@ -272,3 +272,34 @@ class TestApiCall(unittest.TestCase):
             region_code='US', return_json=True
         )
         self.assertEqual(len(video_categories), 32)
+
+    @responses.activate
+    def testGetGuideCategory(self) -> None:
+        with open(f'{self.base_path}guide_categories_by_id.json') as f:
+            guide_categories_by_id = json.loads(f.read().encode('utf-8'))
+        with open(f'{self.base_path}guide_categories_by_region.json') as f:
+            guide_categories_by_region = json.loads(f.read().encode('utf-8'))
+        responses.add(
+            responses.GET,
+            self.BASE_URL + 'guideCategories',
+            json=guide_categories_by_id, status=200
+        )
+        responses.add(
+            responses.GET,
+            self.BASE_URL + 'guideCategories',
+            json=guide_categories_by_region, status=200
+        )
+
+        with self.assertRaises(pyyoutube.PyYouTubeException):
+            self.api.get_guide_categories()
+        with self.assertRaises(pyyoutube.PyYouTubeException):
+            self.api.get_guide_categories(category_id='GCQ29tZWR5', region_code='US')
+
+        guide_categories = self.api.get_guide_categories(
+            category_id='GCQ29tZWR5,GCTXVzaWM', hl='zh_CN'
+        )
+        self.assertEqual(guide_categories[1].snippet.title, '音乐')
+        guide_categories = self.api.get_guide_categories(
+            region_code='US', return_json=True
+        )
+        self.assertEqual(len(guide_categories), 11)

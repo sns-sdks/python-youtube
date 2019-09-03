@@ -1131,3 +1131,53 @@ class VideoCategory(BaseModel):
         return super().new_from_json_dict(
             data=data, snippet=snippet
         )
+
+
+class GuideCategorySnippet(BaseModel):
+    """
+    A class representing guide category snippet info.
+
+    Refer: https://developers.google.com/youtube/v3/docs/guideCategories#snippet
+    """
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.param_defaults = {
+            'channelId': None,
+            'title': None
+        }
+        self.initial(kwargs)
+
+    def __repr__(self):
+        return f"GuideCategorySnippet(title={self.title})"
+
+
+class GuideCategory(BaseModel):
+    """
+    A class representing guide category snippet.
+
+    Refer: https://developers.google.com/youtube/v3/docs/guideCategories
+    """
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.param_defaults = {
+            'kind': None,
+            'etag': None,
+            'id': None,
+            'snippet': None,
+        }
+        self.initial(kwargs)
+
+    def __repr__(self):
+        return f"GuideCategory(id={self.id},kind={self.kind})"
+
+    @classmethod
+    def new_from_json_dict(cls, data, **kwargs):
+        snippet = data.get('snippet')
+        if snippet is not None:
+            snippet = GuideCategorySnippet.new_from_json_dict(snippet)
+
+        return super().new_from_json_dict(
+            data=data, snippet=snippet
+        )

@@ -11,7 +11,7 @@ from requests_oauthlib.oauth2_session import OAuth2Session
 
 from pyyoutube.error import ErrorMessage, PyYouTubeException
 from pyyoutube.models import (
-    AccessToken, Channel, Comment, CommentThread,
+    AccessToken, Channel, Comment, CommentThread, GuideCategory,
     PlayList, PlaylistItem, UserProfile, Video, VideoCategory
 )
 from pyyoutube.utils.quota_cost import LIST_DATA
@@ -949,3 +949,62 @@ class Api(object):
             return data
         else:
             return [VideoCategory.new_from_json_dict(item) for item in data]
+
+    def get_guide_categories(self,
+                             category_id=None,
+                             region_code=None,
+                             hl='en_US',
+                             return_json=False):
+        """
+        Retrieve a list of categories that can be associated with YouTube channels.
+
+        Refer: https://developers.google.com/youtube/v3/docs/guideCategories
+
+        Args:
+            category_id (str, optional)
+                Provide a comma-separated list of guide category IDs or just a guide category id
+                for the resources that are being retrieved.
+            region_code (str, optional)
+                Provide country code for the list of guide categories available.
+                The country code is an ISO 3166-1 alpha-2 country code.
+            hl (str, optional)
+                Specifies the language that should be used for text values.
+                Default is en_US.
+            return_json (bool, optional)
+                The return data type. If you set True JSON data will be returned.
+                False will return pyyoutube.GuideCategory.
+
+        Returns:
+            The list of categories.
+        """
+        parts = 'id,snippet'
+        args = {
+            'part': parts,
+            'hl': hl,
+        }
+        if all([category_id, region_code]):
+            raise PyYouTubeException(ErrorMessage(
+                status_code=10008,
+                message='Incompatible parameters specified in the request: regionCode, category_id'
+            ))
+
+        if category_id is not None:
+            args['id'] = category_id
+        elif region_code is not None:
+            args['regionCode'] = region_code
+        else:
+            raise PyYouTubeException(ErrorMessage(
+                status_code=10007,
+                message='Must specified either category id or region code.'
+            ))
+
+        resp = self._request(
+            resource='guideCategories',
+            args=args
+        )
+
+        data = self._parse_response(resp, api=True)
+        if return_json:
+            return data
+        else:
+            return [GuideCategory.new_from_json_dict(item) for item in data]

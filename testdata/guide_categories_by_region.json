@@ -1,0 +1,105 @@
+{
+  "kind": "youtube#guideCategoryListResponse",
+  "etag": "\"8jEFfXBrqiSrcF6Ee7MQuz8XuAM/cKe5cQFDAFacJgSsRH_6x7oGHZU\"",
+  "items": [
+    {
+      "kind": "youtube#guideCategory",
+      "etag": "\"8jEFfXBrqiSrcF6Ee7MQuz8XuAM/fnL4T7wf3HKS8VCeb2Mui5q9zeM\"",
+      "id": "GCQmVzdCBvZiBZb3VUdWJl",
+      "snippet": {
+        "channelId": "UCBR8-60-B28hp2BmDPdntcQ",
+        "title": "Best of YouTube"
+      }
+    },
+    {
+      "kind": "youtube#guideCategory",
+      "etag": "\"8jEFfXBrqiSrcF6Ee7MQuz8XuAM/ImrTevQ0UvryyOmvjPFFu85AKCU\"",
+      "id": "GCQ3JlYXRvciBvbiB0aGUgUmlzZQ",
+      "snippet": {
+        "channelId": "UCBR8-60-B28hp2BmDPdntcQ",
+        "title": "Creator on the Rise"
+      }
+    },
+    {
+      "kind": "youtube#guideCategory",
+      "etag": "\"8jEFfXBrqiSrcF6Ee7MQuz8XuAM/mbUaBJAZzQQXrUy_F02c8idvkek\"",
+      "id": "GCTXVzaWM",
+      "snippet": {
+        "channelId": "UCBR8-60-B28hp2BmDPdntcQ",
+        "title": "Music"
+      }
+    },
+    {
+      "kind": "youtube#guideCategory",
+      "etag": "\"8jEFfXBrqiSrcF6Ee7MQuz8XuAM/dhUpBnIOaCoCDniv0ZybQIGWa8k\"",
+      "id": "GCQ29tZWR5",
+      "snippet": {
+        "channelId": "UCBR8-60-B28hp2BmDPdntcQ",
+        "title": "Comedy"
+      }
+    },
+    {
+      "kind": "youtube#guideCategory",
+      "etag": "\"8jEFfXBrqiSrcF6Ee7MQuz8XuAM/nPXKSW3gvbE_IGO9kQ0pVWWIX3E\"",
+      "id": "GCRmlsbSAmIEVudGVydGFpbm1lbnQ",
+      "snippet": {
+        "channelId": "UCBR8-60-B28hp2BmDPdntcQ",
+        "title": "Film & Entertainment"
+      }
+    },
+    {
+      "kind": "youtube#guideCategory",
+      "etag": "\"8jEFfXBrqiSrcF6Ee7MQuz8XuAM/81fHLyWLDYMN1EQqlz89HXIdMs4\"",
+      "id": "GCR2FtaW5n",
+      "snippet": {
+        "channelId": "UCBR8-60-B28hp2BmDPdntcQ",
+        "title": "Gaming"
+      }
+    },
+    {
+      "kind": "youtube#guideCategory",
+      "etag": "\"8jEFfXBrqiSrcF6Ee7MQuz8XuAM/H1ihcHpjpFnqgfFZnS7Y95-ELJE\"",
+      "id": "GCQmVhdXR5ICYgRmFzaGlvbg",
+      "snippet": {
+        "channelId": "UCBR8-60-B28hp2BmDPdntcQ",
+        "title": "Beauty & Fashion"
+      }
+    },
+    {
+      "kind": "youtube#guideCategory",
+      "etag": "\"8jEFfXBrqiSrcF6Ee7MQuz8XuAM/Pv5088ySWfRzEy9SLDhygXIXhag\"",
+      "id": "GCU3BvcnRz",
+      "snippet": {
+        "channelId": "UCBR8-60-B28hp2BmDPdntcQ",
+        "title": "Sports"
+      }
+    },
+    {
+      "kind": "youtube#guideCategory",
+      "etag": "\"8jEFfXBrqiSrcF6Ee7MQuz8XuAM/gRB8nQk5gRYsCtZYQAPUufs9ElM\"",
+      "id": "GCVGVjaA",
+      "snippet": {
+        "channelId": "UCBR8-60-B28hp2BmDPdntcQ",
+        "title": "Tech"
+      }
+    },
+    {
+      "kind": "youtube#guideCategory",
+      "etag": "\"8jEFfXBrqiSrcF6Ee7MQuz8XuAM/NECk71Pm-g9olSeb8f65ze2ElOc\"",
+      "id": "GCQ29va2luZyAmIEhlYWx0aA",
+      "snippet": {
+        "channelId": "UCBR8-60-B28hp2BmDPdntcQ",
+        "title": "Cooking & Health"
+      }
+    },
+    {
+      "kind": "youtube#guideCategory",
+      "etag": "\"8jEFfXBrqiSrcF6Ee7MQuz8XuAM/AVwXb7tzi2-JuEetcsorNLk6tZg\"",
+      "id": "GCTmV3cyAmIFBvbGl0aWNz",
+      "snippet": {
+        "channelId": "UCBR8-60-B28hp2BmDPdntcQ",
+        "title": "News & Politics"
+      }
+    }
+  ]
+}
