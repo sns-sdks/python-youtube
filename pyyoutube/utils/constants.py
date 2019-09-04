@@ -2,6 +2,11 @@
     some constants for YouTube
 """
 
+CHANNEL_RESOURCE_PROPERTIES = {
+    'id', 'brandingSettings', 'contentDetails', 'localizations', 'snippet',
+    'statistics', 'status', 'topicDetails'
+}
+
 CHANNEL_TOPICS = {
     # Music topics
     '/m/04rlf': 'Music (parent topic)',

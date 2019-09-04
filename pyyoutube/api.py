@@ -9,11 +9,12 @@ import requests
 from requests.models import Response  # noqa
 from requests_oauthlib.oauth2_session import OAuth2Session
 
-from pyyoutube.error import ErrorMessage, PyYouTubeException
+from pyyoutube.error import ErrorCode, ErrorMessage, PyYouTubeException
 from pyyoutube.models import (
     AccessToken, Channel, Comment, CommentThread, GuideCategory,
     PlayList, PlaylistItem, UserProfile, Video, VideoCategory
 )
+from pyyoutube.utils import constants
 from pyyoutube.utils.quota_cost import LIST_DATA
 
 
@@ -50,6 +51,7 @@ class Api(object):
                 The api key which you create from google api console.
             access_token(str, optional)
                 If you not provide api key, you can do authorization to get an access token.
+                If all api key and access token provided. Use access token first.
             timeout(int, optional)
                 The request timeout.
             proxies(dict, optional)
@@ -75,9 +77,9 @@ class Api(object):
             self.quota = self.DEFAULT_QUOTA
         self.used_quota = 0
 
-        if not ((self._client_id and self._client_secret) or self._api_key):
+        if not ((self._client_id and self._client_secret) or self._api_key or self._access_token):
             raise PyYouTubeException(ErrorMessage(
-                status_code=10001,
+                status_code=ErrorCode.MISSING_PARAMS,
                 message='Must specify either client key info or api key.'
             ))
 
@@ -149,6 +151,7 @@ class Api(object):
             self.EXCHANGE_ACCESS_TOKEN_URL, client_secret=self._client_secret,
             authorization_response=authorization_response
         )
+        self._access_token = session.access_token
         if return_json:
             return token
         else:
@@ -175,7 +178,7 @@ class Api(object):
             self.EXCHANGE_ACCESS_TOKEN_URL, refresh_token=refresh_token,
             **auth
         )
-
+        self._access_token = session.access_token
         if return_json:
             return new_token
         else:
@@ -210,14 +213,7 @@ class Api(object):
              response's items
         """
         items = data['items']
-        # TODO need change
-        if isinstance(items, dict):
-            raise PyYouTubeException(ErrorMessage(
-                status_code=10002,
-                message='Response data not have items.'
-            ))
-        else:
-            return items
+        return items
 
     def _request(self, resource, method=None, args=None, post_args=None, enforce_auth=True):
         """
@@ -250,15 +246,15 @@ class Api(object):
 
         key = None
         access_token = None
-        if self._access_token is not None:
-            key = 'access_token'
-            access_token = self._access_token
         if self._api_key is not None:
             key = 'key'
             access_token = self._api_key
+        if self._access_token is not None:
+            key = 'access_token'
+            access_token = self._access_token
         if access_token is None and enforce_auth:
             raise PyYouTubeException(ErrorMessage(
-                status_code=10004,
+                status_code=ErrorCode.MISSING_PARAMS,
                 message='You must provide your credentials.'
             ))
 
@@ -279,8 +275,8 @@ class Api(object):
             )
         except requests.HTTPError as e:
             raise PyYouTubeException(ErrorMessage(
-                status_code=10000,
-                message=e.read()
+                status_code=ErrorCode.HTTP_ERROR,
+                message=e.args
             ))
         else:
             return response
@@ -340,8 +336,8 @@ class Api(object):
             )
         except requests.HTTPError as e:
             raise PyYouTubeException(ErrorMessage(
-                status_code=10000,
-                message=e.read()
+                status_code=ErrorCode.HTTP_ERROR,
+                message=e.args
             ))
         data = self._parse_response(response)
         if return_json:
@@ -381,36 +377,81 @@ class Api(object):
         self.calc_quota(resource, parts=args['part'], count=len(data['items']))
         return prev_page_token, next_page_token, data
 
-    def get_channel_info(self, channel_id=None, channel_name=None, return_json=False):
+    def get_channel_info(self,
+                         category_id=None,
+                         channel_id=None,
+                         channel_name=None,
+                         mine=None,
+                         parts=None,
+                         return_json=False):
         """
-        Retrieve data from YouTube Data API for channel which you given.
+        Retrieve channel data from YouTube Data API for channel which you given.
 
         Args:
+            category_id (str, optional)
+                The guide category id for channels associated which that category
             channel_id (str, optional)
-                The id for youtube channel. Id always likes: UCLA_DiR1FfKNvjuUpBHmylQ
+                The id for youtube channel which you want to get.
             channel_name (str, optional)
-                The name for youtube channel.
-                If id and name all given, will use id first.
+                The name for youtube channel which you want to get.
+            mine (bool, optional)
+                If you have give the authorization. Will return your channels.
+                Must provide the access token.
+            parts (str, optional)
+                Comma-separated list of one or more channel resource properties.
+                If not provided. will use default public properties.
             return_json(bool, optional)
                 The return data type. If you set True JSON data will be returned.
                 False will return pyyoutube.Channel
         Returns:
             The data for you given channel.
         """
+        if parts is None:
+            parts = 'id,snippet,contentDetails,statistics,status'
+        try:
+            parts = set(parts.split(','))
+        except AttributeError:
+            raise PyYouTubeException(ErrorMessage(
+                status_code=ErrorCode.INVALID_PARAMS,
+                message='parts must be comma-separated list, like id,snippet '
+            ))
+        if not constants.CHANNEL_RESOURCE_PROPERTIES.issuperset(parts):
+            raise PyYouTubeException(ErrorMessage(
+                status_code=ErrorCode.INVALID_PARAMS,
+                message='parts must be comma-separated list, like id,snippet '
+            ))
+        parts = ','.join(parts)
+
+        if sum([category_id is not None, channel_id is not None, channel_name is not None, mine is not None]) > 1:
+            raise PyYouTubeException(ErrorMessage(
+                status_code=ErrorCode.INVALID_PARAMS,
+                message='Incompatible parameters specified for category_id,channel_id,channel_name,mine'
+            ))
+
         if channel_name is not None:
             args = {
                 'forUsername': channel_name,
-                'part': 'id,snippet,contentDetails,statistics'
+                'part': parts
             }
         elif channel_id is not None:
             args = {
                 'id': channel_id,
-                'part': 'id,snippet,contentDetails,statistics,status'
+                'part': parts
+            }
+        elif category_id is not None:
+            args = {
+                'categoryId': channel_id,
+                'part': parts
+            }
+        elif mine is not None:
+            args = {
+                'mine': mine,
+                'part': parts
             }
         else:
             raise PyYouTubeException(ErrorMessage(
-                status_code=10005,
-                message='Specify at least one of channel id or username'
+                status_code=ErrorCode.MISSING_PARAMS,
+                message='Specify at least one of category_id,channel_id,channel_name,mine'
             ))
 
         resp = self._request(
@@ -427,7 +468,7 @@ class Api(object):
         if return_json:
             return data
         else:
-            return Channel.new_from_json_dict(data[0])
+            return [Channel.new_from_json_dict(item) for item in data]
 
     def get_playlist(self,
                      channel_id=None,
