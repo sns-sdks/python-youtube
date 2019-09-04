@@ -3,6 +3,7 @@ import unittest
 import pyyoutube
 
 import responses
+from requests.exceptions import HTTPError
 
 
 class TestApiCall(unittest.TestCase):
@@ -56,8 +57,18 @@ class TestApiCall(unittest.TestCase):
         )
         profile = self.api.get_profile()
         self.assertEqual(profile.given_name, 'kun')
-        profile_json = self.api.get_profile(return_json=True)
+        api = pyyoutube.Api(access_token='access_token')
+        profile_json = api.get_profile(return_json=True)
         self.assertEqual(profile_json['given_name'], 'kun')
+
+    @responses.activate
+    def testGetProfileError(self):
+        responses.add(
+            responses.GET, self.api.USER_INFO_URL,
+            body=HTTPError('Exception')
+        )
+        with self.assertRaises(pyyoutube.PyYouTubeException):
+            self.api.get_profile()
 
     def testCalcQuota(self):
         self.api.calc_quota(
@@ -68,19 +79,70 @@ class TestApiCall(unittest.TestCase):
         self.assertEqual(True, '10000' in self.api.get_quota())
 
     @responses.activate
-    def testGetChannel(self):
-        with open(f'{self.base_path}channel_info.json') as f:
-            res_data = f.read()
+    def testRequest(self):
         responses.add(
-            responses.GET,
-            self.BASE_URL + 'channels',
-            body=res_data,
-            status=200
+            responses.POST, self.BASE_URL + 'resource',
+            json={}
         )
-        res = self.api.get_channel_info(
-            channel_name='GoogleDevelopers'
+        api = pyyoutube.Api(access_token='access token')
+        res = api._request('resource', post_args={'a': 'a'})
+        self.assertTrue(res)
+
+        with self.assertRaises(pyyoutube.PyYouTubeException):
+            api = pyyoutube.Api(client_id='id', client_secret='secret')
+            api._request('resource', post_args={'a': 'a'})
+
+    @responses.activate
+    def testRequestError(self):
+        responses.add(
+            responses.GET, self.BASE_URL + 'channels',
+            body=HTTPError('Exception')
         )
-        self.assertEqual(res.id, 'UC_x5XG1OV2P6uZZ5FSM9Ttw')
+        with self.assertRaises(pyyoutube.PyYouTubeException):
+            self.api.get_channel_info(
+                category_id='GCQmVzdCBvZiBZb3VUdWJl',
+                parts='id,snippet,statistics'
+            )
+
+    @responses.activate
+    def testGetChannel(self):
+        with open(f'{self.base_path}channel_info_1.json') as f:
+            channel_info_1 = json.loads(f.read().encode('utf-8'))
+        responses.add(
+            responses.GET, self.BASE_URL + 'channels',
+            json=channel_info_1, status=200
+        )
+        with open(f'{self.base_path}channel_info_2.json') as f:
+            channel_info_2 = json.loads(f.read().encode('utf-8'))
+        responses.add(
+            responses.GET, self.BASE_URL + 'channels',
+            json=channel_info_2, status=200
+        )
+        with self.assertRaises(pyyoutube.PyYouTubeException):
+            self.api.get_channel_info(parts=1)
+        with self.assertRaises(pyyoutube.PyYouTubeException):
+            self.api.get_channel_info(parts='id,invideoPromotion')
+        with self.assertRaises(pyyoutube.PyYouTubeException):
+            self.api.get_channel_info()
+        with self.assertRaises(pyyoutube.PyYouTubeException):
+            self.api.get_channel_info(
+                category_id='GCQmVzdCBvZiBZb3VUdWJl', channel_id='UC_x5XG1OV2P6uZZ5FSM9Ttw',
+                channel_name='GoogleDevelopers', mine=True
+            )
+
+        res_by_category = self.api.get_channel_info(
+            category_id='GCQmVzdCBvZiBZb3VUdWJl',
+            parts='id,snippet,statistics'
+        )
+        self.assertEqual(res_by_category[0].id, 'UC_x5XG1OV2P6uZZ5FSM9Ttw')
+        res_by_channel_id = self.api.get_channel_info(
+            channel_id='UC_x5XG1OV2P6uZZ5FSM9Ttw', return_json=True
+        )
+        self.assertEqual(res_by_channel_id[0]['id'], 'UC_x5XG1OV2P6uZZ5FSM9Ttw')
+        res_by_channel_name = self.api.get_channel_info(channel_name='GoogleDevelopers')
+        self.assertEqual(res_by_channel_name[0].snippet.title, 'Google Developers')
+        res_by_mine = self.api.get_channel_info(mine=True)
+        self.assertEqual(res_by_mine[0].snippet.title, 'Google Developers')
 
     @responses.activate
     def testGetPlaylist(self):
