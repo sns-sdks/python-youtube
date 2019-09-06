@@ -183,30 +183,30 @@ class TestApiCall(unittest.TestCase):
         self.assertEqual(summary['totalResults'], 23)
 
     @responses.activate
-    def testGetVideo(self):
+    def testGetVideoById(self):
         with open(f'{self.base_path}video_info.json') as f:
-            res_data = f.read()
+            videos_data_by_id = f.read()
         responses.add(
-            responses.GET,
-            self.BASE_URL + 'videos',
-            body=res_data,
-            status=200
+            responses.GET, self.BASE_URL + 'videos',
+            body=videos_data_by_id, status=200
         )
-        res = self.api.get_video_info(video_id='Ks-_Mh1QhMc')
-        self.assertEqual(res.id, 'D-lhorsDlUQ')
-        self.assertEqual(res.statistics.viewCount, '7920')
+        res = self.api.get_video_by_id(video_id='Ks-_Mh1QhMc')
+        self.assertEqual(res[0].id, 'D-lhorsDlUQ')
+        self.assertEqual(res[0].statistics.viewCount, '7920')
 
     @responses.activate
-    def testGetVideos(self):
+    def testGetVideosByFilter(self):
         with open(f'{self.base_path}videos_info.json') as f:
-            res_data = f.read()
+            videos_data_by_filter = f.read()
         responses.add(
             responses.GET,
             self.BASE_URL + 'videos',
-            body=res_data,
-            status=200
+            body=videos_data_by_filter, status=200
         )
-        res = self.api.get_videos_info(video_ids=['ffdXLm8EaYg', 'plhVMWR33go'])
+        res, summary= self.api.get_video_by_filter(
+            chart='mostPopular',
+            region_code='US',
+        )
         self.assertEqual(len(res), 2)
         self.assertEqual(res[0].id, 'ffdXLm8EaYg')
 
