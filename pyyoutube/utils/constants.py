@@ -13,7 +13,20 @@ PLAYLIST_RESOURCE_PROPERTIES = {
 }
 
 PLAYLIST_ITEM_RESOURCE_PROPERTIES = {
-    'id', 'contentDetails', 'snippet', 'status'
+    'id', 'contentDetails', 'snippet', 'status', 'statistics',
+    'status', 'topicDetails'
+}
+
+VIDEO_RESOURCE_PROPERTIES = {
+    'id', 'contentDetails', 'snippet', 'statistics', 'status',
+    'topicDetails',
+}
+
+RESOURCE_PARTS_MAPPING = {
+    'channels': CHANNEL_RESOURCE_PROPERTIES,
+    'playlists': PLAYLIST_RESOURCE_PROPERTIES,
+    'playlistItems': PLAYLIST_ITEM_RESOURCE_PROPERTIES,
+    'videos': VIDEO_RESOURCE_PROPERTIES
 }
 
 CHANNEL_TOPICS = {

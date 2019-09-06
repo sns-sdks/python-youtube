@@ -410,8 +410,9 @@ class Api(object):
         Returns:
             The data for you given channel.
         """
+
         if parts is None:
-            parts = 'id,snippet,contentDetails,statistics,status'
+            parts = constants.CHANNEL_RESOURCE_PROPERTIES
         try:
             parts = set(parts.split(','))
         except AttributeError:
@@ -512,7 +513,7 @@ class Api(object):
             (playlist data, playlist summary)
         """
         if parts is None:
-            parts = 'id,snippet,contentDetails,status,localizations'
+            parts = constants.PLAYLIST_RESOURCE_PROPERTIES
         try:
             parts = set(parts.split(','))
         except AttributeError:
@@ -611,7 +612,7 @@ class Api(object):
             (playlistItem data, playlistItem summary)
         """
         if parts is None:
-            parts = 'id,snippet,contentDetails,status'
+            parts = constants.PLAYLIST_ITEM_RESOURCE_PROPERTIES
         try:
             parts = set(parts.split(','))
         except AttributeError:
@@ -641,7 +642,7 @@ class Api(object):
             args['id'] = playlist_item_id
         else:
             raise PyYouTubeException(ErrorMessage(
-                status_code=10005,
+                status_code=ErrorCode.MISSING_PARAMS,
                 message='Specify at least one of channel id or playlist id(id list)'
             ))
         if video_id is not None:
@@ -669,29 +670,56 @@ class Api(object):
                 break
         return playlist_items[:count], playlist_items_summary
 
-    def get_video_info(self, video_id=None, return_json=False):
+    def get_video_by_id(self,
+                        video_id=None,
+                        hl='en_US',
+                        parts=None,
+                        return_json=False):
         """
-        Retrieve data from YouTube Data Api for video which you point.
+        Retrieve data from YouTube Data Api for video which id or id list you point .
 
         Args:
             video_id (str)
-                The video's ID which you want to get data.
+                The id or comma-separated id list of video which you want to get data.
+            hl (str, optional)
+                If provide this. Will return video snippet's language localized info.
+                This value need https://developers.google.com/youtube/v3/docs/i18nLanguages.
+            parts (str, optional)
+                Comma-separated list of one or more videos resource properties.
+                If not provided. will use default public properties.
             return_json(bool, optional)
                 The return data type. If you set True JSON data will be returned.
                 False will return pyyoutube.Video
         Returns:
             The data for you given video.
         """
-
         if video_id is None:
             raise PyYouTubeException(ErrorMessage(
-                status_code=10005,
-                message='Specify the id for the video.'
+                status_code=ErrorCode.MISSING_PARAMS,
+                message='Specify the id or comma-separated id list for the video.'
             ))
+
+        if parts is None:
+            parts = ','.join(constants.VIDEO_RESOURCE_PROPERTIES)
+        try:
+            parts = set(parts.split(','))
+        except AttributeError:
+            raise PyYouTubeException(ErrorMessage(
+                status_code=ErrorCode.INVALID_PARAMS,
+                message='parts must be comma-separated list, like id,snippet '
+            ))
+        if not constants.PLAYLIST_ITEM_RESOURCE_PROPERTIES.issuperset(parts):
+            not_support_parts = ','.join(parts.difference(constants.PLAYLIST_ITEM_RESOURCE_PROPERTIES))
+            raise PyYouTubeException(ErrorMessage(
+                status_code=ErrorCode.INVALID_PARAMS,
+                message=f'Part for {not_support_parts} not support Now'
+            ))
+        parts = ','.join(parts)
 
         args = {
             'id': video_id,
-            'part': 'id,snippet,contentDetails,statistics,status'
+            'hl': hl,
+            'part': parts,
         }
 
         resp = self._request(
@@ -708,49 +736,124 @@ class Api(object):
         if return_json:
             return data
         else:
-            return Video.new_from_json_dict(data[0])
+            return [Video.new_from_json_dict(item) for item in data]
 
-    def get_videos_info(self, video_ids=None, return_json=False):
+    def get_videos_info(self,
+                        chart=None,
+                        my_rating=None,
+                        region_code=None,
+                        category_id=None,
+                        summary=True,
+                        count=5,
+                        limit=5,
+                        hl='en_US',
+                        parts=None,
+                        return_json=False):
         """
         Retrieve data from YouTube Data Api for video which you point.
 
         Args:
-            video_ids (list)
-                The video's ID list you want to get data.
+            chart (str, optional)
+                Now only mostPopular parameter valid.
+                Will return most popular videos for point region or category.
+                If use this must provide either region code or category id.
+            my_rating(str, optional)
+                Now dislike and like parameter can be pointed.
+                - dislike will return set disliked by you.
+                - like will return set liked by you.
+                Must need you give authorization.
+            region_code (str, optional)
+                Provide region code for filter for the chart parameter.
+            category_id (str, optional)
+                Provide video category id for filter for the chart parameter.
+            summary (bool, optional)
+                 If True will return results videos summary of metadata.
+                 Notice this depend on your query.
+            count (int, optional)
+                The count will retrieve videos data.
+                Default is 5.
+            limit (int, optional)
+                The maximum number of items each request retrieve.
+                For videos, this should not be more than 50.
+                Default is 5
+            hl (str, optional)
+                If provide this. Will return video snippet's language localized info.
+                This value need https://developers.google.com/youtube/v3/docs/i18nLanguages.
+            parts (str, optional)
+                Comma-separated list of one or more playlist items resource properties.
+                If not provided. will use default public properties.
             return_json(bool, optional)
                 The return data type. If you set True JSON data will be returned.
                 False will return pyyoutube.Video
         Returns:
-            The data for you given video.
+            The data for videos by your filter.
         """
 
-        if video_ids is None or not isinstance(video_ids, (list, tuple)):
+        if parts is None:
+            parts = ','.join(constants.VIDEO_RESOURCE_PROPERTIES)
+        try:
+            parts = set(parts.split(','))
+        except AttributeError:
             raise PyYouTubeException(ErrorMessage(
-                status_code=10005,
-                message='Specify the id for the video.'
+                status_code=ErrorCode.INVALID_PARAMS,
+                message='parts must be comma-separated list, like id,snippet '
             ))
+        if not constants.PLAYLIST_ITEM_RESOURCE_PROPERTIES.issuperset(parts):
+            not_support_parts = ','.join(parts.difference(constants.PLAYLIST_ITEM_RESOURCE_PROPERTIES))
+            raise PyYouTubeException(ErrorMessage(
+                status_code=ErrorCode.INVALID_PARAMS,
+                message=f'Part for {not_support_parts} not support Now'
+            ))
+        parts = ','.join(parts)
 
         args = {
-            'id': ','.join(video_ids),
-            'part': 'id,snippet,contentDetails,statistics,status'
+            'part': parts,
+            'hl': hl,
+            'maxResults': limit
         }
 
-        resp = self._request(
-            resource='videos',
-            method='GET',
-            args=args
-        )
-
-        data = self._parse_response(resp, api=True)
-        self.calc_quota(
-            resource='videos',
-            parts=args['part'],
-            count=len(video_ids)
-        )
-        if return_json:
-            return data
+        if sum([chart is not None, my_rating is not None]) > 1:
+            raise PyYouTubeException(ErrorMessage(
+                status_code=ErrorCode.INVALID_PARAMS,
+                message='Incompatible parameters specified for chart,my_rating'
+            ))
+        if chart is not None:
+            args['chart'] = chart
+            if region_code is not None:
+                args['regionCode'] = region_code
+            elif category_id is not None:
+                args['videoCategoryId'] = category_id
+            else:
+                pass
+        elif my_rating is not None:
+            args['myRating'] = my_rating
         else:
-            return [Video.new_from_json_dict(item) for item in data]
+            raise PyYouTubeException(ErrorMessage(
+                status_code=ErrorCode.MISSING_PARAMS,
+                message='Specify at least one of chart or my_rating'
+            ))
+
+        videos = []
+        videos_summary = None
+        next_page_token = None
+        while True:
+            prev_page_token, next_page_token, data = self.paged_by_page_token(
+                resource='videos',
+                args=args,
+                page_token=next_page_token,
+            )
+            items = self._parse_data(data)
+            if return_json:
+                videos += items
+            else:
+                videos += [Video.new_from_json_dict(item) for item in items]
+            if summary:
+                videos_summary = data.get('pageInfo', {})
+            if next_page_token is None:
+                break
+            if len(videos) >= count:
+                break
+        return videos[:count], videos_summary
 
     def get_comment_threads(self,
                             all_to_channel_id=None,
