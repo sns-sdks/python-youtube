@@ -383,6 +383,7 @@ class Api(object):
                          channel_name=None,
                          mine=None,
                          parts=None,
+                         hl='en_US',
                          return_json=False):
         """
         Retrieve channel data from YouTube Data API for channel which you given.
@@ -400,6 +401,9 @@ class Api(object):
             parts (str, optional)
                 Comma-separated list of one or more channel resource properties.
                 If not provided. will use default public properties.
+            hl (str, optional)
+                If provide this. Will return channel's language localized info.
+                This value need https://developers.google.com/youtube/v3/docs/i18nLanguages.
             return_json(bool, optional)
                 The return data type. If you set True JSON data will be returned.
                 False will return pyyoutube.Channel
@@ -428,26 +432,18 @@ class Api(object):
                 message='Incompatible parameters specified for category_id,channel_id,channel_name,mine'
             ))
 
+        args = {
+            'hl': hl,
+            'part': parts
+        }
         if channel_name is not None:
-            args = {
-                'forUsername': channel_name,
-                'part': parts
-            }
+            args['forUsername'] = channel_name
         elif channel_id is not None:
-            args = {
-                'id': channel_id,
-                'part': parts
-            }
+            args['id'] = channel_id
         elif category_id is not None:
-            args = {
-                'categoryId': channel_id,
-                'part': parts
-            }
+            args['categoryId'] = channel_id
         elif mine is not None:
-            args = {
-                'mine': mine,
-                'part': parts
-            }
+            args['mine'] = mine
         else:
             raise PyYouTubeException(ErrorMessage(
                 status_code=ErrorCode.MISSING_PARAMS,
@@ -473,9 +469,12 @@ class Api(object):
     def get_playlist(self,
                      channel_id=None,
                      playlist_id=None,
+                     parts=None,
                      summary=True,
                      count=5,
                      limit=5,
+                     hl='en_US',
+                     mine=None,
                      return_json=False):
         """
         Retrieve channel playlists info.
@@ -484,8 +483,14 @@ class Api(object):
         Args:
             channel_id (str, optional)
                 If provide channel id, this will return pointed channel's playlist info.
-            playlist_id (str,list optional)
+            playlist_id (str optional)
                 If provide this. will return those playlist's info.
+            mine (bool, optional)
+                If you have give the authorization. Will return your playlists.
+                Must provide the access token.
+            parts (str, optional)
+                Comma-separated list of one or more playlist resource properties.
+                If not provided. will use default public properties.
             summary (bool, optional)
                  If True will return channel playlist summary of metadata.
                  Notice this depend on your query.
@@ -493,9 +498,12 @@ class Api(object):
                 The count will retrieve playlist data.
                 Default is 5.
             limit (int, optional)
-                Each request retrieve playlists from data api.
+                The maximum number of items each request to retrieve.
                 For playlist, this should not be more than 50.
                 Default is 5
+            hl (str, optional)
+                If provide this. Will return playlist's language localized info.
+                This value need https://developers.google.com/youtube/v3/docs/i18nLanguages.
             return_json(bool, optional)
                 The return data type. If you set True JSON data will be returned.
                 False will return pyyoutube.PlayList
@@ -503,28 +511,42 @@ class Api(object):
             return tuple.
             (playlist data, playlist summary)
         """
-        part = 'id,snippet,contentDetails,status,localizations'
+        if parts is None:
+            parts = 'id,snippet,contentDetails,status,localizations'
+        try:
+            parts = set(parts.split(','))
+        except AttributeError:
+            raise PyYouTubeException(ErrorMessage(
+                status_code=ErrorCode.INVALID_PARAMS,
+                message='parts must be comma-separated list, like id,snippet '
+            ))
+        if not constants.PLAYLIST_RESOURCE_PROPERTIES.issuperset(parts):
+            raise PyYouTubeException(ErrorMessage(
+                status_code=ErrorCode.INVALID_PARAMS,
+                message='parts must be comma-separated list, like id,snippet '
+            ))
+        parts = ','.join(parts)
+
         args = {
-            'part': part,
+            'part': parts,
+            'hl': hl,
             'maxResults': limit
         }
+        if sum([channel_id is not None, playlist_id is not None, mine is not None]) > 1:
+            raise PyYouTubeException(ErrorMessage(
+                status_code=ErrorCode.INVALID_PARAMS,
+                message='Incompatible parameters specified for channel_id,playlist_id,mine'
+            ))
         if channel_id is not None:
             args['channelId'] = channel_id
         elif playlist_id is not None:
-            if isinstance(playlist_id, str):
-                p_id = playlist_id
-            elif isinstance(playlist_id, (list, tuple)):
-                p_id = ','.join(playlist_id)
-            else:
-                raise PyYouTubeException(ErrorMessage(
-                    status_code=10007,
-                    message='Playlist must be single id or id list.'
-                ))
-            args['id'] = p_id
+            args['id'] = playlist_id
+        elif mine is not None:
+            args['mine'] = mine
         else:
             raise PyYouTubeException(ErrorMessage(
-                status_code=10005,
-                message='Specify at least one of channel id or playlist id(id list)'
+                status_code=ErrorCode.MISSING_PARAMS,
+                message='Specify at least one of channel id or playlist id str or mine'
             ))
 
         playlists = []
@@ -552,20 +574,25 @@ class Api(object):
     def get_playlist_item(self,
                           playlist_id=None,
                           playlist_item_id=None,
+                          video_id=None,
+                          parts=None,
                           summary=True,
                           count=5,
                           limit=5,
                           return_json=False):
         """
-        Retrieve channel playlistItems info.
-
-        Provide two methods: by playlist ID, or by playlistItem id (ids)
+        Retrieve channel's playlist Items info.
 
         Args:
             playlist_id (str, optional)
                 If provide channel id, this will return pointed playlist's item info.
-            playlist_item_id (str,list optional)
+            playlist_item_id (str optional)
                 If provide this. will return those playlistItem's info.
+            video_id (str, optional)
+                If provide this, will return playlist items which contain the specify video.
+            parts (str, optional)
+                Comma-separated list of one or more playlist items resource properties.
+                If not provided. will use default public properties.
             summary (bool, optional)
                  If True will return playlist item summary of metadata.
                  Notice this depend on your query.
@@ -573,7 +600,7 @@ class Api(object):
                 The count will retrieve playlist items data.
                 Default is 5.
             limit (int, optional)
-                Each request retrieve playlistItems from data api.
+                The maximum number of items each request retrieve.
                 For playlistItem, this should not be more than 50.
                 Default is 5
             return_json(bool, optional)
@@ -583,29 +610,42 @@ class Api(object):
             return tuple.
             (playlistItem data, playlistItem summary)
         """
-        part = 'id,snippet,contentDetails,status'
+        if parts is None:
+            parts = 'id,snippet,contentDetails,status'
+        try:
+            parts = set(parts.split(','))
+        except AttributeError:
+            raise PyYouTubeException(ErrorMessage(
+                status_code=ErrorCode.INVALID_PARAMS,
+                message='parts must be comma-separated list, like id,snippet '
+            ))
+        if not constants.PLAYLIST_ITEM_RESOURCE_PROPERTIES.issuperset(parts):
+            raise PyYouTubeException(ErrorMessage(
+                status_code=ErrorCode.INVALID_PARAMS,
+                message='parts must be comma-separated list, like id,snippet '
+            ))
+        parts = ','.join(parts)
+
         args = {
-            'part': part,
-            'maxResults': limit
+            'part': parts,
+            'maxResults': limit,
         }
+        if sum([playlist_id is not None, playlist_item_id is not None]) > 1:
+            raise PyYouTubeException(ErrorMessage(
+                status_code=ErrorCode.INVALID_PARAMS,
+                message='Incompatible parameters specified for playlist_id,playlist_item_id'
+            ))
         if playlist_id is not None:
             args['playlistId'] = playlist_id
         elif playlist_item_id is not None:
-            if isinstance(playlist_item_id, str):
-                p_id = playlist_item_id
-            elif isinstance(playlist_item_id, (list, tuple)):
-                p_id = ','.join(playlist_item_id)
-            else:
-                raise PyYouTubeException(ErrorMessage(
-                    status_code=10007,
-                    message='PlaylistItem must be single id or id list.'
-                ))
-            args['id'] = p_id
+            args['id'] = playlist_item_id
         else:
             raise PyYouTubeException(ErrorMessage(
                 status_code=10005,
                 message='Specify at least one of channel id or playlist id(id list)'
             ))
+        if video_id is not None:
+            args['videoId'] = video_id
 
         playlist_items = []
         playlist_items_summary = None

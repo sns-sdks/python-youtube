@@ -7,6 +7,15 @@ CHANNEL_RESOURCE_PROPERTIES = {
     'statistics', 'status', 'topicDetails'
 }
 
+PLAYLIST_RESOURCE_PROPERTIES = {
+    'id', 'contentDetails', 'localizations',
+    'snippet', 'status'
+}
+
+PLAYLIST_ITEM_RESOURCE_PROPERTIES = {
+    'id', 'contentDetails', 'snippet', 'status'
+}
+
 CHANNEL_TOPICS = {
     # Music topics
     '/m/04rlf': 'Music (parent topic)',
