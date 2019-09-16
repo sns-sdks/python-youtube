@@ -696,12 +696,6 @@ class Api(object):
         Returns:
             The data for you given video.
         """
-        if video_id is None:
-            raise PyYouTubeException(ErrorMessage(
-                status_code=ErrorCode.MISSING_PARAMS,
-                message='Specify the id or comma-separated id list for the video.'
-            ))
-
         if parts is None:
             parts = constants.VIDEO_RESOURCE_PROPERTIES
         else:
@@ -719,6 +713,12 @@ class Api(object):
                     message=f'Part for {not_support_parts} not support Now'
                 ))
         parts = ','.join(parts)
+
+        if video_id is None:
+            raise PyYouTubeException(ErrorMessage(
+                status_code=ErrorCode.MISSING_PARAMS,
+                message='Specify the id or comma-separated id list for the video.'
+            ))
 
         args = {
             'id': video_id,
