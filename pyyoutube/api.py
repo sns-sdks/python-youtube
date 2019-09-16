@@ -419,12 +419,13 @@ class Api(object):
             except AttributeError:
                 raise PyYouTubeException(ErrorMessage(
                     status_code=ErrorCode.INVALID_PARAMS,
-                    message='parts must be comma-separated list, like id,snippet '
+                    message='parts must be comma-separated list, like id,snippet'
                 ))
             if not constants.CHANNEL_RESOURCE_PROPERTIES.issuperset(parts):
+                not_support_parts = parts.difference(constants.CHANNEL_RESOURCE_PROPERTIES)
                 raise PyYouTubeException(ErrorMessage(
                     status_code=ErrorCode.INVALID_PARAMS,
-                    message='parts must be comma-separated list, like id,snippet '
+                    message=f'Part for {not_support_parts} not support Now'
                 ))
         parts = ','.join(parts)
 
@@ -521,12 +522,13 @@ class Api(object):
             except AttributeError:
                 raise PyYouTubeException(ErrorMessage(
                     status_code=ErrorCode.INVALID_PARAMS,
-                    message='parts must be comma-separated list, like id,snippet '
+                    message='parts must be comma-separated list, like id,snippet'
                 ))
             if not constants.PLAYLIST_RESOURCE_PROPERTIES.issuperset(parts):
+                not_support_parts = parts.difference(constants.PLAYLIST_RESOURCE_PROPERTIES)
                 raise PyYouTubeException(ErrorMessage(
                     status_code=ErrorCode.INVALID_PARAMS,
-                    message='parts must be comma-separated list, like id,snippet '
+                    message=f'Part for {not_support_parts} not support Now'
                 ))
         parts = ','.join(parts)
 
@@ -621,12 +623,13 @@ class Api(object):
             except AttributeError:
                 raise PyYouTubeException(ErrorMessage(
                     status_code=ErrorCode.INVALID_PARAMS,
-                    message='parts must be comma-separated list, like id,snippet '
+                    message='parts must be comma-separated list, like id,snippet'
                 ))
             if not constants.PLAYLIST_ITEM_RESOURCE_PROPERTIES.issuperset(parts):
+                not_support_parts = parts.difference(constants.PLAYLIST_ITEM_RESOURCE_PROPERTIES)
                 raise PyYouTubeException(ErrorMessage(
                     status_code=ErrorCode.INVALID_PARAMS,
-                    message='parts must be comma-separated list, like id,snippet '
+                    message=f'Part for {not_support_parts} not support Now'
                 ))
         parts = ','.join(parts)
 
@@ -704,10 +707,10 @@ class Api(object):
             except AttributeError:
                 raise PyYouTubeException(ErrorMessage(
                     status_code=ErrorCode.INVALID_PARAMS,
-                    message='parts must be comma-separated list, like id,snippet '
+                    message='parts must be comma-separated list, like id,snippet'
                 ))
-            if not constants.PLAYLIST_ITEM_RESOURCE_PROPERTIES.issuperset(parts):
-                not_support_parts = ','.join(parts.difference(constants.PLAYLIST_ITEM_RESOURCE_PROPERTIES))
+            if not constants.VIDEO_RESOURCE_PROPERTIES.issuperset(parts):
+                not_support_parts = parts.difference(constants.VIDEO_RESOURCE_PROPERTIES)
                 raise PyYouTubeException(ErrorMessage(
                     status_code=ErrorCode.INVALID_PARAMS,
                     message=f'Part for {not_support_parts} not support Now'
@@ -801,10 +804,10 @@ class Api(object):
             except AttributeError:
                 raise PyYouTubeException(ErrorMessage(
                     status_code=ErrorCode.INVALID_PARAMS,
-                    message='parts must be comma-separated list, like id,snippet '
+                    message='parts must be comma-separated list, like id,snippet'
                 ))
-            if not constants.PLAYLIST_ITEM_RESOURCE_PROPERTIES.issuperset(parts):
-                not_support_parts = ','.join(parts.difference(constants.PLAYLIST_ITEM_RESOURCE_PROPERTIES))
+            if not constants.VIDEO_RESOURCE_PROPERTIES.issuperset(parts):
+                not_support_parts = parts.difference(constants.VIDEO_RESOURCE_PROPERTIES)
                 raise PyYouTubeException(ErrorMessage(
                     status_code=ErrorCode.INVALID_PARAMS,
                     message=f'Part for {not_support_parts} not support Now'
@@ -916,12 +919,13 @@ class Api(object):
             except AttributeError:
                 raise PyYouTubeException(ErrorMessage(
                     status_code=ErrorCode.INVALID_PARAMS,
-                    message='parts must be comma-separated list, like id,snippet '
+                    message='parts must be comma-separated list, like id,snippet'
                 ))
             if not constants.COMMENT_THREAD_RESOURCE_PROPERTIES.issuperset(parts):
+                not_support_parts = parts.difference(constants.COMMENT_THREAD_RESOURCE_PROPERTIES)
                 raise PyYouTubeException(ErrorMessage(
                     status_code=ErrorCode.INVALID_PARAMS,
-                    message='parts must be comma-separated list, like id,snippet '
+                    message=f'Part for {not_support_parts} not support Now'
                 ))
         parts = ','.join(parts)
 
@@ -999,12 +1003,13 @@ class Api(object):
             except AttributeError:
                 raise PyYouTubeException(ErrorMessage(
                     status_code=ErrorCode.INVALID_PARAMS,
-                    message='parts must be comma-separated list, like id,snippet '
+                    message='parts must be comma-separated list, like id,snippet'
                 ))
             if not constants.COMMENT_THREAD_RESOURCE_PROPERTIES.issuperset(parts):
+                not_support_parts = parts.difference(constants.COMMENT_THREAD_RESOURCE_PROPERTIES)
                 raise PyYouTubeException(ErrorMessage(
                     status_code=ErrorCode.INVALID_PARAMS,
-                    message='parts must be comma-separated list, like id,snippet '
+                    message=f'Part for {not_support_parts} not support Now'
                 ))
         parts = ','.join(parts)
 
@@ -1069,12 +1074,13 @@ class Api(object):
             except AttributeError:
                 raise PyYouTubeException(ErrorMessage(
                     status_code=ErrorCode.INVALID_PARAMS,
-                    message='parts must be comma-separated list, like id,snippet '
+                    message='parts must be comma-separated list, like id,snippet'
                 ))
             if not constants.COMMENT_RESOURCE_PROPERTIES.issuperset(parts):
+                not_support_parts = parts.difference(constants.COMMENT_RESOURCE_PROPERTIES)
                 raise PyYouTubeException(ErrorMessage(
                     status_code=ErrorCode.INVALID_PARAMS,
-                    message='parts must be comma-separated list, like id,snippet '
+                    message=f'Part for {not_support_parts} not support Now'
                 ))
         parts = ','.join(parts)
 
@@ -1137,12 +1143,13 @@ class Api(object):
             except AttributeError:
                 raise PyYouTubeException(ErrorMessage(
                     status_code=ErrorCode.INVALID_PARAMS,
-                    message='parts must be comma-separated list, like id,snippet '
+                    message='parts must be comma-separated list, like id,snippet'
                 ))
             if not constants.COMMENT_RESOURCE_PROPERTIES.issuperset(parts):
+                not_support_parts = parts.difference(constants.COMMENT_RESOURCE_PROPERTIES)
                 raise PyYouTubeException(ErrorMessage(
                     status_code=ErrorCode.INVALID_PARAMS,
-                    message='parts must be comma-separated list, like id,snippet '
+                    message=f'Part for {not_support_parts} not support Now'
                 ))
         parts = ','.join(parts)
 
@@ -1205,12 +1212,13 @@ class Api(object):
             except AttributeError:
                 raise PyYouTubeException(ErrorMessage(
                     status_code=ErrorCode.INVALID_PARAMS,
-                    message='parts must be comma-separated list, like id,snippet '
+                    message='parts must be comma-separated list, like id,snippet'
                 ))
             if not constants.VIDEO_CATEGORY_RESOURCE_PROPERTIES.issuperset(parts):
+                not_support_parts = parts.difference(constants.VIDEO_CATEGORY_RESOURCE_PROPERTIES)
                 raise PyYouTubeException(ErrorMessage(
                     status_code=ErrorCode.INVALID_PARAMS,
-                    message='parts must be comma-separated list, like id,snippet '
+                    message=f'Part for {not_support_parts} not support Now'
                 ))
         parts = ','.join(parts)
 
@@ -1284,12 +1292,13 @@ class Api(object):
             except AttributeError:
                 raise PyYouTubeException(ErrorMessage(
                     status_code=ErrorCode.INVALID_PARAMS,
-                    message='parts must be comma-separated list, like id,snippet '
+                    message='parts must be comma-separated list, like id,snippet'
                 ))
             if not constants.GUIDE_CATEGORY_RESOURCE_PROPERTIES.issuperset(parts):
+                not_support_parts = parts.difference(constants.GUIDE_CATEGORY_RESOURCE_PROPERTIES)
                 raise PyYouTubeException(ErrorMessage(
                     status_code=ErrorCode.INVALID_PARAMS,
-                    message='parts must be comma-separated list, like id,snippet '
+                    message=f'Part for {not_support_parts} not support Now'
                 ))
         parts = ','.join(parts)
 
