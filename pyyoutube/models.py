@@ -813,7 +813,7 @@ class ResourceId(BaseModel):
         self.initial(kwargs)
 
     def __repr__(self):
-        return f"ResourceId(videoId={self.videoId},kind={self.kind}"
+        return f"ResourceId(videoId={self.videoId},kind={self.kind})"
 
 
 class PlaylistItemSnippet(BaseModel):
