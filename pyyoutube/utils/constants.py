@@ -13,8 +13,7 @@ PLAYLIST_RESOURCE_PROPERTIES = {
 }
 
 PLAYLIST_ITEM_RESOURCE_PROPERTIES = {
-    'id', 'contentDetails', 'snippet', 'status', 'statistics',
-    'status', 'topicDetails'
+    'id', 'contentDetails', 'snippet', 'status'
 }
 
 VIDEO_RESOURCE_PROPERTIES = {
