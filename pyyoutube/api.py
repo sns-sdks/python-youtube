@@ -383,6 +383,7 @@ class Api(object):
                          channel_name=None,
                          mine=None,
                          parts=None,
+                         hl='en_US',
                          return_json=False):
         """
         Retrieve channel data from YouTube Data API for channel which you given.
@@ -400,26 +401,32 @@ class Api(object):
             parts (str, optional)
                 Comma-separated list of one or more channel resource properties.
                 If not provided. will use default public properties.
+            hl (str, optional)
+                If provide this. Will return channel's language localized info.
+                This value need https://developers.google.com/youtube/v3/docs/i18nLanguages.
             return_json(bool, optional)
                 The return data type. If you set True JSON data will be returned.
                 False will return pyyoutube.Channel
         Returns:
             The data for you given channel.
         """
+
         if parts is None:
-            parts = 'id,snippet,contentDetails,statistics,status'
-        try:
-            parts = set(parts.split(','))
-        except AttributeError:
-            raise PyYouTubeException(ErrorMessage(
-                status_code=ErrorCode.INVALID_PARAMS,
-                message='parts must be comma-separated list, like id,snippet '
-            ))
-        if not constants.CHANNEL_RESOURCE_PROPERTIES.issuperset(parts):
-            raise PyYouTubeException(ErrorMessage(
-                status_code=ErrorCode.INVALID_PARAMS,
-                message='parts must be comma-separated list, like id,snippet '
-            ))
+            parts = constants.CHANNEL_RESOURCE_PROPERTIES
+        else:
+            try:
+                parts = set(parts.split(','))
+            except AttributeError:
+                raise PyYouTubeException(ErrorMessage(
+                    status_code=ErrorCode.INVALID_PARAMS,
+                    message='parts must be comma-separated list, like id,snippet'
+                ))
+            if not constants.CHANNEL_RESOURCE_PROPERTIES.issuperset(parts):
+                not_support_parts = parts.difference(constants.CHANNEL_RESOURCE_PROPERTIES)
+                raise PyYouTubeException(ErrorMessage(
+                    status_code=ErrorCode.INVALID_PARAMS,
+                    message=f'Part for {not_support_parts} not support Now'
+                ))
         parts = ','.join(parts)
 
         if sum([category_id is not None, channel_id is not None, channel_name is not None, mine is not None]) > 1:
@@ -428,26 +435,18 @@ class Api(object):
                 message='Incompatible parameters specified for category_id,channel_id,channel_name,mine'
             ))
 
+        args = {
+            'hl': hl,
+            'part': parts
+        }
         if channel_name is not None:
-            args = {
-                'forUsername': channel_name,
-                'part': parts
-            }
+            args['forUsername'] = channel_name
         elif channel_id is not None:
-            args = {
-                'id': channel_id,
-                'part': parts
-            }
+            args['id'] = channel_id
         elif category_id is not None:
-            args = {
-                'categoryId': channel_id,
-                'part': parts
-            }
+            args['categoryId'] = channel_id
         elif mine is not None:
-            args = {
-                'mine': mine,
-                'part': parts
-            }
+            args['mine'] = mine
         else:
             raise PyYouTubeException(ErrorMessage(
                 status_code=ErrorCode.MISSING_PARAMS,
@@ -473,9 +472,12 @@ class Api(object):
     def get_playlist(self,
                      channel_id=None,
                      playlist_id=None,
+                     parts=None,
                      summary=True,
                      count=5,
                      limit=5,
+                     hl='en_US',
+                     mine=None,
                      return_json=False):
         """
         Retrieve channel playlists info.
@@ -484,8 +486,14 @@ class Api(object):
         Args:
             channel_id (str, optional)
                 If provide channel id, this will return pointed channel's playlist info.
-            playlist_id (str,list optional)
+            playlist_id (str optional)
                 If provide this. will return those playlist's info.
+            mine (bool, optional)
+                If you have give the authorization. Will return your playlists.
+                Must provide the access token.
+            parts (str, optional)
+                Comma-separated list of one or more playlist resource properties.
+                If not provided. will use default public properties.
             summary (bool, optional)
                  If True will return channel playlist summary of metadata.
                  Notice this depend on your query.
@@ -493,9 +501,12 @@ class Api(object):
                 The count will retrieve playlist data.
                 Default is 5.
             limit (int, optional)
-                Each request retrieve playlists from data api.
+                The maximum number of items each request to retrieve.
                 For playlist, this should not be more than 50.
                 Default is 5
+            hl (str, optional)
+                If provide this. Will return playlist's language localized info.
+                This value need https://developers.google.com/youtube/v3/docs/i18nLanguages.
             return_json(bool, optional)
                 The return data type. If you set True JSON data will be returned.
                 False will return pyyoutube.PlayList
@@ -503,28 +514,44 @@ class Api(object):
             return tuple.
             (playlist data, playlist summary)
         """
-        part = 'id,snippet,contentDetails,status,localizations'
+        if parts is None:
+            parts = constants.PLAYLIST_RESOURCE_PROPERTIES
+        else:
+            try:
+                parts = set(parts.split(','))
+            except AttributeError:
+                raise PyYouTubeException(ErrorMessage(
+                    status_code=ErrorCode.INVALID_PARAMS,
+                    message='parts must be comma-separated list, like id,snippet'
+                ))
+            if not constants.PLAYLIST_RESOURCE_PROPERTIES.issuperset(parts):
+                not_support_parts = parts.difference(constants.PLAYLIST_RESOURCE_PROPERTIES)
+                raise PyYouTubeException(ErrorMessage(
+                    status_code=ErrorCode.INVALID_PARAMS,
+                    message=f'Part for {not_support_parts} not support Now'
+                ))
+        parts = ','.join(parts)
+
         args = {
-            'part': part,
+            'part': parts,
+            'hl': hl,
             'maxResults': limit
         }
+        if sum([channel_id is not None, playlist_id is not None, mine is not None]) > 1:
+            raise PyYouTubeException(ErrorMessage(
+                status_code=ErrorCode.INVALID_PARAMS,
+                message='Incompatible parameters specified for channel_id,playlist_id,mine'
+            ))
         if channel_id is not None:
             args['channelId'] = channel_id
         elif playlist_id is not None:
-            if isinstance(playlist_id, str):
-                p_id = playlist_id
-            elif isinstance(playlist_id, (list, tuple)):
-                p_id = ','.join(playlist_id)
-            else:
-                raise PyYouTubeException(ErrorMessage(
-                    status_code=10007,
-                    message='Playlist must be single id or id list.'
-                ))
-            args['id'] = p_id
+            args['id'] = playlist_id
+        elif mine is not None:
+            args['mine'] = mine
         else:
             raise PyYouTubeException(ErrorMessage(
-                status_code=10005,
-                message='Specify at least one of channel id or playlist id(id list)'
+                status_code=ErrorCode.MISSING_PARAMS,
+                message='Specify at least one of channel id or playlist id str or mine'
             ))
 
         playlists = []
@@ -552,20 +579,25 @@ class Api(object):
     def get_playlist_item(self,
                           playlist_id=None,
                           playlist_item_id=None,
+                          video_id=None,
+                          parts=None,
                           summary=True,
                           count=5,
                           limit=5,
                           return_json=False):
         """
-        Retrieve channel playlistItems info.
-
-        Provide two methods: by playlist ID, or by playlistItem id (ids)
+        Retrieve channel's playlist Items info.
 
         Args:
             playlist_id (str, optional)
                 If provide channel id, this will return pointed playlist's item info.
-            playlist_item_id (str,list optional)
+            playlist_item_id (str optional)
                 If provide this. will return those playlistItem's info.
+            video_id (str, optional)
+                If provide this, will return playlist items which contain the specify video.
+            parts (str, optional)
+                Comma-separated list of one or more playlist items resource properties.
+                If not provided. will use default public properties.
             summary (bool, optional)
                  If True will return playlist item summary of metadata.
                  Notice this depend on your query.
@@ -573,7 +605,7 @@ class Api(object):
                 The count will retrieve playlist items data.
                 Default is 5.
             limit (int, optional)
-                Each request retrieve playlistItems from data api.
+                The maximum number of items each request retrieve.
                 For playlistItem, this should not be more than 50.
                 Default is 5
             return_json(bool, optional)
@@ -583,29 +615,44 @@ class Api(object):
             return tuple.
             (playlistItem data, playlistItem summary)
         """
-        part = 'id,snippet,contentDetails,status'
+        if parts is None:
+            parts = constants.PLAYLIST_ITEM_RESOURCE_PROPERTIES
+        else:
+            try:
+                parts = set(parts.split(','))
+            except AttributeError:
+                raise PyYouTubeException(ErrorMessage(
+                    status_code=ErrorCode.INVALID_PARAMS,
+                    message='parts must be comma-separated list, like id,snippet'
+                ))
+            if not constants.PLAYLIST_ITEM_RESOURCE_PROPERTIES.issuperset(parts):
+                not_support_parts = parts.difference(constants.PLAYLIST_ITEM_RESOURCE_PROPERTIES)
+                raise PyYouTubeException(ErrorMessage(
+                    status_code=ErrorCode.INVALID_PARAMS,
+                    message=f'Part for {not_support_parts} not support Now'
+                ))
+        parts = ','.join(parts)
+
         args = {
-            'part': part,
-            'maxResults': limit
+            'part': parts,
+            'maxResults': limit,
         }
+        if sum([playlist_id is not None, playlist_item_id is not None]) > 1:
+            raise PyYouTubeException(ErrorMessage(
+                status_code=ErrorCode.INVALID_PARAMS,
+                message='Incompatible parameters specified for playlist_id,playlist_item_id'
+            ))
         if playlist_id is not None:
             args['playlistId'] = playlist_id
         elif playlist_item_id is not None:
-            if isinstance(playlist_item_id, str):
-                p_id = playlist_item_id
-            elif isinstance(playlist_item_id, (list, tuple)):
-                p_id = ','.join(playlist_item_id)
-            else:
-                raise PyYouTubeException(ErrorMessage(
-                    status_code=10007,
-                    message='PlaylistItem must be single id or id list.'
-                ))
-            args['id'] = p_id
+            args['id'] = playlist_item_id
         else:
             raise PyYouTubeException(ErrorMessage(
-                status_code=10005,
+                status_code=ErrorCode.MISSING_PARAMS,
                 message='Specify at least one of channel id or playlist id(id list)'
             ))
+        if video_id is not None:
+            args['videoId'] = video_id
 
         playlist_items = []
         playlist_items_summary = None
@@ -629,29 +676,57 @@ class Api(object):
                 break
         return playlist_items[:count], playlist_items_summary
 
-    def get_video_info(self, video_id=None, return_json=False):
+    def get_video_by_id(self,
+                        video_id=None,
+                        hl='en_US',
+                        parts=None,
+                        return_json=False):
         """
-        Retrieve data from YouTube Data Api for video which you point.
+        Retrieve data from YouTube Data Api for video which id or id list you point .
 
         Args:
             video_id (str)
-                The video's ID which you want to get data.
+                The id or comma-separated id list of video which you want to get data.
+            hl (str, optional)
+                If provide this. Will return video snippet's language localized info.
+                This value need https://developers.google.com/youtube/v3/docs/i18nLanguages.
+            parts (str, optional)
+                Comma-separated list of one or more videos resource properties.
+                If not provided. will use default public properties.
             return_json(bool, optional)
                 The return data type. If you set True JSON data will be returned.
                 False will return pyyoutube.Video
         Returns:
             The data for you given video.
         """
+        if parts is None:
+            parts = constants.VIDEO_RESOURCE_PROPERTIES
+        else:
+            try:
+                parts = set(parts.split(','))
+            except AttributeError:
+                raise PyYouTubeException(ErrorMessage(
+                    status_code=ErrorCode.INVALID_PARAMS,
+                    message='parts must be comma-separated list, like id,snippet'
+                ))
+            if not constants.VIDEO_RESOURCE_PROPERTIES.issuperset(parts):
+                not_support_parts = parts.difference(constants.VIDEO_RESOURCE_PROPERTIES)
+                raise PyYouTubeException(ErrorMessage(
+                    status_code=ErrorCode.INVALID_PARAMS,
+                    message=f'Part for {not_support_parts} not support Now'
+                ))
+        parts = ','.join(parts)
 
         if video_id is None:
             raise PyYouTubeException(ErrorMessage(
-                status_code=10005,
-                message='Specify the id for the video.'
+                status_code=ErrorCode.MISSING_PARAMS,
+                message='Specify the id or comma-separated id list for the video.'
             ))
 
         args = {
             'id': video_id,
-            'part': 'id,snippet,contentDetails,statistics,status'
+            'hl': hl,
+            'part': parts,
         }
 
         resp = self._request(
@@ -668,55 +743,133 @@ class Api(object):
         if return_json:
             return data
         else:
-            return Video.new_from_json_dict(data[0])
+            return [Video.new_from_json_dict(item) for item in data]
 
-    def get_videos_info(self, video_ids=None, return_json=False):
+    def get_video_by_filter(self,
+                            chart=None,
+                            my_rating=None,
+                            region_code=None,
+                            category_id=None,
+                            summary=True,
+                            count=5,
+                            limit=5,
+                            hl='en_US',
+                            parts=None,
+                            return_json=False):
         """
         Retrieve data from YouTube Data Api for video which you point.
 
         Args:
-            video_ids (list)
-                The video's ID list you want to get data.
+            chart (str, optional)
+                Now only mostPopular parameter valid.
+                Will return most popular videos for point region or category.
+                If use this must provide either region code or category id.
+            my_rating(str, optional)
+                Now dislike and like parameter can be pointed.
+                - dislike will return set disliked by you.
+                - like will return set liked by you.
+                Must need you give authorization.
+            region_code (str, optional)
+                Provide region code for filter for the chart parameter.
+            category_id (str, optional)
+                Provide video category id for filter for the chart parameter.
+            summary (bool, optional)
+                 If True will return results videos summary of metadata.
+                 Notice this depend on your query.
+            count (int, optional)
+                The count will retrieve videos data.
+                Default is 5.
+            limit (int, optional)
+                The maximum number of items each request retrieve.
+                For videos, this should not be more than 50.
+                Default is 5
+            hl (str, optional)
+                If provide this. Will return video snippet's language localized info.
+                This value need https://developers.google.com/youtube/v3/docs/i18nLanguages.
+            parts (str, optional)
+                Comma-separated list of one or more playlist items resource properties.
+                If not provided. will use default public properties.
             return_json(bool, optional)
                 The return data type. If you set True JSON data will be returned.
                 False will return pyyoutube.Video
         Returns:
-            The data for you given video.
+            The data for videos by your filter.
         """
 
-        if video_ids is None or not isinstance(video_ids, (list, tuple)):
-            raise PyYouTubeException(ErrorMessage(
-                status_code=10005,
-                message='Specify the id for the video.'
-            ))
+        if parts is None:
+            parts = constants.VIDEO_RESOURCE_PROPERTIES
+        else:
+            try:
+                parts = set(parts.split(','))
+            except AttributeError:
+                raise PyYouTubeException(ErrorMessage(
+                    status_code=ErrorCode.INVALID_PARAMS,
+                    message='parts must be comma-separated list, like id,snippet'
+                ))
+            if not constants.VIDEO_RESOURCE_PROPERTIES.issuperset(parts):
+                not_support_parts = parts.difference(constants.VIDEO_RESOURCE_PROPERTIES)
+                raise PyYouTubeException(ErrorMessage(
+                    status_code=ErrorCode.INVALID_PARAMS,
+                    message=f'Part for {not_support_parts} not support Now'
+                ))
+        parts = ','.join(parts)
 
         args = {
-            'id': ','.join(video_ids),
-            'part': 'id,snippet,contentDetails,statistics,status'
+            'part': parts,
+            'hl': hl,
+            'maxResults': limit
         }
 
-        resp = self._request(
-            resource='videos',
-            method='GET',
-            args=args
-        )
-
-        data = self._parse_response(resp, api=True)
-        self.calc_quota(
-            resource='videos',
-            parts=args['part'],
-            count=len(video_ids)
-        )
-        if return_json:
-            return data
+        if sum([chart is not None, my_rating is not None]) > 1:
+            raise PyYouTubeException(ErrorMessage(
+                status_code=ErrorCode.INVALID_PARAMS,
+                message='Incompatible parameters specified for chart,my_rating'
+            ))
+        if chart is not None:
+            args['chart'] = chart
+            if region_code is not None:
+                args['regionCode'] = region_code
+            elif category_id is not None:
+                args['videoCategoryId'] = category_id
+            else:
+                pass
+        elif my_rating is not None:
+            args['myRating'] = my_rating
         else:
-            return [Video.new_from_json_dict(item) for item in data]
+            raise PyYouTubeException(ErrorMessage(
+                status_code=ErrorCode.MISSING_PARAMS,
+                message='Specify at least one of chart or my_rating'
+            ))
+
+        videos = []
+        videos_summary = None
+        next_page_token = None
+        while True:
+            prev_page_token, next_page_token, data = self.paged_by_page_token(
+                resource='videos',
+                args=args,
+                page_token=next_page_token,
+            )
+            items = self._parse_data(data)
+            if return_json:
+                videos += items
+            else:
+                videos += [Video.new_from_json_dict(item) for item in items]
+            if summary:
+                videos_summary = data.get('pageInfo', {})
+            if next_page_token is None:
+                break
+            if len(videos) >= count:
+                break
+        return videos[:count], videos_summary
 
     def get_comment_threads(self,
                             all_to_channel_id=None,
                             channel_id=None,
                             video_id=None,
+                            parts=None,
                             order='time',
+                            search_term=None,
                             limit=20,
                             count=20,
                             return_json=False):
@@ -737,9 +890,14 @@ class Api(object):
             video_id (str, optional)
                 If you provide video id by this parameter.
                 Will return comment threads containing comments about the specified video.
+            parts (str, optional)
+                Comma-separated list of one or more commentThreads resource properties.
+                If not provided. will use default public properties.
             order (str, optional)
                 Provide the response order type. Valid value are: time, relevance.
                 Default is time. order by the commented time.
+            search_term (str, optional)
+                If you provide this. Only return the comments that contain the search terms.
             limit (int, optional)
                 Each request retrieve comment threads from data api.
                 For comment threads, this should not be more than 100.
@@ -753,9 +911,26 @@ class Api(object):
         Returns:
             The list data for you given comment thread.
         """
-        part = 'id,snippet,replies'
+        if parts is None:
+            parts = constants.COMMENT_THREAD_RESOURCE_PROPERTIES
+        else:
+            try:
+                parts = set(parts.split(','))
+            except AttributeError:
+                raise PyYouTubeException(ErrorMessage(
+                    status_code=ErrorCode.INVALID_PARAMS,
+                    message='parts must be comma-separated list, like id,snippet'
+                ))
+            if not constants.COMMENT_THREAD_RESOURCE_PROPERTIES.issuperset(parts):
+                not_support_parts = parts.difference(constants.COMMENT_THREAD_RESOURCE_PROPERTIES)
+                raise PyYouTubeException(ErrorMessage(
+                    status_code=ErrorCode.INVALID_PARAMS,
+                    message=f'Part for {not_support_parts} not support Now'
+                ))
+        parts = ','.join(parts)
+
         args = {
-            'part': part,
+            'part': parts,
             'maxResults': limit
         }
         if all_to_channel_id is not None:
@@ -766,15 +941,18 @@ class Api(object):
             args['videoId'] = video_id
         else:
             raise PyYouTubeException(ErrorMessage(
-                status_code=10007,
+                status_code=ErrorCode.MISSING_PARAMS,
                 message='Target id must specify. either of all_to_channel_id, channel_id,video_id'
             ))
 
         if order not in ['time', 'relevance']:
             raise PyYouTubeException(ErrorMessage(
-                status_code=10007,
+                status_code=ErrorCode.INVALID_PARAMS,
                 message='Order type must be time or relevance.'
             ))
+
+        if search_term is not None:
+            args['searchTerms'] = search_term
 
         comment_threads = []
         next_page_token = None
@@ -797,6 +975,7 @@ class Api(object):
 
     def get_comment_thread_info(self,
                                 comment_thread_id=None,
+                                parts=None,
                                 return_json=False):
         """
         Retrieve the comment thread info by single id.
@@ -807,22 +986,42 @@ class Api(object):
             comment_thread_id (str)
                 The id parameter specifies a comma-separated list of comment thread IDs
                 for the resources that should be retrieved.
+            parts (str, optional)
+                Comma-separated list of one or more commentThreads resource properties.
+                If not provided. will use default public properties.
             return_json(bool, optional)
                 The return data type. If you set True JSON data will be returned.
                 False will return pyyoutube.CommentThread.
         Returns:
             The list data for you given comment thread.
         """
-        part = 'id,snippet,replies'
+        if parts is None:
+            parts = constants.COMMENT_THREAD_RESOURCE_PROPERTIES
+        else:
+            try:
+                parts = set(parts.split(','))
+            except AttributeError:
+                raise PyYouTubeException(ErrorMessage(
+                    status_code=ErrorCode.INVALID_PARAMS,
+                    message='parts must be comma-separated list, like id,snippet'
+                ))
+            if not constants.COMMENT_THREAD_RESOURCE_PROPERTIES.issuperset(parts):
+                not_support_parts = parts.difference(constants.COMMENT_THREAD_RESOURCE_PROPERTIES)
+                raise PyYouTubeException(ErrorMessage(
+                    status_code=ErrorCode.INVALID_PARAMS,
+                    message=f'Part for {not_support_parts} not support Now'
+                ))
+        parts = ','.join(parts)
+
         if comment_thread_id is None:
             raise PyYouTubeException(ErrorMessage(
-                status_code=10005,
+                status_code=ErrorCode.MISSING_PARAMS,
                 message='Must Specify the id for the video'
             ))
 
         args = {
             'id': comment_thread_id,
-            'part': part
+            'part': parts
         }
 
         resp = self._request(
@@ -838,6 +1037,7 @@ class Api(object):
 
     def get_comments_by_parent(self,
                                parent_id=None,
+                               parts=None,
                                limit=20,
                                count=20,
                                return_json=False):
@@ -850,6 +1050,9 @@ class Api(object):
             parent_id (str, optional)
                 Provide the ID of the comment for which replies should be retrieved.
                 Now YouTube currently supports replies only for top-level comments
+            parts (str, optional)
+                Comma-separated list of one or more comments resource properties.
+                If not provided. will use default public properties.
             limit (int, optional)
                 Each request retrieve comments from data api.
                 For comments, this should not be more than 100.
@@ -863,16 +1066,33 @@ class Api(object):
         Returns:
             The list data for you given comment.
         """
-        part = 'id,snippet'
+        if parts is None:
+            parts = constants.COMMENT_RESOURCE_PROPERTIES
+        else:
+            try:
+                parts = set(parts.split(','))
+            except AttributeError:
+                raise PyYouTubeException(ErrorMessage(
+                    status_code=ErrorCode.INVALID_PARAMS,
+                    message='parts must be comma-separated list, like id,snippet'
+                ))
+            if not constants.COMMENT_RESOURCE_PROPERTIES.issuperset(parts):
+                not_support_parts = parts.difference(constants.COMMENT_RESOURCE_PROPERTIES)
+                raise PyYouTubeException(ErrorMessage(
+                    status_code=ErrorCode.INVALID_PARAMS,
+                    message=f'Part for {not_support_parts} not support Now'
+                ))
+        parts = ','.join(parts)
+
         args = {
-            'part': part,
+            'part': parts,
             'maxResults': limit,
         }
         if parent_id is not None:
             args['parentId'] = parent_id
         else:
             raise PyYouTubeException(ErrorMessage(
-                status_code=10007,
+                status_code=ErrorCode.MISSING_PARAMS,
                 message='Parent comment id must specified'
             ))
 
@@ -897,6 +1117,7 @@ class Api(object):
 
     def get_comment_info(self,
                          comment_id=None,
+                         parts=None,
                          return_json=False):
         """
         Retrieve comment data by comment id.
@@ -905,21 +1126,41 @@ class Api(object):
             comment_id (str, optional)
                 Provide a comma-separated list of comment IDs or just a comment id
                 for the resources that are being retrieved
+            parts (str, optional)
+                Comma-separated list of one or more comments resource properties.
+                If not provided. will use default public properties.
             return_json(bool, optional)
                 The return data type. If you set True JSON data will be returned.
                 False will return pyyoutube.Comment.
         Returns:
             The list data for you given comment id.
         """
-        part = 'id,snippet'
+        if parts is None:
+            parts = constants.COMMENT_RESOURCE_PROPERTIES
+        else:
+            try:
+                parts = set(parts.split(','))
+            except AttributeError:
+                raise PyYouTubeException(ErrorMessage(
+                    status_code=ErrorCode.INVALID_PARAMS,
+                    message='parts must be comma-separated list, like id,snippet'
+                ))
+            if not constants.COMMENT_RESOURCE_PROPERTIES.issuperset(parts):
+                not_support_parts = parts.difference(constants.COMMENT_RESOURCE_PROPERTIES)
+                raise PyYouTubeException(ErrorMessage(
+                    status_code=ErrorCode.INVALID_PARAMS,
+                    message=f'Part for {not_support_parts} not support Now'
+                ))
+        parts = ','.join(parts)
+
         args = {
-            'part': part,
+            'part': parts,
         }
         if comment_id is not None:
             args['id'] = comment_id
         else:
             raise PyYouTubeException(ErrorMessage(
-                status_code=10007,
+                status_code=ErrorCode.MISSING_PARAMS,
                 message='Comment id must specified'
             ))
 
@@ -936,6 +1177,7 @@ class Api(object):
     def get_video_categories(self,
                              category_id=None,
                              region_code=None,
+                             parts=None,
                              hl='en_US',
                              return_json=False):
         """
@@ -950,6 +1192,9 @@ class Api(object):
             region_code (str, optional)
                 Provide country code for the list of video categories available.
                 The country code is an ISO 3166-1 alpha-2 country code.
+            parts (str, optional)
+                Comma-separated list of one or more videoCategories resource properties.
+                If not provided. will use default public properties.
             hl (str, optional)
                 Specifies the language that should be used for text values.
                 Default is en_US.
@@ -959,14 +1204,31 @@ class Api(object):
         Returns:
             The list of categories.
         """
-        part = 'id,snippet'
+        if parts is None:
+            parts = constants.VIDEO_CATEGORY_RESOURCE_PROPERTIES
+        else:
+            try:
+                parts = set(parts.split(','))
+            except AttributeError:
+                raise PyYouTubeException(ErrorMessage(
+                    status_code=ErrorCode.INVALID_PARAMS,
+                    message='parts must be comma-separated list, like id,snippet'
+                ))
+            if not constants.VIDEO_CATEGORY_RESOURCE_PROPERTIES.issuperset(parts):
+                not_support_parts = parts.difference(constants.VIDEO_CATEGORY_RESOURCE_PROPERTIES)
+                raise PyYouTubeException(ErrorMessage(
+                    status_code=ErrorCode.INVALID_PARAMS,
+                    message=f'Part for {not_support_parts} not support Now'
+                ))
+        parts = ','.join(parts)
+
         args = {
-            'part': part,
+            'part': parts,
             'hl': hl,
         }
         if all([category_id, region_code]):
             raise PyYouTubeException(ErrorMessage(
-                status_code=10008,
+                status_code=ErrorCode.INVALID_PARAMS,
                 message='Incompatible parameters specified in the request: regionCode, category_id'
             ))
 
@@ -976,7 +1238,7 @@ class Api(object):
             args['regionCode'] = region_code
         else:
             raise PyYouTubeException(ErrorMessage(
-                status_code=10007,
+                status_code=ErrorCode.MISSING_PARAMS,
                 message='Must specified either category id or region code.'
             ))
 
@@ -994,6 +1256,7 @@ class Api(object):
     def get_guide_categories(self,
                              category_id=None,
                              region_code=None,
+                             parts=None,
                              hl='en_US',
                              return_json=False):
         """
@@ -1008,6 +1271,9 @@ class Api(object):
             region_code (str, optional)
                 Provide country code for the list of guide categories available.
                 The country code is an ISO 3166-1 alpha-2 country code.
+            parts (str, optional)
+                Comma-separated list of one or more guideCategories resource properties.
+                If not provided. will use default public properties.
             hl (str, optional)
                 Specifies the language that should be used for text values.
                 Default is en_US.
@@ -1018,14 +1284,31 @@ class Api(object):
         Returns:
             The list of categories.
         """
-        parts = 'id,snippet'
+        if parts is None:
+            parts = constants.GUIDE_CATEGORY_RESOURCE_PROPERTIES
+        else:
+            try:
+                parts = set(parts.split(','))
+            except AttributeError:
+                raise PyYouTubeException(ErrorMessage(
+                    status_code=ErrorCode.INVALID_PARAMS,
+                    message='parts must be comma-separated list, like id,snippet'
+                ))
+            if not constants.GUIDE_CATEGORY_RESOURCE_PROPERTIES.issuperset(parts):
+                not_support_parts = parts.difference(constants.GUIDE_CATEGORY_RESOURCE_PROPERTIES)
+                raise PyYouTubeException(ErrorMessage(
+                    status_code=ErrorCode.INVALID_PARAMS,
+                    message=f'Part for {not_support_parts} not support Now'
+                ))
+        parts = ','.join(parts)
+
         args = {
             'part': parts,
             'hl': hl,
         }
         if all([category_id, region_code]):
             raise PyYouTubeException(ErrorMessage(
-                status_code=10008,
+                status_code=ErrorCode.INVALID_PARAMS,
                 message='Incompatible parameters specified in the request: regionCode, category_id'
             ))
 
@@ -1035,7 +1318,7 @@ class Api(object):
             args['regionCode'] = region_code
         else:
             raise PyYouTubeException(ErrorMessage(
-                status_code=10007,
+                status_code=ErrorCode.MISSING_PARAMS,
                 message='Must specified either category id or region code.'
             ))
 

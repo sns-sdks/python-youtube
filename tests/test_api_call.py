@@ -146,69 +146,166 @@ class TestApiCall(unittest.TestCase):
 
     @responses.activate
     def testGetPlaylist(self):
+        with self.assertRaises(pyyoutube.PyYouTubeException) as ex:
+            self.api.get_playlist(parts=[])
+            self.assertEqual(ex.exception.status_code, pyyoutube.error.ErrorCode.INVALID_PARAMS)
+        with self.assertRaises(pyyoutube.PyYouTubeException) as ex:
+            self.api.get_playlist(parts='id,part')
+            self.assertEqual(ex.exception.status_code, pyyoutube.error.ErrorCode.INVALID_PARAMS)
+        with self.assertRaises(pyyoutube.PyYouTubeException) as ex:
+            self.api.get_playlist(
+                channel_id='UC_x5XG1OV2P6uZZ5FSM9Ttw',
+                playlist_id='PLOU2XLYxmsIJpufeMHncnQvFOe0K3MhVp'
+            )
+            self.assertEqual(ex.exception.status_code, pyyoutube.error.ErrorCode.INVALID_PARAMS)
+        with self.assertRaises(pyyoutube.PyYouTubeException) as ex:
+            self.api.get_playlist()
+            self.assertEqual(ex.exception.status_code, pyyoutube.error.ErrorCode.MISSING_PARAMS)
+
         with open(f'{self.base_path}playlists_info.json') as f:
-            res_data = f.read()
+            res_data_1 = f.read()
+        with open(f'{self.base_path}playlist_info_next.json') as f:
+            res_data_2 = f.read()
         responses.add(
-            responses.GET,
-            self.BASE_URL + 'playlists',
-            body=res_data,
-            status=200
+            responses.GET, self.BASE_URL + 'playlists',
+            body=res_data_1, status=200
+        )
+        responses.add(
+            responses.GET, self.BASE_URL + 'playlists',
+            body=res_data_2, status=200
         )
 
         playlists, summary = self.api.get_playlist(
-            channel_id='UC_x5XG1OV2P6uZZ5FSM9Ttw',
-            limit=5,
+            channel_id='UC_x5XG1OV2P6uZZ5FSM9Ttw', limit=5, count=5
         )
         self.assertEqual(len(playlists), 5)
         self.assertEqual(playlists[0].id, 'PLOU2XLYxmsIJpufeMHncnQvFOe0K3MhVp')
         self.assertEqual(summary['totalResults'], 416)
 
+        playlists, summary = self.api.get_playlist(
+            mine=True, count=5, return_json=True
+        )
+        self.assertEqual(len(playlists), 5)
+
+        playlists, summary = self.api.get_playlist(
+            playlist_id='PLOU2XLYxmsIJ5Bl3HmuxKY5WE555cu9Uc', return_json=True
+        )
+        self.assertEqual(playlists[0]['id'], 'PLOU2XLYxmsIJ5Bl3HmuxKY5WE555cu9Uc')
+
     @responses.activate
     def testGetPlaylistItems(self):
-        with open(f'{self.base_path}playlist_items_info.json') as f:
-            res_data = f.read()
-        responses.add(
-            responses.GET,
-            self.BASE_URL + 'playlistItems',
-            body=res_data,
-            status=200
-        )
+        with self.assertRaises(pyyoutube.PyYouTubeException) as ex:
+            self.api.get_playlist_item(parts=[])
+            self.assertEqual(ex.exception.status_code, pyyoutube.error.ErrorCode.INVALID_PARAMS)
+        with self.assertRaises(pyyoutube.PyYouTubeException) as ex:
+            self.api.get_playlist_item(parts='id,part')
+            self.assertEqual(ex.exception.status_code, pyyoutube.error.ErrorCode.INVALID_PARAMS)
+        with self.assertRaises(pyyoutube.PyYouTubeException) as ex:
+            self.api.get_playlist_item(
+                playlist_id='PLOU2XLYxmsIJpufeMHncnQvFOe0K3MhVp',
+                playlist_item_id='UExPVTJYTFl4bXNJSkpWbkhXbWQxcWZyMENhcTRWWkN1NC4zRjM0MkVCRTg0MkYyQTM0',
+            )
+            self.assertEqual(ex.exception.status_code, pyyoutube.error.ErrorCode.INVALID_PARAMS)
+        with self.assertRaises(pyyoutube.PyYouTubeException) as ex:
+            self.api.get_playlist_item()
+            self.assertEqual(ex.exception.status_code, pyyoutube.error.ErrorCode.MISSING_PARAMS)
 
+        with open(f'{self.base_path}playlist_items_info.json') as f:
+            res_data_1 = f.read()
+        with open(f'{self.base_path}playlist_items_info_next.json') as f:
+            res_data_2 = f.read()
+        responses.add(
+            responses.GET, self.BASE_URL + 'playlistItems',
+            body=res_data_1, status=200
+        )
+        responses.add(
+            responses.GET, self.BASE_URL + 'playlistItems',
+            body=res_data_2, status=200
+        )
         playlist_items, summary = self.api.get_playlist_item(
             playlist_id='PLOU2XLYxmsIJJVnHWmd1qfr0Caq4VZCu4',
-            limit=5,
+            count=10,
         )
         self.assertEqual(len(playlist_items), 5)
         self.assertEqual(playlist_items[0].id, 'UExPVTJYTFl4bXNJSkpWbkhXbWQxcWZyMENhcTRWWkN1NC4zRjM0MkVCRTg0MkYyQTM0')
         self.assertEqual(summary['totalResults'], 23)
 
-    @responses.activate
-    def testGetVideo(self):
-        with open(f'{self.base_path}video_info.json') as f:
-            res_data = f.read()
-        responses.add(
-            responses.GET,
-            self.BASE_URL + 'videos',
-            body=res_data,
-            status=200
+        playlist_items, summary = self.api.get_playlist_item(
+            playlist_item_id='UExPVTJYTFl4bXNJSkpWbkhXbWQxcWZyMENhcTRWWkN1NC4xMkVGQjNCMUM1N0RFNEUx',
+            return_json=True, video_id='CqkuGBpZ_q0'
         )
-        res = self.api.get_video_info(video_id='Ks-_Mh1QhMc')
-        self.assertEqual(res.id, 'D-lhorsDlUQ')
-        self.assertEqual(res.statistics.viewCount, '7920')
+        self.assertEqual(playlist_items[0]['id'],
+                         'UExPVTJYTFl4bXNJSkpWbkhXbWQxcWZyMENhcTRWWkN1NC4xMkVGQjNCMUM1N0RFNEUx')
 
     @responses.activate
-    def testGetVideos(self):
-        with open(f'{self.base_path}videos_info.json') as f:
-            res_data = f.read()
+    def testGetVideoById(self):
+        with self.assertRaises(pyyoutube.PyYouTubeException) as ex:
+            self.api.get_video_by_id()
+            self.assertEqual(ex.exception.status_code, pyyoutube.error.ErrorCode.MISSING_PARAMS)
+        with self.assertRaises(pyyoutube.PyYouTubeException) as ex:
+            self.api.get_video_by_id(parts=[])
+            self.assertEqual(ex.exception.status_code, pyyoutube.error.ErrorCode.INVALID_PARAMS)
+        with self.assertRaises(pyyoutube.PyYouTubeException) as ex:
+            self.api.get_video_by_id(parts='id,part')
+            self.assertEqual(ex.exception.status_code, pyyoutube.error.ErrorCode.INVALID_PARAMS)
+        with open(f'{self.base_path}video_info.json') as f:
+            videos_data_by_id = f.read()
         responses.add(
-            responses.GET,
-            self.BASE_URL + 'videos',
-            body=res_data,
-            status=200
+            responses.GET, self.BASE_URL + 'videos',
+            body=videos_data_by_id, status=200
         )
-        res = self.api.get_videos_info(video_ids=['ffdXLm8EaYg', 'plhVMWR33go'])
-        self.assertEqual(len(res), 2)
-        self.assertEqual(res[0].id, 'ffdXLm8EaYg')
+        res = self.api.get_video_by_id(video_id='Ks-_Mh1QhMc')
+        self.assertEqual(res[0].id, 'D-lhorsDlUQ')
+        self.assertEqual(res[0].statistics.viewCount, '7920')
+
+        res = self.api.get_video_by_id(video_id='Ks-_Mh1QhMc', return_json=True)
+        self.assertEqual(res[0]['id'], 'D-lhorsDlUQ')
+
+    @responses.activate
+    def testGetVideosByFilter(self):
+        with self.assertRaises(pyyoutube.PyYouTubeException) as ex:
+            self.api.get_video_by_filter()
+            self.assertEqual(ex.exception.status_code, pyyoutube.error.ErrorCode.MISSING_PARAMS)
+        with self.assertRaises(pyyoutube.PyYouTubeException) as ex:
+            self.api.get_video_by_filter(parts=[])
+            self.assertEqual(ex.exception.status_code, pyyoutube.error.ErrorCode.INVALID_PARAMS)
+        with self.assertRaises(pyyoutube.PyYouTubeException) as ex:
+            self.api.get_video_by_filter(parts='id,part')
+            self.assertEqual(ex.exception.status_code, pyyoutube.error.ErrorCode.INVALID_PARAMS)
+
+        with self.assertRaises(pyyoutube.PyYouTubeException) as ex:
+            self.api.get_video_by_filter(chart='mostPopular', my_rating='like')
+            self.assertEqual(ex.exception.status_code, pyyoutube.error.ErrorCode.INVALID_PARAMS)
+
+        with open(f'{self.base_path}videos_info.json') as f:
+            videos_data_by_filter = f.read()
+        responses.add(
+            responses.GET, self.BASE_URL + 'videos',
+            body=videos_data_by_filter, status=200
+        )
+        with open(f'{self.base_path}videos_info_next.json') as f:
+            videos_data_by_filter = f.read()
+        responses.add(
+            responses.GET, self.BASE_URL + 'videos',
+            body=videos_data_by_filter, status=200
+        )
+        res, summary = self.api.get_video_by_filter(
+            chart='mostPopular',
+            category_id=17,
+            count=10
+        )
+        self.assertEqual(len(res), 5)
+        self.assertEqual(res[0].id, '9wCvNsXREls')
+
+        res, summary = self.api.get_video_by_filter(
+            chart='mostPopular', region_code='US', count=8
+        )
+        self.assertEqual(len(res), 8)
+
+        res, summary = self.api.get_video_by_filter(
+            my_rating='dislike', return_json=True
+        )
+        self.assertEqual(len(res), 5)
 
     @responses.activate
     def testGetCommentThreads(self) -> None:
@@ -230,10 +327,16 @@ class TestApiCall(unittest.TestCase):
             self.api.get_comment_threads()
         with self.assertRaises(pyyoutube.PyYouTubeException):
             self.api.get_comment_threads(channel_id='channel id', order='rev')
+        with self.assertRaises(pyyoutube.PyYouTubeException) as ex:
+            self.api.get_comment_threads(parts=[])
+            self.assertEqual(ex.exception.status_code, pyyoutube.error.ErrorCode.INVALID_PARAMS)
+        with self.assertRaises(pyyoutube.PyYouTubeException) as ex:
+            self.api.get_comment_threads(parts='id,part')
+            self.assertEqual(ex.exception.status_code, pyyoutube.error.ErrorCode.INVALID_PARAMS)
 
         comment_threads = self.api.get_comment_threads(
             all_to_channel_id='UC_x5XG1OV2P6uZZ5FSM9Ttw',
-            count=4,
+            count=4, search_term='',
         )
         self.assertEqual(len(comment_threads), 4)
         self.assertEqual(comment_threads[0].id, 'UgzhytyP79_PwaDd4UB4AaABAg')
@@ -246,15 +349,19 @@ class TestApiCall(unittest.TestCase):
     def testGetCommentThreadInfo(self) -> None:
         with open(f'{self.base_path}comment_threads_by_id.json') as f:
             res_data = f.read()
-
         responses.add(
-            responses.GET,
-            self.BASE_URL + 'commentThreads',
+            responses.GET, self.BASE_URL + 'commentThreads',
             body=res_data, status=200
         )
 
         with self.assertRaises(pyyoutube.PyYouTubeException):
             self.api.get_comment_thread_info()
+        with self.assertRaises(pyyoutube.PyYouTubeException) as ex:
+            self.api.get_comment_thread_info(parts=[])
+            self.assertEqual(ex.exception.status_code, pyyoutube.error.ErrorCode.INVALID_PARAMS)
+        with self.assertRaises(pyyoutube.PyYouTubeException) as ex:
+            self.api.get_comment_thread_info(parts='id,part')
+            self.assertEqual(ex.exception.status_code, pyyoutube.error.ErrorCode.INVALID_PARAMS)
 
         comment_threads = self.api.get_comment_thread_info('Ugz097FRhsQy5CVhAjp4AaABAg,UgzhytyP79_PwaDd4UB4AaABAg')
         self.assertEqual(len(comment_threads), 2)
@@ -270,13 +377,18 @@ class TestApiCall(unittest.TestCase):
         with open(f'{self.base_path}comments_by_parent_id.json') as f:
             res_data_by_parent = f.read()
         responses.add(
-            responses.GET,
-            self.BASE_URL + 'comments',
+            responses.GET, self.BASE_URL + 'comments',
             body=res_data_by_parent, status=200
         )
 
         with self.assertRaises(pyyoutube.PyYouTubeException):
             self.api.get_comments_by_parent()
+        with self.assertRaises(pyyoutube.PyYouTubeException) as ex:
+            self.api.get_comments_by_parent(parts=[])
+            self.assertEqual(ex.exception.status_code, pyyoutube.error.ErrorCode.INVALID_PARAMS)
+        with self.assertRaises(pyyoutube.PyYouTubeException) as ex:
+            self.api.get_comments_by_parent(parts='id,part')
+            self.assertEqual(ex.exception.status_code, pyyoutube.error.ErrorCode.INVALID_PARAMS)
 
         comments = self.api.get_comments_by_parent(parent_id='UgwYjZXfNCUTKPq9CZp4AaABAg', count=1)
         self.assertEqual(len(comments), 1)
@@ -289,12 +401,17 @@ class TestApiCall(unittest.TestCase):
         with open(f'{self.base_path}comments_by_id.json') as f:
             res_data_by_id = f.read()
         responses.add(
-            responses.GET,
-            self.BASE_URL + 'comments',
+            responses.GET, self.BASE_URL + 'comments',
             body=res_data_by_id, status=200
         )
         with self.assertRaises(pyyoutube.PyYouTubeException):
             self.api.get_comment_info()
+        with self.assertRaises(pyyoutube.PyYouTubeException) as ex:
+            self.api.get_comment_info(parts=[])
+            self.assertEqual(ex.exception.status_code, pyyoutube.error.ErrorCode.INVALID_PARAMS)
+        with self.assertRaises(pyyoutube.PyYouTubeException) as ex:
+            self.api.get_comment_info(parts='id,part')
+            self.assertEqual(ex.exception.status_code, pyyoutube.error.ErrorCode.INVALID_PARAMS)
 
         comments = self.api.get_comment_info(comment_id='UgxKREWxIgDrw8w2e_Z4AaABAg,UgyrVQaFfEdvaSzstj14AaABAg')
         self.assertEqual(len(comments), 2)
@@ -311,13 +428,11 @@ class TestApiCall(unittest.TestCase):
         with open(f'{self.base_path}video_categories_info_by_region.json') as f:
             video_categories_by_region = json.loads(f.read().encode('utf-8'))
         responses.add(
-            responses.GET,
-            self.BASE_URL + 'videoCategories',
+            responses.GET, self.BASE_URL + 'videoCategories',
             json=video_categories_by_id, status=200
         )
         responses.add(
-            responses.GET,
-            self.BASE_URL + 'videoCategories',
+            responses.GET, self.BASE_URL + 'videoCategories',
             json=video_categories_by_region, status=200
         )
 
@@ -325,6 +440,12 @@ class TestApiCall(unittest.TestCase):
             self.api.get_video_categories()
         with self.assertRaises(pyyoutube.PyYouTubeException):
             self.api.get_video_categories(category_id='1', region_code='US')
+        with self.assertRaises(pyyoutube.PyYouTubeException) as ex:
+            self.api.get_video_categories(parts=[])
+            self.assertEqual(ex.exception.status_code, pyyoutube.error.ErrorCode.INVALID_PARAMS)
+        with self.assertRaises(pyyoutube.PyYouTubeException) as ex:
+            self.api.get_video_categories(parts='id,part')
+            self.assertEqual(ex.exception.status_code, pyyoutube.error.ErrorCode.INVALID_PARAMS)
 
         video_categories = self.api.get_video_categories(
             category_id='1,2', hl='zh_CN'
@@ -342,13 +463,11 @@ class TestApiCall(unittest.TestCase):
         with open(f'{self.base_path}guide_categories_by_region.json') as f:
             guide_categories_by_region = json.loads(f.read().encode('utf-8'))
         responses.add(
-            responses.GET,
-            self.BASE_URL + 'guideCategories',
+            responses.GET, self.BASE_URL + 'guideCategories',
             json=guide_categories_by_id, status=200
         )
         responses.add(
-            responses.GET,
-            self.BASE_URL + 'guideCategories',
+            responses.GET, self.BASE_URL + 'guideCategories',
             json=guide_categories_by_region, status=200
         )
 
@@ -356,6 +475,12 @@ class TestApiCall(unittest.TestCase):
             self.api.get_guide_categories()
         with self.assertRaises(pyyoutube.PyYouTubeException):
             self.api.get_guide_categories(category_id='GCQ29tZWR5', region_code='US')
+        with self.assertRaises(pyyoutube.PyYouTubeException) as ex:
+            self.api.get_guide_categories(parts=[])
+            self.assertEqual(ex.exception.status_code, pyyoutube.error.ErrorCode.INVALID_PARAMS)
+        with self.assertRaises(pyyoutube.PyYouTubeException) as ex:
+            self.api.get_guide_categories(parts='id,part')
+            self.assertEqual(ex.exception.status_code, pyyoutube.error.ErrorCode.INVALID_PARAMS)
 
         guide_categories = self.api.get_guide_categories(
             category_id='GCQ29tZWR5,GCTXVzaWM', hl='zh_CN'

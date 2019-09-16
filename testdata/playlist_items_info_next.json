@@ -1,0 +1,272 @@
+{
+  "kind": "youtube#playlistItemListResponse",
+  "etag": "\"p4VTdlkQv3HQeTEaXgvLePAydmU/n9ewOLSPjlv5MV-pc0zDgYwWstA\"",
+  "nextPageToken": "CAoQAA",
+  "prevPageToken": "CAUQAQ",
+  "pageInfo": {
+    "totalResults": 23,
+    "resultsPerPage": 5
+  },
+  "items": [
+    {
+      "kind": "youtube#playlistItem",
+      "etag": "\"p4VTdlkQv3HQeTEaXgvLePAydmU/JOTTs2Zrgzj8Kd5dalA9_-Cx7f4\"",
+      "id": "UExPVTJYTFl4bXNJSkpWbkhXbWQxcWZyMENhcTRWWkN1NC4xMkVGQjNCMUM1N0RFNEUx",
+      "snippet": {
+        "publishedAt": "2019-05-10T20:52:36.000Z",
+        "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+        "title": "Google I/O'19 - Daniel Galpin Interview on Android",
+        "description": "Google Developer Advocate Daniel Galpin sits down with Timothy Jordan and Emily Fortuna to discuss the Android announcements made at I/O'19.\n\nGoogle I/O 2019 All Sessions Playlist → https://goo.gle/io19allsessions \nLearn more on the I/O Website → https://google.com/io\n\nSubscribe to the Google Developers Channel → https://goo.gle/developers",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/CqkuGBpZ_q0/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/CqkuGBpZ_q0/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/CqkuGBpZ_q0/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          },
+          "standard": {
+            "url": "https://i.ytimg.com/vi/CqkuGBpZ_q0/sddefault.jpg",
+            "width": 640,
+            "height": 480
+          },
+          "maxres": {
+            "url": "https://i.ytimg.com/vi/CqkuGBpZ_q0/maxresdefault.jpg",
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "channelTitle": "Google Developers",
+        "playlistId": "PLOU2XLYxmsIJJVnHWmd1qfr0Caq4VZCu4",
+        "position": 5,
+        "resourceId": {
+          "kind": "youtube#video",
+          "videoId": "CqkuGBpZ_q0"
+        }
+      },
+      "contentDetails": {
+        "videoId": "CqkuGBpZ_q0",
+        "videoPublishedAt": "2019-05-10T23:05:09.000Z"
+      },
+      "status": {
+        "privacyStatus": "public"
+      }
+    },
+    {
+      "kind": "youtube#playlistItem",
+      "etag": "\"p4VTdlkQv3HQeTEaXgvLePAydmU/pNAEPW7R9JJDFMylqFm66Af6S_s\"",
+      "id": "UExPVTJYTFl4bXNJSkpWbkhXbWQxcWZyMENhcTRWWkN1NC41MzJCQjBCNDIyRkJDN0VD",
+      "snippet": {
+        "publishedAt": "2019-05-10T20:53:48.000Z",
+        "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+        "title": "Google I/O'19 - Sandbox Tour",
+        "description": "Google's Developer Advocate Wayne Piekarski takes you on a roving tour of some of the coolest offerings from this year's Sandbox. Watch as Wayne attempts to strike the perfect pose and takes a virtual ride through the streets of Jakarta!\n\nGoogle I/O 2019 All Sessions Playlist → https://goo.gle/io19allsessions \nLearn more on the I/O Website → https://google.com/io\n\nSubscribe to the Google Developers Channel → https://goo.gle/developers",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/-UxznOwwS6A/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/-UxznOwwS6A/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/-UxznOwwS6A/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          },
+          "standard": {
+            "url": "https://i.ytimg.com/vi/-UxznOwwS6A/sddefault.jpg",
+            "width": 640,
+            "height": 480
+          },
+          "maxres": {
+            "url": "https://i.ytimg.com/vi/-UxznOwwS6A/maxresdefault.jpg",
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "channelTitle": "Google Developers",
+        "playlistId": "PLOU2XLYxmsIJJVnHWmd1qfr0Caq4VZCu4",
+        "position": 6,
+        "resourceId": {
+          "kind": "youtube#video",
+          "videoId": "-UxznOwwS6A"
+        }
+      },
+      "contentDetails": {
+        "videoId": "-UxznOwwS6A",
+        "videoPublishedAt": "2019-05-10T23:34:23.000Z"
+      },
+      "status": {
+        "privacyStatus": "public"
+      }
+    },
+    {
+      "kind": "youtube#playlistItem",
+      "etag": "\"p4VTdlkQv3HQeTEaXgvLePAydmU/c8zcYZpQAzTiP5SYcmp_dQ8a-ew\"",
+      "id": "UExPVTJYTFl4bXNJSkpWbkhXbWQxcWZyMENhcTRWWkN1NC5DQUNERDQ2NkIzRUQxNTY1",
+      "snippet": {
+        "publishedAt": "2019-05-10T20:55:15.000Z",
+        "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+        "title": "Google I/O'19 - After Dark Tour",
+        "description": "When the sun goes down at I/O, After Dark lights things up! Google's Timothy Jordan and Meghan Mehta show you all the interactive night life at I/O.\n\nGoogle I/O 2019 All Sessions Playlist → https://goo.gle/io19allsessions \nLearn more on the I/O Website → https://google.com/io\n\nSubscribe to the Google Developers Channel → https://goo.gle/developers",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/c7tSvJEUnq0/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/c7tSvJEUnq0/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/c7tSvJEUnq0/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          },
+          "standard": {
+            "url": "https://i.ytimg.com/vi/c7tSvJEUnq0/sddefault.jpg",
+            "width": 640,
+            "height": 480
+          },
+          "maxres": {
+            "url": "https://i.ytimg.com/vi/c7tSvJEUnq0/maxresdefault.jpg",
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "channelTitle": "Google Developers",
+        "playlistId": "PLOU2XLYxmsIJJVnHWmd1qfr0Caq4VZCu4",
+        "position": 7,
+        "resourceId": {
+          "kind": "youtube#video",
+          "videoId": "c7tSvJEUnq0"
+        }
+      },
+      "contentDetails": {
+        "videoId": "c7tSvJEUnq0",
+        "videoPublishedAt": "2019-05-10T23:41:27.000Z"
+      },
+      "status": {
+        "privacyStatus": "public"
+      }
+    },
+    {
+      "kind": "youtube#playlistItem",
+      "etag": "\"p4VTdlkQv3HQeTEaXgvLePAydmU/EVRHaObmUVbZX3nl1FGlLEX0xhc\"",
+      "id": "UExPVTJYTFl4bXNJSkpWbkhXbWQxcWZyMENhcTRWWkN1NC45NDk1REZENzhEMzU5MDQz",
+      "snippet": {
+        "publishedAt": "2019-05-10T20:56:42.000Z",
+        "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+        "title": "Google I/O'19 - Chet Haase Interview on Jetpack Compose",
+        "description": "Android engineer Chet Haase talks about Jetpack Compose, a new UI toolkit for Kotlin developers.\n\nGoogle I/O 2019 All Sessions Playlist → https://goo.gle/io19allsessions \nLearn more on the I/O Website → https://google.com/io\n\nSubscribe to the Google Developers Channel → https://goo.gle/developers",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/JcZqtBy9MT8/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/JcZqtBy9MT8/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/JcZqtBy9MT8/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          },
+          "standard": {
+            "url": "https://i.ytimg.com/vi/JcZqtBy9MT8/sddefault.jpg",
+            "width": 640,
+            "height": 480
+          },
+          "maxres": {
+            "url": "https://i.ytimg.com/vi/JcZqtBy9MT8/maxresdefault.jpg",
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "channelTitle": "Google Developers",
+        "playlistId": "PLOU2XLYxmsIJJVnHWmd1qfr0Caq4VZCu4",
+        "position": 8,
+        "resourceId": {
+          "kind": "youtube#video",
+          "videoId": "JcZqtBy9MT8"
+        }
+      },
+      "contentDetails": {
+        "videoId": "JcZqtBy9MT8",
+        "videoPublishedAt": "2019-05-10T23:12:55.000Z"
+      },
+      "status": {
+        "privacyStatus": "public"
+      }
+    },
+    {
+      "kind": "youtube#playlistItem",
+      "etag": "\"p4VTdlkQv3HQeTEaXgvLePAydmU/EytFUclKsULcgERdD4tomuJkbfk\"",
+      "id": "UExPVTJYTFl4bXNJSkpWbkhXbWQxcWZyMENhcTRWWkN1NC5GNjNDRDREMDQxOThCMDQ2",
+      "snippet": {
+        "publishedAt": "2019-05-10T21:00:10.000Z",
+        "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+        "title": "Google I/O'19 - Eve Ekman & William Russell Interview",
+        "description": "Eve Ekman, Director of Training at the Greater Good Science Center at UC Berkeley and William Russell, Creative Director at MONOM Berlin's Center for Spatial Sound, discuss their work with Google AI to create an original piece fostering emotional connection and empathy.\n\nGoogle I/O 2019 All Sessions Playlist → https://goo.gle/io19allsessions \nLearn more on the I/O Website → https://google.com/io\n\nSubscribe to the Google Developers Channel → https://goo.gle/developers",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/qlBMqFxUu8A/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/qlBMqFxUu8A/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/qlBMqFxUu8A/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          },
+          "standard": {
+            "url": "https://i.ytimg.com/vi/qlBMqFxUu8A/sddefault.jpg",
+            "width": 640,
+            "height": 480
+          },
+          "maxres": {
+            "url": "https://i.ytimg.com/vi/qlBMqFxUu8A/maxresdefault.jpg",
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "channelTitle": "Google Developers",
+        "playlistId": "PLOU2XLYxmsIJJVnHWmd1qfr0Caq4VZCu4",
+        "position": 9,
+        "resourceId": {
+          "kind": "youtube#video",
+          "videoId": "qlBMqFxUu8A"
+        }
+      },
+      "contentDetails": {
+        "videoId": "qlBMqFxUu8A",
+        "videoPublishedAt": "2019-09-09T21:21:51.000Z"
+      },
+      "status": {
+        "privacyStatus": "public"
+      }
+    }
+  ]
+}

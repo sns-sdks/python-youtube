@@ -1,216 +1,468 @@
 {
   "kind": "youtube#videoListResponse",
-  "etag": "\"nlUZBA6NbTS7q9G8D1GljyfTIWI/NSsEBa-BiuB45CFygDa7zAe22Us\"",
+  "etag": "\"p4VTdlkQv3HQeTEaXgvLePAydmU/pfOBFcBhNgBG2nJJuQZWRrmUJic\"",
   "pageInfo": {
-    "totalResults": 2,
-    "resultsPerPage": 2
+    "totalResults": 164,
+    "resultsPerPage": 5
   },
   "items": [
     {
       "kind": "youtube#video",
-      "etag": "\"nlUZBA6NbTS7q9G8D1GljyfTIWI/Qu-kH-IutRJCVblHkw2pmw7GxuM\"",
-      "id": "ffdXLm8EaYg",
+      "etag": "\"p4VTdlkQv3HQeTEaXgvLePAydmU/BAKt-HABhx8-_VVO9-GWuvyBA_Q\"",
+      "id": "9wCvNsXREls",
       "snippet": {
-        "publishedAt": "2019-06-11T19:30:02.000Z",
-        "channelId": "UCWJ2lWNubArHWmf3FIHbfcQ",
-        "title": "2019 NBA Finals Game 5 Mini-Movie",
-        "description": "The Golden State Warriors fend off elimination in Game 5 of the 2019 NBA Finals, winning 106-105. The Raptors now lead the series 3 games to 2.  The Warriors were led by Stephen Curry who scored 31 points and Klay Thompson who chipped in 26.  The series now shifts to Oakland for Game 6 and the final game at Oracle Arena.\n\nSubscribe to the NBA: http://bit.ly/2rCglzY\n\nFor news, stories, highlights and more, go to our official website at http://www.nba.com\n\nGet NBA LEAGUE PASS: https://nba.app.link/e/yGbauuaHeU",
+        "publishedAt": "2019-09-15T21:17:40.000Z",
+        "channelId": "UCDVYQ4Zhbm3S2dlz7P1GBDg",
+        "title": "Patriots vs. Dolphins Week 2 Highlights | NFL 2019",
+        "description": "The New England Patriots take on the Miami Dolphins during Week 2 of the 2019 NFL season.\n\nSubscribe to NFL: http://j.mp/1L0bVBu\n\nCheck out our other channels:\nNFL Vault http://www.youtube.com/nflvault\nNFL Network http://www.youtube.com/nflnetwork\nNFL Films http://www.youtube.com/nflfilms\nNFL Rush http://www.youtube.com/nflrush\nNFL Play Football https://www.youtube.com/playfootball\nNFL Podcasts https://www.youtube.com/nflpodcasts\n\n#NFL #Patriots #Dolphins",
         "thumbnails": {
           "default": {
-            "url": "https://i.ytimg.com/vi/ffdXLm8EaYg/default.jpg",
+            "url": "https://i.ytimg.com/vi/9wCvNsXREls/default.jpg",
             "width": 120,
             "height": 90
           },
           "medium": {
-            "url": "https://i.ytimg.com/vi/ffdXLm8EaYg/mqdefault.jpg",
+            "url": "https://i.ytimg.com/vi/9wCvNsXREls/mqdefault.jpg",
             "width": 320,
             "height": 180
           },
           "high": {
-            "url": "https://i.ytimg.com/vi/ffdXLm8EaYg/hqdefault.jpg",
+            "url": "https://i.ytimg.com/vi/9wCvNsXREls/hqdefault.jpg",
             "width": 480,
             "height": 360
           },
           "standard": {
-            "url": "https://i.ytimg.com/vi/ffdXLm8EaYg/sddefault.jpg",
+            "url": "https://i.ytimg.com/vi/9wCvNsXREls/sddefault.jpg",
             "width": 640,
             "height": 480
           },
           "maxres": {
-            "url": "https://i.ytimg.com/vi/ffdXLm8EaYg/maxresdefault.jpg",
+            "url": "https://i.ytimg.com/vi/9wCvNsXREls/maxresdefault.jpg",
             "width": 1280,
             "height": 720
           }
         },
-        "channelTitle": "NBA",
+        "channelTitle": "NFL",
         "tags": [
-          "nba",
+          "sp:ty=high",
+          "sp:dt=2019-09-15T17:00:00Z",
+          "sp:st=football",
+          "sp:li=nfl",
+          "sp:ti:home=Mia",
+          "sp:ti:away=NE",
+          "NFL",
+          "Football",
+          "offense",
+          "defense",
+          "American Football",
+          "highlight",
           "highlights",
-          "basketball",
-          "plays",
-          "amazing",
-          "sports",
-          "hoops",
-          "games",
           "game",
-          "golden state warriors",
-          "klay thompson",
-          "toronto raptors",
-          "kawhi leonard",
-          "stephen curry",
-          "nba finals",
+          "sport",
+          "play",
+          "plays",
+          "season",
           "2019",
-          "playoffs",
-          "mvp",
-          "clutch",
-          "kevin durant"
+          "touchdown",
+          "td",
+          "game highlights",
+          "week 2",
+          "best plays",
+          "top plays",
+          "patriots",
+          "new england",
+          "ne",
+          "dolphins",
+          "miami",
+          "mia",
+          "patriots dolphins game highlights",
+          "patriots highlights",
+          "dolphins highlights",
+          "patriots td"
         ],
         "categoryId": "17",
         "liveBroadcastContent": "none",
-        "defaultLanguage": "en",
         "localized": {
-          "title": "2019 NBA Finals Game 5 Mini-Movie",
-          "description": "The Golden State Warriors fend off elimination in Game 5 of the 2019 NBA Finals, winning 106-105. The Raptors now lead the series 3 games to 2.  The Warriors were led by Stephen Curry who scored 31 points and Klay Thompson who chipped in 26.  The series now shifts to Oakland for Game 6 and the final game at Oracle Arena.\n\nSubscribe to the NBA: http://bit.ly/2rCglzY\n\nFor news, stories, highlights and more, go to our official website at http://www.nba.com\n\nGet NBA LEAGUE PASS: https://nba.app.link/e/yGbauuaHeU"
-        },
-        "defaultAudioLanguage": "en"
+          "title": "Patriots vs. Dolphins Week 2 Highlights | NFL 2019",
+          "description": "The New England Patriots take on the Miami Dolphins during Week 2 of the 2019 NFL season.\n\nSubscribe to NFL: http://j.mp/1L0bVBu\n\nCheck out our other channels:\nNFL Vault http://www.youtube.com/nflvault\nNFL Network http://www.youtube.com/nflnetwork\nNFL Films http://www.youtube.com/nflfilms\nNFL Rush http://www.youtube.com/nflrush\nNFL Play Football https://www.youtube.com/playfootball\nNFL Podcasts https://www.youtube.com/nflpodcasts\n\n#NFL #Patriots #Dolphins"
+        }
       },
       "contentDetails": {
-        "duration": "PT6M42S",
+        "duration": "PT8M20S",
         "dimension": "2d",
         "definition": "hd",
         "caption": "false",
         "licensedContent": true,
-        "regionRestriction": {
-          "blocked": [
-            "CN",
-            "TW"
-          ]
-        },
         "projection": "rectangular"
       },
-      "status": {
-        "uploadStatus": "processed",
-        "privacyStatus": "public",
-        "license": "youtube",
-        "embeddable": true,
-        "publicStatsViewable": true
-      },
       "statistics": {
-        "viewCount": "707783",
-        "likeCount": "9244",
-        "dislikeCount": "249",
+        "viewCount": "1051426",
+        "likeCount": "11646",
+        "dislikeCount": "458",
         "favoriteCount": "0",
-        "commentCount": "765"
+        "commentCount": "3280"
       }
     },
     {
       "kind": "youtube#video",
-      "etag": "\"nlUZBA6NbTS7q9G8D1GljyfTIWI/5gcAJRFVPBdUa1b0jFTPWV9kHzI\"",
-      "id": "plhVMWR33go",
+      "etag": "\"p4VTdlkQv3HQeTEaXgvLePAydmU/_Gv23DK628nMp2jGfbPJJb5kh0Y\"",
+      "id": "ovdbrdCIP7U",
       "snippet": {
-        "publishedAt": "2019-06-08T17:00:08.000Z",
-        "channelId": "UCWJ2lWNubArHWmf3FIHbfcQ",
-        "title": "2019 NBA Finals Game 4 Mini-Movie",
-        "description": "The Toronto Raptors take a commanding 3 games to 1 series lead in the 2019 NBA Finals with a 105-92 victory over the Golden State Warriors in Game 4.  Kawhi Leonard once again led the way for the Raptors with 36 points.  Klay Thompson returned to the lineup for the Warriors and scored 28 points in the loss.  The Raptors will look to close out the series in Game 5 back home in Toronto.\n\nSubscribe to the NBA: http://bit.ly/2rCglzY\n\nFor news, stories, highlights and more, go to our official website at http://www.nba.com\n\nGet NBA LEAGUE PASS: https://nba.app.link/e/yGbauuaHeU",
+        "publishedAt": "2019-09-11T23:00:05.000Z",
+        "channelId": "UCJdl3Paao2f3ha5JXMYUCIA",
+        "title": "How EVERY Team Got Its Name & Identity!",
+        "description": "Ever wonder how the NFL got to be where it is today?  Sit back, relax, and enjoy the Evolution of the NFL.\n\n#NFL100\n\nThe NFL Throwback is your home for all things NFL history.\n\nCheck out our other channels:\nNFL Films - YouTube.com/NFLFilms\nNFL Network- YouTube.com/NFLNetwork\nNFL Rush - YouTube.com/NFLRush\nNFL - YouTube.com/NFL\n\n#NFL #NFLThrowback #NFLHistory #Football #AmericanFootball #NFLVault",
         "thumbnails": {
           "default": {
-            "url": "https://i.ytimg.com/vi/plhVMWR33go/default.jpg",
+            "url": "https://i.ytimg.com/vi/ovdbrdCIP7U/default.jpg",
             "width": 120,
             "height": 90
           },
           "medium": {
-            "url": "https://i.ytimg.com/vi/plhVMWR33go/mqdefault.jpg",
+            "url": "https://i.ytimg.com/vi/ovdbrdCIP7U/mqdefault.jpg",
             "width": 320,
             "height": 180
           },
           "high": {
-            "url": "https://i.ytimg.com/vi/plhVMWR33go/hqdefault.jpg",
+            "url": "https://i.ytimg.com/vi/ovdbrdCIP7U/hqdefault.jpg",
             "width": 480,
             "height": 360
           },
           "standard": {
-            "url": "https://i.ytimg.com/vi/plhVMWR33go/sddefault.jpg",
+            "url": "https://i.ytimg.com/vi/ovdbrdCIP7U/sddefault.jpg",
             "width": 640,
             "height": 480
-          },
-          "maxres": {
-            "url": "https://i.ytimg.com/vi/plhVMWR33go/maxresdefault.jpg",
-            "width": 1280,
-            "height": 720
           }
         },
-        "channelTitle": "NBA",
+        "channelTitle": "NFL Throwback",
         "tags": [
-          "nba",
-          "highlights",
-          "basketball",
-          "plays",
-          "amazing",
-          "sports",
-          "hoops",
-          "games",
-          "game",
-          "kawhi",
-          "nba finals",
-          "finals",
-          "steph curry",
-          "klay thompson",
-          "championship",
-          "kyle lowry",
-          "we the north",
-          "toronto",
-          "golden state",
-          "warriors",
-          "raptors",
-          "demarcus cousins",
-          "pascal siakam",
-          "game 4",
-          "oracle",
-          "strength in numbers",
-          "klaw",
-          "splash bros",
-          "title",
-          "marc gasol",
-          "draymond green",
-          "the 6",
-          "the bay"
+          "nfl",
+          "american football",
+          "nfl history",
+          "nfl highlights",
+          "nfl vault",
+          "nfl throwback",
+          "How EVERY NFL Team Got Its Name & Identity",
+          "how every team got its name",
+          "how every nfl team got its name",
+          "evolution of the nfl",
+          "nfl explained",
+          "infograhic",
+          "history of every tean",
+          "history of nfl",
+          "history of logos",
+          "nfl 100",
+          "nfl timeline",
+          "dallas cowboys",
+          "pittsburgh steelers",
+          "cleveland browns",
+          "green bay packers",
+          "chicago bear",
+          "new england patriots",
+          "oakland raiders",
+          "philadelphia eagles"
         ],
         "categoryId": "17",
         "liveBroadcastContent": "none",
-        "defaultLanguage": "en",
         "localized": {
-          "title": "2019 NBA Finals Game 4 Mini-Movie",
-          "description": "The Toronto Raptors take a commanding 3 games to 1 series lead in the 2019 NBA Finals with a 105-92 victory over the Golden State Warriors in Game 4.  Kawhi Leonard once again led the way for the Raptors with 36 points.  Klay Thompson returned to the lineup for the Warriors and scored 28 points in the loss.  The Raptors will look to close out the series in Game 5 back home in Toronto.\n\nSubscribe to the NBA: http://bit.ly/2rCglzY\n\nFor news, stories, highlights and more, go to our official website at http://www.nba.com\n\nGet NBA LEAGUE PASS: https://nba.app.link/e/yGbauuaHeU"
+          "title": "How EVERY Team Got Its Name & Identity!",
+          "description": "Ever wonder how the NFL got to be where it is today?  Sit back, relax, and enjoy the Evolution of the NFL.\n\n#NFL100\n\nThe NFL Throwback is your home for all things NFL history.\n\nCheck out our other channels:\nNFL Films - YouTube.com/NFLFilms\nNFL Network- YouTube.com/NFLNetwork\nNFL Rush - YouTube.com/NFLRush\nNFL - YouTube.com/NFL\n\n#NFL #NFLThrowback #NFLHistory #Football #AmericanFootball #NFLVault"
         },
         "defaultAudioLanguage": "en"
       },
       "contentDetails": {
-        "duration": "PT5M36S",
+        "duration": "PT30M11S",
+        "dimension": "2d",
+        "definition": "hd",
+        "caption": "false",
+        "licensedContent": true,
+        "projection": "rectangular"
+      },
+      "statistics": {
+        "viewCount": "1633545",
+        "likeCount": "35325",
+        "dislikeCount": "590",
+        "favoriteCount": "0",
+        "commentCount": "3016"
+      }
+    },
+    {
+      "kind": "youtube#video",
+      "etag": "\"p4VTdlkQv3HQeTEaXgvLePAydmU/BFykl37TW6WoXg-cNww-lMRC29o\"",
+      "id": "wnhysL6jC9s",
+      "snippet": {
+        "publishedAt": "2019-09-14T19:42:34.000Z",
+        "channelId": "UCqZQlzSHbVJrwrn5XvzrzcA",
+        "title": "Norwich City v. Manchester City | PREMIER LEAGUE HIGHLIGHTS | 9/14/19 | NBC Sports",
+        "description": "Goals from Kenny McLean, Todd Cantwell and Teemu Pukki earned the injury-ravaged Norwich City a famous victory over Manchester City at Carrow Road. #NBCSports #PremierLeague #NorwichCity #ManCity #KennyMcLean #ToddCantwell #TeemuPukki\n» Subscribe to NBC Sports: https://www.youtube.com/nbcsports\n» Watch Live Sports on NBCSports.com: http://www.nbcsports.com/live\n» Get more Premier League news on NBC Sports: https://www.nbcsports.com/soccer\n\nNBC Sports Group serves sports fans 24/7 with premier live events, insightful studio shows, and compelling original programming. NBC Sports is an established leader in the sports media landscape with an unparalleled collection of sports properties that include the Olympics, NFL, Premier League, NHL, NASCAR, PGA TOUR, the Kentucky Derby, Tour de France, French Open, IndyCar and many more. Subscribe to our channel for the latest sporting news and highlights!\n\nThe Premier League across NBC Sports Group launched in 2013 with their biggest and broadest programming commitment to-date in the United States. With live multi-platform coverage of all 380 games, analysis from best-in-class talent and extensive surrounding coverage all week long, NBC Sports Group has become the ultimate destination for new and existing Premier League fans.\n\nThe Premier League maintains strong and consistent reach across NBC, NBCSN, CNBC, and NBC Sports Group’s live streaming products, led by the biggest stars and most prestigious teams in the world.\n\nVisit NBC Sports: https://www.nbcsports.com\nFind Premier League on NBC Sports: https://www.nbcsports.com/soccer/premier-league\nFind NASCAR on NBC Sports: https://www.nbcsports.com/motors/nascar\nFind Sunday Night Football on NBC Sports: https://www.nbcsports.com/nfl/sunday-night-football\nFind NBC Sports on Facebook: https://www.facebook.com/NBCSports\nFollow NBC Sports on Twitter: https://twitter.com/nbcsports\nFollow NBC Sports on Instagram: https://www.instagram.com/nbcsports/\n\nNorwich City v. Manchester City | PREMIER LEAGUE HIGHLIGHTS | 9/14/19 | NBC Sports\nhttps://www.youtube.com/nbcsports",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/wnhysL6jC9s/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/wnhysL6jC9s/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/wnhysL6jC9s/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          },
+          "standard": {
+            "url": "https://i.ytimg.com/vi/wnhysL6jC9s/sddefault.jpg",
+            "width": 640,
+            "height": 480
+          },
+          "maxres": {
+            "url": "https://i.ytimg.com/vi/wnhysL6jC9s/maxresdefault.jpg",
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "channelTitle": "NBC Sports",
+        "tags": [
+          "NBC Sports",
+          "NBC Sports network",
+          "NBCSN",
+          "NBC Premier League 2019",
+          "2019/20 Premier league",
+          "premier league matches",
+          "English football league",
+          "premier league matches 2019",
+          "premier league matches highlights",
+          "premier league matchweek 5",
+          "Aguero",
+          "Sergio Aguero",
+          "Norwich City",
+          "manchester city",
+          "man city",
+          "man city vs norwich",
+          "Todd Cantwell",
+          "Teemu Pukki",
+          "Kenny McLean",
+          "Norwich City v. Manchester City",
+          "sp:ty=high",
+          "sp:dt=2019-09-14T17:30:00Z",
+          "sp:st=soccer",
+          "sp:li=epl",
+          "sp:ti:home=NOR",
+          "sp:ti:away=MCI"
+        ],
+        "categoryId": "17",
+        "liveBroadcastContent": "none",
+        "localized": {
+          "title": "Norwich City v. Manchester City | PREMIER LEAGUE HIGHLIGHTS | 9/14/19 | NBC Sports",
+          "description": "Goals from Kenny McLean, Todd Cantwell and Teemu Pukki earned the injury-ravaged Norwich City a famous victory over Manchester City at Carrow Road. #NBCSports #PremierLeague #NorwichCity #ManCity #KennyMcLean #ToddCantwell #TeemuPukki\n» Subscribe to NBC Sports: https://www.youtube.com/nbcsports\n» Watch Live Sports on NBCSports.com: http://www.nbcsports.com/live\n» Get more Premier League news on NBC Sports: https://www.nbcsports.com/soccer\n\nNBC Sports Group serves sports fans 24/7 with premier live events, insightful studio shows, and compelling original programming. NBC Sports is an established leader in the sports media landscape with an unparalleled collection of sports properties that include the Olympics, NFL, Premier League, NHL, NASCAR, PGA TOUR, the Kentucky Derby, Tour de France, French Open, IndyCar and many more. Subscribe to our channel for the latest sporting news and highlights!\n\nThe Premier League across NBC Sports Group launched in 2013 with their biggest and broadest programming commitment to-date in the United States. With live multi-platform coverage of all 380 games, analysis from best-in-class talent and extensive surrounding coverage all week long, NBC Sports Group has become the ultimate destination for new and existing Premier League fans.\n\nThe Premier League maintains strong and consistent reach across NBC, NBCSN, CNBC, and NBC Sports Group’s live streaming products, led by the biggest stars and most prestigious teams in the world.\n\nVisit NBC Sports: https://www.nbcsports.com\nFind Premier League on NBC Sports: https://www.nbcsports.com/soccer/premier-league\nFind NASCAR on NBC Sports: https://www.nbcsports.com/motors/nascar\nFind Sunday Night Football on NBC Sports: https://www.nbcsports.com/nfl/sunday-night-football\nFind NBC Sports on Facebook: https://www.facebook.com/NBCSports\nFollow NBC Sports on Twitter: https://twitter.com/nbcsports\nFollow NBC Sports on Instagram: https://www.instagram.com/nbcsports/\n\nNorwich City v. Manchester City | PREMIER LEAGUE HIGHLIGHTS | 9/14/19 | NBC Sports\nhttps://www.youtube.com/nbcsports"
+        },
+        "defaultAudioLanguage": "en"
+      },
+      "contentDetails": {
+        "duration": "PT13M29S",
         "dimension": "2d",
         "definition": "hd",
         "caption": "false",
         "licensedContent": true,
         "regionRestriction": {
-          "blocked": [
-            "CN",
-            "TW"
+          "allowed": [
+            "US"
           ]
         },
         "projection": "rectangular"
       },
-      "status": {
-        "uploadStatus": "processed",
-        "privacyStatus": "public",
-        "license": "youtube",
-        "embeddable": true,
-        "publicStatsViewable": true
+      "statistics": {
+        "viewCount": "434677",
+        "likeCount": "5524",
+        "dislikeCount": "135",
+        "favoriteCount": "0",
+        "commentCount": "868"
+      }
+    },
+    {
+      "kind": "youtube#video",
+      "etag": "\"p4VTdlkQv3HQeTEaXgvLePAydmU/0CixtuJjTZA-uav1bz7wOvO4wWE\"",
+      "id": "oUvxwwO7oJg",
+      "snippet": {
+        "publishedAt": "2019-09-10T23:39:29.000Z",
+        "channelId": "UC4mLlRa_dezwvytudo9s1sw",
+        "title": "DEAR NEW YORK JETS.. (and every other NFL team)",
+        "description": "After seeing how the New York Jets kicker and other kickers around the NFL struggled, I decided to make a case for myself..\n\nSUB TO MY OTHER CHANNEL : https://www.youtube.com/channel/UCBNQjAJURDiuWHnJvd4f9DA\n\nCOP THE MERCH: http://www.shopdeestroying.com\n\nJOIN THE FAMILY, SUBSCRIBE: https://www.youtube.com/deestroying\n\nFOLLOW MY SOCIAL MEDIA:\nTwitter : https://www.twitter.com/deestroying\nIG : https://www.instagram.com/deestroying",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/oUvxwwO7oJg/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/oUvxwwO7oJg/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/oUvxwwO7oJg/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          },
+          "standard": {
+            "url": "https://i.ytimg.com/vi/oUvxwwO7oJg/sddefault.jpg",
+            "width": 640,
+            "height": 480
+          },
+          "maxres": {
+            "url": "https://i.ytimg.com/vi/oUvxwwO7oJg/maxresdefault.jpg",
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "channelTitle": "Deestroying",
+        "tags": [
+          "high school football",
+          "college football",
+          "NFL",
+          "friday night lights",
+          "last chance high",
+          "deestroying",
+          "destroying",
+          "ncaa football",
+          "nfl highlights",
+          "cfl highlights",
+          "highschool highlights",
+          "quarterback",
+          "wr",
+          "tom brady",
+          "antonio brown",
+          "nfl kickoff",
+          "week 1",
+          "db wr 1 on 1",
+          "7on7",
+          "youtube pro football player",
+          "gring dont stop",
+          "path to the draft",
+          "donald de la haye",
+          "odell beckham",
+          "kicker",
+          "football vines",
+          "new york jets",
+          "longest field goal"
+        ],
+        "categoryId": "24",
+        "liveBroadcastContent": "none",
+        "localized": {
+          "title": "DEAR NEW YORK JETS.. (and every other NFL team)",
+          "description": "After seeing how the New York Jets kicker and other kickers around the NFL struggled, I decided to make a case for myself..\n\nSUB TO MY OTHER CHANNEL : https://www.youtube.com/channel/UCBNQjAJURDiuWHnJvd4f9DA\n\nCOP THE MERCH: http://www.shopdeestroying.com\n\nJOIN THE FAMILY, SUBSCRIBE: https://www.youtube.com/deestroying\n\nFOLLOW MY SOCIAL MEDIA:\nTwitter : https://www.twitter.com/deestroying\nIG : https://www.instagram.com/deestroying"
+        }
+      },
+      "contentDetails": {
+        "duration": "PT19M53S",
+        "dimension": "2d",
+        "definition": "hd",
+        "caption": "false",
+        "licensedContent": true,
+        "projection": "rectangular"
       },
       "statistics": {
-        "viewCount": "897455",
-        "likeCount": "12503",
-        "dislikeCount": "285",
+        "viewCount": "2833926",
+        "likeCount": "85131",
+        "dislikeCount": "2320",
         "favoriteCount": "0",
-        "commentCount": "1413"
+        "commentCount": "8926"
+      }
+    },
+    {
+      "kind": "youtube#video",
+      "etag": "\"p4VTdlkQv3HQeTEaXgvLePAydmU/U5M17xe-vJbWSYe2tw0r7qwitO4\"",
+      "id": "k91qEXgGm_Y",
+      "snippet": {
+        "publishedAt": "2019-09-13T20:00:04.000Z",
+        "channelId": "UCiWLfSweyRNmLpgEHekhoAg",
+        "title": "NBA players texted me 'what about Melo?' after Joe Johnson got signed - Rachel Nichols | The Jump",
+        "description": "In her daily monologue, Rachel Nichols discusses what Joe Johnson signing with the Detroit Pistons could mean for the future of Carmelo Anthony, who has yet to find an NBA team despite his All-Star tenure with teams like the Denver Nuggets and New York Knicks. She is then (4:08) joined by Dave McMenamin and Richard Jefferson discuss why Melo hasn't been signed yet.\n#TheJump #NBA #Sports\n\n✔ Subscribe to ESPN+ https://plus.espn.com/\n✔ Get the ESPN App: http://www.espn.com/espn/apps/espn\n✔ Subscribe to ESPN on YouTube: http://es.pn/SUBSCRIBEtoYOUTUBE\n✔ Subscribe to ESPN FC on YouTube: http://bit.ly/SUBSCRIBEtoESPNFC\n✔ Subscribe to NBA on ESPN on YouTube: http://bit.ly/SUBSCRIBEtoNBAonESPN\n✔ Watch ESPN on YouTube TV: http://es.pn/YouTubeTV\n\nExclusive interviews with Rachel Nichols https://urlzs.com/jNURe\nStephen A. Smith on ESPN https://urlzs.com/W19Tz\n\nESPN on Social Media:\n► Follow on Twitter: http://www.twitter.com/espn\n► Like on Facebook: http://www.facebook.com/espn\n► Follow on Instagram: www.instagram.com/f/espn\n\nVisit ESPN on YouTube to get up-to-the-minute sports news coverage, scores, highlights and commentary for NFL, NHL, MLB, NBA, College Football, NCAA Basketball, soccer and more. \n\nMore on ESPN.com: http://www.espn.com",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/k91qEXgGm_Y/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/k91qEXgGm_Y/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/k91qEXgGm_Y/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          },
+          "standard": {
+            "url": "https://i.ytimg.com/vi/k91qEXgGm_Y/sddefault.jpg",
+            "width": 640,
+            "height": 480
+          },
+          "maxres": {
+            "url": "https://i.ytimg.com/vi/k91qEXgGm_Y/maxresdefault.jpg",
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "channelTitle": "ESPN",
+        "tags": [
+          "carmelo anthony",
+          "melo",
+          "carmelo anthony first take",
+          "carmelo anthony workout",
+          "melo workout",
+          "melo first take",
+          "melo interview",
+          "carmelo anthony interview",
+          "carmelo anthony stephen a smith",
+          "houston rockets",
+          "new york knicks",
+          "knicks",
+          "rockets",
+          "oklahoma city thunder",
+          "okc thunder",
+          "thunder",
+          "carmelo anthony lakers",
+          "melo lakers",
+          "carmelo anthony mix",
+          "melo mix",
+          "the jump",
+          "the jump nba",
+          "the jump today",
+          "rachel nichols",
+          "richard jefferson",
+          "dave mcmenamin",
+          "espn",
+          "espn live",
+          "nba",
+          "basketball",
+          "lakers"
+        ],
+        "categoryId": "17",
+        "liveBroadcastContent": "none",
+        "defaultLanguage": "en",
+        "localized": {
+          "title": "NBA players texted me 'what about Melo?' after Joe Johnson got signed - Rachel Nichols | The Jump",
+          "description": "In her daily monologue, Rachel Nichols discusses what Joe Johnson signing with the Detroit Pistons could mean for the future of Carmelo Anthony, who has yet to find an NBA team despite his All-Star tenure with teams like the Denver Nuggets and New York Knicks. She is then (4:08) joined by Dave McMenamin and Richard Jefferson discuss why Melo hasn't been signed yet.\n#TheJump #NBA #Sports\n\n✔ Subscribe to ESPN+ https://plus.espn.com/\n✔ Get the ESPN App: http://www.espn.com/espn/apps/espn\n✔ Subscribe to ESPN on YouTube: http://es.pn/SUBSCRIBEtoYOUTUBE\n✔ Subscribe to ESPN FC on YouTube: http://bit.ly/SUBSCRIBEtoESPNFC\n✔ Subscribe to NBA on ESPN on YouTube: http://bit.ly/SUBSCRIBEtoNBAonESPN\n✔ Watch ESPN on YouTube TV: http://es.pn/YouTubeTV\n\nExclusive interviews with Rachel Nichols https://urlzs.com/jNURe\nStephen A. Smith on ESPN https://urlzs.com/W19Tz\n\nESPN on Social Media:\n► Follow on Twitter: http://www.twitter.com/espn\n► Like on Facebook: http://www.facebook.com/espn\n► Follow on Instagram: www.instagram.com/f/espn\n\nVisit ESPN on YouTube to get up-to-the-minute sports news coverage, scores, highlights and commentary for NFL, NHL, MLB, NBA, College Football, NCAA Basketball, soccer and more. \n\nMore on ESPN.com: http://www.espn.com"
+        },
+        "defaultAudioLanguage": "en"
+      },
+      "contentDetails": {
+        "duration": "PT6M31S",
+        "dimension": "2d",
+        "definition": "hd",
+        "caption": "false",
+        "licensedContent": true,
+        "projection": "rectangular"
+      },
+      "statistics": {
+        "viewCount": "931022",
+        "likeCount": "8683",
+        "dislikeCount": "562",
+        "favoriteCount": "0",
+        "commentCount": "2965"
       }
     }
   ]

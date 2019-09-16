@@ -7,6 +7,48 @@ CHANNEL_RESOURCE_PROPERTIES = {
     'statistics', 'status', 'topicDetails'
 }
 
+PLAYLIST_RESOURCE_PROPERTIES = {
+    'id', 'contentDetails', 'localizations',
+    'snippet', 'status'
+}
+
+PLAYLIST_ITEM_RESOURCE_PROPERTIES = {
+    'id', 'contentDetails', 'snippet', 'status', 'statistics',
+    'status', 'topicDetails'
+}
+
+VIDEO_RESOURCE_PROPERTIES = {
+    'id', 'contentDetails', 'snippet', 'statistics', 'status',
+    'topicDetails',
+}
+
+COMMENT_THREAD_RESOURCE_PROPERTIES = {
+    'id', 'replies', 'snippet'
+}
+
+COMMENT_RESOURCE_PROPERTIES = {
+    'id', 'snippet'
+}
+
+VIDEO_CATEGORY_RESOURCE_PROPERTIES = {
+    'id', 'snippet'
+}
+
+GUIDE_CATEGORY_RESOURCE_PROPERTIES = {
+    'id', 'snippet'
+}
+
+RESOURCE_PARTS_MAPPING = {
+    'channels': CHANNEL_RESOURCE_PROPERTIES,
+    'playlists': PLAYLIST_RESOURCE_PROPERTIES,
+    'playlistItems': PLAYLIST_ITEM_RESOURCE_PROPERTIES,
+    'videos': VIDEO_RESOURCE_PROPERTIES,
+    'commentTreads': COMMENT_THREAD_RESOURCE_PROPERTIES,
+    'comments': COMMENT_RESOURCE_PROPERTIES,
+    'videoCategories': VIDEO_CATEGORY_RESOURCE_PROPERTIES,
+    'guideCategories': GUIDE_CATEGORY_RESOURCE_PROPERTIES
+}
+
 CHANNEL_TOPICS = {
     # Music topics
     '/m/04rlf': 'Music (parent topic)',
