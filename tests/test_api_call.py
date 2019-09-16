@@ -203,7 +203,7 @@ class TestApiCall(unittest.TestCase):
             self.BASE_URL + 'videos',
             body=videos_data_by_filter, status=200
         )
-        res, summary= self.api.get_video_by_filter(
+        res, summary = self.api.get_video_by_filter(
             chart='mostPopular',
             region_code='US',
         )

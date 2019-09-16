@@ -864,7 +864,9 @@ class Api(object):
                             all_to_channel_id=None,
                             channel_id=None,
                             video_id=None,
+                            parts=None,
                             order='time',
+                            search_term=None,
                             limit=20,
                             count=20,
                             return_json=False):
@@ -885,9 +887,14 @@ class Api(object):
             video_id (str, optional)
                 If you provide video id by this parameter.
                 Will return comment threads containing comments about the specified video.
+            parts (str, optional)
+                Comma-separated list of one or more commentThreads resource properties.
+                If not provided. will use default public properties.
             order (str, optional)
                 Provide the response order type. Valid value are: time, relevance.
                 Default is time. order by the commented time.
+            search_term (str, optional)
+                If you provide this. Only return the comments that contain the search terms.
             limit (int, optional)
                 Each request retrieve comment threads from data api.
                 For comment threads, this should not be more than 100.
@@ -901,9 +908,25 @@ class Api(object):
         Returns:
             The list data for you given comment thread.
         """
-        part = 'id,snippet,replies'
+        if parts is None:
+            parts = constants.COMMENT_THREAD_RESOURCE_PROPERTIES
+        else:
+            try:
+                parts = set(parts.split(','))
+            except AttributeError:
+                raise PyYouTubeException(ErrorMessage(
+                    status_code=ErrorCode.INVALID_PARAMS,
+                    message='parts must be comma-separated list, like id,snippet '
+                ))
+            if not constants.COMMENT_THREAD_RESOURCE_PROPERTIES.issuperset(parts):
+                raise PyYouTubeException(ErrorMessage(
+                    status_code=ErrorCode.INVALID_PARAMS,
+                    message='parts must be comma-separated list, like id,snippet '
+                ))
+        parts = ','.join(parts)
+
         args = {
-            'part': part,
+            'part': parts,
             'maxResults': limit
         }
         if all_to_channel_id is not None:
@@ -914,15 +937,18 @@ class Api(object):
             args['videoId'] = video_id
         else:
             raise PyYouTubeException(ErrorMessage(
-                status_code=10007,
+                status_code=ErrorCode.MISSING_PARAMS,
                 message='Target id must specify. either of all_to_channel_id, channel_id,video_id'
             ))
 
         if order not in ['time', 'relevance']:
             raise PyYouTubeException(ErrorMessage(
-                status_code=10007,
+                status_code=ErrorCode.INVALID_PARAMS,
                 message='Order type must be time or relevance.'
             ))
+
+        if search_term is not None:
+            args['searchTerms'] = search_term
 
         comment_threads = []
         next_page_token = None
@@ -945,6 +971,7 @@ class Api(object):
 
     def get_comment_thread_info(self,
                                 comment_thread_id=None,
+                                parts=None,
                                 return_json=False):
         """
         Retrieve the comment thread info by single id.
@@ -955,22 +982,41 @@ class Api(object):
             comment_thread_id (str)
                 The id parameter specifies a comma-separated list of comment thread IDs
                 for the resources that should be retrieved.
+            parts (str, optional)
+                Comma-separated list of one or more commentThreads resource properties.
+                If not provided. will use default public properties.
             return_json(bool, optional)
                 The return data type. If you set True JSON data will be returned.
                 False will return pyyoutube.CommentThread.
         Returns:
             The list data for you given comment thread.
         """
-        part = 'id,snippet,replies'
+        if parts is None:
+            parts = constants.COMMENT_THREAD_RESOURCE_PROPERTIES
+        else:
+            try:
+                parts = set(parts.split(','))
+            except AttributeError:
+                raise PyYouTubeException(ErrorMessage(
+                    status_code=ErrorCode.INVALID_PARAMS,
+                    message='parts must be comma-separated list, like id,snippet '
+                ))
+            if not constants.COMMENT_THREAD_RESOURCE_PROPERTIES.issuperset(parts):
+                raise PyYouTubeException(ErrorMessage(
+                    status_code=ErrorCode.INVALID_PARAMS,
+                    message='parts must be comma-separated list, like id,snippet '
+                ))
+        parts = ','.join(parts)
+
         if comment_thread_id is None:
             raise PyYouTubeException(ErrorMessage(
-                status_code=10005,
+                status_code=ErrorCode.MISSING_PARAMS,
                 message='Must Specify the id for the video'
             ))
 
         args = {
             'id': comment_thread_id,
-            'part': part
+            'part': parts
         }
 
         resp = self._request(
@@ -986,6 +1032,7 @@ class Api(object):
 
     def get_comments_by_parent(self,
                                parent_id=None,
+                               parts=None,
                                limit=20,
                                count=20,
                                return_json=False):
@@ -998,6 +1045,9 @@ class Api(object):
             parent_id (str, optional)
                 Provide the ID of the comment for which replies should be retrieved.
                 Now YouTube currently supports replies only for top-level comments
+            parts (str, optional)
+                Comma-separated list of one or more comments resource properties.
+                If not provided. will use default public properties.
             limit (int, optional)
                 Each request retrieve comments from data api.
                 For comments, this should not be more than 100.
@@ -1011,16 +1061,32 @@ class Api(object):
         Returns:
             The list data for you given comment.
         """
-        part = 'id,snippet'
+        if parts is None:
+            parts = constants.COMMENT_RESOURCE_PROPERTIES
+        else:
+            try:
+                parts = set(parts.split(','))
+            except AttributeError:
+                raise PyYouTubeException(ErrorMessage(
+                    status_code=ErrorCode.INVALID_PARAMS,
+                    message='parts must be comma-separated list, like id,snippet '
+                ))
+            if not constants.COMMENT_RESOURCE_PROPERTIES.issuperset(parts):
+                raise PyYouTubeException(ErrorMessage(
+                    status_code=ErrorCode.INVALID_PARAMS,
+                    message='parts must be comma-separated list, like id,snippet '
+                ))
+        parts = ','.join(parts)
+
         args = {
-            'part': part,
+            'part': parts,
             'maxResults': limit,
         }
         if parent_id is not None:
             args['parentId'] = parent_id
         else:
             raise PyYouTubeException(ErrorMessage(
-                status_code=10007,
+                status_code=ErrorCode.MISSING_PARAMS,
                 message='Parent comment id must specified'
             ))
 
@@ -1045,6 +1111,7 @@ class Api(object):
 
     def get_comment_info(self,
                          comment_id=None,
+                         parts=None,
                          return_json=False):
         """
         Retrieve comment data by comment id.
@@ -1053,21 +1120,40 @@ class Api(object):
             comment_id (str, optional)
                 Provide a comma-separated list of comment IDs or just a comment id
                 for the resources that are being retrieved
+            parts (str, optional)
+                Comma-separated list of one or more comments resource properties.
+                If not provided. will use default public properties.
             return_json(bool, optional)
                 The return data type. If you set True JSON data will be returned.
                 False will return pyyoutube.Comment.
         Returns:
             The list data for you given comment id.
         """
-        part = 'id,snippet'
+        if parts is None:
+            parts = constants.COMMENT_RESOURCE_PROPERTIES
+        else:
+            try:
+                parts = set(parts.split(','))
+            except AttributeError:
+                raise PyYouTubeException(ErrorMessage(
+                    status_code=ErrorCode.INVALID_PARAMS,
+                    message='parts must be comma-separated list, like id,snippet '
+                ))
+            if not constants.COMMENT_RESOURCE_PROPERTIES.issuperset(parts):
+                raise PyYouTubeException(ErrorMessage(
+                    status_code=ErrorCode.INVALID_PARAMS,
+                    message='parts must be comma-separated list, like id,snippet '
+                ))
+        parts = ','.join(parts)
+
         args = {
-            'part': part,
+            'part': parts,
         }
         if comment_id is not None:
             args['id'] = comment_id
         else:
             raise PyYouTubeException(ErrorMessage(
-                status_code=10007,
+                status_code=ErrorCode.MISSING_PARAMS,
                 message='Comment id must specified'
             ))
 
@@ -1084,6 +1170,7 @@ class Api(object):
     def get_video_categories(self,
                              category_id=None,
                              region_code=None,
+                             parts=None,
                              hl='en_US',
                              return_json=False):
         """
@@ -1098,6 +1185,9 @@ class Api(object):
             region_code (str, optional)
                 Provide country code for the list of video categories available.
                 The country code is an ISO 3166-1 alpha-2 country code.
+            parts (str, optional)
+                Comma-separated list of one or more videoCategories resource properties.
+                If not provided. will use default public properties.
             hl (str, optional)
                 Specifies the language that should be used for text values.
                 Default is en_US.
@@ -1107,14 +1197,30 @@ class Api(object):
         Returns:
             The list of categories.
         """
-        part = 'id,snippet'
+        if parts is None:
+            parts = constants.VIDEO_CATEGORY_RESOURCE_PROPERTIES
+        else:
+            try:
+                parts = set(parts.split(','))
+            except AttributeError:
+                raise PyYouTubeException(ErrorMessage(
+                    status_code=ErrorCode.INVALID_PARAMS,
+                    message='parts must be comma-separated list, like id,snippet '
+                ))
+            if not constants.VIDEO_CATEGORY_RESOURCE_PROPERTIES.issuperset(parts):
+                raise PyYouTubeException(ErrorMessage(
+                    status_code=ErrorCode.INVALID_PARAMS,
+                    message='parts must be comma-separated list, like id,snippet '
+                ))
+        parts = ','.join(parts)
+
         args = {
-            'part': part,
+            'part': parts,
             'hl': hl,
         }
         if all([category_id, region_code]):
             raise PyYouTubeException(ErrorMessage(
-                status_code=10008,
+                status_code=ErrorCode.INVALID_PARAMS,
                 message='Incompatible parameters specified in the request: regionCode, category_id'
             ))
 
@@ -1124,7 +1230,7 @@ class Api(object):
             args['regionCode'] = region_code
         else:
             raise PyYouTubeException(ErrorMessage(
-                status_code=10007,
+                status_code=ErrorCode.MISSING_PARAMS,
                 message='Must specified either category id or region code.'
             ))
 
@@ -1142,6 +1248,7 @@ class Api(object):
     def get_guide_categories(self,
                              category_id=None,
                              region_code=None,
+                             parts=None,
                              hl='en_US',
                              return_json=False):
         """
@@ -1156,6 +1263,9 @@ class Api(object):
             region_code (str, optional)
                 Provide country code for the list of guide categories available.
                 The country code is an ISO 3166-1 alpha-2 country code.
+            parts (str, optional)
+                Comma-separated list of one or more guideCategories resource properties.
+                If not provided. will use default public properties.
             hl (str, optional)
                 Specifies the language that should be used for text values.
                 Default is en_US.
@@ -1166,14 +1276,30 @@ class Api(object):
         Returns:
             The list of categories.
         """
-        parts = 'id,snippet'
+        if parts is None:
+            parts = constants.GUIDE_CATEGORY_RESOURCE_PROPERTIES
+        else:
+            try:
+                parts = set(parts.split(','))
+            except AttributeError:
+                raise PyYouTubeException(ErrorMessage(
+                    status_code=ErrorCode.INVALID_PARAMS,
+                    message='parts must be comma-separated list, like id,snippet '
+                ))
+            if not constants.GUIDE_CATEGORY_RESOURCE_PROPERTIES.issuperset(parts):
+                raise PyYouTubeException(ErrorMessage(
+                    status_code=ErrorCode.INVALID_PARAMS,
+                    message='parts must be comma-separated list, like id,snippet '
+                ))
+        parts = ','.join(parts)
+
         args = {
             'part': parts,
             'hl': hl,
         }
         if all([category_id, region_code]):
             raise PyYouTubeException(ErrorMessage(
-                status_code=10008,
+                status_code=ErrorCode.INVALID_PARAMS,
                 message='Incompatible parameters specified in the request: regionCode, category_id'
             ))
 
@@ -1183,7 +1309,7 @@ class Api(object):
             args['regionCode'] = region_code
         else:
             raise PyYouTubeException(ErrorMessage(
-                status_code=10007,
+                status_code=ErrorCode.MISSING_PARAMS,
                 message='Must specified either category id or region code.'
             ))
 
