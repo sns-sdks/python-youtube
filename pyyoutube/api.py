@@ -16,6 +16,7 @@ from pyyoutube.models import (
 )
 from pyyoutube.utils import constants
 from pyyoutube.utils.quota_cost import LIST_DATA
+from pyyoutube.utils.params_checker import comma_separated_validator, incompatible_validator, parts_validator
 
 
 class Api(object):
@@ -392,7 +393,7 @@ class Api(object):
             category_id (str, optional)
                 The guide category id for channels associated which that category
             channel_id (str, optional)
-                The id for youtube channel which you want to get.
+                The id or comma-separated id list for youtube channel which you want to get.
             channel_name (str, optional)
                 The name for youtube channel which you want to get.
             mine (bool, optional)
@@ -410,30 +411,14 @@ class Api(object):
         Returns:
             The data for you given channel.
         """
+        comma_separated_validator(channel_id=channel_id, parts=parts)
+        incompatible_validator(category_id=category_id, channel_id=channel_id, channel_name=channel_name, mine=mine)
 
         if parts is None:
             parts = constants.CHANNEL_RESOURCE_PROPERTIES
+            parts = ','.join(parts)
         else:
-            try:
-                parts = set(parts.split(','))
-            except AttributeError:
-                raise PyYouTubeException(ErrorMessage(
-                    status_code=ErrorCode.INVALID_PARAMS,
-                    message='parts must be comma-separated list, like id,snippet'
-                ))
-            if not constants.CHANNEL_RESOURCE_PROPERTIES.issuperset(parts):
-                not_support_parts = parts.difference(constants.CHANNEL_RESOURCE_PROPERTIES)
-                raise PyYouTubeException(ErrorMessage(
-                    status_code=ErrorCode.INVALID_PARAMS,
-                    message=f'Part for {not_support_parts} not support Now'
-                ))
-        parts = ','.join(parts)
-
-        if sum([category_id is not None, channel_id is not None, channel_name is not None, mine is not None]) > 1:
-            raise PyYouTubeException(ErrorMessage(
-                status_code=ErrorCode.INVALID_PARAMS,
-                message='Incompatible parameters specified for category_id,channel_id,channel_name,mine'
-            ))
+            parts_validator('channels', parts=parts)
 
         args = {
             'hl': hl,
@@ -447,11 +432,6 @@ class Api(object):
             args['categoryId'] = channel_id
         elif mine is not None:
             args['mine'] = mine
-        else:
-            raise PyYouTubeException(ErrorMessage(
-                status_code=ErrorCode.MISSING_PARAMS,
-                message='Specify at least one of category_id,channel_id,channel_name,mine'
-            ))
 
         resp = self._request(
             resource='channels',
@@ -514,45 +494,28 @@ class Api(object):
             return tuple.
             (playlist data, playlist summary)
         """
+
+        comma_separated_validator(playlist_id=playlist_id)
+        incompatible_validator(channel_id=channel_id, playlist_id=playlist_id, mine=mine)
+
         if parts is None:
             parts = constants.PLAYLIST_RESOURCE_PROPERTIES
+            parts = ','.join(parts)
         else:
-            try:
-                parts = set(parts.split(','))
-            except AttributeError:
-                raise PyYouTubeException(ErrorMessage(
-                    status_code=ErrorCode.INVALID_PARAMS,
-                    message='parts must be comma-separated list, like id,snippet'
-                ))
-            if not constants.PLAYLIST_RESOURCE_PROPERTIES.issuperset(parts):
-                not_support_parts = parts.difference(constants.PLAYLIST_RESOURCE_PROPERTIES)
-                raise PyYouTubeException(ErrorMessage(
-                    status_code=ErrorCode.INVALID_PARAMS,
-                    message=f'Part for {not_support_parts} not support Now'
-                ))
-        parts = ','.join(parts)
+            parts_validator('playlists', parts=parts)
 
         args = {
             'part': parts,
             'hl': hl,
             'maxResults': limit
         }
-        if sum([channel_id is not None, playlist_id is not None, mine is not None]) > 1:
-            raise PyYouTubeException(ErrorMessage(
-                status_code=ErrorCode.INVALID_PARAMS,
-                message='Incompatible parameters specified for channel_id,playlist_id,mine'
-            ))
+
         if channel_id is not None:
             args['channelId'] = channel_id
         elif playlist_id is not None:
             args['id'] = playlist_id
         elif mine is not None:
             args['mine'] = mine
-        else:
-            raise PyYouTubeException(ErrorMessage(
-                status_code=ErrorCode.MISSING_PARAMS,
-                message='Specify at least one of channel id or playlist id str or mine'
-            ))
 
         playlists = []
         playlists_summary = None
@@ -615,42 +578,25 @@ class Api(object):
             return tuple.
             (playlistItem data, playlistItem summary)
         """
+        comma_separated_validator(playlist_item_id=playlist_item_id, parts=parts)
+        incompatible_validator(playlist_id=playlist_id, playlist_item_id=playlist_item_id)
+
         if parts is None:
             parts = constants.PLAYLIST_ITEM_RESOURCE_PROPERTIES
+            parts = ','.join(parts)
         else:
-            try:
-                parts = set(parts.split(','))
-            except AttributeError:
-                raise PyYouTubeException(ErrorMessage(
-                    status_code=ErrorCode.INVALID_PARAMS,
-                    message='parts must be comma-separated list, like id,snippet'
-                ))
-            if not constants.PLAYLIST_ITEM_RESOURCE_PROPERTIES.issuperset(parts):
-                not_support_parts = parts.difference(constants.PLAYLIST_ITEM_RESOURCE_PROPERTIES)
-                raise PyYouTubeException(ErrorMessage(
-                    status_code=ErrorCode.INVALID_PARAMS,
-                    message=f'Part for {not_support_parts} not support Now'
-                ))
-        parts = ','.join(parts)
+            parts_validator('playlistItems', parts=parts)
 
         args = {
             'part': parts,
             'maxResults': limit,
         }
-        if sum([playlist_id is not None, playlist_item_id is not None]) > 1:
-            raise PyYouTubeException(ErrorMessage(
-                status_code=ErrorCode.INVALID_PARAMS,
-                message='Incompatible parameters specified for playlist_id,playlist_item_id'
-            ))
+
         if playlist_id is not None:
             args['playlistId'] = playlist_id
         elif playlist_item_id is not None:
             args['id'] = playlist_item_id
-        else:
-            raise PyYouTubeException(ErrorMessage(
-                status_code=ErrorCode.MISSING_PARAMS,
-                message='Specify at least one of channel id or playlist id(id list)'
-            ))
+
         if video_id is not None:
             args['videoId'] = video_id
 
@@ -699,29 +645,14 @@ class Api(object):
         Returns:
             The data for you given video.
         """
+        comma_separated_validator(video_id=video_id, parts=parts)
+        incompatible_validator(video_id=video_id)
+
         if parts is None:
             parts = constants.VIDEO_RESOURCE_PROPERTIES
+            parts = ','.join(parts)
         else:
-            try:
-                parts = set(parts.split(','))
-            except AttributeError:
-                raise PyYouTubeException(ErrorMessage(
-                    status_code=ErrorCode.INVALID_PARAMS,
-                    message='parts must be comma-separated list, like id,snippet'
-                ))
-            if not constants.VIDEO_RESOURCE_PROPERTIES.issuperset(parts):
-                not_support_parts = parts.difference(constants.VIDEO_RESOURCE_PROPERTIES)
-                raise PyYouTubeException(ErrorMessage(
-                    status_code=ErrorCode.INVALID_PARAMS,
-                    message=f'Part for {not_support_parts} not support Now'
-                ))
-        parts = ','.join(parts)
-
-        if video_id is None:
-            raise PyYouTubeException(ErrorMessage(
-                status_code=ErrorCode.MISSING_PARAMS,
-                message='Specify the id or comma-separated id list for the video.'
-            ))
+            parts_validator('videos', parts=parts)
 
         args = {
             'id': video_id,
@@ -796,23 +727,14 @@ class Api(object):
             The data for videos by your filter.
         """
 
+        comma_separated_validator(parts=parts)
+        incompatible_validator(chart=chart, my_rating=my_rating)
+
         if parts is None:
             parts = constants.VIDEO_RESOURCE_PROPERTIES
+            parts = ','.join(parts)
         else:
-            try:
-                parts = set(parts.split(','))
-            except AttributeError:
-                raise PyYouTubeException(ErrorMessage(
-                    status_code=ErrorCode.INVALID_PARAMS,
-                    message='parts must be comma-separated list, like id,snippet'
-                ))
-            if not constants.VIDEO_RESOURCE_PROPERTIES.issuperset(parts):
-                not_support_parts = parts.difference(constants.VIDEO_RESOURCE_PROPERTIES)
-                raise PyYouTubeException(ErrorMessage(
-                    status_code=ErrorCode.INVALID_PARAMS,
-                    message=f'Part for {not_support_parts} not support Now'
-                ))
-        parts = ','.join(parts)
+            parts_validator('videos', parts=parts)
 
         args = {
             'part': parts,
@@ -820,26 +742,14 @@ class Api(object):
             'maxResults': limit
         }
 
-        if sum([chart is not None, my_rating is not None]) > 1:
-            raise PyYouTubeException(ErrorMessage(
-                status_code=ErrorCode.INVALID_PARAMS,
-                message='Incompatible parameters specified for chart,my_rating'
-            ))
         if chart is not None:
             args['chart'] = chart
             if region_code is not None:
                 args['regionCode'] = region_code
             elif category_id is not None:
                 args['videoCategoryId'] = category_id
-            else:
-                pass
         elif my_rating is not None:
             args['myRating'] = my_rating
-        else:
-            raise PyYouTubeException(ErrorMessage(
-                status_code=ErrorCode.MISSING_PARAMS,
-                message='Specify at least one of chart or my_rating'
-            ))
 
         videos = []
         videos_summary = None
@@ -911,23 +821,14 @@ class Api(object):
         Returns:
             The list data for you given comment thread.
         """
+
+        comma_separated_validator(parts=parts)
+        incompatible_validator(all_to_channel_id=all_to_channel_id, channel_id=channel_id, video_id=video_id)
         if parts is None:
             parts = constants.COMMENT_THREAD_RESOURCE_PROPERTIES
+            parts = ','.join(parts)
         else:
-            try:
-                parts = set(parts.split(','))
-            except AttributeError:
-                raise PyYouTubeException(ErrorMessage(
-                    status_code=ErrorCode.INVALID_PARAMS,
-                    message='parts must be comma-separated list, like id,snippet'
-                ))
-            if not constants.COMMENT_THREAD_RESOURCE_PROPERTIES.issuperset(parts):
-                not_support_parts = parts.difference(constants.COMMENT_THREAD_RESOURCE_PROPERTIES)
-                raise PyYouTubeException(ErrorMessage(
-                    status_code=ErrorCode.INVALID_PARAMS,
-                    message=f'Part for {not_support_parts} not support Now'
-                ))
-        parts = ','.join(parts)
+            parts_validator('commentThreads', parts=parts)
 
         args = {
             'part': parts,
@@ -939,11 +840,6 @@ class Api(object):
             args['channelId'] = channel_id
         elif video_id is not None:
             args['videoId'] = video_id
-        else:
-            raise PyYouTubeException(ErrorMessage(
-                status_code=ErrorCode.MISSING_PARAMS,
-                message='Target id must specify. either of all_to_channel_id, channel_id,video_id'
-            ))
 
         if order not in ['time', 'relevance']:
             raise PyYouTubeException(ErrorMessage(
@@ -995,29 +891,14 @@ class Api(object):
         Returns:
             The list data for you given comment thread.
         """
+
+        comma_separated_validator(comment_thread_id=comment_thread_id, parts=parts)
+        incompatible_validator(comment_thread_id=comment_thread_id)
         if parts is None:
             parts = constants.COMMENT_THREAD_RESOURCE_PROPERTIES
+            parts = ','.join(parts)
         else:
-            try:
-                parts = set(parts.split(','))
-            except AttributeError:
-                raise PyYouTubeException(ErrorMessage(
-                    status_code=ErrorCode.INVALID_PARAMS,
-                    message='parts must be comma-separated list, like id,snippet'
-                ))
-            if not constants.COMMENT_THREAD_RESOURCE_PROPERTIES.issuperset(parts):
-                not_support_parts = parts.difference(constants.COMMENT_THREAD_RESOURCE_PROPERTIES)
-                raise PyYouTubeException(ErrorMessage(
-                    status_code=ErrorCode.INVALID_PARAMS,
-                    message=f'Part for {not_support_parts} not support Now'
-                ))
-        parts = ','.join(parts)
-
-        if comment_thread_id is None:
-            raise PyYouTubeException(ErrorMessage(
-                status_code=ErrorCode.MISSING_PARAMS,
-                message='Must Specify the id for the video'
-            ))
+            parts_validator('commentThreads', parts=parts)
 
         args = {
             'id': comment_thread_id,
@@ -1066,35 +947,20 @@ class Api(object):
         Returns:
             The list data for you given comment.
         """
+
+        comma_separated_validator(parts=parts)
+        incompatible_validator(parent_id=parent_id)
         if parts is None:
             parts = constants.COMMENT_RESOURCE_PROPERTIES
+            parts = ','.join(parts)
         else:
-            try:
-                parts = set(parts.split(','))
-            except AttributeError:
-                raise PyYouTubeException(ErrorMessage(
-                    status_code=ErrorCode.INVALID_PARAMS,
-                    message='parts must be comma-separated list, like id,snippet'
-                ))
-            if not constants.COMMENT_RESOURCE_PROPERTIES.issuperset(parts):
-                not_support_parts = parts.difference(constants.COMMENT_RESOURCE_PROPERTIES)
-                raise PyYouTubeException(ErrorMessage(
-                    status_code=ErrorCode.INVALID_PARAMS,
-                    message=f'Part for {not_support_parts} not support Now'
-                ))
-        parts = ','.join(parts)
+            parts_validator('comments', parts=parts)
 
         args = {
             'part': parts,
             'maxResults': limit,
+            'parentId': parent_id
         }
-        if parent_id is not None:
-            args['parentId'] = parent_id
-        else:
-            raise PyYouTubeException(ErrorMessage(
-                status_code=ErrorCode.MISSING_PARAMS,
-                message='Parent comment id must specified'
-            ))
 
         comments = []
         next_page_token = None
@@ -1135,34 +1001,18 @@ class Api(object):
         Returns:
             The list data for you given comment id.
         """
+        comma_separated_validator(comment_id=comment_id, parts=parts)
+        incompatible_validator(comment_id=comment_id)
         if parts is None:
             parts = constants.COMMENT_RESOURCE_PROPERTIES
+            parts = ','.join(parts)
         else:
-            try:
-                parts = set(parts.split(','))
-            except AttributeError:
-                raise PyYouTubeException(ErrorMessage(
-                    status_code=ErrorCode.INVALID_PARAMS,
-                    message='parts must be comma-separated list, like id,snippet'
-                ))
-            if not constants.COMMENT_RESOURCE_PROPERTIES.issuperset(parts):
-                not_support_parts = parts.difference(constants.COMMENT_RESOURCE_PROPERTIES)
-                raise PyYouTubeException(ErrorMessage(
-                    status_code=ErrorCode.INVALID_PARAMS,
-                    message=f'Part for {not_support_parts} not support Now'
-                ))
-        parts = ','.join(parts)
+            parts_validator('comments', parts=parts)
 
         args = {
             'part': parts,
+            'id': comment_id
         }
-        if comment_id is not None:
-            args['id'] = comment_id
-        else:
-            raise PyYouTubeException(ErrorMessage(
-                status_code=ErrorCode.MISSING_PARAMS,
-                message='Comment id must specified'
-            ))
 
         resp = self._request(
             resource='comments',
@@ -1204,43 +1054,23 @@ class Api(object):
         Returns:
             The list of categories.
         """
+        comma_separated_validator(category_id=category_id, parts=parts)
+        incompatible_validator(category_id=category_id, region_code=region_code)
         if parts is None:
             parts = constants.VIDEO_CATEGORY_RESOURCE_PROPERTIES
+            parts = ','.join(parts)
         else:
-            try:
-                parts = set(parts.split(','))
-            except AttributeError:
-                raise PyYouTubeException(ErrorMessage(
-                    status_code=ErrorCode.INVALID_PARAMS,
-                    message='parts must be comma-separated list, like id,snippet'
-                ))
-            if not constants.VIDEO_CATEGORY_RESOURCE_PROPERTIES.issuperset(parts):
-                not_support_parts = parts.difference(constants.VIDEO_CATEGORY_RESOURCE_PROPERTIES)
-                raise PyYouTubeException(ErrorMessage(
-                    status_code=ErrorCode.INVALID_PARAMS,
-                    message=f'Part for {not_support_parts} not support Now'
-                ))
-        parts = ','.join(parts)
+            parts_validator('videoCategories', parts=parts)
 
         args = {
             'part': parts,
             'hl': hl,
         }
-        if all([category_id, region_code]):
-            raise PyYouTubeException(ErrorMessage(
-                status_code=ErrorCode.INVALID_PARAMS,
-                message='Incompatible parameters specified in the request: regionCode, category_id'
-            ))
 
         if category_id is not None:
             args['id'] = category_id
         elif region_code is not None:
             args['regionCode'] = region_code
-        else:
-            raise PyYouTubeException(ErrorMessage(
-                status_code=ErrorCode.MISSING_PARAMS,
-                message='Must specified either category id or region code.'
-            ))
 
         resp = self._request(
             resource='videoCategories',
@@ -1284,43 +1114,24 @@ class Api(object):
         Returns:
             The list of categories.
         """
+
+        comma_separated_validator(category_id=category_id, parts=parts)
+        incompatible_validator(category_id=category_id, region_code=region_code)
         if parts is None:
             parts = constants.GUIDE_CATEGORY_RESOURCE_PROPERTIES
+            parts = ','.join(parts)
         else:
-            try:
-                parts = set(parts.split(','))
-            except AttributeError:
-                raise PyYouTubeException(ErrorMessage(
-                    status_code=ErrorCode.INVALID_PARAMS,
-                    message='parts must be comma-separated list, like id,snippet'
-                ))
-            if not constants.GUIDE_CATEGORY_RESOURCE_PROPERTIES.issuperset(parts):
-                not_support_parts = parts.difference(constants.GUIDE_CATEGORY_RESOURCE_PROPERTIES)
-                raise PyYouTubeException(ErrorMessage(
-                    status_code=ErrorCode.INVALID_PARAMS,
-                    message=f'Part for {not_support_parts} not support Now'
-                ))
-        parts = ','.join(parts)
+            parts_validator('guideCategories', parts=parts)
 
         args = {
             'part': parts,
             'hl': hl,
         }
-        if all([category_id, region_code]):
-            raise PyYouTubeException(ErrorMessage(
-                status_code=ErrorCode.INVALID_PARAMS,
-                message='Incompatible parameters specified in the request: regionCode, category_id'
-            ))
 
         if category_id is not None:
             args['id'] = category_id
         elif region_code is not None:
             args['regionCode'] = region_code
-        else:
-            raise PyYouTubeException(ErrorMessage(
-                status_code=ErrorCode.MISSING_PARAMS,
-                message='Must specified either category id or region code.'
-            ))
 
         resp = self._request(
             resource='guideCategories',

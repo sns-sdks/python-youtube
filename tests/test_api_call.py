@@ -150,7 +150,7 @@ class TestApiCall(unittest.TestCase):
             self.api.get_playlist(parts=[])
             self.assertEqual(ex.exception.status_code, pyyoutube.error.ErrorCode.INVALID_PARAMS)
         with self.assertRaises(pyyoutube.PyYouTubeException) as ex:
-            self.api.get_playlist(parts='id,part')
+            self.api.get_playlist(channel_id='UC_x5XG1OV2P6uZZ5FSM9Ttw', parts='id,part')
             self.assertEqual(ex.exception.status_code, pyyoutube.error.ErrorCode.INVALID_PARAMS)
         with self.assertRaises(pyyoutube.PyYouTubeException) as ex:
             self.api.get_playlist(
@@ -198,7 +198,7 @@ class TestApiCall(unittest.TestCase):
             self.api.get_playlist_item(parts=[])
             self.assertEqual(ex.exception.status_code, pyyoutube.error.ErrorCode.INVALID_PARAMS)
         with self.assertRaises(pyyoutube.PyYouTubeException) as ex:
-            self.api.get_playlist_item(parts='id,part')
+            self.api.get_playlist_item(playlist_id='PLOU2XLYxmsIJpufeMHncnQvFOe0K3MhVp', parts='id,part')
             self.assertEqual(ex.exception.status_code, pyyoutube.error.ErrorCode.INVALID_PARAMS)
         with self.assertRaises(pyyoutube.PyYouTubeException) as ex:
             self.api.get_playlist_item(
@@ -246,7 +246,7 @@ class TestApiCall(unittest.TestCase):
             self.api.get_video_by_id(parts=[])
             self.assertEqual(ex.exception.status_code, pyyoutube.error.ErrorCode.INVALID_PARAMS)
         with self.assertRaises(pyyoutube.PyYouTubeException) as ex:
-            self.api.get_video_by_id(parts='id,part')
+            self.api.get_video_by_id(video_id='Ks-_Mh1QhMc', parts='id,part')
             self.assertEqual(ex.exception.status_code, pyyoutube.error.ErrorCode.INVALID_PARAMS)
         with open(f'{self.base_path}video_info.json') as f:
             videos_data_by_id = f.read()
@@ -270,7 +270,7 @@ class TestApiCall(unittest.TestCase):
             self.api.get_video_by_filter(parts=[])
             self.assertEqual(ex.exception.status_code, pyyoutube.error.ErrorCode.INVALID_PARAMS)
         with self.assertRaises(pyyoutube.PyYouTubeException) as ex:
-            self.api.get_video_by_filter(parts='id,part')
+            self.api.get_video_by_filter(chart='mostPopular', parts='id,part')
             self.assertEqual(ex.exception.status_code, pyyoutube.error.ErrorCode.INVALID_PARAMS)
 
         with self.assertRaises(pyyoutube.PyYouTubeException) as ex:
@@ -331,7 +331,7 @@ class TestApiCall(unittest.TestCase):
             self.api.get_comment_threads(parts=[])
             self.assertEqual(ex.exception.status_code, pyyoutube.error.ErrorCode.INVALID_PARAMS)
         with self.assertRaises(pyyoutube.PyYouTubeException) as ex:
-            self.api.get_comment_threads(parts='id,part')
+            self.api.get_comment_threads(channel_id='channel id', parts='id,part')
             self.assertEqual(ex.exception.status_code, pyyoutube.error.ErrorCode.INVALID_PARAMS)
 
         comment_threads = self.api.get_comment_threads(
@@ -360,10 +360,12 @@ class TestApiCall(unittest.TestCase):
             self.api.get_comment_thread_info(parts=[])
             self.assertEqual(ex.exception.status_code, pyyoutube.error.ErrorCode.INVALID_PARAMS)
         with self.assertRaises(pyyoutube.PyYouTubeException) as ex:
-            self.api.get_comment_thread_info(parts='id,part')
+            self.api.get_comment_thread_info(comment_thread_id='Ugz097FRhsQy5CVhAjp4AaABAg', parts='id,part')
             self.assertEqual(ex.exception.status_code, pyyoutube.error.ErrorCode.INVALID_PARAMS)
 
-        comment_threads = self.api.get_comment_thread_info('Ugz097FRhsQy5CVhAjp4AaABAg,UgzhytyP79_PwaDd4UB4AaABAg')
+        comment_threads = self.api.get_comment_thread_info(
+            comment_thread_id='Ugz097FRhsQy5CVhAjp4AaABAg,UgzhytyP79_PwaDd4UB4AaABAg'
+        )
         self.assertEqual(len(comment_threads), 2)
 
         comment_threads = self.api.get_comment_thread_info(
@@ -387,7 +389,7 @@ class TestApiCall(unittest.TestCase):
             self.api.get_comments_by_parent(parts=[])
             self.assertEqual(ex.exception.status_code, pyyoutube.error.ErrorCode.INVALID_PARAMS)
         with self.assertRaises(pyyoutube.PyYouTubeException) as ex:
-            self.api.get_comments_by_parent(parts='id,part')
+            self.api.get_comments_by_parent(parent_id='UgwYjZXfNCUTKPq9CZp4AaABAg', parts='id,part')
             self.assertEqual(ex.exception.status_code, pyyoutube.error.ErrorCode.INVALID_PARAMS)
 
         comments = self.api.get_comments_by_parent(parent_id='UgwYjZXfNCUTKPq9CZp4AaABAg', count=1)
@@ -410,7 +412,7 @@ class TestApiCall(unittest.TestCase):
             self.api.get_comment_info(parts=[])
             self.assertEqual(ex.exception.status_code, pyyoutube.error.ErrorCode.INVALID_PARAMS)
         with self.assertRaises(pyyoutube.PyYouTubeException) as ex:
-            self.api.get_comment_info(parts='id,part')
+            self.api.get_comment_info(comment_id='UgxKREWxIgDrw8w2e_Z4AaABAg', parts='id,part')
             self.assertEqual(ex.exception.status_code, pyyoutube.error.ErrorCode.INVALID_PARAMS)
 
         comments = self.api.get_comment_info(comment_id='UgxKREWxIgDrw8w2e_Z4AaABAg,UgyrVQaFfEdvaSzstj14AaABAg')
@@ -444,7 +446,7 @@ class TestApiCall(unittest.TestCase):
             self.api.get_video_categories(parts=[])
             self.assertEqual(ex.exception.status_code, pyyoutube.error.ErrorCode.INVALID_PARAMS)
         with self.assertRaises(pyyoutube.PyYouTubeException) as ex:
-            self.api.get_video_categories(parts='id,part')
+            self.api.get_video_categories(category_id='1', parts='id,part')
             self.assertEqual(ex.exception.status_code, pyyoutube.error.ErrorCode.INVALID_PARAMS)
 
         video_categories = self.api.get_video_categories(
@@ -479,7 +481,7 @@ class TestApiCall(unittest.TestCase):
             self.api.get_guide_categories(parts=[])
             self.assertEqual(ex.exception.status_code, pyyoutube.error.ErrorCode.INVALID_PARAMS)
         with self.assertRaises(pyyoutube.PyYouTubeException) as ex:
-            self.api.get_guide_categories(parts='id,part')
+            self.api.get_guide_categories(category_id='GCQ29tZWR5', parts='id,part')
             self.assertEqual(ex.exception.status_code, pyyoutube.error.ErrorCode.INVALID_PARAMS)
 
         guide_categories = self.api.get_guide_categories(
