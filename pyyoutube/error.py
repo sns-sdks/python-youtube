@@ -46,7 +46,7 @@ class PyYouTubeException(Exception):
     def __repr__(self):  # pragma: no cover
         return f'PyYouTubeException(status_code={self.status_code}, message={self.message})'
 
-    def __str__(self):
+    def __str__(self):  # pragma: no cover
         return self.__repr__()
 
 
