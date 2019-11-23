@@ -1,40 +1,32 @@
+from dataclasses import dataclass, field
+from typing import List
+
 from .base import BaseModel
 
 
+@dataclass
 class AccessToken(BaseModel):
     """
-    A class representing access toke for api.
+    A class representing for access token.
     Refer: https://developers.google.com/youtube/v3/guides/auth/installed-apps#obtainingaccesstokens
     """
-
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-        self.param_defaults = {
-            'access_token': None,
-            'expires_in': None,
-            'refresh_token': None,
-            'scope': None,  # Refer: https://developers.google.com/identity/protocols/googlescopes
-            'token_type': None,
-            'id_token': None
-        }
-        self.initial(kwargs)
-
-    def __repr__(self):
-        return f"AccessToken(access_token={self.access_token}, expires_in={self.expires_in})"
+    access_token: str = field(default=None)
+    expires_in: int = field(default=None)
+    refresh_token: str = field(default=None, repr=False)
+    scope: List[str] = field(default=None, repr=False)
+    token_type: str = field(default=None)
+    id_token: str = field(default=None, repr=False)
 
 
+@dataclass
 class UserProfile(BaseModel):
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-        self.param_defaults = {
-            'id': None,
-            'name': None,
-            'given_name': None,
-            'family_name': None,
-            'picture': None,
-            'locale': None
-        }
-        self.initial(kwargs)
-
-    def __repr__(self):
-        return f"User(id={self.id}, name={self.name})"
+    """
+    A class representing for user profile.
+    Refer: https://any-api.com/googleapis_com/oauth2/docs/userinfo/oauth2_userinfo_v2_me_get
+    """
+    id: str = field(default=None)
+    name: str = field(default=None)
+    given_name: str = field(default=None, repr=False)
+    family_name: str = field(default=None, repr=False)
+    picture: str = field(default=None, repr=False)
+    locale: str = field(default=None, repr=False)

@@ -20,6 +20,7 @@ pytz = "*"
 isodate = "*"
 sphinx = "*"
 sphinx-rtd-theme = "*"
+dataclasses-json = "*"
 
 [requires]
 python_version = "3.7"
