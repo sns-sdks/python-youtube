@@ -10,7 +10,7 @@ from requests.models import Response  # noqa
 from requests_oauthlib.oauth2_session import OAuth2Session
 
 from pyyoutube.error import ErrorCode, ErrorMessage, PyYouTubeException
-from pyyoutube.models import (
+from pyyoutube.model import (
     AccessToken, Channel, Comment, CommentThread, GuideCategory,
     PlayList, PlaylistItem, UserProfile, Video, VideoCategory
 )

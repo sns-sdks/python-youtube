@@ -1,6 +1,6 @@
 from .api import Api  # noqa
 from .error import ErrorMessage, PyYouTubeException  # noqa
-from .models import (  # noqa
+from .model import (  # noqa
     AccessToken,
     Channel,
     ChannelBrandingChannel,
