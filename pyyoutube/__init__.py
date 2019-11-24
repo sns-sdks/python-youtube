@@ -40,4 +40,4 @@ from .models import (  # noqa
     VideoTopicDetails,
     VideoCategory
 )
-from .utils.constants import CHANNEL_TOPICS  # noqa
+from .utils.constants import CHANNEL_TOPICS, TOPICS  # noqa

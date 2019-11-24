@@ -1,18 +1,19 @@
 """
     These are channel related models.
 """
-import datetime
 from dataclasses import dataclass, field
 from typing import List, Optional
 
 from .base import BaseModel
-from .image import Thumbnails
+from .common import BaseTopicDetails, Thumbnails
+from .mixins import DatetimeTimeMixin
 
 
 @dataclass
 class ChannelBrandingChannel(BaseModel):
     """
     A class representing the channel branding setting's channel info.
+
     Refer: https://developers.google.com/youtube/v3/docs/channels#brandingSettings.channel
     """
     title: Optional[str] = field(default=None)
@@ -34,6 +35,7 @@ class ChannelBrandingChannel(BaseModel):
 class ChannelBrandingImage(BaseModel):
     """
     A class representing the channel branding setting's image info.
+
     Refer: https://developers.google.com/youtube/v3/docs/channels#brandingSettings.image
     """
     bannerImageUrl: Optional[str] = field(default=None)
@@ -59,6 +61,7 @@ class ChannelBrandingImage(BaseModel):
 class ChannelBrandingHint(BaseModel):
     """
     A class representing the channel branding setting's hint info.
+
     Refer: https://developers.google.com/youtube/v3/docs/channels#brandingSettings.hints
     """
     property: Optional[str] = field(default=None)
@@ -69,6 +72,7 @@ class ChannelBrandingHint(BaseModel):
 class ChannelBrandingSetting(BaseModel):
     """
     A class representing the channel branding settings info.
+
     Refer: https://developers.google.com/youtube/v3/docs/channels#brandingSettings
     """
     channel: Optional[ChannelBrandingChannel] = field(default=None)
@@ -80,6 +84,7 @@ class ChannelBrandingSetting(BaseModel):
 class RelatedPlaylists(BaseModel):
     """
     A class representing the channel's related playlist info
+
     Refer: https://developers.google.com/youtube/v3/docs/channels#contentDetails.relatedPlaylists
     """
     likes: Optional[str] = field(default=None, repr=False)
@@ -90,27 +95,17 @@ class RelatedPlaylists(BaseModel):
 class ChannelContentDetails(BaseModel):
     """
     A class representing the channel's content info.
+
     Refer: https://developers.google.com/youtube/v3/docs/channels#contentDetails
     """
     relatedPlaylists: Optional[RelatedPlaylists] = field(default=None)
 
 
 @dataclass
-class Topic(BaseModel):
-    """
-    A class representing the channel topic info.
-    Refer: https://developers.google.com/youtube/v3/docs/channels#topicDetails.topicIds[]
-
-    This model is customized for parsing topic id. YouTube Data Api not return this.
-    """
-    id: Optional[str] = field(default=None)
-    description: Optional[str] = field(default=None)
-
-
-@dataclass
-class ChannelTopicDetails(BaseModel):
+class ChannelTopicDetails(BaseTopicDetails):
     """
     A class representing the channel's topic detail info.
+
     Refer: https://developers.google.com/youtube/v3/docs/channels#topicDetails
     """
     # Important:
@@ -119,27 +114,12 @@ class ChannelTopicDetails(BaseModel):
     topicIds: List[str] = field(default=None, repr=False)
     topicCategories: List[str] = field(default=None)
 
-    def get_full_topics(self):
-        """
-        Convert topicIds list to Topic model list
-        :return: List[Topic]
-        """
-        from pyyoutube import CHANNEL_TOPICS
-        r: List[Topic] = []
-        if self.topicIds:
-            for topic_id in self.topicIds:
-                topic = Topic.from_dict({
-                    "id": topic_id,
-                    "description": CHANNEL_TOPICS.get(topic_id)
-                })
-                r.append(topic)
-        return r
-
 
 @dataclass
 class Localized(BaseModel):
     """
     A class representing the channel snippet localized info.
+
     Refer: https://developers.google.com/youtube/v3/docs/channels#snippet.localized
     """
     title: Optional[str] = field(default=None)
@@ -147,9 +127,10 @@ class Localized(BaseModel):
 
 
 @dataclass
-class ChannelSnippet(BaseModel):
+class ChannelSnippet(BaseModel, DatetimeTimeMixin):
     """
     A class representing the channel snippet info.
+
     Refer: https://developers.google.com/youtube/v3/docs/channels#snippet
     """
     title: Optional[str] = field(default=None)
@@ -161,27 +142,12 @@ class ChannelSnippet(BaseModel):
     localized: Optional[Localized] = field(default=None, repr=False)
     country: Optional[str] = field(default=None, repr=False)
 
-    def published_at_to_datetime(self) -> Optional[datetime.datetime]:
-        """
-        Convert publishedAt string to datetime instance.
-        original string format is YYYY-MM-DDThh:mm:ss.sZ.
-        :return:
-        """
-        if not self.publishedAt:
-            return None
-        try:
-            published_at = self.publishedAt.replace('Z', '+00:00')
-            r = datetime.datetime.fromisoformat(published_at)
-        except TypeError:
-            raise
-        else:
-            return r
-
 
 @dataclass
 class ChannelStatistics(BaseModel):
     """
     A class representing the Channel's statistics info.
+
     Refer: https://developers.google.com/youtube/v3/docs/channels#statistics
     """
     viewCount: Optional[int] = field(default=None)
@@ -195,6 +161,7 @@ class ChannelStatistics(BaseModel):
 class ChannelStatus(BaseModel):
     """
     A class representing the channel's status info.
+
     Refer: https://developers.google.com/youtube/v3/docs/channels#status
     """
     privacyStatus: Optional[str] = field(default=None)
@@ -206,6 +173,7 @@ class ChannelStatus(BaseModel):
 class Channel(BaseModel):
     """
     A class representing the channel's info.
+
     Refer: https://developers.google.com/youtube/v3/docs/channels
     """
     kind: Optional[str] = field(default=None)

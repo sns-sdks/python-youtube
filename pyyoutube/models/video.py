@@ -9,8 +9,8 @@ import isodate
 from isodate import ISO8601Error
 
 from .base import BaseModel
-from .common import TopicDetails, Snippet, Localized
-from .image import Thumbnails
+from .common import BaseTopicDetails, Localized, Thumbnails
+from .mixins import DatetimeTimeMixin
 
 
 @dataclass
@@ -127,7 +127,7 @@ class VideoContentDetails(BaseModel):
 
 
 @dataclass
-class VideoTopicDetails(TopicDetails):
+class VideoTopicDetails(BaseTopicDetails):
     """
     A class representing video's topic detail info.
 
@@ -151,12 +151,13 @@ class VideoTopicDetails(TopicDetails):
 
 
 @dataclass
-class VideoSnippet(Snippet):
+class VideoSnippet(BaseModel, DatetimeTimeMixin):
     """
     A class representing the video snippet info.
 
     Refer: https://developers.google.com/youtube/v3/docs/videos#snippet
     """
+    publishedAt: Optional[str] = field(default=None, repr=False)
     channelId: Optional[str] = field(default=None, repr=False)
     title: Optional[str] = field(default=None)
     description: Optional[str] = field(default=None)

@@ -1,11 +1,36 @@
 """
     These are common models for multi resource.
 """
-import datetime
 from dataclasses import dataclass, field
 from typing import Optional, List
 
 from .base import BaseModel
+
+
+@dataclass
+class Thumbnail(BaseModel):
+    """
+    A class representing the thumbnail resource info.
+
+    Refer: https://developers.google.com/youtube/v3/docs/channels#snippet.thumbnails.(key).url
+    """
+    url: Optional[str] = field(default=None)
+    width: Optional[int] = field(default=None, repr=False)
+    height: Optional[int] = field(default=None, repr=False)
+
+
+@dataclass
+class Thumbnails(BaseModel):
+    """
+    A class representing the multi thumbnail resource info.
+
+    Refer: https://developers.google.com/youtube/v3/docs/channels#snippet.thumbnails
+    """
+    default: Optional[Thumbnail] = field(default=None)
+    medium: Optional[Thumbnail] = field(default=None, repr=False)
+    high: Optional[Thumbnail] = field(default=None, repr=False)
+    standard: Optional[Thumbnail] = field(default=None, repr=False)
+    maxres: Optional[Thumbnail] = field(default=None, repr=False)
 
 
 @dataclass
@@ -24,7 +49,7 @@ class Topic(BaseModel):
 
 
 @dataclass
-class TopicDetails(BaseModel):
+class BaseTopicDetails(BaseModel):
     """
     This is a base model for chanel or video topic details.
     """
@@ -45,30 +70,6 @@ class TopicDetails(BaseModel):
                 })
                 r.append(topic)
         return r
-
-
-@dataclass
-class Snippet(BaseModel):
-    """
-    This is a base model for chanel or video snippet.
-    """
-    publishedAt: Optional[str] = field(default=None, repr=False)
-
-    def published_at_to_datetime(self) -> Optional[datetime.datetime]:
-        """
-        Convert publishedAt string to datetime instance.
-        original string format is YYYY-MM-DDThh:mm:ss.sZ.
-        :return:
-        """
-        if not self.publishedAt:
-            return None
-        try:
-            published_at = self.publishedAt.replace('Z', '+00:00')
-            r = datetime.datetime.fromisoformat(published_at)
-        except TypeError:
-            raise
-        else:
-            return r
 
 
 @dataclass

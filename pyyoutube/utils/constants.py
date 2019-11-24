@@ -119,3 +119,5 @@ CHANNEL_TOPICS = {
     # Other topics
     '/m/01k8wb': 'Knowledge'
 }
+
+TOPICS = CHANNEL_TOPICS
