@@ -11,6 +11,9 @@ flake8 = "*"
 wheel = "*"
 pytest-cov = "*"
 codecov = "*"
+black = "*"
+sphinx = "*"
+sphinx-rtd-theme = "*"
 
 [packages]
 requests = "*"
@@ -18,8 +21,10 @@ future = "*"
 requests-oauthlib = "*"
 pytz = "*"
 isodate = "*"
-sphinx = "*"
-sphinx-rtd-theme = "*"
+dataclasses-json = "*"
 
 [requires]
 python_version = "3.7"
+
+[pipenv]
+allow_prereleases = true

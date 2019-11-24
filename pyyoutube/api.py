@@ -10,35 +10,53 @@ from requests.models import Response  # noqa
 from requests_oauthlib.oauth2_session import OAuth2Session
 
 from pyyoutube.error import ErrorCode, ErrorMessage, PyYouTubeException
-from pyyoutube.models import (
-    AccessToken, Channel, Comment, CommentThread, GuideCategory,
-    PlayList, PlaylistItem, UserProfile, Video, VideoCategory
+from pyyoutube.model import (
+    AccessToken,
+    Channel,
+    Comment,
+    CommentThread,
+    GuideCategory,
+    PlayList,
+    PlaylistItem,
+    UserProfile,
+    Video,
+    VideoCategory,
 )
 from pyyoutube.utils import constants
 from pyyoutube.utils.quota_cost import LIST_DATA
-from pyyoutube.utils.params_checker import comma_separated_validator, incompatible_validator, parts_validator
+from pyyoutube.utils.params_checker import (
+    comma_separated_validator,
+    incompatible_validator,
+    parts_validator,
+)
 
 
 class Api(object):
-    BASE_URL = 'https://www.googleapis.com/youtube/v3/'
-    AUTHORIZATION_URL = 'https://accounts.google.com/o/oauth2/v2/auth'
-    EXCHANGE_ACCESS_TOKEN_URL = 'https://www.googleapis.com/oauth2/v4/token'
-    USER_INFO_URL = 'https://www.googleapis.com/oauth2/v1/userinfo'
+    BASE_URL = "https://www.googleapis.com/youtube/v3/"
+    AUTHORIZATION_URL = "https://accounts.google.com/o/oauth2/v2/auth"
+    EXCHANGE_ACCESS_TOKEN_URL = "https://www.googleapis.com/oauth2/v4/token"
+    USER_INFO_URL = "https://www.googleapis.com/oauth2/v1/userinfo"
 
-    DEFAULT_REDIRECT_URI = 'https://localhost/'
+    DEFAULT_REDIRECT_URI = "https://localhost/"
 
     DEFAULT_SCOPE = [
-        'https://www.googleapis.com/auth/youtube',
-        'https://www.googleapis.com/auth/userinfo.profile'
+        "https://www.googleapis.com/auth/youtube",
+        "https://www.googleapis.com/auth/userinfo.profile",
     ]
 
-    DEFAULT_STATE = 'PyYouTube'
+    DEFAULT_STATE = "PyYouTube"
     DEFAULT_TIMEOUT = 10
     DEFAULT_QUOTA = 10000  # this quota reset at 00:00:00(GMT-7) every day.
 
     def __init__(
-            self, client_id=None, client_secret=None, api_key=None,
-            access_token=None, timeout=None, proxies=None, quota=None,
+        self,
+        client_id=None,
+        client_secret=None,
+        api_key=None,
+        access_token=None,
+        timeout=None,
+        proxies=None,
+        quota=None,
     ):
         """
         This Api provide two method to work. Use api key or use access token.
@@ -78,11 +96,17 @@ class Api(object):
             self.quota = self.DEFAULT_QUOTA
         self.used_quota = 0
 
-        if not ((self._client_id and self._client_secret) or self._api_key or self._access_token):
-            raise PyYouTubeException(ErrorMessage(
-                status_code=ErrorCode.MISSING_PARAMS,
-                message='Must specify either client key info or api key.'
-            ))
+        if not (
+            (self._client_id and self._client_secret)
+            or self._api_key
+            or self._access_token
+        ):
+            raise PyYouTubeException(
+                ErrorMessage(
+                    status_code=ErrorCode.MISSING_PARAMS,
+                    message="Must specify either client key info or api key.",
+                )
+            )
 
         if self._timeout is None:
             self._timeout = self.DEFAULT_TIMEOUT
@@ -113,18 +137,23 @@ class Api(object):
             self.scope = self.DEFAULT_SCOPE
 
         session = OAuth2Session(
-            client_id=self._client_id, scope=self.scope,
-            redirect_uri=redirect_uri, state=self.DEFAULT_STATE
+            client_id=self._client_id,
+            scope=self.scope,
+            redirect_uri=redirect_uri,
+            state=self.DEFAULT_STATE,
         )
         authorization_url, state = session.authorization_url(
             self.AUTHORIZATION_URL,
-            access_type="offline", prompt="select_account",
-            **kwargs
+            access_type="offline",
+            prompt="select_account",
+            **kwargs,
         )
 
         return authorization_url, state
 
-    def exchange_code_to_access_token(self, authorization_response, redirect_uri=None, return_json=False):
+    def exchange_code_to_access_token(
+        self, authorization_response, redirect_uri=None, return_json=False
+    ):
         """
         Use the google auth response to get access token
 
@@ -146,11 +175,13 @@ class Api(object):
 
         session = OAuth2Session(
             client_id=self._client_id,
-            redirect_uri=redirect_uri, state=self.DEFAULT_STATE
+            redirect_uri=redirect_uri,
+            state=self.DEFAULT_STATE,
         )
         token = session.fetch_token(
-            self.EXCHANGE_ACCESS_TOKEN_URL, client_secret=self._client_secret,
-            authorization_response=authorization_response
+            self.EXCHANGE_ACCESS_TOKEN_URL,
+            client_secret=self._client_secret,
+            authorization_response=authorization_response,
         )
         self._access_token = session.access_token
         if return_json:
@@ -172,12 +203,11 @@ class Api(object):
         """
         session = OAuth2Session(client_id=self._client_id)
         auth = {
-            'client_id': self._client_id,
-            'client_secret': self._client_secret,
+            "client_id": self._client_id,
+            "client_secret": self._client_secret,
         }
         new_token = session.refresh_token(
-            self.EXCHANGE_ACCESS_TOKEN_URL, refresh_token=refresh_token,
-            **auth
+            self.EXCHANGE_ACCESS_TOKEN_URL, refresh_token=refresh_token, **auth
         )
         self._access_token = session.access_token
         if return_json:
@@ -196,7 +226,7 @@ class Api(object):
              response's data
         """
         data = response.json()
-        if 'error' in data:
+        if "error" in data:
             raise PyYouTubeException(response)
         if api:
             return self._parse_data(data)
@@ -213,10 +243,12 @@ class Api(object):
         Return:
              response's items
         """
-        items = data['items']
+        items = data["items"]
         return items
 
-    def _request(self, resource, method=None, args=None, post_args=None, enforce_auth=True):
+    def _request(
+        self, resource, method=None, args=None, post_args=None, enforce_auth=True
+    ):
         """
         Main request sender.
 
@@ -237,32 +269,34 @@ class Api(object):
             response
         """
         if method is None:
-            method = 'GET'
+            method = "GET"
 
         if args is None:
             args = dict()
 
         if post_args is not None:
-            method = 'POST'
+            method = "POST"
 
         key = None
         access_token = None
         if self._api_key is not None:
-            key = 'key'
+            key = "key"
             access_token = self._api_key
         if self._access_token is not None:
-            key = 'access_token'
+            key = "access_token"
             access_token = self._access_token
         if access_token is None and enforce_auth:
-            raise PyYouTubeException(ErrorMessage(
-                status_code=ErrorCode.MISSING_PARAMS,
-                message='You must provide your credentials.'
-            ))
+            raise PyYouTubeException(
+                ErrorMessage(
+                    status_code=ErrorCode.MISSING_PARAMS,
+                    message="You must provide your credentials.",
+                )
+            )
 
         if enforce_auth:
-            if method == 'POST' and key not in post_args:
+            if method == "POST" and key not in post_args:
                 post_args[key] = access_token
-            elif method == 'GET' and key not in args:
+            elif method == "GET" and key not in args:
                 args[key] = access_token
 
         try:
@@ -272,18 +306,17 @@ class Api(object):
                 timeout=self._timeout,
                 params=args,
                 data=post_args,
-                proxies=self.proxies
+                proxies=self.proxies,
             )
         except requests.HTTPError as e:
-            raise PyYouTubeException(ErrorMessage(
-                status_code=ErrorCode.HTTP_ERROR,
-                message=e.args
-            ))
+            raise PyYouTubeException(
+                ErrorMessage(status_code=ErrorCode.HTTP_ERROR, message=e.args)
+            )
         else:
             return response
 
     def get_quota(self):
-        pst = pytz.timezone('US/Pacific')
+        pst = pytz.timezone("US/Pacific")
         now = datetime.datetime.now(pst)
         reset_at = (now + datetime.timedelta(1)).replace(
             hour=0, minute=0, second=0, microsecond=0
@@ -291,7 +324,7 @@ class Api(object):
         reset_in = int((reset_at - now).total_seconds())
         return f"Quota(Total={self.quota}, Used={self.used_quota}, ResetIn={reset_in})"
 
-    def calc_quota(self, resource, method='list', parts='', count=1):
+    def calc_quota(self, resource, method="list", parts="", count=1):
         """
         :param resource: resources like videos, channels
         :param method:
@@ -299,16 +332,16 @@ class Api(object):
         :param count:
         :return:
         """
-        if method == 'list':
+        if method == "list":
             quota_data = LIST_DATA
         else:
             return 0
         cost = 1
         if parts:
-            parts = parts.split(',')
+            parts = parts.split(",")
         for part in parts:
-            if part not in ['id']:
-                need_cost = quota_data.get(f'{resource}.{part}', 0)
+            if part not in ["id"]:
+                need_cost = quota_data.get(f"{resource}.{part}", 0)
                 cost += need_cost
         cost = cost * count
         self.used_quota += cost
@@ -331,25 +364,21 @@ class Api(object):
         try:
             response = self.session.get(
                 self.USER_INFO_URL,
-                params={'access_token': access_token},
+                params={"access_token": access_token},
                 timeout=self._timeout,
-                proxies=self.proxies
+                proxies=self.proxies,
             )
         except requests.HTTPError as e:
-            raise PyYouTubeException(ErrorMessage(
-                status_code=ErrorCode.HTTP_ERROR,
-                message=e.args
-            ))
+            raise PyYouTubeException(
+                ErrorMessage(status_code=ErrorCode.HTTP_ERROR, message=e.args)
+            )
         data = self._parse_response(response)
         if return_json:
             return data
         else:
             return UserProfile.new_from_json_dict(data)
 
-    def paged_by_page_token(self,
-                            resource,
-                            args,
-                            page_token=None):
+    def paged_by_page_token(self, resource, args, page_token=None):
         """
         Response paged by response's page token. If not provide response token
 
@@ -364,28 +393,26 @@ class Api(object):
             Data api origin response.
         """
         if page_token is not None:
-            args['pageToken'] = page_token
+            args["pageToken"] = page_token
 
-        resp = self._request(
-            resource=resource,
-            method='GET',
-            args=args
-        )
+        resp = self._request(resource=resource, method="GET", args=args)
         data = self._parse_response(resp)  # origin response
         # set page token
-        next_page_token = data.get('nextPageToken')
-        prev_page_token = data.get('prevPageToken')
-        self.calc_quota(resource, parts=args['part'], count=len(data['items']))
+        next_page_token = data.get("nextPageToken")
+        prev_page_token = data.get("prevPageToken")
+        self.calc_quota(resource, parts=args["part"], count=len(data["items"]))
         return prev_page_token, next_page_token, data
 
-    def get_channel_info(self,
-                         category_id=None,
-                         channel_id=None,
-                         channel_name=None,
-                         mine=None,
-                         parts=None,
-                         hl='en_US',
-                         return_json=False):
+    def get_channel_info(
+        self,
+        category_id=None,
+        channel_id=None,
+        channel_name=None,
+        mine=None,
+        parts=None,
+        hl="en_US",
+        return_json=False,
+    ):
         """
         Retrieve channel data from YouTube Data API for channel which you given.
 
@@ -412,53 +439,50 @@ class Api(object):
             The data for you given channel.
         """
         comma_separated_validator(channel_id=channel_id, parts=parts)
-        incompatible_validator(category_id=category_id, channel_id=channel_id, channel_name=channel_name, mine=mine)
+        incompatible_validator(
+            category_id=category_id,
+            channel_id=channel_id,
+            channel_name=channel_name,
+            mine=mine,
+        )
 
         if parts is None:
             parts = constants.CHANNEL_RESOURCE_PROPERTIES
-            parts = ','.join(parts)
+            parts = ",".join(parts)
         else:
-            parts_validator('channels', parts=parts)
+            parts_validator("channels", parts=parts)
 
-        args = {
-            'hl': hl,
-            'part': parts
-        }
+        args = {"hl": hl, "part": parts}
         if channel_name is not None:
-            args['forUsername'] = channel_name
+            args["forUsername"] = channel_name
         elif channel_id is not None:
-            args['id'] = channel_id
+            args["id"] = channel_id
         elif category_id is not None:
-            args['categoryId'] = channel_id
+            args["categoryId"] = channel_id
         elif mine is not None:
-            args['mine'] = mine
+            args["mine"] = mine
 
-        resp = self._request(
-            resource='channels',
-            method='GET',
-            args=args
-        )
+        resp = self._request(resource="channels", method="GET", args=args)
 
         data = self._parse_response(resp, api=True)
-        self.calc_quota(
-            resource='channels',
-            parts=args['part']
-        )
+        self.calc_quota(resource="channels", parts=args["part"])
         if return_json:
             return data
         else:
             return [Channel.new_from_json_dict(item) for item in data]
 
-    def get_playlist(self,
-                     channel_id=None,
-                     playlist_id=None,
-                     parts=None,
-                     summary=True,
-                     count=5,
-                     limit=5,
-                     hl='en_US',
-                     mine=None,
-                     return_json=False):
+    def get_playlist(
+        self,
+        channel_id=None,
+        playlist_id=None,
+        parts=None,
+        summary=True,
+        count=5,
+        limit=5,
+        hl="en_US",
+        mine=None,
+        return_json=False,
+    ):
         """
         Retrieve channel playlists info.
         Provide two methods: by channel ID, or by playlist id (ids)
@@ -496,35 +520,31 @@ class Api(object):
         """
 
         comma_separated_validator(playlist_id=playlist_id)
-        incompatible_validator(channel_id=channel_id, playlist_id=playlist_id, mine=mine)
+        incompatible_validator(
+            channel_id=channel_id, playlist_id=playlist_id, mine=mine
+        )
 
         if parts is None:
             parts = constants.PLAYLIST_RESOURCE_PROPERTIES
-            parts = ','.join(parts)
+            parts = ",".join(parts)
         else:
-            parts_validator('playlists', parts=parts)
+            parts_validator("playlists", parts=parts)
 
-        args = {
-            'part': parts,
-            'hl': hl,
-            'maxResults': limit
-        }
+        args = {"part": parts, "hl": hl, "maxResults": limit}
 
         if channel_id is not None:
-            args['channelId'] = channel_id
+            args["channelId"] = channel_id
         elif playlist_id is not None:
-            args['id'] = playlist_id
+            args["id"] = playlist_id
         elif mine is not None:
-            args['mine'] = mine
+            args["mine"] = mine
 
         playlists = []
         playlists_summary = None
         next_page_token = None
         while True:
             prev_page_token, next_page_token, data = self.paged_by_page_token(
-                resource='playlists',
-                args=args,
-                page_token=next_page_token,
+                resource="playlists", args=args, page_token=next_page_token,
             )
             items = self._parse_data(data)
             if return_json:
@@ -532,22 +552,24 @@ class Api(object):
             else:
                 playlists += [PlayList.new_from_json_dict(item) for item in items]
             if summary:
-                playlists_summary = data.get('pageInfo', {})
+                playlists_summary = data.get("pageInfo", {})
             if next_page_token is None:
                 break
             if len(playlists) >= count:
                 break
         return playlists[:count], playlists_summary
 
-    def get_playlist_item(self,
-                          playlist_id=None,
-                          playlist_item_id=None,
-                          video_id=None,
-                          parts=None,
-                          summary=True,
-                          count=5,
-                          limit=5,
-                          return_json=False):
+    def get_playlist_item(
+        self,
+        playlist_id=None,
+        playlist_item_id=None,
+        video_id=None,
+        parts=None,
+        summary=True,
+        count=5,
+        limit=5,
+        return_json=False,
+    ):
         """
         Retrieve channel's playlist Items info.
 
@@ -579,54 +601,52 @@ class Api(object):
             (playlistItem data, playlistItem summary)
         """
         comma_separated_validator(playlist_item_id=playlist_item_id, parts=parts)
-        incompatible_validator(playlist_id=playlist_id, playlist_item_id=playlist_item_id)
+        incompatible_validator(
+            playlist_id=playlist_id, playlist_item_id=playlist_item_id
+        )
 
         if parts is None:
             parts = constants.PLAYLIST_ITEM_RESOURCE_PROPERTIES
-            parts = ','.join(parts)
+            parts = ",".join(parts)
         else:
-            parts_validator('playlistItems', parts=parts)
+            parts_validator("playlistItems", parts=parts)
 
         args = {
-            'part': parts,
-            'maxResults': limit,
+            "part": parts,
+            "maxResults": limit,
         }
 
         if playlist_id is not None:
-            args['playlistId'] = playlist_id
+            args["playlistId"] = playlist_id
         elif playlist_item_id is not None:
-            args['id'] = playlist_item_id
+            args["id"] = playlist_item_id
 
         if video_id is not None:
-            args['videoId'] = video_id
+            args["videoId"] = video_id
 
         playlist_items = []
         playlist_items_summary = None
         next_page_token = None
         while True:
             prev_page_token, next_page_token, data = self.paged_by_page_token(
-                resource='playlistItems',
-                args=args,
-                page_token=next_page_token,
+                resource="playlistItems", args=args, page_token=next_page_token,
             )
             items = self._parse_data(data)
             if return_json:
                 playlist_items += items
             else:
-                playlist_items += [PlaylistItem.new_from_json_dict(item) for item in items]
+                playlist_items += [
+                    PlaylistItem.new_from_json_dict(item) for item in items
+                ]
             if summary:
-                playlist_items_summary = data.get('pageInfo', {})
+                playlist_items_summary = data.get("pageInfo", {})
             if next_page_token is None:
                 break
             if len(playlist_items) >= count:
                 break
         return playlist_items[:count], playlist_items_summary
 
-    def get_video_by_id(self,
-                        video_id=None,
-                        hl='en_US',
-                        parts=None,
-                        return_json=False):
+    def get_video_by_id(self, video_id=None, hl="en_US", parts=None, return_json=False):
         """
         Retrieve data from YouTube Data Api for video which id or id list you point .
 
@@ -650,43 +670,38 @@ class Api(object):
 
         if parts is None:
             parts = constants.VIDEO_RESOURCE_PROPERTIES
-            parts = ','.join(parts)
+            parts = ",".join(parts)
         else:
-            parts_validator('videos', parts=parts)
+            parts_validator("videos", parts=parts)
 
         args = {
-            'id': video_id,
-            'hl': hl,
-            'part': parts,
+            "id": video_id,
+            "hl": hl,
+            "part": parts,
         }
 
-        resp = self._request(
-            resource='videos',
-            method='GET',
-            args=args
-        )
+        resp = self._request(resource="videos", method="GET", args=args)
 
         data = self._parse_response(resp, api=True)
-        self.calc_quota(
-            resource='videos',
-            parts=args['part']
-        )
+        self.calc_quota(resource="videos", parts=args["part"])
         if return_json:
             return data
         else:
             return [Video.new_from_json_dict(item) for item in data]
 
-    def get_video_by_filter(self,
-                            chart=None,
-                            my_rating=None,
-                            region_code=None,
-                            category_id=None,
-                            summary=True,
-                            count=5,
-                            limit=5,
-                            hl='en_US',
-                            parts=None,
-                            return_json=False):
+    def get_video_by_filter(
+        self,
+        chart=None,
+        my_rating=None,
+        region_code=None,
+        category_id=None,
+        summary=True,
+        count=5,
+        limit=5,
+        hl="en_US",
+        parts=None,
+        return_json=False,
+    ):
         """
         Retrieve data from YouTube Data Api for video which you point.
 
@@ -732,33 +747,27 @@ class Api(object):
 
         if parts is None:
             parts = constants.VIDEO_RESOURCE_PROPERTIES
-            parts = ','.join(parts)
+            parts = ",".join(parts)
         else:
-            parts_validator('videos', parts=parts)
+            parts_validator("videos", parts=parts)
 
-        args = {
-            'part': parts,
-            'hl': hl,
-            'maxResults': limit
-        }
+        args = {"part": parts, "hl": hl, "maxResults": limit}
 
         if chart is not None:
-            args['chart'] = chart
+            args["chart"] = chart
             if region_code is not None:
-                args['regionCode'] = region_code
+                args["regionCode"] = region_code
             elif category_id is not None:
-                args['videoCategoryId'] = category_id
+                args["videoCategoryId"] = category_id
         elif my_rating is not None:
-            args['myRating'] = my_rating
+            args["myRating"] = my_rating
 
         videos = []
         videos_summary = None
         next_page_token = None
         while True:
             prev_page_token, next_page_token, data = self.paged_by_page_token(
-                resource='videos',
-                args=args,
-                page_token=next_page_token,
+                resource="videos", args=args, page_token=next_page_token,
             )
             items = self._parse_data(data)
             if return_json:
@@ -766,23 +775,25 @@ class Api(object):
             else:
                 videos += [Video.new_from_json_dict(item) for item in items]
             if summary:
-                videos_summary = data.get('pageInfo', {})
+                videos_summary = data.get("pageInfo", {})
             if next_page_token is None:
                 break
             if len(videos) >= count:
                 break
         return videos[:count], videos_summary
 
-    def get_comment_threads(self,
-                            all_to_channel_id=None,
-                            channel_id=None,
-                            video_id=None,
-                            parts=None,
-                            order='time',
-                            search_term=None,
-                            limit=20,
-                            count=20,
-                            return_json=False):
+    def get_comment_threads(
+        self,
+        all_to_channel_id=None,
+        channel_id=None,
+        video_id=None,
+        parts=None,
+        order="time",
+        search_term=None,
+        limit=20,
+        count=20,
+        return_json=False,
+    ):
         """
         Retrieve the comment thread info by single id.
 
@@ -823,56 +834,58 @@ class Api(object):
         """
 
         comma_separated_validator(parts=parts)
-        incompatible_validator(all_to_channel_id=all_to_channel_id, channel_id=channel_id, video_id=video_id)
+        incompatible_validator(
+            all_to_channel_id=all_to_channel_id,
+            channel_id=channel_id,
+            video_id=video_id,
+        )
         if parts is None:
             parts = constants.COMMENT_THREAD_RESOURCE_PROPERTIES
-            parts = ','.join(parts)
+            parts = ",".join(parts)
         else:
-            parts_validator('commentThreads', parts=parts)
+            parts_validator("commentThreads", parts=parts)
 
-        args = {
-            'part': parts,
-            'maxResults': limit
-        }
+        args = {"part": parts, "maxResults": limit}
         if all_to_channel_id is not None:
-            args['allThreadsRelatedToChannelId'] = all_to_channel_id
+            args["allThreadsRelatedToChannelId"] = all_to_channel_id
         elif channel_id is not None:
-            args['channelId'] = channel_id
+            args["channelId"] = channel_id
         elif video_id is not None:
-            args['videoId'] = video_id
+            args["videoId"] = video_id
 
-        if order not in ['time', 'relevance']:
-            raise PyYouTubeException(ErrorMessage(
-                status_code=ErrorCode.INVALID_PARAMS,
-                message='Order type must be time or relevance.'
-            ))
+        if order not in ["time", "relevance"]:
+            raise PyYouTubeException(
+                ErrorMessage(
+                    status_code=ErrorCode.INVALID_PARAMS,
+                    message="Order type must be time or relevance.",
+                )
+            )
 
         if search_term is not None:
-            args['searchTerms'] = search_term
+            args["searchTerms"] = search_term
 
         comment_threads = []
         next_page_token = None
         while True:
             _, next_page_token, data = self.paged_by_page_token(
-                resource='commentThreads',
-                args=args,
-                page_token=next_page_token,
+                resource="commentThreads", args=args, page_token=next_page_token,
             )
             items = self._parse_data(data)
             if return_json:
                 comment_threads += items
             else:
-                comment_threads += [CommentThread.new_from_json_dict(item) for item in items]
+                comment_threads += [
+                    CommentThread.new_from_json_dict(item) for item in items
+                ]
             if next_page_token is None:
                 break
             if len(comment_threads) >= count:
                 break
         return comment_threads[:count]
 
-    def get_comment_thread_info(self,
-                                comment_thread_id=None,
-                                parts=None,
-                                return_json=False):
+    def get_comment_thread_info(
+        self, comment_thread_id=None, parts=None, return_json=False
+    ):
         """
         Retrieve the comment thread info by single id.
 
@@ -896,19 +909,13 @@ class Api(object):
         incompatible_validator(comment_thread_id=comment_thread_id)
         if parts is None:
             parts = constants.COMMENT_THREAD_RESOURCE_PROPERTIES
-            parts = ','.join(parts)
+            parts = ",".join(parts)
         else:
-            parts_validator('commentThreads', parts=parts)
+            parts_validator("commentThreads", parts=parts)
 
-        args = {
-            'id': comment_thread_id,
-            'part': parts
-        }
+        args = {"id": comment_thread_id, "part": parts}
 
-        resp = self._request(
-            resource='commentThreads',
-            args=args
-        )
+        resp = self._request(resource="commentThreads", args=args)
 
         data = self._parse_response(resp, api=True)
         if return_json:
@@ -916,12 +923,9 @@ class Api(object):
         else:
             return [CommentThread.new_from_json_dict(item) for item in data]
 
-    def get_comments_by_parent(self,
-                               parent_id=None,
-                               parts=None,
-                               limit=20,
-                               count=20,
-                               return_json=False):
+    def get_comments_by_parent(
+        self, parent_id=None, parts=None, limit=20, count=20, return_json=False
+    ):
         """
         Retrieve data from YouTube Data Api for top level comment which you point.
 
@@ -952,23 +956,17 @@ class Api(object):
         incompatible_validator(parent_id=parent_id)
         if parts is None:
             parts = constants.COMMENT_RESOURCE_PROPERTIES
-            parts = ','.join(parts)
+            parts = ",".join(parts)
         else:
-            parts_validator('comments', parts=parts)
+            parts_validator("comments", parts=parts)
 
-        args = {
-            'part': parts,
-            'maxResults': limit,
-            'parentId': parent_id
-        }
+        args = {"part": parts, "maxResults": limit, "parentId": parent_id}
 
         comments = []
         next_page_token = None
         while True:
             _, next_page_token, data = self.paged_by_page_token(
-                resource='comments',
-                args=args,
-                page_token=next_page_token,
+                resource="comments", args=args, page_token=next_page_token,
             )
             items = self._parse_data(data)
             if return_json:
@@ -981,10 +979,7 @@ class Api(object):
                 break
         return comments[:count]
 
-    def get_comment_info(self,
-                         comment_id=None,
-                         parts=None,
-                         return_json=False):
+    def get_comment_info(self, comment_id=None, parts=None, return_json=False):
         """
         Retrieve comment data by comment id.
 
@@ -1005,31 +1000,27 @@ class Api(object):
         incompatible_validator(comment_id=comment_id)
         if parts is None:
             parts = constants.COMMENT_RESOURCE_PROPERTIES
-            parts = ','.join(parts)
+            parts = ",".join(parts)
         else:
-            parts_validator('comments', parts=parts)
+            parts_validator("comments", parts=parts)
 
-        args = {
-            'part': parts,
-            'id': comment_id
-        }
+        args = {"part": parts, "id": comment_id}
 
-        resp = self._request(
-            resource='comments',
-            args=args
-        )
+        resp = self._request(resource="comments", args=args)
         data = self._parse_response(resp, api=True)
         if return_json:
             return data
         else:
             return [Comment.new_from_json_dict(item) for item in data]
 
-    def get_video_categories(self,
-                             category_id=None,
-                             region_code=None,
-                             parts=None,
-                             hl='en_US',
-                             return_json=False):
+    def get_video_categories(
+        self,
+        category_id=None,
+        region_code=None,
+        parts=None,
+        hl="en_US",
+        return_json=False,
+    ):
         """
         Retrieve a list of categories that can be associated with YouTube videos.
 
@@ -1058,24 +1049,21 @@ class Api(object):
         incompatible_validator(category_id=category_id, region_code=region_code)
         if parts is None:
             parts = constants.VIDEO_CATEGORY_RESOURCE_PROPERTIES
-            parts = ','.join(parts)
+            parts = ",".join(parts)
         else:
-            parts_validator('videoCategories', parts=parts)
+            parts_validator("videoCategories", parts=parts)
 
         args = {
-            'part': parts,
-            'hl': hl,
+            "part": parts,
+            "hl": hl,
         }
 
         if category_id is not None:
-            args['id'] = category_id
+            args["id"] = category_id
         elif region_code is not None:
-            args['regionCode'] = region_code
+            args["regionCode"] = region_code
 
-        resp = self._request(
-            resource='videoCategories',
-            args=args
-        )
+        resp = self._request(resource="videoCategories", args=args)
 
         data = self._parse_response(resp, api=True)
         if return_json:
@@ -1083,12 +1071,14 @@ class Api(object):
         else:
             return [VideoCategory.new_from_json_dict(item) for item in data]
 
-    def get_guide_categories(self,
-                             category_id=None,
-                             region_code=None,
-                             parts=None,
-                             hl='en_US',
-                             return_json=False):
+    def get_guide_categories(
+        self,
+        category_id=None,
+        region_code=None,
+        parts=None,
+        hl="en_US",
+        return_json=False,
+    ):
         """
         Retrieve a list of categories that can be associated with YouTube channels.
 
@@ -1119,24 +1109,21 @@ class Api(object):
         incompatible_validator(category_id=category_id, region_code=region_code)
         if parts is None:
             parts = constants.GUIDE_CATEGORY_RESOURCE_PROPERTIES
-            parts = ','.join(parts)
+            parts = ",".join(parts)
         else:
-            parts_validator('guideCategories', parts=parts)
+            parts_validator("guideCategories", parts=parts)
 
         args = {
-            'part': parts,
-            'hl': hl,
+            "part": parts,
+            "hl": hl,
         }
 
         if category_id is not None:
-            args['id'] = category_id
+            args["id"] = category_id
         elif region_code is not None:
-            args['regionCode'] = region_code
+            args["regionCode"] = region_code
 
-        resp = self._request(
-            resource='guideCategories',
-            args=args
-        )
+        resp = self._request(resource="guideCategories", args=args)
 
         data = self._parse_response(resp, api=True)
         if return_json:
