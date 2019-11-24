@@ -1,13 +1,14 @@
 """
     These are video related models.
 """
-import datetime
 from dataclasses import dataclass, field
 from typing import Optional, List
 
 import isodate
 from isodate import ISO8601Error
 
+from pyyoutube import PyYouTubeException, ErrorMessage
+from pyyoutube.error import ErrorCode
 from .base import BaseModel
 from .common import BaseTopicDetails, Localized, Thumbnails
 from .mixins import DatetimeTimeMixin
@@ -124,9 +125,12 @@ class VideoContentDetails(BaseModel):
             return None
         try:
             seconds = isodate.parse_duration(self.duration).total_seconds()
+        except ISO8601Error as e:
+            raise PyYouTubeException(
+                ErrorMessage(status_code=ErrorCode.INVALID_PARAMS, message=e.args[0])
+            )
+        else:
             return int(seconds)
-        except ISO8601Error:
-            raise
 
 
 @dataclass
@@ -140,7 +144,7 @@ class VideoTopicDetails(BaseTopicDetails):
     # Important:
     # This property has been deprecated as of November 10, 2016.
     # Any topics associated with a video are now returned by the topicDetails.relevantTopicIds[] property value.
-    topicIds: List[str] = field(default=None, repr=False)
+    topicIds: Optional[List[str]] = field(default=None, repr=False)
     relevantTopicIds: List[str] = field(default=None, repr=False)
     topicCategories: List[str] = field(default=None)
 
@@ -191,7 +195,7 @@ class VideoStatistics(BaseModel):
 
 
 @dataclass
-class VideoStatus(BaseModel):
+class VideoStatus(BaseModel, DatetimeTimeMixin):
     """
     A class representing the video status info.
 
@@ -206,22 +210,6 @@ class VideoStatus(BaseModel):
     license: Optional[str] = field(default=None, repr=False)
     embeddable: Optional[bool] = field(default=None, repr=False)
     publicStatsViewable: Optional[bool] = field(default=None, repr=False)
-
-    def published_at_to_datetime(self) -> Optional[datetime.datetime]:
-        """
-        Convert publishedAt string to datetime instance.
-        original string format is YYYY-MM-DDThh:mm:ss.sZ.
-        :return:
-        """
-        if not self.publishAt:
-            return None
-        try:
-            publish_at = self.publishAt.replace("Z", "+00:00")
-            r = datetime.datetime.fromisoformat(publish_at)
-        except TypeError:
-            raise
-        else:
-            return r
 
 
 @dataclass
