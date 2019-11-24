@@ -5,11 +5,10 @@ from pyyoutube.error import PyYouTubeException
 
 
 class UtilsTest(unittest.TestCase):
-
     def testDurationConvert(self):
-        duration = 'PT14H23M42S'
+        duration = "PT14H23M42S"
         self.assertEqual(utils.get_video_duration(duration), 51822)
 
-        duration = 'PT14H23M42'
+        duration = "PT14H23M42"
         with self.assertRaises(PyYouTubeException):
             utils.get_video_duration(duration)

@@ -20,6 +20,7 @@ class RegionRestriction(BaseModel):
 
     Refer: https://google-developers.appspot.com/youtube/v3/docs/videos#contentDetails.regionRestriction
     """
+
     allowed: List[str] = field(default=None)
     blocked: List[str] = field(default=None, repr=False)
 
@@ -31,6 +32,7 @@ class ContentRating(BaseModel):
 
     Refer: https://google-developers.appspot.com/youtube/v3/docs/videos#contentDetails.contentRating
     """
+
     acbRating: Optional[str] = field(default=None, repr=False)
     agcomRating: Optional[str] = field(default=None, repr=False)
     anatelRating: Optional[str] = field(default=None, repr=False)
@@ -106,6 +108,7 @@ class VideoContentDetails(BaseModel):
 
     Refer: https://developers.google.com/youtube/v3/docs/videos#contentDetails
     """
+
     duration: Optional[str] = field(default=None)
     dimension: Optional[str] = field(default=None)
     definition: Optional[str] = field(default=None, repr=False)
@@ -133,6 +136,7 @@ class VideoTopicDetails(BaseTopicDetails):
 
     Refer: https://developers.google.com/youtube/v3/docs/videos#topicDetails
     """
+
     # Important:
     # This property has been deprecated as of November 10, 2016.
     # Any topics associated with a video are now returned by the topicDetails.relevantTopicIds[] property value.
@@ -157,6 +161,7 @@ class VideoSnippet(BaseModel, DatetimeTimeMixin):
 
     Refer: https://developers.google.com/youtube/v3/docs/videos#snippet
     """
+
     publishedAt: Optional[str] = field(default=None, repr=False)
     channelId: Optional[str] = field(default=None, repr=False)
     title: Optional[str] = field(default=None)
@@ -178,6 +183,7 @@ class VideoStatistics(BaseModel):
 
     Refer: https://developers.google.com/youtube/v3/docs/videos#statistics
     """
+
     viewCount: Optional[int] = field(default=None)
     likeCount: Optional[int] = field(default=None)
     dislikeCount: Optional[int] = field(default=None, repr=False)
@@ -191,6 +197,7 @@ class VideoStatus(BaseModel):
 
     Refer: https://developers.google.com/youtube/v3/docs/videos#status
     """
+
     uploadStatus: Optional[str] = field(default=None)
     failureReason: Optional[str] = field(default=None, repr=False)
     rejectionReason: Optional[str] = field(default=None, repr=False)
@@ -209,7 +216,7 @@ class VideoStatus(BaseModel):
         if not self.publishAt:
             return None
         try:
-            publish_at = self.publishAt.replace('Z', '+00:00')
+            publish_at = self.publishAt.replace("Z", "+00:00")
             r = datetime.datetime.fromisoformat(publish_at)
         except TypeError:
             raise
@@ -224,6 +231,7 @@ class Video(BaseModel):
 
     Refer: https://developers.google.com/youtube/v3/docs/videos
     """
+
     kind: Optional[str] = field(default=None)
     etag: Optional[str] = field(default=None, repr=False)
     id: Optional[str] = field(default=None)

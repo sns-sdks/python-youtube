@@ -1,9 +1,6 @@
 from collections import namedtuple
 
-ErrorMessage = namedtuple(
-    'ErrorMessage',
-    'status_code message'
-)
+ErrorMessage = namedtuple("ErrorMessage", "status_code message")
 
 
 class PyYouTubeException(Exception):
@@ -30,21 +27,21 @@ class PyYouTubeException(Exception):
         Error has two big type(but not the error type.): This module's error, Api return error.
         So This will change two error to one format
         """
-        res = getattr(self.response, 'json', None)
+        res = getattr(self.response, "json", None)
         if res is None:
             self.status_code = self.response.status_code
             self.message = self.response.message
-            self.error_type = 'PyYouTubeException'
+            self.error_type = "PyYouTubeException"
         elif callable(res):
             error_data = res()
-            if 'error' in error_data:
-                self.status_code = error_data['error']['code']
-                self.message = error_data['error']['message']
-                if 'errors' in error_data['error']:
-                    self.error_type = error_data['error']['errors'][0]['reason']
+            if "error" in error_data:
+                self.status_code = error_data["error"]["code"]
+                self.message = error_data["error"]["message"]
+                if "errors" in error_data["error"]:
+                    self.error_type = error_data["error"]["errors"][0]["reason"]
 
     def __repr__(self):  # pragma: no cover
-        return f'PyYouTubeException(status_code={self.status_code}, message={self.message})'
+        return f"PyYouTubeException(status_code={self.status_code}, message={self.message})"
 
     def __str__(self):  # pragma: no cover
         return self.__repr__()

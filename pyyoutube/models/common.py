@@ -14,6 +14,7 @@ class Thumbnail(BaseModel):
 
     Refer: https://developers.google.com/youtube/v3/docs/channels#snippet.thumbnails.(key).url
     """
+
     url: Optional[str] = field(default=None)
     width: Optional[int] = field(default=None, repr=False)
     height: Optional[int] = field(default=None, repr=False)
@@ -26,6 +27,7 @@ class Thumbnails(BaseModel):
 
     Refer: https://developers.google.com/youtube/v3/docs/channels#snippet.thumbnails
     """
+
     default: Optional[Thumbnail] = field(default=None)
     medium: Optional[Thumbnail] = field(default=None, repr=False)
     high: Optional[Thumbnail] = field(default=None, repr=False)
@@ -44,6 +46,7 @@ class Topic(BaseModel):
 
     This model is customized for parsing topic id. YouTube Data Api not return this.
     """
+
     id: Optional[str] = field(default=None)
     description: Optional[str] = field(default=None)
 
@@ -53,6 +56,7 @@ class BaseTopicDetails(BaseModel):
     """
     This is a base model for chanel or video topic details.
     """
+
     topicIds: List[str] = field(default=None, repr=False)
 
     def get_full_topics(self):
@@ -61,13 +65,13 @@ class BaseTopicDetails(BaseModel):
         :return: List[Topic]
         """
         from pyyoutube import CHANNEL_TOPICS
+
         r: List[Topic] = []
         if self.topicIds:
             for topic_id in self.topicIds:
-                topic = Topic.from_dict({
-                    "id": topic_id,
-                    "description": CHANNEL_TOPICS.get(topic_id)
-                })
+                topic = Topic.from_dict(
+                    {"id": topic_id, "description": CHANNEL_TOPICS.get(topic_id)}
+                )
                 r.append(topic)
         return r
 
@@ -81,5 +85,6 @@ class Localized(BaseModel):
         https://developers.google.com/youtube/v3/docs/channels#snippet.localized
         https://google-developers.appspot.com/youtube/v3/docs/videos#snippet.localized
     """
+
     title: Optional[str] = field(default=None)
     description: Optional[str] = field(default=None, repr=False)

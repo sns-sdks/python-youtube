@@ -25,7 +25,7 @@ docs:
 	$(MAKE) -C docs html
 
 lint:
-	flake8 --ignore E111,E124,E126,E221,E501,w504 --exclude .git,__pycache__
+	black .
 
 
 test:

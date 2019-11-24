@@ -23,7 +23,9 @@ def get_video_duration(duration: str) -> int:
         seconds = isodate.parse_duration(duration).total_seconds()
         return int(seconds)
     except ISO8601Error as e:
-        raise PyYouTubeException(ErrorMessage(
-            status_code=10001,
-            message=f'Exception in convert video duration: {duration}. errors: {e}'
-        ))
+        raise PyYouTubeException(
+            ErrorMessage(
+                status_code=10001,
+                message=f"Exception in convert video duration: {duration}. errors: {e}",
+            )
+        )

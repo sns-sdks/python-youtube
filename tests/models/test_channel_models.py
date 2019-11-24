@@ -6,20 +6,20 @@ import pyyoutube.models as models
 class ChannelModelTest(unittest.TestCase):
     BASE_PATH = "testdata/modeldata/"
 
-    with open(BASE_PATH + 'channel_branding_settings.json', 'rb') as f:
-        BRANDING_SETTINGS_INFO = json.loads(f.read().decode('utf-8'))
-    with open(BASE_PATH + 'channel_content_details.json', 'rb') as f:
-        CONTENT_DETAILS_INFO = json.loads(f.read().decode('utf-8'))
-    with open(BASE_PATH + 'channel_topic_details.json', 'rb') as f:
-        TOPIC_DETAILS_INFO = json.loads(f.read().decode('utf-8'))
-    with open(BASE_PATH + 'channel_snippet.json', 'rb') as f:
-        SNIPPET_INFO = json.loads(f.read().decode('utf-8'))
-    with open(BASE_PATH + 'channel_statistics.json', 'rb') as f:
-        STATISTICS_INFO = json.loads(f.read().decode('utf-8'))
-    with open(BASE_PATH + 'channel_status.json', 'rb') as f:
-        STATUS_INFO = json.loads(f.read().decode('utf-8'))
-    with open(BASE_PATH + 'channel_info.json', 'rb') as f:
-        CHANNEL_INFO = json.loads(f.read().decode('utf-8'))
+    with open(BASE_PATH + "channel_branding_settings.json", "rb") as f:
+        BRANDING_SETTINGS_INFO = json.loads(f.read().decode("utf-8"))
+    with open(BASE_PATH + "channel_content_details.json", "rb") as f:
+        CONTENT_DETAILS_INFO = json.loads(f.read().decode("utf-8"))
+    with open(BASE_PATH + "channel_topic_details.json", "rb") as f:
+        TOPIC_DETAILS_INFO = json.loads(f.read().decode("utf-8"))
+    with open(BASE_PATH + "channel_snippet.json", "rb") as f:
+        SNIPPET_INFO = json.loads(f.read().decode("utf-8"))
+    with open(BASE_PATH + "channel_statistics.json", "rb") as f:
+        STATISTICS_INFO = json.loads(f.read().decode("utf-8"))
+    with open(BASE_PATH + "channel_status.json", "rb") as f:
+        STATUS_INFO = json.loads(f.read().decode("utf-8"))
+    with open(BASE_PATH + "channel_info.json", "rb") as f:
+        CHANNEL_INFO = json.loads(f.read().decode("utf-8"))
 
     def testChannelBrandingSettings(self) -> None:
         m = models.ChannelBrandingSetting.from_dict(self.BRANDING_SETTINGS_INFO)
@@ -28,10 +28,10 @@ class ChannelModelTest(unittest.TestCase):
         self.assertEqual(
             m.image.bannerImageUrl,
             (
-                'https://yt3.ggpht.com/vpeUmkxH-uuOYgdvyCXg5Bz4Rn5z2Yxj_'
-                'efZ2uN62WZeQFdro2PfumdcvvLJwn9G4mRFyriF7Vk=w1060-fcrop64=1,'
-                '00005a57ffffa5a8-k-c0xffffffff-no-nd-rj'
-            )
+                "https://yt3.ggpht.com/vpeUmkxH-uuOYgdvyCXg5Bz4Rn5z2Yxj_"
+                "efZ2uN62WZeQFdro2PfumdcvvLJwn9G4mRFyriF7Vk=w1060-fcrop64=1,"
+                "00005a57ffffa5a8-k-c0xffffffff-no-nd-rj"
+            ),
         )
         self.assertEqual(len(m.hints), 2)
         self.assertEqual(m.hints[0].property, "channel.banner.mobile.medium.image.url")
@@ -58,7 +58,7 @@ class ChannelModelTest(unittest.TestCase):
         self.assertEqual(m.localized.title, "Google Developers")
         self.assertEqual(
             m.thumbnails.default.url,
-            "https://yt3.ggpht.com/a/AGF-l78iFtAxyRZcUBzG91kbKMES19z-zGW5KT20_g=s88-c-k-c0xffffffff-no-rj-mo"
+            "https://yt3.ggpht.com/a/AGF-l78iFtAxyRZcUBzG91kbKMES19z-zGW5KT20_g=s88-c-k-c0xffffffff-no-rj-mo",
         )
 
         published_at = m.string_to_datetime(m.publishedAt)

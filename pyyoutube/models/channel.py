@@ -16,6 +16,7 @@ class ChannelBrandingChannel(BaseModel):
 
     Refer: https://developers.google.com/youtube/v3/docs/channels#brandingSettings.channel
     """
+
     title: Optional[str] = field(default=None)
     description: Optional[str] = field(default=None)
     keywords: Optional[str] = field(default=None, repr=False)
@@ -38,6 +39,7 @@ class ChannelBrandingImage(BaseModel):
 
     Refer: https://developers.google.com/youtube/v3/docs/channels#brandingSettings.image
     """
+
     bannerImageUrl: Optional[str] = field(default=None)
     bannerMobileImageUrl: Optional[str] = field(default=None, repr=False)
     watchIconImageUrl: Optional[str] = field(default=None, repr=False)
@@ -64,6 +66,7 @@ class ChannelBrandingHint(BaseModel):
 
     Refer: https://developers.google.com/youtube/v3/docs/channels#brandingSettings.hints
     """
+
     property: Optional[str] = field(default=None)
     value: Optional[str] = field(default=None)
 
@@ -75,6 +78,7 @@ class ChannelBrandingSetting(BaseModel):
 
     Refer: https://developers.google.com/youtube/v3/docs/channels#brandingSettings
     """
+
     channel: Optional[ChannelBrandingChannel] = field(default=None)
     image: Optional[ChannelBrandingImage] = field(default=None)
     hints: List[ChannelBrandingHint] = field(default=None, repr=False)
@@ -87,6 +91,7 @@ class RelatedPlaylists(BaseModel):
 
     Refer: https://developers.google.com/youtube/v3/docs/channels#contentDetails.relatedPlaylists
     """
+
     likes: Optional[str] = field(default=None, repr=False)
     uploads: Optional[str] = field(default=None)
 
@@ -98,6 +103,7 @@ class ChannelContentDetails(BaseModel):
 
     Refer: https://developers.google.com/youtube/v3/docs/channels#contentDetails
     """
+
     relatedPlaylists: Optional[RelatedPlaylists] = field(default=None)
 
 
@@ -108,6 +114,7 @@ class ChannelTopicDetails(BaseTopicDetails):
 
     Refer: https://developers.google.com/youtube/v3/docs/channels#topicDetails
     """
+
     # Important:
     # topicIds maybe has deprecated.
     # see more: https://google-developers.appspot.com/youtube/v3/revision_history#november-10-2016
@@ -122,6 +129,7 @@ class Localized(BaseModel):
 
     Refer: https://developers.google.com/youtube/v3/docs/channels#snippet.localized
     """
+
     title: Optional[str] = field(default=None)
     description: Optional[str] = field(default=None, repr=False)
 
@@ -133,6 +141,7 @@ class ChannelSnippet(BaseModel, DatetimeTimeMixin):
 
     Refer: https://developers.google.com/youtube/v3/docs/channels#snippet
     """
+
     title: Optional[str] = field(default=None)
     description: Optional[str] = field(default=None)
     customUrl: Optional[str] = field(default=None, repr=False)
@@ -150,6 +159,7 @@ class ChannelStatistics(BaseModel):
 
     Refer: https://developers.google.com/youtube/v3/docs/channels#statistics
     """
+
     viewCount: Optional[int] = field(default=None)
     commentCount: Optional[int] = field(default=None, repr=False)
     subscriberCount: Optional[int] = field(default=None)
@@ -164,6 +174,7 @@ class ChannelStatus(BaseModel):
 
     Refer: https://developers.google.com/youtube/v3/docs/channels#status
     """
+
     privacyStatus: Optional[str] = field(default=None)
     isLinked: Optional[bool] = field(default=None, repr=False)
     longUploadsStatus: Optional[str] = field(default=None, repr=False)
@@ -176,6 +187,7 @@ class Channel(BaseModel):
 
     Refer: https://developers.google.com/youtube/v3/docs/channels
     """
+
     kind: Optional[str] = field(default=None)
     etag: Optional[str] = field(default=None, repr=False)
     id: Optional[str] = field(default=None)

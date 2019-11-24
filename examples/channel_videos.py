@@ -8,7 +8,7 @@ Last use get_videos_info to get videos data.
 
 import pyyoutube
 
-API_KEY = 'xxx'  # replace this with your api key.
+API_KEY = "xxx"  # replace this with your api key.
 
 
 def get_videos(channel_name):
@@ -17,7 +17,9 @@ def get_videos(channel_name):
 
     playlist_id = channel[0].contentDetails.relatedPlaylists.uploads
 
-    playlist_items, _ = api.get_playlist_item(playlist_id=playlist_id, count=10, limit=6)
+    playlist_items, _ = api.get_playlist_item(
+        playlist_id=playlist_id, count=10, limit=6
+    )
 
     videos = []
     for item in playlist_items:
@@ -28,14 +30,14 @@ def get_videos(channel_name):
 
 
 def processor():
-    channel_name = 'googledevelopers'
+    channel_name = "googledevelopers"
     videos = get_videos(channel_name)
 
-    with open('videos.json', 'w+') as f:
+    with open("videos.json", "w+") as f:
         for video in videos:
             f.write(video.as_json_string())
-            f.write('\n')
+            f.write("\n")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     processor()

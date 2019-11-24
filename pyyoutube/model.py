@@ -32,11 +32,11 @@ class BaseModel:
             if isinstance(key_attr, (list, tuple, set)):
                 data[key] = list()
                 for sub_obj in key_attr:
-                    if getattr(sub_obj, 'as_dict', None):
+                    if getattr(sub_obj, "as_dict", None):
                         data[key].append(sub_obj.as_dict())
                     else:
                         data[key].append(sub_obj)
-            elif getattr(key_attr, 'as_dict', None):
+            elif getattr(key_attr, "as_dict", None):
                 data[key] = key_attr.as_dict()
             elif key_attr is not None:
                 data[key] = getattr(self, key, None)
@@ -56,12 +56,12 @@ class AccessToken(BaseModel):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.param_defaults = {
-            'access_token': None,
-            'expires_in': None,
-            'refresh_token': None,
-            'scope': None,  # Refer: https://developers.google.com/identity/protocols/googlescopes
-            'token_type': None,
-            'id_token': None
+            "access_token": None,
+            "expires_in": None,
+            "refresh_token": None,
+            "scope": None,  # Refer: https://developers.google.com/identity/protocols/googlescopes
+            "token_type": None,
+            "id_token": None,
         }
         self.initial(kwargs)
 
@@ -73,12 +73,12 @@ class UserProfile(BaseModel):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.param_defaults = {
-            'id': None,
-            'name': None,
-            'given_name': None,
-            'family_name': None,
-            'picture': None,
-            'locale': None
+            "id": None,
+            "name": None,
+            "given_name": None,
+            "family_name": None,
+            "picture": None,
+            "locale": None,
         }
         self.initial(kwargs)
 
@@ -94,11 +94,7 @@ class Thumbnail(BaseModel):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.param_defaults = {
-            'url': None,
-            'width': None,
-            'height': None
-        }
+        self.param_defaults = {"url": None, "width": None, "height": None}
         self.initial(kwargs)
 
     def __repr__(self):
@@ -114,11 +110,11 @@ class Thumbnails(BaseModel):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.param_defaults = {
-            'default': None,
-            'medium': None,
-            'high': None,
-            'standard': None,
-            'maxres': None,
+            "default": None,
+            "medium": None,
+            "high": None,
+            "standard": None,
+            "maxres": None,
         }
         self.initial(kwargs)
 
@@ -140,25 +136,27 @@ class ChannelBrandingChannel(BaseModel):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.param_defaults = {
-            'title': None,
-            'description': None,
-            'keywords': None,
-            'defaultTab': None,
-            'trackingAnalyticsAccountId': None,
-            'moderateComments': None,
-            'showRelatedChannels': None,
-            'showBrowseView': None,
-            'featuredChannelsTitle': None,
-            'featuredChannelsUrls': None,
-            'unsubscribedTrailer': None,
-            'profileColor': None,
-            'defaultLanguage': None,
-            'country': None,
+            "title": None,
+            "description": None,
+            "keywords": None,
+            "defaultTab": None,
+            "trackingAnalyticsAccountId": None,
+            "moderateComments": None,
+            "showRelatedChannels": None,
+            "showBrowseView": None,
+            "featuredChannelsTitle": None,
+            "featuredChannelsUrls": None,
+            "unsubscribedTrailer": None,
+            "profileColor": None,
+            "defaultLanguage": None,
+            "country": None,
         }
         self.initial(kwargs)
 
     def __repr__(self):
-        return f"ChannelBrandingChannel(title={self.title},description={self.description})"
+        return (
+            f"ChannelBrandingChannel(title={self.title},description={self.description})"
+        )
 
 
 class ChannelBrandingHint(BaseModel):
@@ -170,8 +168,8 @@ class ChannelBrandingHint(BaseModel):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.param_defaults = {
-            'property': None,
-            'value': None,
+            "property": None,
+            "value": None,
         }
         self.initial(kwargs)
 
@@ -188,23 +186,23 @@ class ChannelBrandingImage(BaseModel):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.param_defaults = {
-            'bannerImageUrl': None,
-            'bannerMobileImageUrl': None,
-            'watchIconImageUrl': None,
-            'trackingImageUrl': None,
-            'bannerTabletLowImageUrl': None,
-            'bannerTabletImageUrl': None,
-            'bannerTabletHdImageUrl': None,
-            'bannerTabletExtraHdImageUrl': None,
-            'bannerMobileLowImageUrl': None,
-            'bannerMobileMediumHdImageUrl': None,
-            'bannerMobileHdImageUrl': None,
-            'bannerMobileExtraHdImageUrl': None,
-            'bannerTvImageUrl': None,
-            'bannerTvLowImageUrl': None,
-            'bannerTvMediumImageUrl': None,
-            'bannerTvHighImageUrl': None,
-            'bannerExternalUrl': None,
+            "bannerImageUrl": None,
+            "bannerMobileImageUrl": None,
+            "watchIconImageUrl": None,
+            "trackingImageUrl": None,
+            "bannerTabletLowImageUrl": None,
+            "bannerTabletImageUrl": None,
+            "bannerTabletHdImageUrl": None,
+            "bannerTabletExtraHdImageUrl": None,
+            "bannerMobileLowImageUrl": None,
+            "bannerMobileMediumHdImageUrl": None,
+            "bannerMobileHdImageUrl": None,
+            "bannerMobileExtraHdImageUrl": None,
+            "bannerTvImageUrl": None,
+            "bannerTvLowImageUrl": None,
+            "bannerTvMediumImageUrl": None,
+            "bannerTvHighImageUrl": None,
+            "bannerExternalUrl": None,
         }
         self.initial(kwargs)
 
@@ -221,26 +219,25 @@ class ChannelBrandingSetting(BaseModel):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.param_defaults = {
-            'channel': None,
-            'image': None,
-            'hints': None,
+            "channel": None,
+            "image": None,
+            "hints": None,
         }
         self.initial(kwargs)
 
     @classmethod
     def new_from_json_dict(cls, data, **kwargs):
-        channel = data.get('channel')
+        channel = data.get("channel")
         if channel is not None:
             channel = ChannelBrandingChannel.new_from_json_dict(channel)
-        image = data.get('image')
+        image = data.get("image")
         if image is not None:
             image = ChannelBrandingImage.new_from_json_dict(image)
-        hints = data.get('hints')
+        hints = data.get("hints")
         if hints is not None:
             hints = [ChannelBrandingHint.new_from_json_dict(item) for item in hints]
         return super().new_from_json_dict(
-            data=data, channel=channel, image=image,
-            hints=hints
+            data=data, channel=channel, image=image, hints=hints
         )
 
 
@@ -253,11 +250,11 @@ class RelatedPlaylists(BaseModel):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.param_defaults = {
-            'favorites': None,  # This property has been deprecated
-            'watchHistory': None,  # This property has been deprecated
-            'watchLater': None,  # This property has been deprecated
-            'uploads': None,
-            'likes': None,
+            "favorites": None,  # This property has been deprecated
+            "watchHistory": None,  # This property has been deprecated
+            "watchLater": None,  # This property has been deprecated
+            "uploads": None,
+            "likes": None,
         }
         self.initial(kwargs)
 
@@ -273,9 +270,7 @@ class ChannelContentDetails(BaseModel):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.param_defaults = {
-            'relatedPlaylists': None
-        }
+        self.param_defaults = {"relatedPlaylists": None}
         self.initial(kwargs)
 
     def __repr__(self):
@@ -283,12 +278,10 @@ class ChannelContentDetails(BaseModel):
 
     @classmethod
     def new_from_json_dict(cls, data, **kwargs):
-        related_playlists = data.get('relatedPlaylists')
+        related_playlists = data.get("relatedPlaylists")
         if related_playlists:
             related_playlists = RelatedPlaylists.new_from_json_dict(related_playlists)
-        return super().new_from_json_dict(
-            data=data, relatedPlaylists=related_playlists
-        )
+        return super().new_from_json_dict(data=data, relatedPlaylists=related_playlists)
 
 
 class Topic(BaseModel):
@@ -300,8 +293,8 @@ class Topic(BaseModel):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.param_defaults = {
-            'id': None,
-            'description': None  # convert id to topic desc
+            "id": None,
+            "description": None,  # convert id to topic desc
         }
         self.initial(kwargs)
 
@@ -312,6 +305,7 @@ class Topic(BaseModel):
     def new_from_json_dict(cls, data, **kwargs):
         # custom to build topic info
         from pyyoutube import CHANNEL_TOPICS
+
         desc = CHANNEL_TOPICS.get(data)
         return super().new_from_json_dict(data={}, id=data, description=desc)
 
@@ -325,10 +319,7 @@ class ChannelTopicDetails(BaseModel):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.topicIds = None
-        self.param_defaults = {
-            'topicIds': None,
-            'topicCategories': None
-        }
+        self.param_defaults = {"topicIds": None, "topicCategories": None}
         self.initial(kwargs)
 
     def __repr__(self):
@@ -336,7 +327,7 @@ class ChannelTopicDetails(BaseModel):
 
     @classmethod
     def new_from_json_dict(cls, data, **kwargs):
-        topic_ids = data.get('topicIds')
+        topic_ids = data.get("topicIds")
         if topic_ids is not None:
             topic_ids = [Topic.new_from_json_dict(item) for item in topic_ids]
         return super().new_from_json_dict(data=data, topicIds=topic_ids)
@@ -350,10 +341,7 @@ class Localized(BaseModel):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.param_defaults = {
-            'title': None,
-            'description': None
-        }
+        self.param_defaults = {"title": None, "description": None}
         self.initial(kwargs)
 
     def __repr__(self):
@@ -369,14 +357,14 @@ class ChannelSnippet(BaseModel):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.param_defaults = {
-            'publishedAt': None,
-            'title': None,
-            'description': None,
-            'defaultLanguage': None,
-            'customUrl': None,
-            'country': None,
-            'thumbnails': None,
-            'localized': None,
+            "publishedAt": None,
+            "title": None,
+            "description": None,
+            "defaultLanguage": None,
+            "customUrl": None,
+            "country": None,
+            "thumbnails": None,
+            "localized": None,
         }
         self.initial(kwargs)
 
@@ -385,10 +373,10 @@ class ChannelSnippet(BaseModel):
 
     @classmethod
     def new_from_json_dict(cls, data, **kwargs):
-        thumbnails = data.get('thumbnails')
+        thumbnails = data.get("thumbnails")
         if thumbnails:
             thumbnails = Thumbnails.new_from_json_dict(thumbnails)
-        localized = data.get('localized')
+        localized = data.get("localized")
         if localized:
             localized = Localized.new_from_json_dict(localized)
         return super().new_from_json_dict(
@@ -405,11 +393,11 @@ class ChannelStatistics(BaseModel):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.param_defaults = {
-            'viewCount': None,
-            'commentCount': None,
-            'subscriberCount': None,
-            'hiddenSubscriberCount': None,
-            'videoCount': None,
+            "viewCount": None,
+            "commentCount": None,
+            "subscriberCount": None,
+            "hiddenSubscriberCount": None,
+            "videoCount": None,
         }
         self.initial(kwargs)
 
@@ -426,9 +414,9 @@ class ChannelStatus(BaseModel):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.param_defaults = {
-            'privacyStatus': None,
-            'isLinked': None,
-            'longUploadsStatus': None,
+            "privacyStatus": None,
+            "isLinked": None,
+            "longUploadsStatus": None,
         }
         self.initial(kwargs)
 
@@ -445,15 +433,15 @@ class Channel(BaseModel):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.param_defaults = {
-            'kind': None,
-            'etag': None,
-            'id': None,
-            'snippet': None,
-            'contentDetails': None,
-            'statistics': None,
-            'topicDetails': None,
-            'status': None,
-            'brandingSettings': None
+            "kind": None,
+            "etag": None,
+            "id": None,
+            "snippet": None,
+            "contentDetails": None,
+            "statistics": None,
+            "topicDetails": None,
+            "status": None,
+            "brandingSettings": None,
         }
         self.initial(kwargs)
 
@@ -462,22 +450,24 @@ class Channel(BaseModel):
 
     @classmethod
     def new_from_json_dict(cls, data, **kwargs):
-        snippet = data.get('snippet')
+        snippet = data.get("snippet")
         if snippet is not None:
             snippet = ChannelSnippet.new_from_json_dict(snippet)
-        content_details = data.get('contentDetails')
+        content_details = data.get("contentDetails")
         if content_details is not None:
             content_details = ChannelContentDetails.new_from_json_dict(content_details)
-        statistics = data.get('statistics')
+        statistics = data.get("statistics")
         if statistics is not None:
             statistics = ChannelStatistics.new_from_json_dict(statistics)
-        status = data.get('status')
+        status = data.get("status")
         if status is not None:
             status = ChannelStatus.new_from_json_dict(status)
         return super().new_from_json_dict(
-            data=data, snippet=snippet,
-            contentDetails=content_details, statistics=statistics,
-            status=status
+            data=data,
+            snippet=snippet,
+            contentDetails=content_details,
+            statistics=statistics,
+            status=status,
         )
 
 
@@ -490,17 +480,19 @@ class VideoContentDetails(BaseModel):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.param_defaults = {
-            'duration': None,
-            'dimension': None,
-            'definition': None,
-            'caption': None,
-            'licensedContent': None,
-            'projection': None,
+            "duration": None,
+            "dimension": None,
+            "definition": None,
+            "caption": None,
+            "licensedContent": None,
+            "projection": None,
         }
         self.initial(kwargs)
 
     def __repr__(self):
-        return f"VideoContentDetails(dimension={self.dimension},duration={self.duration})"
+        return (
+            f"VideoContentDetails(dimension={self.dimension},duration={self.duration})"
+        )
 
 
 class VideoTopicDetails(BaseModel):
@@ -513,9 +505,9 @@ class VideoTopicDetails(BaseModel):
         super().__init__(**kwargs)
         self.topicIds = None
         self.param_defaults = {
-            'topicIds': None,
-            'relevantTopicIds': None,
-            'topicCategories': None
+            "topicIds": None,
+            "relevantTopicIds": None,
+            "topicCategories": None,
         }
         self.initial(kwargs)
 
@@ -524,16 +516,17 @@ class VideoTopicDetails(BaseModel):
 
     @classmethod
     def new_from_json_dict(cls, data, **kwargs):
-        topic_ids = data.get('topicIds')
+        topic_ids = data.get("topicIds")
         if topic_ids is not None:
             topic_ids = [Topic.new_from_json_dict(item) for item in topic_ids]
-        relevant_topic_ids = data.get('relevantTopicIds')
+        relevant_topic_ids = data.get("relevantTopicIds")
         if relevant_topic_ids is not None:
-            relevant_topic_ids = [Topic.new_from_json_dict(item) for item in relevant_topic_ids]
+            relevant_topic_ids = [
+                Topic.new_from_json_dict(item) for item in relevant_topic_ids
+            ]
 
         return super().new_from_json_dict(
-            data=data, topicIds=topic_ids,
-            relevantTopicIds=relevant_topic_ids
+            data=data, topicIds=topic_ids, relevantTopicIds=relevant_topic_ids
         )
 
 
@@ -546,18 +539,18 @@ class VideoSnippet(BaseModel):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.param_defaults = {
-            'publishedAt': None,
-            'channelId': None,
-            'title': None,
-            'description': None,
-            'thumbnails': None,
-            'channelTitle': None,
-            'tags': None,
-            'categoryId': None,
-            'liveBroadcastContent': None,
-            'defaultLanguage': None,
-            'localized': None,
-            'defaultAudioLanguage': None,
+            "publishedAt": None,
+            "channelId": None,
+            "title": None,
+            "description": None,
+            "thumbnails": None,
+            "channelTitle": None,
+            "tags": None,
+            "categoryId": None,
+            "liveBroadcastContent": None,
+            "defaultLanguage": None,
+            "localized": None,
+            "defaultAudioLanguage": None,
         }
         self.initial(kwargs)
 
@@ -566,10 +559,10 @@ class VideoSnippet(BaseModel):
 
     @classmethod
     def new_from_json_dict(cls, data, **kwargs):
-        thumbnails = data.get('thumbnails')
+        thumbnails = data.get("thumbnails")
         if thumbnails:
             thumbnails = Thumbnails.new_from_json_dict(thumbnails)
-        localized = data.get('localized')
+        localized = data.get("localized")
         if localized:
             localized = Localized.new_from_json_dict(localized)
         return super().new_from_json_dict(
@@ -586,11 +579,11 @@ class VideoStatistics(BaseModel):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.param_defaults = {
-            'viewCount': None,
-            'likeCount': None,
-            'dislikeCount': None,
-            'favoriteCount': None,  # This property has been deprecated.
-            'commentCount': None,
+            "viewCount": None,
+            "likeCount": None,
+            "dislikeCount": None,
+            "favoriteCount": None,  # This property has been deprecated.
+            "commentCount": None,
         }
         self.initial(kwargs)
 
@@ -607,14 +600,14 @@ class VideoStatus(BaseModel):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.param_defaults = {
-            'uploadStatus': None,
-            'failureReason': None,
-            'rejectionReason': None,
-            'privacyStatus': None,
-            'publishAt': None,
-            'license': None,
-            'embeddable': None,
-            'publicStatsViewable': None
+            "uploadStatus": None,
+            "failureReason": None,
+            "rejectionReason": None,
+            "privacyStatus": None,
+            "publishAt": None,
+            "license": None,
+            "embeddable": None,
+            "publicStatsViewable": None,
         }
         self.initial(kwargs)
 
@@ -632,14 +625,14 @@ class Video(BaseModel):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.param_defaults = {
-            'kind': None,
-            'etag': None,
-            'id': None,
-            'snippet': None,
-            'contentDetails': None,
-            'status': None,
-            'statistics': None,
-            'topicDetails': None,
+            "kind": None,
+            "etag": None,
+            "id": None,
+            "snippet": None,
+            "contentDetails": None,
+            "status": None,
+            "statistics": None,
+            "topicDetails": None,
         }
         self.initial(kwargs)
 
@@ -648,25 +641,28 @@ class Video(BaseModel):
 
     @classmethod
     def new_from_json_dict(cls, data, **kwargs):
-        snippet = data.get('snippet')
+        snippet = data.get("snippet")
         if snippet is not None:
             snippet = VideoSnippet.new_from_json_dict(snippet)
-        content_details = data.get('contentDetails')
+        content_details = data.get("contentDetails")
         if content_details is not None:
             content_details = VideoContentDetails.new_from_json_dict(content_details)
-        topic_details = data.get('topicDetails')
+        topic_details = data.get("topicDetails")
         if topic_details is not None:
             topic_details = VideoTopicDetails.new_from_json_dict(topic_details)
-        statistics = data.get('statistics')
+        statistics = data.get("statistics")
         if statistics is not None:
             statistics = VideoStatistics.new_from_json_dict(statistics)
-        status = data.get('status')
+        status = data.get("status")
         if status is not None:
             status = VideoStatus.new_from_json_dict(status)
         return super().new_from_json_dict(
-            data=data, snippet=snippet,
-            contentDetails=content_details, topicDetails=topic_details,
-            statistics=statistics, status=status
+            data=data,
+            snippet=snippet,
+            contentDetails=content_details,
+            topicDetails=topic_details,
+            statistics=statistics,
+            status=status,
         )
 
 
@@ -678,9 +674,7 @@ class PlayListContentDetails(BaseModel):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.param_defaults = {
-            'itemCount': None
-        }
+        self.param_defaults = {"itemCount": None}
         self.initial(kwargs)
 
     def __repr__(self):
@@ -696,15 +690,15 @@ class PlayListSnippet(BaseModel):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.param_defaults = {
-            'publishedAt': None,
-            'channelId': None,
-            'title': None,
-            'description': None,
-            'thumbnails': None,
-            'tags': None,
-            'defaultLanguage': None,
-            'channelTitle': None,
-            'localized': None,
+            "publishedAt": None,
+            "channelId": None,
+            "title": None,
+            "description": None,
+            "thumbnails": None,
+            "tags": None,
+            "defaultLanguage": None,
+            "channelTitle": None,
+            "localized": None,
         }
         self.initial(kwargs)
 
@@ -713,10 +707,10 @@ class PlayListSnippet(BaseModel):
 
     @classmethod
     def new_from_json_dict(cls, data, **kwargs):
-        thumbnails = data.get('thumbnails')
+        thumbnails = data.get("thumbnails")
         if thumbnails:
             thumbnails = Thumbnails.new_from_json_dict(thumbnails)
-        localized = data.get('localized')
+        localized = data.get("localized")
         if localized:
             localized = Localized.new_from_json_dict(localized)
         return super().new_from_json_dict(
@@ -732,9 +726,7 @@ class PlayListStatus(BaseModel):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.param_defaults = {
-            'privacyStatus': None
-        }
+        self.param_defaults = {"privacyStatus": None}
         self.initial(kwargs)
 
     def __repr__(self):
@@ -750,12 +742,12 @@ class PlayList(BaseModel):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.param_defaults = {
-            'kind': None,
-            'etag': None,
-            'id': None,
-            'snippet': None,
-            'status': None,
-            'contentDetails': None,
+            "kind": None,
+            "etag": None,
+            "id": None,
+            "snippet": None,
+            "status": None,
+            "contentDetails": None,
         }
         self.initial(kwargs)
 
@@ -764,18 +756,17 @@ class PlayList(BaseModel):
 
     @classmethod
     def new_from_json_dict(cls, data, **kwargs):
-        snippet = data.get('snippet')
+        snippet = data.get("snippet")
         if snippet is not None:
             snippet = PlayListSnippet.new_from_json_dict(snippet)
-        content_details = data.get('contentDetails')
+        content_details = data.get("contentDetails")
         if content_details is not None:
             content_details = PlayListContentDetails.new_from_json_dict(content_details)
-        status = data.get('status')
+        status = data.get("status")
         if status is not None:
             status = PlayListStatus.new_from_json_dict(status)
         return super().new_from_json_dict(
-            data=data, snippet=snippet,
-            contentDetails=content_details, status=status
+            data=data, snippet=snippet, contentDetails=content_details, status=status
         )
 
 
@@ -788,9 +779,9 @@ class PlaylistItemContentDetails(BaseModel):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.param_defaults = {
-            'videoId': None,
-            'note': None,
-            'videoPublishedAt': None,
+            "videoId": None,
+            "note": None,
+            "videoPublishedAt": None,
         }
         self.initial(kwargs)
 
@@ -806,10 +797,7 @@ class ResourceId(BaseModel):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.param_defaults = {
-            'kind': None,
-            'videoId': None
-        }
+        self.param_defaults = {"kind": None, "videoId": None}
         self.initial(kwargs)
 
     def __repr__(self):
@@ -833,7 +821,7 @@ class PlaylistItemSnippet(BaseModel):
             "channelTitle": None,
             "playlistId": None,
             "position": None,
-            "resourceId": None
+            "resourceId": None,
         }
         self.initial(kwargs)
 
@@ -842,10 +830,10 @@ class PlaylistItemSnippet(BaseModel):
 
     @classmethod
     def new_from_json_dict(cls, data, **kwargs):
-        thumbnails = data.get('thumbnails')
+        thumbnails = data.get("thumbnails")
         if thumbnails:
             thumbnails = Thumbnails.new_from_json_dict(thumbnails)
-        resource_id = data.get('resourceId')
+        resource_id = data.get("resourceId")
         if resource_id:
             resource_id = ResourceId.new_from_json_dict(resource_id)
         return super().new_from_json_dict(
@@ -861,9 +849,7 @@ class PlaylistItemStatus(BaseModel):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.param_defaults = {
-            'privacyStatus': None
-        }
+        self.param_defaults = {"privacyStatus": None}
         self.initial(kwargs)
 
     def __repr__(self):
@@ -879,12 +865,12 @@ class PlaylistItem(BaseModel):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.param_defaults = {
-            'kind': None,
-            'etag': None,
-            'id': None,
-            'snippet': None,
-            'contentDetails': None,
-            'status': None,
+            "kind": None,
+            "etag": None,
+            "id": None,
+            "snippet": None,
+            "contentDetails": None,
+            "status": None,
         }
         self.initial(kwargs)
 
@@ -893,18 +879,19 @@ class PlaylistItem(BaseModel):
 
     @classmethod
     def new_from_json_dict(cls, data, **kwargs):
-        snippet = data.get('snippet')
+        snippet = data.get("snippet")
         if snippet is not None:
             snippet = PlaylistItemSnippet.new_from_json_dict(snippet)
-        content_details = data.get('contentDetails')
+        content_details = data.get("contentDetails")
         if content_details is not None:
-            content_details = PlaylistItemContentDetails.new_from_json_dict(content_details)
-        status = data.get('status')
+            content_details = PlaylistItemContentDetails.new_from_json_dict(
+                content_details
+            )
+        status = data.get("status")
         if status is not None:
             status = PlaylistItemStatus.new_from_json_dict(status)
         return super().new_from_json_dict(
-            data=data, snippet=snippet,
-            contentDetails=content_details, status=status
+            data=data, snippet=snippet, contentDetails=content_details, status=status
         )
 
 
@@ -917,7 +904,7 @@ class CommentSnippetAuthorChannelId(BaseModel):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.param_defaults = {
-            'value': None,
+            "value": None,
         }
         self.initial(kwargs)
 
@@ -934,21 +921,21 @@ class CommentSnippet(BaseModel):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.param_defaults = {
-            'authorDisplayName': None,
-            'authorProfileImageUrl': None,
-            'authorChannelUrl': None,
-            'authorChannelId': None,
-            'channelId': None,
-            'videoId': None,
-            'textDisplay': None,
-            'textOriginal': None,
-            'parentId': None,
-            'canRate': None,
-            'viewerRating': None,
-            'likeCount': None,
-            'moderationStatus': None,
-            'publishedAt': None,
-            'updatedAt': None,
+            "authorDisplayName": None,
+            "authorProfileImageUrl": None,
+            "authorChannelUrl": None,
+            "authorChannelId": None,
+            "channelId": None,
+            "videoId": None,
+            "textDisplay": None,
+            "textOriginal": None,
+            "parentId": None,
+            "canRate": None,
+            "viewerRating": None,
+            "likeCount": None,
+            "moderationStatus": None,
+            "publishedAt": None,
+            "updatedAt": None,
         }
         self.initial(kwargs)
 
@@ -957,9 +944,11 @@ class CommentSnippet(BaseModel):
 
     @classmethod
     def new_from_json_dict(cls, data, **kwargs):
-        author_channel_id = data.get('authorChannelId')
+        author_channel_id = data.get("authorChannelId")
         if author_channel_id is not None:
-            author_channel_id = CommentSnippetAuthorChannelId.new_from_json_dict(author_channel_id)
+            author_channel_id = CommentSnippetAuthorChannelId.new_from_json_dict(
+                author_channel_id
+            )
 
         return super().new_from_json_dict(data=data, authorChannelId=author_channel_id)
 
@@ -972,12 +961,7 @@ class Comment(BaseModel):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.param_defaults = {
-            'kind': None,
-            'etag': None,
-            'id': None,
-            'snippet': None
-        }
+        self.param_defaults = {"kind": None, "etag": None, "id": None, "snippet": None}
         self.initial(kwargs)
 
     def __repr__(self):
@@ -985,7 +969,7 @@ class Comment(BaseModel):
 
     @classmethod
     def new_from_json_dict(cls, data, **kwargs):
-        snippet = data.get('snippet')
+        snippet = data.get("snippet")
         if snippet is not None:
             snippet = CommentSnippet.new_from_json_dict(snippet)
         return super().new_from_json_dict(data=data, snippet=snippet)
@@ -1000,27 +984,25 @@ class CommentThreadSnippet(BaseModel):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.param_defaults = {
-            'channelId': None,
-            'videoId': None,
-            'topLevelComment': None,
-            'canReply': None,
-            'totalReplyCount': None,
-            'isPublic': None
+            "channelId": None,
+            "videoId": None,
+            "topLevelComment": None,
+            "canReply": None,
+            "totalReplyCount": None,
+            "isPublic": None,
         }
         self.initial(kwargs)
 
     def __repr__(self):
-        return f'CommentTreadSnippet(channelId={self.channelId},videoId={self.videoId})'
+        return f"CommentTreadSnippet(channelId={self.channelId},videoId={self.videoId})"
 
     @classmethod
     def new_from_json_dict(cls, data, **kwargs):
-        top_level_comment = data.get('topLevelComment')
+        top_level_comment = data.get("topLevelComment")
         if top_level_comment is not None:
             top_level_comment = Comment.new_from_json_dict(top_level_comment)
 
-        return super().new_from_json_dict(
-            data=data, topLevelComment=top_level_comment
-        )
+        return super().new_from_json_dict(data=data, topLevelComment=top_level_comment)
 
 
 class CommentThreadReplies(BaseModel):
@@ -1032,16 +1014,16 @@ class CommentThreadReplies(BaseModel):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.param_defaults = {
-            'comments': [],
+            "comments": [],
         }
         self.initial(kwargs)
 
     def __repr__(self):
-        return f'Replies(count={len(self.comments)})'
+        return f"Replies(count={len(self.comments)})"
 
     @classmethod
     def new_from_json_dict(cls, data, **kwargs):
-        comments = data.get('comments')
+        comments = data.get("comments")
         if comments is not None:
             comments = [Comment.new_from_json_dict(item) for item in comments]
         return super().new_from_json_dict(data=data, comments=comments)
@@ -1056,11 +1038,11 @@ class CommentThread(BaseModel):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.param_defaults = {
-            'kind': None,
-            'etag': None,
-            'id': None,
-            'snippet': None,
-            'replies': None,
+            "kind": None,
+            "etag": None,
+            "id": None,
+            "snippet": None,
+            "replies": None,
         }
         self.initial(kwargs)
 
@@ -1069,17 +1051,14 @@ class CommentThread(BaseModel):
 
     @classmethod
     def new_from_json_dict(cls, data, **kwargs):
-        snippet = data.get('snippet')
+        snippet = data.get("snippet")
         if snippet is not None:
             snippet = CommentThreadSnippet.new_from_json_dict(snippet)
-        replies = data.get('replies')
+        replies = data.get("replies")
         if replies is not None:
             replies = CommentThreadReplies.new_from_json_dict(replies)
 
-        return super().new_from_json_dict(
-            data=data, snippet=snippet,
-            replies=replies
-        )
+        return super().new_from_json_dict(data=data, snippet=snippet, replies=replies)
 
 
 class VideoCategorySnippet(BaseModel):
@@ -1091,11 +1070,7 @@ class VideoCategorySnippet(BaseModel):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.param_defaults = {
-            'channelId': None,
-            'title': None,
-            'assignable': None
-        }
+        self.param_defaults = {"channelId": None, "title": None, "assignable": None}
         self.initial(kwargs)
 
     def __repr__(self):
@@ -1111,12 +1086,7 @@ class VideoCategory(BaseModel):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.param_defaults = {
-            'kind': None,
-            'etag': None,
-            'id': None,
-            'snippet': None
-        }
+        self.param_defaults = {"kind": None, "etag": None, "id": None, "snippet": None}
         self.initial(kwargs)
 
     def __repr__(self):
@@ -1124,13 +1094,11 @@ class VideoCategory(BaseModel):
 
     @classmethod
     def new_from_json_dict(cls, data, **kwargs):
-        snippet = data.get('snippet')
+        snippet = data.get("snippet")
         if snippet is not None:
             snippet = VideoCategorySnippet.new_from_json_dict(snippet)
 
-        return super().new_from_json_dict(
-            data=data, snippet=snippet
-        )
+        return super().new_from_json_dict(data=data, snippet=snippet)
 
 
 class GuideCategorySnippet(BaseModel):
@@ -1142,10 +1110,7 @@ class GuideCategorySnippet(BaseModel):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.param_defaults = {
-            'channelId': None,
-            'title': None
-        }
+        self.param_defaults = {"channelId": None, "title": None}
         self.initial(kwargs)
 
     def __repr__(self):
@@ -1162,10 +1127,10 @@ class GuideCategory(BaseModel):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.param_defaults = {
-            'kind': None,
-            'etag': None,
-            'id': None,
-            'snippet': None,
+            "kind": None,
+            "etag": None,
+            "id": None,
+            "snippet": None,
         }
         self.initial(kwargs)
 
@@ -1174,10 +1139,8 @@ class GuideCategory(BaseModel):
 
     @classmethod
     def new_from_json_dict(cls, data, **kwargs):
-        snippet = data.get('snippet')
+        snippet = data.get("snippet")
         if snippet is not None:
             snippet = GuideCategorySnippet.new_from_json_dict(snippet)
 
-        return super().new_from_json_dict(
-            data=data, snippet=snippet
-        )
+        return super().new_from_json_dict(data=data, snippet=snippet)

@@ -38,6 +38,6 @@ from .model import (  # noqa
     VideoStatistics,
     VideoStatus,
     VideoTopicDetails,
-    VideoCategory
+    VideoCategory,
 )
 from .utils.constants import CHANNEL_TOPICS, TOPICS  # noqa

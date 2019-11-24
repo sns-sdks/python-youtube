@@ -1,12 +1,20 @@
 from .auth import AccessToken, UserProfile
 from .channel import (
-    ChannelBrandingSetting, ChannelContentDetails,
-    ChannelTopicDetails, ChannelSnippet, ChannelStatistics,
-    ChannelStatus, Channel
+    ChannelBrandingSetting,
+    ChannelContentDetails,
+    ChannelTopicDetails,
+    ChannelSnippet,
+    ChannelStatistics,
+    ChannelStatus,
+    Channel,
 )
 from .video import (
-    VideoContentDetails, VideoTopicDetails, VideoSnippet,
-    VideoStatistics, VideoStatus, Video
+    VideoContentDetails,
+    VideoTopicDetails,
+    VideoSnippet,
+    VideoStatistics,
+    VideoStatus,
+    Video,
 )
 
 __all__ = [
@@ -24,5 +32,5 @@ __all__ = [
     "VideoSnippet",
     "VideoStatistics",
     "VideoStatus",
-    "Video"
+    "Video",
 ]
