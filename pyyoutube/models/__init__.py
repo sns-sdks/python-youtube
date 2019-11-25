@@ -1,36 +1,69 @@
 from .auth import AccessToken, UserProfile
+from .category import (
+    VideoCategory,
+    GuideCategory,
+)
 from .channel import (
+    Channel,
     ChannelBrandingSetting,
     ChannelContentDetails,
-    ChannelTopicDetails,
     ChannelSnippet,
     ChannelStatistics,
     ChannelStatus,
-    Channel,
+    ChannelTopicDetails,
+)
+from .comment import (
+    Comment,
+    CommentSnippet,
+    CommentThread,
+    CommentThreadReplies,
+    CommentThreadSnippet,
+)
+from .playlist import Playlist, PlaylistContentDetails, PlaylistSnippet, PlaylistStatus
+from .playlist_item import (
+    PlaylistItem,
+    PlaylistItemContentDetails,
+    PlaylistItemSnippet,
+    PlaylistItemStatus,
 )
 from .video import (
+    Video,
     VideoContentDetails,
-    VideoTopicDetails,
     VideoSnippet,
     VideoStatistics,
     VideoStatus,
-    Video,
+    VideoTopicDetails,
 )
 
 __all__ = [
     "AccessToken",
     "UserProfile",
+    "VideoCategory",
+    "GuideCategory",
+    "Channel",
     "ChannelBrandingSetting",
     "ChannelContentDetails",
-    "ChannelTopicDetails",
     "ChannelSnippet",
     "ChannelStatistics",
     "ChannelStatus",
-    "Channel",
+    "ChannelTopicDetails",
+    "Video",
     "VideoContentDetails",
-    "VideoTopicDetails",
     "VideoSnippet",
     "VideoStatistics",
     "VideoStatus",
-    "Video",
+    "VideoTopicDetails",
+    "Playlist",
+    "PlaylistContentDetails",
+    "PlaylistSnippet",
+    "PlaylistStatus",
+    "PlaylistItem",
+    "PlaylistItemContentDetails",
+    "PlaylistItemSnippet",
+    "PlaylistItemStatus",
+    "Comment",
+    "CommentSnippet",
+    "CommentThread",
+    "CommentThreadSnippet",
+    "CommentThreadReplies",
 ]

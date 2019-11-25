@@ -10,7 +10,7 @@ from isodate import ISO8601Error
 from pyyoutube import PyYouTubeException, ErrorMessage
 from pyyoutube.error import ErrorCode
 from .base import BaseModel
-from .common import BaseTopicDetails, Localized, Thumbnails
+from .common import BaseTopicDetails, BaseResource, Localized, Player, Thumbnails
 from .mixins import DatetimeTimeMixin
 
 
@@ -213,18 +213,16 @@ class VideoStatus(BaseModel, DatetimeTimeMixin):
 
 
 @dataclass
-class Video(BaseModel):
+class Video(BaseResource):
     """
     A class representing the video info.
 
     Refer: https://developers.google.com/youtube/v3/docs/videos
     """
 
-    kind: Optional[str] = field(default=None)
-    etag: Optional[str] = field(default=None, repr=False)
-    id: Optional[str] = field(default=None)
     snippet: Optional[VideoSnippet] = field(default=None, repr=False)
     contentDetails: Optional[VideoContentDetails] = field(default=None, repr=False)
     status: Optional[VideoStatus] = field(default=None, repr=False)
     statistics: Optional[VideoStatistics] = field(default=None, repr=False)
     topicDetails: Optional[VideoTopicDetails] = field(default=None, repr=False)
+    player: Optional[Player] = field(default=None, repr=False)
