@@ -14,6 +14,7 @@ class CategorySnippet(BaseModel):
     """
     This is base category snippet for video and guide.
     """
+
     channelId: Optional[str] = field(default=None)
     title: Optional[str] = field(default=None)
 
@@ -25,6 +26,7 @@ class VideoCategorySnippet(CategorySnippet):
 
     Refer: https://developers.google.com/youtube/v3/docs/videoCategories#snippet
     """
+
     assignable: Optional[bool] = field(default=None, repr=False)
 
 
@@ -35,6 +37,7 @@ class VideoCategory(BaseResource):
 
     Refer: https://developers.google.com/youtube/v3/docs/videoCategories
     """
+
     snippet: Optional[VideoCategorySnippet] = field(default=None, repr=False)
 
 
@@ -45,6 +48,7 @@ class GuideCategorySnippet(CategorySnippet):
 
     Refer: https://developers.google.com/youtube/v3/docs/guideCategories#snippet
     """
+
     ...
 
 
@@ -55,4 +59,5 @@ class GuideCategory(BaseResource):
 
     Refer: https://developers.google.com/youtube/v3/docs/guideCategories
     """
+
     snippet: Optional[GuideCategorySnippet] = field(default=None, repr=False)

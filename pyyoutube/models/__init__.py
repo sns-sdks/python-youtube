@@ -1,4 +1,8 @@
 from .auth import AccessToken, UserProfile
+from .category import (
+    VideoCategory,
+    GuideCategory,
+)
 from .channel import (
     Channel,
     ChannelBrandingSetting,
@@ -34,6 +38,8 @@ from .video import (
 __all__ = [
     "AccessToken",
     "UserProfile",
+    "VideoCategory",
+    "GuideCategory",
     "Channel",
     "ChannelBrandingSetting",
     "ChannelContentDetails",
