@@ -22,6 +22,12 @@ from .playlist import (
     PlaylistStatus,
     Playlist,
 )
+from .playlist_item import (
+    PlaylistItemContentDetails,
+    PlaylistItemSnippet,
+    PlaylistItemStatus,
+    PlaylistItem,
+)
 
 __all__ = [
     "AccessToken",
@@ -43,4 +49,8 @@ __all__ = [
     "PlaylistSnippet",
     "PlaylistStatus",
     "Playlist",
+    "PlaylistItemContentDetails",
+    "PlaylistItemSnippet",
+    "PlaylistItemStatus",
+    "PlaylistItem",
 ]
