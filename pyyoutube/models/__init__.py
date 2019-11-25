@@ -1,56 +1,63 @@
 from .auth import AccessToken, UserProfile
 from .channel import (
+    Channel,
     ChannelBrandingSetting,
     ChannelContentDetails,
-    ChannelTopicDetails,
     ChannelSnippet,
     ChannelStatistics,
     ChannelStatus,
-    Channel,
+    ChannelTopicDetails,
 )
-from .video import (
-    VideoContentDetails,
-    VideoTopicDetails,
-    VideoSnippet,
-    VideoStatistics,
-    VideoStatus,
-    Video,
+from .comment import (
+    Comment,
+    CommentSnippet,
+    CommentThread,
+    CommentThreadReplies,
+    CommentThreadSnippet,
 )
-from .playlist import (
-    PlaylistContentDetails,
-    PlaylistSnippet,
-    PlaylistStatus,
-    Playlist,
-)
+from .playlist import Playlist, PlaylistContentDetails, PlaylistSnippet, PlaylistStatus
 from .playlist_item import (
+    PlaylistItem,
     PlaylistItemContentDetails,
     PlaylistItemSnippet,
     PlaylistItemStatus,
-    PlaylistItem,
+)
+from .video import (
+    Video,
+    VideoContentDetails,
+    VideoSnippet,
+    VideoStatistics,
+    VideoStatus,
+    VideoTopicDetails,
 )
 
 __all__ = [
     "AccessToken",
     "UserProfile",
+    "Channel",
     "ChannelBrandingSetting",
     "ChannelContentDetails",
-    "ChannelTopicDetails",
     "ChannelSnippet",
     "ChannelStatistics",
     "ChannelStatus",
-    "Channel",
+    "ChannelTopicDetails",
+    "Video",
     "VideoContentDetails",
-    "VideoTopicDetails",
     "VideoSnippet",
     "VideoStatistics",
     "VideoStatus",
-    "Video",
+    "VideoTopicDetails",
+    "Playlist",
     "PlaylistContentDetails",
     "PlaylistSnippet",
     "PlaylistStatus",
-    "Playlist",
+    "PlaylistItem",
     "PlaylistItemContentDetails",
     "PlaylistItemSnippet",
     "PlaylistItemStatus",
-    "PlaylistItem",
+    "Comment",
+    "CommentSnippet",
+    "CommentThread",
+    "CommentThreadSnippet",
+    "CommentThreadReplies",
 ]
