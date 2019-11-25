@@ -16,6 +16,12 @@ from .video import (
     VideoStatus,
     Video,
 )
+from .playlist import (
+    PlaylistContentDetails,
+    PlaylistSnippet,
+    PlaylistStatus,
+    Playlist,
+)
 
 __all__ = [
     "AccessToken",
@@ -33,4 +39,8 @@ __all__ = [
     "VideoStatistics",
     "VideoStatus",
     "Video",
+    "PlaylistContentDetails",
+    "PlaylistSnippet",
+    "PlaylistStatus",
+    "Playlist",
 ]

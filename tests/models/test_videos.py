@@ -17,7 +17,6 @@ class VideoModelTest(unittest.TestCase):
         STATISTICS_INFO = json.loads(f.read().decode("utf-8"))
     with open(BASE_PATH + "video_status.json", "rb") as f:
         STATUS_INFO = json.loads(f.read().decode("utf-8"))
-
     with open(BASE_PATH + "video_info.json", "rb") as f:
         VIDEO_INFO = json.loads(f.read().decode("utf-8"))
 
