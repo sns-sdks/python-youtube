@@ -91,6 +91,19 @@ class Localized(BaseModel):
 
 
 @dataclass
+class BaseResource(BaseModel):
+    """
+    This is a base model for different resource type.
+
+    Refer: https://developers.google.com/youtube/v3/docs#resource-types
+    """
+
+    kind: Optional[str] = field(default=None)
+    etag: Optional[str] = field(default=None, repr=False)
+    id: Optional[str] = field(default=None)
+
+
+@dataclass
 class Player(BaseModel):
     """
     A class representing the video,playlist player info.
@@ -99,6 +112,7 @@ class Player(BaseModel):
         https://developers.google.com/youtube/v3/docs/videos#player
 
     """
+
     embedHtml: Optional[str] = field(default=None)
     # Important:
     # follows attributions maybe not exists.

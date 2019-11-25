@@ -5,7 +5,7 @@ from dataclasses import dataclass, field
 from typing import List, Optional
 
 from .base import BaseModel
-from .common import BaseTopicDetails, Thumbnails
+from .common import BaseResource, BaseTopicDetails, Thumbnails
 from .mixins import DatetimeTimeMixin
 
 
@@ -181,16 +181,13 @@ class ChannelStatus(BaseModel):
 
 
 @dataclass
-class Channel(BaseModel):
+class Channel(BaseResource):
     """
     A class representing the channel's info.
 
     Refer: https://developers.google.com/youtube/v3/docs/channels
     """
 
-    kind: Optional[str] = field(default=None)
-    etag: Optional[str] = field(default=None, repr=False)
-    id: Optional[str] = field(default=None)
     snippet: Optional[ChannelSnippet] = field(default=None, repr=False)
     contentDetails: Optional[ChannelContentDetails] = field(default=None, repr=False)
     statistics: Optional[ChannelStatistics] = field(default=None, repr=False)

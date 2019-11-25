@@ -5,7 +5,7 @@ from dataclasses import dataclass, field
 from typing import Optional, List
 
 from .base import BaseModel
-from .common import Localized, Player, Thumbnails
+from .common import BaseResource, Localized, Player, Thumbnails
 from .mixins import DatetimeTimeMixin
 
 
@@ -16,6 +16,7 @@ class PlaylistContentDetails(BaseModel):
 
     Refer: https://developers.google.com/youtube/v3/docs/playlists#contentDetails
     """
+
     itemCount: Optional[int] = field(default=None)
 
 
@@ -26,6 +27,7 @@ class PlaylistSnippet(BaseModel, DatetimeTimeMixin):
 
     Refer: https://developers.google.com/youtube/v3/docs/playlists#snippet
     """
+
     publishedAt: Optional[str] = field(default=None, repr=False)
     channelId: Optional[str] = field(default=None, repr=False)
     title: Optional[str] = field(default=None)
@@ -44,19 +46,18 @@ class PlaylistStatus(BaseModel):
 
     Refer: https://developers.google.com/youtube/v3/docs/playlists#status
     """
+
     privacyStatus: Optional[str] = field(default=None)
 
 
 @dataclass
-class Playlist(BaseModel):
+class Playlist(BaseResource):
     """
     A class representing the playlist info.
 
     Refer: https://developers.google.com/youtube/v3/docs/playlists
     """
-    kind: Optional[str] = field(default=None)
-    etag: Optional[str] = field(default=None, repr=False)
-    id: Optional[str] = field(default=None)
+
     snippet: Optional[PlaylistSnippet] = field(default=None, repr=False)
     status: Optional[PlaylistStatus] = field(default=None, repr=False)
     contentDetails: Optional[PlaylistContentDetails] = field(default=None, repr=False)
