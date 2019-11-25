@@ -88,3 +88,19 @@ class Localized(BaseModel):
 
     title: Optional[str] = field(default=None)
     description: Optional[str] = field(default=None, repr=False)
+
+
+@dataclass
+class Player(BaseModel):
+    """
+    A class representing the video,playlist player info.
+
+    Refer:
+        https://developers.google.com/youtube/v3/docs/videos#player
+
+    """
+    embedHtml: Optional[str] = field(default=None)
+    # Important:
+    # follows attributions maybe not exists.
+    embedHeight: Optional[int] = field(default=None, repr=False)
+    embedWidth: Optional[int] = field(default=None, repr=False)
