@@ -2,12 +2,10 @@
     Main Api implementation.
 """
 
-import datetime
 from typing import Optional, List, Union
 
-import pytz
 import requests
-from requests.models import Response  # noqa
+from requests.models import Response
 from requests_oauthlib.oauth2_session import OAuth2Session
 
 from pyyoutube.error import ErrorCode, ErrorMessage, PyYouTubeException
@@ -16,25 +14,21 @@ from pyyoutube.models import (
     UserProfile,
 )
 from pyyoutube.model import (
-    # AccessToken,
     Channel,
     Comment,
     CommentThread,
     GuideCategory,
     PlayList,
     PlaylistItem,
-    # UserProfile,
     Video,
     VideoCategory,
 )
 from pyyoutube.utils import constants
-from pyyoutube.utils.quota_cost import LIST_DATA
 from pyyoutube.utils.params_checker import (
     comma_separated_validator,
     incompatible_validator,
     parts_validator,
 )
-from pyyoutube.utils.decorators import incompatible
 
 
 class Api(object):
@@ -107,7 +101,6 @@ class Api(object):
         self.quota = quota
         if self.quota is None:
             self.quota = self.DEFAULT_QUOTA
-        self.used_quota = 0
 
         if not (
             (self._client_id and self._client_secret)
@@ -334,37 +327,6 @@ class Api(object):
         else:
             return response
 
-    def get_quota(self):
-        pst = pytz.timezone("US/Pacific")
-        now = datetime.datetime.now(pst)
-        reset_at = (now + datetime.timedelta(1)).replace(
-            hour=0, minute=0, second=0, microsecond=0
-        )
-        reset_in = int((reset_at - now).total_seconds())
-        return f"Quota(Total={self.quota}, Used={self.used_quota}, ResetIn={reset_in})"
-
-    def calc_quota(self, resource, method="list", parts="", count=1):
-        """
-        :param resource: resources like videos, channels
-        :param method:
-        :param parts:
-        :param count:
-        :return:
-        """
-        if method == "list":
-            quota_data = LIST_DATA
-        else:
-            return 0
-        cost = 1
-        if parts:
-            parts = parts.split(",")
-        for part in parts:
-            if part not in ["id"]:
-                need_cost = quota_data.get(f"{resource}.{part}", 0)
-                cost += need_cost
-        cost = cost * count
-        self.used_quota += cost
-
     def get_profile(
         self, access_token: Optional[str] = None, return_json: Optional[bool] = False
     ) -> Union[dict, UserProfile]:
@@ -429,7 +391,6 @@ class Api(object):
         # set page token
         next_page_token = data.get("nextPageToken")
         prev_page_token = data.get("prevPageToken")
-        self.calc_quota(resource, parts=args["part"], count=len(data["items"]))
         return prev_page_token, next_page_token, data
 
     def get_channel_info(
@@ -494,7 +455,6 @@ class Api(object):
         resp = self._request(resource="channels", method="GET", args=args)
 
         data = self._parse_response(resp, api=True)
-        self.calc_quota(resource="channels", parts=args["part"])
         if return_json:
             return data
         else:
@@ -712,7 +672,6 @@ class Api(object):
         resp = self._request(resource="videos", method="GET", args=args)
 
         data = self._parse_response(resp, api=True)
-        self.calc_quota(resource="videos", parts=args["part"])
         if return_json:
             return data
         else:

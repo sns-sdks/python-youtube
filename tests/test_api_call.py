@@ -13,13 +13,6 @@ class TestApiCall(unittest.TestCase):
         self.base_path = "testdata/"
         self.api = pyyoutube.Api(client_id="xx", client_secret="xx", api_key="xx")
 
-    def testCalcQuota(self):
-        self.api.calc_quota(
-            resource="videos", parts="id,snippet,contentDetails,statistics,status",
-        )
-        self.assertEqual(9, self.api.used_quota)
-        self.assertEqual(True, "10000" in self.api.get_quota())
-
     @responses.activate
     def testRequest(self):
         responses.add(responses.POST, self.BASE_URL + "resource", json={})
