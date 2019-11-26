@@ -29,6 +29,7 @@ from pyyoutube.utils.params_checker import (
     incompatible_validator,
     parts_validator,
 )
+from pyyoutube.utils.decorators import incompatible
 
 
 class Api(object):
@@ -403,6 +404,7 @@ class Api(object):
         self.calc_quota(resource, parts=args["part"], count=len(data["items"]))
         return prev_page_token, next_page_token, data
 
+    @incompatible(params=["category_id", "channel_id", "channel_name", "mine"])
     def get_channel_info(
         self,
         category_id=None,
