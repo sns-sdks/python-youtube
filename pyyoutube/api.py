@@ -3,6 +3,7 @@
 """
 
 import datetime
+from typing import Optional, List, Union
 
 import pytz
 import requests
@@ -10,15 +11,19 @@ from requests.models import Response  # noqa
 from requests_oauthlib.oauth2_session import OAuth2Session
 
 from pyyoutube.error import ErrorCode, ErrorMessage, PyYouTubeException
-from pyyoutube.model import (
+from pyyoutube.models import (
     AccessToken,
+    UserProfile,
+)
+from pyyoutube.model import (
+    # AccessToken,
     Channel,
     Comment,
     CommentThread,
     GuideCategory,
     PlayList,
     PlaylistItem,
-    UserProfile,
+    # UserProfile,
     Video,
     VideoCategory,
 )
@@ -51,33 +56,38 @@ class Api(object):
 
     def __init__(
         self,
-        client_id=None,
-        client_secret=None,
-        api_key=None,
-        access_token=None,
-        timeout=None,
-        proxies=None,
-        quota=None,
-    ):
+        client_id: Optional[str] = None,
+        client_secret: Optional[str] = None,
+        api_key: Optional[str] = None,
+        access_token: Optional[str] = None,
+        oauth_redirect_uri: Optional[str] = None,
+        timeout: Optional[int] = None,
+        proxies: Optional[dict] = None,
+        quota: Optional[int] = None,
+    ) -> None:
         """
         This Api provide two method to work. Use api key or use access token.
 
         Args:
-            client_id(str, optional)
+            client_id(str, optional):
                 Your google app's ID.
-            client_secret (str, optional)
+            client_secret (str, optional):
                 Your google app's secret.
-            api_key(str, optional)
+            api_key(str, optional):
                 The api key which you create from google api console.
-            access_token(str, optional)
+            access_token(str, optional):
                 If you not provide api key, you can do authorization to get an access token.
                 If all api key and access token provided. Use access token first.
-            timeout(int, optional)
+            oauth_redirect_uri(str, optional)
+                Determines how Google's authorization server sends a response to your app.
+                If not provide will use default https://localhost/
+            timeout(int, optional):
                 The request timeout.
-            proxies(dict, optional)
+            proxies(dict, optional):
                 If you want use proxy, need point this param.
                 param style like requests lib style.
-            quota(int, optional)
+                Refer https://2.python-requests.org//en/latest/user/advanced/#proxies
+            quota(int, optional):
                 if your key has more quota. you can point this. Default is 10000
 
         Returns:
@@ -87,6 +97,8 @@ class Api(object):
         self._client_secret = client_secret
         self._api_key = api_key
         self._access_token = access_token
+        self._refresh_token = None  # This keep current user's refresh token.
+        self.oauth_redirect_uri = oauth_redirect_uri or self.DEFAULT_REDIRECT_URI
         self._timeout = timeout
         self.session = requests.Session()
         self.scope = None
@@ -112,15 +124,13 @@ class Api(object):
         if self._timeout is None:
             self._timeout = self.DEFAULT_TIMEOUT
 
-    def get_authorization_url(self, redirect_uri=None, scope=None, **kwargs):
+    def get_authorization_url(
+        self, scope: Optional[List[str]] = None, **kwargs
+    ) -> (str, str):
         """
         Build authorization url to do authorize.
 
         Args:
-            redirect_uri(str, optional)
-                The uri you have set on your google app authorized uri.
-                if you not provide, will use default uri: 'https://localhost/'
-                Must this uri in you app's authorized uri list.
             scope (list, optional)
                 The scope you want give permission.
                 If you not provide, will use default scope.
@@ -130,8 +140,6 @@ class Api(object):
         Returns:
             The uri you can open on browser to do authorize.
         """
-        if redirect_uri is None:
-            redirect_uri = self.DEFAULT_REDIRECT_URI
 
         self.scope = scope
         if self.scope is None:
@@ -140,7 +148,7 @@ class Api(object):
         session = OAuth2Session(
             client_id=self._client_id,
             scope=self.scope,
-            redirect_uri=redirect_uri,
+            redirect_uri=self.oauth_redirect_uri,
             state=self.DEFAULT_STATE,
         )
         authorization_url, state = session.authorization_url(
@@ -153,17 +161,14 @@ class Api(object):
         return authorization_url, state
 
     def exchange_code_to_access_token(
-        self, authorization_response, redirect_uri=None, return_json=False
-    ):
+        self, authorization_response: str, return_json: bool = False
+    ) -> Union[dict, AccessToken]:
         """
         Use the google auth response to get access token
 
         Args:
             authorization_response (str)
-                The response url for you give auth permission.
-            redirect_uri (str, optional)
-                The redirect url you have point when do authorization step.
-                If you not provide will use default uri: https://localhost/
+                The response url which google redirect.
             return_json(bool, optional)
                 The return data type. If you set True JSON data will be returned.
                 False will return pyyoutube.AccessToken
@@ -171,12 +176,10 @@ class Api(object):
         Return:
             Retrieved access token's info,  pyyoutube.AccessToken instance.
         """
-        if redirect_uri is None:
-            redirect_uri = self.DEFAULT_REDIRECT_URI
 
         session = OAuth2Session(
             client_id=self._client_id,
-            redirect_uri=redirect_uri,
+            redirect_uri=self.oauth_redirect_uri,
             state=self.DEFAULT_STATE,
         )
         token = session.fetch_token(
@@ -185,12 +188,15 @@ class Api(object):
             authorization_response=authorization_response,
         )
         self._access_token = session.access_token
+        self._refresh_token = session.token["refresh_token"]
         if return_json:
             return token
         else:
-            return AccessToken.new_from_json_dict(token)
+            return AccessToken.from_dict(token)
 
-    def refresh_token(self, refresh_token, return_json=False):
+    def refresh_token(
+        self, refresh_token: Optional[str] = None, return_json: bool = False
+    ) -> Union[dict, AccessToken]:
         """
         Refresh token by api return refresh token.
 
@@ -202,6 +208,16 @@ class Api(object):
         Return:
             Retrieved new access token's info,  pyyoutube.AccessToken instance.
         """
+        if refresh_token is None:
+            refresh_token = self._refresh_token
+        if refresh_token is None:
+            raise PyYouTubeException(
+                ErrorMessage(
+                    status_code=ErrorCode.MISSING_PARAMS,
+                    message=f"Must provide the refresh token or api has been authorized.",
+                )
+            )
+
         session = OAuth2Session(client_id=self._client_id)
         auth = {
             "client_id": self._client_id,
@@ -214,9 +230,11 @@ class Api(object):
         if return_json:
             return new_token
         else:
-            return AccessToken.new_from_json_dict(new_token)
+            return AccessToken.from_dict(new_token)
 
-    def _parse_response(self, response, api=False):
+    def _parse_response(
+        self, response: Response, api: Optional[bool] = False
+    ) -> Union[dict, list]:
         """
         Parse response data and check whether errors exists.
 
@@ -234,7 +252,7 @@ class Api(object):
         return data
 
     @staticmethod
-    def _parse_data(data):
+    def _parse_data(data: Optional[dict]) -> Union[dict, list]:
         """
         Parse resp data.
 
@@ -249,7 +267,7 @@ class Api(object):
 
     def _request(
         self, resource, method=None, args=None, post_args=None, enforce_auth=True
-    ):
+    ) -> Response:
         """
         Main request sender.
 
@@ -347,21 +365,31 @@ class Api(object):
         cost = cost * count
         self.used_quota += cost
 
-    def get_profile(self, access_token=None, return_json=False):
+    def get_profile(
+        self, access_token: Optional[str] = None, return_json: Optional[bool] = False
+    ) -> Union[dict, UserProfile]:
         """
         Get token user info.
 
         Args:
             access_token(str, optional)
-                If you not provide api key, you can do authorization to get an access token.
+                user access token. If not provide, use api instance access token
             return_json(bool, optional)
                 The return data type. If you set True JSON data will be returned.
                 False will return pyyoutube.UserProfile
+
         Returns:
             The data for you given access token's user info.
         """
         if access_token is None:
             access_token = self._access_token
+        if access_token is None:
+            raise PyYouTubeException(
+                ErrorMessage(
+                    status_code=ErrorCode.MISSING_PARAMS,
+                    message=f"Must provide the access token or api has been authorized.",
+                )
+            )
         try:
             response = self.session.get(
                 self.USER_INFO_URL,
@@ -377,7 +405,7 @@ class Api(object):
         if return_json:
             return data
         else:
-            return UserProfile.new_from_json_dict(data)
+            return UserProfile.from_dict(data)
 
     def paged_by_page_token(self, resource, args, page_token=None):
         """
@@ -404,7 +432,6 @@ class Api(object):
         self.calc_quota(resource, parts=args["part"], count=len(data["items"]))
         return prev_page_token, next_page_token, data
 
-    @incompatible(params=["category_id", "channel_id", "channel_name", "mine"])
     def get_channel_info(
         self,
         category_id=None,

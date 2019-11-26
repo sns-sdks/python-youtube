@@ -7,8 +7,7 @@ from typing import Optional, List
 import isodate
 from isodate import ISO8601Error
 
-from pyyoutube import PyYouTubeException, ErrorMessage
-from pyyoutube.error import ErrorCode
+from pyyoutube.error import ErrorCode, ErrorMessage, PyYouTubeException
 from .base import BaseModel
 from .common import BaseTopicDetails, BaseResource, Localized, Player, Thumbnails
 from .mixins import DatetimeTimeMixin

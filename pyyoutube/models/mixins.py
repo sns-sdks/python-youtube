@@ -7,8 +7,7 @@ from typing import Optional
 import isodate
 from isodate.isoerror import ISO8601Error
 
-from pyyoutube import PyYouTubeException, ErrorMessage
-from pyyoutube.error import ErrorCode
+from pyyoutube.error import ErrorCode, ErrorMessage, PyYouTubeException
 
 
 class DatetimeTimeMixin:
