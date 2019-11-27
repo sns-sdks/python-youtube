@@ -29,7 +29,11 @@ from pyyoutube.utils.params_checker import (
     incompatible_validator,
     parts_validator,
 )
-from pyyoutube.utils.decorators import incompatible, parts_validator as parts_checker
+from pyyoutube.utils.decorators import (
+    comma_separated,
+    incompatible,
+    parts_validator as parts_checker,
+)
 
 
 class Api(object):
@@ -394,12 +398,13 @@ class Api(object):
         prev_page_token = data.get("prevPageToken")
         return prev_page_token, next_page_token, data
 
+    @comma_separated(params=["channel_id"])
     @parts_checker(resource="channels")
     @incompatible(params=["channel_id", "channel_name", "mine"])
     def get_channel_info(
         self,
         *,
-        channel_id: Optional[str] = None,
+        channel_id: Optional[Union[str, list, tuple, set]] = None,
         channel_name: Optional[str] = None,
         mine: Optional[bool] = None,
         parts: Optional[Union[str, list, tuple, set]] = None,
@@ -417,7 +422,8 @@ class Api(object):
 
         Args:
             channel_id (str, optional)
-                The id or comma-separated id list for youtube channel which you want to get.
+                The id or comma-separated id string for youtube channel which you want to get.
+                You can also pass this with an id list, tuple, set.
             channel_name (str, optional)
                 The name for youtube channel which you want to get.
             mine (bool, optional)

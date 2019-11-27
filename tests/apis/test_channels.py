@@ -37,8 +37,6 @@ class ApiChannelTest(unittest.TestCase):
     def testGetChannelInfo(self) -> None:
         # test params checker
         with self.assertRaises(pyyoutube.PyYouTubeException):
-            self.api.get_channel_info(parts=1)
-        with self.assertRaises(pyyoutube.PyYouTubeException):
             self.api.get_channel_info(parts="id,invideoPromotion")
         with self.assertRaises(pyyoutube.PyYouTubeException):
             self.api.get_channel_info()

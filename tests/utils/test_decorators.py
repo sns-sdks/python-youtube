@@ -2,7 +2,7 @@ import unittest
 
 import pyyoutube
 from pyyoutube.utils.constants import CHANNEL_RESOURCE_PROPERTIES
-from pyyoutube.utils.decorators import incompatible, parts_validator
+from pyyoutube.utils.decorators import comma_separated, incompatible, parts_validator
 
 
 class DecoratorTest(unittest.TestCase):
@@ -37,3 +37,17 @@ class DecoratorTest(unittest.TestCase):
             function(parts={"p": "art"})
         with self.assertRaises(pyyoutube.PyYouTubeException):
             function(parts="not_part")
+
+    def testCommaSeparated(self) -> None:
+        @comma_separated(params=["c_id"])
+        def function(*, c_id=None):
+            return c_id
+
+        self.assertEqual(function(), None)
+        self.assertEqual(function(c_id="id1,id2"), "id1,id2")
+        self.assertEqual(function(c_id=["id1", "id2"]), "id1,id2")
+        self.assertEqual(function(c_id=("id1", "id2")), "id1,id2")
+        self.assertEqual(function(c_id={"id1", "id2"}), "id1,id2")
+
+        with self.assertRaises(pyyoutube.PyYouTubeException):
+            function(c_id=1)
