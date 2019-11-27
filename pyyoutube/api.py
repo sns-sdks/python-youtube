@@ -12,9 +12,9 @@ from pyyoutube.error import ErrorCode, ErrorMessage, PyYouTubeException
 from pyyoutube.models import (
     AccessToken,
     UserProfile,
+    Channel,
 )
 from pyyoutube.model import (
-    Channel,
     Comment,
     CommentThread,
     GuideCategory,
@@ -29,6 +29,7 @@ from pyyoutube.utils.params_checker import (
     incompatible_validator,
     parts_validator,
 )
+from pyyoutube.utils.decorators import incompatible, parts_validator as parts_checker
 
 
 class Api(object):
@@ -393,22 +394,28 @@ class Api(object):
         prev_page_token = data.get("prevPageToken")
         return prev_page_token, next_page_token, data
 
+    @parts_checker(resource="channels")
+    @incompatible(params=["channel_id", "channel_name", "mine"])
     def get_channel_info(
         self,
-        category_id=None,
-        channel_id=None,
-        channel_name=None,
-        mine=None,
-        parts=None,
-        hl="en_US",
-        return_json=False,
+        *,
+        channel_id: Optional[str] = None,
+        channel_name: Optional[str] = None,
+        mine: Optional[bool] = None,
+        parts: Optional[Union[str, list, tuple, set]] = None,
+        hl: str = "en_US",
+        return_json: Optional[bool] = False,
     ):
         """
         Retrieve channel data from YouTube Data API for channel which you given.
 
+        Note:
+            1. Don't know why, but now you could't get channel list by given an guide category.
+               You can only get list by parameters mine,forUsername,id.
+               Refer: https://developers.google.com/youtube/v3/guides/implementation/channels
+            2. The origin maxResult param not work.
+
         Args:
-            category_id (str, optional)
-                The guide category id for channels associated which that category
             channel_id (str, optional)
                 The id or comma-separated id list for youtube channel which you want to get.
             channel_name (str, optional)
@@ -428,27 +435,12 @@ class Api(object):
         Returns:
             The data for you given channel.
         """
-        comma_separated_validator(channel_id=channel_id, parts=parts)
-        incompatible_validator(
-            category_id=category_id,
-            channel_id=channel_id,
-            channel_name=channel_name,
-            mine=mine,
-        )
-
-        if parts is None:
-            parts = constants.CHANNEL_RESOURCE_PROPERTIES
-            parts = ",".join(parts)
-        else:
-            parts_validator("channels", parts=parts)
 
         args = {"hl": hl, "part": parts}
         if channel_name is not None:
             args["forUsername"] = channel_name
         elif channel_id is not None:
             args["id"] = channel_id
-        elif category_id is not None:
-            args["categoryId"] = channel_id
         elif mine is not None:
             args["mine"] = mine
 
@@ -458,7 +450,7 @@ class Api(object):
         if return_json:
             return data
         else:
-            return [Channel.new_from_json_dict(item) for item in data]
+            return [Channel.from_dict(item) for item in data]
 
     def get_playlist(
         self,

@@ -48,7 +48,7 @@ def incompatible(params: List[str]) -> Callable:
     return decorator
 
 
-def parts_validator(*, resource: str) -> Callable:
+def parts_validator(resource: str) -> Callable:
     """
     Validate the resource whether support the parts.
 
@@ -61,7 +61,7 @@ def parts_validator(*, resource: str) -> Callable:
 
     def decorator(func):
         @wraps(func)
-        def wrapper(**kwargs):
+        def wrapper(*args, **kwargs):
             parts = kwargs.get("parts")
             if parts is not None:
                 if isinstance(parts, str):
@@ -87,7 +87,7 @@ def parts_validator(*, resource: str) -> Callable:
             else:
                 parts = RESOURCE_PARTS_MAPPING[resource]
             kwargs["parts"] = parts
-            return func(**kwargs)
+            return func(*args, **kwargs)
 
         return wrapper
 
