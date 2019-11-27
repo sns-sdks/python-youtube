@@ -374,7 +374,9 @@ class Api(object):
         else:
             return UserProfile.from_dict(data)
 
-    def paged_by_page_token(self, resource, args, page_token=None):
+    def paged_by_page_token(
+        self, resource: str, args: dict, page_token: Optional[str] = None
+    ):
         """
         Response paged by response's page token. If not provide response token
 
@@ -412,7 +414,7 @@ class Api(object):
         return_json: Optional[bool] = False,
     ):
         """
-        Retrieve channel data from YouTube Data API for channel which you given.
+        Retrieve channel data from YouTube Data API.
 
         Note:
             1. Don't know why, but now you could't get channel list by given an guide category.
@@ -458,32 +460,38 @@ class Api(object):
         else:
             return [Channel.from_dict(item) for item in data]
 
+    @comma_separated(params=["playlist_id"])
+    @parts_checker(resource="playlists")
+    @incompatible(params=["channel_id", "playlist_id", "mine"])
     def get_playlist(
         self,
-        channel_id=None,
-        playlist_id=None,
-        parts=None,
-        summary=True,
-        count=5,
-        limit=5,
-        hl="en_US",
-        mine=None,
-        return_json=False,
+        *,
+        channel_id: Optional[str] = None,
+        playlist_id: Optional[Union[str, list, tuple, set]] = None,
+        mine: Optional[bool] = None,
+        parts: Optional[Union[str, list, tuple, set]] = None,
+        summary: Optional[bool] = True,
+        count: Optional[int] = 5,
+        limit: Optional[int] = 5,
+        hl: Optional[str] = "en_US",
+        return_json: Optional[bool] = False,
     ):
         """
-        Retrieve channel playlists info.
-        Provide two methods: by channel ID, or by playlist id (ids)
+        Retrieve channel playlists info from youtube data api.
 
         Args:
             channel_id (str, optional)
                 If provide channel id, this will return pointed channel's playlist info.
             playlist_id (str optional)
                 If provide this. will return those playlist's info.
+                You can pass this with single id str,comma-separated id str,
+                or list, tuple, set of id str.
             mine (bool, optional)
                 If you have give the authorization. Will return your playlists.
                 Must provide the access token.
             parts (str, optional)
                 Comma-separated list of one or more playlist resource properties.
+                You can also pass this with list, tuple, set of part str.
                 If not provided. will use default public properties.
             summary (bool, optional)
                  If True will return channel playlist summary of metadata.
@@ -506,18 +514,7 @@ class Api(object):
             (playlist data, playlist summary)
         """
 
-        comma_separated_validator(playlist_id=playlist_id)
-        incompatible_validator(
-            channel_id=channel_id, playlist_id=playlist_id, mine=mine
-        )
-
-        if parts is None:
-            parts = constants.PLAYLIST_RESOURCE_PROPERTIES
-            parts = ",".join(parts)
-        else:
-            parts_validator("playlists", parts=parts)
-
-        args = {"part": parts, "hl": hl, "maxResults": limit}
+        args = {"part": parts, "hl": hl, "maxResults": min(count, limit)}
 
         if channel_id is not None:
             args["channelId"] = channel_id
