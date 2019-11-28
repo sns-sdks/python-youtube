@@ -1,32 +1,31 @@
 import unittest
 
-import responses
+from requests import Response
 
-import pyyoutube
+from pyyoutube.error import ErrorCode, ErrorMessage, PyYouTubeException
 
 
 class ErrorTest(unittest.TestCase):
-    BASE_URL = "https://www.googleapis.com/youtube/v3/"
+    BASE_PATH = "testdata/"
+    with open(BASE_PATH + "error_response.json", "rb") as f:
+        ERROR_DATA = f.read()
 
-    def setUp(self) -> None:
-        self.base_path = "testdata/"
-        self.api = pyyoutube.Api(api_key="test")
+    def testResponseError(self) -> None:
+        response = Response()
+        response.status_code = 400
+        response._content = self.ERROR_DATA
 
-    @responses.activate
-    def testResponseError(self):
-        with open(f"{self.base_path}error_response.json") as f:
-            res_data = f.read()
-        responses.add(
-            responses.GET, self.BASE_URL + "channels", body=res_data, status=400
-        )
-        with self.assertRaises(pyyoutube.PyYouTubeException) as e:
-            self.api.get_channel_info(channel_id="UC_x5XG1OV2P6uZZ5FSM9Ttw")
-            self.assertEqual(e.status_code, 400)
-            self.assertEqual(
-                repr(e), "PyYouTubeException(status_code=400, message=Bad Request)"
-            )
+        ex = PyYouTubeException(response=response)
+
+        self.assertEqual(ex.status_code, 400)
+        self.assertEqual(ex.message, "Bad Request")
+        self.assertEqual(ex.error_type, "YouTubeException")
 
     def testErrorMessage(self):
-        with self.assertRaises(pyyoutube.PyYouTubeException) as e:
-            self.api.get_channel_info(channel_id=None)
-            self.assertEqual(e.status_code, 10005)
+        response = ErrorMessage(status_code=ErrorCode.HTTP_ERROR, message="error")
+
+        ex = PyYouTubeException(response=response)
+
+        self.assertEqual(ex.status_code, 10000)
+        self.assertEqual(ex.message, "error")
+        self.assertEqual(ex.error_type, "PyYouTubeException")

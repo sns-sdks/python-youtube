@@ -1,6 +1,19 @@
-from collections import namedtuple
+from dataclasses import dataclass
+from typing import Optional, Union
 
-ErrorMessage = namedtuple("ErrorMessage", "status_code message")
+from requests import Response
+
+
+class ErrorCode:
+    HTTP_ERROR = 10000
+    MISSING_PARAMS = 10001
+    INVALID_PARAMS = 10002
+
+
+@dataclass
+class ErrorMessage:
+    status_code: Optional[int] = None
+    message: Optional[str] = None
 
 
 class PyYouTubeException(Exception):
@@ -15,11 +28,11 @@ class PyYouTubeException(Exception):
     'message': 'No filter selected. Expected one of: forUsername, managedByMe, categoryId, mine, mySubscribers, id, idParam'}}
     """
 
-    def __init__(self, response):
-        self.status_code = None
-        self.error_type = None
-        self.message = None
-        self.response = response
+    def __init__(self, response: Optional[Union[ErrorMessage, Response]]):
+        self.status_code: Optional[int] = None
+        self.error_type: Optional[str] = None
+        self.message: Optional[str] = None
+        self.response: Optional[Union[ErrorMessage, Response]] = response
         self.error_handler()
 
     def error_handler(self):
@@ -27,27 +40,13 @@ class PyYouTubeException(Exception):
         Error has two big type(but not the error type.): This module's error, Api return error.
         So This will change two error to one format
         """
-        res = getattr(self.response, "json", None)
-        if res is None:
+        if isinstance(self.response, ErrorMessage):
             self.status_code = self.response.status_code
             self.message = self.response.message
             self.error_type = "PyYouTubeException"
-        elif callable(res):
-            error_data = res()
-            if "error" in error_data:
-                self.status_code = error_data["error"]["code"]
-                self.message = error_data["error"]["message"]
-                if "errors" in error_data["error"]:
-                    self.error_type = error_data["error"]["errors"][0]["reason"]
-
-    def __repr__(self):  # pragma: no cover
-        return f"PyYouTubeException(status_code={self.status_code}, message={self.message})"
-
-    def __str__(self):  # pragma: no cover
-        return self.__repr__()
-
-
-class ErrorCode:
-    HTTP_ERROR = 10000
-    MISSING_PARAMS = 10001
-    INVALID_PARAMS = 10002
+        elif isinstance(self.response, Response):
+            res_data = self.response.json()
+            if "error" in res_data:
+                self.status_code = res_data["error"]["code"]
+                self.message = res_data["error"]["message"]
+                self.error_type = "YouTubeException"
