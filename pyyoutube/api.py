@@ -12,13 +12,13 @@ from pyyoutube.error import ErrorCode, ErrorMessage, PyYouTubeException
 from pyyoutube.models import (
     AccessToken,
     UserProfile,
-    Channel,
+    ChannelListResponse,
+    PlaylistListResponse,
 )
 from pyyoutube.model import (
     Comment,
     CommentThread,
     GuideCategory,
-    PlayList,
     PlaylistItem,
     Video,
     VideoCategory,
@@ -28,11 +28,8 @@ from pyyoutube.utils.params_checker import (
     comma_separated_validator,
     incompatible_validator,
     parts_validator,
-)
-from pyyoutube.utils.decorators import (
-    comma_separated,
-    incompatible,
-    parts_validator as parts_checker,
+    enf_comma_separated,
+    enf_parts,
 )
 
 
@@ -400,9 +397,6 @@ class Api(object):
         prev_page_token = data.get("prevPageToken")
         return prev_page_token, next_page_token, data
 
-    @comma_separated(params=["channel_id"])
-    @parts_checker(resource="channels")
-    @incompatible(params=["channel_id", "channel_name", "mine"])
     def get_channel_info(
         self,
         *,
@@ -444,33 +438,81 @@ class Api(object):
             The data for you given channel.
         """
 
-        args = {"hl": hl, "part": parts}
+        args = {
+            "part": enf_parts(resource="channels", value=parts),
+            "hl": hl,
+        }
         if channel_name is not None:
             args["forUsername"] = channel_name
         elif channel_id is not None:
-            args["id"] = channel_id
+            args["id"] = enf_comma_separated("channel_id", channel_id)
         elif mine is not None:
             args["mine"] = mine
+        else:
+            raise PyYouTubeException(
+                ErrorMessage(
+                    status_code=ErrorCode.MISSING_PARAMS,
+                    message=f"Specify at least one of channel_id,channel_name or mine",
+                )
+            )
 
         resp = self._request(resource="channels", method="GET", args=args)
 
-        data = self._parse_response(resp, api=True)
+        data = self._parse_response(resp)
         if return_json:
             return data
         else:
-            return [Channel.from_dict(item) for item in data]
+            return ChannelListResponse.from_dict(data)
 
-    @comma_separated(params=["playlist_id"])
-    @parts_checker(resource="playlists")
-    @incompatible(params=["channel_id", "playlist_id", "mine"])
-    def get_playlist(
+    def get_playlist_by_id(
+        self,
+        *,
+        playlist_id: Optional[Union[str, list, tuple, set]] = None,
+        parts: Optional[Union[str, list, tuple, set]] = None,
+        hl: Optional[str] = "en_US",
+        return_json: Optional[bool] = False,
+    ):
+        """
+        Retrieve playlist data by given playlist id.
+
+        Args:
+            playlist_id (str optional)
+                If provide this. will return those playlist's info.
+                You can pass this with single id str,comma-separated id str,
+                or list, tuple, set of id str.
+            parts (str, optional)
+                Comma-separated list of one or more playlist resource properties.
+                You can also pass this with list, tuple, set of part str.
+                If not provided. will use default public properties.
+            hl (str, optional)
+                If provide this. Will return playlist's language localized info.
+                This value need https://developers.google.com/youtube/v3/docs/i18nLanguages.
+            return_json(bool, optional)
+                The return data type. If you set True JSON data will be returned.
+                False will return pyyoutube.PlayList
+        Returns:
+            PlaylistListResponse or original data
+        """
+        args = {
+            "id": enf_comma_separated("playlist_id", playlist_id),
+            "part": enf_parts(resource="playlists", value=parts),
+            "hl": hl,
+        }
+
+        resp = self._request(resource="playlists", method="GET", args=args)
+        data = self._parse_response(resp)
+
+        if return_json:
+            return data
+        else:
+            return PlaylistListResponse.from_dict(data)
+
+    def get_playlists(
         self,
         *,
         channel_id: Optional[str] = None,
-        playlist_id: Optional[Union[str, list, tuple, set]] = None,
         mine: Optional[bool] = None,
         parts: Optional[Union[str, list, tuple, set]] = None,
-        summary: Optional[bool] = True,
         count: Optional[int] = 5,
         limit: Optional[int] = 5,
         hl: Optional[str] = "en_US",
@@ -482,10 +524,6 @@ class Api(object):
         Args:
             channel_id (str, optional)
                 If provide channel id, this will return pointed channel's playlist info.
-            playlist_id (str optional)
-                If provide this. will return those playlist's info.
-                You can pass this with single id str,comma-separated id str,
-                or list, tuple, set of id str.
             mine (bool, optional)
                 If you have give the authorization. Will return your playlists.
                 Must provide the access token.
@@ -493,9 +531,6 @@ class Api(object):
                 Comma-separated list of one or more playlist resource properties.
                 You can also pass this with list, tuple, set of part str.
                 If not provided. will use default public properties.
-            summary (bool, optional)
-                 If True will return channel playlist summary of metadata.
-                 Notice this depend on your query.
             count (int, optional)
                 The count will retrieve playlist data.
                 Default is 5.
@@ -510,38 +545,49 @@ class Api(object):
                 The return data type. If you set True JSON data will be returned.
                 False will return pyyoutube.PlayList
         Returns:
-            return tuple.
-            (playlist data, playlist summary)
+            PlaylistListResponse or original data
         """
 
-        args = {"part": parts, "hl": hl, "maxResults": min(count, limit)}
+        args = {
+            "part": enf_parts(resource="playlists", value=parts),
+            "hl": hl,
+            "maxResults": min(count, limit),
+        }
 
         if channel_id is not None:
             args["channelId"] = channel_id
-        elif playlist_id is not None:
-            args["id"] = playlist_id
         elif mine is not None:
             args["mine"] = mine
+        else:
+            raise PyYouTubeException(
+                ErrorMessage(
+                    status_code=ErrorCode.MISSING_PARAMS,
+                    message=f"Specify at least one of channel_id,playlist_id or mine",
+                )
+            )
 
-        playlists = []
-        playlists_summary = None
-        next_page_token = None
+        res_data: Optional[dict] = None
+        current_items: List[dict] = []
+        next_page_token: Optional[str] = None
+        now_items_count: int = 0
         while True:
             prev_page_token, next_page_token, data = self.paged_by_page_token(
                 resource="playlists", args=args, page_token=next_page_token,
             )
             items = self._parse_data(data)
-            if return_json:
-                playlists += items
-            else:
-                playlists += [PlayList.new_from_json_dict(item) for item in items]
-            if summary:
-                playlists_summary = data.get("pageInfo", {})
+            current_items.extend(items)
+            now_items_count += len(items)
+            if res_data is None:
+                res_data = data
             if next_page_token is None:
                 break
-            if len(playlists) >= count:
+            if now_items_count >= count:
                 break
-        return playlists[:count], playlists_summary
+        res_data["items"] = current_items[:count]
+        if return_json:
+            return res_data
+        else:
+            return PlaylistListResponse.from_dict(res_data)
 
     def get_playlist_item(
         self,

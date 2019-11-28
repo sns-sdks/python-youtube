@@ -3,7 +3,6 @@ import unittest
 import pyyoutube
 
 import responses
-from requests.exceptions import HTTPError
 
 
 class TestApiCall(unittest.TestCase):
@@ -12,60 +11,6 @@ class TestApiCall(unittest.TestCase):
     def setUp(self):
         self.base_path = "testdata/"
         self.api = pyyoutube.Api(client_id="xx", client_secret="xx", api_key="xx")
-
-    @responses.activate
-    def testGetPlaylist(self):
-        with self.assertRaises(pyyoutube.PyYouTubeException) as ex:
-            self.api.get_playlist(parts=[])
-            self.assertEqual(
-                ex.exception.status_code, pyyoutube.error.ErrorCode.INVALID_PARAMS
-            )
-        with self.assertRaises(pyyoutube.PyYouTubeException) as ex:
-            self.api.get_playlist(
-                channel_id="UC_x5XG1OV2P6uZZ5FSM9Ttw", parts="id,part"
-            )
-            self.assertEqual(
-                ex.exception.status_code, pyyoutube.error.ErrorCode.INVALID_PARAMS
-            )
-        with self.assertRaises(pyyoutube.PyYouTubeException) as ex:
-            self.api.get_playlist(
-                channel_id="UC_x5XG1OV2P6uZZ5FSM9Ttw",
-                playlist_id="PLOU2XLYxmsIJpufeMHncnQvFOe0K3MhVp",
-            )
-            self.assertEqual(
-                ex.exception.status_code, pyyoutube.error.ErrorCode.INVALID_PARAMS
-            )
-        with self.assertRaises(pyyoutube.PyYouTubeException) as ex:
-            self.api.get_playlist()
-            self.assertEqual(
-                ex.exception.status_code, pyyoutube.error.ErrorCode.MISSING_PARAMS
-            )
-
-        with open(f"{self.base_path}playlists_info.json") as f:
-            res_data_1 = f.read()
-        with open(f"{self.base_path}playlist_info_next.json") as f:
-            res_data_2 = f.read()
-        responses.add(
-            responses.GET, self.BASE_URL + "playlists", body=res_data_1, status=200
-        )
-        responses.add(
-            responses.GET, self.BASE_URL + "playlists", body=res_data_2, status=200
-        )
-
-        playlists, summary = self.api.get_playlist(
-            channel_id="UC_x5XG1OV2P6uZZ5FSM9Ttw", limit=5, count=5
-        )
-        self.assertEqual(len(playlists), 5)
-        self.assertEqual(playlists[0].id, "PLOU2XLYxmsIJpufeMHncnQvFOe0K3MhVp")
-        self.assertEqual(summary["totalResults"], 416)
-
-        playlists, summary = self.api.get_playlist(mine=True, count=5, return_json=True)
-        self.assertEqual(len(playlists), 5)
-
-        playlists, summary = self.api.get_playlist(
-            playlist_id="PLOU2XLYxmsIJ5Bl3HmuxKY5WE555cu9Uc", return_json=True
-        )
-        self.assertEqual(playlists[0]["id"], "PLOU2XLYxmsIJ5Bl3HmuxKY5WE555cu9Uc")
 
     @responses.activate
     def testGetPlaylistItems(self):

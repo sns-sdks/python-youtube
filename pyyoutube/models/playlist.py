@@ -5,7 +5,7 @@ from dataclasses import dataclass, field
 from typing import Optional, List
 
 from .base import BaseModel
-from .common import BaseResource, Localized, Player, Thumbnails
+from .common import BaseApiResponse, BaseResource, Localized, Player, Thumbnails
 from .mixins import DatetimeTimeMixin
 
 
@@ -62,3 +62,14 @@ class Playlist(BaseResource):
     status: Optional[PlaylistStatus] = field(default=None, repr=False)
     contentDetails: Optional[PlaylistContentDetails] = field(default=None, repr=False)
     player: Optional[Player] = field(default=None, repr=False)
+
+
+@dataclass
+class PlaylistListResponse(BaseApiResponse):
+    """
+    A class representing the playlist's retrieve response info.
+
+    Refer: https://developers.google.com/youtube/v3/docs/playlists/list#response_1
+    """
+
+    items: Optional[List[Playlist]] = field(default=None, repr=False)

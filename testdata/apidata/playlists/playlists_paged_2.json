@@ -1,0 +1,432 @@
+{
+  "kind": "youtube#playlistListResponse",
+  "etag": "\"j6xRRd8dTPVVptg711_CSPADRfg/LjFPI2nwRBxtabydhze2pwRj5LI\"",
+  "nextPageToken": "CBQQAA",
+  "prevPageToken": "CAoQAQ",
+  "pageInfo": {
+    "totalResults": 422,
+    "resultsPerPage": 10
+  },
+  "items": [
+    {
+      "kind": "youtube#playlist",
+      "etag": "\"j6xRRd8dTPVVptg711_CSPADRfg/9CjYT6fC317YBYj1iRh_oZ3v27U\"",
+      "id": "PLOU2XLYxmsIIOSO0eWuj-6yQmdakarUzN",
+      "snippet": {
+        "publishedAt": "2019-05-02T23:38:49.000Z",
+        "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+        "title": "Accessibility at Google I/O 2019",
+        "description": "This playlist contains every Accessibiity session from Google I/O 2019.\nLearn more on the I/O Website → https://google.com/io\n\nSubscribe to Google Devs → https://goo.gle/developers\nGet started at → https://www.google.com/accessibility/for-developers/",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/vnSDqh6zT6Y/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/vnSDqh6zT6Y/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/vnSDqh6zT6Y/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          },
+          "standard": {
+            "url": "https://i.ytimg.com/vi/vnSDqh6zT6Y/sddefault.jpg",
+            "width": 640,
+            "height": 480
+          },
+          "maxres": {
+            "url": "https://i.ytimg.com/vi/vnSDqh6zT6Y/maxresdefault.jpg",
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "channelTitle": "Google Developers",
+        "localized": {
+          "title": "Accessibility at Google I/O 2019",
+          "description": "This playlist contains every Accessibiity session from Google I/O 2019.\nLearn more on the I/O Website → https://google.com/io\n\nSubscribe to Google Devs → https://goo.gle/developers\nGet started at → https://www.google.com/accessibility/for-developers/"
+        }
+      }
+    },
+    {
+      "kind": "youtube#playlist",
+      "etag": "\"j6xRRd8dTPVVptg711_CSPADRfg/V5b6wvRkyEXDBtrgywP5vk-SnuA\"",
+      "id": "PLOU2XLYxmsIJ5Bl3HmuxKY5WE555cu9Uc",
+      "snippet": {
+        "publishedAt": "2019-05-02T23:38:06.000Z",
+        "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+        "title": "Inspiration at Google I/O 2019",
+        "description": "This playlist contains every Inspirational session from Google I/O 2019.\nLearn more on the I/O Website → https://google.com/io\n\nSubscribe to Google Devs → https://goo.gle/developers\nGet started at → https://developers.google.com/",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/qL4U9Ygtxh8/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/qL4U9Ygtxh8/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/qL4U9Ygtxh8/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          },
+          "standard": {
+            "url": "https://i.ytimg.com/vi/qL4U9Ygtxh8/sddefault.jpg",
+            "width": 640,
+            "height": 480
+          },
+          "maxres": {
+            "url": "https://i.ytimg.com/vi/qL4U9Ygtxh8/maxresdefault.jpg",
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "channelTitle": "Google Developers",
+        "localized": {
+          "title": "Inspiration at Google I/O 2019",
+          "description": "This playlist contains every Inspirational session from Google I/O 2019.\nLearn more on the I/O Website → https://google.com/io\n\nSubscribe to Google Devs → https://goo.gle/developers\nGet started at → https://developers.google.com/"
+        }
+      }
+    },
+    {
+      "kind": "youtube#playlist",
+      "etag": "\"j6xRRd8dTPVVptg711_CSPADRfg/7N7BKt6QAueeE4_8csdQyUXvhdY\"",
+      "id": "PLOU2XLYxmsIK1qyYq0gzScqXT8JmHQLs4",
+      "snippet": {
+        "publishedAt": "2019-05-02T23:37:27.000Z",
+        "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+        "title": "Gaming at Google I/O 2019",
+        "description": "This playlist contains every gaming session from Google I/O 2019.\nLearn more on the I/O Website → https://google.com/io\n\nSubscribe to Google Devs → https://goo.gle/developers\nGet started at → https://developers.google.com/games/",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/RY7wXC_b0R8/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/RY7wXC_b0R8/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/RY7wXC_b0R8/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          },
+          "standard": {
+            "url": "https://i.ytimg.com/vi/RY7wXC_b0R8/sddefault.jpg",
+            "width": 640,
+            "height": 480
+          },
+          "maxres": {
+            "url": "https://i.ytimg.com/vi/RY7wXC_b0R8/maxresdefault.jpg",
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "channelTitle": "Google Developers",
+        "localized": {
+          "title": "Gaming at Google I/O 2019",
+          "description": "This playlist contains every gaming session from Google I/O 2019.\nLearn more on the I/O Website → https://google.com/io\n\nSubscribe to Google Devs → https://goo.gle/developers\nGet started at → https://developers.google.com/games/"
+        }
+      }
+    },
+    {
+      "kind": "youtube#playlist",
+      "etag": "\"j6xRRd8dTPVVptg711_CSPADRfg/jcbtyLPKyuXpapzBMBE5rr0VfEU\"",
+      "id": "PLOU2XLYxmsIIICsWVglOZDtXpK7HLYswc",
+      "snippet": {
+        "publishedAt": "2019-05-02T23:35:47.000Z",
+        "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+        "title": "IoT at Google I/O 2019",
+        "description": "This playlist contains every IoT session from Google I/O 2019.\nLearn more on the I/O Website → https://google.com/io\n\nSubscribe to Google Devs → https://goo.gle/developers\nGet started at → https://developers.google.com/iot/",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/QRzvINzJTyQ/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/QRzvINzJTyQ/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/QRzvINzJTyQ/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          },
+          "standard": {
+            "url": "https://i.ytimg.com/vi/QRzvINzJTyQ/sddefault.jpg",
+            "width": 640,
+            "height": 480
+          },
+          "maxres": {
+            "url": "https://i.ytimg.com/vi/QRzvINzJTyQ/maxresdefault.jpg",
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "channelTitle": "Google Developers",
+        "localized": {
+          "title": "IoT at Google I/O 2019",
+          "description": "This playlist contains every IoT session from Google I/O 2019.\nLearn more on the I/O Website → https://google.com/io\n\nSubscribe to Google Devs → https://goo.gle/developers\nGet started at → https://developers.google.com/iot/"
+        }
+      }
+    },
+    {
+      "kind": "youtube#playlist",
+      "etag": "\"j6xRRd8dTPVVptg711_CSPADRfg/ykZ3hvrD6AmkKbNvXwpeTV_hYYI\"",
+      "id": "PLOU2XLYxmsIK5JcIMUhrPH7T0lHBrKbER",
+      "snippet": {
+        "publishedAt": "2019-05-02T23:33:43.000Z",
+        "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+        "title": "Assistant at Google I/O 2019",
+        "description": "This playlist contains every Google Assistant session from Google I/O 2019.\nLearn more on the I/O Website → https://google.com/io\n\nSubscribe to Google Devs → https://goo.gle/developers\nGet started at → https://developers.google.com/actions/",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/dpNrq_wiqGs/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/dpNrq_wiqGs/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/dpNrq_wiqGs/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          },
+          "standard": {
+            "url": "https://i.ytimg.com/vi/dpNrq_wiqGs/sddefault.jpg",
+            "width": 640,
+            "height": 480
+          },
+          "maxres": {
+            "url": "https://i.ytimg.com/vi/dpNrq_wiqGs/maxresdefault.jpg",
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "channelTitle": "Google Developers",
+        "localized": {
+          "title": "Assistant at Google I/O 2019",
+          "description": "This playlist contains every Google Assistant session from Google I/O 2019.\nLearn more on the I/O Website → https://google.com/io\n\nSubscribe to Google Devs → https://goo.gle/developers\nGet started at → https://developers.google.com/actions/"
+        }
+      }
+    },
+    {
+      "kind": "youtube#playlist",
+      "etag": "\"j6xRRd8dTPVVptg711_CSPADRfg/xzIksSFchIg10f12PMD5bo5mmkk\"",
+      "id": "PLOU2XLYxmsILVTiOlMJdo7RQS55jYhsMi",
+      "snippet": {
+        "publishedAt": "2019-05-01T00:43:22.000Z",
+        "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+        "title": "Google I/O 2019 - All Sessions",
+        "description": "This playlist contains every session from Google I/O 2019.\nLearn more on the I/O Website → https://google.com/io\n\nSubscribe to Google Devs → https://goo.gle/developers\nGet started at → https://developers.google.com/",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/lyRPyRKHO8M/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/lyRPyRKHO8M/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/lyRPyRKHO8M/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          },
+          "standard": {
+            "url": "https://i.ytimg.com/vi/lyRPyRKHO8M/sddefault.jpg",
+            "width": 640,
+            "height": 480
+          },
+          "maxres": {
+            "url": "https://i.ytimg.com/vi/lyRPyRKHO8M/maxresdefault.jpg",
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "channelTitle": "Google Developers",
+        "localized": {
+          "title": "Google I/O 2019 - All Sessions",
+          "description": "This playlist contains every session from Google I/O 2019.\nLearn more on the I/O Website → https://google.com/io\n\nSubscribe to Google Devs → https://goo.gle/developers\nGet started at → https://developers.google.com/"
+        }
+      }
+    },
+    {
+      "kind": "youtube#playlist",
+      "etag": "\"j6xRRd8dTPVVptg711_CSPADRfg/46hFFhvAepPrQMRR8dWjWyLB5zE\"",
+      "id": "PLOU2XLYxmsIKP4Hh9gQO54naZ8V7mDEQi",
+      "snippet": {
+        "publishedAt": "2019-04-30T21:37:13.000Z",
+        "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+        "title": "Behind the Actions",
+        "description": "In this Behind the Actions series, you will learn how to build, test, and publish Actions on Google.",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/plr65MD-FBY/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/plr65MD-FBY/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/plr65MD-FBY/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          },
+          "standard": {
+            "url": "https://i.ytimg.com/vi/plr65MD-FBY/sddefault.jpg",
+            "width": 640,
+            "height": 480
+          },
+          "maxres": {
+            "url": "https://i.ytimg.com/vi/plr65MD-FBY/maxresdefault.jpg",
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "channelTitle": "Google Developers",
+        "localized": {
+          "title": "Behind the Actions",
+          "description": "In this Behind the Actions series, you will learn how to build, test, and publish Actions on Google."
+        }
+      }
+    },
+    {
+      "kind": "youtube#playlist",
+      "etag": "\"j6xRRd8dTPVVptg711_CSPADRfg/ZLqa7_rX9Czyvo5-8kj9d1QgARE\"",
+      "id": "PLOU2XLYxmsIKORZ6mM3fQ02gKjqvSa2yd",
+      "snippet": {
+        "publishedAt": "2019-04-09T18:18:59.000Z",
+        "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+        "title": "How I Code",
+        "description": "",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/6GMs_S3XIys/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/6GMs_S3XIys/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/6GMs_S3XIys/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          },
+          "standard": {
+            "url": "https://i.ytimg.com/vi/6GMs_S3XIys/sddefault.jpg",
+            "width": 640,
+            "height": 480
+          },
+          "maxres": {
+            "url": "https://i.ytimg.com/vi/6GMs_S3XIys/maxresdefault.jpg",
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "channelTitle": "Google Developers",
+        "localized": {
+          "title": "How I Code",
+          "description": ""
+        }
+      }
+    },
+    {
+      "kind": "youtube#playlist",
+      "etag": "\"j6xRRd8dTPVVptg711_CSPADRfg/BXfcSFdRnnKPVwAAcTZOX9ffEZU\"",
+      "id": "PLOU2XLYxmsILU6mHf5ERbUBpvKX6GL4rn",
+      "snippet": {
+        "publishedAt": "2019-03-22T00:05:51.000Z",
+        "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+        "title": "Assistant on Air",
+        "description": "",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/D-lhorsDlUQ/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/D-lhorsDlUQ/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/D-lhorsDlUQ/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          },
+          "standard": {
+            "url": "https://i.ytimg.com/vi/D-lhorsDlUQ/sddefault.jpg",
+            "width": 640,
+            "height": 480
+          },
+          "maxres": {
+            "url": "https://i.ytimg.com/vi/D-lhorsDlUQ/maxresdefault.jpg",
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "channelTitle": "Google Developers",
+        "localized": {
+          "title": "Assistant on Air",
+          "description": ""
+        }
+      }
+    },
+    {
+      "kind": "youtube#playlist",
+      "etag": "\"j6xRRd8dTPVVptg711_CSPADRfg/OqmLB5ZBwHPYbJHQZa8ImdBv9RU\"",
+      "id": "PLOU2XLYxmsIIfaDH4-GcZzWIPFyD7Lpt3",
+      "snippet": {
+        "publishedAt": "2019-03-18T16:48:03.000Z",
+        "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+        "title": "Google @ Game Developers Conference 2019",
+        "description": "Learn more at http://bit.ly/GDC19Google \n\nMOBILE DEVELOPER DAY | 3/18*\nJoin us for a full day of sessions covering tools and best practices to help build a successful mobile games business on Google Play. We’ll focus on game quality, effective monetization and growth strategies, and how to create, connect, and scale with Google.\n\nGOOGLE REVEAL | 3/19*\nAll will be revealed at the Google Keynote.\n\nCLOUD DEVELOPER DAY | 3/20*\nJoin Google Cloud and some of our key partners to learn more about the latest innovations in cloud technology for games.",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/nUih5C5rOrA/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/nUih5C5rOrA/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/nUih5C5rOrA/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "Google Developers",
+        "localized": {
+          "title": "Google @ Game Developers Conference 2019",
+          "description": "Learn more at http://bit.ly/GDC19Google \n\nMOBILE DEVELOPER DAY | 3/18*\nJoin us for a full day of sessions covering tools and best practices to help build a successful mobile games business on Google Play. We’ll focus on game quality, effective monetization and growth strategies, and how to create, connect, and scale with Google.\n\nGOOGLE REVEAL | 3/19*\nAll will be revealed at the Google Keynote.\n\nCLOUD DEVELOPER DAY | 3/20*\nJoin Google Cloud and some of our key partners to learn more about the latest innovations in cloud technology for games."
+        }
+      }
+    }
+  ]
+}

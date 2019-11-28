@@ -20,7 +20,13 @@ from .comment import (
     CommentThreadReplies,
     CommentThreadSnippet,
 )
-from .playlist import Playlist, PlaylistContentDetails, PlaylistSnippet, PlaylistStatus
+from .playlist import (
+    Playlist,
+    PlaylistContentDetails,
+    PlaylistSnippet,
+    PlaylistStatus,
+    PlaylistListResponse,
+)
 from .playlist_item import (
     PlaylistItem,
     PlaylistItemContentDetails,
@@ -59,6 +65,7 @@ __all__ = [
     "PlaylistContentDetails",
     "PlaylistSnippet",
     "PlaylistStatus",
+    "PlaylistListResponse",
     "PlaylistItem",
     "PlaylistItemContentDetails",
     "PlaylistItemSnippet",

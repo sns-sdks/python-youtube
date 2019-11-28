@@ -1,0 +1,96 @@
+{
+  "kind": "youtube#playlistListResponse",
+  "etag": "\"j6xRRd8dTPVVptg711_CSPADRfg/tANZNtv_p2OkP0sqKDLjKwJQ4Cs\"",
+  "pageInfo": {
+    "totalResults": 2,
+    "resultsPerPage": 5
+  },
+  "items": [
+    {
+      "kind": "youtube#playlist",
+      "etag": "\"j6xRRd8dTPVVptg711_CSPADRfg/gdl_m86JfWCd37Wtcc2dte9hrEg\"",
+      "id": "PLOU2XLYxmsIJXsH2htG1g0NUjHGq62Q7i",
+      "snippet": {
+        "publishedAt": "2019-05-10T00:18:56.000Z",
+        "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+        "title": "I/O Live - Show Composite",
+        "description": "",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/5NgsfxIWNls/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/5NgsfxIWNls/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/5NgsfxIWNls/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          },
+          "standard": {
+            "url": "https://i.ytimg.com/vi/5NgsfxIWNls/sddefault.jpg",
+            "width": 640,
+            "height": 480
+          },
+          "maxres": {
+            "url": "https://i.ytimg.com/vi/5NgsfxIWNls/maxresdefault.jpg",
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "channelTitle": "Google Developers",
+        "localized": {
+          "title": "I/O Live - Show Composite",
+          "description": ""
+        }
+      }
+    },
+    {
+      "kind": "youtube#playlist",
+      "etag": "\"j6xRRd8dTPVVptg711_CSPADRfg/FChLS9OtNbF2YcyhMyWgTHL7VLg\"",
+      "id": "PLOU2XLYxmsIJJVnHWmd1qfr0Caq4VZCu4",
+      "snippet": {
+        "publishedAt": "2019-05-10T00:18:07.000Z",
+        "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+        "title": "I/O Live",
+        "description": "Relive moments from Google I/O 2019",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/o-2RMd6WOg8/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/o-2RMd6WOg8/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/o-2RMd6WOg8/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          },
+          "standard": {
+            "url": "https://i.ytimg.com/vi/o-2RMd6WOg8/sddefault.jpg",
+            "width": 640,
+            "height": 480
+          },
+          "maxres": {
+            "url": "https://i.ytimg.com/vi/o-2RMd6WOg8/maxresdefault.jpg",
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "channelTitle": "Google Developers",
+        "localized": {
+          "title": "I/O Live",
+          "description": "Relive moments from Google I/O 2019"
+        }
+      }
+    }
+  ]
+}
