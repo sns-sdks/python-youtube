@@ -48,7 +48,7 @@ def incompatible(params: List[str]) -> Callable:
     return decorator
 
 
-def parts_validator(*, resource: str) -> Callable:
+def parts_validator(resource: str) -> Callable:
     """
     Validate the resource whether support the parts.
 
@@ -61,7 +61,7 @@ def parts_validator(*, resource: str) -> Callable:
 
     def decorator(func):
         @wraps(func)
-        def wrapper(**kwargs):
+        def wrapper(*args, **kwargs):
             parts = kwargs.get("parts")
             if parts is not None:
                 if isinstance(parts, str):
@@ -87,7 +87,43 @@ def parts_validator(*, resource: str) -> Callable:
             else:
                 parts = RESOURCE_PARTS_MAPPING[resource]
             kwargs["parts"] = parts
-            return func(**kwargs)
+            return func(*args, **kwargs)
+
+        return wrapper
+
+    return decorator
+
+
+def comma_separated(params: List[str]):
+    """
+    Validate the params can transfer comma_separated string.
+    Args:
+        params (list)
+            Params list which need to transfer comma separated string
+    Returns:
+        decorator
+    """
+
+    def decorator(func):
+        @wraps(func)
+        def wrapper(*args, **kwargs):
+            for param in params:
+                value = kwargs.get(param)
+                if value is None:
+                    continue
+                if isinstance(value, str):
+                    continue
+                elif isinstance(value, (list, tuple, set)):
+                    new_value = ",".join(value)
+                    kwargs[param] = new_value
+                else:
+                    raise PyYouTubeException(
+                        ErrorMessage(
+                            status_code=ErrorCode.INVALID_PARAMS,
+                            message=f"Parameter ({param}) type not support. Valid type are (str,list,tuple,set).",
+                        )
+                    )
+            return func(*args, **kwargs)
 
         return wrapper
 
