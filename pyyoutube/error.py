@@ -3,6 +3,8 @@ from typing import Optional, Union
 
 from requests import Response
 
+__all__ = ["ErrorCode", "ErrorMessage", "PyYouTubeException"]
+
 
 class ErrorCode:
     HTTP_ERROR = 10000

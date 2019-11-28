@@ -64,13 +64,13 @@ class BaseTopicDetails(BaseModel):
         Convert topicIds list to Topic model list
         :return: List[Topic]
         """
-        from pyyoutube import CHANNEL_TOPICS
+        from pyyoutube import TOPICS
 
         r: List[Topic] = []
         if self.topicIds:
             for topic_id in self.topicIds:
                 topic = Topic.from_dict(
-                    {"id": topic_id, "description": CHANNEL_TOPICS.get(topic_id)}
+                    {"id": topic_id, "description": TOPICS.get(topic_id)}
                 )
                 r.append(topic)
         return r

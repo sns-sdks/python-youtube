@@ -34,6 +34,19 @@ class ApiChannelTest(unittest.TestCase):
                 m.add("GET", self.BASE_URL, body=HTTPError("Exception"))
                 self.api.get_channel_info(channel_id="channel_id", parts="id,snippet")
 
+    # TODO need to separate.
+    def testParseResponse(self) -> None:
+        with open("testdata/error_response.json", "rb") as f:
+            error_response = json.loads(f.read().decode("utf-8"))
+
+        with responses.RequestsMock() as m:
+            m.add("GET", self.BASE_URL, json=error_response, status=400)
+
+            with self.assertRaises(pyyoutube.PyYouTubeException):
+                self.api.get_channel_info(
+                    channel_id="UC_x5XG1OV2P6uZZ5FSM9Ttw", parts="id,snippet,statistics"
+                )
+
     def testGetChannelInfo(self) -> None:
         # test params checker
         with self.assertRaises(pyyoutube.PyYouTubeException):

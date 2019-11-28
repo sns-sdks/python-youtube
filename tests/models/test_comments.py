@@ -5,7 +5,7 @@ import pyyoutube.models as models
 
 
 class CommentModelModelTest(unittest.TestCase):
-    BASE_PATH = "testdata/modeldata/"
+    BASE_PATH = "testdata/modeldata/comments/"
 
     with open(BASE_PATH + "comment_snippet.json", "rb") as f:
         SNIPPET_INFO = json.loads(f.read().decode("utf-8"))
@@ -34,7 +34,7 @@ class CommentModelModelTest(unittest.TestCase):
 
 
 class CommentThreadModelTest(unittest.TestCase):
-    BASE_PATH = "testdata/modeldata/"
+    BASE_PATH = "testdata/modeldata/comments/"
 
     with open(BASE_PATH + "comment_thread_snippet.json", "rb") as f:
         SNIPPET_INFO = json.loads(f.read().decode("utf-8"))

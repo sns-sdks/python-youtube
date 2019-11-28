@@ -5,7 +5,7 @@ import pyyoutube.models as models
 
 
 class PlaylistItemModelTest(unittest.TestCase):
-    BASE_PATH = "testdata/modeldata/"
+    BASE_PATH = "testdata/modeldata/playlist_items/"
 
     with open(BASE_PATH + "playlist_item_content_details.json", "rb") as f:
         CONTENT_DETAILS_INFO = json.loads(f.read().decode("utf-8"))
