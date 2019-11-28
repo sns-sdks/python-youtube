@@ -47,7 +47,7 @@ class DecoratorTest(unittest.TestCase):
         self.assertEqual(function(c_id="id1,id2"), "id1,id2")
         self.assertEqual(function(c_id=["id1", "id2"]), "id1,id2")
         self.assertEqual(function(c_id=("id1", "id2")), "id1,id2")
-        self.assertEqual(function(c_id={"id1", "id2"}), "id1,id2")
+        self.assertEqual(function(c_id={"id1", "id2"}), "id2,id1")
 
         with self.assertRaises(pyyoutube.PyYouTubeException):
             function(c_id=1)
