@@ -11,6 +11,7 @@ from .channel import (
     ChannelStatistics,
     ChannelStatus,
     ChannelTopicDetails,
+    ChannelListResponse,
 )
 from .comment import (
     Comment,
@@ -47,6 +48,7 @@ __all__ = [
     "ChannelStatistics",
     "ChannelStatus",
     "ChannelTopicDetails",
+    "ChannelListResponse",
     "Video",
     "VideoContentDetails",
     "VideoSnippet",
