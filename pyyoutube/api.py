@@ -15,6 +15,7 @@ from pyyoutube.models import (
     ChannelListResponse,
     PlaylistListResponse,
     PlaylistItemListResponse,
+    VideoListResponse,
 )
 from pyyoutube.utils.params_checker import enf_comma_separated, enf_parts
 
@@ -676,3 +677,244 @@ class Api(object):
             return res_data
         else:
             return PlaylistItemListResponse.from_dict(res_data)
+
+    def get_video_by_id(
+        self,
+        *,
+        video_id: Optional[Union[str, list, tuple, set]],
+        parts: Optional[Union[str, list, tuple, set]] = None,
+        hl: Optional[str] = "en_US",
+        max_height: Optional[int] = None,
+        max_width: Optional[int] = None,
+        return_json: Optional[bool] = False,
+    ):
+        """
+        Retrieve video data by given video id.
+
+        Args:
+            video_id ((str,list,tuple,set))
+                The id for video that you want to retrieve data.
+                You can pass this with single id str, comma-separated id str, or a list,tuple,set of ids.
+            parts ((str,list,tuple,set) optional)
+                The resource parts for you want to retrieve.
+                If not provide, use default public parts.
+                You can pass this with single part str, comma-separated parts str or a list,tuple,set of parts.
+            hl (str, optional)
+                If provide this. Will return video's language localized info.
+                This value need https://developers.google.com/youtube/v3/docs/i18nLanguages.
+            max_height (int, optional)
+                Specifies the maximum height of the embedded player returned in the player.embedHtml property.
+                Acceptable values are 72 to 8192, inclusive.
+            max_width (int, optional)
+                Specifies the maximum width of the embedded player returned in the player.embedHtml property.
+                Acceptable values are 72 to 8192, inclusive.
+                If provide max_height at the same time. This will may be shorter than max_height.
+                For more https://developers.google.com/youtube/v3/docs/videos/list#parameters.
+            return_json(bool, optional)
+                The return data type. If you set True JSON data will be returned.
+                False will return a pyyoutube.VideoListResponse instance.
+
+        Returns:
+            VideoListResponse or original data
+        """
+
+        args = {
+            "id": enf_comma_separated(field="video_id", value=video_id),
+            "part": enf_parts(resource="videos", value=parts),
+            "hl": hl,
+        }
+        if max_height is not None:
+            args["maxHeight"] = max_height
+        if max_width is not None:
+            args["maxWidth"] = max_width
+
+        resp = self._request(resource="videos", method="GET", args=args)
+        data = self._parse_response(resp)
+
+        if return_json:
+            return data
+        else:
+            return VideoListResponse.from_dict(data)
+
+    def get_videos_by_chart(
+        self,
+        *,
+        chart: Optional[str],
+        parts: Optional[Union[str, list, tuple, set]] = None,
+        hl: Optional[str] = "en_US",
+        max_height: Optional[int] = None,
+        max_width: Optional[int] = None,
+        region_code: Optional[str] = None,
+        category_id: Optional[str] = "0",
+        count: Optional[int] = 5,
+        limit: Optional[int] = 5,
+        return_json: Optional[bool] = False,
+    ):
+        """
+        Retrieve a list of YouTube's most popular videos.
+
+        Args:
+            chart (str)
+                The chart string for you want to retrieve data.
+                Acceptable values are: mostPopular
+            parts ((str,list,tuple,set), optional)
+                The resource parts for you want to retrieve.
+                If not provide, use default public parts.
+                You can pass this with single part str, comma-separated parts str or a list,tuple,set of parts.
+            hl (str, optional)
+                If provide this. Will return playlist's language localized info.
+                This value need https://developers.google.com/youtube/v3/docs/i18nLanguages.
+            max_height (int, optional)
+                Specifies the maximum height of the embedded player returned in the player.embedHtml property.
+                Acceptable values are 72 to 8192, inclusive.
+            max_width (int, optional)
+                Specifies the maximum width of the embedded player returned in the player.embedHtml property.
+                Acceptable values are 72 to 8192, inclusive.
+                If provide max_height at the same time. This will may be shorter than max_height.
+                For more https://developers.google.com/youtube/v3/docs/videos/list#parameters.
+            region_code (str, optional)
+                This parameter instructs the API to select a video chart available in the specified region.
+                Value is an ISO 3166-1 alpha-2 country code.
+            category_id (str, optional)
+                The id for video category that you want to filter.
+                Default is 0.
+            count (int, optional)
+                The count will retrieve videos data.
+                Default is 5.
+            limit (int, optional)
+                The maximum number of items each request retrieve.
+                For videos, this should not be more than 50.
+                Default is 5
+            return_json(bool, optional)
+                The return data type. If you set True JSON data will be returned.
+                False will return a pyyoutube.PlaylistListResponse instance.
+
+        Returns:
+            VideoListResponse or original data
+        """
+        args = {
+            "chart": chart,
+            "part": enf_parts(resource="videos", value=parts),
+            "hl": hl,
+            "maxResults": min(count, limit),
+            "videoCategoryId": category_id,
+        }
+        if max_height is not None:
+            args["maxHeight"] = max_height
+        if max_width is not None:
+            args["maxWidth"] = max_width
+        if region_code:
+            args["regionCode"] = region_code
+
+        res_data: Optional[dict] = None
+        current_items: List[dict] = []
+        next_page_token: Optional[str] = None
+        now_items_count: int = 0
+        while True:
+            prev_page_token, next_page_token, data = self.paged_by_page_token(
+                resource="videos", args=args, page_token=next_page_token,
+            )
+            items = self._parse_data(data)
+            current_items.extend(items)
+            now_items_count += len(items)
+            if res_data is None:
+                res_data = data
+            if next_page_token is None:
+                break
+            if now_items_count >= count:
+                break
+        res_data["items"] = current_items[:count]
+        if return_json:
+            return res_data
+        else:
+            return VideoListResponse.from_dict(res_data)
+
+    def get_videos_by_myrating(
+        self,
+        *,
+        rating: Optional[str],
+        parts: Optional[Union[str, list, tuple, set]] = None,
+        hl: Optional[str] = "en_US",
+        max_height: Optional[int] = None,
+        max_width: Optional[int] = None,
+        count: Optional[int] = 5,
+        limit: Optional[int] = 5,
+        return_json: Optional[bool] = False,
+    ):
+        """
+        Retrieve video data by my ration.
+
+        Args:
+            rating (str)
+                The rating string for you to retrieve data.
+                Acceptable values are: dislike, like
+            parts ((str,list,tuple,set) optional)
+                The resource parts for you want to retrieve.
+                If not provide, use default public parts.
+                You can pass this with single part str, comma-separated parts str or a list,tuple,set of parts.
+            hl (str, optional)
+                If provide this. Will return video's language localized info.
+                This value need https://developers.google.com/youtube/v3/docs/i18nLanguages.
+            max_height (int, optional)
+                Specifies the maximum height of the embedded player returned in the player.embedHtml property.
+                Acceptable values are 72 to 8192, inclusive.
+            max_width (int, optional)
+                Specifies the maximum width of the embedded player returned in the player.embedHtml property.
+                Acceptable values are 72 to 8192, inclusive.
+                If provide max_height at the same time. This will may be shorter than max_height.
+                For more https://developers.google.com/youtube/v3/docs/videos/list#parameters.
+            count (int, optional)
+                The count will retrieve videos data.
+                Default is 5.
+            limit (int, optional)
+                The maximum number of items each request retrieve.
+                For videos, this should not be more than 50.
+                Default is 5
+            return_json(bool, optional)
+                The return data type. If you set True JSON data will be returned.
+                False will return a pyyoutube.VideoListResponse instance.
+        Returns:
+            VideoListResponse or original data
+        """
+
+        if self._access_token is None:
+            raise PyYouTubeException(
+                ErrorMessage(
+                    status_code=ErrorCode.NEED_AUTHORIZATION,
+                    message="This method can only used with authorization",
+                )
+            )
+        args = {
+            "myRating": rating,
+            "part": enf_parts(resource="videos", value=parts),
+            "hl": hl,
+            "maxResults": min(count, limit),
+        }
+
+        if max_height is not None:
+            args["maxHeight"] = max_height
+        if max_width is not None:
+            args["maxWidth"] = max_width
+
+        res_data: Optional[dict] = None
+        current_items: List[dict] = []
+        next_page_token: Optional[str] = None
+        now_items_count: int = 0
+        while True:
+            prev_page_token, next_page_token, data = self.paged_by_page_token(
+                resource="videos", args=args, page_token=next_page_token,
+            )
+            items = self._parse_data(data)
+            current_items.extend(items)
+            now_items_count += len(items)
+            if res_data is None:
+                res_data = data
+            if next_page_token is None:
+                break
+            if now_items_count >= count:
+                break
+        res_data["items"] = current_items[:count]
+        if return_json:
+            return res_data
+        else:
+            return VideoListResponse.from_dict(res_data)

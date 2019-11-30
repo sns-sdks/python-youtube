@@ -17,6 +17,7 @@ PLAYLIST_RESOURCE_PROPERTIES = {
     "id",
     "contentDetails",
     "localizations",
+    "player",
     "snippet",
     "status",
 }
@@ -26,6 +27,7 @@ PLAYLIST_ITEM_RESOURCE_PROPERTIES = {"id", "contentDetails", "snippet", "status"
 VIDEO_RESOURCE_PROPERTIES = {
     "id",
     "contentDetails",
+    "player",
     "snippet",
     "statistics",
     "status",

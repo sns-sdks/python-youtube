@@ -178,7 +178,7 @@ class VideoSnippet(BaseModel, DatetimeTimeMixin):
     description: Optional[str] = field(default=None)
     thumbnails: Optional[Thumbnails] = field(default=None, repr=False)
     channelTitle: Optional[str] = field(default=None, repr=False)
-    tags: List[str] = field(default=None, repr=False)
+    tags: Optional[List[str]] = field(default=None, repr=False)
     categoryId: Optional[str] = field(default=None, repr=False)
     liveBroadcastContent: Optional[str] = field(default=None, repr=False)
     defaultLanguage: Optional[str] = field(default=None, repr=False)
