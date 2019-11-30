@@ -32,6 +32,7 @@ from .playlist_item import (
     PlaylistItemContentDetails,
     PlaylistItemSnippet,
     PlaylistItemStatus,
+    PlaylistItemListResponse,
 )
 from .video import (
     Video,
@@ -70,6 +71,7 @@ __all__ = [
     "PlaylistItemContentDetails",
     "PlaylistItemSnippet",
     "PlaylistItemStatus",
+    "PlaylistItemListResponse",
     "Comment",
     "CommentSnippet",
     "CommentThread",

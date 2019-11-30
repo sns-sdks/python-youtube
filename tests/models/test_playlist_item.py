@@ -15,6 +15,8 @@ class PlaylistItemModelTest(unittest.TestCase):
         STATUS_INFO = json.loads(f.read().decode("utf-8"))
     with open(BASE_PATH + "playlist_item_info.json", "rb") as f:
         PLAYLIST_ITEM_INFO = json.loads(f.read().decode("utf-8"))
+    with open(BASE_PATH + "playlist_item_api_response.json", "rb") as f:
+        PLAYLIST_LIST_RESPONSE = json.loads(f.read().decode("utf-8"))
 
     def testPlaylistItemContentDetails(self) -> None:
         m = models.PlaylistItemContentDetails.from_dict(self.CONTENT_DETAILS_INFO)
@@ -52,3 +54,11 @@ class PlaylistItemModelTest(unittest.TestCase):
         self.assertEqual(m.snippet.resourceId.videoId, "D-lhorsDlUQ")
         self.assertEqual(m.contentDetails.videoId, "D-lhorsDlUQ")
         self.assertEqual(m.status.privacyStatus, "public")
+
+    def testPlaylistItemListResponse(self) -> None:
+        m = models.PlaylistItemListResponse.from_dict(self.PLAYLIST_LIST_RESPONSE)
+
+        self.assertEqual(m.kind, "youtube#playlistItemListResponse")
+        self.assertEqual(m.pageInfo.totalResults, 3)
+        self.assertEqual(len(m.items), 3)
+        self.assertEqual(m.items[0].id, "UExPVTJYTFl4bXNJSlhzSDJodEcxZzBOVWpIR3E2MlE3aS41NkI0NEY2RDEwNTU3Q0M2")
