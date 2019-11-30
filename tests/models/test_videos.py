@@ -19,6 +19,8 @@ class VideoModelTest(unittest.TestCase):
         STATUS_INFO = json.loads(f.read().decode("utf-8"))
     with open(BASE_PATH + "video_info.json", "rb") as f:
         VIDEO_INFO = json.loads(f.read().decode("utf-8"))
+    with open(BASE_PATH + "video_api_response.json", "rb") as f:
+        VIDEO_API_RESPONSE = json.loads(f.read().decode("utf-8"))
 
     def testVideoContentDetails(self) -> None:
         m = models.VideoContentDetails.from_dict(self.CONTENT_DETAILS_INFO)
@@ -89,3 +91,9 @@ class VideoModelTest(unittest.TestCase):
         self.assertEqual(
             m.snippet.title, "What are Actions on Google (Assistant on Air)"
         )
+
+    def testVideoListResponse(self) -> None:
+        m = models.VideoListResponse.from_dict(self.VIDEO_API_RESPONSE)
+        self.assertEqual(m.kind, "youtube#videoListResponse")
+        self.assertEqual(m.pageInfo.totalResults, 1)
+        self.assertEqual(m.items[0].id, "D-lhorsDlUQ")

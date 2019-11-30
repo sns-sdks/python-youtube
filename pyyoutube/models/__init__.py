@@ -41,6 +41,7 @@ from .video import (
     VideoStatistics,
     VideoStatus,
     VideoTopicDetails,
+    VideoListResponse,
 )
 
 __all__ = [
@@ -62,6 +63,7 @@ __all__ = [
     "VideoStatistics",
     "VideoStatus",
     "VideoTopicDetails",
+    "VideoListResponse",
     "Playlist",
     "PlaylistContentDetails",
     "PlaylistSnippet",
