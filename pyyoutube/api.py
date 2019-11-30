@@ -14,6 +14,7 @@ from pyyoutube.models import (
     UserProfile,
     ChannelListResponse,
     PlaylistListResponse,
+    PlaylistItemListResponse,
 )
 from pyyoutube.utils.params_checker import enf_comma_separated, enf_parts
 
@@ -213,9 +214,7 @@ class Api(object):
             return AccessToken.from_dict(new_token)
 
     @staticmethod
-    def _parse_response(
-        response: Response
-    ) -> dict:
+    def _parse_response(response: Response) -> dict:
         """
         Parse response data and check whether errors exists.
 
@@ -451,7 +450,7 @@ class Api(object):
     def get_playlist_by_id(
         self,
         *,
-        playlist_id: Optional[Union[str, list, tuple, set]] = None,
+        playlist_id: Optional[Union[str, list, tuple, set]],
         parts: Optional[Union[str, list, tuple, set]] = None,
         hl: Optional[str] = "en_US",
         return_json: Optional[bool] = False,
@@ -461,7 +460,6 @@ class Api(object):
 
         Args:
             playlist_id (str optional)
-                If provide this. will return those playlist's info.
                 You can pass this with single id str,comma-separated id str,
                 or list, tuple, set of id str.
             parts (str, optional)
@@ -473,7 +471,7 @@ class Api(object):
                 This value need https://developers.google.com/youtube/v3/docs/i18nLanguages.
             return_json(bool, optional)
                 The return data type. If you set True JSON data will be returned.
-                False will return pyyoutube.PlayList
+                False will return a pyyoutube.PlaylistListResponse instance
         Returns:
             PlaylistListResponse or original data
         """
@@ -509,7 +507,7 @@ class Api(object):
             channel_id (str, optional)
                 If provide channel id, this will return pointed channel's playlist info.
             mine (bool, optional)
-                If you have give the authorization. Will return your playlists.
+                If you have given the authorization. Will return your playlists.
                 Must provide the access token.
             parts (str, optional)
                 Comma-separated list of one or more playlist resource properties.
@@ -527,7 +525,7 @@ class Api(object):
                 This value need https://developers.google.com/youtube/v3/docs/i18nLanguages.
             return_json(bool, optional)
                 The return data type. If you set True JSON data will be returned.
-                False will return pyyoutube.PlayList
+                False will return a pyyoutube.PlaylistListResponse instance.
         Returns:
             PlaylistListResponse or original data
         """
@@ -572,3 +570,109 @@ class Api(object):
             return res_data
         else:
             return PlaylistListResponse.from_dict(res_data)
+
+    def get_playlist_item_by_id(
+        self,
+        *,
+        playlist_item_id: Optional[Union[str, list, tuple, set]],
+        parts: Optional[Union[str, list, tuple, set]] = None,
+        return_json: Optional[bool] = False,
+    ):
+        """
+        Retrieve playlist Items info by your given id
+
+        Args:
+            playlist_item_id ((str,list,tuple,set))
+                The id for playlist item that you want to retrieve info.
+                You can pass this with single id str, comma-separated id str.
+                Or a list,tuple,set of ids.
+            parts ((str,list,tuple,set) optional)
+                The resource parts for you want to retrieve.
+                If not provide, use default public parts.
+                You can pass this with single part str, comma-separated parts str or a list,tuple,set of parts.
+            return_json(bool, optional)
+                The return data type. If you set True JSON data will be returned.
+                False will return a pyyoutube.PlayListItemApiResponse instance.
+        Returns:
+            PlaylistItemListResponse or original data
+        """
+
+        args = {
+            "id": enf_comma_separated("playlist_item_id", playlist_item_id),
+            "part": enf_parts(resource="playlistItems", value=parts),
+        }
+
+        resp = self._request(resource="playlistItems", method="GET", args=args)
+        data = self._parse_response(resp)
+
+        if return_json:
+            return data
+        else:
+            return PlaylistItemListResponse.from_dict(data)
+
+    def get_playlist_items(
+        self,
+        *,
+        playlist_id: Optional[str],
+        parts: Optional[Union[str, list, tuple, set]] = None,
+        video_id: Optional[str] = None,
+        count: Optional[int] = 5,
+        limit: Optional[int] = 5,
+        return_json: Optional[bool] = False,
+    ):
+        """
+        Retrieve playlist Items info by your given playlist id
+
+        Args:
+            playlist_id (str)
+                The id for playlist that you want to retrieve data.
+            parts ((str,list,tuple,set) optional)
+                The resource parts for you want to retrieve.
+                If not provide, use default public parts.
+                You can pass this with single part str, comma-separated parts str or a list,tuple,set of parts.
+            video_id (str, Optional)
+                Specifies that the request should return only the playlist items that contain the specified video.
+            count (int, optional)
+                The count will retrieve playlist items data.
+                Default is 5.
+            limit (int, optional)
+                The maximum number of items each request retrieve.
+                For playlistItem, this should not be more than 50.
+                Default is 5
+            return_json(bool, optional)
+                The return data type. If you set True JSON data will be returned.
+                False will return a pyyoutube.PlayListItemApiResponse instance.
+        Returns:
+            PlaylistItemListResponse or original data
+        """
+
+        args = {
+            "playlistId": playlist_id,
+            "part": enf_parts(resource="playlistItems", value=parts),
+            "maxResults": min(count, limit),
+        }
+        if video_id is not None:
+            args["videoId"] = video_id
+
+        res_data: Optional[dict] = None
+        current_items: List[dict] = []
+        next_page_token: Optional[str] = None
+        now_items_count: int = 0
+        while True:
+            prev_page_token, next_page_token, data = self.paged_by_page_token(
+                resource="playlistItems", args=args, page_token=next_page_token,
+            )
+            items = self._parse_data(data)
+            current_items.extend(items)
+            now_items_count += len(items)
+            if res_data is None:
+                res_data = data
+            if next_page_token is None:
+                break
+            if now_items_count >= count:
+                break
+        res_data["items"] = current_items[:count]
+        if return_json:
+            return res_data
+        else:
+            return PlaylistItemListResponse.from_dict(res_data)

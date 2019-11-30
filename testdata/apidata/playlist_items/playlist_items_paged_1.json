@@ -1,0 +1,461 @@
+{
+  "kind": "youtube#playlistItemListResponse",
+  "etag": "\"j6xRRd8dTPVVptg711_CSPADRfg/P4kQiZH0w8ID3LMajA0LjTQAypg\"",
+  "nextPageToken": "CAoQAA",
+  "pageInfo": {
+    "totalResults": 13,
+    "resultsPerPage": 10
+  },
+  "items": [
+    {
+      "kind": "youtube#playlistItem",
+      "etag": "\"j6xRRd8dTPVVptg711_CSPADRfg/Qq9nexxDsu-O8I8Z-OYt-i7VhGw\"",
+      "id": "UExPVTJYTFl4bXNJS3BhVjhoMEFHRTA1c28wZkF3d2ZUdy41NkI0NEY2RDEwNTU3Q0M2",
+      "snippet": {
+        "publishedAt": "2019-11-21T22:17:43.000Z",
+        "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+        "title": "Welcome from Google Developers - Pittsburgh ML Summit ‘19",
+        "description": "Kyle Paul, Regional Lead of North America at Google, opens the ML ‘19 Summit in Pittsburgh, PA with a warm welcome and talks about the Developer Ecosystems team and programs that are at Google. Join us for some great talks, event goals, and more! \n\nBeyond Big Data: AI/ML Summit is a unique opportunity for managers on every level to learn more about the opportunities of these technologies, while connecting with others in the industry. With a focus on trends and best practices, the event aims to explore strategies, best practices and technologies surrounding data analysis, artificial intelligence and machine learning while keeping in mind the implications of regulations, privacy, data protection, and ethics that govern this field. \n\nWatch more Pittsburgh ML Summit ‘19 → https://goo.gle/339pgbR\nSubscribe to Google Developers → https://goo.gle/developers",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/CvTApw9X8aA/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/CvTApw9X8aA/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/CvTApw9X8aA/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          },
+          "standard": {
+            "url": "https://i.ytimg.com/vi/CvTApw9X8aA/sddefault.jpg",
+            "width": 640,
+            "height": 480
+          },
+          "maxres": {
+            "url": "https://i.ytimg.com/vi/CvTApw9X8aA/maxresdefault.jpg",
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "channelTitle": "Google Developers",
+        "playlistId": "PLOU2XLYxmsIKpaV8h0AGE05so0fAwwfTw",
+        "position": 0,
+        "resourceId": {
+          "kind": "youtube#video",
+          "videoId": "CvTApw9X8aA"
+        }
+      }
+    },
+    {
+      "kind": "youtube#playlistItem",
+      "etag": "\"j6xRRd8dTPVVptg711_CSPADRfg/szvAfCSYgJYm3LDxkSSrYhC0WrM\"",
+      "id": "UExPVTJYTFl4bXNJS3BhVjhoMEFHRTA1c28wZkF3d2ZUdy4yODlGNEE0NkRGMEEzMEQy",
+      "snippet": {
+        "publishedAt": "2019-11-23T00:14:16.000Z",
+        "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+        "title": "Conversation AI - Pittsburgh ML Summit ‘19",
+        "description": "Priyanka Vergadia, Developer Advocate for Google Cloud, talks about why conversational experiences can fail. Learn about systems and some pointers to build a great conversational experience.\n\nBeyond Big Data: AI/ML Summit is a unique opportunity for managers on every level to learn more about the opportunities of these technologies, while connecting with others in the industry. With a focus on trends and best practices, the event aims to explore strategies, best practices and technologies surrounding data analysis, artificial intelligence and machine learning while keeping in mind the implications of regulations, privacy, data protection, and ethics that govern this field. \n\nWatch more Pittsburgh ML Summit ‘19 → https://goo.gle/339pgbR\nSubscribe to Google Developers → https://goo.gle/developers",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/Yh4EKaUY3gg/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/Yh4EKaUY3gg/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/Yh4EKaUY3gg/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          },
+          "standard": {
+            "url": "https://i.ytimg.com/vi/Yh4EKaUY3gg/sddefault.jpg",
+            "width": 640,
+            "height": 480
+          },
+          "maxres": {
+            "url": "https://i.ytimg.com/vi/Yh4EKaUY3gg/maxresdefault.jpg",
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "channelTitle": "Google Developers",
+        "playlistId": "PLOU2XLYxmsIKpaV8h0AGE05so0fAwwfTw",
+        "position": 1,
+        "resourceId": {
+          "kind": "youtube#video",
+          "videoId": "Yh4EKaUY3gg"
+        }
+      }
+    },
+    {
+      "kind": "youtube#playlistItem",
+      "etag": "\"j6xRRd8dTPVVptg711_CSPADRfg/SoE9Vp7LPueb-lVLD4JEnLvQyxY\"",
+      "id": "UExPVTJYTFl4bXNJS3BhVjhoMEFHRTA1c28wZkF3d2ZUdy4wMTcyMDhGQUE4NTIzM0Y5",
+      "snippet": {
+        "publishedAt": "2019-11-23T00:20:06.000Z",
+        "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+        "title": "Reinforcement Learning with TensorFlow and Unity - Pittsburgh ML Summit ‘19",
+        "description": "Dan Goncharov, Head of 42 Robotics GDG Fremont, talks about Reinforcement Learning with TensorFlow and Unity. Also, see an overview of Machine Learning in general. Learn about all 3 types of ML and some examples of each and which is the most popular.\n\nBeyond Big Data: AI/ML Summit is a unique opportunity for managers on every level to learn more about the opportunities of these technologies, while connecting with others in the industry. With a focus on trends and best practices, the event aims to explore strategies, best practices and technologies surrounding data analysis, artificial intelligence and machine learning while keeping in mind the implications of regulations, privacy, data protection, and ethics that govern this field. \n\nWatch more Pittsburgh ML Summit ‘19 → https://goo.gle/339pgbR\nSubscribe to Google Developers → https://goo.gle/developers",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/S-MbpQiwfls/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/S-MbpQiwfls/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/S-MbpQiwfls/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          },
+          "standard": {
+            "url": "https://i.ytimg.com/vi/S-MbpQiwfls/sddefault.jpg",
+            "width": 640,
+            "height": 480
+          },
+          "maxres": {
+            "url": "https://i.ytimg.com/vi/S-MbpQiwfls/maxresdefault.jpg",
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "channelTitle": "Google Developers",
+        "playlistId": "PLOU2XLYxmsIKpaV8h0AGE05so0fAwwfTw",
+        "position": 2,
+        "resourceId": {
+          "kind": "youtube#video",
+          "videoId": "S-MbpQiwfls"
+        }
+      }
+    },
+    {
+      "kind": "youtube#playlistItem",
+      "etag": "\"j6xRRd8dTPVVptg711_CSPADRfg/mTmJckP7mIexrzn524dGpHfwpPA\"",
+      "id": "UExPVTJYTFl4bXNJS3BhVjhoMEFHRTA1c28wZkF3d2ZUdy41MjE1MkI0OTQ2QzJGNzNG",
+      "snippet": {
+        "publishedAt": "2019-11-23T00:25:29.000Z",
+        "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+        "title": "Art + AI - Pittsburgh ML Summit ‘19",
+        "description": "Victor Dibia, ML Research Engineer at Cloudera Fast Forward Labs, talks about what he does as GDE both at work and for the community. He combines his love of art using Generative Adversarial Networks. Join us and see how these two roads intersect.\n\nBeyond Big Data: AI/ML Summit is a unique opportunity for managers on every level to learn more about the opportunities of these technologies, while connecting with others in the industry. With a focus on trends and best practices, the event aims to explore strategies, best practices and technologies surrounding data analysis, artificial intelligence and machine learning while keeping in mind the implications of regulations, privacy, data protection, and ethics that govern this field. \n\nWatch more Pittsburgh ML Summit ‘19 → https://goo.gle/339pgbR\nSubscribe to Google Developers → https://goo.gle/developers",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/BBjVl1EETb0/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/BBjVl1EETb0/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/BBjVl1EETb0/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          },
+          "standard": {
+            "url": "https://i.ytimg.com/vi/BBjVl1EETb0/sddefault.jpg",
+            "width": 640,
+            "height": 480
+          },
+          "maxres": {
+            "url": "https://i.ytimg.com/vi/BBjVl1EETb0/maxresdefault.jpg",
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "channelTitle": "Google Developers",
+        "playlistId": "PLOU2XLYxmsIKpaV8h0AGE05so0fAwwfTw",
+        "position": 3,
+        "resourceId": {
+          "kind": "youtube#video",
+          "videoId": "BBjVl1EETb0"
+        }
+      }
+    },
+    {
+      "kind": "youtube#playlistItem",
+      "etag": "\"j6xRRd8dTPVVptg711_CSPADRfg/QJ09nQXlszEGNjJA4zMFr6KKXWE\"",
+      "id": "UExPVTJYTFl4bXNJS3BhVjhoMEFHRTA1c28wZkF3d2ZUdy4wOTA3OTZBNzVEMTUzOTMy",
+      "snippet": {
+        "publishedAt": "2019-11-23T00:28:46.000Z",
+        "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+        "title": "Code-Free probing of Machine Learning models - Pittsburgh ML Summit ‘19",
+        "description": "Tolga Bolukbasi, Software Engineer, talks about his research and the tools he builds for Machine Learning model understanding and fairness. Learn about the company he works for, PAIR, and their mission in AI.\n\nBeyond Big Data: AI/ML Summit is a unique opportunity for managers on every level to learn more about the opportunities of these technologies, while connecting with others in the industry. With a focus on trends and best practices, the event aims to explore strategies, best practices and technologies surrounding data analysis, artificial intelligence and machine learning while keeping in mind the implications of regulations, privacy, data protection, and ethics that govern this field. \n\nWatch more Pittsburgh ML Summit ‘19 → https://goo.gle/339pgbR\nSubscribe to Google Developers → https://goo.gle/developers",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/h8CnO-oqqSs/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/h8CnO-oqqSs/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/h8CnO-oqqSs/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          },
+          "standard": {
+            "url": "https://i.ytimg.com/vi/h8CnO-oqqSs/sddefault.jpg",
+            "width": 640,
+            "height": 480
+          },
+          "maxres": {
+            "url": "https://i.ytimg.com/vi/h8CnO-oqqSs/maxresdefault.jpg",
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "channelTitle": "Google Developers",
+        "playlistId": "PLOU2XLYxmsIKpaV8h0AGE05so0fAwwfTw",
+        "position": 4,
+        "resourceId": {
+          "kind": "youtube#video",
+          "videoId": "h8CnO-oqqSs"
+        }
+      }
+    },
+    {
+      "kind": "youtube#playlistItem",
+      "etag": "\"j6xRRd8dTPVVptg711_CSPADRfg/oKKyBUNjbGZqwxRylpicJtxpL1w\"",
+      "id": "UExPVTJYTFl4bXNJS3BhVjhoMEFHRTA1c28wZkF3d2ZUdy4xMkVGQjNCMUM1N0RFNEUx",
+      "snippet": {
+        "publishedAt": "2019-11-23T00:32:55.000Z",
+        "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+        "title": "Neural Query Language - Pittsburgh ML Summit ‘19",
+        "description": "William Cohen, Principal Scientist at Google, discusses the project of Neural Query Language and the differentiable KG queries in TensorFlow. \n\nBeyond Big Data: AI/ML Summit is a unique opportunity for managers on every level to learn more about the opportunities of these technologies, while connecting with others in the industry. With a focus on trends and best practices, the event aims to explore strategies, best practices and technologies surrounding data analysis, artificial intelligence and machine learning while keeping in mind the implications of regulations, privacy, data protection, and ethics that govern this field. \n\nWatch more Pittsburgh ML Summit ‘19 → https://goo.gle/339pgbR\nSubscribe to Google Developers → https://goo.gle/developers",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/2cHddIA4EvY/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/2cHddIA4EvY/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/2cHddIA4EvY/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          },
+          "standard": {
+            "url": "https://i.ytimg.com/vi/2cHddIA4EvY/sddefault.jpg",
+            "width": 640,
+            "height": 480
+          },
+          "maxres": {
+            "url": "https://i.ytimg.com/vi/2cHddIA4EvY/maxresdefault.jpg",
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "channelTitle": "Google Developers",
+        "playlistId": "PLOU2XLYxmsIKpaV8h0AGE05so0fAwwfTw",
+        "position": 5,
+        "resourceId": {
+          "kind": "youtube#video",
+          "videoId": "2cHddIA4EvY"
+        }
+      }
+    },
+    {
+      "kind": "youtube#playlistItem",
+      "etag": "\"j6xRRd8dTPVVptg711_CSPADRfg/B3KKp2wby9fWhYeq0Ho4GaF5hKE\"",
+      "id": "UExPVTJYTFl4bXNJS3BhVjhoMEFHRTA1c28wZkF3d2ZUdy41MzJCQjBCNDIyRkJDN0VD",
+      "snippet": {
+        "publishedAt": "2019-11-23T00:35:29.000Z",
+        "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+        "title": "The future of Mobile Learning - Pittsburgh ML Summit ‘19",
+        "description": "Jingtao Wang, Research Scientist at Google, discusses the future of Mobile Learning during this talk. \n\nBeyond Big Data: AI/ML Summit is a unique opportunity for managers on every level to learn more about the opportunities of these technologies, while connecting with others in the industry. With a focus on trends and best practices, the event aims to explore strategies, best practices and technologies surrounding data analysis, artificial intelligence and machine learning while keeping in mind the implications of regulations, privacy, data protection, and ethics that govern this field. \n\nWatch more Pittsburgh ML Summit ‘19 → https://goo.gle/339pgbR\nSubscribe to Google Developers → https://goo.gle/developers",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/kTJUt9CmTXg/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/kTJUt9CmTXg/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/kTJUt9CmTXg/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          },
+          "standard": {
+            "url": "https://i.ytimg.com/vi/kTJUt9CmTXg/sddefault.jpg",
+            "width": 640,
+            "height": 480
+          },
+          "maxres": {
+            "url": "https://i.ytimg.com/vi/kTJUt9CmTXg/maxresdefault.jpg",
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "channelTitle": "Google Developers",
+        "playlistId": "PLOU2XLYxmsIKpaV8h0AGE05so0fAwwfTw",
+        "position": 6,
+        "resourceId": {
+          "kind": "youtube#video",
+          "videoId": "kTJUt9CmTXg"
+        }
+      }
+    },
+    {
+      "kind": "youtube#playlistItem",
+      "etag": "\"j6xRRd8dTPVVptg711_CSPADRfg/DhloJevNp-LgUKvIK-6UyahOQVQ\"",
+      "id": "UExPVTJYTFl4bXNJS3BhVjhoMEFHRTA1c28wZkF3d2ZUdy5DQUNERDQ2NkIzRUQxNTY1",
+      "snippet": {
+        "publishedAt": "2019-11-23T00:37:49.000Z",
+        "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+        "title": "Inclusive AI - Pittsburgh ML Summit ‘19",
+        "description": "Eve Andersson, Director of ML Fairness and Accessibility Engineering at Google, discusses artificial intelligence and accessibility during this talk. \n\nBeyond Big Data: AI/ML Summit is a unique opportunity for managers on every level to learn more about the opportunities of these technologies, while connecting with others in the industry. With a focus on trends and best practices, the event aims to explore strategies, best practices and technologies surrounding data analysis, artificial intelligence and machine learning while keeping in mind the implications of regulations, privacy, data protection, and ethics that govern this field. \n\nWatch more Pittsburgh ML Summit ‘19 → https://goo.gle/339pgbR\nSubscribe to Google Developers → https://goo.gle/developers",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/o7_oJYZw2Hg/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/o7_oJYZw2Hg/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/o7_oJYZw2Hg/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          },
+          "standard": {
+            "url": "https://i.ytimg.com/vi/o7_oJYZw2Hg/sddefault.jpg",
+            "width": 640,
+            "height": 480
+          },
+          "maxres": {
+            "url": "https://i.ytimg.com/vi/o7_oJYZw2Hg/maxresdefault.jpg",
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "channelTitle": "Google Developers",
+        "playlistId": "PLOU2XLYxmsIKpaV8h0AGE05so0fAwwfTw",
+        "position": 7,
+        "resourceId": {
+          "kind": "youtube#video",
+          "videoId": "o7_oJYZw2Hg"
+        }
+      }
+    },
+    {
+      "kind": "youtube#playlistItem",
+      "etag": "\"j6xRRd8dTPVVptg711_CSPADRfg/pG62VWLcupRiuy-bO1NuaVKby3I\"",
+      "id": "UExPVTJYTFl4bXNJS3BhVjhoMEFHRTA1c28wZkF3d2ZUdy45NDk1REZENzhEMzU5MDQz",
+      "snippet": {
+        "publishedAt": "2019-11-23T00:40:19.000Z",
+        "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+        "title": "Serverless & AI/ML - Pittsburgh ML Summit ‘19",
+        "description": "Charles Baer, Solutions Architect for Google Cloud, discusses solutions for serverless artificial intelligence and machine learning during this talk. \n\nBeyond Big Data: AI/ML Summit is a unique opportunity for managers on every level to learn more about the opportunities of these technologies, while connecting with others in the industry. With a focus on trends and best practices, the event aims to explore strategies, best practices and technologies surrounding data analysis, artificial intelligence and machine learning while keeping in mind the implications of regulations, privacy, data protection, and ethics that govern this field. \n\nWatch more Pittsburgh ML Summit ‘19 → https://goo.gle/339pgbR\nSubscribe to Google Developers → https://goo.gle/developers",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/vN6uK5Qm23c/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/vN6uK5Qm23c/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/vN6uK5Qm23c/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          },
+          "standard": {
+            "url": "https://i.ytimg.com/vi/vN6uK5Qm23c/sddefault.jpg",
+            "width": 640,
+            "height": 480
+          },
+          "maxres": {
+            "url": "https://i.ytimg.com/vi/vN6uK5Qm23c/maxresdefault.jpg",
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "channelTitle": "Google Developers",
+        "playlistId": "PLOU2XLYxmsIKpaV8h0AGE05so0fAwwfTw",
+        "position": 8,
+        "resourceId": {
+          "kind": "youtube#video",
+          "videoId": "vN6uK5Qm23c"
+        }
+      }
+    },
+    {
+      "kind": "youtube#playlistItem",
+      "etag": "\"j6xRRd8dTPVVptg711_CSPADRfg/7QBFXcO5f-kiWNCzM-byiACxvzw\"",
+      "id": "UExPVTJYTFl4bXNJS3BhVjhoMEFHRTA1c28wZkF3d2ZUdy5GNjNDRDREMDQxOThCMDQ2",
+      "snippet": {
+        "publishedAt": "2019-11-23T00:42:56.000Z",
+        "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+        "title": "Convolutional neural networks with Swift - Pittsburgh ML Summit ‘19",
+        "description": "Brett Koonce, CTO at Quarkworks and Google Developers Expert, discusses convolutional neural networks with Swift and Python.\n\nBeyond Big Data: AI/ML Summit is a unique opportunity for managers on every level to learn more about the opportunities of these technologies, while connecting with others in the industry. With a focus on trends and best practices, the event aims to explore strategies, best practices and technologies surrounding data analysis, artificial intelligence and machine learning while keeping in mind the implications of regulations, privacy, data protection, and ethics that govern this field. \n\nWatch more Pittsburgh ML Summit ‘19 → https://goo.gle/339pgbR\nSubscribe to Google Developers → https://goo.gle/developers",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/o5LP2xzKkpg/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/o5LP2xzKkpg/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/o5LP2xzKkpg/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          },
+          "standard": {
+            "url": "https://i.ytimg.com/vi/o5LP2xzKkpg/sddefault.jpg",
+            "width": 640,
+            "height": 480
+          },
+          "maxres": {
+            "url": "https://i.ytimg.com/vi/o5LP2xzKkpg/maxresdefault.jpg",
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "channelTitle": "Google Developers",
+        "playlistId": "PLOU2XLYxmsIKpaV8h0AGE05so0fAwwfTw",
+        "position": 9,
+        "resourceId": {
+          "kind": "youtube#video",
+          "videoId": "o5LP2xzKkpg"
+        }
+      }
+    }
+  ]
+}

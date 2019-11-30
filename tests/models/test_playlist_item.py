@@ -61,4 +61,7 @@ class PlaylistItemModelTest(unittest.TestCase):
         self.assertEqual(m.kind, "youtube#playlistItemListResponse")
         self.assertEqual(m.pageInfo.totalResults, 3)
         self.assertEqual(len(m.items), 3)
-        self.assertEqual(m.items[0].id, "UExPVTJYTFl4bXNJSlhzSDJodEcxZzBOVWpIR3E2MlE3aS41NkI0NEY2RDEwNTU3Q0M2")
+        self.assertEqual(
+            m.items[0].id,
+            "UExPVTJYTFl4bXNJSlhzSDJodEcxZzBOVWpIR3E2MlE3aS41NkI0NEY2RDEwNTU3Q0M2",
+        )
