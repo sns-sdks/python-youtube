@@ -5,7 +5,7 @@ import pyyoutube.models as models
 
 
 class PlaylistModelTest(unittest.TestCase):
-    BASE_PATH = "testdata/modeldata/"
+    BASE_PATH = "testdata/modeldata/playlists/"
 
     with open(BASE_PATH + "playlist_content_details.json", "rb") as f:
         CONTENT_DETAILS_INFO = json.loads(f.read().decode("utf-8"))
@@ -15,6 +15,8 @@ class PlaylistModelTest(unittest.TestCase):
         STATUS_INFO = json.loads(f.read().decode("utf-8"))
     with open(BASE_PATH + "playlist_info.json", "rb") as f:
         PLAYLIST_INFO = json.loads(f.read().decode("utf-8"))
+    with open(BASE_PATH + "playlist_api_response.json", "rb") as f:
+        PLAYLIST_RESPONSE_INFO = json.loads(f.read().decode("utf-8"))
 
     def testPlayListContentDetails(self) -> None:
         m = models.PlaylistContentDetails.from_dict(self.CONTENT_DETAILS_INFO)
@@ -44,3 +46,10 @@ class PlaylistModelTest(unittest.TestCase):
         self.assertEqual(m.id, "PLOU2XLYxmsIJpufeMHncnQvFOe0K3MhVp")
         self.assertEqual(m.player, None)
         self.assertEqual(m.snippet.title, "Assistant on Air")
+
+    def testPlaylistListResponse(self) -> None:
+        m = models.PlaylistListResponse.from_dict(self.PLAYLIST_RESPONSE_INFO)
+
+        self.assertEqual(m.kind, "youtube#playlistListResponse")
+        self.assertEqual(m.pageInfo.totalResults, 416)
+        self.assertEqual(m.items[0].id, "PLOU2XLYxmsIJpufeMHncnQvFOe0K3MhVp")

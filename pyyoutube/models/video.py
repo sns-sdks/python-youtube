@@ -9,7 +9,14 @@ from isodate import ISO8601Error
 
 from pyyoutube.error import ErrorCode, ErrorMessage, PyYouTubeException
 from .base import BaseModel
-from .common import BaseTopicDetails, BaseResource, Localized, Player, Thumbnails
+from .common import (
+    BaseApiResponse,
+    BaseTopicDetails,
+    BaseResource,
+    Localized,
+    Player,
+    Thumbnails,
+)
 from .mixins import DatetimeTimeMixin
 
 
@@ -171,7 +178,7 @@ class VideoSnippet(BaseModel, DatetimeTimeMixin):
     description: Optional[str] = field(default=None)
     thumbnails: Optional[Thumbnails] = field(default=None, repr=False)
     channelTitle: Optional[str] = field(default=None, repr=False)
-    tags: List[str] = field(default=None, repr=False)
+    tags: Optional[List[str]] = field(default=None, repr=False)
     categoryId: Optional[str] = field(default=None, repr=False)
     liveBroadcastContent: Optional[str] = field(default=None, repr=False)
     defaultLanguage: Optional[str] = field(default=None, repr=False)
@@ -225,3 +232,14 @@ class Video(BaseResource):
     statistics: Optional[VideoStatistics] = field(default=None, repr=False)
     topicDetails: Optional[VideoTopicDetails] = field(default=None, repr=False)
     player: Optional[Player] = field(default=None, repr=False)
+
+
+@dataclass
+class VideoListResponse(BaseApiResponse):
+    """
+    A class representing the video's retrieve response info.
+
+    Refer: https://developers.google.com/youtube/v3/docs/videos/list#response_1
+    """
+
+    items: Optional[List[Video]] = field(default=None, repr=False)

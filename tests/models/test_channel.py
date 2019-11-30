@@ -4,7 +4,7 @@ import pyyoutube.models as models
 
 
 class ChannelModelTest(unittest.TestCase):
-    BASE_PATH = "testdata/modeldata/"
+    BASE_PATH = "testdata/modeldata/channels/"
 
     with open(BASE_PATH + "channel_branding_settings.json", "rb") as f:
         BRANDING_SETTINGS_INFO = json.loads(f.read().decode("utf-8"))
@@ -20,6 +20,8 @@ class ChannelModelTest(unittest.TestCase):
         STATUS_INFO = json.loads(f.read().decode("utf-8"))
     with open(BASE_PATH + "channel_info.json", "rb") as f:
         CHANNEL_INFO = json.loads(f.read().decode("utf-8"))
+    with open(BASE_PATH + "channel_api_response.json", "rb") as f:
+        CHANNEL_API_RESPONSE = json.loads(f.read().decode("utf-8"))
 
     def testChannelBrandingSettings(self) -> None:
         m = models.ChannelBrandingSetting.from_dict(self.BRANDING_SETTINGS_INFO)
@@ -78,3 +80,10 @@ class ChannelModelTest(unittest.TestCase):
         m = models.Channel.from_dict(self.CHANNEL_INFO)
 
         self.assertEqual(m.id, "UC_x5XG1OV2P6uZZ5FSM9Ttw")
+
+    def testChannelListResponse(self) -> None:
+        m = models.ChannelListResponse.from_dict(self.CHANNEL_API_RESPONSE)
+
+        self.assertEqual(m.kind, "youtube#channelListResponse")
+        self.assertEqual(m.pageInfo.totalResults, 1)
+        self.assertEqual(m.items[0].id, "UC_x5XG1OV2P6uZZ5FSM9Ttw")

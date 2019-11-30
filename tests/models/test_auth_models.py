@@ -4,7 +4,7 @@ import pyyoutube.models as models
 
 
 class AuthModelTest(unittest.TestCase):
-    BASE_PATH = "testdata/modeldata/"
+    BASE_PATH = "testdata/modeldata/users/"
     with open(BASE_PATH + "access_token.json", "rb") as f:
         ACCESS_TOKEN_INFO = json.loads(f.read().decode("utf-8"))
     with open(BASE_PATH + "user_profile.json", "rb") as f:

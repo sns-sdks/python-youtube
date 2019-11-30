@@ -3,11 +3,14 @@ from typing import Optional, Union
 
 from requests import Response
 
+__all__ = ["ErrorCode", "ErrorMessage", "PyYouTubeException"]
+
 
 class ErrorCode:
     HTTP_ERROR = 10000
     MISSING_PARAMS = 10001
     INVALID_PARAMS = 10002
+    NEED_AUTHORIZATION = 10003
 
 
 @dataclass

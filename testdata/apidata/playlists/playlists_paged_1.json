@@ -1,0 +1,436 @@
+{
+  "kind": "youtube#playlistListResponse",
+  "etag": "\"j6xRRd8dTPVVptg711_CSPADRfg/jGXEiDmTtAs7vTBHF90lfHs9yOA\"",
+  "nextPageToken": "CAoQAA",
+  "pageInfo": {
+    "totalResults": 422,
+    "resultsPerPage": 10
+  },
+  "items": [
+    {
+      "kind": "youtube#playlist",
+      "etag": "\"j6xRRd8dTPVVptg711_CSPADRfg/z8ateNaRCjA2yCsvti1OTzDIvHo\"",
+      "id": "PLOU2XLYxmsIKpaV8h0AGE05so0fAwwfTw",
+      "snippet": {
+        "publishedAt": "2019-11-21T22:17:38.000Z",
+        "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+        "title": "Pittsburgh ML Summit ‘19",
+        "description": "AI/ML Summit is a unique opportunity for managers on every level to learn more about the opportunities of these technologies, while connecting with others in the industry. With a focus on trends and best practices, the event aims to explore strategies, best practices and technologies surrounding data analysis, artificial intelligence and machine learning while keeping in mind the implications of regulations, privacy, data protection, and ethics that govern this field.",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/CvTApw9X8aA/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/CvTApw9X8aA/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/CvTApw9X8aA/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          },
+          "standard": {
+            "url": "https://i.ytimg.com/vi/CvTApw9X8aA/sddefault.jpg",
+            "width": 640,
+            "height": 480
+          },
+          "maxres": {
+            "url": "https://i.ytimg.com/vi/CvTApw9X8aA/maxresdefault.jpg",
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "channelTitle": "Google Developers",
+        "localized": {
+          "title": "Pittsburgh ML Summit ‘19",
+          "description": "AI/ML Summit is a unique opportunity for managers on every level to learn more about the opportunities of these technologies, while connecting with others in the industry. With a focus on trends and best practices, the event aims to explore strategies, best practices and technologies surrounding data analysis, artificial intelligence and machine learning while keeping in mind the implications of regulations, privacy, data protection, and ethics that govern this field."
+        }
+      }
+    },
+    {
+      "kind": "youtube#playlist",
+      "etag": "\"j6xRRd8dTPVVptg711_CSPADRfg/8kvRpRGgdJloFkUOu_S12Vy00E4\"",
+      "id": "PLOU2XLYxmsIJO83u2UmyC8ud41AvUnhgj",
+      "snippet": {
+        "publishedAt": "2019-11-18T20:00:47.000Z",
+        "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+        "title": "Kirkland ML Summit '19",
+        "description": "The Kirkland ML Summit brings together developers from across the globe to discuss recent developments and get the latest news on everything Machine Learning. Join our many sessions to keep up with what’s going on in the Machine Learning world.",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/c2gJxZ1Qa4k/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/c2gJxZ1Qa4k/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/c2gJxZ1Qa4k/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          },
+          "standard": {
+            "url": "https://i.ytimg.com/vi/c2gJxZ1Qa4k/sddefault.jpg",
+            "width": 640,
+            "height": 480
+          },
+          "maxres": {
+            "url": "https://i.ytimg.com/vi/c2gJxZ1Qa4k/maxresdefault.jpg",
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "channelTitle": "Google Developers",
+        "localized": {
+          "title": "Kirkland ML Summit '19",
+          "description": "The Kirkland ML Summit brings together developers from across the globe to discuss recent developments and get the latest news on everything Machine Learning. Join our many sessions to keep up with what’s going on in the Machine Learning world."
+        }
+      }
+    },
+    {
+      "kind": "youtube#playlist",
+      "etag": "\"j6xRRd8dTPVVptg711_CSPADRfg/ewmspkP9LrOg8_2nd1e71xcr0u8\"",
+      "id": "PLOU2XLYxmsILfV1LiUhDjbh1jkFjQWrYB",
+      "snippet": {
+        "publishedAt": "2019-11-07T22:55:11.000Z",
+        "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+        "title": "Google Developers Experts",
+        "description": "A global program to recognize individuals who are experts and thought leaders in one or more Google technologies. These professionals actively contribute and support the developer and startup ecosystems around the world, helping them build and launch highly innovative apps.",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/kFjxIgIgW80/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/kFjxIgIgW80/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/kFjxIgIgW80/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          },
+          "standard": {
+            "url": "https://i.ytimg.com/vi/kFjxIgIgW80/sddefault.jpg",
+            "width": 640,
+            "height": 480
+          },
+          "maxres": {
+            "url": "https://i.ytimg.com/vi/kFjxIgIgW80/maxresdefault.jpg",
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "channelTitle": "Google Developers",
+        "localized": {
+          "title": "Google Developers Experts",
+          "description": "A global program to recognize individuals who are experts and thought leaders in one or more Google technologies. These professionals actively contribute and support the developer and startup ecosystems around the world, helping them build and launch highly innovative apps."
+        }
+      }
+    },
+    {
+      "kind": "youtube#playlist",
+      "etag": "\"j6xRRd8dTPVVptg711_CSPADRfg/c9OQR20t2PJhtUIJw79bb7CgGrU\"",
+      "id": "PLOU2XLYxmsIKNr3Wfhm8o0TSojW7hEPPY",
+      "snippet": {
+        "publishedAt": "2019-10-01T20:57:43.000Z",
+        "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+        "title": "Cambridge ML Summit '19",
+        "description": "Google Developers ML Summit '19 brings together industry professionals in Machine Learning and Artificial Intelligence. If you already work in the ML/AI field, and you are interested in enhancing your skills, while networking and learning from Google's ML/AI experts, this Summit is for you.",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/KWefSoJDja8/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/KWefSoJDja8/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/KWefSoJDja8/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          },
+          "standard": {
+            "url": "https://i.ytimg.com/vi/KWefSoJDja8/sddefault.jpg",
+            "width": 640,
+            "height": 480
+          },
+          "maxres": {
+            "url": "https://i.ytimg.com/vi/KWefSoJDja8/maxresdefault.jpg",
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "channelTitle": "Google Developers",
+        "localized": {
+          "title": "Cambridge ML Summit '19",
+          "description": "Google Developers ML Summit '19 brings together industry professionals in Machine Learning and Artificial Intelligence. If you already work in the ML/AI field, and you are interested in enhancing your skills, while networking and learning from Google's ML/AI experts, this Summit is for you."
+        }
+      }
+    },
+    {
+      "kind": "youtube#playlist",
+      "etag": "\"j6xRRd8dTPVVptg711_CSPADRfg/3Q4DeS3RXGlkoRoaDjRTzgP8hl0\"",
+      "id": "PLOU2XLYxmsIJ8ItHmK4bRlY4GCzMgXLAJ",
+      "snippet": {
+        "publishedAt": "2019-09-27T22:16:57.000Z",
+        "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+        "title": "#MyDomain",
+        "description": "",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/RiqYfiKU1Zo/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/RiqYfiKU1Zo/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/RiqYfiKU1Zo/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          },
+          "standard": {
+            "url": "https://i.ytimg.com/vi/RiqYfiKU1Zo/sddefault.jpg",
+            "width": 640,
+            "height": 480
+          }
+        },
+        "channelTitle": "Google Developers",
+        "localized": {
+          "title": "#MyDomain",
+          "description": ""
+        }
+      }
+    },
+    {
+      "kind": "youtube#playlist",
+      "etag": "\"j6xRRd8dTPVVptg711_CSPADRfg/wFrhKcRFkwQd7ocSg8Hy1VXnBnQ\"",
+      "id": "PLOU2XLYxmsIIra6qDjAHl63jlWbq5me8i",
+      "snippet": {
+        "publishedAt": "2019-09-23T22:52:15.000Z",
+        "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+        "title": "North America DSC Summit 2019",
+        "description": "Developer Student Clubs (DSC) are community groups for students from any academic background in their undergraduate or graduate term. By joining a DSC, students build their professional and personal network, get access to Google developer resources, and work together to build solutions for local problems in a peer-to-peer learning environment.",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/aiMb0sNmpdY/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/aiMb0sNmpdY/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/aiMb0sNmpdY/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          },
+          "standard": {
+            "url": "https://i.ytimg.com/vi/aiMb0sNmpdY/sddefault.jpg",
+            "width": 640,
+            "height": 480
+          },
+          "maxres": {
+            "url": "https://i.ytimg.com/vi/aiMb0sNmpdY/maxresdefault.jpg",
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "channelTitle": "Google Developers",
+        "localized": {
+          "title": "North America DSC Summit 2019",
+          "description": "Developer Student Clubs (DSC) are community groups for students from any academic background in their undergraduate or graduate term. By joining a DSC, students build their professional and personal network, get access to Google developer resources, and work together to build solutions for local problems in a peer-to-peer learning environment."
+        }
+      }
+    },
+    {
+      "kind": "youtube#playlist",
+      "etag": "\"j6xRRd8dTPVVptg711_CSPADRfg/ytuOSx4rjsuY7yHeez5VCA7dGw4\"",
+      "id": "PLOU2XLYxmsILHvpAkROp2dXz-jQi4S4_y",
+      "snippet": {
+        "publishedAt": "2019-09-11T22:29:53.000Z",
+        "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+        "title": "Introduction to ARCore Augmented Faces",
+        "description": "",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/8ih7eHwPoxM/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/8ih7eHwPoxM/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/8ih7eHwPoxM/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          },
+          "standard": {
+            "url": "https://i.ytimg.com/vi/8ih7eHwPoxM/sddefault.jpg",
+            "width": 640,
+            "height": 480
+          },
+          "maxres": {
+            "url": "https://i.ytimg.com/vi/8ih7eHwPoxM/maxresdefault.jpg",
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "channelTitle": "Google Developers",
+        "localized": {
+          "title": "Introduction to ARCore Augmented Faces",
+          "description": ""
+        }
+      }
+    },
+    {
+      "kind": "youtube#playlist",
+      "etag": "\"j6xRRd8dTPVVptg711_CSPADRfg/NvwWi2jAzPFc884j9G1IPW2_YIA\"",
+      "id": "PLOU2XLYxmsIJXsH2htG1g0NUjHGq62Q7i",
+      "snippet": {
+        "publishedAt": "2019-05-10T00:18:56.000Z",
+        "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+        "title": "I/O Live - Show Composite",
+        "description": "",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/H1HZyvc0QnI/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/H1HZyvc0QnI/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/H1HZyvc0QnI/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          },
+          "standard": {
+            "url": "https://i.ytimg.com/vi/H1HZyvc0QnI/sddefault.jpg",
+            "width": 640,
+            "height": 480
+          },
+          "maxres": {
+            "url": "https://i.ytimg.com/vi/H1HZyvc0QnI/maxresdefault.jpg",
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "channelTitle": "Google Developers",
+        "localized": {
+          "title": "I/O Live - Show Composite",
+          "description": ""
+        }
+      }
+    },
+    {
+      "kind": "youtube#playlist",
+      "etag": "\"j6xRRd8dTPVVptg711_CSPADRfg/WdUKh80tT13sUtVr5ZIFMGc8M5I\"",
+      "id": "PLOU2XLYxmsIJJVnHWmd1qfr0Caq4VZCu4",
+      "snippet": {
+        "publishedAt": "2019-05-10T00:18:07.000Z",
+        "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+        "title": "I/O Live",
+        "description": "Relive moments from Google I/O 2019",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/UVOhgly2VEc/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/UVOhgly2VEc/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/UVOhgly2VEc/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          },
+          "standard": {
+            "url": "https://i.ytimg.com/vi/UVOhgly2VEc/sddefault.jpg",
+            "width": 640,
+            "height": 480
+          },
+          "maxres": {
+            "url": "https://i.ytimg.com/vi/UVOhgly2VEc/maxresdefault.jpg",
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "channelTitle": "Google Developers",
+        "localized": {
+          "title": "I/O Live",
+          "description": "Relive moments from Google I/O 2019"
+        }
+      }
+    },
+    {
+      "kind": "youtube#playlist",
+      "etag": "\"j6xRRd8dTPVVptg711_CSPADRfg/s7ZgGwVG5R5qa-Sxi9I4xeeVI3k\"",
+      "id": "PLOU2XLYxmsIKW-llcbcFdpR9RjCfYHZaV",
+      "snippet": {
+        "publishedAt": "2019-05-02T23:39:42.000Z",
+        "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+        "title": "Machine Learning at Google I/O 2019",
+        "description": "This playlist contains every Machine Learning session from Google I/O 2019.\nLearn more on the I/O Website → https://google.com/io\n\nSubscribe to Google Devs → https://goo.gle/developers\nGet started at → https://developers.google.com/machine-learning/guides/",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/pM9u9xcM_cs/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/pM9u9xcM_cs/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/pM9u9xcM_cs/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          },
+          "standard": {
+            "url": "https://i.ytimg.com/vi/pM9u9xcM_cs/sddefault.jpg",
+            "width": 640,
+            "height": 480
+          },
+          "maxres": {
+            "url": "https://i.ytimg.com/vi/pM9u9xcM_cs/maxresdefault.jpg",
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "channelTitle": "Google Developers",
+        "localized": {
+          "title": "Machine Learning at Google I/O 2019",
+          "description": "This playlist contains every Machine Learning session from Google I/O 2019.\nLearn more on the I/O Website → https://google.com/io\n\nSubscribe to Google Devs → https://goo.gle/developers\nGet started at → https://developers.google.com/machine-learning/guides/"
+        }
+      }
+    }
+  ]
+}

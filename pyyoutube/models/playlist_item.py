@@ -3,11 +3,11 @@
 """
 
 from dataclasses import dataclass, field
-from typing import Optional
+from typing import List, Optional
 
 from .base import BaseModel
 from .mixins import DatetimeTimeMixin
-from .common import BaseResource, Thumbnails
+from .common import BaseApiResponse, BaseResource, Thumbnails
 
 
 @dataclass
@@ -78,3 +78,14 @@ class PlaylistItem(BaseResource):
         default=None, repr=False
     )
     status: Optional[PlaylistItemStatus] = field(default=None, repr=False)
+
+
+@dataclass
+class PlaylistItemListResponse(BaseApiResponse):
+    """
+    A class representing the playlist item's retrieve response info.
+
+    Refer: https://developers.google.com/youtube/v3/docs/playlistItems/list#response_1
+    """
+
+    items: Optional[List[PlaylistItem]] = field(default=None, repr=False)

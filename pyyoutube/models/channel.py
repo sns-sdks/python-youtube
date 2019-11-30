@@ -5,7 +5,7 @@ from dataclasses import dataclass, field
 from typing import List, Optional
 
 from .base import BaseModel
-from .common import BaseResource, BaseTopicDetails, Thumbnails
+from .common import BaseResource, BaseTopicDetails, Thumbnails, BaseApiResponse
 from .mixins import DatetimeTimeMixin
 
 
@@ -194,3 +194,14 @@ class Channel(BaseResource):
     topicDetails: Optional[ChannelTopicDetails] = field(default=None, repr=False)
     status: Optional[ChannelStatus] = field(default=None, repr=False)
     brandingSettings: Optional[ChannelBrandingSetting] = field(default=None, repr=False)
+
+
+@dataclass
+class ChannelListResponse(BaseApiResponse):
+    """
+    A class representing the channel's retrieve response info.
+
+    Refer: https://developers.google.com/youtube/v3/docs/channels/list#response_1
+    """
+
+    items: Optional[List[Channel]] = field(default=None, repr=False)

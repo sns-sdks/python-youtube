@@ -5,7 +5,7 @@ import pyyoutube.models as models
 
 
 class CategoryModelTest(unittest.TestCase):
-    BASE_PATH = "testdata/modeldata/"
+    BASE_PATH = "testdata/modeldata/categories/"
 
     with open(BASE_PATH + "video_category_info.json", "rb") as f:
         VIDEO_CATEGORY_INFO = json.loads(f.read().decode("utf-8"))

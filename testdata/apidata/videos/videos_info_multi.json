@@ -1,0 +1,153 @@
+{
+  "kind": "youtube#videoListResponse",
+  "etag": "\"j6xRRd8dTPVVptg711_CSPADRfg/gdL-V0hs_jHqrqpeSTPV4WGOc9Y\"",
+  "pageInfo": {
+    "totalResults": 2,
+    "resultsPerPage": 2
+  },
+  "items": [
+    {
+      "kind": "youtube#video",
+      "etag": "\"j6xRRd8dTPVVptg711_CSPADRfg/dbCtFPFQrd6OMTnWAYrcpZDPai0\"",
+      "id": "D-lhorsDlUQ",
+      "snippet": {
+        "publishedAt": "2019-03-21T20:37:49.000Z",
+        "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+        "title": "What are Actions on Google (Assistant on Air)",
+        "description": "In the first episode of Assistant on Air, Luke Davis and guest Jessica Dene Early-Cha introduce the concept of Actions on Google, and talk about common terminology.\n\nActions on Google docs → http://bit.ly/2YabdS5\n\nOther episodes of Assistant on Air → https://goo.gle/2X0nBqG\nSubscribe to Google Devs for the latest Actions on Google videos →  https://bit.ly/googledevs",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/D-lhorsDlUQ/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/D-lhorsDlUQ/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/D-lhorsDlUQ/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          },
+          "standard": {
+            "url": "https://i.ytimg.com/vi/D-lhorsDlUQ/sddefault.jpg",
+            "width": 640,
+            "height": 480
+          },
+          "maxres": {
+            "url": "https://i.ytimg.com/vi/D-lhorsDlUQ/maxresdefault.jpg",
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "channelTitle": "Google Developers",
+        "tags": [
+          "Google",
+          "developers",
+          "aog",
+          "Actions on Google",
+          "Assistant",
+          "Google Assistant",
+          "actions",
+          "google home",
+          "actions on google",
+          "google assistant developers",
+          "google assistant sdk",
+          "Actions on google developers",
+          "smarthome developers",
+          "common terminology",
+          "custom action on google",
+          "google assistant in your app",
+          "add google assistant",
+          "assistant on air",
+          "how to use google assistant on air",
+          "Actions on Google how to"
+        ],
+        "categoryId": "28",
+        "liveBroadcastContent": "none",
+        "defaultLanguage": "en",
+        "localized": {
+          "title": "What are Actions on Google (Assistant on Air)",
+          "description": "In the first episode of Assistant on Air, Luke Davis and guest Jessica Dene Early-Cha introduce the concept of Actions on Google, and talk about common terminology.\n\nActions on Google docs → http://bit.ly/2YabdS5\n\nOther episodes of Assistant on Air → https://goo.gle/2X0nBqG\nSubscribe to Google Devs for the latest Actions on Google videos →  https://bit.ly/googledevs"
+        },
+        "defaultAudioLanguage": "en"
+      },
+      "player": {
+        "embedHtml": "\u003ciframe width=\"480\" height=\"270\" src=\"//www.youtube.com/embed/D-lhorsDlUQ\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen\u003e\u003c/iframe\u003e"
+      }
+    },
+    {
+      "kind": "youtube#video",
+      "etag": "\"j6xRRd8dTPVVptg711_CSPADRfg/reY3Wnf12Q5myxn3EOXDguKzvns\"",
+      "id": "ovdbrdCIP7U",
+      "snippet": {
+        "publishedAt": "2019-09-11T23:00:05.000Z",
+        "channelId": "UCJdl3Paao2f3ha5JXMYUCIA",
+        "title": "How EVERY Team Got Its Name & Identity!",
+        "description": "Ever wonder how the NFL got to be where it is today?  Sit back, relax, and enjoy the Evolution of the NFL.\n\n#NFL100\n\nThe NFL Throwback is your home for all things NFL history.\n\nCheck out our other channels:\nNFL Films - YouTube.com/NFLFilms\nNFL Network- YouTube.com/NFLNetwork\nNFL Rush - YouTube.com/NFLRush\nNFL - YouTube.com/NFL\n\n#NFL #NFLThrowback #NFLHistory #Football #AmericanFootball #NFLVault",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/ovdbrdCIP7U/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/ovdbrdCIP7U/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/ovdbrdCIP7U/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          },
+          "standard": {
+            "url": "https://i.ytimg.com/vi/ovdbrdCIP7U/sddefault.jpg",
+            "width": 640,
+            "height": 480
+          }
+        },
+        "channelTitle": "NFL Throwback",
+        "tags": [
+          "nfl",
+          "american football",
+          "nfl history",
+          "nfl highlights",
+          "nfl vault",
+          "nfl throwback",
+          "How EVERY NFL Team Got Its Name & Identity",
+          "how every team got its name",
+          "how every nfl team got its name",
+          "evolution of the nfl",
+          "nfl explained",
+          "infograhic",
+          "history of every tean",
+          "history of nfl",
+          "history of logos",
+          "nfl 100",
+          "nfl timeline",
+          "dallas cowboys",
+          "pittsburgh steelers",
+          "cleveland browns",
+          "green bay packers",
+          "chicago bear",
+          "new england patriots",
+          "oakland raiders",
+          "philadelphia eagles"
+        ],
+        "categoryId": "17",
+        "liveBroadcastContent": "none",
+        "localized": {
+          "title": "How EVERY Team Got Its Name & Identity!",
+          "description": "Ever wonder how the NFL got to be where it is today?  Sit back, relax, and enjoy the Evolution of the NFL.\n\n#NFL100\n\nThe NFL Throwback is your home for all things NFL history.\n\nCheck out our other channels:\nNFL Films - YouTube.com/NFLFilms\nNFL Network- YouTube.com/NFLNetwork\nNFL Rush - YouTube.com/NFLRush\nNFL - YouTube.com/NFL\n\n#NFL #NFLThrowback #NFLHistory #Football #AmericanFootball #NFLVault"
+        },
+        "defaultAudioLanguage": "en"
+      },
+      "player": {
+        "embedHtml": "\u003ciframe width=\"480\" height=\"270\" src=\"//www.youtube.com/embed/ovdbrdCIP7U\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen\u003e\u003c/iframe\u003e"
+      }
+    }
+  ]
+}

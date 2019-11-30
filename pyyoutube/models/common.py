@@ -64,13 +64,13 @@ class BaseTopicDetails(BaseModel):
         Convert topicIds list to Topic model list
         :return: List[Topic]
         """
-        from pyyoutube import CHANNEL_TOPICS
+        from pyyoutube import TOPICS
 
         r: List[Topic] = []
         if self.topicIds:
             for topic_id in self.topicIds:
                 topic = Topic.from_dict(
-                    {"id": topic_id, "description": CHANNEL_TOPICS.get(topic_id)}
+                    {"id": topic_id, "description": TOPICS.get(topic_id)}
                 )
                 r.append(topic)
         return r
@@ -88,6 +88,34 @@ class Localized(BaseModel):
 
     title: Optional[str] = field(default=None)
     description: Optional[str] = field(default=None, repr=False)
+
+
+@dataclass
+class PageInfo(BaseModel):
+    """
+    This is data model for save paging data.
+    """
+
+    totalResults: Optional[int] = field(default=None)
+    resultsPerPage: Optional[int] = field(default=None)
+
+
+@dataclass
+class BaseApiResponse(BaseModel):
+    """
+    This is Data Api response structure when retrieve data.
+    They both have same response structure, but items.
+
+    Refer:
+        https://developers.google.com/youtube/v3/docs/channels/list#response_1
+        https://developers.google.com/youtube/v3/docs/playlistItems/list#response_1
+    """
+
+    kind: Optional[str] = field(default=None)
+    etag: Optional[str] = field(default=None, repr=False)
+    nextPageToken: Optional[str] = field(default=None, repr=False)
+    prevPageToken: Optional[str] = field(default=None, repr=False)
+    pageInfo: Optional[PageInfo] = field(default=None, repr=False)
 
 
 @dataclass

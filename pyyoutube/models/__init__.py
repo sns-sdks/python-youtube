@@ -11,6 +11,7 @@ from .channel import (
     ChannelStatistics,
     ChannelStatus,
     ChannelTopicDetails,
+    ChannelListResponse,
 )
 from .comment import (
     Comment,
@@ -19,12 +20,19 @@ from .comment import (
     CommentThreadReplies,
     CommentThreadSnippet,
 )
-from .playlist import Playlist, PlaylistContentDetails, PlaylistSnippet, PlaylistStatus
+from .playlist import (
+    Playlist,
+    PlaylistContentDetails,
+    PlaylistSnippet,
+    PlaylistStatus,
+    PlaylistListResponse,
+)
 from .playlist_item import (
     PlaylistItem,
     PlaylistItemContentDetails,
     PlaylistItemSnippet,
     PlaylistItemStatus,
+    PlaylistItemListResponse,
 )
 from .video import (
     Video,
@@ -33,6 +41,7 @@ from .video import (
     VideoStatistics,
     VideoStatus,
     VideoTopicDetails,
+    VideoListResponse,
 )
 
 __all__ = [
@@ -47,20 +56,24 @@ __all__ = [
     "ChannelStatistics",
     "ChannelStatus",
     "ChannelTopicDetails",
+    "ChannelListResponse",
     "Video",
     "VideoContentDetails",
     "VideoSnippet",
     "VideoStatistics",
     "VideoStatus",
     "VideoTopicDetails",
+    "VideoListResponse",
     "Playlist",
     "PlaylistContentDetails",
     "PlaylistSnippet",
     "PlaylistStatus",
+    "PlaylistListResponse",
     "PlaylistItem",
     "PlaylistItemContentDetails",
     "PlaylistItemSnippet",
     "PlaylistItemStatus",
+    "PlaylistItemListResponse",
     "Comment",
     "CommentSnippet",
     "CommentThread",
