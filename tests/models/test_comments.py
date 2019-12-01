@@ -11,6 +11,8 @@ class CommentModelModelTest(unittest.TestCase):
         SNIPPET_INFO = json.loads(f.read().decode("utf-8"))
     with open(BASE_PATH + "comment_info.json", "rb") as f:
         COMMENT_INFO = json.loads(f.read().decode("utf-8"))
+    with open(BASE_PATH + "comment_api_response.json", "rb") as f:
+        COMMENT_API_INFO = json.loads(f.read().decode("utf-8"))
 
     def testCommentSnippet(self) -> None:
         m = models.CommentSnippet.from_dict(self.SNIPPET_INFO)
@@ -32,6 +34,12 @@ class CommentModelModelTest(unittest.TestCase):
             "2019-03-28T11:33:46+00:00",
         )
 
+    def testCommentListResponse(self) -> None:
+        m = models.CommentListResponse.from_dict(self.COMMENT_API_INFO)
+
+        self.assertEqual(m.kind, "youtube#commentListResponse")
+        self.assertEqual(m.items[0].id, "UgxKREWxIgDrw8w2e_Z4AaABAg")
+
 
 class CommentThreadModelTest(unittest.TestCase):
     BASE_PATH = "testdata/modeldata/comments/"
@@ -42,6 +50,8 @@ class CommentThreadModelTest(unittest.TestCase):
         REPLIES_INFO = json.loads(f.read().decode("utf-8"))
     with open(BASE_PATH + "comment_thread_info.json", "rb") as f:
         COMMENT_THREAD_INFO = json.loads(f.read().decode("utf-8"))
+    with open(BASE_PATH + "comment_thread_api_response.json", "rb") as f:
+        COMMENT_THREAD_API_INFO = json.loads(f.read().decode("utf-8"))
 
     def testCommentThreadSnippet(self) -> None:
         m = models.CommentThreadSnippet.from_dict(self.SNIPPET_INFO)
@@ -68,3 +78,9 @@ class CommentThreadModelTest(unittest.TestCase):
             m.replies.comments[0].id,
             "UgydxWWoeA7F1OdqypJ4AaABAg.8wWQ3tdHcFx8xcDheui-qb",
         )
+
+    def testCommentThreadListResponse(self) -> None:
+        m = models.CommentThreadListResponse.from_dict(self.COMMENT_THREAD_API_INFO)
+
+        self.assertEqual(m.kind, "youtube#commentThreadListResponse")
+        self.assertEqual(m.items[0].id, "Ugz097FRhsQy5CVhAjp4AaABAg")

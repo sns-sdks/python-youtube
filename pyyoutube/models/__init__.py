@@ -1,7 +1,9 @@
 from .auth import AccessToken, UserProfile
 from .category import (
     VideoCategory,
+    VideoCategoryListResponse,
     GuideCategory,
+    GuideCategoryListResponse,
 )
 from .channel import (
     Channel,
@@ -16,9 +18,11 @@ from .channel import (
 from .comment import (
     Comment,
     CommentSnippet,
+    CommentListResponse,
     CommentThread,
     CommentThreadReplies,
     CommentThreadSnippet,
+    CommentThreadListResponse,
 )
 from .playlist import (
     Playlist,
@@ -48,7 +52,9 @@ __all__ = [
     "AccessToken",
     "UserProfile",
     "VideoCategory",
+    "VideoCategoryListResponse",
     "GuideCategory",
+    "GuideCategoryListResponse",
     "Channel",
     "ChannelBrandingSetting",
     "ChannelContentDetails",
@@ -76,7 +82,9 @@ __all__ = [
     "PlaylistItemListResponse",
     "Comment",
     "CommentSnippet",
+    "CommentListResponse",
     "CommentThread",
     "CommentThreadSnippet",
     "CommentThreadReplies",
+    "CommentThreadListResponse",
 ]

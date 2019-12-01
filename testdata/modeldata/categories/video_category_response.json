@@ -1,0 +1,16 @@
+{
+  "kind": "youtube#videoCategoryListResponse",
+  "etag": "\"j6xRRd8dTPVVptg711_CSPADRfg/0_wT9Ta0iZu7ETYC3E6Xi_B4mtA\"",
+  "items": [
+    {
+      "kind": "youtube#videoCategory",
+      "etag": "\"j6xRRd8dTPVVptg711_CSPADRfg/9GQMSRjrZdHeb1OEM1XVQ9zbGec\"",
+      "id": "17",
+      "snippet": {
+        "channelId": "UCBR8-60-B28hp2BmDPdntcQ",
+        "title": "Sports",
+        "assignable": true
+      }
+    }
+  ]
+}

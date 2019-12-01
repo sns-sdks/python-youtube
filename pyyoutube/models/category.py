@@ -3,10 +3,10 @@
     Include VideoCategory and GuideCategory.
 """
 from dataclasses import dataclass, field
-from typing import Optional
+from typing import List, Optional
 
 from .base import BaseModel
-from .comment import BaseResource
+from .comment import BaseApiResponse, BaseResource
 
 
 @dataclass
@@ -42,6 +42,17 @@ class VideoCategory(BaseResource):
 
 
 @dataclass
+class VideoCategoryListResponse(BaseApiResponse):
+    """
+     A class representing the video category's retrieve response info.
+
+    Refer: https://developers.google.com/youtube/v3/docs/videoCategories/list#response_1
+    """
+
+    items: Optional[List[VideoCategory]] = field(default=None, repr=False)
+
+
+@dataclass
 class GuideCategorySnippet(CategorySnippet):
     """
     A class representing guide category snippet info.
@@ -61,3 +72,14 @@ class GuideCategory(BaseResource):
     """
 
     snippet: Optional[GuideCategorySnippet] = field(default=None, repr=False)
+
+
+@dataclass
+class GuideCategoryListResponse(BaseApiResponse):
+    """
+    A class representing the guide category's retrieve response info.
+
+    Refer: https://developers.google.com/youtube/v3/docs/guideCategories/list#response_1
+    """
+
+    items: Optional[List[GuideCategory]] = field(default=None, repr=False)
