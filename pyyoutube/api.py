@@ -17,6 +17,7 @@ from pyyoutube.models import (
     PlaylistItemListResponse,
     VideoListResponse,
     CommentThreadListResponse,
+    CommentListResponse,
 )
 from pyyoutube.utils.params_checker import enf_comma_separated, enf_parts
 
@@ -1076,3 +1077,48 @@ class Api(object):
             return res_data
         else:
             return CommentThreadListResponse.from_dict(res_data)
+
+    def get_comment_by_id(
+        self,
+        *,
+        comment_id: Optional[Union[str, list, tuple, set]],
+        parts: Optional[Union[str, list, tuple, set]] = None,
+        text_format: Optional[str] = "html",
+        return_json: Optional[bool] = False,
+    ):
+        """
+        Retrieve comment info by given comment id str.
+
+        Args:
+            comment_id (str, optional):
+                The id for comment that you want to retrieve data.
+                You can pass this with single id str, comma-separated id str, or a list,tuple,set of ids.
+            parts ((str,list,tuple,set), optional)
+                The resource parts for you want to retrieve.
+                If not provide, use default public parts.
+                You can pass this with single part str, comma-separated parts str or a list,tuple,set of parts.
+            text_format (str, optional)
+                Comments left by users format style.
+                Acceptable values are: html, plainText.
+                Default is html.
+            return_json(bool, optional)
+                The return data type. If you set True JSON data will be returned.
+                False will return a pyyoutube.CommentListResponse instance.
+
+        Returns:
+            CommentListResponse or original data
+        """
+
+        args = {
+            "id": enf_comma_separated(field="comment_id", value=comment_id),
+            "part": enf_parts(resource="comments", value=parts),
+            "textFormat": text_format,
+        }
+
+        resp = self._request(resource="comments", method="GET", args=args)
+        data = self._parse_response(resp)
+
+        if return_json:
+            return data
+        else:
+            return CommentListResponse.from_dict(data)
