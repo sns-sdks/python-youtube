@@ -1,4 +1,4 @@
-AUTHORIZATION
+Authorization
 =============
 
 If you want to get some more data for your channel. You need provide the authorization first.
@@ -79,7 +79,7 @@ Now you need to copy the full url in the browser address bar. Then back to you c
     In [4]: token = api.exchange_code_to_access_token(authorization_response="the whole url")
 
     In [5]: token
-    Out[5]: AccessToken(access_token='ya29.Il-zB3M3qyaDNsjTgwzWI3JMqnWcQdct4dk4Fsin8cfxjbRo7DJz5kJShYP-oMVSpQsjTwPa0-RcPWYqhEGClTr1ExBWnTizZg3e6nFvyTv8mTii70kJepKV5Xkm_OgIWA', expires_in=3600, token_type='Bearer')
+    Out[5]: AccessToken(access_token='access token', expires_in=3600, token_type='Bearer')
 
 now you have get your access token to visit your self data.
 

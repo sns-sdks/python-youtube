@@ -9,6 +9,11 @@ API
     :undoc-members:
     :show-inheritance:
 
+.. automodule:: pyyoutube.error
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 Models
 ------
 
