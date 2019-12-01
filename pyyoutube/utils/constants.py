@@ -53,7 +53,7 @@ RESOURCE_PARTS_MAPPING = {
     "guideCategories": GUIDE_CATEGORY_RESOURCE_PROPERTIES,
 }
 
-CHANNEL_TOPICS = {
+TOPICS = {
     # Music topics
     "/m/04rlf": "Music (parent topic)",
     "/m/02mscn": "Christian music",
@@ -124,5 +124,3 @@ CHANNEL_TOPICS = {
     # Other topics
     "/m/01k8wb": "Knowledge",
 }
-
-TOPICS = CHANNEL_TOPICS
