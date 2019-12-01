@@ -14,6 +14,10 @@ class ApiCommentTest(unittest.TestCase):
         COMMENTS_INFO_SINGLE = json.loads(f.read().decode("utf-8"))
     with open(BASE_PATH + "comments_multi.json", "rb") as f:
         COMMENTS_INFO_MULTI = json.loads(f.read().decode("utf-8"))
+    with open(BASE_PATH + "comments_by_parent_paged_1.json", "rb") as f:
+        COMMENTS_PAGED_1 = json.loads(f.read().decode("utf-8"))
+    with open(BASE_PATH + "comments_by_parent_paged_2.json", "rb") as f:
+        COMMENTS_PAGED_2 = json.loads(f.read().decode("utf-8"))
 
     def setUp(self) -> None:
         self.api = pyyoutube.Api(api_key="api key")
@@ -44,3 +48,40 @@ class ApiCommentTest(unittest.TestCase):
             )
             self.assertEqual(len(res_by_multi.items), 2)
             self.assertEqual(res_by_multi.items[1].id, "Ugzi3lkqDPfIOirGFLh4AaABAg")
+
+    def testGetCommentsByParentId(self) -> None:
+        # test parts
+        with self.assertRaises(pyyoutube.PyYouTubeException):
+            self.api.get_comments(parent_id="id", parts="id,not_part")
+
+        # test paged
+        with responses.RequestsMock() as m:
+            m.add("GET", self.BASE_URL, json=self.COMMENTS_PAGED_1)
+            m.add("GET", self.BASE_URL, json=self.COMMENTS_PAGED_2)
+
+            res_by_parent = self.api.get_comments(
+                parent_id="Ugw5zYU6n9pmIgAZWvN4AaABAg", parts="id,snippet", limit=2,
+            )
+            self.assertEqual(res_by_parent.kind, "youtube#commentListResponse")
+            self.assertEqual(len(res_by_parent.items), 3)
+            self.assertEqual(
+                res_by_parent.items[0].id,
+                "Ugw5zYU6n9pmIgAZWvN4AaABAg.91zT3cYb5B291za6voUoRh",
+            )
+
+        # test count
+        with responses.RequestsMock() as m:
+            m.add("GET", self.BASE_URL, json=self.COMMENTS_PAGED_1)
+
+            res_by_parent = self.api.get_comments(
+                parent_id="Ugw5zYU6n9pmIgAZWvN4AaABAg",
+                parts="id,snippet",
+                count=2,
+                limit=2,
+                return_json=True,
+            )
+            self.assertEqual(len(res_by_parent["items"]), 2)
+            self.assertEqual(
+                res_by_parent["items"][0]["id"],
+                "Ugw5zYU6n9pmIgAZWvN4AaABAg.91zT3cYb5B291za6voUoRh",
+            )

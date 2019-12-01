@@ -1122,3 +1122,72 @@ class Api(object):
             return data
         else:
             return CommentListResponse.from_dict(data)
+
+    def get_comments(
+        self,
+        parent_id: Optional[str],
+        parts: Optional[Union[str, list, tuple, set]] = None,
+        text_format: Optional[str] = "html",
+        count: Optional[int] = 20,
+        limit: Optional[int] = 20,
+        return_json: Optional[bool] = False,
+    ):
+        """
+        Retrieve comments info by given parent id.
+        Note: YouTube currently supports replies only for top-level comments.
+        However, replies to replies may be supported in the future.
+
+        Args:
+            parent_id (str):
+                Provide the ID of the comment for which replies should be retrieved.
+            parts ((str,list,tuple,set), optional):
+                The resource parts for you want to retrieve.
+                If not provide, use default public parts.
+                You can pass this with single part str, comma-separated parts str or a list,tuple,set of parts.
+            text_format (str, optional):
+                Comments left by users format style.
+                Acceptable values are: html, plainText.
+                Default is html.
+            count (int, optional):
+                The count will retrieve videos data.
+                Default is 20.
+            limit (int, optional):
+                The maximum number of items each request retrieve.
+                For comments, this should not be more than 100.
+                Default is 20.
+            return_json(bool, optional):
+                The return data type. If you set True JSON data will be returned.
+                False will return a pyyoutube.CommentListResponse instance.
+        Returns:
+            CommentListResponse or original data
+        """
+
+        args = {
+            "parentId": parent_id,
+            "part": enf_parts(resource="comments", value=parts),
+            "textFormat": text_format,
+            "maxResults": min(count, limit),
+        }
+
+        res_data: Optional[dict] = None
+        current_items: List[dict] = []
+        next_page_token: Optional[str] = None
+        now_items_count: int = 0
+        while True:
+            prev_page_token, next_page_token, data = self.paged_by_page_token(
+                resource="comments", args=args, page_token=next_page_token,
+            )
+            items = self._parse_data(data)
+            current_items.extend(items)
+            now_items_count += len(items)
+            if res_data is None:
+                res_data = data
+            if next_page_token is None:
+                break
+            if now_items_count >= count:
+                break
+        res_data["items"] = current_items[:count]
+        if return_json:
+            return res_data
+        else:
+            return CommentListResponse.from_dict(res_data)
