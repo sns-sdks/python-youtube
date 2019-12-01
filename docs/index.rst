@@ -18,7 +18,7 @@ Contents:
 
    installation.rst
    getting_started.rst
-    authorization.rst
+   authorization.rst
    models.rst
    pyyoutube.rst
 
