@@ -81,7 +81,7 @@ class ChannelBrandingSetting(BaseModel):
 
     channel: Optional[ChannelBrandingChannel] = field(default=None)
     image: Optional[ChannelBrandingImage] = field(default=None)
-    hints: List[ChannelBrandingHint] = field(default=None, repr=False)
+    hints: Optional[List[ChannelBrandingHint]] = field(default=None, repr=False)
 
 
 @dataclass
@@ -118,8 +118,8 @@ class ChannelTopicDetails(BaseTopicDetails):
     # Important:
     # topicIds maybe has deprecated.
     # see more: https://google-developers.appspot.com/youtube/v3/revision_history#november-10-2016
-    topicIds: List[str] = field(default=None, repr=False)
-    topicCategories: List[str] = field(default=None)
+    topicIds: Optional[List[str]] = field(default=None, repr=False)
+    topicCategories: Optional[List[str]] = field(default=None)
 
 
 @dataclass

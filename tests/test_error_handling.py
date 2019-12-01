@@ -20,6 +20,9 @@ class ErrorTest(unittest.TestCase):
         self.assertEqual(ex.status_code, 400)
         self.assertEqual(ex.message, "Bad Request")
         self.assertEqual(ex.error_type, "YouTubeException")
+        error_msg = "YouTubeException(status_code=400,message=Bad Request)"
+        self.assertEqual(repr(ex), error_msg)
+        self.assertTrue(str(ex), error_msg)
 
     def testErrorMessage(self):
         response = ErrorMessage(status_code=ErrorCode.HTTP_ERROR, message="error")

@@ -25,6 +25,38 @@ from pyyoutube.utils.params_checker import enf_comma_separated, enf_parts
 
 
 class Api(object):
+    """
+    Example usage:
+        To create an instance of pyyoutube.Api class:
+
+            >>> import pyyoutube
+            >>> api = pyyoutube.Api(api_key="your api key")
+
+        To get one channel info:
+
+            >>> res = api.get_channel_info(channel_name="googledevelopers")
+            >>> print(res.items[0])
+
+        Now this api provide methods as follows:
+            >>> api.get_authorization_url()
+            >>> api.exchange_code_to_access_token()
+            >>> api.refresh_token()
+            >>> api.get_channel_info()
+            >>> api.get_playlist_by_id()
+            >>> api.get_playlists()
+            >>> api.get_playlist_item_by_id()
+            >>> api.get_playlist_items()
+            >>> api.get_video_by_id()
+            >>> api.get_videos_by_chart()
+            >>> api.get_videos_by_myrating()
+            >>> api.get_comment_thread_by_id()
+            >>> api.get_comment_threads()
+            >>> api.get_comment_by_id()
+            >>> api.get_comments()
+            >>> api.get_guide_categories()
+            >>> api.get_video_categories()
+    """
+
     BASE_URL = "https://www.googleapis.com/youtube/v3/"
     AUTHORIZATION_URL = "https://accounts.google.com/o/oauth2/v2/auth"
     EXCHANGE_ACCESS_TOKEN_URL = "https://www.googleapis.com/oauth2/v4/token"
@@ -1028,6 +1060,9 @@ class Api(object):
             return_json(bool, optional):
                 The return data type. If you set True JSON data will be returned.
                 False will return a pyyoutube.CommentThreadListResponse instance.
+
+        Returns:
+            CommentThreadListResponse or original data
         """
 
         args = {
