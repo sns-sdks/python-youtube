@@ -68,4 +68,4 @@ If you have an open source application using python-youtube, send me a link and 
 
 But if you want to get user data by OAuth. You need create the credential for ``OAuth client ID``.
 
-And get more info at next page.
+And get more info at next page for authorization.
