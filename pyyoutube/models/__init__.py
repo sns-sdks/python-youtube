@@ -1,7 +1,9 @@
 from .auth import AccessToken, UserProfile
 from .category import (
     VideoCategory,
+    VideoCategoryListResponse,
     GuideCategory,
+    GuideCategoryListResponse,
 )
 from .channel import (
     Channel,
@@ -50,7 +52,9 @@ __all__ = [
     "AccessToken",
     "UserProfile",
     "VideoCategory",
+    "VideoCategoryListResponse",
     "GuideCategory",
+    "GuideCategoryListResponse",
     "Channel",
     "ChannelBrandingSetting",
     "ChannelContentDetails",
