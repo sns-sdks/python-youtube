@@ -16,6 +16,7 @@ from pyyoutube.models import (
     PlaylistListResponse,
     PlaylistItemListResponse,
     VideoListResponse,
+    CommentThreadListResponse,
 )
 from pyyoutube.utils.params_checker import enf_comma_separated, enf_parts
 
@@ -918,3 +919,47 @@ class Api(object):
             return res_data
         else:
             return VideoListResponse.from_dict(res_data)
+
+    def get_comment_thread_by_id(
+        self,
+        *,
+        comment_thread_id: Optional[Union[str, list, tuple, set]],
+        parts: Optional[Union[str, list, tuple, set]] = None,
+        text_format: Optional[str] = "html",
+        return_json: Optional[bool] = False,
+    ):
+        """
+        Retrieve the comment thread info by given id.
+
+        Args:
+            comment_thread_id ((str,list,tuple,set))
+                The id for comment thread that you want to retrieve data.
+                You can pass this with single id str, comma-separated id str, or a list,tuple,set of ids.
+            parts ((str,list,tuple,set), optional)
+                The resource parts for you want to retrieve.
+                If not provide, use default public parts.
+                You can pass this with single part str, comma-separated parts str or a list,tuple,set of parts.
+            text_format (str, optional)
+                Comments left by users format style.
+                Acceptable values are: html, plainText.
+                Default is html.
+            return_json(bool, optional)
+                The return data type. If you set True JSON data will be returned.
+                False will return a pyyoutube.CommentThreadListResponse instance.
+        Returns:
+            CommentThreadListResponse or original data
+        """
+
+        args = {
+            "id": enf_comma_separated("comment_thread_id", comment_thread_id),
+            "part": enf_parts(resource="commentThreads", value=parts),
+            "textFormat": text_format,
+        }
+
+        resp = self._request(resource="commentThreads", method="GET", args=args)
+        data = self._parse_response(resp)
+
+        if return_json:
+            return data
+        else:
+            return CommentThreadListResponse.from_dict(data)
