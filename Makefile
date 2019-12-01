@@ -25,7 +25,7 @@ docs:
 	$(MAKE) -C docs html
 
 lint:
-	black .
+	black --check .
 
 
 test:

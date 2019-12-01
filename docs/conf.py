@@ -33,7 +33,7 @@ extensions = [
     "sphinx.ext.autodoc",
     "sphinx.ext.viewcode",
 ]
-autodoc_mock_imports = ["requests_oauthlib", "isodate"]
+autodoc_mock_imports = ["requests_oauthlib", "isodate", "dataclasses_json"]
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ["_templates"]
