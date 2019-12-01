@@ -402,28 +402,28 @@ class Api(object):
             1. Don't know why, but now you could't get channel list by given an guide category.
                You can only get list by parameters mine,forUsername,id.
                Refer: https://developers.google.com/youtube/v3/guides/implementation/channels
-            2. The origin maxResult param not work.
+            2. The origin maxResult param not work for these filter method.
 
         Args:
-            channel_id (str, optional)
+            channel_id ((str,list,tuple,set), optional):
                 The id or comma-separated id string for youtube channel which you want to get.
                 You can also pass this with an id list, tuple, set.
-            channel_name (str, optional)
+            channel_name (str, optional):
                 The name for youtube channel which you want to get.
-            mine (bool, optional)
+            mine (bool, optional):
                 If you have give the authorization. Will return your channels.
                 Must provide the access token.
-            parts (str, optional)
+            parts (str, optional):
                 Comma-separated list of one or more channel resource properties.
                 If not provided. will use default public properties.
-            hl (str, optional)
+            hl (str, optional):
                 If provide this. Will return channel's language localized info.
                 This value need https://developers.google.com/youtube/v3/docs/i18nLanguages.
-            return_json(bool, optional)
+            return_json(bool, optional):
                 The return data type. If you set True JSON data will be returned.
-                False will return pyyoutube.Channel
+                False will return a pyyoutube.ChannelListResponse instance.
         Returns:
-            The data for you given channel.
+            ChannelListResponse instance or original data.
         """
 
         args = {
@@ -455,7 +455,7 @@ class Api(object):
     def get_playlist_by_id(
         self,
         *,
-        playlist_id: Optional[Union[str, list, tuple, set]],
+        playlist_id: Union[str, list, tuple, set],
         parts: Optional[Union[str, list, tuple, set]] = None,
         hl: Optional[str] = "en_US",
         return_json: Optional[bool] = False,
@@ -464,17 +464,17 @@ class Api(object):
         Retrieve playlist data by given playlist id.
 
         Args:
-            playlist_id (str optional)
-                You can pass this with single id str,comma-separated id str,
-                or list, tuple, set of id str.
-            parts (str, optional)
+            playlist_id ((str,list,tuple,set)):
+                The id for playlist that you want to retrieve data.
+                You can pass this with single id str,comma-separated id str, or list, tuple, set of id str.
+            parts (str, optional):
                 Comma-separated list of one or more playlist resource properties.
                 You can also pass this with list, tuple, set of part str.
                 If not provided. will use default public properties.
-            hl (str, optional)
+            hl (str, optional):
                 If provide this. Will return playlist's language localized info.
                 This value need https://developers.google.com/youtube/v3/docs/i18nLanguages.
-            return_json(bool, optional)
+            return_json(bool, optional):
                 The return data type. If you set True JSON data will be returned.
                 False will return a pyyoutube.PlaylistListResponse instance
         Returns:
@@ -509,26 +509,26 @@ class Api(object):
         Retrieve channel playlists info from youtube data api.
 
         Args:
-            channel_id (str, optional)
+            channel_id (str, optional):
                 If provide channel id, this will return pointed channel's playlist info.
-            mine (bool, optional)
+            mine (bool, optional):
                 If you have given the authorization. Will return your playlists.
                 Must provide the access token.
-            parts (str, optional)
+            parts (str, optional):
                 Comma-separated list of one or more playlist resource properties.
                 You can also pass this with list, tuple, set of part str.
                 If not provided. will use default public properties.
-            count (int, optional)
+            count (int, optional):
                 The count will retrieve playlist data.
                 Default is 5.
-            limit (int, optional)
+            limit (int, optional):
                 The maximum number of items each request to retrieve.
                 For playlist, this should not be more than 50.
                 Default is 5
-            hl (str, optional)
+            hl (str, optional):
                 If provide this. Will return playlist's language localized info.
                 This value need https://developers.google.com/youtube/v3/docs/i18nLanguages.
-            return_json(bool, optional)
+            return_json(bool, optional):
                 The return data type. If you set True JSON data will be returned.
                 False will return a pyyoutube.PlaylistListResponse instance.
         Returns:
@@ -579,7 +579,7 @@ class Api(object):
     def get_playlist_item_by_id(
         self,
         *,
-        playlist_item_id: Optional[Union[str, list, tuple, set]],
+        playlist_item_id: Union[str, list, tuple, set],
         parts: Optional[Union[str, list, tuple, set]] = None,
         return_json: Optional[bool] = False,
     ):
@@ -587,15 +587,15 @@ class Api(object):
         Retrieve playlist Items info by your given id
 
         Args:
-            playlist_item_id ((str,list,tuple,set))
+            playlist_item_id ((str,list,tuple,set)):
                 The id for playlist item that you want to retrieve info.
                 You can pass this with single id str, comma-separated id str.
                 Or a list,tuple,set of ids.
-            parts ((str,list,tuple,set) optional)
+            parts ((str,list,tuple,set) optional):
                 The resource parts for you want to retrieve.
                 If not provide, use default public parts.
                 You can pass this with single part str, comma-separated parts str or a list,tuple,set of parts.
-            return_json(bool, optional)
+            return_json(bool, optional):
                 The return data type. If you set True JSON data will be returned.
                 False will return a pyyoutube.PlayListItemApiResponse instance.
         Returns:
@@ -618,7 +618,7 @@ class Api(object):
     def get_playlist_items(
         self,
         *,
-        playlist_id: Optional[str],
+        playlist_id: str,
         parts: Optional[Union[str, list, tuple, set]] = None,
         video_id: Optional[str] = None,
         count: Optional[int] = 5,
@@ -629,22 +629,22 @@ class Api(object):
         Retrieve playlist Items info by your given playlist id
 
         Args:
-            playlist_id (str)
-                The id for playlist that you want to retrieve data.
-            parts ((str,list,tuple,set) optional)
+            playlist_id (str):
+                The id for playlist that you want to retrieve items data.
+            parts ((str,list,tuple,set) optional):
                 The resource parts for you want to retrieve.
                 If not provide, use default public parts.
                 You can pass this with single part str, comma-separated parts str or a list,tuple,set of parts.
-            video_id (str, Optional)
+            video_id (str, Optional):
                 Specifies that the request should return only the playlist items that contain the specified video.
-            count (int, optional)
+            count (int, optional):
                 The count will retrieve playlist items data.
                 Default is 5.
-            limit (int, optional)
+            limit (int, optional):
                 The maximum number of items each request retrieve.
                 For playlistItem, this should not be more than 50.
                 Default is 5
-            return_json(bool, optional)
+            return_json(bool, optional):
                 The return data type. If you set True JSON data will be returned.
                 False will return a pyyoutube.PlayListItemApiResponse instance.
         Returns:
@@ -685,7 +685,7 @@ class Api(object):
     def get_video_by_id(
         self,
         *,
-        video_id: Optional[Union[str, list, tuple, set]],
+        video_id: Union[str, list, tuple, set],
         parts: Optional[Union[str, list, tuple, set]] = None,
         hl: Optional[str] = "en_US",
         max_height: Optional[int] = None,
@@ -696,25 +696,25 @@ class Api(object):
         Retrieve video data by given video id.
 
         Args:
-            video_id ((str,list,tuple,set))
+            video_id ((str,list,tuple,set)):
                 The id for video that you want to retrieve data.
                 You can pass this with single id str, comma-separated id str, or a list,tuple,set of ids.
-            parts ((str,list,tuple,set) optional)
+            parts ((str,list,tuple,set), optional):
                 The resource parts for you want to retrieve.
                 If not provide, use default public parts.
                 You can pass this with single part str, comma-separated parts str or a list,tuple,set of parts.
-            hl (str, optional)
+            hl (str, optional):
                 If provide this. Will return video's language localized info.
                 This value need https://developers.google.com/youtube/v3/docs/i18nLanguages.
-            max_height (int, optional)
+            max_height (int, optional):
                 Specifies the maximum height of the embedded player returned in the player.embedHtml property.
                 Acceptable values are 72 to 8192, inclusive.
-            max_width (int, optional)
+            max_width (int, optional):
                 Specifies the maximum width of the embedded player returned in the player.embedHtml property.
                 Acceptable values are 72 to 8192, inclusive.
                 If provide max_height at the same time. This will may be shorter than max_height.
                 For more https://developers.google.com/youtube/v3/docs/videos/list#parameters.
-            return_json(bool, optional)
+            return_json(bool, optional):
                 The return data type. If you set True JSON data will be returned.
                 False will return a pyyoutube.VideoListResponse instance.
 
@@ -743,7 +743,7 @@ class Api(object):
     def get_videos_by_chart(
         self,
         *,
-        chart: Optional[str],
+        chart: str,
         parts: Optional[Union[str, list, tuple, set]] = None,
         hl: Optional[str] = "en_US",
         max_height: Optional[int] = None,
@@ -758,38 +758,38 @@ class Api(object):
         Retrieve a list of YouTube's most popular videos.
 
         Args:
-            chart (str)
+            chart (str):
                 The chart string for you want to retrieve data.
                 Acceptable values are: mostPopular
-            parts ((str,list,tuple,set), optional)
+            parts ((str,list,tuple,set), optional):
                 The resource parts for you want to retrieve.
                 If not provide, use default public parts.
                 You can pass this with single part str, comma-separated parts str or a list,tuple,set of parts.
-            hl (str, optional)
+            hl (str, optional):
                 If provide this. Will return playlist's language localized info.
                 This value need https://developers.google.com/youtube/v3/docs/i18nLanguages.
-            max_height (int, optional)
+            max_height (int, optional):
                 Specifies the maximum height of the embedded player returned in the player.embedHtml property.
                 Acceptable values are 72 to 8192, inclusive.
-            max_width (int, optional)
+            max_width (int, optional):
                 Specifies the maximum width of the embedded player returned in the player.embedHtml property.
                 Acceptable values are 72 to 8192, inclusive.
                 If provide max_height at the same time. This will may be shorter than max_height.
                 For more https://developers.google.com/youtube/v3/docs/videos/list#parameters.
-            region_code (str, optional)
+            region_code (str, optional):
                 This parameter instructs the API to select a video chart available in the specified region.
                 Value is an ISO 3166-1 alpha-2 country code.
-            category_id (str, optional)
+            category_id (str, optional):
                 The id for video category that you want to filter.
                 Default is 0.
-            count (int, optional)
+            count (int, optional):
                 The count will retrieve videos data.
                 Default is 5.
-            limit (int, optional)
+            limit (int, optional):
                 The maximum number of items each request retrieve.
                 For videos, this should not be more than 50.
                 Default is 5
-            return_json(bool, optional)
+            return_json(bool, optional):
                 The return data type. If you set True JSON data will be returned.
                 False will return a pyyoutube.PlaylistListResponse instance.
 
@@ -836,7 +836,7 @@ class Api(object):
     def get_videos_by_myrating(
         self,
         *,
-        rating: Optional[str],
+        rating: str,
         parts: Optional[Union[str, list, tuple, set]] = None,
         hl: Optional[str] = "en_US",
         max_height: Optional[int] = None,
@@ -849,32 +849,32 @@ class Api(object):
         Retrieve video data by my ration.
 
         Args:
-            rating (str)
+            rating (str):
                 The rating string for you to retrieve data.
                 Acceptable values are: dislike, like
-            parts ((str,list,tuple,set) optional)
+            parts ((str,list,tuple,set), optional):
                 The resource parts for you want to retrieve.
                 If not provide, use default public parts.
                 You can pass this with single part str, comma-separated parts str or a list,tuple,set of parts.
-            hl (str, optional)
+            hl (str, optional):
                 If provide this. Will return video's language localized info.
                 This value need https://developers.google.com/youtube/v3/docs/i18nLanguages.
-            max_height (int, optional)
+            max_height (int, optional):
                 Specifies the maximum height of the embedded player returned in the player.embedHtml property.
                 Acceptable values are 72 to 8192, inclusive.
-            max_width (int, optional)
+            max_width (int, optional):
                 Specifies the maximum width of the embedded player returned in the player.embedHtml property.
                 Acceptable values are 72 to 8192, inclusive.
                 If provide max_height at the same time. This will may be shorter than max_height.
                 For more https://developers.google.com/youtube/v3/docs/videos/list#parameters.
-            count (int, optional)
+            count (int, optional):
                 The count will retrieve videos data.
                 Default is 5.
-            limit (int, optional)
+            limit (int, optional):
                 The maximum number of items each request retrieve.
                 For videos, this should not be more than 50.
                 Default is 5
-            return_json(bool, optional)
+            return_json(bool, optional):
                 The return data type. If you set True JSON data will be returned.
                 False will return a pyyoutube.VideoListResponse instance.
         Returns:
@@ -926,7 +926,7 @@ class Api(object):
     def get_comment_thread_by_id(
         self,
         *,
-        comment_thread_id: Optional[Union[str, list, tuple, set]],
+        comment_thread_id: Union[str, list, tuple, set],
         parts: Optional[Union[str, list, tuple, set]] = None,
         text_format: Optional[str] = "html",
         return_json: Optional[bool] = False,
@@ -935,18 +935,18 @@ class Api(object):
         Retrieve the comment thread info by given id.
 
         Args:
-            comment_thread_id ((str,list,tuple,set))
+            comment_thread_id ((str,list,tuple,set)):
                 The id for comment thread that you want to retrieve data.
                 You can pass this with single id str, comma-separated id str, or a list,tuple,set of ids.
-            parts ((str,list,tuple,set), optional)
+            parts ((str,list,tuple,set), optional):
                 The resource parts for you want to retrieve.
                 If not provide, use default public parts.
                 You can pass this with single part str, comma-separated parts str or a list,tuple,set of parts.
-            text_format (str, optional)
+            text_format (str, optional):
                 Comments left by users format style.
                 Acceptable values are: html, plainText.
                 Default is html.
-            return_json(bool, optional)
+            return_json(bool, optional):
                 The return data type. If you set True JSON data will be returned.
                 False will return a pyyoutube.CommentThreadListResponse instance.
         Returns:
@@ -1014,7 +1014,7 @@ class Api(object):
             search_terms (str, optional):
                 The searchTerms parameter instructs the API to limit the API response to only contain comments
                 that contain the specified search terms.
-            text_format (str, optional)
+            text_format (str, optional):
                 Comments left by users format style.
                 Acceptable values are: html, plainText.
                 Default is html.
@@ -1083,7 +1083,7 @@ class Api(object):
     def get_comment_by_id(
         self,
         *,
-        comment_id: Optional[Union[str, list, tuple, set]],
+        comment_id: Union[str, list, tuple, set],
         parts: Optional[Union[str, list, tuple, set]] = None,
         text_format: Optional[str] = "html",
         return_json: Optional[bool] = False,
@@ -1095,15 +1095,15 @@ class Api(object):
             comment_id (str, optional):
                 The id for comment that you want to retrieve data.
                 You can pass this with single id str, comma-separated id str, or a list,tuple,set of ids.
-            parts ((str,list,tuple,set), optional)
+            parts ((str,list,tuple,set), optional):
                 The resource parts for you want to retrieve.
                 If not provide, use default public parts.
                 You can pass this with single part str, comma-separated parts str or a list,tuple,set of parts.
-            text_format (str, optional)
+            text_format (str, optional):
                 Comments left by users format style.
                 Acceptable values are: html, plainText.
                 Default is html.
-            return_json(bool, optional)
+            return_json(bool, optional):
                 The return data type. If you set True JSON data will be returned.
                 False will return a pyyoutube.CommentListResponse instance.
 
@@ -1128,7 +1128,7 @@ class Api(object):
     def get_comments(
         self,
         *,
-        parent_id: Optional[str],
+        parent_id: str,
         parts: Optional[Union[str, list, tuple, set]] = None,
         text_format: Optional[str] = "html",
         count: Optional[int] = 20,
@@ -1273,15 +1273,15 @@ class Api(object):
                 The region code that you want to retrieve guide categories.
                 The parameter value is an ISO 3166-1 alpha-2 country code.
                 Refer: https://www.iso.org/iso-3166-country-codes.html
-            parts ((str,list,tuple,set) optional)
+            parts ((str,list,tuple,set) optional):
                 The resource parts for you want to retrieve.
                 If not provide, use default public parts.
                 You can pass this with single part str, comma-separated parts str or a list,tuple,set of parts.
-            hl (str, optional)
+            hl (str, optional):
                 If provide this. Will return guide category's language localized info.
                 This value need https://developers.google.com/youtube/v3/docs/i18nLanguages.
                 Default is en_US.
-            return_json(bool, optional)
+            return_json(bool, optional):
                 The return data type. If you set True JSON data will be returned.
                 False will return a pyyoutube.GuideCategoryListResponse instance.
         Returns:
@@ -1317,15 +1317,15 @@ class Api(object):
                 The region code that you want to retrieve guide categories.
                 The parameter value is an ISO 3166-1 alpha-2 country code.
                 Refer: https://www.iso.org/iso-3166-country-codes.html
-            parts ((str,list,tuple,set) optional)
+            parts ((str,list,tuple,set) optional):
                 The resource parts for you want to retrieve.
                 If not provide, use default public parts.
                 You can pass this with single part str, comma-separated parts str or a list,tuple,set of parts.
-            hl (str, optional)
+            hl (str, optional):
                 If provide this. Will return video category's language localized info.
                 This value need https://developers.google.com/youtube/v3/docs/i18nLanguages.
                 Default is en_US.
-            return_json(bool, optional)
+            return_json(bool, optional):
                 The return data type. If you set True JSON data will be returned.
                 False will return a pyyoutube.VideoCategoryListResponse instance.
         Returns:
