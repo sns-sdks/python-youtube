@@ -1,0 +1,15 @@
+{
+  "kind": "youtube#guideCategoryListResponse",
+  "etag": "\"j6xRRd8dTPVVptg711_CSPADRfg/KIJAFi2jsRHVBmAk3XYhyRKynjw\"",
+  "items": [
+    {
+      "kind": "youtube#guideCategory",
+      "etag": "\"j6xRRd8dTPVVptg711_CSPADRfg/fnL4T7wf3HKS8VCeb2Mui5q9zeM\"",
+      "id": "GCQmVzdCBvZiBZb3VUdWJl",
+      "snippet": {
+        "channelId": "UCBR8-60-B28hp2BmDPdntcQ",
+        "title": "Best of YouTube"
+      }
+    }
+  ]
+}

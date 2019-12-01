@@ -18,6 +18,7 @@ from pyyoutube.models import (
     VideoListResponse,
     CommentThreadListResponse,
     CommentListResponse,
+    GuideCategoryListResponse,
 )
 from pyyoutube.utils.params_checker import enf_comma_separated, enf_parts
 
@@ -1125,6 +1126,7 @@ class Api(object):
 
     def get_comments(
         self,
+        *,
         parent_id: Optional[str],
         parts: Optional[Union[str, list, tuple, set]] = None,
         text_format: Optional[str] = "html",
@@ -1191,3 +1193,62 @@ class Api(object):
             return res_data
         else:
             return CommentListResponse.from_dict(res_data)
+
+    def get_guide_categories(
+        self,
+        category_id: Optional[Union[str, list, tuple, set]] = None,
+        region_code: Optional[str] = None,
+        parts: Optional[Union[str, list, tuple, set]] = None,
+        hl: Optional[str] = "en_US",
+        return_json: Optional[bool] = False,
+    ):
+        """
+        Retrieve guide categories by category id or region code.
+
+        Args:
+            category_id ((str,list,tuple,set), optional):
+                The id for guide category thread that you want to retrieve data.
+                You can pass this with single id str, comma-separated id str, or a list,tuple,set of ids.
+            region_code (str, optional):
+                The region code that you want to retrieve guide categories.
+                The parameter value is an ISO 3166-1 alpha-2 country code.
+                Refer: https://www.iso.org/iso-3166-country-codes.html
+            parts ((str,list,tuple,set) optional)
+                The resource parts for you want to retrieve.
+                If not provide, use default public parts.
+                You can pass this with single part str, comma-separated parts str or a list,tuple,set of parts.
+            hl (str, optional)
+                If provide this. Will return playlist's language localized info.
+                This value need https://developers.google.com/youtube/v3/docs/i18nLanguages.
+                Default is en_US.
+            return_json(bool, optional)
+                The return data type. If you set True JSON data will be returned.
+                False will return a pyyoutube.GuideCategoryListResponse instance.
+        Returns:
+            GuideCategoryListResponse or original data
+        """
+
+        args = {
+            "part": enf_parts(resource="guideCategories", value=parts),
+            "hl": hl,
+        }
+
+        if category_id is not None:
+            args["id"] = enf_comma_separated(field="category_id", value=category_id)
+        elif region_code is not None:
+            args["regionCode"] = region_code
+        else:
+            raise PyYouTubeException(
+                ErrorMessage(
+                    status_code=ErrorCode.MISSING_PARAMS,
+                    message="Specify at least one of category_id or region_code",
+                )
+            )
+
+        resp = self._request(resource="guideCategories", method="GET", args=args)
+        data = self._parse_response(resp)
+
+        if return_json:
+            return data
+        else:
+            return GuideCategoryListResponse.from_dict(data)

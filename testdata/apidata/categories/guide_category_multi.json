@@ -1,0 +1,24 @@
+{
+  "kind": "youtube#guideCategoryListResponse",
+  "etag": "\"j6xRRd8dTPVVptg711_CSPADRfg/JvKaPPmX316HuCUpJddmxaDPomo\"",
+  "items": [
+    {
+      "kind": "youtube#guideCategory",
+      "etag": "\"j6xRRd8dTPVVptg711_CSPADRfg/fnL4T7wf3HKS8VCeb2Mui5q9zeM\"",
+      "id": "GCQmVzdCBvZiBZb3VUdWJl",
+      "snippet": {
+        "channelId": "UCBR8-60-B28hp2BmDPdntcQ",
+        "title": "Best of YouTube"
+      }
+    },
+    {
+      "kind": "youtube#guideCategory",
+      "etag": "\"j6xRRd8dTPVVptg711_CSPADRfg/ImrTevQ0UvryyOmvjPFFu85AKCU\"",
+      "id": "GCQ3JlYXRvciBvbiB0aGUgUmlzZQ",
+      "snippet": {
+        "channelId": "UCBR8-60-B28hp2BmDPdntcQ",
+        "title": "Creator on the Rise"
+      }
+    }
+  ]
+}
