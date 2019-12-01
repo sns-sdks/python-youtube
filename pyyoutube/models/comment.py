@@ -7,7 +7,7 @@ from typing import List, Optional
 
 from .base import BaseModel
 from .mixins import DatetimeTimeMixin
-from .common import BaseResource
+from .common import BaseApiResponse, BaseResource
 
 
 @dataclass
@@ -60,6 +60,17 @@ class Comment(BaseResource):
 
 
 @dataclass
+class CommentListResponse(BaseApiResponse):
+    """
+    A class representing the comment's retrieve response info.
+
+    Refer: https://developers.google.com/youtube/v3/docs/comments/list#response_1
+    """
+
+    items: Optional[List[Comment]] = field(default=None, repr=False)
+
+
+@dataclass
 class CommentThreadSnippet(BaseModel):
     """
     A class representing comment tread snippet info.
@@ -96,3 +107,14 @@ class CommentThread(BaseResource):
 
     snippet: Optional[CommentThreadSnippet] = field(default=None, repr=False)
     replies: Optional[CommentThreadReplies] = field(default=None, repr=False)
+
+
+@dataclass
+class CommentThreadListResponse(BaseApiResponse):
+    """
+    A class representing the comment thread's retrieve response info.
+
+    Refer: https://developers.google.com/youtube/v3/docs/commentThreads/list#response_1
+    """
+
+    items: Optional[List[CommentThread]] = field(default=None, repr=False)

@@ -16,9 +16,11 @@ from .channel import (
 from .comment import (
     Comment,
     CommentSnippet,
+    CommentListResponse,
     CommentThread,
     CommentThreadReplies,
     CommentThreadSnippet,
+    CommentThreadListResponse,
 )
 from .playlist import (
     Playlist,
@@ -76,7 +78,9 @@ __all__ = [
     "PlaylistItemListResponse",
     "Comment",
     "CommentSnippet",
+    "CommentListResponse",
     "CommentThread",
     "CommentThreadSnippet",
     "CommentThreadReplies",
+    "CommentThreadListResponse",
 ]
