@@ -53,3 +53,11 @@ class PyYouTubeException(Exception):
                 self.status_code = res_data["error"]["code"]
                 self.message = res_data["error"]["message"]
                 self.error_type = "YouTubeException"
+
+    def __repr__(self):
+        return (
+            f"{self.error_type}(status_code={self.status_code},message={self.message})"
+        )
+
+    def __str__(self):
+        return self.__repr__()
