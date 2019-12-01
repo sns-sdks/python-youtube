@@ -11,3 +11,7 @@ Python-YouTube provides following models of the the objects returned by the API:
 * :py:class:`pyyoutube.models.PlaylistItem`
 * :py:class:`pyyoutube.models.Comment`
 * :py:class:`pyyoutube.models.CommentThread`
+* :py:class:`pyyoutube.models.VideoCategory`
+* :py:class:`pyyoutube.models.GuideCategory`
+
+And so on.

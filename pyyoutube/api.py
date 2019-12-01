@@ -1060,6 +1060,9 @@ class Api(object):
             return_json(bool, optional):
                 The return data type. If you set True JSON data will be returned.
                 False will return a pyyoutube.CommentThreadListResponse instance.
+
+        Returns:
+            CommentThreadListResponse or original data
         """
 
         args = {
