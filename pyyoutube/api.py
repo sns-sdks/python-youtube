@@ -963,3 +963,116 @@ class Api(object):
             return data
         else:
             return CommentThreadListResponse.from_dict(data)
+
+    def get_comment_threads(
+        self,
+        *,
+        all_to_channel_id: Optional[str] = None,
+        channel_id: Optional[str] = None,
+        video_id: Optional[str] = None,
+        parts: Optional[Union[str, list, tuple, set]] = None,
+        moderation_status: Optional[str] = None,
+        order: Optional[str] = None,
+        search_terms: Optional[str] = None,
+        text_format: Optional[str] = "html",
+        count: Optional[int] = 20,
+        limit: Optional[int] = 20,
+        return_json: Optional[bool] = False,
+    ):
+        """
+        Retrieve the comment threads info by given filter condition.
+
+        Args:
+            all_to_channel_id (str, optional):
+                If you provide this with a channel id, will return all comment threads associated with the channel.
+                The response can include comments about the channel or about the channel's videos.
+            channel_id (str, optional):
+                If you provide this with a channel id, will return the comment threads associated with the channel.
+                But the response not include comments about the channel's videos.
+            video_id  (str, optional):
+                If you provide this with a video id, will return the comment threads associated with the video.
+            parts ((str,list,tuple,set), optional)
+                The resource parts for you want to retrieve.
+                If not provide, use default public parts.
+                You can pass this with single part str, comma-separated parts str or a list,tuple,set of parts.
+            moderation_status (str, optional):
+                This parameter must used with authorization.
+                If you provide this. the response will return comment threads match this filter only.
+                Acceptable values are:
+                    - heldForReview: Retrieve comment threads that are awaiting review by a moderator.
+                    - likelySpam: Retrieve comment threads classified as likely to be spam.
+                    - published: Retrieve threads of published comments. this is default for all.
+                See more: https://developers.google.com/youtube/v3/docs/commentThreads/list#parameters
+            order (str, optional):
+                Order parameter specifies the order in which the API response should list comment threads.
+                Acceptable values are:
+                    - time: Comment threads are ordered by time. This is the default behavior.
+                    - relevance: Comment threads are ordered by relevance.
+            search_terms (str, optional):
+                The searchTerms parameter instructs the API to limit the API response to only contain comments
+                that contain the specified search terms.
+            text_format (str, optional)
+                Comments left by users format style.
+                Acceptable values are: html, plainText.
+                Default is html.
+            count (int, optional):
+                The count will retrieve comment threads data.
+                Default is 20.
+            limit (int, optional):
+                The maximum number of items each request retrieve.
+                For comment threads, this should not be more than 100.
+                Default is 20.
+            return_json(bool, optional):
+                The return data type. If you set True JSON data will be returned.
+                False will return a pyyoutube.CommentThreadListResponse instance.
+        """
+
+        args = {
+            "part": enf_parts(resource="commentThreads", value=parts),
+            "maxResults": min(count, limit),
+            "textFormat": text_format,
+        }
+
+        if all_to_channel_id:
+            args["allThreadsRelatedToChannelId"] = (all_to_channel_id,)
+        elif channel_id:
+            args["channelId"] = channel_id
+        elif video_id:
+            args["videoId"] = video_id
+        else:
+            raise PyYouTubeException(
+                ErrorMessage(
+                    status_code=ErrorCode.MISSING_PARAMS,
+                    message=f"Specify at least one of all_to_channel_id, channel_id or video_id",
+                )
+            )
+
+        if moderation_status:
+            args["moderationStatus"] = moderation_status
+        if order:
+            args["order"] = order
+        if search_terms:
+            args["searchTerms"] = search_terms
+
+        res_data: Optional[dict] = None
+        current_items: List[dict] = []
+        next_page_token: Optional[str] = None
+        now_items_count: int = 0
+        while True:
+            prev_page_token, next_page_token, data = self.paged_by_page_token(
+                resource="commentThreads", args=args, page_token=next_page_token,
+            )
+            items = self._parse_data(data)
+            current_items.extend(items)
+            now_items_count += len(items)
+            if res_data is None:
+                res_data = data
+            if next_page_token is None:
+                break
+            if now_items_count >= count:
+                break
+        res_data["items"] = current_items[:count]
+        if return_json:
+            return res_data
+        else:
+            return CommentThreadListResponse.from_dict(res_data)
