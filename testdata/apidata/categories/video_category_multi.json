@@ -1,0 +1,26 @@
+{
+  "kind": "youtube#videoCategoryListResponse",
+  "etag": "\"j6xRRd8dTPVVptg711_CSPADRfg/QhsRsql8vvkcmFdomppeHDbsV0Q\"",
+  "items": [
+    {
+      "kind": "youtube#videoCategory",
+      "etag": "\"j6xRRd8dTPVVptg711_CSPADRfg/9GQMSRjrZdHeb1OEM1XVQ9zbGec\"",
+      "id": "17",
+      "snippet": {
+        "channelId": "UCBR8-60-B28hp2BmDPdntcQ",
+        "title": "Sports",
+        "assignable": true
+      }
+    },
+    {
+      "kind": "youtube#videoCategory",
+      "etag": "\"j6xRRd8dTPVVptg711_CSPADRfg/FJwVpGCVZ1yiJrqZbpqe68Sy_OE\"",
+      "id": "18",
+      "snippet": {
+        "channelId": "UCBR8-60-B28hp2BmDPdntcQ",
+        "title": "Short Movies",
+        "assignable": false
+      }
+    }
+  ]
+}
