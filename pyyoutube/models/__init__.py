@@ -47,6 +47,12 @@ from .video import (
     VideoTopicDetails,
     VideoListResponse,
 )
+from .search_result import (
+    SearchResultId,
+    SearchResultSnippet,
+    SearchResult,
+    SearchListResponse,
+)
 
 __all__ = [
     "AccessToken",
@@ -87,4 +93,8 @@ __all__ = [
     "CommentThreadSnippet",
     "CommentThreadReplies",
     "CommentThreadListResponse",
+    "SearchResult",
+    "SearchListResponse",
+    "SearchResultSnippet",
+    "SearchResultId",
 ]

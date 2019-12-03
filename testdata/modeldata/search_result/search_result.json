@@ -1,0 +1,33 @@
+{
+  "kind": "youtube#searchResult",
+  "etag": "\"j6xRRd8dTPVVptg711_CSPADRfg/vbYWvy5RlqHHhMVjeHUTwJcQQWg\"",
+  "id": {
+    "kind": "youtube#video",
+    "videoId": "fq4N0hgOWzU"
+  },
+  "snippet": {
+    "publishedAt": "2018-02-23T15:00:09.000Z",
+    "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+    "title": "Introducing Flutter",
+    "description": "Get started at https://flutter.io today. Flutter is Google's mobile UI framework for crafting high-quality native interfaces on iOS and Android in record time. Flutter ...",
+    "thumbnails": {
+      "default": {
+        "url": "https://i.ytimg.com/vi/fq4N0hgOWzU/default.jpg",
+        "width": 120,
+        "height": 90
+      },
+      "medium": {
+        "url": "https://i.ytimg.com/vi/fq4N0hgOWzU/mqdefault.jpg",
+        "width": 320,
+        "height": 180
+      },
+      "high": {
+        "url": "https://i.ytimg.com/vi/fq4N0hgOWzU/hqdefault.jpg",
+        "width": 480,
+        "height": 360
+      }
+    },
+    "channelTitle": "Google Developers",
+    "liveBroadcastContent": "none"
+  }
+}
