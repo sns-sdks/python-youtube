@@ -20,6 +20,7 @@ from pyyoutube.models import (
     CommentListResponse,
     GuideCategoryListResponse,
     VideoCategoryListResponse,
+    SearchListResponse,
 )
 from pyyoutube.utils.params_checker import enf_comma_separated, enf_parts
 
@@ -1374,3 +1375,120 @@ class Api(object):
             hl=hl,
             return_json=return_json,
         )
+
+    def _search(
+        self,
+        *,
+        parts: Optional[str] = None,
+        for_developer: Optional[bool] = None,
+        for_mine: Optional[bool] = None,
+        related_to_video_id: Optional[str] = None,
+        channel_id: Optional[str] = None,
+        channel_type: Optional[str] = None,
+        event_type: Optional[str] = None,
+        location: Optional[str] = None,
+        location_radius: Optional[str] = None,
+        count: Optional[int] = 10,
+        limit: Optional[int] = 5,
+        order: Optional[str] = None,
+        published_after: Optional[str] = None,
+        published_before: Optional[str] = None,
+        q: Optional[str] = None,
+        region_code: Optional[str] = None,
+        relevance_language: Optional[str] = None,
+        safe_search: Optional[str] = None,
+        topic_id: Optional[str] = None,
+        search_type: Optional[str] = None,
+        video_caption: Optional[str] = None,
+        video_category_id: Optional[str] = None,
+        video_definition: Optional[str] = None,
+        video_dimension: Optional[str] = None,
+        video_duration: Optional[str] = None,
+        video_embeddable: Optional[str] = None,
+        video_license: Optional[str] = None,
+        video_syndicated: Optional[str] = None,
+        video_type: Optional[str] = None,
+        return_json: Optional[bool] = False,
+    ):
+        """
+        This is the base search method for search.
+        """
+        args = {
+            "part": parts,
+            "maxResults": min(limit, count),
+        }
+        if for_developer:
+            args["forDeveloper"] = for_developer
+        if for_mine:
+            args["forMine"] = for_mine
+        if related_to_video_id:
+            args["relatedToVideoId"] = related_to_video_id
+        if channel_id:
+            args["channelId"] = channel_id
+        if channel_type:
+            args["channelType"] = channel_type
+        if event_type:
+            args["eventType"] = event_type
+        if location:
+            args["location"] = location
+        if location_radius:
+            args["locationRadius"] = location_radius
+        if order:
+            args["order"] = order
+        if published_after:
+            args["publishedAfter"] = published_after
+        if published_before:
+            args["publishedBefore"] = published_before
+        if q:
+            args["q"] = q
+        if region_code:
+            args["regionCode"] = region_code
+        if relevance_language:
+            args["relevanceLanguage"] = relevance_language
+        if safe_search:
+            args["safeSearch"] = safe_search
+        if topic_id:
+            args["topicId"] = topic_id
+        if search_type:
+            args["type"] = search_type
+        if video_caption:
+            args["videoCaption"] = video_caption
+        if video_category_id:
+            args["videoCategoryId"] = video_category_id
+        if video_definition:
+            args["videoDefinition"] = video_definition
+        if video_dimension:
+            args["videoDimension"] = video_dimension
+        if video_duration:
+            args["videoDuration"] = video_duration
+        if video_embeddable:
+            args["videoEmbeddable"] = video_embeddable
+        if video_license:
+            args["videoLicense"] = video_license
+        if video_syndicated:
+            args["videoSyndicated"] = video_syndicated
+        if video_type:
+            args["videoType"] = video_type
+
+        res_data: Optional[dict] = None
+        current_items: List[dict] = []
+        next_page_token: Optional[str] = None
+        now_items_count: int = 0
+        while True:
+            prev_page_token, next_page_token, data = self.paged_by_page_token(
+                resource="search", args=args, page_token=next_page_token,
+            )
+            items = self._parse_data(data)
+            current_items.extend(items)
+            now_items_count += len(items)
+            if res_data is None:
+                res_data = data
+            if next_page_token is None:
+                break
+            if now_items_count >= count:
+                break
+        res_data["items"] = current_items[:count]
+        if return_json:
+            return res_data
+        else:
+            return SearchListResponse.from_dict(res_data)
