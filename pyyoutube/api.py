@@ -1492,3 +1492,51 @@ class Api(object):
             return res_data
         else:
             return SearchListResponse.from_dict(res_data)
+
+    def search_by_keywords(
+        self,
+        *,
+        keywords: Optional[str],
+        parts: Optional[Union[str, list, tuple, set]] = None,
+        count: Optional[int] = 25,
+        limit: Optional[int] = 25,
+        return_json: Optional[bool] = False,
+    ):
+        """
+        This is simplest usage for search api. You can only passed the keywords to retrieve data from YouTube.
+        And the result will include videos,playlists and channels.
+
+        Note: A call to this method has a quota cost of 100 units.
+
+        Args:
+            keywords (str):
+                Your keywords can also use the Boolean NOT (-) and OR (|) operators to exclude videos or
+                to find videos that are associated with one of several search terms. For example,
+                to search for videos matching either "boating" or "sailing",
+                set the q parameter value to boating|sailing. Similarly,
+                to search for videos matching either "boating" or "sailing" but not "fishing",
+                set the q parameter value to boating|sailing -fishing.
+                Note that the pipe character must be URL-escaped when it is sent in your API request.
+                The URL-escaped value for the pipe character is %7C.
+            parts ((str,list,tuple,set) optional):
+                The resource parts for you want to retrieve.
+                If not provide, use default public parts.
+                You can pass this with single part str, comma-separated parts str or a list,tuple,set of parts.
+            count (int, optional):
+                The count will retrieve videos data.
+                Default is 25.
+            limit (int, optional):
+                The maximum number of items each request retrieve.
+                For comments, this should not be more than 100.
+                Default is 25.
+            return_json(bool, optional):
+                The return data type. If you set True JSON data will be returned.
+                False will return a pyyoutube.CommentListResponse instance.
+
+        Returns:
+            SearchListResponse or original data
+        """
+        parts = enf_parts(resource="search", value=parts)
+        return self._search(
+            parts=parts, q=keywords, count=count, limit=limit, return_json=return_json
+        )
