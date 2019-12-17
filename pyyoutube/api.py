@@ -392,30 +392,55 @@ class Api(object):
             return UserProfile.from_dict(data)
 
     def paged_by_page_token(
-        self, resource: str, args: dict, page_token: Optional[str] = None
+        self,
+        resource: str,
+        args: dict,
+        count: Optional[int] = None,
     ):
         """
         Response paged by response's page token. If not provide response token
 
         Args:
-            resource (str)
+            resource (str):
                 The resource string need to retrieve data.
             args (dict)
                 The args for api.
-            page_token (str, optional)
-                If token is None, this request is first (not have paged info.)
+            count (int, optional):
+                The count for result items you want to get.
+                If provide this with None, will retrieve all items.
+                Note:
+                    The all items maybe too much. Notice your app's cost.
         Returns:
             Data api origin response.
         """
-        if page_token is not None:
-            args["pageToken"] = page_token
+        res_data: Optional[dict] = None
+        current_items: List[dict] = []
+        page_token: Optional[str] = None
+        now_items_count: int = 0
 
-        resp = self._request(resource=resource, method="GET", args=args)
-        data = self._parse_response(resp)  # origin response
-        # set page token
-        next_page_token = data.get("nextPageToken")
-        prev_page_token = data.get("prevPageToken")
-        return prev_page_token, next_page_token, data
+        while True:
+            if page_token is not None:
+                args["pageToken"] = page_token
+
+            resp = self._request(resource=resource, method="GET", args=args)
+            data = self._parse_response(resp)  # origin response
+            # set page token
+            page_token = data.get("nextPageToken")
+
+            # parse results.
+            items = self._parse_data(data)
+            current_items.extend(items)
+            now_items_count += len(items)
+            if res_data is None:
+                res_data = data
+            if page_token is None:
+                break
+            if count is not None:
+                if now_items_count >= count:
+                    current_items = current_items[:count]
+                    break
+        res_data["items"] = current_items
+        return res_data
 
     def get_channel_info(
         self,
@@ -553,6 +578,7 @@ class Api(object):
             count (int, optional):
                 The count will retrieve playlist data.
                 Default is 5.
+                If provide this with None, will retrieve all items.
             limit (int, optional):
                 The maximum number of items each request to retrieve.
                 For playlist, this should not be more than 50.
@@ -567,10 +593,15 @@ class Api(object):
             PlaylistListResponse or original data
         """
 
+        if count is None:
+            limit = 50  # for playlists the max limit for per request is 50
+        else:
+            limit = min(count, limit)
+
         args = {
             "part": enf_parts(resource="playlists", value=parts),
             "hl": hl,
-            "maxResults": min(count, limit),
+            "maxResults": limit,
         }
 
         if channel_id is not None:
@@ -584,25 +615,9 @@ class Api(object):
                     message=f"Specify at least one of channel_id,playlist_id or mine",
                 )
             )
-
-        res_data: Optional[dict] = None
-        current_items: List[dict] = []
-        next_page_token: Optional[str] = None
-        now_items_count: int = 0
-        while True:
-            prev_page_token, next_page_token, data = self.paged_by_page_token(
-                resource="playlists", args=args, page_token=next_page_token,
-            )
-            items = self._parse_data(data)
-            current_items.extend(items)
-            now_items_count += len(items)
-            if res_data is None:
-                res_data = data
-            if next_page_token is None:
-                break
-            if now_items_count >= count:
-                break
-        res_data["items"] = current_items[:count]
+        res_data = self.paged_by_page_token(
+            resource="playlists", args=args, count=count
+        )
         if return_json:
             return res_data
         else:
@@ -672,7 +687,7 @@ class Api(object):
             count (int, optional):
                 The count will retrieve playlist items data.
                 Default is 5.
-                If you want to get all items for the playlist. Provide this with None.
+                If provide this with None, will retrieve all items.
             limit (int, optional):
                 The maximum number of items each request retrieve.
                 For playlistItem, this should not be more than 50.
@@ -685,7 +700,7 @@ class Api(object):
         """
 
         if count is None:
-            limit = 50  # this is the most count for per request.
+            limit = 50  # for playlistItems the max limit for per request is 50
         else:
             limit = min(count, limit)
 
@@ -697,27 +712,9 @@ class Api(object):
         if video_id is not None:
             args["videoId"] = video_id
 
-        res_data: Optional[dict] = None
-        current_items: List[dict] = []
-        next_page_token: Optional[str] = None
-        now_items_count: int = 0
-        while True:
-            prev_page_token, next_page_token, data = self.paged_by_page_token(
-                resource="playlistItems", args=args, page_token=next_page_token,
-            )
-            items = self._parse_data(data)
-            current_items.extend(items)
-            now_items_count += len(items)
-            if res_data is None:
-                res_data = data
-            if next_page_token is None:
-                break
-            if count is not None:
-                if now_items_count >= count:
-                    current_items = current_items[:count]
-                    break
-
-        res_data["items"] = current_items
+        res_data = self.paged_by_page_token(
+            resource="playlistItems", args=args, count=count
+        )
         if return_json:
             return res_data
         else:
@@ -826,6 +823,7 @@ class Api(object):
             count (int, optional):
                 The count will retrieve videos data.
                 Default is 5.
+                If provide this with None, will retrieve all items.
             limit (int, optional):
                 The maximum number of items each request retrieve.
                 For videos, this should not be more than 50.
@@ -837,11 +835,17 @@ class Api(object):
         Returns:
             VideoListResponse or original data
         """
+
+        if count is None:
+            limit = 50  # for videos the max limit for per request is 50
+        else:
+            limit = min(count, limit)
+
         args = {
             "chart": chart,
             "part": enf_parts(resource="videos", value=parts),
             "hl": hl,
-            "maxResults": min(count, limit),
+            "maxResults": limit,
             "videoCategoryId": category_id,
         }
         if max_height is not None:
@@ -851,24 +855,9 @@ class Api(object):
         if region_code:
             args["regionCode"] = region_code
 
-        res_data: Optional[dict] = None
-        current_items: List[dict] = []
-        next_page_token: Optional[str] = None
-        now_items_count: int = 0
-        while True:
-            prev_page_token, next_page_token, data = self.paged_by_page_token(
-                resource="videos", args=args, page_token=next_page_token,
-            )
-            items = self._parse_data(data)
-            current_items.extend(items)
-            now_items_count += len(items)
-            if res_data is None:
-                res_data = data
-            if next_page_token is None:
-                break
-            if now_items_count >= count:
-                break
-        res_data["items"] = current_items[:count]
+        res_data = self.paged_by_page_token(
+            resource="videos", args=args, count=count
+        )
         if return_json:
             return res_data
         else:
@@ -911,6 +900,7 @@ class Api(object):
             count (int, optional):
                 The count will retrieve videos data.
                 Default is 5.
+                If provide this with None, will retrieve all items.
             limit (int, optional):
                 The maximum number of items each request retrieve.
                 For videos, this should not be more than 50.
@@ -929,11 +919,17 @@ class Api(object):
                     message="This method can only used with authorization",
                 )
             )
+
+        if count is None:
+            limit = 50  # for videos the max limit for per request is 50
+        else:
+            limit = min(count, limit)
+
         args = {
             "myRating": rating,
             "part": enf_parts(resource="videos", value=parts),
             "hl": hl,
-            "maxResults": min(count, limit),
+            "maxResults": limit,
         }
 
         if max_height is not None:
@@ -941,24 +937,9 @@ class Api(object):
         if max_width is not None:
             args["maxWidth"] = max_width
 
-        res_data: Optional[dict] = None
-        current_items: List[dict] = []
-        next_page_token: Optional[str] = None
-        now_items_count: int = 0
-        while True:
-            prev_page_token, next_page_token, data = self.paged_by_page_token(
-                resource="videos", args=args, page_token=next_page_token,
-            )
-            items = self._parse_data(data)
-            current_items.extend(items)
-            now_items_count += len(items)
-            if res_data is None:
-                res_data = data
-            if next_page_token is None:
-                break
-            if now_items_count >= count:
-                break
-        res_data["items"] = current_items[:count]
+        res_data = self.paged_by_page_token(
+            resource="videos", args=args, count=count
+        )
         if return_json:
             return res_data
         else:
@@ -1062,6 +1043,7 @@ class Api(object):
             count (int, optional):
                 The count will retrieve comment threads data.
                 Default is 20.
+                If provide this with None, will retrieve all items.
             limit (int, optional):
                 The maximum number of items each request retrieve.
                 For comment threads, this should not be more than 100.
@@ -1074,9 +1056,14 @@ class Api(object):
             CommentThreadListResponse or original data
         """
 
+        if count is None:
+            limit = 100  # for commentThreads the max limit for per request is 100
+        else:
+            limit = min(count, limit)
+
         args = {
             "part": enf_parts(resource="commentThreads", value=parts),
-            "maxResults": min(count, limit),
+            "maxResults": limit,
             "textFormat": text_format,
         }
 
@@ -1101,24 +1088,9 @@ class Api(object):
         if search_terms:
             args["searchTerms"] = search_terms
 
-        res_data: Optional[dict] = None
-        current_items: List[dict] = []
-        next_page_token: Optional[str] = None
-        now_items_count: int = 0
-        while True:
-            prev_page_token, next_page_token, data = self.paged_by_page_token(
-                resource="commentThreads", args=args, page_token=next_page_token,
-            )
-            items = self._parse_data(data)
-            current_items.extend(items)
-            now_items_count += len(items)
-            if res_data is None:
-                res_data = data
-            if next_page_token is None:
-                break
-            if now_items_count >= count:
-                break
-        res_data["items"] = current_items[:count]
+        res_data = self.paged_by_page_token(
+            resource="commentThreads", args=args, count=count
+        )
         if return_json:
             return res_data
         else:
@@ -1198,6 +1170,7 @@ class Api(object):
             count (int, optional):
                 The count will retrieve videos data.
                 Default is 20.
+                If provide this with None, will retrieve all items.
             limit (int, optional):
                 The maximum number of items each request retrieve.
                 For comments, this should not be more than 100.
@@ -1209,6 +1182,11 @@ class Api(object):
             CommentListResponse or original data
         """
 
+        if count is None:
+            limit = 100  # for comments the max limit for per request is 100
+        else:
+            limit = min(count, limit)
+
         args = {
             "parentId": parent_id,
             "part": enf_parts(resource="comments", value=parts),
@@ -1216,24 +1194,9 @@ class Api(object):
             "maxResults": min(count, limit),
         }
 
-        res_data: Optional[dict] = None
-        current_items: List[dict] = []
-        next_page_token: Optional[str] = None
-        now_items_count: int = 0
-        while True:
-            prev_page_token, next_page_token, data = self.paged_by_page_token(
-                resource="comments", args=args, page_token=next_page_token,
-            )
-            items = self._parse_data(data)
-            current_items.extend(items)
-            now_items_count += len(items)
-            if res_data is None:
-                res_data = data
-            if next_page_token is None:
-                break
-            if now_items_count >= count:
-                break
-        res_data["items"] = current_items[:count]
+        res_data = self.paged_by_page_token(
+            resource="comments", args=args, count=count
+        )
         if return_json:
             return res_data
         else:
