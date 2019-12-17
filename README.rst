@@ -150,7 +150,7 @@ Get playlists by id::
     In [6]: playlists_by_id.items
     Out[6]: [Playlist(kind='youtube#playlist', id='PLOU2XLYxmsIKpaV8h0AGE05so0fAwwfTw')]
 
-Get playlists by channel::
+Get playlists by channel(If you want to get target channel all playlist, just provide the parameter ``count`` with ``None``)::
 
     In [3]: playlists_by_channel = api.get_playlists(channel_id="UC_x5XG1OV2P6uZZ5FSM9Ttw")
     In [4]: playlists_by_channel.items
@@ -180,7 +180,7 @@ Get playlist items by id::
     Out[12]: [PlaylistItem(kind='youtube#playlistItem', id='UExPVTJYTFl4bXNJS3BhVjhoMEFHRTA1c28wZkF3d2ZUdy41NkI0NEY2RDEwNTU3Q0M2')]
 
 
-Get playlist items by playlist id::
+Get playlist items by playlist id(If you want to get target playlist all items, just provide the parameter ``count`` with ``None``)::
 
     In [8]: playlist_item_by_playlist = api.get_playlist_items(playlist_id="PLOU2XLYxmsIKpaV8h0AGE05so0fAwwfTw", count=2)
 
@@ -208,7 +208,7 @@ Get videos by video id(s)::
     Out[16]: [Video(kind='youtube#video', id='CvTApw9X8aA')]
 
 
-Get videos by chart::
+Get videos by chart(If you want to get all videos, just provide the parameter ``count`` with ``None``)::
 
     In [17]: video_by_chart = api.get_videos_by_chart(chart="mostPopular", region_code="US", count=2)
 
@@ -218,7 +218,7 @@ Get videos by chart::
      Video(kind='youtube#video', id='hDeuSfo_Ys0')]
 
 
-Get videos by your rating(this need authorization)::
+Get videos by your rating(this need authorization, also if you want to get all videos, just provide the parameter ``count`` with ``None``)::
 
     In [25]: videos_by_rating = api.get_videos_by_myrating(rating="like", count=2)
 
@@ -238,7 +238,7 @@ Get comment thread by id(s)::
     [CommentThread(kind='youtube#commentThread', id='Ugz097FRhsQy5CVhAjp4AaABAg'),
      CommentThread(kind='youtube#commentThread', id='UgzhytyP79_PwaDd4UB4AaABAg')]
 
-Get all comment threads relate to channel(include comment threads for the channel's video)::
+Get all comment threads relate to channel(include comment threads for the channel's video, also if you want to get all comment threads, just provide the parameter ``count`` with ``None``)::
 
     In [19]: ct_by_all = api.get_comment_threads(all_to_channel_id="UC_x5XG1OV2P6uZZ5FSM9Ttw", count=2)
 
@@ -247,7 +247,7 @@ Get all comment threads relate to channel(include comment threads for the channe
     [CommentThread(kind='youtube#commentThread', id='UgwlB_Cza9WtzUWahYN4AaABAg'),
      CommentThread(kind='youtube#commentThread', id='UgyvoQJ2LsxCBwGEpMB4AaABAg')]
 
-Get comment threads only for the channel::
+Get comment threads only for the channel(If you want to get all comment threads, just provide the parameter ``count`` with ``None``)::
 
     In [3]: ct_by_channel = api.get_comment_threads(channel_id="UC_x5XG1OV2P6uZZ5FSM9Ttw", count=2)
 
@@ -256,7 +256,7 @@ Get comment threads only for the channel::
     [CommentThread(kind='youtube#commentThread', id='UgyUBI0HsgL9emxcZpR4AaABAg'),
      CommentThread(kind='youtube#commentThread', id='Ugzi3lkqDPfIOirGFLh4AaABAg')]
 
-Get comment threads only for the video::
+Get comment threads only for the video(If you want to get all comment threads, just provide the parameter ``count`` with ``None``)::
 
     In [5]: ct_by_video = api.get_comment_threads(video_id="D-lhorsDlUQ", count=2)
 
@@ -284,7 +284,7 @@ Get comments by id(s)::
     [Comment(kind='youtube#comment', id='UgxKREWxIgDrw8w2e_Z4AaABAg', snippet=CommentSnippet(authorDisplayName='Hieu Nguyen', likeCount=0)),
      Comment(kind='youtube#comment', id='UgyrVQaFfEdvaSzstj14AaABAg', snippet=CommentSnippet(authorDisplayName='Mani Kanta', likeCount=0))]
 
-Get replies by comment id::
+Get replies by comment id(If you want to get all comments, just provide the parameter ``count`` with ``None``)::
 
     In [13]: comment_by_parent = api.get_comments(parent_id="UgwYjZXfNCUTKPq9CZp4AaABAg")
 
