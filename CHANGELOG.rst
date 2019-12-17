@@ -1,6 +1,21 @@
 Changelog
 ---------
 
+Version 0.5.1
+=============
+
+Now some apis can get all target items just by one method call.
+
+For example, you can get playlist's all items by follow call::
+
+    In [1]: r = api.get_playlist_items(playlist_id="PLWz5rJ2EKKc_xXXubDti2eRnIKU0p7wHd", parts=["id", "snippet"], count=None)
+    In [2]: r.pageInfo
+    Out[2]: PageInfo(totalResults=73, resultsPerPage=50)
+    In [3]: len(r.items)
+    Out[4]: 73
+
+You can see the `README <https://github.com/sns-sdks/python-youtube/blob/master/README.rst>`_ to find which methods support this.
+
 Version 0.5.0
 =============
 

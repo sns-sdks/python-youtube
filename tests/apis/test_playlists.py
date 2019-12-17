@@ -82,3 +82,13 @@ class ApiPlaylistTest(unittest.TestCase):
             self.assertEqual(
                 res_by_mine["items"][0]["id"], "PLOU2XLYxmsIIOSO0eWuj-6yQmdakarUzN"
             )
+
+        # test for all items
+        with responses.RequestsMock() as m:
+            m.add("GET", self.BASE_URL, json=self.PLAYLISTS_PAGED_1)
+            m.add("GET", self.BASE_URL, json=self.PLAYLISTS_PAGED_2)
+
+            res_by_channel_id = self.api.get_playlists(
+                channel_id="UC_x5XG1OV2P6uZZ5FSM9Ttw", count=None,
+            )
+            self.assertEqual(len(res_by_channel_id.items), 20)
