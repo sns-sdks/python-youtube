@@ -1,7 +1,6 @@
 {
   "kind": "youtube#playlistListResponse",
   "etag": "\"j6xRRd8dTPVVptg711_CSPADRfg/LjFPI2nwRBxtabydhze2pwRj5LI\"",
-  "nextPageToken": "CBQQAA",
   "prevPageToken": "CAoQAQ",
   "pageInfo": {
     "totalResults": 422,

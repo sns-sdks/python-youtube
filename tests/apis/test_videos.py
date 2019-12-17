@@ -95,6 +95,14 @@ class ApiVideoTest(unittest.TestCase):
             self.assertEqual(len(res_by_chart.items), 3)
             self.assertEqual(res_by_chart.items[0].id, "hDeuSfo_Ys0")
 
+        # test get all items
+        with responses.RequestsMock() as m:
+            m.add("GET", self.BASE_URL, json=self.VIDEOS_CHART_PAGED_1)
+            m.add("GET", self.BASE_URL, json=self.VIDEOS_CHART_PAGED_2)
+
+            res_by_chart = self.api.get_videos_by_chart(chart="mostPopular", count=None)
+            self.assertEqual(res_by_chart.pageInfo.totalResults, 8)
+
     def testGetVideoByMyRating(self) -> None:
         with self.assertRaises(pyyoutube.PyYouTubeException):
             self.api_with_token.get_videos_by_myrating(
@@ -133,3 +141,12 @@ class ApiVideoTest(unittest.TestCase):
             self.assertEqual(res_by_my_rating.pageInfo.totalResults, 3)
             self.assertEqual(len(res_by_my_rating.items), 1)
             self.assertEqual(res_by_my_rating.items[0].id, "P4IfFLAX9hY")
+
+        # test get all items
+        with responses.RequestsMock() as m:
+            m.add("GET", self.BASE_URL, json=self.VIDEOS_MYRATING_PAGED_1)
+            m.add("GET", self.BASE_URL, json=self.VIDEOS_MYRATING_PAGED_2)
+            res_by_my_rating = self.api_with_token.get_videos_by_myrating(
+                rating="like", parts=("id", "snippet", "player"), count=None,
+            )
+            self.assertEqual(res_by_my_rating.pageInfo.totalResults, 3)

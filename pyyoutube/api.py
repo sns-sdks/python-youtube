@@ -392,10 +392,7 @@ class Api(object):
             return UserProfile.from_dict(data)
 
     def paged_by_page_token(
-        self,
-        resource: str,
-        args: dict,
-        count: Optional[int] = None,
+        self, resource: str, args: dict, count: Optional[int] = None,
     ):
         """
         Response paged by response's page token. If not provide response token
@@ -433,12 +430,14 @@ class Api(object):
             now_items_count += len(items)
             if res_data is None:
                 res_data = data
-            if page_token is None:
-                break
+            # first check the count if satisfies.
             if count is not None:
                 if now_items_count >= count:
                     current_items = current_items[:count]
                     break
+            # if have no page token, mean no more data.
+            if page_token is None:
+                break
         res_data["items"] = current_items
         return res_data
 
@@ -578,7 +577,7 @@ class Api(object):
             count (int, optional):
                 The count will retrieve playlist data.
                 Default is 5.
-                If provide this with None, will retrieve all items.
+                If provide this with None, will retrieve all playlists.
             limit (int, optional):
                 The maximum number of items each request to retrieve.
                 For playlist, this should not be more than 50.
@@ -687,7 +686,7 @@ class Api(object):
             count (int, optional):
                 The count will retrieve playlist items data.
                 Default is 5.
-                If provide this with None, will retrieve all items.
+                If provide this with None, will retrieve all playlist items.
             limit (int, optional):
                 The maximum number of items each request retrieve.
                 For playlistItem, this should not be more than 50.
@@ -823,7 +822,7 @@ class Api(object):
             count (int, optional):
                 The count will retrieve videos data.
                 Default is 5.
-                If provide this with None, will retrieve all items.
+                If provide this with None, will retrieve all videos.
             limit (int, optional):
                 The maximum number of items each request retrieve.
                 For videos, this should not be more than 50.
@@ -855,9 +854,7 @@ class Api(object):
         if region_code:
             args["regionCode"] = region_code
 
-        res_data = self.paged_by_page_token(
-            resource="videos", args=args, count=count
-        )
+        res_data = self.paged_by_page_token(resource="videos", args=args, count=count)
         if return_json:
             return res_data
         else:
@@ -900,7 +897,7 @@ class Api(object):
             count (int, optional):
                 The count will retrieve videos data.
                 Default is 5.
-                If provide this with None, will retrieve all items.
+                If provide this with None, will retrieve all videos.
             limit (int, optional):
                 The maximum number of items each request retrieve.
                 For videos, this should not be more than 50.
@@ -937,9 +934,7 @@ class Api(object):
         if max_width is not None:
             args["maxWidth"] = max_width
 
-        res_data = self.paged_by_page_token(
-            resource="videos", args=args, count=count
-        )
+        res_data = self.paged_by_page_token(resource="videos", args=args, count=count)
         if return_json:
             return res_data
         else:
@@ -1043,7 +1038,7 @@ class Api(object):
             count (int, optional):
                 The count will retrieve comment threads data.
                 Default is 20.
-                If provide this with None, will retrieve all items.
+                If provide this with None, will retrieve all comment threads.
             limit (int, optional):
                 The maximum number of items each request retrieve.
                 For comment threads, this should not be more than 100.
@@ -1170,7 +1165,7 @@ class Api(object):
             count (int, optional):
                 The count will retrieve videos data.
                 Default is 20.
-                If provide this with None, will retrieve all items.
+                If provide this with None, will retrieve all comments.
             limit (int, optional):
                 The maximum number of items each request retrieve.
                 For comments, this should not be more than 100.
@@ -1191,12 +1186,10 @@ class Api(object):
             "parentId": parent_id,
             "part": enf_parts(resource="comments", value=parts),
             "textFormat": text_format,
-            "maxResults": min(count, limit),
+            "maxResults": limit,
         }
 
-        res_data = self.paged_by_page_token(
-            resource="comments", args=args, count=count
-        )
+        res_data = self.paged_by_page_token(resource="comments", args=args, count=count)
         if return_json:
             return res_data
         else:
