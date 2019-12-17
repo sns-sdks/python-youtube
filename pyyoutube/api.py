@@ -672,6 +672,7 @@ class Api(object):
             count (int, optional):
                 The count will retrieve playlist items data.
                 Default is 5.
+                If you want to get all items for the playlist. Provide this with None.
             limit (int, optional):
                 The maximum number of items each request retrieve.
                 For playlistItem, this should not be more than 50.
@@ -683,10 +684,15 @@ class Api(object):
             PlaylistItemListResponse or original data
         """
 
+        if count is None:
+            limit = 50  # this is the most count for per request.
+        else:
+            limit = min(count, limit)
+
         args = {
             "playlistId": playlist_id,
             "part": enf_parts(resource="playlistItems", value=parts),
-            "maxResults": min(count, limit),
+            "maxResults": limit,
         }
         if video_id is not None:
             args["videoId"] = video_id
@@ -706,9 +712,12 @@ class Api(object):
                 res_data = data
             if next_page_token is None:
                 break
-            if now_items_count >= count:
-                break
-        res_data["items"] = current_items[:count]
+            if count is not None:
+                if now_items_count >= count:
+                    current_items = current_items[:count]
+                    break
+
+        res_data["items"] = current_items
         if return_json:
             return res_data
         else:
