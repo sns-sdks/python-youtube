@@ -714,7 +714,7 @@ class Api(object):
         }
         if video_id is not None:
             args["videoId"] = video_id
-        
+
         if page_token is not None:
             args["pageToken"] = page_token
 
