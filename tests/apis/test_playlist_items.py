@@ -126,3 +126,15 @@ class ApiPlaylistItemTest(unittest.TestCase):
                 res_by_filter["items"][0]["snippet"]["resourceId"]["videoId"],
                 "VCv-KKIkLns",
             )
+
+        # test use page token
+        with responses.RequestsMock() as m:
+            m.add("GET", self.BASE_URL, json=self.PLAYLIST_ITEM_PAGED_2)
+
+            res_by_playlist = self.api.get_playlist_items(
+                playlist_id="PLOU2XLYxmsIKpaV8h0AGE05so0fAwwfTw",
+                parts="id,snippet",
+                page_token="CAoQAA",
+                count=3,
+            )
+            self.assertEqual(len(res_by_playlist.items), 3)
