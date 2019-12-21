@@ -669,6 +669,7 @@ class Api(object):
         video_id: Optional[str] = None,
         count: Optional[int] = 5,
         limit: Optional[int] = 5,
+        page_token: Optional[str] = None,
         return_json: Optional[bool] = False,
     ):
         """
@@ -691,6 +692,9 @@ class Api(object):
                 The maximum number of items each request retrieve.
                 For playlistItem, this should not be more than 50.
                 Default is 5
+            page_token
+                The token of the page to retrieve.
+                Use this to get more than 50 items.
             return_json(bool, optional):
                 The return data type. If you set True JSON data will be returned.
                 False will return a pyyoutube.PlayListItemApiResponse instance.
@@ -710,6 +714,9 @@ class Api(object):
         }
         if video_id is not None:
             args["videoId"] = video_id
+        
+        if page_token is not None:
+            args["pageToken"] = page_token
 
         res_data = self.paged_by_page_token(
             resource="playlistItems", args=args, count=count
