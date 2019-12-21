@@ -423,6 +423,7 @@ class Api(object):
             data = self._parse_response(resp)  # origin response
             # set page token
             page_token = data.get("nextPageToken")
+            prev_page_token = data.get("prevPageToken")
 
             # parse results.
             items = self._parse_data(data)
@@ -439,6 +440,10 @@ class Api(object):
             if page_token is None:
                 break
         res_data["items"] = current_items
+
+        # use last request page token
+        res_data["nextPageToken"] = page_token
+        res_data["prevPageToken"] = prev_page_token
         return res_data
 
     def get_channel_info(
@@ -669,6 +674,7 @@ class Api(object):
         video_id: Optional[str] = None,
         count: Optional[int] = 5,
         limit: Optional[int] = 5,
+        page_token: Optional[str] = None,
         return_json: Optional[bool] = False,
     ):
         """
@@ -691,6 +697,10 @@ class Api(object):
                 The maximum number of items each request retrieve.
                 For playlistItem, this should not be more than 50.
                 Default is 5
+            page_token(str, optional):
+                The token of the page of playlist items result to retrieve.
+                You can use this retrieve point result page directly.
+                And you should know about the the result set for YouTube.
             return_json(bool, optional):
                 The return data type. If you set True JSON data will be returned.
                 False will return a pyyoutube.PlayListItemApiResponse instance.
@@ -710,6 +720,9 @@ class Api(object):
         }
         if video_id is not None:
             args["videoId"] = video_id
+
+        if page_token is not None:
+            args["pageToken"] = page_token
 
         res_data = self.paged_by_page_token(
             resource="playlistItems", args=args, count=count
