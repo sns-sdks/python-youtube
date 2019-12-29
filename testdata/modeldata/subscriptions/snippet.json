@@ -1,0 +1,21 @@
+{
+  "publishedAt": "2018-12-25T09:12:18.265Z",
+  "title": "Next Day Video",
+  "description": "",
+  "resourceId": {
+    "kind": "youtube#channel",
+    "channelId": "UCQ7dFBzZGlBvtU2hCecsBBg"
+  },
+  "channelId": "UCNvMBmCASzTNNX8lW3JRMbw",
+  "thumbnails": {
+    "default": {
+      "url": "https://yt3.ggpht.com/-1s55wPtP9FA/AAAAAAAAAAI/AAAAAAAAAAA/N7BV5IiJXG8/s88-c-k-no-mo-rj-c0xffffff/photo.jpg"
+    },
+    "medium": {
+      "url": "https://yt3.ggpht.com/-1s55wPtP9FA/AAAAAAAAAAI/AAAAAAAAAAA/N7BV5IiJXG8/s240-c-k-no-mo-rj-c0xffffff/photo.jpg"
+    },
+    "high": {
+      "url": "https://yt3.ggpht.com/-1s55wPtP9FA/AAAAAAAAAAI/AAAAAAAAAAA/N7BV5IiJXG8/s800-c-k-no-mo-rj-c0xffffff/photo.jpg"
+    }
+  }
+}
