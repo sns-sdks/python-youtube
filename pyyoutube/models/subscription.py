@@ -6,7 +6,7 @@ from dataclasses import dataclass, field
 from typing import List, Optional
 
 from .base import BaseModel
-from .common import BaseApiResponse, Thumbnails
+from .common import BaseApiResponse, Thumbnails, BaseResource
 from .mixins import DatetimeTimeMixin
 
 
@@ -67,7 +67,7 @@ class SubscriptionSubscriberSnippet(BaseModel):
 
 
 @dataclass
-class Subscription(BaseModel):
+class Subscription(BaseResource):
     """
     A class representing the subscription info.
 

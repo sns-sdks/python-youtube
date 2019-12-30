@@ -1,0 +1,246 @@
+{
+  "kind": "youtube#subscriptionListResponse",
+  "etag": "\"p4VTdlkQv3HQeTEaXgvLePAydmU/tcw1POI4O_SxXM12fDiwN47t82I\"",
+  "nextPageToken": "CAUQAA",
+  "pageInfo": {
+    "totalResults": 16,
+    "resultsPerPage": 5
+  },
+  "items": [
+    {
+      "kind": "youtube#subscription",
+      "etag": "\"p4VTdlkQv3HQeTEaXgvLePAydmU/R40G3IlR9sgjUldVPi90sGvUQTE\"",
+      "id": "zqShTXi-2-Tx7TtwQqhCBwtJ-Aho6DZeutqZiP4Q79Q",
+      "snippet": {
+        "publishedAt": "2018-12-25T09:12:18.265Z",
+        "title": "Next Day Video",
+        "description": "",
+        "resourceId": {
+          "kind": "youtube#channel",
+          "channelId": "UCQ7dFBzZGlBvtU2hCecsBBg"
+        },
+        "channelId": "UCNvMBmCASzTNNX8lW3JRMbw",
+        "thumbnails": {
+          "default": {
+            "url": "https://yt3.ggpht.com/-1s55wPtP9FA/AAAAAAAAAAI/AAAAAAAAAAA/N7BV5IiJXG8/s88-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          },
+          "medium": {
+            "url": "https://yt3.ggpht.com/-1s55wPtP9FA/AAAAAAAAAAI/AAAAAAAAAAA/N7BV5IiJXG8/s240-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          },
+          "high": {
+            "url": "https://yt3.ggpht.com/-1s55wPtP9FA/AAAAAAAAAAI/AAAAAAAAAAA/N7BV5IiJXG8/s800-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          }
+        }
+      },
+      "contentDetails": {
+        "totalItemCount": 1562,
+        "newItemCount": 0,
+        "activityType": "all"
+      },
+      "subscriberSnippet": {
+        "title": "kun liu",
+        "description": "",
+        "channelId": "UCNvMBmCASzTNNX8lW3JRMbw",
+        "thumbnails": {
+          "default": {
+            "url": "https://yt3.ggpht.com/-uDfN5WzhqmE/AAAAAAAAAAI/AAAAAAAAAAA/Zu23t9_vViQ/s88-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          },
+          "medium": {
+            "url": "https://yt3.ggpht.com/-uDfN5WzhqmE/AAAAAAAAAAI/AAAAAAAAAAA/Zu23t9_vViQ/s240-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          },
+          "high": {
+            "url": "https://yt3.ggpht.com/-uDfN5WzhqmE/AAAAAAAAAAI/AAAAAAAAAAA/Zu23t9_vViQ/s800-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          }
+        }
+      }
+    },
+    {
+      "kind": "youtube#subscription",
+      "etag": "\"p4VTdlkQv3HQeTEaXgvLePAydmU/vqJozAaZqELuPPv4HHNhUWLLY20\"",
+      "id": "zqShTXi-2-Tx7TtwQqhCBwViE_j9IEgnmRmPnqJljxo",
+      "snippet": {
+        "publishedAt": "2018-09-11T11:35:04.568Z",
+        "title": "PyCon 2015",
+        "description": "",
+        "resourceId": {
+          "kind": "youtube#channel",
+          "channelId": "UCgxzjK6GuOHVKR_08TT4hJQ"
+        },
+        "channelId": "UCNvMBmCASzTNNX8lW3JRMbw",
+        "thumbnails": {
+          "default": {
+            "url": "https://yt3.ggpht.com/-fLvSSJbxK4U/AAAAAAAAAAI/AAAAAAAAAAA/6YBsX_62XeI/s88-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          },
+          "medium": {
+            "url": "https://yt3.ggpht.com/-fLvSSJbxK4U/AAAAAAAAAAI/AAAAAAAAAAA/6YBsX_62XeI/s240-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          },
+          "high": {
+            "url": "https://yt3.ggpht.com/-fLvSSJbxK4U/AAAAAAAAAAI/AAAAAAAAAAA/6YBsX_62XeI/s800-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          }
+        }
+      },
+      "contentDetails": {
+        "totalItemCount": 134,
+        "newItemCount": 0,
+        "activityType": "all"
+      },
+      "subscriberSnippet": {
+        "title": "kun liu",
+        "description": "",
+        "channelId": "UCNvMBmCASzTNNX8lW3JRMbw",
+        "thumbnails": {
+          "default": {
+            "url": "https://yt3.ggpht.com/-uDfN5WzhqmE/AAAAAAAAAAI/AAAAAAAAAAA/Zu23t9_vViQ/s88-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          },
+          "medium": {
+            "url": "https://yt3.ggpht.com/-uDfN5WzhqmE/AAAAAAAAAAI/AAAAAAAAAAA/Zu23t9_vViQ/s240-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          },
+          "high": {
+            "url": "https://yt3.ggpht.com/-uDfN5WzhqmE/AAAAAAAAAAI/AAAAAAAAAAA/Zu23t9_vViQ/s800-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          }
+        }
+      }
+    },
+    {
+      "kind": "youtube#subscription",
+      "etag": "\"p4VTdlkQv3HQeTEaXgvLePAydmU/7ArnKe3x-zHWrA235OPSLkFtcGg\"",
+      "id": "zqShTXi-2-S50Nc0aJJ6zdHSZbM7XNml9y9B3V6WQ9A",
+      "snippet": {
+        "publishedAt": "2018-06-11T01:42:48.406Z",
+        "title": "李永乐老师",
+        "description": "欢迎关注我的微信公众号“李永乐老师”，上面有超多文字版科普内容和中学视频课程哦",
+        "resourceId": {
+          "kind": "youtube#channel",
+          "channelId": "UCSs4A6HYKmHA2MG_0z-F0xw"
+        },
+        "channelId": "UCNvMBmCASzTNNX8lW3JRMbw",
+        "thumbnails": {
+          "default": {
+            "url": "https://yt3.ggpht.com/-yYEnknp3CQQ/AAAAAAAAAAI/AAAAAAAAAAA/8-SLsa_cgpI/s88-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          },
+          "medium": {
+            "url": "https://yt3.ggpht.com/-yYEnknp3CQQ/AAAAAAAAAAI/AAAAAAAAAAA/8-SLsa_cgpI/s240-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          },
+          "high": {
+            "url": "https://yt3.ggpht.com/-yYEnknp3CQQ/AAAAAAAAAAI/AAAAAAAAAAA/8-SLsa_cgpI/s800-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          }
+        }
+      },
+      "contentDetails": {
+        "totalItemCount": 278,
+        "newItemCount": 1,
+        "activityType": "all"
+      },
+      "subscriberSnippet": {
+        "title": "kun liu",
+        "description": "",
+        "channelId": "UCNvMBmCASzTNNX8lW3JRMbw",
+        "thumbnails": {
+          "default": {
+            "url": "https://yt3.ggpht.com/-uDfN5WzhqmE/AAAAAAAAAAI/AAAAAAAAAAA/Zu23t9_vViQ/s88-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          },
+          "medium": {
+            "url": "https://yt3.ggpht.com/-uDfN5WzhqmE/AAAAAAAAAAI/AAAAAAAAAAA/Zu23t9_vViQ/s240-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          },
+          "high": {
+            "url": "https://yt3.ggpht.com/-uDfN5WzhqmE/AAAAAAAAAAI/AAAAAAAAAAA/Zu23t9_vViQ/s800-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          }
+        }
+      }
+    },
+    {
+      "kind": "youtube#subscription",
+      "etag": "\"p4VTdlkQv3HQeTEaXgvLePAydmU/hZAeF0AETpmxML6TuUZfYWXtNzQ\"",
+      "id": "zqShTXi-2-Rya5uUxEp3ZsPI3fZrFQnSXNQCwvHBGGo",
+      "snippet": {
+        "publishedAt": "2019-11-29T03:00:56.380Z",
+        "title": "ikaros-life",
+        "description": "This is a test channel.",
+        "resourceId": {
+          "kind": "youtube#channel",
+          "channelId": "UCa-vrCLQHviTOVnEKDOdetQ"
+        },
+        "channelId": "UCNvMBmCASzTNNX8lW3JRMbw",
+        "thumbnails": {
+          "default": {
+            "url": "https://yt3.ggpht.com/-yBDi3ItKNRs/AAAAAAAAAAI/AAAAAAAAAAA/ozh6Tc0Gc9w/s88-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          },
+          "medium": {
+            "url": "https://yt3.ggpht.com/-yBDi3ItKNRs/AAAAAAAAAAI/AAAAAAAAAAA/ozh6Tc0Gc9w/s240-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          },
+          "high": {
+            "url": "https://yt3.ggpht.com/-yBDi3ItKNRs/AAAAAAAAAAI/AAAAAAAAAAA/ozh6Tc0Gc9w/s800-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          }
+        }
+      },
+      "contentDetails": {
+        "totalItemCount": 2,
+        "newItemCount": 0,
+        "activityType": "all"
+      },
+      "subscriberSnippet": {
+        "title": "kun liu",
+        "description": "",
+        "channelId": "UCNvMBmCASzTNNX8lW3JRMbw",
+        "thumbnails": {
+          "default": {
+            "url": "https://yt3.ggpht.com/-uDfN5WzhqmE/AAAAAAAAAAI/AAAAAAAAAAA/Zu23t9_vViQ/s88-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          },
+          "medium": {
+            "url": "https://yt3.ggpht.com/-uDfN5WzhqmE/AAAAAAAAAAI/AAAAAAAAAAA/Zu23t9_vViQ/s240-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          },
+          "high": {
+            "url": "https://yt3.ggpht.com/-uDfN5WzhqmE/AAAAAAAAAAI/AAAAAAAAAAA/Zu23t9_vViQ/s800-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          }
+        }
+      }
+    },
+    {
+      "kind": "youtube#subscription",
+      "etag": "\"p4VTdlkQv3HQeTEaXgvLePAydmU/YH8OpiSknjSnSE5lK4iP84c-RMg\"",
+      "id": "zqShTXi-2-Rya5uUxEp3ZpfEZoPHGpH2MBMMdN1Yl9Y",
+      "snippet": {
+        "publishedAt": "2019-05-28T01:19:42.921Z",
+        "title": "PyCon 2019",
+        "description": "",
+        "resourceId": {
+          "kind": "youtube#channel",
+          "channelId": "UCxs2IIVXaEHHA4BtTiWZ2mQ"
+        },
+        "channelId": "UCNvMBmCASzTNNX8lW3JRMbw",
+        "thumbnails": {
+          "default": {
+            "url": "https://yt3.ggpht.com/-K9tl0Fy3l2k/AAAAAAAAAAI/AAAAAAAAAAA/PvePZf-T5VU/s88-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          },
+          "medium": {
+            "url": "https://yt3.ggpht.com/-K9tl0Fy3l2k/AAAAAAAAAAI/AAAAAAAAAAA/PvePZf-T5VU/s240-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          },
+          "high": {
+            "url": "https://yt3.ggpht.com/-K9tl0Fy3l2k/AAAAAAAAAAI/AAAAAAAAAAA/PvePZf-T5VU/s800-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          }
+        }
+      },
+      "contentDetails": {
+        "totalItemCount": 148,
+        "newItemCount": 0,
+        "activityType": "all"
+      },
+      "subscriberSnippet": {
+        "title": "kun liu",
+        "description": "",
+        "channelId": "UCNvMBmCASzTNNX8lW3JRMbw",
+        "thumbnails": {
+          "default": {
+            "url": "https://yt3.ggpht.com/-uDfN5WzhqmE/AAAAAAAAAAI/AAAAAAAAAAA/Zu23t9_vViQ/s88-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          },
+          "medium": {
+            "url": "https://yt3.ggpht.com/-uDfN5WzhqmE/AAAAAAAAAAI/AAAAAAAAAAA/Zu23t9_vViQ/s240-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          },
+          "high": {
+            "url": "https://yt3.ggpht.com/-uDfN5WzhqmE/AAAAAAAAAAI/AAAAAAAAAAA/Zu23t9_vViQ/s800-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          }
+        }
+      }
+    }
+  ]
+}

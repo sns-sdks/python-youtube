@@ -47,6 +47,13 @@ from .video import (
     VideoTopicDetails,
     VideoListResponse,
 )
+from .subscription import (
+    Subscription,
+    SubscriptionSnippet,
+    SubscriptionContentDetails,
+    SubscriptionSubscriberSnippet,
+    SubscriptionListResponse,
+)
 
 __all__ = [
     "AccessToken",
@@ -87,4 +94,9 @@ __all__ = [
     "CommentThreadSnippet",
     "CommentThreadReplies",
     "CommentThreadListResponse",
+    "Subscription",
+    "SubscriptionSnippet",
+    "SubscriptionContentDetails",
+    "SubscriptionSubscriberSnippet",
+    "SubscriptionListResponse",
 ]
