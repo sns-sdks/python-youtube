@@ -42,6 +42,13 @@ VIDEO_CATEGORY_RESOURCE_PROPERTIES = {"id", "snippet"}
 
 GUIDE_CATEGORY_RESOURCE_PROPERTIES = {"id", "snippet"}
 
+SUBSCRIPTION_RESOURCE_PROPERTIES = {
+    "id",
+    "snippet",
+    "contentDetails",
+    "subscriberSnippet",
+}
+
 RESOURCE_PARTS_MAPPING = {
     "channels": CHANNEL_RESOURCE_PROPERTIES,
     "playlists": PLAYLIST_RESOURCE_PROPERTIES,
@@ -51,6 +58,7 @@ RESOURCE_PARTS_MAPPING = {
     "comments": COMMENT_RESOURCE_PROPERTIES,
     "videoCategories": VIDEO_CATEGORY_RESOURCE_PROPERTIES,
     "guideCategories": GUIDE_CATEGORY_RESOURCE_PROPERTIES,
+    "subscriptions": SUBSCRIPTION_RESOURCE_PROPERTIES,
 }
 
 TOPICS = {

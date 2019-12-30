@@ -1,0 +1,62 @@
+{
+  "kind": "youtube#subscriptionListResponse",
+  "etag": "\"p4VTdlkQv3HQeTEaXgvLePAydmU/USyhytrL1qAH8AxBqW22EUor8kw\"",
+  "pageInfo": {
+    "totalResults": 2,
+    "resultsPerPage": 5
+  },
+  "items": [
+    {
+      "kind": "youtube#subscription",
+      "etag": "\"p4VTdlkQv3HQeTEaXgvLePAydmU/VIabsyP8MBhapi7K0fjjRX5bM2U\"",
+      "id": "zqShTXi-2-Tx7TtwQqhCBwViE_j9IEgnmRmPnqJljxo",
+      "snippet": {
+        "publishedAt": "2018-09-11T11:35:04.568Z",
+        "title": "PyCon 2015",
+        "description": "",
+        "resourceId": {
+          "kind": "youtube#channel",
+          "channelId": "UCgxzjK6GuOHVKR_08TT4hJQ"
+        },
+        "channelId": "UCNvMBmCASzTNNX8lW3JRMbw",
+        "thumbnails": {
+          "default": {
+            "url": "https://yt3.ggpht.com/-fLvSSJbxK4U/AAAAAAAAAAI/AAAAAAAAAAA/6YBsX_62XeI/s88-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          },
+          "medium": {
+            "url": "https://yt3.ggpht.com/-fLvSSJbxK4U/AAAAAAAAAAI/AAAAAAAAAAA/6YBsX_62XeI/s240-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          },
+          "high": {
+            "url": "https://yt3.ggpht.com/-fLvSSJbxK4U/AAAAAAAAAAI/AAAAAAAAAAA/6YBsX_62XeI/s800-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          }
+        }
+      }
+    },
+    {
+      "kind": "youtube#subscription",
+      "etag": "\"p4VTdlkQv3HQeTEaXgvLePAydmU/pYbP9RYZzTnefaJtv-B2uQwsR4A\"",
+      "id": "zqShTXi-2-Rya5uUxEp3ZsPI3fZrFQnSXNQCwvHBGGo",
+      "snippet": {
+        "publishedAt": "2019-11-29T03:00:56.380Z",
+        "title": "ikaros-life",
+        "description": "This is a test channel.",
+        "resourceId": {
+          "kind": "youtube#channel",
+          "channelId": "UCa-vrCLQHviTOVnEKDOdetQ"
+        },
+        "channelId": "UCNvMBmCASzTNNX8lW3JRMbw",
+        "thumbnails": {
+          "default": {
+            "url": "https://yt3.ggpht.com/-yBDi3ItKNRs/AAAAAAAAAAI/AAAAAAAAAAA/ozh6Tc0Gc9w/s88-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          },
+          "medium": {
+            "url": "https://yt3.ggpht.com/-yBDi3ItKNRs/AAAAAAAAAAI/AAAAAAAAAAA/ozh6Tc0Gc9w/s240-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          },
+          "high": {
+            "url": "https://yt3.ggpht.com/-yBDi3ItKNRs/AAAAAAAAAAI/AAAAAAAAAAA/ozh6Tc0Gc9w/s800-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          }
+        }
+      }
+    }
+  ]
+}
