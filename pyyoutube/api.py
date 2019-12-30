@@ -20,6 +20,7 @@ from pyyoutube.models import (
     CommentListResponse,
     GuideCategoryListResponse,
     VideoCategoryListResponse,
+    SubscriptionListResponse,
 )
 from pyyoutube.utils.params_checker import enf_comma_separated, enf_parts
 
@@ -1352,3 +1353,44 @@ class Api(object):
             hl=hl,
             return_json=return_json,
         )
+
+    def get_subscription_by_id(
+        self,
+        *,
+        subscription_id: Union[str, list, tuple, set],
+        parts: Optional[Union[str, list, tuple, set]] = None,
+        return_json: Optional[bool] = False,
+    ):
+        """
+        Retrieve subscriptions by given subscription id(s).
+
+        Note:
+            This need authorized access token. or you will get no data.
+
+        Args:
+            subscription_id ((str,list,tuple,set)):
+                The id for subscription that you want to retrieve data.
+                You can pass this with single id str, comma-separated id str, or a list,tuple,set of ids.
+            parts ((str,list,tuple,set), optional):
+                The resource parts for you want to retrieve.
+                If not provide, use default public parts.
+                You can pass this with single part str, comma-separated parts str or a list,tuple,set of parts.
+            return_json(bool, optional):
+                The return data type. If you set True JSON data will be returned.
+                False will return a pyyoutube.SubscriptionListResponse instance.
+        Returns:
+            SubscriptionListResponse or original data.
+        """
+
+        args = {
+            "id": enf_comma_separated(field="subscription_id", value=subscription_id),
+            "part": enf_parts(resource="subscriptions", value=parts),
+        }
+
+        resp = self._request(resource="subscriptions", method="GET", args=args)
+        data = self._parse_response(resp)
+
+        if return_json:
+            return data
+        else:
+            return SubscriptionListResponse.from_dict(data)
