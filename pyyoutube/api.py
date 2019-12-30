@@ -1394,3 +1394,77 @@ class Api(object):
             return data
         else:
             return SubscriptionListResponse.from_dict(data)
+
+    def get_subscription_by_channel(
+        self,
+        *,
+        channel_id: str,
+        parts: Optional[Union[str, list, tuple, set]] = None,
+        for_channel_id: Optional[Union[str, list, tuple, set]] = None,
+        order: Optional[str] = "relevance",
+        count: Optional[int] = 20,
+        limit: Optional[int] = 20,
+        return_json: Optional[bool] = False,
+    ):
+        """
+        Retrieve the specified channel's subscriptions.
+
+        Note:
+             The API returns a 403 (Forbidden) HTTP response code if the specified channel
+             does not publicly expose its subscriptions and the request is not authorized
+             by the channel's owner.
+
+        Args:
+            channel_id (str):
+                The id for channel which you want to get subscriptions.
+            parts ((str,list,tuple,set) optional):
+                The resource parts for subscription you want to retrieve.
+                If not provide, use default public parts.
+                You can pass this with single part str, comma-separated parts str or a list,tuple,set of parts.
+            for_channel_id ((str,list,tuple,set) optional):
+                The parameter specifies a comma-separated list of channel IDs.
+                and will then only contain subscriptions matching those channels.
+                You can pass this with single part str, comma-separated parts str or a list,tuple,set of channel ids.
+            order (str, optional):
+                The parameter specifies the method that will be used to sort resources in the API response.
+                Acceptable values are:
+                    alphabetical – Sort alphabetically.
+                    relevance – Sort by relevance.
+                    unread – Sort by order of activity.
+                Default is relevance
+            count (int, optional):
+                The count will retrieve subscriptions data.
+                Default is 20.
+                If provide this with None, will retrieve all subscriptions.
+            limit (int, optional):
+                The maximum number of items each request retrieve.
+                For comment threads, this should not be more than 50.
+                Default is 20.
+            return_json(bool, optional):
+                The return data type. If you set True JSON data will be returned.
+                False will return a pyyoutube.SubscriptionListResponse instance.
+        Returns:
+            SubscriptionListResponse or original data.
+        """
+
+        if count is None:
+            limit = 50  # for subscriptions the max limit for per request is 100
+        else:
+            limit = min(count, limit)
+
+        args = {
+            "channelId": channel_id,
+            "forChannelId": enf_comma_separated(
+                field="for_channel_id", value=for_channel_id
+            ),
+            "part": enf_parts(resource="subscriptions", value=parts),
+            "order": order,
+            "maxResults": limit,
+        }
+        res_data = self.paged_by_page_token(
+            resource="subscriptions", args=args, count=count
+        )
+        if return_json:
+            return res_data
+        else:
+            return SubscriptionListResponse.from_dict(res_data)
