@@ -1,0 +1,141 @@
+{
+  "kind": "youtube#subscriptionListResponse",
+  "etag": "\"p4VTdlkQv3HQeTEaXgvLePAydmU/NtDoQfEOjOm9UE8PH2xuzaVGuko\"",
+  "nextPageToken": "CAUQAA",
+  "pageInfo": {
+    "totalResults": 7,
+    "resultsPerPage": 5
+  },
+  "items": [
+    {
+      "kind": "youtube#subscription",
+      "etag": "\"p4VTdlkQv3HQeTEaXgvLePAydmU/ah58pA0LZUrj8p8Ay6v9PqipM1E\"",
+      "id": "FMP3Mleijt-52zZDGkHtR5KhwkvCcdQKWWWIA1j5eGc",
+      "snippet": {
+        "publishedAt": "2011-11-11T14:00:19.000Z",
+        "title": "TEDx Talks",
+        "description": "TEDx is an international community that organizes TED-style events anywhere and everywhere -- celebrating locally-driven ideas and elevating them to a global stage. TEDx events are produced independently of TED conferences, each event curates speakers on their own, but based on TED's format and rules.\n\nFor more information on using TED for commercial purposes (e.g. employee learning, in a film, or in an online course), please submit a media request using the link below.",
+        "resourceId": {
+          "kind": "youtube#channel",
+          "channelId": "UCsT0YIqwnpJCM-mx7-gSA4Q"
+        },
+        "channelId": "UCAuUUnT6oDeKwE6v1NGQxug",
+        "thumbnails": {
+          "default": {
+            "url": "https://yt3.ggpht.com/-yjj95JJQEm8/AAAAAAAAAAI/AAAAAAAAAAA/qkyW_xNpwSo/s88-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          },
+          "medium": {
+            "url": "https://yt3.ggpht.com/-yjj95JJQEm8/AAAAAAAAAAI/AAAAAAAAAAA/qkyW_xNpwSo/s240-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          },
+          "high": {
+            "url": "https://yt3.ggpht.com/-yjj95JJQEm8/AAAAAAAAAAI/AAAAAAAAAAA/qkyW_xNpwSo/s800-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          }
+        }
+      }
+    },
+    {
+      "kind": "youtube#subscription",
+      "etag": "\"p4VTdlkQv3HQeTEaXgvLePAydmU/5Fb7lQjSSevEAy86E2VxNZ43Kzg\"",
+      "id": "FMP3Mleijt_ZKvy5M-HhRlsqI4wXY7VmP5g8lvmRhVU",
+      "snippet": {
+        "publishedAt": "2016-11-17T16:24:18.000Z",
+        "title": "TED Residency",
+        "description": "The TED Residency program is an incubator for breakthrough ideas. It is free and open to all via a semi-annual competitive application. Those chosen as TED Residents spend four months at TED headquarters in New York City, working on their idea. Selection criteria include the strength of their idea, their character, and their ability to bring a fresh perspective and positive contribution to the diverse TED community.",
+        "resourceId": {
+          "kind": "youtube#channel",
+          "channelId": "UCtC8aQzdEHAmuw8YvtH1CcQ"
+        },
+        "channelId": "UCAuUUnT6oDeKwE6v1NGQxug",
+        "thumbnails": {
+          "default": {
+            "url": "https://yt3.ggpht.com/-5Ccn68kZqtE/AAAAAAAAAAI/AAAAAAAAAAA/FcE2mH3Fwww/s88-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          },
+          "medium": {
+            "url": "https://yt3.ggpht.com/-5Ccn68kZqtE/AAAAAAAAAAI/AAAAAAAAAAA/FcE2mH3Fwww/s240-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          },
+          "high": {
+            "url": "https://yt3.ggpht.com/-5Ccn68kZqtE/AAAAAAAAAAI/AAAAAAAAAAA/FcE2mH3Fwww/s800-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          }
+        }
+      }
+    },
+    {
+      "kind": "youtube#subscription",
+      "etag": "\"p4VTdlkQv3HQeTEaXgvLePAydmU/sr4uYsDNIOJdZ3aURvsOrmYGrCA\"",
+      "id": "FMP3Mleijt-52zZDGkHtRypBo_RsBLYwvw2DbDoGUl8",
+      "snippet": {
+        "publishedAt": "2013-03-04T18:00:00.000Z",
+        "title": "TED-Ed",
+        "description": "TED-Ed’s commitment to creating lessons worth sharing is an extension of TED’s mission of spreading great ideas. Within TED-Ed’s growing library of TED-Ed animations, you will find carefully curated educational videos, many of which represent collaborations between talented educators and animators nominated through the TED-Ed website (ed.ted.com).\n\nWant to suggest an idea for a TED-Ed animation or get involved with TED-Ed? Visit our website at: http://ed.ted.com/get_involved.\n\nAlso, consider donating to us on Patreon! By doing so, you directly support our mission and receive some pretty awesome rewards: https://www.patreon.com/teded\n\nFor more information on using TED for commercial purposes (e.g. employee learning, in a film, or in an online course), please submit a Media Request using this link: https://media-requests.ted.com/",
+        "resourceId": {
+          "kind": "youtube#channel",
+          "channelId": "UCsooa4yRKGN_zEE8iknghZA"
+        },
+        "channelId": "UCAuUUnT6oDeKwE6v1NGQxug",
+        "thumbnails": {
+          "default": {
+            "url": "https://yt3.ggpht.com/-mnEpZE0uuus/AAAAAAAAAAI/AAAAAAAAAAA/SM5q4mSZgq4/s88-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          },
+          "medium": {
+            "url": "https://yt3.ggpht.com/-mnEpZE0uuus/AAAAAAAAAAI/AAAAAAAAAAA/SM5q4mSZgq4/s240-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          },
+          "high": {
+            "url": "https://yt3.ggpht.com/-mnEpZE0uuus/AAAAAAAAAAI/AAAAAAAAAAA/SM5q4mSZgq4/s800-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          }
+        }
+      }
+    },
+    {
+      "kind": "youtube#subscription",
+      "etag": "\"p4VTdlkQv3HQeTEaXgvLePAydmU/UFZvm6H-6qrPRC_qJSp4vk5LWFc\"",
+      "id": "FMP3Mleijt-52zZDGkHtR9rgHNN_tQoAYW8hkbgy-r4",
+      "snippet": {
+        "publishedAt": "2011-11-16T22:33:47.000Z",
+        "title": "TEDxYouth",
+        "description": "",
+        "resourceId": {
+          "kind": "youtube#channel",
+          "channelId": "UC-yTB2bUcin9mmah36sXiYA"
+        },
+        "channelId": "UCAuUUnT6oDeKwE6v1NGQxug",
+        "thumbnails": {
+          "default": {
+            "url": "https://yt3.ggpht.com/-yJAJEG_PrHk/AAAAAAAAAAI/AAAAAAAAAAA/nHtSZ9elZkM/s88-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          },
+          "medium": {
+            "url": "https://yt3.ggpht.com/-yJAJEG_PrHk/AAAAAAAAAAI/AAAAAAAAAAA/nHtSZ9elZkM/s240-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          },
+          "high": {
+            "url": "https://yt3.ggpht.com/-yJAJEG_PrHk/AAAAAAAAAAI/AAAAAAAAAAA/nHtSZ9elZkM/s800-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          }
+        }
+      }
+    },
+    {
+      "kind": "youtube#subscription",
+      "etag": "\"p4VTdlkQv3HQeTEaXgvLePAydmU/ZAGz9909mfKsIPY3jbzi6Mw9rO4\"",
+      "id": "FMP3Mleijt__etnGmWHe6HXi2qefpnvN-pKf2M_P728",
+      "snippet": {
+        "publishedAt": "2018-11-04T19:27:35.615Z",
+        "title": "TED-Ed Educator Talks",
+        "description": "At TED we believe that education is the ultimate idea worth spreading. That’s why this channel — designed for teachers, by teachers —  is exclusively dedicated to celebrating and elevating the ideas of educators working in classrooms and schools throughout the world. Whether you’re here for professional or personal development, you can expect to discover excellent Talks from inspired educators published regularly. Subscribe (and turn on notifications) to learn, and to let educators everywhere know that you’re listening!\n\nAre you an educator interested in developing a Talk for this channel? Do you have a colleague who should give a Talk? Learn more here: ed.ted.com/masterclass\n\nEach featured educator on this channel has completed TED Masterclass, TED's latest program designed to help educators share their ideas by giving TED-style Talks. To learn more about bringing TED Masterclass to your school, district or organization, check out ed.ted.com/masterclass.",
+        "resourceId": {
+          "kind": "youtube#channel",
+          "channelId": "UC9k9wQAp0SrWYZVORZnPIlg"
+        },
+        "channelId": "UCAuUUnT6oDeKwE6v1NGQxug",
+        "thumbnails": {
+          "default": {
+            "url": "https://yt3.ggpht.com/-Tn5RxuSSd5w/AAAAAAAAAAI/AAAAAAAAAAA/jwPzKVK1pcA/s88-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          },
+          "medium": {
+            "url": "https://yt3.ggpht.com/-Tn5RxuSSd5w/AAAAAAAAAAI/AAAAAAAAAAA/jwPzKVK1pcA/s240-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          },
+          "high": {
+            "url": "https://yt3.ggpht.com/-Tn5RxuSSd5w/AAAAAAAAAAI/AAAAAAAAAAA/jwPzKVK1pcA/s800-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          }
+        }
+      }
+    }
+  ]
+}

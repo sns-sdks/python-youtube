@@ -1454,13 +1454,16 @@ class Api(object):
 
         args = {
             "channelId": channel_id,
-            "forChannelId": enf_comma_separated(
-                field="for_channel_id", value=for_channel_id
-            ),
             "part": enf_parts(resource="subscriptions", value=parts),
             "order": order,
             "maxResults": limit,
         }
+
+        if for_channel_id is not None:
+            args["forChannelId"] = enf_comma_separated(
+                field="for_channel_id", value=for_channel_id
+            )
+
         res_data = self.paged_by_page_token(
             resource="subscriptions", args=args, count=count
         )

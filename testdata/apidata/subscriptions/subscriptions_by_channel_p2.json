@@ -1,0 +1,63 @@
+{
+  "kind": "youtube#subscriptionListResponse",
+  "etag": "\"p4VTdlkQv3HQeTEaXgvLePAydmU/XhiVa6ArhD2_-Lydooagc6Tq7oc\"",
+  "prevPageToken": "CAUQAQ",
+  "pageInfo": {
+    "totalResults": 7,
+    "resultsPerPage": 5
+  },
+  "items": [
+    {
+      "kind": "youtube#subscription",
+      "etag": "\"p4VTdlkQv3HQeTEaXgvLePAydmU/tiNsWzC4jgYHHwZWw2qeoOgWpvY\"",
+      "id": "FMP3Mleijt-52zZDGkHtRx2qxyD4FDSpFDSSTUlt8Hg",
+      "snippet": {
+        "publishedAt": "2011-11-16T22:34:15.000Z",
+        "title": "TED Fellow",
+        "description": "The TED Fellows program brings young innovators from around the world into the TED community in order to amplify the impact of their projects and activities. Learn more at www.ted.com/fellows",
+        "resourceId": {
+          "kind": "youtube#channel",
+          "channelId": "UCBjBZmguQzn6WCYR7DQykLw"
+        },
+        "channelId": "UCAuUUnT6oDeKwE6v1NGQxug",
+        "thumbnails": {
+          "default": {
+            "url": "https://yt3.ggpht.com/-aL55wuJJvNw/AAAAAAAAAAI/AAAAAAAAAAA/B2mD3TD72q8/s88-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          },
+          "medium": {
+            "url": "https://yt3.ggpht.com/-aL55wuJJvNw/AAAAAAAAAAI/AAAAAAAAAAA/B2mD3TD72q8/s240-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          },
+          "high": {
+            "url": "https://yt3.ggpht.com/-aL55wuJJvNw/AAAAAAAAAAI/AAAAAAAAAAA/B2mD3TD72q8/s800-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          }
+        }
+      }
+    },
+    {
+      "kind": "youtube#subscription",
+      "etag": "\"p4VTdlkQv3HQeTEaXgvLePAydmU/1P2EiA0I1WFh6jFbN-sYeZoa_rc\"",
+      "id": "FMP3Mleijt-52zZDGkHtR907Ony4G2X5nk8s-zEHODE",
+      "snippet": {
+        "publishedAt": "2013-03-20T15:40:41.000Z",
+        "title": "TEDPartners",
+        "description": "TED is a knowledge-sharing platform --  where collaboration is the glue that binds people together. TED Partnerships allow corporations, TED speakers and the TED community to collaborate in a human-centered way. Learn more at http://partners.ted.com/",
+        "resourceId": {
+          "kind": "youtube#channel",
+          "channelId": "UCDAdYdnCDt9zx3p3e_78lEQ"
+        },
+        "channelId": "UCAuUUnT6oDeKwE6v1NGQxug",
+        "thumbnails": {
+          "default": {
+            "url": "https://yt3.ggpht.com/-c16Ofh8MU2U/AAAAAAAAAAI/AAAAAAAAAAA/8PIr4YGwkrQ/s88-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          },
+          "medium": {
+            "url": "https://yt3.ggpht.com/-c16Ofh8MU2U/AAAAAAAAAAI/AAAAAAAAAAA/8PIr4YGwkrQ/s240-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          },
+          "high": {
+            "url": "https://yt3.ggpht.com/-c16Ofh8MU2U/AAAAAAAAAAI/AAAAAAAAAAA/8PIr4YGwkrQ/s800-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          }
+        }
+      }
+    }
+  ]
+}
