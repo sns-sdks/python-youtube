@@ -94,6 +94,10 @@ class Localized(BaseModel):
 class PageInfo(BaseModel):
     """
     This is data model for save paging data.
+    Note:
+        totalResults is only an approximation/estimate.
+        Refer:
+            https://stackoverflow.com/questions/43507281/totalresults-count-doesnt-match-with-the-actual-results-returned-in-youtube-v3
     """
 
     totalResults: Optional[int] = field(default=None)

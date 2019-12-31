@@ -1448,7 +1448,7 @@ class Api(object):
         """
 
         if count is None:
-            limit = 50  # for subscriptions the max limit for per request is 100
+            limit = 50  # for subscriptions the max limit for per request is 50
         else:
             limit = min(count, limit)
 
@@ -1458,6 +1458,106 @@ class Api(object):
             "order": order,
             "maxResults": limit,
         }
+
+        if for_channel_id is not None:
+            args["forChannelId"] = enf_comma_separated(
+                field="for_channel_id", value=for_channel_id
+            )
+
+        res_data = self.paged_by_page_token(
+            resource="subscriptions", args=args, count=count
+        )
+        if return_json:
+            return res_data
+        else:
+            return SubscriptionListResponse.from_dict(res_data)
+
+    def get_subscription_by_me(
+        self,
+        *,
+        mine: Optional[bool] = None,
+        recent_subscriber: Optional[bool] = None,
+        subscriber: Optional[bool] = None,
+        parts: Optional[Union[str, list, tuple, set]] = None,
+        for_channel_id: Optional[Union[str, list, tuple, set]] = None,
+        order: Optional[str] = "relevance",
+        count: Optional[int] = 20,
+        limit: Optional[int] = 20,
+        return_json: Optional[bool] = False,
+    ):
+        """
+        Retrieve your subscriptions.
+
+        Note:
+            This can only used in a properly authorized request.
+            And for me test the parameter `recent_subscriber` and `subscriber` maybe not working.
+            Use the `mine` first.
+
+        Args:
+            mine (bool, optional):
+                Set this parameter's value to True to retrieve a feed of the authenticated user's subscriptions.
+            recent_subscriber (bool, optional):
+                Set this parameter's value to true to retrieve a feed of the subscribers of the authenticated user
+                in reverse chronological order (newest first).
+                And this can only get most recent 1000 subscribers.
+            subscriber (bool, optional):
+                Set this parameter's value to true to retrieve a feed of the subscribers of
+                the authenticated user in no particular order.
+            parts ((str,list,tuple,set) optional):
+                The resource parts for subscription you want to retrieve.
+                If not provide, use default public parts.
+                You can pass this with single part str, comma-separated parts str or a list,tuple,set of parts.
+            for_channel_id ((str,list,tuple,set) optional):
+                The parameter specifies a comma-separated list of channel IDs.
+                and will then only contain subscriptions matching those channels.
+                You can pass this with single part str, comma-separated parts str or a list,tuple,set of channel ids.
+            order (str, optional):
+                The parameter specifies the method that will be used to sort resources in the API response.
+                Acceptable values are:
+                    alphabetical – Sort alphabetically.
+                    relevance – Sort by relevance.
+                    unread – Sort by order of activity.
+                Default is relevance
+            count (int, optional):
+                The count will retrieve subscriptions data.
+                Default is 20.
+                If provide this with None, will retrieve all subscriptions.
+            limit (int, optional):
+                The maximum number of items each request retrieve.
+                For comment threads, this should not be more than 50.
+                Default is 20.
+            return_json(bool, optional):
+                The return data type. If you set True JSON data will be returned.
+                False will return a pyyoutube.SubscriptionListResponse instance.
+
+        Returns:
+            SubscriptionListResponse or original data.
+        """
+
+        if count is None:
+            limit = 50  # for subscriptions the max limit for per request is 50
+        else:
+            limit = min(count, limit)
+
+        args = {
+            "part": enf_parts(resource="subscriptions", value=parts),
+            "order": order,
+            "maxResults": limit,
+        }
+
+        if mine is not None:
+            args["mine"] = mine
+        elif recent_subscriber is not None:
+            args["myRecentSubscribers"] = recent_subscriber
+        elif subscriber is not None:
+            args["mySubscribers"] = subscriber
+        else:
+            raise PyYouTubeException(
+                ErrorMessage(
+                    status_code=ErrorCode.MISSING_PARAMS,
+                    message=f"Must specify at least one of ming,recent_subscriber,subscriber.",
+                )
+            )
 
         if for_channel_id is not None:
             args["forChannelId"] = enf_comma_separated(
