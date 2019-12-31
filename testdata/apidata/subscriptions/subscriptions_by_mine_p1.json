@@ -1,0 +1,245 @@
+{
+  "kind": "youtube#subscriptionListResponse",
+  "etag": "\"p4VTdlkQv3HQeTEaXgvLePAydmU/U5b9PTEHoZSQJmnmfpQ8uv2uVUY\"",
+  "nextPageToken": "CAoQAA",
+  "pageInfo": {
+    "totalResults": 16,
+    "resultsPerPage": 10
+  },
+  "items": [
+    {
+      "kind": "youtube#subscription",
+      "etag": "\"p4VTdlkQv3HQeTEaXgvLePAydmU/UvJJpKjvHCalu8cZNUg40ji9hO4\"",
+      "id": "zqShTXi-2-Tx7TtwQqhCBzrqBvZj94YvFZOGA9x6NuY",
+      "snippet": {
+        "publishedAt": "2019-08-23T08:49:39.958Z",
+        "title": "Google Developers",
+        "description": "The Google Developers channel features talks from events, educational series, best practices, tips, and the latest updates across our products and platforms.",
+        "resourceId": {
+          "kind": "youtube#channel",
+          "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw"
+        },
+        "channelId": "UCNvMBmCASzTNNX8lW3JRMbw",
+        "thumbnails": {
+          "default": {
+            "url": "https://yt3.ggpht.com/-Fgp8KFpgQqE/AAAAAAAAAAI/AAAAAAAAAAA/Wyh1vV5Up0I/s88-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          },
+          "medium": {
+            "url": "https://yt3.ggpht.com/-Fgp8KFpgQqE/AAAAAAAAAAI/AAAAAAAAAAA/Wyh1vV5Up0I/s240-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          },
+          "high": {
+            "url": "https://yt3.ggpht.com/-Fgp8KFpgQqE/AAAAAAAAAAI/AAAAAAAAAAA/Wyh1vV5Up0I/s800-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          }
+        }
+      }
+    },
+    {
+      "kind": "youtube#subscription",
+      "etag": "\"p4VTdlkQv3HQeTEaXgvLePAydmU/3trn0EfS-9Z6JA1nFmKUAurRyvs\"",
+      "id": "zqShTXi-2-Tx7TtwQqhCB-o3EGr8v1XwT0dqravfvQQ",
+      "snippet": {
+        "publishedAt": "2019-03-14T08:12:41.903Z",
+        "title": "Hua Hua",
+        "description": "huahua leetcode",
+        "resourceId": {
+          "kind": "youtube#channel",
+          "channelId": "UC5xDNEcvb1vgw3lE21Ack2Q"
+        },
+        "channelId": "UCNvMBmCASzTNNX8lW3JRMbw",
+        "thumbnails": {
+          "default": {
+            "url": "https://yt3.ggpht.com/-X3Qmupq3CEM/AAAAAAAAAAI/AAAAAAAAAAA/NL2uBxl6-Rs/s88-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          },
+          "medium": {
+            "url": "https://yt3.ggpht.com/-X3Qmupq3CEM/AAAAAAAAAAI/AAAAAAAAAAA/NL2uBxl6-Rs/s240-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          },
+          "high": {
+            "url": "https://yt3.ggpht.com/-X3Qmupq3CEM/AAAAAAAAAAI/AAAAAAAAAAA/NL2uBxl6-Rs/s800-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          }
+        }
+      }
+    },
+    {
+      "kind": "youtube#subscription",
+      "etag": "\"p4VTdlkQv3HQeTEaXgvLePAydmU/pYbP9RYZzTnefaJtv-B2uQwsR4A\"",
+      "id": "zqShTXi-2-Rya5uUxEp3ZsPI3fZrFQnSXNQCwvHBGGo",
+      "snippet": {
+        "publishedAt": "2019-11-29T03:00:56.380Z",
+        "title": "ikaros-life",
+        "description": "This is a test channel.",
+        "resourceId": {
+          "kind": "youtube#channel",
+          "channelId": "UCa-vrCLQHviTOVnEKDOdetQ"
+        },
+        "channelId": "UCNvMBmCASzTNNX8lW3JRMbw",
+        "thumbnails": {
+          "default": {
+            "url": "https://yt3.ggpht.com/-yBDi3ItKNRs/AAAAAAAAAAI/AAAAAAAAAAA/ozh6Tc0Gc9w/s88-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          },
+          "medium": {
+            "url": "https://yt3.ggpht.com/-yBDi3ItKNRs/AAAAAAAAAAI/AAAAAAAAAAA/ozh6Tc0Gc9w/s240-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          },
+          "high": {
+            "url": "https://yt3.ggpht.com/-yBDi3ItKNRs/AAAAAAAAAAI/AAAAAAAAAAA/ozh6Tc0Gc9w/s800-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          }
+        }
+      }
+    },
+    {
+      "kind": "youtube#subscription",
+      "etag": "\"p4VTdlkQv3HQeTEaXgvLePAydmU/haI133x3uuikRTFb40awqRK8EFk\"",
+      "id": "zqShTXi-2-Tx7TtwQqhCB6lHuD0nnzgzuZ6TNDS9yAg",
+      "snippet": {
+        "publishedAt": "2018-05-29T16:24:05.203Z",
+        "title": "JC狗魚",
+        "description": "My name is Dofi.\nWelcome to my channel :D",
+        "resourceId": {
+          "kind": "youtube#channel",
+          "channelId": "UC3X3vJLnMH1SaH2qFqFySVQ"
+        },
+        "channelId": "UCNvMBmCASzTNNX8lW3JRMbw",
+        "thumbnails": {
+          "default": {
+            "url": "https://yt3.ggpht.com/-Js7rJmRlfcY/AAAAAAAAAAI/AAAAAAAAAAA/pUSyWgcgKHg/s88-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          },
+          "medium": {
+            "url": "https://yt3.ggpht.com/-Js7rJmRlfcY/AAAAAAAAAAI/AAAAAAAAAAA/pUSyWgcgKHg/s240-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          },
+          "high": {
+            "url": "https://yt3.ggpht.com/-Js7rJmRlfcY/AAAAAAAAAAI/AAAAAAAAAAA/pUSyWgcgKHg/s800-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          }
+        }
+      }
+    },
+    {
+      "kind": "youtube#subscription",
+      "etag": "\"p4VTdlkQv3HQeTEaXgvLePAydmU/d_cRIQsfQRumM5xTJFPl4oW9cgc\"",
+      "id": "zqShTXi-2-Tx7TtwQqhCB1GDJbXiW2g3mMAB51HqwRo",
+      "snippet": {
+        "publishedAt": "2019-01-19T09:27:40.656Z",
+        "title": "JP傑劈",
+        "description": "This is JP\n\n►IG \nwww.instagram.com/swagasian0117\n►Facebook\nhttps://www.facebook.com/SwagasianJP\n►Twitch\nhttps://www.twitch.tv/lliikekr2000 \n\n商案合作\njerry47j@gmail.com\n\n--- 訂閱JP得JP ---",
+        "resourceId": {
+          "kind": "youtube#channel",
+          "channelId": "UChsUVRskM42-wS1nLKd79RQ"
+        },
+        "channelId": "UCNvMBmCASzTNNX8lW3JRMbw",
+        "thumbnails": {
+          "default": {
+            "url": "https://yt3.ggpht.com/-EIrymuDbRaA/AAAAAAAAAAI/AAAAAAAAAAA/CSN-M6REJAQ/s88-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          },
+          "medium": {
+            "url": "https://yt3.ggpht.com/-EIrymuDbRaA/AAAAAAAAAAI/AAAAAAAAAAA/CSN-M6REJAQ/s240-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          },
+          "high": {
+            "url": "https://yt3.ggpht.com/-EIrymuDbRaA/AAAAAAAAAAI/AAAAAAAAAAA/CSN-M6REJAQ/s800-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          }
+        }
+      }
+    },
+    {
+      "kind": "youtube#subscription",
+      "etag": "\"p4VTdlkQv3HQeTEaXgvLePAydmU/0SoEv7zYSOxgLjbYKlwMg57XI5w\"",
+      "id": "zqShTXi-2-Tx7TtwQqhCB5anKv2QRa1fCDUiUZU8xbc",
+      "snippet": {
+        "publishedAt": "2018-05-18T09:39:14.951Z",
+        "title": "moco",
+        "description": "ヽ(✿ﾟ▽ﾟ)ノ \n謝謝你點進來我的頻道,我是Moco.\n用閒暇之餘偶爾拍拍影片,現實生活中是一枚、一隻、一個努力苦命的上班族?\n歡迎逛逛我的影片,如果你肯留下足跡那我會更高興ww\n真的非常歡迎你在影片下方留下意見或是閒聊也行的唷 ♥(´∀` )人\n\n(๑• . •๑) 如果你覺得我還不錯,歡迎留下你的訂閱唷",
+        "resourceId": {
+          "kind": "youtube#channel",
+          "channelId": "UCLW-5M0C7ELByxDc0R_buNA"
+        },
+        "channelId": "UCNvMBmCASzTNNX8lW3JRMbw",
+        "thumbnails": {
+          "default": {
+            "url": "https://yt3.ggpht.com/-Pgr0igo62-A/AAAAAAAAAAI/AAAAAAAAAAA/YVClvG-F96U/s88-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          },
+          "medium": {
+            "url": "https://yt3.ggpht.com/-Pgr0igo62-A/AAAAAAAAAAI/AAAAAAAAAAA/YVClvG-F96U/s240-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          },
+          "high": {
+            "url": "https://yt3.ggpht.com/-Pgr0igo62-A/AAAAAAAAAAI/AAAAAAAAAAA/YVClvG-F96U/s800-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          }
+        }
+      }
+    },
+    {
+      "kind": "youtube#subscription",
+      "etag": "\"p4VTdlkQv3HQeTEaXgvLePAydmU/ZN8TnM_SWw9N7ydHnSPYYPvaziQ\"",
+      "id": "zqShTXi-2-Tx7TtwQqhCBwtJ-Aho6DZeutqZiP4Q79Q",
+      "snippet": {
+        "publishedAt": "2018-12-25T09:12:18.265Z",
+        "title": "Next Day Video",
+        "description": "",
+        "resourceId": {
+          "kind": "youtube#channel",
+          "channelId": "UCQ7dFBzZGlBvtU2hCecsBBg"
+        },
+        "channelId": "UCNvMBmCASzTNNX8lW3JRMbw",
+        "thumbnails": {
+          "default": {
+            "url": "https://yt3.ggpht.com/-1s55wPtP9FA/AAAAAAAAAAI/AAAAAAAAAAA/N7BV5IiJXG8/s88-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          },
+          "medium": {
+            "url": "https://yt3.ggpht.com/-1s55wPtP9FA/AAAAAAAAAAI/AAAAAAAAAAA/N7BV5IiJXG8/s240-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          },
+          "high": {
+            "url": "https://yt3.ggpht.com/-1s55wPtP9FA/AAAAAAAAAAI/AAAAAAAAAAA/N7BV5IiJXG8/s800-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          }
+        }
+      }
+    },
+    {
+      "kind": "youtube#subscription",
+      "etag": "\"p4VTdlkQv3HQeTEaXgvLePAydmU/VIabsyP8MBhapi7K0fjjRX5bM2U\"",
+      "id": "zqShTXi-2-Tx7TtwQqhCBwViE_j9IEgnmRmPnqJljxo",
+      "snippet": {
+        "publishedAt": "2018-09-11T11:35:04.568Z",
+        "title": "PyCon 2015",
+        "description": "",
+        "resourceId": {
+          "kind": "youtube#channel",
+          "channelId": "UCgxzjK6GuOHVKR_08TT4hJQ"
+        },
+        "channelId": "UCNvMBmCASzTNNX8lW3JRMbw",
+        "thumbnails": {
+          "default": {
+            "url": "https://yt3.ggpht.com/-fLvSSJbxK4U/AAAAAAAAAAI/AAAAAAAAAAA/6YBsX_62XeI/s88-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          },
+          "medium": {
+            "url": "https://yt3.ggpht.com/-fLvSSJbxK4U/AAAAAAAAAAI/AAAAAAAAAAA/6YBsX_62XeI/s240-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          },
+          "high": {
+            "url": "https://yt3.ggpht.com/-fLvSSJbxK4U/AAAAAAAAAAI/AAAAAAAAAAA/6YBsX_62XeI/s800-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          }
+        }
+      }
+    },
+    {
+      "kind": "youtube#subscription",
+      "etag": "\"p4VTdlkQv3HQeTEaXgvLePAydmU/f-6302NaKYDgbG-CAYLW8arJosQ\"",
+      "id": "zqShTXi-2-S50Nc0aJJ6zfe6vF6lHl-Vpk5bYUpybWc",
+      "snippet": {
+        "publishedAt": "2018-09-11T11:35:08.083Z",
+        "title": "PyCon 2016",
+        "description": "",
+        "resourceId": {
+          "kind": "youtube#channel",
+          "channelId": "UCwTD5zJbsQGJN75MwbykYNw"
+        },
+        "channelId": "UCNvMBmCASzTNNX8lW3JRMbw",
+        "thumbnails": {
+          "default": {
+            "url": "https://yt3.ggpht.com/-OpJADPm8uMw/AAAAAAAAAAI/AAAAAAAAAAA/OB26ecvpcC8/s88-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          },
+          "medium": {
+            "url": "https://yt3.ggpht.com/-OpJADPm8uMw/AAAAAAAAAAI/AAAAAAAAAAA/OB26ecvpcC8/s240-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          },
+          "high": {
+            "url": "https://yt3.ggpht.com/-OpJADPm8uMw/AAAAAAAAAAI/AAAAAAAAAAA/OB26ecvpcC8/s800-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,167 @@
+{
+  "kind": "youtube#subscriptionListResponse",
+  "etag": "\"p4VTdlkQv3HQeTEaXgvLePAydmU/VTrpIDMd19kB85U38VXsGy5SZ4Q\"",
+  "prevPageToken": "CAoQAQ",
+  "pageInfo": {
+    "totalResults": 16,
+    "resultsPerPage": 10
+  },
+  "items": [
+    {
+      "kind": "youtube#subscription",
+      "etag": "\"p4VTdlkQv3HQeTEaXgvLePAydmU/Y5O3JqndJlfaSyZhUujH5416cis\"",
+      "id": "zqShTXi-2-S50Nc0aJJ6zUmRLF6uD9ENBVmwRGs4Gms",
+      "snippet": {
+        "publishedAt": "2018-08-03T05:42:47.580Z",
+        "title": "PyCon 2017",
+        "description": "PyCon 2017 Conference tutorials and talks (https://us.pycon.org/2017/).",
+        "resourceId": {
+          "kind": "youtube#channel",
+          "channelId": "UCrJhliKNQ8g0qoE_zvL8eVg"
+        },
+        "channelId": "UCNvMBmCASzTNNX8lW3JRMbw",
+        "thumbnails": {
+          "default": {
+            "url": "https://yt3.ggpht.com/-_nxlsgdzrYk/AAAAAAAAAAI/AAAAAAAAAAA/QK6pKl5EMIU/s88-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          },
+          "medium": {
+            "url": "https://yt3.ggpht.com/-_nxlsgdzrYk/AAAAAAAAAAI/AAAAAAAAAAA/QK6pKl5EMIU/s240-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          },
+          "high": {
+            "url": "https://yt3.ggpht.com/-_nxlsgdzrYk/AAAAAAAAAAI/AAAAAAAAAAA/QK6pKl5EMIU/s800-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          }
+        }
+      }
+    },
+    {
+      "kind": "youtube#subscription",
+      "etag": "\"p4VTdlkQv3HQeTEaXgvLePAydmU/fkjXXxpircl7g4cT13YB6rICLpM\"",
+      "id": "zqShTXi-2-S50Nc0aJJ6zcF_SE2B9QIeS7jGEhCPHtA",
+      "snippet": {
+        "publishedAt": "2018-09-11T11:35:09.217Z",
+        "title": "PyCon 2018",
+        "description": "",
+        "resourceId": {
+          "kind": "youtube#channel",
+          "channelId": "UCsX05-2sVSH7Nx3zuk3NYuQ"
+        },
+        "channelId": "UCNvMBmCASzTNNX8lW3JRMbw",
+        "thumbnails": {
+          "default": {
+            "url": "https://yt3.ggpht.com/-p7EsXAUc0No/AAAAAAAAAAI/AAAAAAAAAAA/DYVdKW67VVg/s88-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          },
+          "medium": {
+            "url": "https://yt3.ggpht.com/-p7EsXAUc0No/AAAAAAAAAAI/AAAAAAAAAAA/DYVdKW67VVg/s240-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          },
+          "high": {
+            "url": "https://yt3.ggpht.com/-p7EsXAUc0No/AAAAAAAAAAI/AAAAAAAAAAA/DYVdKW67VVg/s800-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          }
+        }
+      }
+    },
+    {
+      "kind": "youtube#subscription",
+      "etag": "\"p4VTdlkQv3HQeTEaXgvLePAydmU/f_Y7vGxhlCLazdbPfhCUaJnO2Js\"",
+      "id": "zqShTXi-2-Rya5uUxEp3ZpfEZoPHGpH2MBMMdN1Yl9Y",
+      "snippet": {
+        "publishedAt": "2019-05-28T01:19:42.921Z",
+        "title": "PyCon 2019",
+        "description": "",
+        "resourceId": {
+          "kind": "youtube#channel",
+          "channelId": "UCxs2IIVXaEHHA4BtTiWZ2mQ"
+        },
+        "channelId": "UCNvMBmCASzTNNX8lW3JRMbw",
+        "thumbnails": {
+          "default": {
+            "url": "https://yt3.ggpht.com/-K9tl0Fy3l2k/AAAAAAAAAAI/AAAAAAAAAAA/PvePZf-T5VU/s88-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          },
+          "medium": {
+            "url": "https://yt3.ggpht.com/-K9tl0Fy3l2k/AAAAAAAAAAI/AAAAAAAAAAA/PvePZf-T5VU/s240-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          },
+          "high": {
+            "url": "https://yt3.ggpht.com/-K9tl0Fy3l2k/AAAAAAAAAAI/AAAAAAAAAAA/PvePZf-T5VU/s800-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          }
+        }
+      }
+    },
+    {
+      "kind": "youtube#subscription",
+      "etag": "\"p4VTdlkQv3HQeTEaXgvLePAydmU/wa29z1XTmr6G-xu3deE6-ncNstU\"",
+      "id": "zqShTXi-2-S50Nc0aJJ6zWOFTjfx4UQx5_WL63MoVzo",
+      "snippet": {
+        "publishedAt": "2018-06-20T18:17:55.464Z",
+        "title": "媛媛",
+        "description": "哈囉大家好我是媛媛\n我很喜歡玩遊戲和分享遊戲過程\n希望大家會喜歡我的影片唷",
+        "resourceId": {
+          "kind": "youtube#channel",
+          "channelId": "UC9A1upZ6Rk7Un-iHfGsW5xA"
+        },
+        "channelId": "UCNvMBmCASzTNNX8lW3JRMbw",
+        "thumbnails": {
+          "default": {
+            "url": "https://yt3.ggpht.com/-0Rp5ka2uQuI/AAAAAAAAAAI/AAAAAAAAAAA/0Mh8KYtyuOE/s88-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          },
+          "medium": {
+            "url": "https://yt3.ggpht.com/-0Rp5ka2uQuI/AAAAAAAAAAI/AAAAAAAAAAA/0Mh8KYtyuOE/s240-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          },
+          "high": {
+            "url": "https://yt3.ggpht.com/-0Rp5ka2uQuI/AAAAAAAAAAI/AAAAAAAAAAA/0Mh8KYtyuOE/s800-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          }
+        }
+      }
+    },
+    {
+      "kind": "youtube#subscription",
+      "etag": "\"p4VTdlkQv3HQeTEaXgvLePAydmU/r61YOaAgy9R8JJbtbhyS6CC6_4E\"",
+      "id": "zqShTXi-2-S50Nc0aJJ6zdHSZbM7XNml9y9B3V6WQ9A",
+      "snippet": {
+        "publishedAt": "2018-06-11T01:42:48.406Z",
+        "title": "李永乐老师",
+        "description": "欢迎关注我的微信公众号“李永乐老师”，上面有超多文字版科普内容和中学视频课程哦",
+        "resourceId": {
+          "kind": "youtube#channel",
+          "channelId": "UCSs4A6HYKmHA2MG_0z-F0xw"
+        },
+        "channelId": "UCNvMBmCASzTNNX8lW3JRMbw",
+        "thumbnails": {
+          "default": {
+            "url": "https://yt3.ggpht.com/-yYEnknp3CQQ/AAAAAAAAAAI/AAAAAAAAAAA/8-SLsa_cgpI/s88-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          },
+          "medium": {
+            "url": "https://yt3.ggpht.com/-yYEnknp3CQQ/AAAAAAAAAAI/AAAAAAAAAAA/8-SLsa_cgpI/s240-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          },
+          "high": {
+            "url": "https://yt3.ggpht.com/-yYEnknp3CQQ/AAAAAAAAAAI/AAAAAAAAAAA/8-SLsa_cgpI/s800-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          }
+        }
+      }
+    },
+    {
+      "kind": "youtube#subscription",
+      "etag": "\"p4VTdlkQv3HQeTEaXgvLePAydmU/rOQa6yHDQP-fdGrilGJGCnKHzVA\"",
+      "id": "zqShTXi-2-S50Nc0aJJ6zVxXxmD5w9LtQOiqnv5ZnvI",
+      "snippet": {
+        "publishedAt": "2018-05-18T04:06:37.795Z",
+        "title": "歐拉",
+        "description": "各位觀眾大家好，我是歐拉~~高音\n我超級用心的去錄製以及剪輯每一集\n如果你們喜歡我的影片，一定要記得訂閱我和繼續支持我哟\n斗內歐拉拍更優質的影片：https://goo.gl/cLEy9f\n工商合作請洽詢:olaolaola1014@gmail.com",
+        "resourceId": {
+          "kind": "youtube#channel",
+          "channelId": "UCPRuZhEnHRXt8_aHcm-Hl3Q"
+        },
+        "channelId": "UCNvMBmCASzTNNX8lW3JRMbw",
+        "thumbnails": {
+          "default": {
+            "url": "https://yt3.ggpht.com/-usnp0F0jA1o/AAAAAAAAAAI/AAAAAAAAAAA/pDEGoy1EEvc/s88-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          },
+          "medium": {
+            "url": "https://yt3.ggpht.com/-usnp0F0jA1o/AAAAAAAAAAI/AAAAAAAAAAA/pDEGoy1EEvc/s240-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          },
+          "high": {
+            "url": "https://yt3.ggpht.com/-usnp0F0jA1o/AAAAAAAAAAI/AAAAAAAAAAA/pDEGoy1EEvc/s800-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          }
+        }
+      }
+    }
+  ]
+}

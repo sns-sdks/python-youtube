@@ -20,6 +20,12 @@ class ApiPlaylistTest(unittest.TestCase):
         SUBSCRIPTIONS_BY_CHANNEL_P2 = json.loads(f.read().decode("utf-8"))
     with open(BASE_PATH + "subscriptions_by_channel_with_filter.json", "rb") as f:
         SUBSCRIPTIONS_BY_CHANNEL_FILTER = json.loads(f.read().decode("utf-8"))
+    with open(BASE_PATH + "subscriptions_by_mine_p1.json", "rb") as f:
+        SUBSCRIPTIONS_BY_MINE_P1 = json.loads(f.read().decode("utf-8"))
+    with open(BASE_PATH + "subscriptions_by_mine_p2.json", "rb") as f:
+        SUBSCRIPTIONS_BY_MINE_P2 = json.loads(f.read().decode("utf-8"))
+    with open(BASE_PATH + "subscriptions_by_mine_filter.json", "rb") as f:
+        SUBSCRIPTIONS_BY_MINE_FILTER = json.loads(f.read().decode("utf-8"))
 
     def setUp(self) -> None:
         self.api = pyyoutube.Api(api_key="api key")
@@ -100,3 +106,70 @@ class ApiPlaylistTest(unittest.TestCase):
             )
 
             self.assertEqual(len(res["items"]), 2)
+
+    def testGetSubscriptionByMe(self) -> None:
+        # test not have required parameters
+        with self.assertRaises(pyyoutube.PyYouTubeException):
+            self.api_with_access_token.get_subscription_by_me()
+
+        # test get all data
+        with responses.RequestsMock() as m:
+            m.add("GET", self.BASE_URL, json=self.SUBSCRIPTIONS_BY_MINE_P1)
+            m.add("GET", self.BASE_URL, json=self.SUBSCRIPTIONS_BY_MINE_P2)
+
+            sub = self.api_with_access_token.get_subscription_by_me(
+                mine=True,
+                parts=["id", "snippet"],
+                order="alphabetically",
+                count=None,
+                limit=10,
+            )
+
+            self.assertEqual(len(sub.items), 15)
+            self.assertEqual(sub.pageInfo.totalResults, 16)
+            # totalResults is only an approximation/estimate.
+            # Refer: https://stackoverflow.com/questions/43507281/totalresults-count-doesnt-match-with-the-actual-results-returned-in-youtube-v3
+
+        # test get all data
+        with responses.RequestsMock() as m:
+            m.add("GET", self.BASE_URL, json=self.SUBSCRIPTIONS_BY_MINE_P1)
+
+            sub = self.api_with_access_token.get_subscription_by_me(
+                mine=True,
+                parts="id,snippet",
+                order="alphabetically",
+                count=5,
+                limit=10,
+                return_json=True,
+            )
+
+            self.assertEqual(len(sub["items"]), 5)
+            self.assertEqual(sub["pageInfo"]["totalResults"], 16)
+
+        # test filter channel id
+        with responses.RequestsMock() as m:
+            m.add("GET", self.BASE_URL, json=self.SUBSCRIPTIONS_BY_MINE_FILTER)
+
+            sub = self.api_with_access_token.get_subscription_by_me(
+                mine=True,
+                parts="id,snippet",
+                for_channel_id="UC_x5XG1OV2P6uZZ5FSM9Ttw,UCa-vrCLQHviTOVnEKDOdetQ",
+                count=None,
+            )
+
+            self.assertEqual(len(sub.items), 2)
+            self.assertEqual(sub.pageInfo.totalResults, 2)
+
+        # test
+        with responses.RequestsMock() as m:
+            m.add("GET", self.BASE_URL, json=self.SUBSCRIPTIONS_ZERO)
+
+            recent = self.api_with_access_token.get_subscription_by_me(
+                recent_subscriber=True
+            )
+            self.assertEqual(len(recent.items), 0)
+
+            subscriber = self.api_with_access_token.get_subscription_by_me(
+                subscriber=True
+            )
+            self.assertEqual(len(subscriber.items), 0)
