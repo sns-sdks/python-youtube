@@ -361,6 +361,7 @@ You can get subscriptions info by id, by point channel or by yourself.
 
 .. note::
     If you want to get the subscriptions not set to public. You need do authorization first and get the access token.
+    You can see the demo `A demo for get my subscription <examples/subscription.py>`_.
 
 Get subscriptions info by id(s), this need your token have the permission for the subscriptions belongs channel or user::
 
