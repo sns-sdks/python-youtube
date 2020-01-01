@@ -56,6 +56,9 @@ class Api(object):
             >>> api.get_comments()
             >>> api.get_guide_categories()
             >>> api.get_video_categories()
+            >>> api.get_subscription_by_id()
+            >>> api.get_subscription_by_channel()
+            >>> api.get_subscription_by_me()
     """
 
     BASE_URL = "https://www.googleapis.com/youtube/v3/"
