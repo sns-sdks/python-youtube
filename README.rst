@@ -353,6 +353,58 @@ Get video categories with region code::
      VideoCategory(kind='youtube#videoCategory', id='15'),
      ...]
 
+-------------
+SUBSCRIPTIONS
+-------------
+
+You can get subscriptions info by id, by point channel or by yourself.
+
+.. note::
+    If you want to get the subscriptions not set to public. You need do authorization first and get the access token.
+    You can see the demo `A demo for get my subscription <examples/subscription.py>`_.
+
+Get subscriptions info by id(s), this need your token have the permission for the subscriptions belongs channel or user::
+
+    In [6]: r = api.get_subscription_by_id(
+       ...:     subscription_id=[
+       ...:         "zqShTXi-2-Tx7TtwQqhCBwViE_j9IEgnmRmPnqJljxo",
+       ...:         "zqShTXi-2-Rya5uUxEp3ZsPI3fZrFQnSXNQCwvHBGGo"])
+    In [7]: r
+    Out[7]: SubscriptionListResponse(kind='youtube#subscriptionListResponse')
+    In [8]: r.items
+    Out[8]:
+    [Subscription(kind='youtube#subscription', id='zqShTXi-2-Tx7TtwQqhCBwViE_j9IEgnmRmPnqJljxo', snippet=SubscriptionSnippet(title='PyCon 2015', description='')),
+     Subscription(kind='youtube#subscription', id='zqShTXi-2-Rya5uUxEp3ZsPI3fZrFQnSXNQCwvHBGGo', snippet=SubscriptionSnippet(title='ikaros-life', description='This is a test channel.'))]
+
+Get yourself subscriptions, this need you do authorization first or give the authorized access token::
+
+    In [9]: r = api.get_subscription_by_me(
+       ...:     mine=True,
+       ...:     parts=["id", "snippet"],
+       ...:     count=2
+       ...:)
+    In [10]: r
+    Out[10]: SubscriptionListResponse(kind='youtube#subscriptionListResponse')
+    In [11]: r.items
+    Out[11]:
+    [Subscription(kind='youtube#subscription', id='zqShTXi-2-Tx7TtwQqhCBwtJ-Aho6DZeutqZiP4Q79Q', snippet=SubscriptionSnippet(title='Next Day Video', description='')),
+     Subscription(kind='youtube#subscription', id='zqShTXi-2-Tx7TtwQqhCBwViE_j9IEgnmRmPnqJljxo', snippet=SubscriptionSnippet(title='PyCon 2015', description=''))]
+
+Get public channel's subscriptions::
+
+    In [12]: r = api.get_subscription_by_channel(
+    ...:     channel_id="UCAuUUnT6oDeKwE6v1NGQxug",
+    ...:     parts="id,snippet",
+    ...:     count=2
+    ...:     )
+    In [13]: r
+    Out[13]: SubscriptionListResponse(kind='youtube#subscriptionListResponse')
+    In [14]: r.items
+    Out[14]:
+    [Subscription(kind='youtube#subscription', id='FMP3Mleijt-52zZDGkHtR5KhwkvCcdQKWWWIA1j5eGc', snippet=SubscriptionSnippet(title='TEDx Talks', description="TEDx is an international community that organizes TED-style events anywhere and everywhere -- celebrating locally-driven ideas and elevating them to a global stage. TEDx events are produced independently of TED conferences, each event curates speakers on their own, but based on TED's format and rules.\n\nFor more information on using TED for commercial purposes (e.g. employee learning, in a film, or in an online course), please submit a media request using the link below.")),
+     Subscription(kind='youtube#subscription', id='FMP3Mleijt_ZKvy5M-HhRlsqI4wXY7VmP5g8lvmRhVU', snippet=SubscriptionSnippet(title='TED Residency', description='The TED Residency program is an incubator for breakthrough ideas. It is free and open to all via a semi-annual competitive application. Those chosen as TED Residents spend four months at TED headquarters in New York City, working on their idea. Selection criteria include the strength of their idea, their character, and their ability to bring a fresh perspective and positive contribution to the diverse TED community.'))]
+
+
 ====
 TODO
 ====
@@ -368,6 +420,7 @@ Now this has follows api.
 - Comment Info
 - Video Categories Info
 - Guide Categories Info
+- Subscriptions Info
 
 Doing
 
