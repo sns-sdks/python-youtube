@@ -14,7 +14,7 @@ from setuptools import find_packages, setup, Command
 # Package meta-data.
 NAME = "python-youtube"
 DESCRIPTION = "A Python wrapper around for YouTube Data API."
-URL = "https://github.com/MerleLiuKun/python-youtube"
+URL = "https://github.com/sns-sdks/python-youtube"
 EMAIL = "merle.liukun@gmail.com"
 AUTHOR = "Ikaros Kun"
 REQUIRES_PYTHON = ">=3.6.0"
@@ -119,6 +119,7 @@ setup(
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: Implementation :: CPython",
         "Programming Language :: Python :: Implementation :: PyPy",
     ],
