@@ -10,6 +10,7 @@ from .common import BaseApiResponse, BaseResource, ResourceId, Thumbnails
 from .mixins import DatetimeTimeMixin
 
 
+@dataclass
 class ActivitySnippet(BaseModel, DatetimeTimeMixin):
     """
     A class representing the activity snippet resource info.
@@ -27,6 +28,7 @@ class ActivitySnippet(BaseModel, DatetimeTimeMixin):
     groupId: Optional[str] = field(default=None, repr=False)
 
 
+@dataclass
 class ActivityContentDetailsUpload(BaseModel):
     """
     A class representing the activity contentDetails upload resource info.
@@ -37,6 +39,7 @@ class ActivityContentDetailsUpload(BaseModel):
     videoId: Optional[str] = field(default=None)
 
 
+@dataclass
 class ActivityContentDetailsLike(BaseModel):
     """
     A class representing the activity contentDetails like resource info.
@@ -47,6 +50,7 @@ class ActivityContentDetailsLike(BaseModel):
     resourceId: Optional[ResourceId] = field(default=None)
 
 
+@dataclass
 class ActivityContentDetailsFavorite(BaseModel):
     """
     A class representing the activity contentDetails favorite resource info.
@@ -57,6 +61,7 @@ class ActivityContentDetailsFavorite(BaseModel):
     resourceId: Optional[ResourceId] = field(default=None)
 
 
+@dataclass
 class ActivityContentDetailsComment(BaseModel):
     """
     A class representing the activity contentDetails comment resource info.
@@ -67,6 +72,7 @@ class ActivityContentDetailsComment(BaseModel):
     resourceId: Optional[ResourceId] = field(default=None)
 
 
+@dataclass
 class ActivityContentDetailsSubscription(BaseModel):
     """
     A class representing the activity contentDetails subscription resource info.
@@ -77,6 +83,7 @@ class ActivityContentDetailsSubscription(BaseModel):
     resourceId: Optional[ResourceId] = field(default=None)
 
 
+@dataclass
 class ActivityContentDetailsPlaylistItem(BaseModel):
     """
     A class representing the activity contentDetails playlistItem resource info.
@@ -89,6 +96,7 @@ class ActivityContentDetailsPlaylistItem(BaseModel):
     playlistItemId: Optional[str] = field(default=None)
 
 
+@dataclass
 class ActivityContentDetailsRecommendation(BaseModel):
     """
     A class representing the activity contentDetails recommendation resource info.
@@ -101,6 +109,7 @@ class ActivityContentDetailsRecommendation(BaseModel):
     seedResourceId: Optional[ResourceId] = field(default=None)
 
 
+@dataclass
 class ActivityContentDetailsBulletin(BaseModel):
     """
     A class representing the activity contentDetails bulletin resource info.
@@ -111,6 +120,7 @@ class ActivityContentDetailsBulletin(BaseModel):
     resourceId: Optional[ResourceId] = field(default=None)
 
 
+@dataclass
 class ActivityContentDetailsSocial(BaseModel):
     """
     A class representing the activity contentDetails social resource info.
@@ -125,6 +135,7 @@ class ActivityContentDetailsSocial(BaseModel):
     imageUrl: Optional[str] = field(default=None)
 
 
+@dataclass
 class ActivityContentDetailsChannelItem(BaseModel):
     """
     A class representing the activity contentDetails channelItem resource info.
@@ -135,6 +146,7 @@ class ActivityContentDetailsChannelItem(BaseModel):
     resourceId: Optional[ResourceId] = field(default=None)
 
 
+@dataclass
 class ActivityContentDetails(BaseModel):
     """
     A class representing the activity contentDetails resource info.
@@ -160,3 +172,26 @@ class ActivityContentDetails(BaseModel):
     channelItem: Optional[ActivityContentDetailsChannelItem] = field(
         default=None, repr=False
     )
+
+
+@dataclass
+class Activity(BaseResource):
+    """
+    A class representing the activity resource info.
+
+    Refer: https://developers.google.com/youtube/v3/docs/activities
+    """
+
+    snippet: Optional[ActivitySnippet] = field(default=None)
+    contentDetails: Optional[ActivityContentDetails] = field(default=None, repr=False)
+
+
+@dataclass
+class ActivityListResponse(BaseApiResponse):
+    """
+    A class representing the activity resource info.
+
+    Refer: https://developers.google.com/youtube/v3/docs/activities/list#response_1
+    """
+
+    items: Optional[List[Activity]] = field(default=None, repr=False)

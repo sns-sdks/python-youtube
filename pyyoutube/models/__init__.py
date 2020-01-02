@@ -1,4 +1,10 @@
 from .auth import AccessToken, UserProfile
+from .activity import (
+    Activity,
+    ActivityContentDetails,
+    ActivitySnippet,
+    ActivityListResponse,
+)
 from .category import (
     VideoCategory,
     VideoCategoryListResponse,
