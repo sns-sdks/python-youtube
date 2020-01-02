@@ -136,6 +136,22 @@ class BaseResource(BaseModel):
 
 
 @dataclass
+class ResourceId(BaseModel):
+    """
+    A class representing the subscription snippet resource info.
+    Refer:
+        1. https://developers.google.com/youtube/v3/docs/playlistItems#snippet.resourceId
+        2. https://developers.google.com/youtube/v3/docs/subscriptions#snippet.resourceId
+        3. https://developers.google.com/youtube/v3/docs/activities#contentDetails.social.resourceId
+    """
+
+    kind: Optional[str] = field(default=None)
+    videoId: Optional[str] = field(default=None)
+    channelId: Optional[str] = field(default=None)
+    playlistId: Optional[str] = field(default=None)
+
+
+@dataclass
 class Player(BaseModel):
     """
     A class representing the video,playlist player info.
