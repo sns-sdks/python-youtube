@@ -107,6 +107,19 @@ class ApiPlaylistTest(unittest.TestCase):
 
             self.assertEqual(len(res["items"]), 2)
 
+        # test use page token
+        with responses.RequestsMock() as m:
+            m.add("GET", self.BASE_URL, json=self.SUBSCRIPTIONS_BY_CHANNEL_P2)
+
+            res = self.api.get_subscription_by_channel(
+                channel_id="UCAuUUnT6oDeKwE6v1NGQxug",
+                count=None,
+                limit=5,
+                page_token="CAUQAA",
+            )
+
+            self.assertEqual(len(res.items), 2)
+
     def testGetSubscriptionByMe(self) -> None:
         # test not have required parameters
         with self.assertRaises(pyyoutube.PyYouTubeException):
@@ -130,7 +143,7 @@ class ApiPlaylistTest(unittest.TestCase):
             # totalResults is only an approximation/estimate.
             # Refer: https://stackoverflow.com/questions/43507281/totalresults-count-doesnt-match-with-the-actual-results-returned-in-youtube-v3
 
-        # test get all data
+        # test count
         with responses.RequestsMock() as m:
             m.add("GET", self.BASE_URL, json=self.SUBSCRIPTIONS_BY_MINE_P1)
 
@@ -160,7 +173,7 @@ class ApiPlaylistTest(unittest.TestCase):
             self.assertEqual(len(sub.items), 2)
             self.assertEqual(sub.pageInfo.totalResults, 2)
 
-        # test
+        # test remain
         with responses.RequestsMock() as m:
             m.add("GET", self.BASE_URL, json=self.SUBSCRIPTIONS_ZERO)
 
@@ -173,3 +186,18 @@ class ApiPlaylistTest(unittest.TestCase):
                 subscriber=True
             )
             self.assertEqual(len(subscriber.items), 0)
+
+        # test get all data
+        with responses.RequestsMock() as m:
+            m.add("GET", self.BASE_URL, json=self.SUBSCRIPTIONS_BY_MINE_P2)
+
+            sub = self.api_with_access_token.get_subscription_by_me(
+                mine=True,
+                parts=["id", "snippet"],
+                order="alphabetically",
+                count=None,
+                limit=10,
+                page_token="CAoQAA",
+            )
+
+            self.assertEqual(len(sub.items), 6)

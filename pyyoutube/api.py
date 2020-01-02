@@ -568,6 +568,7 @@ class Api(object):
         count: Optional[int] = 5,
         limit: Optional[int] = 5,
         hl: Optional[str] = "en_US",
+        page_token: Optional[str] = None,
         return_json: Optional[bool] = False,
     ):
         """
@@ -594,6 +595,10 @@ class Api(object):
             hl (str, optional):
                 If provide this. Will return playlist's language localized info.
                 This value need https://developers.google.com/youtube/v3/docs/i18nLanguages.
+            page_token(str, optional):
+                The token of the page of playlists result to retrieve.
+                You can use this retrieve point result page directly.
+                And you should know about the the result set for YouTube.
             return_json(bool, optional):
                 The return data type. If you set True JSON data will be returned.
                 False will return a pyyoutube.PlaylistListResponse instance.
@@ -623,6 +628,10 @@ class Api(object):
                     message=f"Specify at least one of channel_id,playlist_id or mine",
                 )
             )
+
+        if page_token is not None:
+            args["pageToken"] = page_token
+
         res_data = self.paged_by_page_token(
             resource="playlists", args=args, count=count
         )
@@ -806,6 +815,7 @@ class Api(object):
         category_id: Optional[str] = "0",
         count: Optional[int] = 5,
         limit: Optional[int] = 5,
+        page_token: Optional[str] = None,
         return_json: Optional[bool] = False,
     ):
         """
@@ -843,7 +853,11 @@ class Api(object):
             limit (int, optional):
                 The maximum number of items each request retrieve.
                 For videos, this should not be more than 50.
-                Default is 5
+                Default is 5.
+            page_token(str, optional):
+                The token of the page of videos result to retrieve.
+                You can use this retrieve point result page directly.
+                And you should know about the the result set for YouTube.
             return_json(bool, optional):
                 The return data type. If you set True JSON data will be returned.
                 False will return a pyyoutube.PlaylistListResponse instance.
@@ -871,6 +885,9 @@ class Api(object):
         if region_code:
             args["regionCode"] = region_code
 
+        if page_token is not None:
+            args["pageToken"] = page_token
+
         res_data = self.paged_by_page_token(resource="videos", args=args, count=count)
         if return_json:
             return res_data
@@ -887,6 +904,7 @@ class Api(object):
         max_width: Optional[int] = None,
         count: Optional[int] = 5,
         limit: Optional[int] = 5,
+        page_token: Optional[str] = None,
         return_json: Optional[bool] = False,
     ):
         """
@@ -918,7 +936,11 @@ class Api(object):
             limit (int, optional):
                 The maximum number of items each request retrieve.
                 For videos, this should not be more than 50.
-                Default is 5
+                Default is 5.
+            page_token(str, optional):
+                The token of the page of videos result to retrieve.
+                You can use this retrieve point result page directly.
+                And you should know about the the result set for YouTube.
             return_json(bool, optional):
                 The return data type. If you set True JSON data will be returned.
                 False will return a pyyoutube.VideoListResponse instance.
@@ -950,6 +972,9 @@ class Api(object):
             args["maxHeight"] = max_height
         if max_width is not None:
             args["maxWidth"] = max_width
+
+        if page_token is not None:
+            args["pageToken"] = page_token
 
         res_data = self.paged_by_page_token(resource="videos", args=args, count=count)
         if return_json:
@@ -1014,6 +1039,7 @@ class Api(object):
         text_format: Optional[str] = "html",
         count: Optional[int] = 20,
         limit: Optional[int] = 20,
+        page_token: Optional[str] = None,
         return_json: Optional[bool] = False,
     ):
         """
@@ -1060,6 +1086,10 @@ class Api(object):
                 The maximum number of items each request retrieve.
                 For comment threads, this should not be more than 100.
                 Default is 20.
+            page_token(str, optional):
+                The token of the page of commentThreads result to retrieve.
+                You can use this retrieve point result page directly.
+                And you should know about the the result set for YouTube.
             return_json(bool, optional):
                 The return data type. If you set True JSON data will be returned.
                 False will return a pyyoutube.CommentThreadListResponse instance.
@@ -1099,6 +1129,9 @@ class Api(object):
             args["order"] = order
         if search_terms:
             args["searchTerms"] = search_terms
+
+        if page_token is not None:
+            args["pageToken"] = page_token
 
         res_data = self.paged_by_page_token(
             resource="commentThreads", args=args, count=count
@@ -1161,6 +1194,7 @@ class Api(object):
         text_format: Optional[str] = "html",
         count: Optional[int] = 20,
         limit: Optional[int] = 20,
+        page_token: Optional[str] = None,
         return_json: Optional[bool] = False,
     ):
         """
@@ -1187,6 +1221,10 @@ class Api(object):
                 The maximum number of items each request retrieve.
                 For comments, this should not be more than 100.
                 Default is 20.
+            page_token(str, optional):
+                The token of the page of comments result to retrieve.
+                You can use this retrieve point result page directly.
+                And you should know about the the result set for YouTube.
             return_json(bool, optional):
                 The return data type. If you set True JSON data will be returned.
                 False will return a pyyoutube.CommentListResponse instance.
@@ -1205,6 +1243,9 @@ class Api(object):
             "textFormat": text_format,
             "maxResults": limit,
         }
+
+        if page_token is not None:
+            args["pageToken"] = page_token
 
         res_data = self.paged_by_page_token(resource="comments", args=args, count=count)
         if return_json:
@@ -1407,6 +1448,7 @@ class Api(object):
         order: Optional[str] = "relevance",
         count: Optional[int] = 20,
         limit: Optional[int] = 20,
+        page_token: Optional[str] = None,
         return_json: Optional[bool] = False,
     ):
         """
@@ -1443,6 +1485,10 @@ class Api(object):
                 The maximum number of items each request retrieve.
                 For comment threads, this should not be more than 50.
                 Default is 20.
+            page_token(str, optional):
+                The token of the page of subscriptions result to retrieve.
+                You can use this retrieve point result page directly.
+                And you should know about the the result set for YouTube.
             return_json(bool, optional):
                 The return data type. If you set True JSON data will be returned.
                 False will return a pyyoutube.SubscriptionListResponse instance.
@@ -1467,6 +1513,9 @@ class Api(object):
                 field="for_channel_id", value=for_channel_id
             )
 
+        if page_token is not None:
+            args["pageToken"] = page_token
+
         res_data = self.paged_by_page_token(
             resource="subscriptions", args=args, count=count
         )
@@ -1486,6 +1535,7 @@ class Api(object):
         order: Optional[str] = "relevance",
         count: Optional[int] = 20,
         limit: Optional[int] = 20,
+        page_token: Optional[str] = None,
         return_json: Optional[bool] = False,
     ):
         """
@@ -1529,6 +1579,10 @@ class Api(object):
                 The maximum number of items each request retrieve.
                 For comment threads, this should not be more than 50.
                 Default is 20.
+            page_token(str, optional):
+                The token of the page of subscriptions result to retrieve.
+                You can use this retrieve point result page directly.
+                And you should know about the the result set for YouTube.
             return_json(bool, optional):
                 The return data type. If you set True JSON data will be returned.
                 False will return a pyyoutube.SubscriptionListResponse instance.
@@ -1566,6 +1620,9 @@ class Api(object):
             args["forChannelId"] = enf_comma_separated(
                 field="for_channel_id", value=for_channel_id
             )
+
+        if page_token is not None:
+            args["pageToken"] = page_token
 
         res_data = self.paged_by_page_token(
             resource="subscriptions", args=args, count=count
