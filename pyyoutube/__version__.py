@@ -6,6 +6,6 @@
 # 88         YP       YP    YP   YP  `Y88P'  VP   V8P    YP     `Y88P'  ~Y8888P'    YP    ~Y8888P' Y8888P' Y88888P
 
 
-VERSION = (0, 5, 2)
+VERSION = (0, 5, 3)
 
 __version__ = ".".join(map(str, VERSION))

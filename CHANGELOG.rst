@@ -1,6 +1,33 @@
 Changelog
 ---------
 
+
+Version 0.5.3
+=============
+
+What's New
+++++++++++
+
+Provide the page token parameter to skip data have retrieved.
+
+This for follow api methods::
+
+    >>> api.get_playlists()
+    >>> api.get_playlist_items()
+    >>> api.get_videos_by_chart()
+    >>> api.get_videos_by_myrating()
+    >>> api.get_comment_threads()
+    >>> api.get_comments()
+    >>> api.get_subscription_by_channel()
+    >>> api.get_subscription_by_me()
+
+ex::
+
+    In[1]: r = api.get_subscription_by_channel(channel_id="UCAuUUnT6oDeKwE6v1NGQxug", limit=5, count=None, page_token="CAUQAA")
+    In[2]:r.prevPageToken
+    Out[2]: 'CAUQAQ'
+
+
 Version 0.5.2
 =============
 
@@ -11,6 +38,7 @@ You can to the demo `A demo for get my subscription <examples/subscription.py>`_
 Or you can see the `subscriptions usage <README.rst#subscriptions>`_ docs.
 
     #43 add api for get my subscriptions
+
     #41 add api for channel subscriptions
 
 
