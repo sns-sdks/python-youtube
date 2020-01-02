@@ -92,3 +92,12 @@ class ApiPlaylistTest(unittest.TestCase):
                 channel_id="UC_x5XG1OV2P6uZZ5FSM9Ttw", count=None,
             )
             self.assertEqual(len(res_by_channel_id.items), 20)
+
+        # test for page token
+        with responses.RequestsMock() as m:
+            m.add("GET", self.BASE_URL, json=self.PLAYLISTS_PAGED_2)
+
+            res_by_channel_id = self.api.get_playlists(
+                channel_id="UC_x5XG1OV2P6uZZ5FSM9Ttw", count=None, page_token="CAoQAA"
+            )
+            self.assertEqual(len(res_by_channel_id.items), 10)

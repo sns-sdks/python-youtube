@@ -135,3 +135,14 @@ class ApiCommentThreadTest(unittest.TestCase):
                 video_id="F1UP7wRCPH8", count=None,
             )
             self.assertEqual(len(res_by_video.items), 10)
+
+        # test use page token
+        with responses.RequestsMock() as m:
+            m.add("GET", self.BASE_URL, json=self.COMMENT_THREAD_BY_VIDEO_P_2)
+
+            res_by_video = self.api.get_comment_threads(
+                video_id="F1UP7wRCPH8",
+                count=None,
+                page_token="QURTSl9pMzdZOUVzMkI0czlmRmNjSVBPcTBTdzVzajUydDVnbE5SNElWS0l5WU12amYweVotdzF5c1hTNmxzUmVIcEZXbmVEVFMzNVJmWk82TVVwUlB2LWh5aUpOQlA5TGQzTWZEcHlTeTd2dlNGRUFZaVF0cmtJd01BTHlnOG0=",
+            )
+            self.assertEqual(len(res_by_video.items), 5)

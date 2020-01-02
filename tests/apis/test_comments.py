@@ -94,3 +94,14 @@ class ApiCommentTest(unittest.TestCase):
                 parent_id="Ugw5zYU6n9pmIgAZWvN4AaABAg", parts="id,snippet", count=None
             )
             self.assertEqual(len(res_by_parent.items), 3)
+
+        # test use page token
+        with responses.RequestsMock() as m:
+            m.add("GET", self.BASE_URL, json=self.COMMENTS_PAGED_2)
+            res_by_parent = self.api.get_comments(
+                parent_id="Ugw5zYU6n9pmIgAZWvN4AaABAg",
+                parts="id,snippet",
+                count=None,
+                page_token="R0FJeVZnbzBJTl9zNXRxNXlPWUNNaWtRQUJpQ3RNeW4wcFBtQWlBQktBTXdDam9XT1RGNlZETmpXV0kxUWpJNU1YcGhOV1ZLZUhwek1SSWVDQVVTR2xWbmR6VjZXVlUyYmpsd2JVbG5RVnBYZGs0MFFXRkJRa0ZuT2lBSUFSSWNOVHBWWjNjMWVsbFZObTQ1Y0cxSlowRmFWM1pPTkVGaFFVSkJadw==",
+            )
+            self.assertEqual(len(res_by_parent.items), 1)
