@@ -86,6 +86,6 @@ class ApiActivitiesTest(unittest.TestCase):
                 region_code="US",
                 page_token="CAEQAA",
                 count=None,
-                return_json=True
+                return_json=True,
             )
             self.assertEqual(len(res["items"]), 1)
