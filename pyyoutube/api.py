@@ -12,6 +12,7 @@ from pyyoutube.error import ErrorCode, ErrorMessage, PyYouTubeException
 from pyyoutube.models import (
     AccessToken,
     UserProfile,
+    ActivityListResponse,
     ChannelListResponse,
     PlaylistListResponse,
     PlaylistItemListResponse,
@@ -1577,7 +1578,7 @@ class Api(object):
                 If provide this with None, will retrieve all subscriptions.
             limit (int, optional):
                 The maximum number of items each request retrieve.
-                For comment threads, this should not be more than 50.
+                For subscriptions, this should not be more than 50.
                 Default is 20.
             page_token(str, optional):
                 The token of the page of subscriptions result to retrieve.
@@ -1631,3 +1632,85 @@ class Api(object):
             return res_data
         else:
             return SubscriptionListResponse.from_dict(res_data)
+
+    def get_activities_by_channel(
+        self,
+        *,
+        channel_id: str,
+        parts: Optional[Union[str, list, tuple, set]] = None,
+        before: Optional[str] = None,
+        after: Optional[str] = None,
+        region_code: Optional[str] = None,
+        count: Optional[int] = 20,
+        limit: int = 20,
+        page_token: Optional[str] = None,
+        return_json: bool = False,
+    ):
+        """
+        Retrieve given channel's activities data.
+
+        Args:
+            channel_id (str):
+                The id for channel which you want to get activities data.
+            parts ((str,list,tuple,set) optional):
+                The resource parts for activities you want to retrieve.
+                If not provide, use default public parts.
+                You can pass this with single part str, comma-separated parts str or a list,tuple,set of parts.
+            before (str, optional):
+                Set this will only return the activities occurred before this timestamp.
+                This need specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
+            after (str, optional):
+                Set this will only return the activities occurred after this timestamp.
+                This need specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
+            region_code (str, optional):
+                Set this will only return the activities for the specified country.
+                This need specified with an ISO 3166-1 alpha-2 country code.
+            count (int, optional):
+                The count will retrieve activities data.
+                Default is 20.
+                If provide this with None, will retrieve all activities.
+            limit (int, optional):
+                The maximum number of items each request retrieve.
+                For activities, this should not be more than 50.
+                Default is 20.
+            page_token (str, optional):
+                The token of the page of activities result to retrieve.
+                You can use this retrieve point result page directly.
+                And you should know about the page result set for YouTube.
+            return_json(bool, optional):
+                The return data type. If you set True JSON data will be returned.
+                False will return a pyyoutube.ActivityListResponse instance.
+
+        Returns:
+            ActivityListResponse or original data.
+        """
+
+        if count is None:
+            limit = 50  # for activities the max limit for per request is 50
+        else:
+            limit = min(count, limit)
+
+        args = {
+            "channelId": channel_id,
+            "part": enf_parts(resource="activities", value=parts),
+            "maxResults": limit,
+        }
+
+        if before:
+            args["publishedBefore"] = before
+        if after:
+            args["publishedAfter"] = after
+        if region_code:
+            args["regionCode"] = region_code
+
+        if page_token is not None:
+            args["pageToken"] = page_token
+
+        res_data = self.paged_by_page_token(
+            resource="activities", args=args, count=count
+        )
+
+        if return_json:
+            return res_data
+        else:
+            return ActivityListResponse.from_dict(res_data)
