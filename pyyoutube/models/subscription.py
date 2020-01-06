@@ -6,20 +6,8 @@ from dataclasses import dataclass, field
 from typing import List, Optional
 
 from .base import BaseModel
-from .common import BaseApiResponse, Thumbnails, BaseResource
+from .common import BaseApiResponse, BaseResource, ResourceId, Thumbnails
 from .mixins import DatetimeTimeMixin
-
-
-@dataclass
-class ResourceId(BaseModel):
-    """
-    A class representing the subscription snippet resource info.
-
-    Refer: https://developers.google.com/youtube/v3/docs/subscriptions#snippet.resourceId
-    """
-
-    kind: Optional[str] = field(default=None)
-    channelId: Optional[str] = field(default=None)
 
 
 @dataclass

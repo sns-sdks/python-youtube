@@ -1,0 +1,131 @@
+{
+  "kind": "youtube#activityListResponse",
+  "etag": "\"p4VTdlkQv3HQeTEaXgvLePAydmU/ivly37DC9305MS_NVi_P4LZl_5I\"",
+  "prevPageToken": "CAoQAQ",
+  "pageInfo": {
+    "totalResults": 13,
+    "resultsPerPage": 10
+  },
+  "items": [
+    {
+      "kind": "youtube#activity",
+      "etag": "\"p4VTdlkQv3HQeTEaXgvLePAydmU/kZCGI2QUa5ta2c3L6EQevDFgRmo\"",
+      "id": "MTUxNTcwMTQxNzc1MjMwMTQ0NDI5ODcyMTY=",
+      "snippet": {
+        "publishedAt": "2019-10-03T22:29:35.000Z",
+        "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+        "title": "Google Play Pass, DevFest, Firebase Summit ‘19, & more!",
+        "description": "TL;DR 176 | The Google Developer News Show\n \nUnlock your creativity with Google Play Pass → https://goo.gle/31JQpBX\n\nFrom Code to Community: Why developers call DevFest home → https://goo.gle/2nfUXBj\n\nWhat's new at Firebase Summit 2019 → https://goo.gle/2Ofpjie\n\nCloud Build brings advanced CI/CD capabilities to GitHub → https://goo.gle/2Vfz9lJ\n\nContributing Data to Deepfake Detection Research → https://goo.gle/2Ii4dMs\n\nHere to bring you the latest developer news from across Google is Developer Advocate Filip Hracek.\n\nTune in every week for a new episode, and let us know what you think of the latest announcements in the comments below! 😃\n\nWatch more #DevShow → https://goo.gle/GDevShow\nSubscribe to Google Developers! → https://goo.gle/developers",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/3QroLKeXjzU/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/3QroLKeXjzU/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/3QroLKeXjzU/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          },
+          "standard": {
+            "url": "https://i.ytimg.com/vi/3QroLKeXjzU/sddefault.jpg",
+            "width": 640,
+            "height": 480
+          },
+          "maxres": {
+            "url": "https://i.ytimg.com/vi/3QroLKeXjzU/maxresdefault.jpg",
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "channelTitle": "Google Developers",
+        "type": "upload"
+      }
+    },
+    {
+      "kind": "youtube#activity",
+      "etag": "\"p4VTdlkQv3HQeTEaXgvLePAydmU/NM37ICD3UdOFmxzZT7Cxz8BLxK4\"",
+      "id": "MTUxNTY5OTcxNzAyMjMwMTQ0NDI5ODQ0NjQ=",
+      "snippet": {
+        "publishedAt": "2019-10-01T23:15:02.000Z",
+        "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+        "title": "Thinking in 5G (Google I/O'19)",
+        "description": "5G is coming. In this workshop you'll get the chance to learn about what 5G is, its impact, and how Google can help. During the workshop, you'll participate in design sprint exercises to creatively explore what 5G will mean for your app, and how you can make the most of this new technology.\n\nWatch more #io19 here: \n \nGoogle I/O 2019 All Sessions Playlist → https://goo.gle/io19allsessions \nLearn more on the I/O Website → https://google.com/io\n\nSubscribe to the Google Developers Channel → https://goo.gle/developers\nGet started at → https://developers.google.com/\n\nSpeaker(s): Xander Pollock, Bob Borchers, Francesco Grilli, Hassan Sipra, Bhavin Rokad\n\nT0009A",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/fn4SaN-lUns/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/fn4SaN-lUns/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/fn4SaN-lUns/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          },
+          "standard": {
+            "url": "https://i.ytimg.com/vi/fn4SaN-lUns/sddefault.jpg",
+            "width": 640,
+            "height": 480
+          },
+          "maxres": {
+            "url": "https://i.ytimg.com/vi/fn4SaN-lUns/maxresdefault.jpg",
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "channelTitle": "Google Developers",
+        "type": "upload"
+      }
+    },
+    {
+      "kind": "youtube#activity",
+      "etag": "\"p4VTdlkQv3HQeTEaXgvLePAydmU/EwpknHmWhnkbN7WZy_xnvbfcbWg\"",
+      "id": "MTUxNTY5OTU2NDg1MjMwMTQ0NDI5ODUyMzI=",
+      "snippet": {
+        "publishedAt": "2019-10-01T19:01:25.000Z",
+        "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+        "title": "Dev Show Top 5 from the Firebase Summit ‘19",
+        "description": "If you missed the Firebase Summit 2019 in Madrid, Developer Advocate Doug Stevenson (@CodingDoug) has got you covered on the latest releases and highlights from the event. Watch now for a summary of the best new features!\n\nRead the blog post: https://goo.gle/2ogkydo\n\nWatch all the sessions: https://goo.gle/2mIOI8T\nSubscribe to the Firebase YouTube channel: https://goo.gle/2RjXwNe\n\nThe Developer Show - Events Spotlight → https://goo.gle/2od3GEy\nSubscribe to Google Developers! → https://goo.gle/developers",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/fNVT0G3ttTM/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/fNVT0G3ttTM/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/fNVT0G3ttTM/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          },
+          "standard": {
+            "url": "https://i.ytimg.com/vi/fNVT0G3ttTM/sddefault.jpg",
+            "width": 640,
+            "height": 480
+          },
+          "maxres": {
+            "url": "https://i.ytimg.com/vi/fNVT0G3ttTM/maxresdefault.jpg",
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "channelTitle": "Google Developers",
+        "type": "upload"
+      }
+    }
+  ]
+}

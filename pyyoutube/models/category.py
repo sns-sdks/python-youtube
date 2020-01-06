@@ -6,7 +6,7 @@ from dataclasses import dataclass, field
 from typing import List, Optional
 
 from .base import BaseModel
-from .comment import BaseApiResponse, BaseResource
+from .common import BaseApiResponse, BaseResource
 
 
 @dataclass
