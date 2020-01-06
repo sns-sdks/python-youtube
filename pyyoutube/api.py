@@ -79,15 +79,15 @@ class Api(object):
     DEFAULT_QUOTA = 10000  # this quota reset at 00:00:00(GMT-7) every day.
 
     def __init__(
-        self,
-        client_id: Optional[str] = None,
-        client_secret: Optional[str] = None,
-        api_key: Optional[str] = None,
-        access_token: Optional[str] = None,
-        oauth_redirect_uri: Optional[str] = None,
-        timeout: Optional[int] = None,
-        proxies: Optional[dict] = None,
-        quota: Optional[int] = None,
+            self,
+            client_id: Optional[str] = None,
+            client_secret: Optional[str] = None,
+            api_key: Optional[str] = None,
+            access_token: Optional[str] = None,
+            oauth_redirect_uri: Optional[str] = None,
+            timeout: Optional[int] = None,
+            proxies: Optional[dict] = None,
+            quota: Optional[int] = None,
     ) -> None:
         """
         This Api provide two method to work. Use api key or use access token.
@@ -133,9 +133,9 @@ class Api(object):
             self.quota = self.DEFAULT_QUOTA
 
         if not (
-            (self._client_id and self._client_secret)
-            or self._api_key
-            or self._access_token
+                (self._client_id and self._client_secret)
+                or self._api_key
+                or self._access_token
         ):
             raise PyYouTubeException(
                 ErrorMessage(
@@ -148,7 +148,7 @@ class Api(object):
             self._timeout = self.DEFAULT_TIMEOUT
 
     def get_authorization_url(
-        self, scope: Optional[List[str]] = None, **kwargs
+            self, scope: Optional[List[str]] = None, **kwargs
     ) -> (str, str):
         """
         Build authorization url to do authorize.
@@ -184,7 +184,7 @@ class Api(object):
         return authorization_url, state
 
     def exchange_code_to_access_token(
-        self, authorization_response: str, return_json: bool = False
+            self, authorization_response: str, return_json: bool = False
     ) -> Union[dict, AccessToken]:
         """
         Use the google auth response to get access token
@@ -218,7 +218,7 @@ class Api(object):
             return AccessToken.from_dict(token)
 
     def refresh_token(
-        self, refresh_token: Optional[str] = None, return_json: bool = False
+            self, refresh_token: Optional[str] = None, return_json: bool = False
     ) -> Union[dict, AccessToken]:
         """
         Refresh token by api return refresh token.
@@ -286,7 +286,7 @@ class Api(object):
         return items
 
     def _request(
-        self, resource, method=None, args=None, post_args=None, enforce_auth=True
+            self, resource, method=None, args=None, post_args=None, enforce_auth=True
     ) -> Response:
         """
         Main request sender.
@@ -355,7 +355,7 @@ class Api(object):
             return response
 
     def get_profile(
-        self, access_token: Optional[str] = None, return_json: Optional[bool] = False
+            self, access_token: Optional[str] = None, return_json: Optional[bool] = False
     ) -> Union[dict, UserProfile]:
         """
         Get token user info.
@@ -397,7 +397,7 @@ class Api(object):
             return UserProfile.from_dict(data)
 
     def paged_by_page_token(
-        self, resource: str, args: dict, count: Optional[int] = None,
+            self, resource: str, args: dict, count: Optional[int] = None,
     ):
         """
         Response paged by response's page token. If not provide response token
@@ -452,14 +452,14 @@ class Api(object):
         return res_data
 
     def get_channel_info(
-        self,
-        *,
-        channel_id: Optional[Union[str, list, tuple, set]] = None,
-        channel_name: Optional[str] = None,
-        mine: Optional[bool] = None,
-        parts: Optional[Union[str, list, tuple, set]] = None,
-        hl: str = "en_US",
-        return_json: Optional[bool] = False,
+            self,
+            *,
+            channel_id: Optional[Union[str, list, tuple, set]] = None,
+            channel_name: Optional[str] = None,
+            mine: Optional[bool] = None,
+            parts: Optional[Union[str, list, tuple, set]] = None,
+            hl: str = "en_US",
+            return_json: Optional[bool] = False,
     ):
         """
         Retrieve channel data from YouTube Data API.
@@ -519,12 +519,12 @@ class Api(object):
             return ChannelListResponse.from_dict(data)
 
     def get_playlist_by_id(
-        self,
-        *,
-        playlist_id: Union[str, list, tuple, set],
-        parts: Optional[Union[str, list, tuple, set]] = None,
-        hl: Optional[str] = "en_US",
-        return_json: Optional[bool] = False,
+            self,
+            *,
+            playlist_id: Union[str, list, tuple, set],
+            parts: Optional[Union[str, list, tuple, set]] = None,
+            hl: Optional[str] = "en_US",
+            return_json: Optional[bool] = False,
     ):
         """
         Retrieve playlist data by given playlist id.
@@ -561,16 +561,16 @@ class Api(object):
             return PlaylistListResponse.from_dict(data)
 
     def get_playlists(
-        self,
-        *,
-        channel_id: Optional[str] = None,
-        mine: Optional[bool] = None,
-        parts: Optional[Union[str, list, tuple, set]] = None,
-        count: Optional[int] = 5,
-        limit: Optional[int] = 5,
-        hl: Optional[str] = "en_US",
-        page_token: Optional[str] = None,
-        return_json: Optional[bool] = False,
+            self,
+            *,
+            channel_id: Optional[str] = None,
+            mine: Optional[bool] = None,
+            parts: Optional[Union[str, list, tuple, set]] = None,
+            count: Optional[int] = 5,
+            limit: Optional[int] = 5,
+            hl: Optional[str] = "en_US",
+            page_token: Optional[str] = None,
+            return_json: Optional[bool] = False,
     ):
         """
         Retrieve channel playlists info from youtube data api.
@@ -642,11 +642,11 @@ class Api(object):
             return PlaylistListResponse.from_dict(res_data)
 
     def get_playlist_item_by_id(
-        self,
-        *,
-        playlist_item_id: Union[str, list, tuple, set],
-        parts: Optional[Union[str, list, tuple, set]] = None,
-        return_json: Optional[bool] = False,
+            self,
+            *,
+            playlist_item_id: Union[str, list, tuple, set],
+            parts: Optional[Union[str, list, tuple, set]] = None,
+            return_json: Optional[bool] = False,
     ):
         """
         Retrieve playlist Items info by your given id
@@ -681,15 +681,15 @@ class Api(object):
             return PlaylistItemListResponse.from_dict(data)
 
     def get_playlist_items(
-        self,
-        *,
-        playlist_id: str,
-        parts: Optional[Union[str, list, tuple, set]] = None,
-        video_id: Optional[str] = None,
-        count: Optional[int] = 5,
-        limit: Optional[int] = 5,
-        page_token: Optional[str] = None,
-        return_json: Optional[bool] = False,
+            self,
+            *,
+            playlist_id: str,
+            parts: Optional[Union[str, list, tuple, set]] = None,
+            video_id: Optional[str] = None,
+            count: Optional[int] = 5,
+            limit: Optional[int] = 5,
+            page_token: Optional[str] = None,
+            return_json: Optional[bool] = False,
     ):
         """
         Retrieve playlist Items info by your given playlist id
@@ -747,14 +747,14 @@ class Api(object):
             return PlaylistItemListResponse.from_dict(res_data)
 
     def get_video_by_id(
-        self,
-        *,
-        video_id: Union[str, list, tuple, set],
-        parts: Optional[Union[str, list, tuple, set]] = None,
-        hl: Optional[str] = "en_US",
-        max_height: Optional[int] = None,
-        max_width: Optional[int] = None,
-        return_json: Optional[bool] = False,
+            self,
+            *,
+            video_id: Union[str, list, tuple, set],
+            parts: Optional[Union[str, list, tuple, set]] = None,
+            hl: Optional[str] = "en_US",
+            max_height: Optional[int] = None,
+            max_width: Optional[int] = None,
+            return_json: Optional[bool] = False,
     ):
         """
         Retrieve video data by given video id.
@@ -805,19 +805,19 @@ class Api(object):
             return VideoListResponse.from_dict(data)
 
     def get_videos_by_chart(
-        self,
-        *,
-        chart: str,
-        parts: Optional[Union[str, list, tuple, set]] = None,
-        hl: Optional[str] = "en_US",
-        max_height: Optional[int] = None,
-        max_width: Optional[int] = None,
-        region_code: Optional[str] = None,
-        category_id: Optional[str] = "0",
-        count: Optional[int] = 5,
-        limit: Optional[int] = 5,
-        page_token: Optional[str] = None,
-        return_json: Optional[bool] = False,
+            self,
+            *,
+            chart: str,
+            parts: Optional[Union[str, list, tuple, set]] = None,
+            hl: Optional[str] = "en_US",
+            max_height: Optional[int] = None,
+            max_width: Optional[int] = None,
+            region_code: Optional[str] = None,
+            category_id: Optional[str] = "0",
+            count: Optional[int] = 5,
+            limit: Optional[int] = 5,
+            page_token: Optional[str] = None,
+            return_json: Optional[bool] = False,
     ):
         """
         Retrieve a list of YouTube's most popular videos.
@@ -896,17 +896,17 @@ class Api(object):
             return VideoListResponse.from_dict(res_data)
 
     def get_videos_by_myrating(
-        self,
-        *,
-        rating: str,
-        parts: Optional[Union[str, list, tuple, set]] = None,
-        hl: Optional[str] = "en_US",
-        max_height: Optional[int] = None,
-        max_width: Optional[int] = None,
-        count: Optional[int] = 5,
-        limit: Optional[int] = 5,
-        page_token: Optional[str] = None,
-        return_json: Optional[bool] = False,
+            self,
+            *,
+            rating: str,
+            parts: Optional[Union[str, list, tuple, set]] = None,
+            hl: Optional[str] = "en_US",
+            max_height: Optional[int] = None,
+            max_width: Optional[int] = None,
+            count: Optional[int] = 5,
+            limit: Optional[int] = 5,
+            page_token: Optional[str] = None,
+            return_json: Optional[bool] = False,
     ):
         """
         Retrieve video data by my ration.
@@ -984,12 +984,12 @@ class Api(object):
             return VideoListResponse.from_dict(res_data)
 
     def get_comment_thread_by_id(
-        self,
-        *,
-        comment_thread_id: Union[str, list, tuple, set],
-        parts: Optional[Union[str, list, tuple, set]] = None,
-        text_format: Optional[str] = "html",
-        return_json: Optional[bool] = False,
+            self,
+            *,
+            comment_thread_id: Union[str, list, tuple, set],
+            parts: Optional[Union[str, list, tuple, set]] = None,
+            text_format: Optional[str] = "html",
+            return_json: Optional[bool] = False,
     ):
         """
         Retrieve the comment thread info by given id.
@@ -1028,20 +1028,20 @@ class Api(object):
             return CommentThreadListResponse.from_dict(data)
 
     def get_comment_threads(
-        self,
-        *,
-        all_to_channel_id: Optional[str] = None,
-        channel_id: Optional[str] = None,
-        video_id: Optional[str] = None,
-        parts: Optional[Union[str, list, tuple, set]] = None,
-        moderation_status: Optional[str] = None,
-        order: Optional[str] = None,
-        search_terms: Optional[str] = None,
-        text_format: Optional[str] = "html",
-        count: Optional[int] = 20,
-        limit: Optional[int] = 20,
-        page_token: Optional[str] = None,
-        return_json: Optional[bool] = False,
+            self,
+            *,
+            all_to_channel_id: Optional[str] = None,
+            channel_id: Optional[str] = None,
+            video_id: Optional[str] = None,
+            parts: Optional[Union[str, list, tuple, set]] = None,
+            moderation_status: Optional[str] = None,
+            order: Optional[str] = None,
+            search_terms: Optional[str] = None,
+            text_format: Optional[str] = "html",
+            count: Optional[int] = 20,
+            limit: Optional[int] = 20,
+            page_token: Optional[str] = None,
+            return_json: Optional[bool] = False,
     ):
         """
         Retrieve the comment threads info by given filter condition.
@@ -1143,12 +1143,12 @@ class Api(object):
             return CommentThreadListResponse.from_dict(res_data)
 
     def get_comment_by_id(
-        self,
-        *,
-        comment_id: Union[str, list, tuple, set],
-        parts: Optional[Union[str, list, tuple, set]] = None,
-        text_format: Optional[str] = "html",
-        return_json: Optional[bool] = False,
+            self,
+            *,
+            comment_id: Union[str, list, tuple, set],
+            parts: Optional[Union[str, list, tuple, set]] = None,
+            text_format: Optional[str] = "html",
+            return_json: Optional[bool] = False,
     ):
         """
         Retrieve comment info by given comment id str.
@@ -1188,15 +1188,15 @@ class Api(object):
             return CommentListResponse.from_dict(data)
 
     def get_comments(
-        self,
-        *,
-        parent_id: str,
-        parts: Optional[Union[str, list, tuple, set]] = None,
-        text_format: Optional[str] = "html",
-        count: Optional[int] = 20,
-        limit: Optional[int] = 20,
-        page_token: Optional[str] = None,
-        return_json: Optional[bool] = False,
+            self,
+            *,
+            parent_id: str,
+            parts: Optional[Union[str, list, tuple, set]] = None,
+            text_format: Optional[str] = "html",
+            count: Optional[int] = 20,
+            limit: Optional[int] = 20,
+            page_token: Optional[str] = None,
+            return_json: Optional[bool] = False,
     ):
         """
         Retrieve comments info by given parent id.
@@ -1255,14 +1255,14 @@ class Api(object):
             return CommentListResponse.from_dict(res_data)
 
     def _get_categories(
-        self,
-        *,
-        resource: str,
-        category_id: Optional[Union[str, list, tuple, set]] = None,
-        region_code: Optional[str] = None,
-        parts: Optional[Union[str, list, tuple, set]] = None,
-        hl: Optional[str] = "en_US",
-        return_json: Optional[bool] = False,
+            self,
+            *,
+            resource: str,
+            category_id: Optional[Union[str, list, tuple, set]] = None,
+            region_code: Optional[str] = None,
+            parts: Optional[Union[str, list, tuple, set]] = None,
+            hl: Optional[str] = "en_US",
+            return_json: Optional[bool] = False,
     ):
         """
         This is the base method for get guide or video categories.
@@ -1313,13 +1313,13 @@ class Api(object):
             return data_model.from_dict(data)
 
     def get_guide_categories(
-        self,
-        *,
-        category_id: Optional[Union[str, list, tuple, set]] = None,
-        region_code: Optional[str] = None,
-        parts: Optional[Union[str, list, tuple, set]] = None,
-        hl: Optional[str] = "en_US",
-        return_json: Optional[bool] = False,
+            self,
+            *,
+            category_id: Optional[Union[str, list, tuple, set]] = None,
+            region_code: Optional[str] = None,
+            parts: Optional[Union[str, list, tuple, set]] = None,
+            hl: Optional[str] = "en_US",
+            return_json: Optional[bool] = False,
     ):
         """
         Retrieve guide categories by category id or region code.
@@ -1357,13 +1357,13 @@ class Api(object):
         )
 
     def get_video_categories(
-        self,
-        *,
-        category_id: Optional[Union[str, list, tuple, set]] = None,
-        region_code: Optional[str] = None,
-        parts: Optional[Union[str, list, tuple, set]] = None,
-        hl: Optional[str] = "en_US",
-        return_json: Optional[bool] = False,
+            self,
+            *,
+            category_id: Optional[Union[str, list, tuple, set]] = None,
+            region_code: Optional[str] = None,
+            parts: Optional[Union[str, list, tuple, set]] = None,
+            hl: Optional[str] = "en_US",
+            return_json: Optional[bool] = False,
     ):
         """
         Retrieve video categories by category id or region code.
@@ -1400,11 +1400,11 @@ class Api(object):
         )
 
     def get_subscription_by_id(
-        self,
-        *,
-        subscription_id: Union[str, list, tuple, set],
-        parts: Optional[Union[str, list, tuple, set]] = None,
-        return_json: Optional[bool] = False,
+            self,
+            *,
+            subscription_id: Union[str, list, tuple, set],
+            parts: Optional[Union[str, list, tuple, set]] = None,
+            return_json: Optional[bool] = False,
     ):
         """
         Retrieve subscriptions by given subscription id(s).
@@ -1441,16 +1441,16 @@ class Api(object):
             return SubscriptionListResponse.from_dict(data)
 
     def get_subscription_by_channel(
-        self,
-        *,
-        channel_id: str,
-        parts: Optional[Union[str, list, tuple, set]] = None,
-        for_channel_id: Optional[Union[str, list, tuple, set]] = None,
-        order: Optional[str] = "relevance",
-        count: Optional[int] = 20,
-        limit: Optional[int] = 20,
-        page_token: Optional[str] = None,
-        return_json: Optional[bool] = False,
+            self,
+            *,
+            channel_id: str,
+            parts: Optional[Union[str, list, tuple, set]] = None,
+            for_channel_id: Optional[Union[str, list, tuple, set]] = None,
+            order: Optional[str] = "relevance",
+            count: Optional[int] = 20,
+            limit: Optional[int] = 20,
+            page_token: Optional[str] = None,
+            return_json: Optional[bool] = False,
     ):
         """
         Retrieve the specified channel's subscriptions.
@@ -1526,18 +1526,18 @@ class Api(object):
             return SubscriptionListResponse.from_dict(res_data)
 
     def get_subscription_by_me(
-        self,
-        *,
-        mine: Optional[bool] = None,
-        recent_subscriber: Optional[bool] = None,
-        subscriber: Optional[bool] = None,
-        parts: Optional[Union[str, list, tuple, set]] = None,
-        for_channel_id: Optional[Union[str, list, tuple, set]] = None,
-        order: Optional[str] = "relevance",
-        count: Optional[int] = 20,
-        limit: Optional[int] = 20,
-        page_token: Optional[str] = None,
-        return_json: Optional[bool] = False,
+            self,
+            *,
+            mine: Optional[bool] = None,
+            recent_subscriber: Optional[bool] = None,
+            subscriber: Optional[bool] = None,
+            parts: Optional[Union[str, list, tuple, set]] = None,
+            for_channel_id: Optional[Union[str, list, tuple, set]] = None,
+            order: Optional[str] = "relevance",
+            count: Optional[int] = 20,
+            limit: Optional[int] = 20,
+            page_token: Optional[str] = None,
+            return_json: Optional[bool] = False,
     ):
         """
         Retrieve your subscriptions.
@@ -1613,7 +1613,7 @@ class Api(object):
             raise PyYouTubeException(
                 ErrorMessage(
                     status_code=ErrorCode.MISSING_PARAMS,
-                    message=f"Must specify at least one of ming,recent_subscriber,subscriber.",
+                    message=f"Must specify at least one of mine,recent_subscriber,subscriber.",
                 )
             )
 
@@ -1634,17 +1634,17 @@ class Api(object):
             return SubscriptionListResponse.from_dict(res_data)
 
     def get_activities_by_channel(
-        self,
-        *,
-        channel_id: str,
-        parts: Optional[Union[str, list, tuple, set]] = None,
-        before: Optional[str] = None,
-        after: Optional[str] = None,
-        region_code: Optional[str] = None,
-        count: Optional[int] = 20,
-        limit: int = 20,
-        page_token: Optional[str] = None,
-        return_json: bool = False,
+            self,
+            *,
+            channel_id: str,
+            parts: Optional[Union[str, list, tuple, set]] = None,
+            before: Optional[str] = None,
+            after: Optional[str] = None,
+            region_code: Optional[str] = None,
+            count: Optional[int] = 20,
+            limit: int = 20,
+            page_token: Optional[str] = None,
+            return_json: bool = False,
     ):
         """
         Retrieve given channel's activities data.
@@ -1692,6 +1692,88 @@ class Api(object):
 
         args = {
             "channelId": channel_id,
+            "part": enf_parts(resource="activities", value=parts),
+            "maxResults": limit,
+        }
+
+        if before:
+            args["publishedBefore"] = before
+        if after:
+            args["publishedAfter"] = after
+        if region_code:
+            args["regionCode"] = region_code
+
+        if page_token is not None:
+            args["pageToken"] = page_token
+
+        res_data = self.paged_by_page_token(
+            resource="activities", args=args, count=count
+        )
+
+        if return_json:
+            return res_data
+        else:
+            return ActivityListResponse.from_dict(res_data)
+
+    def get_activities_by_me(
+            self,
+            *,
+            parts: Optional[Union[str, list, tuple, set]] = None,
+            before: Optional[str] = None,
+            after: Optional[str] = None,
+            region_code: Optional[str] = None,
+            count: Optional[int] = 20,
+            limit: int = 20,
+            page_token: Optional[str] = None,
+            return_json: bool = False,
+    ):
+        """
+        Retrieve authorized user's activities.
+
+        Note:
+            This need you do authorize first.
+
+        Args:
+            parts ((str,list,tuple,set) optional):
+                The resource parts for activities you want to retrieve.
+                If not provide, use default public parts.
+                You can pass this with single part str, comma-separated parts str or a list,tuple,set of parts.
+            before (str, optional):
+                Set this will only return the activities occurred before this timestamp.
+                This need specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
+            after (str, optional):
+                Set this will only return the activities occurred after this timestamp.
+                This need specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
+            region_code (str, optional):
+                Set this will only return the activities for the specified country.
+                This need specified with an ISO 3166-1 alpha-2 country code.
+            count (int, optional):
+                The count will retrieve activities data.
+                Default is 20.
+                If provide this with None, will retrieve all activities.
+            limit (int, optional):
+                The maximum number of items each request retrieve.
+                For activities, this should not be more than 50.
+                Default is 20.
+            page_token (str, optional):
+                The token of the page of activities result to retrieve.
+                You can use this retrieve point result page directly.
+                And you should know about the page result set for YouTube.
+            return_json(bool, optional):
+                The return data type. If you set True JSON data will be returned.
+                False will return a pyyoutube.ActivityListResponse instance.
+
+        Returns:
+            ActivityListResponse or original data.
+        """
+
+        if count is None:
+            limit = 50  # for activities the max limit for per request is 50
+        else:
+            limit = min(count, limit)
+
+        args = {
+            "mine": True,
             "part": enf_parts(resource="activities", value=parts),
             "maxResults": limit,
         }

@@ -1,0 +1,51 @@
+{
+  "kind": "youtube#activityListResponse",
+  "etag": "\"p4VTdlkQv3HQeTEaXgvLePAydmU/6yncT242auTddLxSe4dfDTC-4xE\"",
+  "prevPageToken": "CAEQAQ",
+  "pageInfo": {
+    "totalResults": 2,
+    "resultsPerPage": 1
+  },
+  "items": [
+    {
+      "kind": "youtube#activity",
+      "etag": "\"p4VTdlkQv3HQeTEaXgvLePAydmU/ZshL2QThX_bnTHhpJy5emGCWHcE\"",
+      "id": "MTUxNTc0OTk1OTAyNDkwNjA3MjU5NzQ1Ng==",
+      "snippet": {
+        "publishedAt": "2019-11-29T02:51:42.000Z",
+        "channelId": "UCa-vrCLQHviTOVnEKDOdetQ",
+        "title": "海上日出",
+        "description": "美美美",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/Xfrcfiho_xM/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/Xfrcfiho_xM/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/Xfrcfiho_xM/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          },
+          "standard": {
+            "url": "https://i.ytimg.com/vi/Xfrcfiho_xM/sddefault.jpg",
+            "width": 640,
+            "height": 480
+          },
+          "maxres": {
+            "url": "https://i.ytimg.com/vi/Xfrcfiho_xM/maxresdefault.jpg",
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "channelTitle": "ikaros-life",
+        "type": "upload"
+      }
+    }
+  ]
+}
