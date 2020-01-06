@@ -405,6 +405,32 @@ Get public channel's subscriptions::
      Subscription(kind='youtube#subscription', id='FMP3Mleijt_ZKvy5M-HhRlsqI4wXY7VmP5g8lvmRhVU', snippet=SubscriptionSnippet(title='TED Residency', description='The TED Residency program is an incubator for breakthrough ideas. It is free and open to all via a semi-annual competitive application. Those chosen as TED Residents spend four months at TED headquarters in New York City, working on their idea. Selection criteria include the strength of their idea, their character, and their ability to bring a fresh perspective and positive contribution to the diverse TED community.'))]
 
 
+----------
+ACTIVITIES
+----------
+
+You can get activities by channel id. And can get your activities after you have done the authorize.
+
+Get public channel activities::
+
+    In [3]: r = api.get_activities_by_channel(channel_id="UC_x5XG1OV2P6uZZ5FSM9Ttw", count=2)
+    In [4]: r
+    Out[4]: ActivityListResponse(kind='youtube#activityListResponse')
+    In [5]: r.items
+    Out[5]:
+    [Activity(kind='youtube#activity', id='MTUxNTc3NzM2MDAyODIxOTQxNDM0NjAwMA==', snippet=ActivitySnippet(title='2019 Year in Review - The Developer Show', description='Here to bring you the latest developer news from across Google this year is Developer Advocate Timothy Jordan. In this last week of the year, we’re taking a look back at some of the coolest and biggest announcements we covered in 2019! \n\nFollow Google Developers on Instagram → https://goo.gle/googledevs\n\nWatch more #DevShow → https://goo.gle/GDevShow\nSubscribe to Google Developers → https://goo.gle/developers')),
+     Activity(kind='youtube#activity', id='MTUxNTc3MTI4NzIzODIxOTQxNDM0NzI4MA==', snippet=ActivitySnippet(title='GDE Promo - Lara Martin', description='Meet Lara Martin, a Flutter/Dart Google Developers Expert and get inspired by her journey. Watch now for a preview of her story! #GDESpotlights #IncludedWithGoogle\n\nLearn about the GDE program → https://goo.gle/2qWOvAy\n\nGoogle Developers Experts → https://goo.gle/GDE\nSubscribe to Google Developers → https://goo.gle/developers'))]
+
+
+Get your activities::
+
+    In [10]: r = api_with_token.get_activities_by_me()
+    In [11]: r.items
+    Out[11]:
+    [Activity(kind='youtube#activity', id='MTUxNTc0OTk2MjI3NDE0MjYwMDY1NjAwODA=', snippet=ActivitySnippet(title='华山日出', description='冷冷的山头')),
+     Activity(kind='youtube#activity', id='MTUxNTc0OTk1OTAyNDE0MjYwMDY1NTc2NDg=', snippet=ActivitySnippet(title='海上日出', description='美美美'))]
+
+
 ====
 TODO
 ====
@@ -421,6 +447,7 @@ Now this has follows api.
 - Video Categories Info
 - Guide Categories Info
 - Subscriptions Info
+- Activities Info
 
 Doing
 

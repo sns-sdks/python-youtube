@@ -22,6 +22,7 @@ class ApiActivitiesTest(unittest.TestCase):
 
     def setUp(self) -> None:
         self.api = pyyoutube.Api(api_key="api key")
+        self.api_with_access_token = pyyoutube.Api(access_token="token")
 
     def testGetChannelActivities(self) -> None:
         # test parts
@@ -59,14 +60,14 @@ class ApiActivitiesTest(unittest.TestCase):
     def testGetMineActivities(self) -> None:
         # test parts
         with self.assertRaises(pyyoutube.PyYouTubeException):
-            self.api.get_activities_by_me(parts="id,not_part")
+            self.api_with_access_token.get_activities_by_me(parts="id,not_part")
 
         # test get all activities
         with responses.RequestsMock() as m:
             m.add("GET", self.BASE_URL, json=self.ACTIVITIES_MINE_P1)
             m.add("GET", self.BASE_URL, json=self.ACTIVITIES_MINE_P2)
 
-            res = self.api.get_activities_by_me(
+            res = self.api_with_access_token.get_activities_by_me(
                 parts="id,snippet",
                 before="2019-11-1T00:00:00.000Z",
                 after="2019-12-1T00:00:00.000Z",
@@ -79,7 +80,7 @@ class ApiActivitiesTest(unittest.TestCase):
         with responses.RequestsMock() as m:
             m.add("GET", self.BASE_URL, json=self.ACTIVITIES_MINE_P2)
 
-            res = self.api.get_activities_by_me(
+            res = self.api_with_access_token.get_activities_by_me(
                 parts="id,snippet",
                 before="2019-11-1T00:00:00.000Z",
                 after="2019-12-1T00:00:00.000Z",
