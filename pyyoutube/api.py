@@ -60,6 +60,8 @@ class Api(object):
             >>> api.get_subscription_by_id()
             >>> api.get_subscription_by_channel()
             >>> api.get_subscription_by_me()
+            >>> api.get_activities_by_channel()
+            >>> api.get_activities_by_me()
     """
 
     BASE_URL = "https://www.googleapis.com/youtube/v3/"
