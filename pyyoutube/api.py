@@ -13,6 +13,7 @@ from pyyoutube.models import (
     AccessToken,
     UserProfile,
     ActivityListResponse,
+    CaptionListResponse,
     ChannelListResponse,
     PlaylistListResponse,
     PlaylistItemListResponse,
@@ -60,6 +61,9 @@ class Api(object):
             >>> api.get_subscription_by_id()
             >>> api.get_subscription_by_channel()
             >>> api.get_subscription_by_me()
+            >>> api.get_activities_by_channel()
+            >>> api.get_activities_by_me()
+            >>> api.get_captions_by_video()
     """
 
     BASE_URL = "https://www.googleapis.com/youtube/v3/"
@@ -1796,3 +1800,50 @@ class Api(object):
             return res_data
         else:
             return ActivityListResponse.from_dict(res_data)
+
+    def get_captions_by_video(
+        self,
+        *,
+        video_id: str,
+        parts: Optional[Union[str, list, tuple, set]] = None,
+        caption_id: Optional[Union[str, list, tuple, set]] = None,
+        return_json: bool = False,
+    ):
+        """
+        Retrieve authorized user's video's caption data.
+
+        Note:
+            This need you do authorize first.
+
+        Args:
+            video_id (str):
+                The id for video which you want to get caption.
+            parts ((str,list,tuple,set) optional):
+                The resource parts for caption you want to retrieve.
+                If not provide, use default public parts.
+                You can pass this with single part str, comma-separated parts str or a list,tuple,set of parts.
+            caption_id ((str,list,tuple,set)):
+                The id for caption that you want to get data.
+                You can pass this with single id str,comma-separated id str, or list, tuple, set of id str.
+            return_json(bool, optional):
+                The return data type. If you set True JSON data will be returned.
+                False will return a pyyoutube.CaptionListResponse instance.
+        Returns:
+            CaptionListResponse or original data.
+        """
+
+        args = {
+            "videoId": video_id,
+            "part": enf_parts("captions", parts),
+        }
+
+        if caption_id is not None:
+            args["id"] = enf_comma_separated("caption_id", caption_id)
+
+        resp = self._request(resource="captions", method="GET", args=args)
+        data = self._parse_response(resp)
+
+        if return_json:
+            return data
+        else:
+            return CaptionListResponse.from_dict(data)

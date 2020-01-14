@@ -430,6 +430,25 @@ Get your activities::
     [Activity(kind='youtube#activity', id='MTUxNTc0OTk2MjI3NDE0MjYwMDY1NjAwODA=', snippet=ActivitySnippet(title='华山日出', description='冷冷的山头')),
      Activity(kind='youtube#activity', id='MTUxNTc0OTk1OTAyNDE0MjYwMDY1NTc2NDg=', snippet=ActivitySnippet(title='海上日出', description='美美美'))]
 
+Get your video captions::
+
+    In [12]: r = api.get_captions_by_video(video_id="oHR3wURdJ94", parts=["id", "snippet"])
+    In [13]: r
+    Out[13]: CaptionListResponse(kind='youtube#captionListResponse')
+    In [14]: r.items
+    Out[14]:
+    [Caption(kind='youtube#caption', id='SwPOvp0r7kd9ttt_XhcHdZthMwXG7Z0I', snippet=CaptionSnippet(videoId='oHR3wURdJ94', lastUpdated='2020-01-14T09:40:49.981Z')),
+     Caption(kind='youtube#caption', id='fPMuDm722CIRcUAT3NTPQHQZJZJxt39kU7JvrHk8Kzs=', snippet=CaptionSnippet(videoId='oHR3wURdJ94', lastUpdated='2020-01-14T09:39:46.991Z'))]
+
+
+If you already have caption id(s), you can get video caption by id(s)::
+
+    In [15]: r = api.get_captions_by_video(video_id="oHR3wURdJ94", parts=["id", "snippet"], caption_id="SwPOvp0r7kd9ttt_XhcHdZthMwXG7Z0I")
+    In [16]: r
+    Out[16]: CaptionListResponse(kind='youtube#captionListResponse')
+    In [17]: r.items
+    Out[17]: [Caption(kind='youtube#caption', id='SwPOvp0r7kd9ttt_XhcHdZthMwXG7Z0I', snippet=CaptionSnippet(videoId='oHR3wURdJ94', lastUpdated='2020-01-14T09:40:49.981Z'))]
+
 
 ====
 TODO
@@ -448,6 +467,7 @@ Now this has follows api.
 - Guide Categories Info
 - Subscriptions Info
 - Activities Info
+- Captions Info
 
 Doing
 

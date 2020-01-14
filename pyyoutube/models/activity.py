@@ -189,7 +189,7 @@ class Activity(BaseResource):
 @dataclass
 class ActivityListResponse(BaseApiResponse):
     """
-    A class representing the activity resource info.
+    A class representing the activity response info.
 
     Refer: https://developers.google.com/youtube/v3/docs/activities/list#response_1
     """
