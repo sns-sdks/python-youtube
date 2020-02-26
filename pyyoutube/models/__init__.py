@@ -22,6 +22,13 @@ from .channel import (
     ChannelStatus,
     ChannelTopicDetails,
 )
+from .channel_section import (
+    ChannelSection,
+    ChannelSectionContentDetails,
+    ChannelSectionLocalizationsBase,
+    ChannelSectionSnippet,
+    ChannelSectionTargeting,
+)
 from .comment import (
     Comment,
     CommentListResponse,
@@ -79,6 +86,11 @@ __all__ = [
     "ChannelStatistics",
     "ChannelStatus",
     "ChannelTopicDetails",
+    "ChannelSection",
+    "ChannelSectionContentDetails",
+    "ChannelSectionLocalizationsBase",
+    "ChannelSectionSnippet",
+    "ChannelSectionTargeting",
     "Comment",
     "CommentListResponse",
     "CommentSnippet",

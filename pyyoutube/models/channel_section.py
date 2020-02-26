@@ -16,6 +16,7 @@ class ChannelSectionSnippet(BaseModel):
 
     Refer: https://developers.google.com/youtube/v3/docs/channelSections#snippet
     """
+
     type: Optional[str] = field(default=None)
     style: Optional[str] = field(default=None, repr=False)
     channelId: Optional[str] = field(default=None, repr=False)
@@ -32,6 +33,7 @@ class ChannelSectionContentDetails(BaseModel):
 
     Refer: https://developers.google.com/youtube/v3/docs/channelSections#contentDetails
     """
+
     playlists: Optional[List[str]] = field(default=None, repr=False)
     channels: Optional[List[str]] = field(default=None)
 
@@ -52,6 +54,7 @@ class ChannelSectionTargeting(BaseModel):
 
     Refer: https://developers.google.com/youtube/v3/docs/channelSections#contentDetails
     """
+
     languages: Optional[List[str]] = field(default=None)
     regions: Optional[List[str]] = field(default=None, repr=False)
     countries: Optional[List[str]] = field(default=None, repr=False)
@@ -66,7 +69,9 @@ class ChannelSection(BaseResource):
     """
 
     snippet: Optional[ChannelSectionSnippet] = field(default=None, repr=False)
-    contentDetails: Optional[ChannelSectionContentDetails] = field(default=None, repr=False)
+    contentDetails: Optional[ChannelSectionContentDetails] = field(
+        default=None, repr=False
+    )
     localizations: Optional[Dict] = field(default=None, repr=False)
     targeting: Optional[ChannelSectionTargeting] = field(default=None, repr=False)
 
@@ -81,3 +86,14 @@ class ChannelSection(BaseResource):
                 bases=BaseModel,
             )
             return localizations.from_dict(self.localizations)
+
+
+@dataclass
+class ChannelSectionResponse(BaseApiResponse):
+    """
+    A class representing the channel section's retrieve response info.
+
+    Refer: https://developers.google.com/youtube/v3/docs/channelSections/list?#properties_1
+    """
+
+    items: Optional[List[ChannelSection]] = field(default=None, repr=False)
