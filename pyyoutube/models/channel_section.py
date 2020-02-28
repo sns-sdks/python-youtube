@@ -78,9 +78,13 @@ class ChannelSection(BaseResource):
             localizations_cls = make_dataclass(
                 "ChannelSectionLocalizations",
                 [
-                    (key.replace("-", "_"), Optional[Localized], field(
-                        default=None, repr=False, metadata=config(field_name=key)
-                    ))
+                    (
+                        key.replace("-", "_"),
+                        Optional[Localized],
+                        field(
+                            default=None, repr=False, metadata=config(field_name=key)
+                        ),
+                    )
                     for key in self.localizations.keys()
                 ],
                 bases=(BaseModel,),
