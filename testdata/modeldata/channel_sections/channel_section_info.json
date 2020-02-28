@@ -33,10 +33,10 @@
     ]
   },
   "localizations": {
-    "zh-hans": {
+    "zh-Hans": {
       "title": "中文"
     },
-    "en-us": {
+    "en-Us": {
       "title": "english"
     }
   }

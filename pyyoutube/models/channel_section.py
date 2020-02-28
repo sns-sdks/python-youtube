@@ -3,7 +3,8 @@
 """
 
 from dataclasses import dataclass, field, make_dataclass
-from typing import Dict, List, Optional
+from dataclasses_json import config
+from typing import List, Optional, Any
 
 from .base import BaseModel
 from .common import Localized, BaseResource, BaseApiResponse
@@ -39,15 +40,6 @@ class ChannelSectionContentDetails(BaseModel):
 
 
 @dataclass
-class ChannelSectionLocalizationsBase(BaseModel):
-    """
-    A class representing the channel section localizations info.
-
-    Refer: https://developers.google.com/youtube/v3/docs/channelSections#contentDetails
-    """
-
-
-@dataclass
 class ChannelSectionTargeting(BaseModel):
     """
     A class representing the channel section targeting info.
@@ -72,20 +64,28 @@ class ChannelSection(BaseResource):
     contentDetails: Optional[ChannelSectionContentDetails] = field(
         default=None, repr=False
     )
-    localizations: Optional[Dict] = field(default=None, repr=False)
+    localizations: Any = field(default=None, repr=False)
     targeting: Optional[ChannelSectionTargeting] = field(default=None, repr=False)
 
     def __post_init__(self):
+        """
+        Notice:
+            The localizations has been changed here.
+            origin key may by xx-xx renamed with xx_xx.
+        :return:
+        """
         if self.localizations is not None:
-            localizations = make_dataclass(
+            localizations_cls = make_dataclass(
                 "ChannelSectionLocalizations",
                 [
-                    (key, Optional[Localized], field(default=None, repr=False))
+                    (key.replace("-", "_"), Optional[Localized], field(
+                        default=None, repr=False, metadata=config(field_name=key)
+                    ))
                     for key in self.localizations.keys()
                 ],
-                bases=BaseModel,
+                bases=(BaseModel,),
             )
-            return localizations.from_dict(self.localizations)
+            self.localizations = localizations_cls.from_dict(self.localizations)
 
 
 @dataclass

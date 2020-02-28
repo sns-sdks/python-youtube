@@ -12,7 +12,10 @@ class ChannelSectionModelTest(unittest.TestCase):
     with open(BASE_PATH + "channel_section_response.json", "rb") as f:
         CHANNEL_SECTION_RESPONSE = json.loads(f.read().decode("utf-8"))
 
-    # def testChannelSection(self) -> None:
-    #     m = models.ChannelSection.from_dict(self.CHANNEL_SECTION_INFO)
-    #
-    #     self.assertEqual(m.id, "UC_x5XG1OV2P6uZZ5FSM9Ttw.e-Fk7vMPqLE")
+    def testChannelSection(self) -> None:
+        m = models.ChannelSection.from_dict(self.CHANNEL_SECTION_INFO)
+
+        self.assertEqual(m.id, "UC_x5XG1OV2P6uZZ5FSM9Ttw.e-Fk7vMPqLE")
+        self.assertEqual(m.snippet.type, "multipleChannels")
+        self.assertEqual(len(m.contentDetails.channels), 16)
+        self.assertEqual(m.localizations.zh_Hans.title, "中文")

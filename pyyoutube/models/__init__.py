@@ -25,7 +25,6 @@ from .channel import (
 from .channel_section import (
     ChannelSection,
     ChannelSectionContentDetails,
-    ChannelSectionLocalizationsBase,
     ChannelSectionSnippet,
     ChannelSectionTargeting,
 )
@@ -88,7 +87,6 @@ __all__ = [
     "ChannelTopicDetails",
     "ChannelSection",
     "ChannelSectionContentDetails",
-    "ChannelSectionLocalizationsBase",
     "ChannelSectionSnippet",
     "ChannelSectionTargeting",
     "Comment",
