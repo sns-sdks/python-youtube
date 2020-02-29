@@ -15,6 +15,7 @@ from pyyoutube.models import (
     ActivityListResponse,
     CaptionListResponse,
     ChannelListResponse,
+    ChannelSectionResponse,
     PlaylistListResponse,
     PlaylistItemListResponse,
     VideoListResponse,
@@ -1847,3 +1848,96 @@ class Api(object):
             return data
         else:
             return CaptionListResponse.from_dict(data)
+
+    def get_channel_sections_by_id(
+        self,
+        *,
+        section_id: Union[str, list, tuple, set],
+        parts: Optional[Union[str, list, tuple, set]] = None,
+        hl: Optional[str] = "en_US",
+        return_json: Optional[bool] = False,
+    ) -> Union[ChannelSectionResponse, dict]:
+        """
+        Retrieve channel section info by his ids(s).
+
+        Args:
+            section_id:
+                The id(s) for channel sections.
+                You can pass this with single id str, comma-separated id str, or a list,tuple,set of ids.
+            parts:
+                The resource parts for channel section you want to retrieve.
+                If not provide, use default public parts.
+                You can pass this with single part str, comma-separated parts str or a list,tuple,set of parts.
+            hl:
+                If provide this. Will return playlist's language localized info.
+                This value need https://developers.google.com/youtube/v3/docs/i18nLanguages.
+            return_json:
+                The return data type. If you set True JSON data will be returned.
+                False will return a pyyoutube.ChannelSectionResponse instance.
+        Returns:
+            ChannelSectionResponse or original data.
+        """
+
+        args = {
+            "id": enf_comma_separated(field="section_id", value=section_id),
+            "hl": hl,
+            "part": enf_parts(resource="channelSections", value=parts),
+        }
+
+        resp = self._request(resource="channelSections", args=args)
+        data = self._parse_response(resp)
+
+        if return_json:
+            return data
+        else:
+            return ChannelSectionResponse.from_dict(data)
+
+    def get_channel_sections_by_channel(
+        self,
+        *,
+        channel_id: Optional[str] = None,
+        mine: bool = False,
+        parts: Optional[Union[str, list, tuple, set]] = None,
+        hl: Optional[str] = "en_US",
+        return_json: Optional[bool] = False,
+    ) -> Union[ChannelSectionResponse, dict]:
+        """
+        Retrieve channel sections by channel id.
+
+        Args:
+            channel_id:
+                The id for channel which you want to get channel sections.
+            mine:
+                If you want to get your channel's sections, set this with True.
+                And this need your authorization.
+            parts:
+                The resource parts for channel section you want to retrieve.
+                If not provide, use default public parts.
+                You can pass this with single part str, comma-separated parts str or a list,tuple,set of parts.
+            hl:
+                If provide this. Will return playlist's language localized info.
+                This value need https://developers.google.com/youtube/v3/docs/i18nLanguages.
+            return_json:
+                The return data type. If you set True JSON data will be returned.
+                False will return a pyyoutube.ChannelSectionResponse instance.
+        Returns:
+            ChannelSectionResponse or original data.
+        """
+
+        args = {
+            "hl": hl,
+            "part": enf_parts(resource="channelSections", value=parts),
+        }
+
+        if mine:
+            args["mine"] = mine
+        else:
+            args["channelId"] = channel_id
+
+        resp = self._request(resource="channelSections", args=args)
+        data = self._parse_response(resp)
+
+        if return_json:
+            return data
+        else:
+            return ChannelSectionResponse.from_dict(data)

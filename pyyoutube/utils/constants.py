@@ -13,6 +13,14 @@ CHANNEL_RESOURCE_PROPERTIES = {
     "topicDetails",
 }
 
+CHANNEL_SECTIONS_PROPERTIES = {
+    "id",
+    "contentDetails",
+    "localizations",
+    "snippet",
+    "targeting",
+}
+
 PLAYLIST_RESOURCE_PROPERTIES = {
     "id",
     "contentDetails",
@@ -62,6 +70,7 @@ CAPTIONS_RESOURCE_PROPERTIES = {
 
 RESOURCE_PARTS_MAPPING = {
     "channels": CHANNEL_RESOURCE_PROPERTIES,
+    "channelSections": CHANNEL_SECTIONS_PROPERTIES,
     "playlists": PLAYLIST_RESOURCE_PROPERTIES,
     "playlistItems": PLAYLIST_ITEM_RESOURCE_PROPERTIES,
     "videos": VIDEO_RESOURCE_PROPERTIES,
