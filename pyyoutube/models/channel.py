@@ -26,7 +26,7 @@ class ChannelBrandingChannel(BaseModel):
     showRelatedChannels: Optional[bool] = field(default=None, repr=False)
     showBrowseView: Optional[bool] = field(default=None, repr=False)
     featuredChannelsTitle: Optional[str] = field(default=None, repr=False)
-    featuredChannelsUrls: List[str] = field(default=None, repr=False)
+    featuredChannelsUrls: Optional[List[str]] = field(default=None, repr=False)
     unsubscribedTrailer: Optional[str] = field(default=None, repr=False)
     profileColor: Optional[str] = field(default=None, repr=False)
     country: Optional[str] = field(default=None, repr=False)

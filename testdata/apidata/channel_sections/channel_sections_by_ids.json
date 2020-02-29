@@ -1,0 +1,33 @@
+{
+  "kind": "youtube#channelSectionListResponse",
+  "etag": "\"SJZWTG6xR0eGuCOh2bX6w3s4F94/Nvmls-WhS6tunMyp9v6ZIEFrgRI\"",
+  "items": [
+    {
+      "kind": "youtube#channelSection",
+      "etag": "\"SJZWTG6xR0eGuCOh2bX6w3s4F94/RSxEQQPXGQo3MTN75toyRTUTEmY\"",
+      "id": "UC_x5XG1OV2P6uZZ5FSM9Ttw.npYvuMz0_es",
+      "snippet": {
+        "type": "recentUploads",
+        "style": "horizontalRow",
+        "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+        "position": 9
+      }
+    },
+    {
+      "kind": "youtube#channelSection",
+      "etag": "\"SJZWTG6xR0eGuCOh2bX6w3s4F94/zaHbYWO-Q1zjW4IYjza-bTrqeIc\"",
+      "id": "UC_x5XG1OV2P6uZZ5FSM9Ttw.9_wU0qhEPR8",
+      "snippet": {
+        "type": "singlePlaylist",
+        "style": "horizontalRow",
+        "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+        "position": 8
+      },
+      "contentDetails": {
+        "playlists": [
+          "PLOU2XLYxmsIKKMtrYD-IfPdlVunyPl9GM"
+        ]
+      }
+    }
+  ]
+}

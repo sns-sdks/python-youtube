@@ -1,0 +1,43 @@
+{
+  "kind": "youtube#channelSection",
+  "etag": "\"Fznwjl6JEQdo1MGvHOGaz_YanRU/5bNXeieMoiNVa4NokOortBf50ZA\"",
+  "id": "UC_x5XG1OV2P6uZZ5FSM9Ttw.e-Fk7vMPqLE",
+  "snippet": {
+    "type": "multipleChannels",
+    "style": "horizontalRow",
+    "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+    "title": "A channel for every type of developer...",
+    "position": 0,
+    "localized": {
+      "title": "A channel for every type of developer..."
+    }
+  },
+  "contentDetails": {
+    "channels": [
+      "UCVHFbqXqoYvEWM1Ddxl0QDg",
+      "UCJS9pqu9BzkAMNTmzNMNhvg",
+      "UCBmwzQnSoj9b6HzNmFrg_yw",
+      "UCnUYZLuoy1rq1aVMwx4aTzw",
+      "UCWf2ZlNsCGDS89VBF_awNvA",
+      "UCP4bf6IHJJQehibu6ai__cg",
+      "UC0rqucBdTuFTjJiefW5t-IQ",
+      "UC8QMvQrV1bsK7WO37QpSxSg",
+      "UClKO7be7O9cUGL94PHnAeOA",
+      "UCwXdFgeE9KYzlDdR7TG9cMw",
+      "UCorTyjVGM-PV5CCKbosONow",
+      "UCXDc-ckqru8BgppXbCt0APw",
+      "UCXPBsjgKKG2HqsKBhWA4uQw",
+      "UCdIiCSqXuybzwGwJwrpHPqw",
+      "UCVhDYDVo3AqyMIKtMLSrcEg",
+      "UCK8sQmJBp8GCxrOtXWBpyEA"
+    ]
+  },
+  "localizations": {
+    "zh-Hans": {
+      "title": "中文"
+    },
+    "en-Us": {
+      "title": "english"
+    }
+  }
+}

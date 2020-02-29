@@ -449,6 +449,47 @@ If you already have caption id(s), you can get video caption by id(s)::
     In [17]: r.items
     Out[17]: [Caption(kind='youtube#caption', id='SwPOvp0r7kd9ttt_XhcHdZthMwXG7Z0I', snippet=CaptionSnippet(videoId='oHR3wURdJ94', lastUpdated='2020-01-14T09:40:49.981Z'))]
 
+----------------
+CHANNEL SECTIONS
+----------------
+
+You can get channel sections by self id or belonged channel id or you self channel.
+
+Get channel sections by channel id::
+
+    In[18]: r = api.get_channel_sections_by_channel(channel_id="UC_x5XG1OV2P6uZZ5FSM9Ttw")
+    In[19]: r
+    Out[19]: ChannelSectionResponse(kind='youtube#channelSectionListResponse')
+    In[20]: r.items
+    Out[20]:
+    [ChannelSection(kind='youtube#channelSection', id='UC_x5XG1OV2P6uZZ5FSM9Ttw.e-Fk7vMPqLE'),
+     ChannelSection(kind='youtube#channelSection', id='UC_x5XG1OV2P6uZZ5FSM9Ttw.B8DTd9ZXJqM'),
+     ChannelSection(kind='youtube#channelSection', id='UC_x5XG1OV2P6uZZ5FSM9Ttw.MfvRjkWLxgk'),
+     ChannelSection(kind='youtube#channelSection', id='UC_x5XG1OV2P6uZZ5FSM9Ttw.fEjJOXRoWwg'),
+     ChannelSection(kind='youtube#channelSection', id='UC_x5XG1OV2P6uZZ5FSM9Ttw.PvTmxDBxtLs'),
+     ChannelSection(kind='youtube#channelSection', id='UC_x5XG1OV2P6uZZ5FSM9Ttw.pmcIOsL7s98'),
+     ChannelSection(kind='youtube#channelSection', id='UC_x5XG1OV2P6uZZ5FSM9Ttw.c3r3vYf9uD0'),
+     ChannelSection(kind='youtube#channelSection', id='UC_x5XG1OV2P6uZZ5FSM9Ttw.ZJpkBl-mXfM'),
+     ChannelSection(kind='youtube#channelSection', id='UC_x5XG1OV2P6uZZ5FSM9Ttw.9_wU0qhEPR8'),
+     ChannelSection(kind='youtube#channelSection', id='UC_x5XG1OV2P6uZZ5FSM9Ttw.npYvuMz0_es')]
+
+Get authorize user's channel sections::
+
+    In[21]: r = api.get_channel_sections_by_channel(mine=True)
+    In[23]: r.items
+    Out[23]:
+    [ChannelSection(kind='youtube#channelSection', id='UCa-vrCLQHviTOVnEKDOdetQ.jNQXAC9IVRw'),
+     ChannelSection(kind='youtube#channelSection', id='UCa-vrCLQHviTOVnEKDOdetQ.LeAltgu_pbM'),
+     ChannelSection(kind='youtube#channelSection', id='UCa-vrCLQHviTOVnEKDOdetQ.nGzAI5pLbMY')]
+
+Get channel section detail info by his id::
+
+    In[24]: r1 = api.get_channel_section_by_id(section_id="UC_x5XG1OV2P6uZZ5FSM9Ttw.e-Fk7vMPqLE")
+    In[25]: r1
+    Out[25]: ChannelSectionResponse(kind='youtube#channelSectionListResponse')
+    In[26]: r1.items
+    Out[26]: [ChannelSection(kind='youtube#channelSection', id='UC_x5XG1OV2P6uZZ5FSM9Ttw.e-Fk7vMPqLE')]
+
 
 ====
 TODO
@@ -468,6 +509,7 @@ Now this has follows api.
 - Subscriptions Info
 - Activities Info
 - Captions Info
+- Channel Sections Info
 
 Doing
 
