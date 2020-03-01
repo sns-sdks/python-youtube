@@ -75,6 +75,11 @@ from .i18n import (
     I18nLanguageListResponse,
 )
 
+from .video_abuse_report_reason import (
+    VideoAbuseReportReason,
+    VideoAbuseReportReasonListResponse,
+)
+
 __all__ = [
     "AccessToken",
     "Activity",
@@ -135,4 +140,6 @@ __all__ = [
     "I18nLanguageListResponse",
     "I18nRegion",
     "I18nRegionListResponse",
+    "VideoAbuseReportReason",
+    "VideoAbuseReportReasonListResponse",
 ]
