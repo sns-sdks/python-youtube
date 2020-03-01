@@ -1,0 +1,9 @@
+{
+  "kind": "youtube#i18nLanguage",
+  "etag": "\"SJZWTG6xR0eGuCOh2bX6w3s4F94/GMrwiM1f-4KHxMka40cB3lysLgY\"",
+  "id": "af",
+  "snippet": {
+    "hl": "af",
+    "name": "Afrikaans"
+  }
+}

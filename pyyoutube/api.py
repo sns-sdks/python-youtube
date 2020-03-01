@@ -24,6 +24,8 @@ from pyyoutube.models import (
     GuideCategoryListResponse,
     VideoCategoryListResponse,
     SubscriptionListResponse,
+    I18nRegionListResponse,
+    I18nLanguageListResponse,
 )
 from pyyoutube.utils.params_checker import enf_comma_separated, enf_parts
 
@@ -1941,3 +1943,74 @@ class Api(object):
             return data
         else:
             return ChannelSectionResponse.from_dict(data)
+
+    def get_i18n_regions(
+        self,
+        *,
+        parts: Optional[Union[str, list, tuple, set]] = None,
+        hl: Optional[str] = "en_US",
+        return_json: Optional[bool] = False,
+    ) -> Union[I18nRegionListResponse, dict]:
+        """
+        Retrieve all available regions.
+
+        Args:
+            parts:
+                The resource parts for i18n region you want to retrieve.
+                If not provide, use default public parts.
+                You can pass this with single part str, comma-separated parts str or a list,tuple,set of parts.
+            hl:
+                If provide this. Will return i18n region's language localized info.
+                This value need https://developers.google.com/youtube/v3/docs/i18nLanguages.
+            return_json:
+                The return data type. If you set True JSON data will be returned.
+                False will return a pyyoutube.I18nRegionListResponse instance.
+        Returns:
+            I18nRegionListResponse or origin data
+        """
+
+        args = {"hl": hl, "part": enf_parts(resource="i18nRegions", value=parts)}
+
+        resp = self._request(resource="i18nRegions", args=args)
+        data = self._parse_response(resp)
+
+        if return_json:
+            return data
+        else:
+            return I18nRegionListResponse.from_dict(data)
+
+    def get_i18n_languages(
+        self,
+        *,
+        parts: Optional[Union[str, list, tuple, set]] = None,
+        hl: Optional[str] = "en_US",
+        return_json: Optional[bool] = False,
+    ) -> Union[I18nLanguageListResponse, dict]:
+        """
+        Returns a list of application languages that the YouTube website supports.
+
+        Args:
+            parts:
+                The resource parts for i18n language you want to retrieve.
+                If not provide, use default public parts.
+                You can pass this with single part str, comma-separated parts str or a list,tuple,set of parts.
+            hl:
+                If provide this. Will return i18n language's language localized info.
+                This value need https://developers.google.com/youtube/v3/docs/i18nLanguages.
+            return_json:
+                The return data type. If you set True JSON data will be returned.
+                False will return a pyyoutube.I18nLanguageListResponse instance.
+
+        Returns:
+            I18nLanguageListResponse or original data.
+        """
+
+        args = {"hl": hl, "part": enf_parts(resource="i18nLanguages", value=parts)}
+
+        resp = self._request(resource="i18nLanguages", args=args)
+        data = self._parse_response(resp)
+
+        if return_json:
+            return data
+        else:
+            return I18nLanguageListResponse.from_dict(data)

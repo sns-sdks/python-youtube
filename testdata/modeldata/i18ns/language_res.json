@@ -1,0 +1,24 @@
+{
+  "kind": "youtube#i18nLanguageListResponse",
+  "etag": "\"SJZWTG6xR0eGuCOh2bX6w3s4F94/qgFy24yvs-L_dNjr2d-Rd_Xcfw4\"",
+  "items": [
+    {
+      "kind": "youtube#i18nLanguage",
+      "etag": "\"SJZWTG6xR0eGuCOh2bX6w3s4F94/GMrwiM1f-4KHxMka40cB3lysLgY\"",
+      "id": "af",
+      "snippet": {
+        "hl": "af",
+        "name": "Afrikaans"
+      }
+    },
+    {
+      "kind": "youtube#i18nLanguage",
+      "etag": "\"SJZWTG6xR0eGuCOh2bX6w3s4F94/wOlCLE4kfCyCca9_ssuNDceE0yk\"",
+      "id": "az",
+      "snippet": {
+        "hl": "az",
+        "name": "Azerbaijani"
+      }
+    }
+  ]
+}
