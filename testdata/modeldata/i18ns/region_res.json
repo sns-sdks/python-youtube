@@ -1,0 +1,24 @@
+{
+  "kind": "youtube#i18nRegionListResponse",
+  "etag": "\"SJZWTG6xR0eGuCOh2bX6w3s4F94/q85_wZeDyKDzYtt-LhNaozyi_sk\"",
+  "items": [
+    {
+      "kind": "youtube#i18nRegion",
+      "etag": "\"SJZWTG6xR0eGuCOh2bX6w3s4F94/R_GB1d7CQi3LIpoHKbakFDisvoA\"",
+      "id": "DZ",
+      "snippet": {
+        "gl": "DZ",
+        "name": "Algeria"
+      }
+    },
+    {
+      "kind": "youtube#i18nRegion",
+      "etag": "\"SJZWTG6xR0eGuCOh2bX6w3s4F94/w6ci5tJWSaqFmjn3xsM2loOjo2o\"",
+      "id": "AR",
+      "snippet": {
+        "gl": "AR",
+        "name": "Argentina"
+      }
+    }
+  ]
+}

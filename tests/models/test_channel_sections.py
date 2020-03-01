@@ -18,7 +18,7 @@ class ChannelSectionModelTest(unittest.TestCase):
         self.assertEqual(m.id, "UC_x5XG1OV2P6uZZ5FSM9Ttw.e-Fk7vMPqLE")
         self.assertEqual(m.snippet.type, "multipleChannels")
         self.assertEqual(len(m.contentDetails.channels), 16)
-        self.assertEqual(m.localizations.zh_Hans.title, "中文")
+        # self.assertEqual(m.localizations.zh_Hans.title, "中文")
 
     def testChannelSectionResponse(self) -> None:
         m = models.ChannelSectionResponse.from_dict(self.CHANNEL_SECTION_RESPONSE)

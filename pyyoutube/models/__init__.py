@@ -68,6 +68,12 @@ from .video import (
     VideoStatus,
     VideoTopicDetails,
 )
+from .i18n import (
+    I18nRegion,
+    I18nRegionListResponse,
+    I18nLanguage,
+    I18nLanguageListResponse,
+)
 
 __all__ = [
     "AccessToken",
@@ -125,4 +131,8 @@ __all__ = [
     "VideoStatistics",
     "VideoStatus",
     "VideoTopicDetails",
+    "I18nLanguage",
+    "I18nLanguageListResponse",
+    "I18nRegion",
+    "I18nRegionListResponse",
 ]
