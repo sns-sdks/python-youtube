@@ -2090,6 +2090,7 @@ class Api(object):
         video_license: Optional[str] = None,
         video_syndicated: Optional[str] = None,
         video_type: Optional[str] = None,
+        page_token: Optional[str] = None,
         return_json: Optional[bool] = False,
     ):
         """
@@ -2152,24 +2153,13 @@ class Api(object):
         if video_type:
             args["videoType"] = video_type
 
-        res_data: Optional[dict] = None
-        current_items: List[dict] = []
-        next_page_token: Optional[str] = None
-        now_items_count: int = 0
-        while True:
-            prev_page_token, next_page_token, data = self.paged_by_page_token(
-                resource="search", args=args, page_token=next_page_token,
-            )
-            items = self._parse_data(data)
-            current_items.extend(items)
-            now_items_count += len(items)
-            if res_data is None:
-                res_data = data
-            if next_page_token is None:
-                break
-            if now_items_count >= count:
-                break
-        res_data["items"] = current_items[:count]
+        if page_token:
+            args["pageToken"] = page_token
+
+        res_data = self.paged_by_page_token(
+            resource="search", args=args, count=count
+        )
+
         if return_json:
             return res_data
         else:
@@ -2182,6 +2172,7 @@ class Api(object):
         parts: Optional[Union[str, list, tuple, set]] = None,
         count: Optional[int] = 25,
         limit: Optional[int] = 25,
+        page_token: Optional[str] = None,
         return_json: Optional[bool] = False,
     ):
         """
@@ -2211,6 +2202,10 @@ class Api(object):
                 The maximum number of items each request retrieve.
                 For comments, this should not be more than 100.
                 Default is 25.
+            page_token (str, optional):
+                The token of the page of search result to retrieve.
+                You can use this retrieve point result page directly.
+                And you should know about the the result set for YouTube.
             return_json(bool, optional):
                 The return data type. If you set True JSON data will be returned.
                 False will return a pyyoutube.CommentListResponse instance.
@@ -2220,5 +2215,5 @@ class Api(object):
         """
         parts = enf_parts(resource="search", value=parts)
         return self._search(
-            parts=parts, q=keywords, count=count, limit=limit, return_json=return_json
+            parts=parts, q=keywords, count=count, limit=limit, page_token=page_token, return_json=return_json
         )
