@@ -26,6 +26,7 @@ from pyyoutube.models import (
     SubscriptionListResponse,
     I18nRegionListResponse,
     I18nLanguageListResponse,
+    VideoAbuseReportReasonListResponse,
 )
 from pyyoutube.utils.params_checker import enf_comma_separated, enf_parts
 
@@ -2014,3 +2015,44 @@ class Api(object):
             return data
         else:
             return I18nLanguageListResponse.from_dict(data)
+
+    def get_video_abuse_report_reason(
+        self,
+        *,
+        parts: Optional[Union[str, list, tuple, set]] = None,
+        hl: Optional[str] = "en_US",
+        return_json: Optional[bool] = False,
+    ) -> Union[VideoAbuseReportReasonListResponse, dict]:
+        """
+        Retrieve a list of reasons that can be used to report abusive videos.
+
+        Notes:
+            This requires your authorization.
+
+        Args:
+            parts:
+                The resource parts for abuse reason you want to retrieve.
+                If not provide, use default public parts.
+                You can pass this with single part str, comma-separated parts str or a list,tuple,set of parts.
+            hl:
+                If provide this. Will return report reason's language localized info.
+                This value need https://developers.google.com/youtube/v3/docs/i18nLanguages.
+            return_json:
+                The return data type. If you set True JSON data will be returned.
+                False will return a pyyoutube.VideoAbuseReportReasonListResponse instance.
+        Returns:
+            VideoAbuseReportReasonListResponse or original data.
+        """
+
+        args = {
+            "part": enf_parts(resource="videoAbuseReportReasons", value=parts),
+            "hl": hl,
+        }
+
+        resp = self._request(resource="videoAbuseReportReasons", args=args)
+        data = self._parse_response(resp)
+
+        if return_json:
+            return data
+        else:
+            return VideoAbuseReportReasonListResponse.from_dict(data)
