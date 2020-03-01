@@ -94,6 +94,10 @@ class Localized(BaseModel):
 class PageInfo(BaseModel):
     """
     This is data model for save paging data.
+    Note:
+        totalResults is only an approximation/estimate.
+        Refer:
+            https://stackoverflow.com/questions/43507281/totalresults-count-doesnt-match-with-the-actual-results-returned-in-youtube-v3
     """
 
     totalResults: Optional[int] = field(default=None)
@@ -129,6 +133,22 @@ class BaseResource(BaseModel):
     kind: Optional[str] = field(default=None)
     etag: Optional[str] = field(default=None, repr=False)
     id: Optional[str] = field(default=None)
+
+
+@dataclass
+class ResourceId(BaseModel):
+    """
+    A class representing the subscription snippet resource info.
+    Refer:
+        1. https://developers.google.com/youtube/v3/docs/playlistItems#snippet.resourceId
+        2. https://developers.google.com/youtube/v3/docs/subscriptions#snippet.resourceId
+        3. https://developers.google.com/youtube/v3/docs/activities#contentDetails.social.resourceId
+    """
+
+    kind: Optional[str] = field(default=None)
+    videoId: Optional[str] = field(default=None)
+    channelId: Optional[str] = field(default=None)
+    playlistId: Optional[str] = field(default=None)
 
 
 @dataclass

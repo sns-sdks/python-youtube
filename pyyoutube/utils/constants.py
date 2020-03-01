@@ -13,6 +13,14 @@ CHANNEL_RESOURCE_PROPERTIES = {
     "topicDetails",
 }
 
+CHANNEL_SECTIONS_PROPERTIES = {
+    "id",
+    "contentDetails",
+    "localizations",
+    "snippet",
+    "targeting",
+}
+
 PLAYLIST_RESOURCE_PROPERTIES = {
     "id",
     "contentDetails",
@@ -44,8 +52,42 @@ GUIDE_CATEGORY_RESOURCE_PROPERTIES = {"id", "snippet"}
 
 SEARCH_RESOURCE_PROPERTIES = {"id", "snippet"}
 
+SUBSCRIPTION_RESOURCE_PROPERTIES = {
+    "id",
+    "snippet",
+    "contentDetails",
+    "subscriberSnippet",
+}
+
+ACTIVITIES_RESOURCE_PROPERTIES = {
+    "id",
+    "snippet",
+    "contentDetails",
+}
+
+CAPTIONS_RESOURCE_PROPERTIES = {
+    "id",
+    "snippet",
+}
+
+I18N_REGION_PROPERTIES = {
+    "id",
+    "snippet",
+}
+
+I18N_LANGUAGE_PROPERTIES = {
+    "id",
+    "snippet",
+}
+
+VIDEO_ABUSE_REPORT_REASON_PROPERTIES = {
+    "id",
+    "snippet",
+}
+
 RESOURCE_PARTS_MAPPING = {
     "channels": CHANNEL_RESOURCE_PROPERTIES,
+    "channelSections": CHANNEL_SECTIONS_PROPERTIES,
     "playlists": PLAYLIST_RESOURCE_PROPERTIES,
     "playlistItems": PLAYLIST_ITEM_RESOURCE_PROPERTIES,
     "videos": VIDEO_RESOURCE_PROPERTIES,
@@ -54,6 +96,12 @@ RESOURCE_PARTS_MAPPING = {
     "videoCategories": VIDEO_CATEGORY_RESOURCE_PROPERTIES,
     "guideCategories": GUIDE_CATEGORY_RESOURCE_PROPERTIES,
     "search": SEARCH_RESOURCE_PROPERTIES,
+    "subscriptions": SUBSCRIPTION_RESOURCE_PROPERTIES,
+    "activities": ACTIVITIES_RESOURCE_PROPERTIES,
+    "captions": CAPTIONS_RESOURCE_PROPERTIES,
+    "i18nRegions": I18N_REGION_PROPERTIES,
+    "i18nLanguages": I18N_LANGUAGE_PROPERTIES,
+    "videoAbuseReportReasons": VIDEO_ABUSE_REPORT_REASON_PROPERTIES,
 }
 
 TOPICS = {

@@ -1,0 +1,92 @@
+{
+  "kind": "youtube#videoAbuseReportReasonListResponse",
+  "etag": "\"SJZWTG6xR0eGuCOh2bX6w3s4F94/YH398HlGf_qbYlJQUZVMRoL4RTE\"",
+  "items": [
+    {
+      "kind": "youtube#videoAbuseReportReason",
+      "etag": "\"SJZWTG6xR0eGuCOh2bX6w3s4F94/_WIvuNJwlISvQNQt_ukh2m0kt2Y\"",
+      "id": "N",
+      "snippet": {
+        "label": "Sex or nudity",
+        "secondaryReasons": [
+          {
+            "id": "32",
+            "label": "Graphic sex or nudity"
+          },
+          {
+            "id": "33",
+            "label": "Content involving minors"
+          },
+          {
+            "id": "34",
+            "label": "Other sexual content"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "youtube#videoAbuseReportReason",
+      "etag": "\"SJZWTG6xR0eGuCOh2bX6w3s4F94/9uBFtSRN_-W5oQDz_AhiTSN5sTE\"",
+      "id": "S",
+      "snippet": {
+        "label": "Spam or misleading",
+        "secondaryReasons": [
+          {
+            "id": "27",
+            "label": "Spam or mass advertising"
+          },
+          {
+            "id": "28",
+            "label": "Misleading thumbnail"
+          },
+          {
+            "id": "29",
+            "label": "Malware or phishing"
+          },
+          {
+            "id": "30",
+            "label": "Pharmaceutical drugs for sale"
+          },
+          {
+            "id": "31",
+            "label": "Other misleading info"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "youtube#videoAbuseReportReason",
+      "etag": "\"SJZWTG6xR0eGuCOh2bX6w3s4F94/e6pyrZ9LzezCkkpfXAc0gkDdQ0Q\"",
+      "id": "V",
+      "snippet": {
+        "label": "Violent, hateful, or dangerous",
+        "secondaryReasons": [
+          {
+            "id": "35",
+            "label": "Promotes violence or hatred"
+          },
+          {
+            "id": "36",
+            "label": "Promotes terrorism"
+          },
+          {
+            "id": "37",
+            "label": "Bullying or abusing vulnerable individuals"
+          },
+          {
+            "id": "38",
+            "label": "Suicide or self-injury"
+          },
+          {
+            "id": "39",
+            "label": "Pharmaceutical or drug abuse"
+          },
+          {
+            "id": "40",
+            "label": "Other violent, hateful, or dangerous acts"
+          }
+        ]
+      }
+    }
+  ]
+}

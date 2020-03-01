@@ -1,0 +1,22 @@
+{
+  "kind": "youtube#videoAbuseReportReason",
+  "etag": "\"SJZWTG6xR0eGuCOh2bX6w3s4F94/_WIvuNJwlISvQNQt_ukh2m0kt2Y\"",
+  "id": "N",
+  "snippet": {
+    "label": "Sex or nudity",
+    "secondaryReasons": [
+      {
+        "id": "32",
+        "label": "Graphic sex or nudity"
+      },
+      {
+        "id": "33",
+        "label": "Content involving minors"
+      },
+      {
+        "id": "34",
+        "label": "Other sexual content"
+      }
+    ]
+  }
+}

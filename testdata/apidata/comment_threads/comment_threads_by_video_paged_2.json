@@ -1,7 +1,6 @@
 {
   "kind": "youtube#commentThreadListResponse",
   "etag": "\"j6xRRd8dTPVVptg711_CSPADRfg/mj64hlcyhnGGcJWAccdWisvf8MY\"",
-  "nextPageToken": "QURTSl9pMzdZOUVzMkI0czlmRmNjSVBPcTBTdzVzajUydDVnbE5SNElWS0l5WU12amYweVotdzF5c1hTNmxzUmVIcEZXbmVEVFMzNVJmWk82TVVwUlB2LWh5aUpOQlA5TGQzTWZEcHlTeTd2dlNGRUFZaVF0cmtJd01BTHlnOG0=",
   "pageInfo": {
     "totalResults": 5,
     "resultsPerPage": 5

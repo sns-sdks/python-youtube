@@ -1,0 +1,62 @@
+{
+  "kind": "youtube#subscriptionListResponse",
+  "etag": "\"p4VTdlkQv3HQeTEaXgvLePAydmU/Bpz_bu12-YiX5_pAavOTWX7GtDQ\"",
+  "pageInfo": {
+    "totalResults": 2,
+    "resultsPerPage": 5
+  },
+  "items": [
+    {
+      "kind": "youtube#subscription",
+      "etag": "\"p4VTdlkQv3HQeTEaXgvLePAydmU/ah58pA0LZUrj8p8Ay6v9PqipM1E\"",
+      "id": "FMP3Mleijt-52zZDGkHtR5KhwkvCcdQKWWWIA1j5eGc",
+      "snippet": {
+        "publishedAt": "2011-11-11T14:00:19.000Z",
+        "title": "TEDx Talks",
+        "description": "TEDx is an international community that organizes TED-style events anywhere and everywhere -- celebrating locally-driven ideas and elevating them to a global stage. TEDx events are produced independently of TED conferences, each event curates speakers on their own, but based on TED's format and rules.\n\nFor more information on using TED for commercial purposes (e.g. employee learning, in a film, or in an online course), please submit a media request using the link below.",
+        "resourceId": {
+          "kind": "youtube#channel",
+          "channelId": "UCsT0YIqwnpJCM-mx7-gSA4Q"
+        },
+        "channelId": "UCAuUUnT6oDeKwE6v1NGQxug",
+        "thumbnails": {
+          "default": {
+            "url": "https://yt3.ggpht.com/-yjj95JJQEm8/AAAAAAAAAAI/AAAAAAAAAAA/qkyW_xNpwSo/s88-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          },
+          "medium": {
+            "url": "https://yt3.ggpht.com/-yjj95JJQEm8/AAAAAAAAAAI/AAAAAAAAAAA/qkyW_xNpwSo/s240-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          },
+          "high": {
+            "url": "https://yt3.ggpht.com/-yjj95JJQEm8/AAAAAAAAAAI/AAAAAAAAAAA/qkyW_xNpwSo/s800-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          }
+        }
+      }
+    },
+    {
+      "kind": "youtube#subscription",
+      "etag": "\"p4VTdlkQv3HQeTEaXgvLePAydmU/5Fb7lQjSSevEAy86E2VxNZ43Kzg\"",
+      "id": "FMP3Mleijt_ZKvy5M-HhRlsqI4wXY7VmP5g8lvmRhVU",
+      "snippet": {
+        "publishedAt": "2016-11-17T16:24:18.000Z",
+        "title": "TED Residency",
+        "description": "The TED Residency program is an incubator for breakthrough ideas. It is free and open to all via a semi-annual competitive application. Those chosen as TED Residents spend four months at TED headquarters in New York City, working on their idea. Selection criteria include the strength of their idea, their character, and their ability to bring a fresh perspective and positive contribution to the diverse TED community.",
+        "resourceId": {
+          "kind": "youtube#channel",
+          "channelId": "UCtC8aQzdEHAmuw8YvtH1CcQ"
+        },
+        "channelId": "UCAuUUnT6oDeKwE6v1NGQxug",
+        "thumbnails": {
+          "default": {
+            "url": "https://yt3.ggpht.com/-5Ccn68kZqtE/AAAAAAAAAAI/AAAAAAAAAAA/FcE2mH3Fwww/s88-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          },
+          "medium": {
+            "url": "https://yt3.ggpht.com/-5Ccn68kZqtE/AAAAAAAAAAI/AAAAAAAAAAA/FcE2mH3Fwww/s240-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          },
+          "high": {
+            "url": "https://yt3.ggpht.com/-5Ccn68kZqtE/AAAAAAAAAAI/AAAAAAAAAAA/FcE2mH3Fwww/s800-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          }
+        }
+      }
+    }
+  ]
+}

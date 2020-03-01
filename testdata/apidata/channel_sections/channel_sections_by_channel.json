@@ -1,0 +1,71 @@
+{
+  "kind": "youtube#channelSectionListResponse",
+  "etag": "\"SJZWTG6xR0eGuCOh2bX6w3s4F94/IG4AAhdP913_ibNr3xxa2XjZhAU\"",
+  "items": [
+    {
+      "kind": "youtube#channelSection",
+      "etag": "\"SJZWTG6xR0eGuCOh2bX6w3s4F94/JNSONRhMV8b1OaalB42ZUtVBZ44\"",
+      "id": "UCa-vrCLQHviTOVnEKDOdetQ.jNQXAC9IVRw",
+      "snippet": {
+        "type": "recentUploads",
+        "style": "horizontalRow",
+        "channelId": "UCa-vrCLQHviTOVnEKDOdetQ",
+        "position": 0
+      }
+    },
+    {
+      "kind": "youtube#channelSection",
+      "etag": "\"SJZWTG6xR0eGuCOh2bX6w3s4F94/bcTK2_pxKS22pZizMGDGgnCcdeQ\"",
+      "id": "UCa-vrCLQHviTOVnEKDOdetQ.LeAltgu_pbM",
+      "snippet": {
+        "type": "allPlaylists",
+        "style": "horizontalRow",
+        "channelId": "UCa-vrCLQHviTOVnEKDOdetQ",
+        "position": 1
+      }
+    },
+    {
+      "kind": "youtube#channelSection",
+      "etag": "\"SJZWTG6xR0eGuCOh2bX6w3s4F94/lkkZaRpGqH1OLyeS4UMzEQkz5IU\"",
+      "id": "UCa-vrCLQHviTOVnEKDOdetQ.nGzAI5pLbMY",
+      "snippet": {
+        "type": "multiplePlaylists",
+        "style": "horizontalRow",
+        "channelId": "UCa-vrCLQHviTOVnEKDOdetQ",
+        "title": "我的操作诶",
+        "position": 2,
+        "defaultLanguage": "zh-CN",
+        "localized": {
+          "title": "My Ops"
+        }
+      },
+      "contentDetails": {
+        "playlists": [
+          "PLBaidt0ilCManGDIKr8UVBFZwN_UvMKvS",
+          "PLBaidt0ilCMbUdj0EppB710c_X5OuCP2g"
+        ]
+      },
+      "localizations": {
+        "zh-CN": {
+          "title": "我的操作诶"
+        },
+        "en": {
+          "title": "My Ops"
+        },
+        "ko": {
+          "title": "리우 쿤"
+        },
+        "zh-TW": {
+          "title": "妳是誰"
+        }
+      },
+      "targeting": {
+        "countries": [
+          "US",
+          "KR",
+          "CN"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "kind": "youtube#i18nRegionListResponse",
+  "etag": "\"SJZWTG6xR0eGuCOh2bX6w3s4F94/q85_wZeDyKDzYtt-LhNaozyi_sk\"",
+  "items": [
+    {
+      "kind": "youtube#i18nRegion",
+      "etag": "\"SJZWTG6xR0eGuCOh2bX6w3s4F94/VLBm14P6cRurVqVIS2Z9SfyDJdU\"",
+      "id": "VE",
+      "snippet": {
+        "gl": "VE",
+        "name": "Venezuela"
+      }
+    },
+    {
+      "kind": "youtube#i18nRegion",
+      "etag": "\"SJZWTG6xR0eGuCOh2bX6w3s4F94/PecEyDpgDPYWfvmuJVxuVgwxQwU\"",
+      "id": "VN",
+      "snippet": {
+        "gl": "VN",
+        "name": "Vietnam"
+      }
+    },
+    {
+      "kind": "youtube#i18nRegion",
+      "etag": "\"SJZWTG6xR0eGuCOh2bX6w3s4F94/Pzd0Bx5oG8rW9CkFMKHP0X12ywM\"",
+      "id": "YE",
+      "snippet": {
+        "gl": "YE",
+        "name": "Yemen"
+      }
+    },
+    {
+      "kind": "youtube#i18nRegion",
+      "etag": "\"SJZWTG6xR0eGuCOh2bX6w3s4F94/u5oySmRytTPqfZBg8zIE7G7jvRs\"",
+      "id": "ZW",
+      "snippet": {
+        "gl": "ZW",
+        "name": "Zimbabwe"
+      }
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "kind": "youtube#i18nLanguageListResponse",
+  "etag": "\"SJZWTG6xR0eGuCOh2bX6w3s4F94/qgFy24yvs-L_dNjr2d-Rd_Xcfw4\"",
+  "items": [
+    {
+      "kind": "youtube#i18nLanguage",
+      "etag": "\"SJZWTG6xR0eGuCOh2bX6w3s4F94/wD2SRT6G7gbFH07ePlumHAynSRo\"",
+      "id": "zh-CN",
+      "snippet": {
+        "hl": "zh-CN",
+        "name": "Chinese"
+      }
+    },
+    {
+      "kind": "youtube#i18nLanguage",
+      "etag": "\"SJZWTG6xR0eGuCOh2bX6w3s4F94/6fRre896XUzNQjc89q329PaFKjE\"",
+      "id": "zh-TW",
+      "snippet": {
+        "hl": "zh-TW",
+        "name": "Chinese (Taiwan)"
+      }
+    },
+    {
+      "kind": "youtube#i18nLanguage",
+      "etag": "\"SJZWTG6xR0eGuCOh2bX6w3s4F94/MbipoDEFiRRUlYr5UzjpCwXXRMc\"",
+      "id": "zh-HK",
+      "snippet": {
+        "hl": "zh-HK",
+        "name": "Chinese (Hong Kong)"
+      }
+    },
+    {
+      "kind": "youtube#i18nLanguage",
+      "etag": "\"SJZWTG6xR0eGuCOh2bX6w3s4F94/XBmnabKsnR1WSWcZvNxC2NvrLYo\"",
+      "id": "ja",
+      "snippet": {
+        "hl": "ja",
+        "name": "Japanese"
+      }
+    },
+    {
+      "kind": "youtube#i18nLanguage",
+      "etag": "\"SJZWTG6xR0eGuCOh2bX6w3s4F94/l06bH0pLscIVm87oyBnJ3aZR4Ts\"",
+      "id": "ko",
+      "snippet": {
+        "hl": "ko",
+        "name": "Korean"
+      }
+    }
+  ]
+}

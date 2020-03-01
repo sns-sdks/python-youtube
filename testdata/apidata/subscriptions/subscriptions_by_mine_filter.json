@@ -1,0 +1,62 @@
+{
+  "kind": "youtube#subscriptionListResponse",
+  "etag": "\"p4VTdlkQv3HQeTEaXgvLePAydmU/VWi2sv7EuSXCkMveaGb_XUpimn4\"",
+  "pageInfo": {
+    "totalResults": 2,
+    "resultsPerPage": 10
+  },
+  "items": [
+    {
+      "kind": "youtube#subscription",
+      "etag": "\"p4VTdlkQv3HQeTEaXgvLePAydmU/UvJJpKjvHCalu8cZNUg40ji9hO4\"",
+      "id": "zqShTXi-2-Tx7TtwQqhCBzrqBvZj94YvFZOGA9x6NuY",
+      "snippet": {
+        "publishedAt": "2019-08-23T08:49:39.958Z",
+        "title": "Google Developers",
+        "description": "The Google Developers channel features talks from events, educational series, best practices, tips, and the latest updates across our products and platforms.",
+        "resourceId": {
+          "kind": "youtube#channel",
+          "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw"
+        },
+        "channelId": "UCNvMBmCASzTNNX8lW3JRMbw",
+        "thumbnails": {
+          "default": {
+            "url": "https://yt3.ggpht.com/-Fgp8KFpgQqE/AAAAAAAAAAI/AAAAAAAAAAA/Wyh1vV5Up0I/s88-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          },
+          "medium": {
+            "url": "https://yt3.ggpht.com/-Fgp8KFpgQqE/AAAAAAAAAAI/AAAAAAAAAAA/Wyh1vV5Up0I/s240-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          },
+          "high": {
+            "url": "https://yt3.ggpht.com/-Fgp8KFpgQqE/AAAAAAAAAAI/AAAAAAAAAAA/Wyh1vV5Up0I/s800-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          }
+        }
+      }
+    },
+    {
+      "kind": "youtube#subscription",
+      "etag": "\"p4VTdlkQv3HQeTEaXgvLePAydmU/pYbP9RYZzTnefaJtv-B2uQwsR4A\"",
+      "id": "zqShTXi-2-Rya5uUxEp3ZsPI3fZrFQnSXNQCwvHBGGo",
+      "snippet": {
+        "publishedAt": "2019-11-29T03:00:56.380Z",
+        "title": "ikaros-life",
+        "description": "This is a test channel.",
+        "resourceId": {
+          "kind": "youtube#channel",
+          "channelId": "UCa-vrCLQHviTOVnEKDOdetQ"
+        },
+        "channelId": "UCNvMBmCASzTNNX8lW3JRMbw",
+        "thumbnails": {
+          "default": {
+            "url": "https://yt3.ggpht.com/-yBDi3ItKNRs/AAAAAAAAAAI/AAAAAAAAAAA/ozh6Tc0Gc9w/s88-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          },
+          "medium": {
+            "url": "https://yt3.ggpht.com/-yBDi3ItKNRs/AAAAAAAAAAI/AAAAAAAAAAA/ozh6Tc0Gc9w/s240-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          },
+          "high": {
+            "url": "https://yt3.ggpht.com/-yBDi3ItKNRs/AAAAAAAAAAI/AAAAAAAAAAA/ozh6Tc0Gc9w/s800-c-k-no-mo-rj-c0xffffff/photo.jpg"
+          }
+        }
+      }
+    }
+  ]
+}

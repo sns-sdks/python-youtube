@@ -97,6 +97,19 @@ class ApiPlaylistItemTest(unittest.TestCase):
                 "UExPVTJYTFl4bXNJS3BhVjhoMEFHRTA1c28wZkF3d2ZUdy41NkI0NEY2RDEwNTU3Q0M2",
             )
 
+        # test get all items
+        with responses.RequestsMock() as m:
+            m.add("GET", self.BASE_URL, json=self.PLAYLIST_ITEM_PAGED_1)
+            m.add("GET", self.BASE_URL, json=self.PLAYLIST_ITEM_PAGED_2)
+
+            res_by_playlist = self.api.get_playlist_items(
+                playlist_id="PLOU2XLYxmsIKpaV8h0AGE05so0fAwwfTw",
+                parts="id,snippet",
+                count=None,
+            )
+            self.assertEqual(res_by_playlist.pageInfo.totalResults, 13)
+            self.assertEqual(len(res_by_playlist.items), 13)
+
         # test filter
         with responses.RequestsMock() as m:
             m.add("GET", self.BASE_URL, json=self.PLAYLIST_ITEM_FILTER)
@@ -113,3 +126,15 @@ class ApiPlaylistItemTest(unittest.TestCase):
                 res_by_filter["items"][0]["snippet"]["resourceId"]["videoId"],
                 "VCv-KKIkLns",
             )
+
+        # test use page token
+        with responses.RequestsMock() as m:
+            m.add("GET", self.BASE_URL, json=self.PLAYLIST_ITEM_PAGED_2)
+
+            res_by_playlist = self.api.get_playlist_items(
+                playlist_id="PLOU2XLYxmsIKpaV8h0AGE05so0fAwwfTw",
+                parts="id,snippet",
+                page_token="CAoQAA",
+                count=3,
+            )
+            self.assertEqual(len(res_by_playlist.items), 3)

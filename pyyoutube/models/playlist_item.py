@@ -7,7 +7,7 @@ from typing import List, Optional
 
 from .base import BaseModel
 from .mixins import DatetimeTimeMixin
-from .common import BaseApiResponse, BaseResource, Thumbnails
+from .common import BaseApiResponse, BaseResource, ResourceId, Thumbnails
 
 
 @dataclass
@@ -21,18 +21,6 @@ class PlaylistItemContentDetails(BaseModel, DatetimeTimeMixin):
     videoId: Optional[str] = field(default=None)
     note: Optional[str] = field(default=None, repr=False)
     videoPublishedAt: Optional[str] = field(default=None)
-
-
-@dataclass
-class ResourceId(BaseModel):
-    """
-    A class representing the playlist item's snippet resource info.
-
-    Refer: https://developers.google.com/youtube/v3/docs/playlistItems#snippet.resourceId
-    """
-
-    kind: Optional[str] = field(default=None)
-    videoId: Optional[str] = field(default=None)
 
 
 @dataclass

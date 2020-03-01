@@ -150,7 +150,7 @@ Get playlists by id::
     In [6]: playlists_by_id.items
     Out[6]: [Playlist(kind='youtube#playlist', id='PLOU2XLYxmsIKpaV8h0AGE05so0fAwwfTw')]
 
-Get playlists by channel::
+Get playlists by channel(If you want to get target channel all playlist, just provide the parameter ``count`` with ``None``)::
 
     In [3]: playlists_by_channel = api.get_playlists(channel_id="UC_x5XG1OV2P6uZZ5FSM9Ttw")
     In [4]: playlists_by_channel.items
@@ -180,7 +180,7 @@ Get playlist items by id::
     Out[12]: [PlaylistItem(kind='youtube#playlistItem', id='UExPVTJYTFl4bXNJS3BhVjhoMEFHRTA1c28wZkF3d2ZUdy41NkI0NEY2RDEwNTU3Q0M2')]
 
 
-Get playlist items by playlist id::
+Get playlist items by playlist id(If you want to get target playlist all items, just provide the parameter ``count`` with ``None``)::
 
     In [8]: playlist_item_by_playlist = api.get_playlist_items(playlist_id="PLOU2XLYxmsIKpaV8h0AGE05so0fAwwfTw", count=2)
 
@@ -208,7 +208,7 @@ Get videos by video id(s)::
     Out[16]: [Video(kind='youtube#video', id='CvTApw9X8aA')]
 
 
-Get videos by chart::
+Get videos by chart(If you want to get all videos, just provide the parameter ``count`` with ``None``)::
 
     In [17]: video_by_chart = api.get_videos_by_chart(chart="mostPopular", region_code="US", count=2)
 
@@ -218,7 +218,7 @@ Get videos by chart::
      Video(kind='youtube#video', id='hDeuSfo_Ys0')]
 
 
-Get videos by your rating(this need authorization)::
+Get videos by your rating(this need authorization, also if you want to get all videos, just provide the parameter ``count`` with ``None``)::
 
     In [25]: videos_by_rating = api.get_videos_by_myrating(rating="like", count=2)
 
@@ -238,7 +238,7 @@ Get comment thread by id(s)::
     [CommentThread(kind='youtube#commentThread', id='Ugz097FRhsQy5CVhAjp4AaABAg'),
      CommentThread(kind='youtube#commentThread', id='UgzhytyP79_PwaDd4UB4AaABAg')]
 
-Get all comment threads relate to channel(include comment threads for the channel's video)::
+Get all comment threads relate to channel(include comment threads for the channel's video, also if you want to get all comment threads, just provide the parameter ``count`` with ``None``)::
 
     In [19]: ct_by_all = api.get_comment_threads(all_to_channel_id="UC_x5XG1OV2P6uZZ5FSM9Ttw", count=2)
 
@@ -247,7 +247,7 @@ Get all comment threads relate to channel(include comment threads for the channe
     [CommentThread(kind='youtube#commentThread', id='UgwlB_Cza9WtzUWahYN4AaABAg'),
      CommentThread(kind='youtube#commentThread', id='UgyvoQJ2LsxCBwGEpMB4AaABAg')]
 
-Get comment threads only for the channel::
+Get comment threads only for the channel(If you want to get all comment threads, just provide the parameter ``count`` with ``None``)::
 
     In [3]: ct_by_channel = api.get_comment_threads(channel_id="UC_x5XG1OV2P6uZZ5FSM9Ttw", count=2)
 
@@ -256,7 +256,7 @@ Get comment threads only for the channel::
     [CommentThread(kind='youtube#commentThread', id='UgyUBI0HsgL9emxcZpR4AaABAg'),
      CommentThread(kind='youtube#commentThread', id='Ugzi3lkqDPfIOirGFLh4AaABAg')]
 
-Get comment threads only for the video::
+Get comment threads only for the video(If you want to get all comment threads, just provide the parameter ``count`` with ``None``)::
 
     In [5]: ct_by_video = api.get_comment_threads(video_id="D-lhorsDlUQ", count=2)
 
@@ -284,7 +284,7 @@ Get comments by id(s)::
     [Comment(kind='youtube#comment', id='UgxKREWxIgDrw8w2e_Z4AaABAg', snippet=CommentSnippet(authorDisplayName='Hieu Nguyen', likeCount=0)),
      Comment(kind='youtube#comment', id='UgyrVQaFfEdvaSzstj14AaABAg', snippet=CommentSnippet(authorDisplayName='Mani Kanta', likeCount=0))]
 
-Get replies by comment id::
+Get replies by comment id(If you want to get all comments, just provide the parameter ``count`` with ``None``)::
 
     In [13]: comment_by_parent = api.get_comments(parent_id="UgwYjZXfNCUTKPq9CZp4AaABAg")
 
@@ -353,6 +353,144 @@ Get video categories with region code::
      VideoCategory(kind='youtube#videoCategory', id='15'),
      ...]
 
+-------------
+SUBSCRIPTIONS
+-------------
+
+You can get subscriptions info by id, by point channel or by yourself.
+
+.. note::
+    If you want to get the subscriptions not set to public. You need do authorization first and get the access token.
+    You can see the demo `A demo for get my subscription <examples/subscription.py>`_.
+
+Get subscriptions info by id(s), this need your token have the permission for the subscriptions belongs channel or user::
+
+    In [6]: r = api.get_subscription_by_id(
+       ...:     subscription_id=[
+       ...:         "zqShTXi-2-Tx7TtwQqhCBwViE_j9IEgnmRmPnqJljxo",
+       ...:         "zqShTXi-2-Rya5uUxEp3ZsPI3fZrFQnSXNQCwvHBGGo"])
+    In [7]: r
+    Out[7]: SubscriptionListResponse(kind='youtube#subscriptionListResponse')
+    In [8]: r.items
+    Out[8]:
+    [Subscription(kind='youtube#subscription', id='zqShTXi-2-Tx7TtwQqhCBwViE_j9IEgnmRmPnqJljxo', snippet=SubscriptionSnippet(title='PyCon 2015', description='')),
+     Subscription(kind='youtube#subscription', id='zqShTXi-2-Rya5uUxEp3ZsPI3fZrFQnSXNQCwvHBGGo', snippet=SubscriptionSnippet(title='ikaros-life', description='This is a test channel.'))]
+
+Get yourself subscriptions, this need you do authorization first or give the authorized access token::
+
+    In [9]: r = api.get_subscription_by_me(
+       ...:     mine=True,
+       ...:     parts=["id", "snippet"],
+       ...:     count=2
+       ...:)
+    In [10]: r
+    Out[10]: SubscriptionListResponse(kind='youtube#subscriptionListResponse')
+    In [11]: r.items
+    Out[11]:
+    [Subscription(kind='youtube#subscription', id='zqShTXi-2-Tx7TtwQqhCBwtJ-Aho6DZeutqZiP4Q79Q', snippet=SubscriptionSnippet(title='Next Day Video', description='')),
+     Subscription(kind='youtube#subscription', id='zqShTXi-2-Tx7TtwQqhCBwViE_j9IEgnmRmPnqJljxo', snippet=SubscriptionSnippet(title='PyCon 2015', description=''))]
+
+Get public channel's subscriptions::
+
+    In [12]: r = api.get_subscription_by_channel(
+    ...:     channel_id="UCAuUUnT6oDeKwE6v1NGQxug",
+    ...:     parts="id,snippet",
+    ...:     count=2
+    ...:     )
+    In [13]: r
+    Out[13]: SubscriptionListResponse(kind='youtube#subscriptionListResponse')
+    In [14]: r.items
+    Out[14]:
+    [Subscription(kind='youtube#subscription', id='FMP3Mleijt-52zZDGkHtR5KhwkvCcdQKWWWIA1j5eGc', snippet=SubscriptionSnippet(title='TEDx Talks', description="TEDx is an international community that organizes TED-style events anywhere and everywhere -- celebrating locally-driven ideas and elevating them to a global stage. TEDx events are produced independently of TED conferences, each event curates speakers on their own, but based on TED's format and rules.\n\nFor more information on using TED for commercial purposes (e.g. employee learning, in a film, or in an online course), please submit a media request using the link below.")),
+     Subscription(kind='youtube#subscription', id='FMP3Mleijt_ZKvy5M-HhRlsqI4wXY7VmP5g8lvmRhVU', snippet=SubscriptionSnippet(title='TED Residency', description='The TED Residency program is an incubator for breakthrough ideas. It is free and open to all via a semi-annual competitive application. Those chosen as TED Residents spend four months at TED headquarters in New York City, working on their idea. Selection criteria include the strength of their idea, their character, and their ability to bring a fresh perspective and positive contribution to the diverse TED community.'))]
+
+
+----------
+ACTIVITIES
+----------
+
+You can get activities by channel id. And can get your activities after you have done the authorize.
+
+Get public channel activities::
+
+    In [3]: r = api.get_activities_by_channel(channel_id="UC_x5XG1OV2P6uZZ5FSM9Ttw", count=2)
+    In [4]: r
+    Out[4]: ActivityListResponse(kind='youtube#activityListResponse')
+    In [5]: r.items
+    Out[5]:
+    [Activity(kind='youtube#activity', id='MTUxNTc3NzM2MDAyODIxOTQxNDM0NjAwMA==', snippet=ActivitySnippet(title='2019 Year in Review - The Developer Show', description='Here to bring you the latest developer news from across Google this year is Developer Advocate Timothy Jordan. In this last week of the year, we’re taking a look back at some of the coolest and biggest announcements we covered in 2019! \n\nFollow Google Developers on Instagram → https://goo.gle/googledevs\n\nWatch more #DevShow → https://goo.gle/GDevShow\nSubscribe to Google Developers → https://goo.gle/developers')),
+     Activity(kind='youtube#activity', id='MTUxNTc3MTI4NzIzODIxOTQxNDM0NzI4MA==', snippet=ActivitySnippet(title='GDE Promo - Lara Martin', description='Meet Lara Martin, a Flutter/Dart Google Developers Expert and get inspired by her journey. Watch now for a preview of her story! #GDESpotlights #IncludedWithGoogle\n\nLearn about the GDE program → https://goo.gle/2qWOvAy\n\nGoogle Developers Experts → https://goo.gle/GDE\nSubscribe to Google Developers → https://goo.gle/developers'))]
+
+
+Get your activities::
+
+    In [10]: r = api_with_token.get_activities_by_me()
+    In [11]: r.items
+    Out[11]:
+    [Activity(kind='youtube#activity', id='MTUxNTc0OTk2MjI3NDE0MjYwMDY1NjAwODA=', snippet=ActivitySnippet(title='华山日出', description='冷冷的山头')),
+     Activity(kind='youtube#activity', id='MTUxNTc0OTk1OTAyNDE0MjYwMDY1NTc2NDg=', snippet=ActivitySnippet(title='海上日出', description='美美美'))]
+
+Get your video captions::
+
+    In [12]: r = api.get_captions_by_video(video_id="oHR3wURdJ94", parts=["id", "snippet"])
+    In [13]: r
+    Out[13]: CaptionListResponse(kind='youtube#captionListResponse')
+    In [14]: r.items
+    Out[14]:
+    [Caption(kind='youtube#caption', id='SwPOvp0r7kd9ttt_XhcHdZthMwXG7Z0I', snippet=CaptionSnippet(videoId='oHR3wURdJ94', lastUpdated='2020-01-14T09:40:49.981Z')),
+     Caption(kind='youtube#caption', id='fPMuDm722CIRcUAT3NTPQHQZJZJxt39kU7JvrHk8Kzs=', snippet=CaptionSnippet(videoId='oHR3wURdJ94', lastUpdated='2020-01-14T09:39:46.991Z'))]
+
+
+If you already have caption id(s), you can get video caption by id(s)::
+
+    In [15]: r = api.get_captions_by_video(video_id="oHR3wURdJ94", parts=["id", "snippet"], caption_id="SwPOvp0r7kd9ttt_XhcHdZthMwXG7Z0I")
+    In [16]: r
+    Out[16]: CaptionListResponse(kind='youtube#captionListResponse')
+    In [17]: r.items
+    Out[17]: [Caption(kind='youtube#caption', id='SwPOvp0r7kd9ttt_XhcHdZthMwXG7Z0I', snippet=CaptionSnippet(videoId='oHR3wURdJ94', lastUpdated='2020-01-14T09:40:49.981Z'))]
+
+----------------
+CHANNEL SECTIONS
+----------------
+
+You can get channel sections by self id or belonged channel id or you self channel.
+
+Get channel sections by channel id::
+
+    In[18]: r = api.get_channel_sections_by_channel(channel_id="UC_x5XG1OV2P6uZZ5FSM9Ttw")
+    In[19]: r
+    Out[19]: ChannelSectionResponse(kind='youtube#channelSectionListResponse')
+    In[20]: r.items
+    Out[20]:
+    [ChannelSection(kind='youtube#channelSection', id='UC_x5XG1OV2P6uZZ5FSM9Ttw.e-Fk7vMPqLE'),
+     ChannelSection(kind='youtube#channelSection', id='UC_x5XG1OV2P6uZZ5FSM9Ttw.B8DTd9ZXJqM'),
+     ChannelSection(kind='youtube#channelSection', id='UC_x5XG1OV2P6uZZ5FSM9Ttw.MfvRjkWLxgk'),
+     ChannelSection(kind='youtube#channelSection', id='UC_x5XG1OV2P6uZZ5FSM9Ttw.fEjJOXRoWwg'),
+     ChannelSection(kind='youtube#channelSection', id='UC_x5XG1OV2P6uZZ5FSM9Ttw.PvTmxDBxtLs'),
+     ChannelSection(kind='youtube#channelSection', id='UC_x5XG1OV2P6uZZ5FSM9Ttw.pmcIOsL7s98'),
+     ChannelSection(kind='youtube#channelSection', id='UC_x5XG1OV2P6uZZ5FSM9Ttw.c3r3vYf9uD0'),
+     ChannelSection(kind='youtube#channelSection', id='UC_x5XG1OV2P6uZZ5FSM9Ttw.ZJpkBl-mXfM'),
+     ChannelSection(kind='youtube#channelSection', id='UC_x5XG1OV2P6uZZ5FSM9Ttw.9_wU0qhEPR8'),
+     ChannelSection(kind='youtube#channelSection', id='UC_x5XG1OV2P6uZZ5FSM9Ttw.npYvuMz0_es')]
+
+Get authorize user's channel sections::
+
+    In[21]: r = api.get_channel_sections_by_channel(mine=True)
+    In[23]: r.items
+    Out[23]:
+    [ChannelSection(kind='youtube#channelSection', id='UCa-vrCLQHviTOVnEKDOdetQ.jNQXAC9IVRw'),
+     ChannelSection(kind='youtube#channelSection', id='UCa-vrCLQHviTOVnEKDOdetQ.LeAltgu_pbM'),
+     ChannelSection(kind='youtube#channelSection', id='UCa-vrCLQHviTOVnEKDOdetQ.nGzAI5pLbMY')]
+
+Get channel section detail info by his id::
+
+    In[24]: r1 = api.get_channel_section_by_id(section_id="UC_x5XG1OV2P6uZZ5FSM9Ttw.e-Fk7vMPqLE")
+    In[25]: r1
+    Out[25]: ChannelSectionResponse(kind='youtube#channelSectionListResponse')
+    In[26]: r1.items
+    Out[26]: [ChannelSection(kind='youtube#channelSection', id='UC_x5XG1OV2P6uZZ5FSM9Ttw.e-Fk7vMPqLE')]
+
+
 ====
 TODO
 ====
@@ -368,6 +506,10 @@ Now this has follows api.
 - Comment Info
 - Video Categories Info
 - Guide Categories Info
+- Subscriptions Info
+- Activities Info
+- Captions Info
+- Channel Sections Info
 
 Doing
 

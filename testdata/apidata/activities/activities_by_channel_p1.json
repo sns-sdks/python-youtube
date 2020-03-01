@@ -1,0 +1,406 @@
+{
+  "kind": "youtube#activityListResponse",
+  "etag": "\"p4VTdlkQv3HQeTEaXgvLePAydmU/wgXTq3L7ZY7nAhRFHl3U-cfbtIM\"",
+  "nextPageToken": "CAoQAA",
+  "pageInfo": {
+    "totalResults": 13,
+    "resultsPerPage": 10
+  },
+  "items": [
+    {
+      "kind": "youtube#activity",
+      "etag": "\"p4VTdlkQv3HQeTEaXgvLePAydmU/Nx8UQRPToT_leC4ECgznp5ynzlw\"",
+      "id": "MTUxNTcyNTU1NjEyNjk5ODAxNzY0MzM4MDg=",
+      "snippet": {
+        "publishedAt": "2019-10-31T21:00:12.000Z",
+        "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+        "title": "Android Developer Challenge, Google Maps Platform, New in Chrome 78",
+        "description": "TL;DR 180 | The Google Developer News Show\n \nAnnouncements from the Android Developer Summit → https://goo.gle/2N2482c\n\nDev Show Top 5 from the Android Dev Summit 2019 → https://goo.gle/2JElnV9\n\nDev Challenge Announcement → https://goo.gle/2C3Etje\n\nGoogle Maps Platform YouTube Channel → https://goo.gle/320STez\n\nNew in Chrome 78 → https://goo.gle/34jIImW\n\nCloud AI Platform updates → https://goo.gle/2q5ytUL\n\nHere to bring you the latest developer news from across Google is Developer Advocate Todd Kerpelman.\n\nTune in every week for a new episode, and let us know what you think of the latest announcements in the comments below! 😃\n\nWatch more #DevShow → https://goo.gle/GDevShow\nSubscribe to Google Developers! → https://goo.gle/developers",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/Du7E0okmNlk/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/Du7E0okmNlk/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/Du7E0okmNlk/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          },
+          "standard": {
+            "url": "https://i.ytimg.com/vi/Du7E0okmNlk/sddefault.jpg",
+            "width": 640,
+            "height": 480
+          },
+          "maxres": {
+            "url": "https://i.ytimg.com/vi/Du7E0okmNlk/maxresdefault.jpg",
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "channelTitle": "Google Developers",
+        "type": "upload"
+      }
+    },
+    {
+      "kind": "youtube#activity",
+      "etag": "\"p4VTdlkQv3HQeTEaXgvLePAydmU/E5fFu6HZXDfgKmndxIQtR6b9U48\"",
+      "id": "MTUxNTcyNDUyMjczNjk5ODAxNzY0MzY3NTI=",
+      "snippet": {
+        "publishedAt": "2019-10-30T16:17:53.000Z",
+        "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+        "title": "Developer Student Clubs 2019 Paris Leads Summit",
+        "description": "Developer Student Club Leads are passionate leaders at their university who are dedicated to helping their peers learn and connect. Student leads across Europe gather as they kick off their academic year managing the clubs at their universities. \n\nDSC Naming Guidelines → https://goo.gle/2q8QHEx\nLearn more at → https://goo.gle/2MdD7sc\n\nDeveloper Student Club Leads → https://goo.gle/2KF0kCl\nSubscribe to Google Developers → https://goo.gle/developers",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/Yg7woDxIeBY/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/Yg7woDxIeBY/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/Yg7woDxIeBY/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          },
+          "standard": {
+            "url": "https://i.ytimg.com/vi/Yg7woDxIeBY/sddefault.jpg",
+            "width": 640,
+            "height": 480
+          },
+          "maxres": {
+            "url": "https://i.ytimg.com/vi/Yg7woDxIeBY/maxresdefault.jpg",
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "channelTitle": "Google Developers",
+        "type": "upload"
+      }
+    },
+    {
+      "kind": "youtube#activity",
+      "etag": "\"p4VTdlkQv3HQeTEaXgvLePAydmU/dq9w5npCGyzsmwPILW3ywIxJEQk\"",
+      "id": "MTUxNTcyMzAyNDEwNjk5ODAxNzY0MzY2MjQ=",
+      "snippet": {
+        "publishedAt": "2019-10-28T22:40:10.000Z",
+        "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+        "title": "Dev Show Top 5 from the Android Dev Summit 2019",
+        "description": "If you missed the Android Dev Summit 2019 in Sunnyvale, Developer Advocate Florina Muntenescu (@FMuntenescu) has got you covered on the latest releases and highlights from the event. Watch now for a summary of the best new features!\n\nTop announcements from the summit: \nhttps://goo.gle/2Jsj1sD\nAndroid Developer Challenge: https://goo.gle/36ga535\n\n#AndroidDevSummit All Sessions → https://goo.gle/ADS19allsessions\nSubscribe to the Android Developers channel → https://goo.gle/AndroidDevs \n\nThe Developer Show - Events Spotlight → https://goo.gle/2od3GEy\nSubscribe to Google Developers → https://goo.gle/developers",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/6jUbPkgADMk/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/6jUbPkgADMk/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/6jUbPkgADMk/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          },
+          "standard": {
+            "url": "https://i.ytimg.com/vi/6jUbPkgADMk/sddefault.jpg",
+            "width": 640,
+            "height": 480
+          },
+          "maxres": {
+            "url": "https://i.ytimg.com/vi/6jUbPkgADMk/maxresdefault.jpg",
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "channelTitle": "Google Developers",
+        "type": "upload"
+      }
+    },
+    {
+      "kind": "youtube#activity",
+      "etag": "\"p4VTdlkQv3HQeTEaXgvLePAydmU/wqKEFFnFDHpoAbNWO-MhiM5jPuc\"",
+      "id": "MTUxNTcyMDE5MjA3Njk5ODAxNzY0MzQxMjg=",
+      "snippet": {
+        "publishedAt": "2019-10-25T16:00:07.000Z",
+        "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+        "title": "Announcing the Google Maps Platform YouTube Channel!",
+        "description": "We are so excited to announce the Google Maps Platform YouTube channel where we’ll be sharing updates, tutorials, user stories and more! \n\nWe hope that this new channel will help you boost your creativity by serving content that helps you explore real-world insights and build immersive location experiences.\n\nWhether you’re new to the platform or a Google Maps Platform expert, dive into our YouTube channel to learn more! → https://goo.gle/GoogleMapsPlatform",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/UcGP8xTXSoA/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/UcGP8xTXSoA/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/UcGP8xTXSoA/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          },
+          "standard": {
+            "url": "https://i.ytimg.com/vi/UcGP8xTXSoA/sddefault.jpg",
+            "width": 640,
+            "height": 480
+          },
+          "maxres": {
+            "url": "https://i.ytimg.com/vi/UcGP8xTXSoA/maxresdefault.jpg",
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "channelTitle": "Google Developers",
+        "type": "upload"
+      }
+    },
+    {
+      "kind": "youtube#activity",
+      "etag": "\"p4VTdlkQv3HQeTEaXgvLePAydmU/Km3fXXOj6Vh4NgpqCy9l73ALmbs\"",
+      "id": "MTUxNTcxOTUzMzIyNjk5ODAxNzY0MzY4MTY=",
+      "snippet": {
+        "publishedAt": "2019-10-24T21:42:02.000Z",
+        "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+        "title": "Android NDK r21, Security Health Analytics for GCP, Bazel 1.0",
+        "description": "TL;DR 179 | The Google Developer News Show\n \nIntroducing Android NDK r21 → https://goo.gle/2MJBjrj\n\nSecurity Health Analytics for GCP in beta → https://goo.gle/2N9d4BH\n\nWhat’s New in DevTools (Chrome 79) → https://goo.gle/363pGDi\n\nBazel 1.0 → https://goo.gle/2pP7i07\n\nHere to bring you the latest developer news from across Google is Developer Advocate Meghan Mehta.\n\nTune in every week for a new episode, and let us know what you think of the latest announcements in the comments below! 😃\n\nWatch more #DevShow → https://goo.gle/GDevShow\nSubscribe to Google Developers! → https://goo.gle/developers",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/9wU8ML2pUBs/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/9wU8ML2pUBs/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/9wU8ML2pUBs/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          },
+          "standard": {
+            "url": "https://i.ytimg.com/vi/9wU8ML2pUBs/sddefault.jpg",
+            "width": 640,
+            "height": 480
+          },
+          "maxres": {
+            "url": "https://i.ytimg.com/vi/9wU8ML2pUBs/maxresdefault.jpg",
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "channelTitle": "Google Developers",
+        "type": "upload"
+      }
+    },
+    {
+      "kind": "youtube#activity",
+      "etag": "\"p4VTdlkQv3HQeTEaXgvLePAydmU/4XzMakgiRPmTS2ZhbAu1JiUFSqE\"",
+      "id": "MTUxNTcxNjk4OTA0Njk5ODAxNzY0MzY5NDQ=",
+      "snippet": {
+        "publishedAt": "2019-10-21T23:01:44.000Z",
+        "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+        "title": "Amey learns to create a low-cost hearing aid with Android",
+        "description": "Amey Nerkar, from Google Developer Groups Pune noticed when he was going to school in Nashik, there was a deaf class that took place on campus. Amey was curious about the effectiveness of communication to the students and with the help of the GDG community, Amey learned to create a low cost hearing aid with Android.\n\nFind a community near you:  https://goo.gle/2J54we5\n\nGDG Community Champions → https://goo.gle/2qtiRKT\nSubscribe to Google Developers → https://goo.gle/developers",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/-tzNjiwhdfo/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/-tzNjiwhdfo/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/-tzNjiwhdfo/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          },
+          "standard": {
+            "url": "https://i.ytimg.com/vi/-tzNjiwhdfo/sddefault.jpg",
+            "width": 640,
+            "height": 480
+          },
+          "maxres": {
+            "url": "https://i.ytimg.com/vi/-tzNjiwhdfo/maxresdefault.jpg",
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "channelTitle": "Google Developers",
+        "type": "upload"
+      }
+    },
+    {
+      "kind": "youtube#activity",
+      "etag": "\"p4VTdlkQv3HQeTEaXgvLePAydmU/0U50OgvF2amEQZNR1ha9S1rkwws\"",
+      "id": "MTUxNTcxNjczODQ2Njk5ODAxNzY0MzQxOTI=",
+      "snippet": {
+        "publishedAt": "2019-10-21T16:04:06.000Z",
+        "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+        "title": "Developing Accessible Routes for Google Maps",
+        "description": "In 2009, Sasha Blair-Goldensohn was commuting to work through Central Park when an unfortunate accident changed his life and his worldview. Hear Sasha’s story and learn how he teamed up with fellow Googlers Dianna and Rio to collaboratively develop accessible routing in Google Maps. Accessibility should be built into your app from the ground up! \n\nLearn More:\nGTFS Static Overview: https://goo.gle/2oKNhrC\nReference: https://goo.gle/32Fy7SQ\nRio Akasaka's blog post announcing Accessible Routes: https://goo.gle/2MSSRjx\n\nSubscribe to Google Developers → https://goo.gle/developers\n\nAdditional Subway footage provided by Marvin Allen Devlin",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/xFJ4Q6MB8A8/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/xFJ4Q6MB8A8/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/xFJ4Q6MB8A8/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          },
+          "standard": {
+            "url": "https://i.ytimg.com/vi/xFJ4Q6MB8A8/sddefault.jpg",
+            "width": 640,
+            "height": 480
+          },
+          "maxres": {
+            "url": "https://i.ytimg.com/vi/xFJ4Q6MB8A8/maxresdefault.jpg",
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "channelTitle": "Google Developers",
+        "type": "upload"
+      }
+    },
+    {
+      "kind": "youtube#activity",
+      "etag": "\"p4VTdlkQv3HQeTEaXgvLePAydmU/dynLVmlq3kVelMwmuEA4oEVtMpA\"",
+      "id": "MTUxNTcxMzUwMTA2Njk5ODAxNjIwNDA0MDA=",
+      "snippet": {
+        "publishedAt": "2019-10-17T22:08:26.000Z",
+        "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+        "title": "#AndroidDevSummit, architecting on Google Cloud, Google Code-in 2019 Org, & more!",
+        "description": "TL;DR 178 | The Google Developer News Show\n \nPreviewing #AndroidDevSummit: Sessions, App, & Livestream Details → https://goo.gle/2IWlXNK\n\nCompute Engine or Kubernetes Engine? New trainings teach you the basics of architecting on Google Cloud → https://goo.gle/2Mn9PaE\n\nHow to build your first Google Maps Platform integration with deck.gl → https://goo.gle/35Lpfgr\n\nAnnouncing verified publishers on pub.dev → https://goo.gle/31tMSXT\n\nROBEL: Robotics Benchmarks for Learning with Low-Cost Robots (AI) → https://goo.gle/2J0KGk3\n\nUnderstanding Scheduling Behavior with SchedViz → https://goo.gle/32rfsKr\n\nGoogle Code-in 2019 Org Applications are Open! → https://goo.gle/2VQXIpr\n\nHere to bring you the latest developer news from across Google is Developer Advocate Dan Galpin.\n\nTune in every week for a new episode, and let us know what you think of the latest announcements in the comments below! 😃\n\nWatch more #DevShow → https://goo.gle/GDevShow\nSubscribe to Google Developers! → https://goo.gle/developers",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/SBFfJeJGQIM/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/SBFfJeJGQIM/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/SBFfJeJGQIM/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          },
+          "standard": {
+            "url": "https://i.ytimg.com/vi/SBFfJeJGQIM/sddefault.jpg",
+            "width": 640,
+            "height": 480
+          },
+          "maxres": {
+            "url": "https://i.ytimg.com/vi/SBFfJeJGQIM/maxresdefault.jpg",
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "channelTitle": "Google Developers",
+        "type": "upload"
+      }
+    },
+    {
+      "kind": "youtube#activity",
+      "etag": "\"p4VTdlkQv3HQeTEaXgvLePAydmU/HCZb7JyJ2UdJwxeCtHEB6qiYSt4\"",
+      "id": "MTUxNTcxMTYwMjgxNjk5ODAxNjIwNDI3MDQ=",
+      "snippet": {
+        "publishedAt": "2019-10-15T17:24:41.000Z",
+        "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+        "title": "Developer Student Clubs 2019 South East Asia Leads Summit",
+        "description": "Developer Student Club Leads are passionate leaders at their university who are dedicated to helping their peers learn and connect. These Leads may be pursuing various degrees but have a good foundational knowledge of software development concepts. \n\nLearn more at → https://goo.gle/2MdD7sc\n\nSubscribe to Google Developers → https://goo.gle/developers",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/lBMvXIsTVDQ/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/lBMvXIsTVDQ/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/lBMvXIsTVDQ/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          },
+          "standard": {
+            "url": "https://i.ytimg.com/vi/lBMvXIsTVDQ/sddefault.jpg",
+            "width": 640,
+            "height": 480
+          }
+        },
+        "channelTitle": "Google Developers",
+        "type": "upload"
+      }
+    },
+    {
+      "kind": "youtube#activity",
+      "etag": "\"p4VTdlkQv3HQeTEaXgvLePAydmU/2oVIgF4Bamzs2ZNX_Q8sHInq0kQ\"",
+      "id": "MTUxNTcwNzQzMzU3Njk5ODAxNjIwNDMzNDQ=",
+      "snippet": {
+        "publishedAt": "2019-10-10T21:35:57.000Z",
+        "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+        "title": "Android Emulator tools, updates to AutoML Vision Edge, AutoML Video, & Video Intelligence API",
+        "description": "TL;DR 177 | The Google Developer News Show\n \nContinuous testing with new Android emulator tools → https://goo.gle/2MukEXt\n\nExtending Stackdriver Logging across clouds and providers with new BindPlane integration → https://goo.gle/2MqzNsI\n\nAnnouncing updates to AutoML Vision Edge, AutoML Video, and Video Intelligence API → https://goo.gle/2owwtnY\n\nNo more mixed messages about HTTPS → https://goo.gle/2ODlMuC\n\nReleasing PAWS and PAWS-X: Two New Datasets to Improve Natural Language Understanding Models → https://goo.gle/2q4Wmf5\n\nHere to bring you the latest developer news from across Google is Developer Programs Engineer Andrew Brogdon.\n\nTune in every week for a new episode, and let us know what you think of the latest announcements in the comments below! 😃\n\nWatch more #DevShow → https://goo.gle/GDevShow\nSubscribe to Google Developers! → https://goo.gle/developers",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/FOtdgiw2Emo/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/FOtdgiw2Emo/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/FOtdgiw2Emo/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          },
+          "standard": {
+            "url": "https://i.ytimg.com/vi/FOtdgiw2Emo/sddefault.jpg",
+            "width": 640,
+            "height": 480
+          },
+          "maxres": {
+            "url": "https://i.ytimg.com/vi/FOtdgiw2Emo/maxresdefault.jpg",
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "channelTitle": "Google Developers",
+        "type": "upload"
+      }
+    }
+  ]
+}
