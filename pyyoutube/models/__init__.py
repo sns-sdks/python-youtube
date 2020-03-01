@@ -77,7 +77,7 @@ from .i18n import (
 
 from .video_abuse_report_reason import (
     VideoAbuseReportReason,
-    VideoAbuseReportReasonListResponse
+    VideoAbuseReportReasonListResponse,
 )
 
 __all__ = [

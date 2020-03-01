@@ -16,6 +16,7 @@ class SecondaryReason(BaseModel):
 
     Refer: https://developers.google.com/youtube/v3/docs/videoAbuseReportReasons#snippet.secondaryReasons
     """
+
     id: Optional[str] = field(default=None)
     label: Optional[str] = field(default=None, repr=True)
 
@@ -39,6 +40,7 @@ class VideoAbuseReportReason(BaseResource):
 
     Refer: https://developers.google.com/youtube/v3/docs/videoAbuseReportReasons
     """
+
     snippet: Optional[VideoAbuseReportReasonSnippet] = field(default=None)
 
 
