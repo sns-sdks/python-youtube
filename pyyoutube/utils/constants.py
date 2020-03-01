@@ -68,6 +68,16 @@ CAPTIONS_RESOURCE_PROPERTIES = {
     "snippet",
 }
 
+I18N_REGION_PROPERTIES = {
+    "id",
+    "snippet",
+}
+
+I18N_LANGUAGE_PROPERTIES = {
+    "id",
+    "snippet",
+}
+
 RESOURCE_PARTS_MAPPING = {
     "channels": CHANNEL_RESOURCE_PROPERTIES,
     "channelSections": CHANNEL_SECTIONS_PROPERTIES,
@@ -81,6 +91,8 @@ RESOURCE_PARTS_MAPPING = {
     "subscriptions": SUBSCRIPTION_RESOURCE_PROPERTIES,
     "activities": ACTIVITIES_RESOURCE_PROPERTIES,
     "captions": CAPTIONS_RESOURCE_PROPERTIES,
+    "i18nRegions": I18N_REGION_PROPERTIES,
+    "i18nLanguages": I18N_LANGUAGE_PROPERTIES,
 }
 
 TOPICS = {
