@@ -2156,9 +2156,7 @@ class Api(object):
         if page_token:
             args["pageToken"] = page_token
 
-        res_data = self.paged_by_page_token(
-            resource="search", args=args, count=count
-        )
+        res_data = self.paged_by_page_token(resource="search", args=args, count=count)
 
         if return_json:
             return res_data
@@ -2215,5 +2213,10 @@ class Api(object):
         """
         parts = enf_parts(resource="search", value=parts)
         return self._search(
-            parts=parts, q=keywords, count=count, limit=limit, page_token=page_token, return_json=return_json
+            parts=parts,
+            q=keywords,
+            count=count,
+            limit=limit,
+            page_token=page_token,
+            return_json=return_json,
         )
