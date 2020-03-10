@@ -2220,3 +2220,76 @@ class Api(object):
             page_token=page_token,
             return_json=return_json,
         )
+
+    def search_by_location(
+        self,
+        *,
+        location: Optional[str],
+        location_radius: Optional[str],
+        keywords: Optional[str],
+        parts: Optional[Union[str, list, tuple, set]] = None,
+        count: Optional[int] = 25,
+        limit: Optional[int] = 25,
+        page_token: Optional[str] = None,
+        return_json: Optional[bool] = False,
+    ):
+        """
+        retrieve associated with the keyword that also specify in their metadata a geographic location within
+        the point identified by the location parameter value.
+
+        Args:
+            location:
+                A string that specifies latitude/longitude coordinates e.g. (37.42307,-122.08427).
+            location_radius:
+                In conjunction with the location parameter, defines a circular geographic area.
+            keywords (str):
+                Your keywords can also use the Boolean NOT (-) and OR (|) operators to exclude videos or
+                to find videos that are associated with one of several search terms. For example,
+                to search for videos matching either "boating" or "sailing",
+                set the q parameter value to boating|sailing. Similarly,
+                to search for videos matching either "boating" or "sailing" but not "fishing",
+                set the q parameter value to boating|sailing -fishing.
+                Note that the pipe character must be URL-escaped when it is sent in your API request.
+                The URL-escaped value for the pipe character is %7C.
+            parts:
+                The resource parts for you want to retrieve.
+                If not provide, use default public parts.
+                You can pass this with single part str, comma-separated parts str or a list,tuple,set of parts.
+            count:
+                The count will retrieve videos data.
+                Default is 25.
+            limit:
+                The maximum number of items each request retrieve.
+                For comments, this should not be more than 100.
+                Default is 25.
+            page_token:
+                The token of the page of search result to retrieve.
+                You can use this retrieve point result page directly.
+                And you should know about the the result set for YouTube.
+            return_json:
+                The return data type. If you set True JSON data will be returned.
+                False will return a pyyoutube.CommentListResponse instance.
+
+        Returns:
+            SearchListResponse or original data
+        """
+        parts = enf_parts(resource="search", value=parts)
+
+        if not (location and location_radius):
+            raise PyYouTubeException(
+                ErrorMessage(
+                    status_code=ErrorCode.MISSING_PARAMS,
+                    message="Parameters location and location radius are both needed.",
+                )
+            )
+
+        return self._search(
+            parts=parts,
+            location=location,
+            location_radius=location_radius,
+            q=keywords,
+            count=count,
+            limit=limit,
+            page_token=page_token,
+            return_json=return_json,
+        )
