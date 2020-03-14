@@ -2058,7 +2058,7 @@ class Api(object):
         else:
             return VideoAbuseReportReasonListResponse.from_dict(data)
 
-    def _search(
+    def search(
         self,
         *,
         parts: Optional[str] = None,
@@ -2219,7 +2219,7 @@ class Api(object):
             SearchListResponse or original data
         """
         parts = enf_parts(resource="search", value=parts)
-        return self._search(
+        return self.search(
             parts=parts,
             q=keywords,
             count=count,
@@ -2294,7 +2294,7 @@ class Api(object):
                 )
             )
 
-        return self._search(
+        return self.search(
             parts=parts,
             location=location,
             location_radius=location_radius,
@@ -2363,7 +2363,7 @@ class Api(object):
         """
         parts = enf_parts(resource="search", value=parts)
 
-        return self._search(
+        return self.search(
             parts=parts,
             q=keywords,
             event_type=event_type,
@@ -2434,9 +2434,10 @@ class Api(object):
             If you want use this pass more args. You can use this.
         """
         parts = enf_parts(resource="search", value=parts)
-        return self._search(
+        return self.search(
             parts=parts,
             related_to_video_id=related_to_video_id,
+            search_type="video",
             region_code=region_code,
             relevance_language=relevance_language,
             safe_search=safe_search,
