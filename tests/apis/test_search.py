@@ -104,11 +104,9 @@ class ApiSearchTest(unittest.TestCase):
         with responses.RequestsMock() as m:
             m.add("GET", self.BASE_URL, json=search_by_dev)
 
-            res_dev = self.api.search(
-                parts=["snippet"],
-                for_developer=True,
-                count=5
-            )
+            res_dev = self.api.search(parts=["snippet"], for_developer=True, count=5)
 
             self.assertEqual(res_dev.pageInfo.resultsPerPage, 5)
-            self.assertEqual(res_dev.items[0].snippet.channelId, "UCstEtN0pgOmCf02EdXsGChw")
+            self.assertEqual(
+                res_dev.items[0].snippet.channelId, "UCstEtN0pgOmCf02EdXsGChw"
+            )
