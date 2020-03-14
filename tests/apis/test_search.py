@@ -96,3 +96,19 @@ class ApiSearchTest(unittest.TestCase):
             self.assertEqual(len(res.items), 5)
             self.assertEqual(res.regionCode, "US")
             self.assertEqual(res.items[0].snippet.channelId, "UCAuUUnT6oDeKwE6v1NGQxug")
+
+    def testSearch(self) -> None:
+        with open(self.BASE_PATH + "search_by_dev.json", "rb") as f:
+            search_by_dev = json.loads(f.read().decode("utf-8"))
+
+        with responses.RequestsMock() as m:
+            m.add("GET", self.BASE_URL, json=search_by_dev)
+
+            res_dev = self.api.search(
+                parts=["snippet"],
+                for_developer=True,
+                count=5
+            )
+
+            self.assertEqual(res_dev.pageInfo.resultsPerPage, 5)
+            self.assertEqual(res_dev.items[0].snippet.channelId, "UCstEtN0pgOmCf02EdXsGChw")

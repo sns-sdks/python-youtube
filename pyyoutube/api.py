@@ -2061,7 +2061,7 @@ class Api(object):
     def search(
         self,
         *,
-        parts: Optional[str] = None,
+        parts: Optional[Union[str, list, tuple, set]] = None,
         for_developer: Optional[bool] = None,
         for_mine: Optional[bool] = None,
         related_to_video_id: Optional[str] = None,
@@ -2097,6 +2097,8 @@ class Api(object):
         """
         This is the base search method for search.
         """
+        parts = enf_parts(resource="search", value=parts)
+
         args = {
             "part": parts,
             "maxResults": min(limit, count),
@@ -2218,7 +2220,6 @@ class Api(object):
         Returns:
             SearchListResponse or original data
         """
-        parts = enf_parts(resource="search", value=parts)
         return self.search(
             parts=parts,
             q=keywords,
@@ -2284,7 +2285,6 @@ class Api(object):
         Returns:
             SearchListResponse or original data
         """
-        parts = enf_parts(resource="search", value=parts)
 
         if not (location and location_radius):
             raise PyYouTubeException(
@@ -2361,7 +2361,6 @@ class Api(object):
         Returns:
             SearchListResponse or original data
         """
-        parts = enf_parts(resource="search", value=parts)
 
         return self.search(
             parts=parts,
@@ -2433,7 +2432,7 @@ class Api(object):
         Returns:
             If you want use this pass more args. You can use this.
         """
-        parts = enf_parts(resource="search", value=parts)
+
         return self.search(
             parts=parts,
             related_to_video_id=related_to_video_id,

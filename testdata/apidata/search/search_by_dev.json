@@ -1,0 +1,177 @@
+{
+  "kind": "youtube#searchListResponse",
+  "etag": "\"SJZWTG6xR0eGuCOh2bX6w3s4F94/e38Q_L1ceAjJ2cnkoAtIYvP7nSk\"",
+  "nextPageToken": "CAUQAA",
+  "regionCode": "US",
+  "pageInfo": {
+    "totalResults": 499,
+    "resultsPerPage": 5
+  },
+  "items": [
+    {
+      "kind": "youtube#searchResult",
+      "etag": "\"SJZWTG6xR0eGuCOh2bX6w3s4F94/3NfzqV3fqw2IKIcC1owKMjRh_R4\"",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "UeSupeagsKU"
+      },
+      "snippet": {
+        "publishedAt": "2018-03-13T12:20:20.000Z",
+        "channelId": "UCstEtN0pgOmCf02EdXsGChw",
+        "title": "It&#39;s Showtime Online - March 13, 2018",
+        "description": "Subscribe to ABS-CBN Entertainment channel! - http://bit.ly/ABS-CBNEntertainment Watch the full episodes of It's Showtime on TFC.",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/UeSupeagsKU/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/UeSupeagsKU/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/UeSupeagsKU/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "ABS-CBN Entertainment",
+        "liveBroadcastContent": "none"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "\"SJZWTG6xR0eGuCOh2bX6w3s4F94/4wTxagGWw3aHVtrvbtHDRCNZ9hg\"",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "KQvaSPUb5cE"
+      },
+      "snippet": {
+        "publishedAt": "2018-06-09T11:06:18.000Z",
+        "channelId": "UCstEtN0pgOmCf02EdXsGChw",
+        "title": "It&#39;s Showtime Online - June 8, 2018",
+        "description": "Subscribe to ABS-CBN Entertainment channel! - http://bit.ly/ABS-CBNEntertainment Watch the full episodes of It's Showtime on TFC.",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/KQvaSPUb5cE/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/KQvaSPUb5cE/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/KQvaSPUb5cE/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "ABS-CBN Entertainment",
+        "liveBroadcastContent": "none"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "\"SJZWTG6xR0eGuCOh2bX6w3s4F94/GXbbfErVu8v0G8ByQ8PnI7Eh4NU\"",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "Ll7_yMGbfo8"
+      },
+      "snippet": {
+        "publishedAt": "2018-06-01T08:43:55.000Z",
+        "channelId": "UCstEtN0pgOmCf02EdXsGChw",
+        "title": "It&#39;s Showtime Online - June 1, 2018",
+        "description": "Subscribe to ABS-CBN Entertainment channel! - http://bit.ly/ABS-CBNEntertainment Watch the full episodes of It's Showtime on TFC.",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/Ll7_yMGbfo8/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/Ll7_yMGbfo8/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/Ll7_yMGbfo8/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "ABS-CBN Entertainment",
+        "liveBroadcastContent": "none"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "\"SJZWTG6xR0eGuCOh2bX6w3s4F94/YItbNAapfAstr3MLSBezmWSsi98\"",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "q0d20dDQdzo"
+      },
+      "snippet": {
+        "publishedAt": "2018-03-07T09:09:05.000Z",
+        "channelId": "UCstEtN0pgOmCf02EdXsGChw",
+        "title": "It&#39;s Showtime Online - March 7, 2018",
+        "description": "Subscribe to ABS-CBN Entertainment channel! - http://bit.ly/ABS-CBNEntertainment Watch the full episodes of It's Showtime on TFC.",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/q0d20dDQdzo/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/q0d20dDQdzo/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/q0d20dDQdzo/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "ABS-CBN Entertainment",
+        "liveBroadcastContent": "none"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "\"SJZWTG6xR0eGuCOh2bX6w3s4F94/AzS31YXoAX3CX1Xd0q_Qzjtt8DY\"",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "DTP__aPD0cA"
+      },
+      "snippet": {
+        "publishedAt": "2018-03-16T09:17:29.000Z",
+        "channelId": "UCstEtN0pgOmCf02EdXsGChw",
+        "title": "It&#39;s Showtime Online - March 16, 2018",
+        "description": "Subscribe to ABS-CBN Entertainment channel! - http://bit.ly/ABS-CBNEntertainment Watch the full episodes of It's Showtime on TFC.",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/DTP__aPD0cA/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/DTP__aPD0cA/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/DTP__aPD0cA/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "ABS-CBN Entertainment",
+        "liveBroadcastContent": "none"
+      }
+    }
+  ]
+}
