@@ -62,3 +62,37 @@ class ApiSearchTest(unittest.TestCase):
             self.assertEqual(res.pageInfo.resultsPerPage, 5)
             self.assertEqual(len(res.items), 5)
             self.assertEqual(res.items[0].snippet.channelId, "UCOtHosOqPe9d6vLy-8LfHzQ")
+
+    def testSearchByEvent(self) -> None:
+        with open(self.BASE_PATH + "search_by_event.json", "rb") as f:
+            search_by_event = json.loads(f.read().decode("utf-8"))
+
+        with responses.RequestsMock() as m:
+            m.add("GET", self.BASE_URL, json=search_by_event)
+            res = self.api.search_by_event(
+                event_type="live", keywords="news", parts=["snippet"], count=5
+            )
+
+            self.assertEqual(res.pageInfo.resultsPerPage, 5)
+            self.assertEqual(len(res.items), 5)
+            self.assertEqual(res.items[0].snippet.channelId, "UCZMsvbAhhRblVGXmEXW8TSA")
+
+    def testSearchByRelatedToVideoId(self) -> None:
+        with open(self.BASE_PATH + "search_by_related_video.json", "rb") as f:
+            search_by_related_video = json.loads(f.read().decode("utf-8"))
+
+        with responses.RequestsMock() as m:
+            m.add("GET", self.BASE_URL, json=search_by_related_video)
+
+            res = self.api.search_by_related_video(
+                related_to_video_id="Ks-_Mh1QhMc",
+                region_code="US",
+                relevance_language="en",
+                safe_search="moderate",
+                count=5,
+            )
+
+            self.assertEqual(res.pageInfo.resultsPerPage, 5)
+            self.assertEqual(len(res.items), 5)
+            self.assertEqual(res.regionCode, "US")
+            self.assertEqual(res.items[0].snippet.channelId, "UCAuUUnT6oDeKwE6v1NGQxug")

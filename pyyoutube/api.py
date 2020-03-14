@@ -2306,7 +2306,7 @@ class Api(object):
             **kwargs,
         )
 
-    def search_by_events(
+    def search_by_event(
         self,
         *,
         event_type: str,
