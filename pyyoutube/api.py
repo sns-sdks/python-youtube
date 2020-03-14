@@ -2226,7 +2226,7 @@ class Api(object):
             limit=limit,
             page_token=page_token,
             return_json=return_json,
-            **kwargs
+            **kwargs,
         )
 
     def search_by_location(
@@ -2307,16 +2307,16 @@ class Api(object):
         )
 
     def search_by_events(
-            self,
-            *,
-            event_type: str,
-            keywords: Optional[str] = "",
-            parts: Optional[Union[str, list, tuple, set]] = None,
-            count: Optional[int] = 25,
-            limit: Optional[int] = 25,
-            page_token: Optional[str] = None,
-            return_json: Optional[bool] = False,
-            **kwargs: Optional[dict]
+        self,
+        *,
+        event_type: str,
+        keywords: Optional[str] = "",
+        parts: Optional[Union[str, list, tuple, set]] = None,
+        count: Optional[int] = 25,
+        limit: Optional[int] = 25,
+        page_token: Optional[str] = None,
+        return_json: Optional[bool] = False,
+        **kwargs: Optional[dict],
     ):
         """
         Retrieve list of events that associated with the keywords.
@@ -2372,21 +2372,21 @@ class Api(object):
             limit=limit,
             page_token=page_token,
             return_json=return_json,
-            **kwargs
+            **kwargs,
         )
 
     def search_by_related_video(
-            self,
-            *,
-            related_to_video_id: str,
-            parts: Optional[Union[str, list, tuple, set]] = None,
-            region_code: Optional[str] = None,
-            relevance_language: Optional[str] = None,
-            safe_search: Optional[str] = None,
-            count: Optional[int] = 25,
-            limit: Optional[int] = 25,
-            page_token: Optional[str] = None,
-            return_json: Optional[bool] = False,
+        self,
+        *,
+        related_to_video_id: str,
+        parts: Optional[Union[str, list, tuple, set]] = None,
+        region_code: Optional[str] = None,
+        relevance_language: Optional[str] = None,
+        safe_search: Optional[str] = None,
+        count: Optional[int] = 25,
+        limit: Optional[int] = 25,
+        page_token: Optional[str] = None,
+        return_json: Optional[bool] = False,
     ):
         """
         Retrieve a list of videos related to that video.
@@ -2444,5 +2444,5 @@ class Api(object):
             count=count,
             limit=limit,
             page_token=page_token,
-            return_json=return_json
+            return_json=return_json,
         )
