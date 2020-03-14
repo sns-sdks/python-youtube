@@ -42,3 +42,23 @@ class ApiSearchTest(unittest.TestCase):
             self.assertEqual(res.pageInfo.resultsPerPage, 25)
             self.assertEqual(res.items[0].id.videoId, "-2IlD-x8wvY")
             self.assertEqual(res.items[0].snippet.channelId, "UCeYue9Nbodzg3T1Nt88E3fg")
+
+    def testSearchByLocation(self) -> None:
+        with open(self.BASE_PATH + "search_by_location.json", "rb") as f:
+            search_by_location = json.loads(f.read().decode("utf-8"))
+
+        with self.assertRaises(pyyoutube.PyYouTubeException):
+            self.api.search_by_location(location=(12, 12), location_radius="")
+
+        with responses.RequestsMock() as m:
+            m.add("GET", self.BASE_URL, json=search_by_location)
+            res = self.api.search_by_location(
+                location=(21.5922529, -158.1147114),
+                location_radius="10mi",
+                keywords="surfing",
+                parts=["snippet"],
+                count=5,
+            )
+            self.assertEqual(res.pageInfo.resultsPerPage, 5)
+            self.assertEqual(len(res.items), 5)
+            self.assertEqual(res.items[0].snippet.channelId, "UCOtHosOqPe9d6vLy-8LfHzQ")

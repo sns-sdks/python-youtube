@@ -2,7 +2,7 @@
     Main Api implementation.
 """
 
-from typing import Optional, List, Union
+from typing import Optional, List, Tuple, Union
 
 import requests
 from requests.models import Response
@@ -2068,7 +2068,7 @@ class Api(object):
         channel_id: Optional[str] = None,
         channel_type: Optional[str] = None,
         event_type: Optional[str] = None,
-        location: Optional[str] = None,
+        location: Optional[Tuple[float, float]] = None,
         location_radius: Optional[str] = None,
         count: Optional[int] = 10,
         limit: Optional[int] = 5,
@@ -2232,7 +2232,7 @@ class Api(object):
     def search_by_location(
         self,
         *,
-        location: Optional[str],
+        location: Optional[Tuple[float, float]],
         location_radius: Optional[str],
         keywords: Optional[str] = "",
         parts: Optional[Union[str, list, tuple, set]] = None,
