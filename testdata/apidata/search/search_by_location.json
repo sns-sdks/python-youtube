@@ -1,46 +1,13 @@
 {
   "kind": "youtube#searchListResponse",
-  "etag": "\"SJZWTG6xR0eGuCOh2bX6w3s4F94/VyW-2TCB0WQyp9ssh01wNTrFPIw\"",
+  "etag": "\"SJZWTG6xR0eGuCOh2bX6w3s4F94/KRABNKy-TvvaFRB9poJwJHu7_CA\"",
   "nextPageToken": "CAUQAA",
   "regionCode": "US",
   "pageInfo": {
-    "totalResults": 1125,
+    "totalResults": 83,
     "resultsPerPage": 5
   },
   "items": [
-    {
-      "kind": "youtube#searchResult",
-      "etag": "\"SJZWTG6xR0eGuCOh2bX6w3s4F94/2GLFLn43D7ZbzLqieVwVaWj98Vk\"",
-      "id": {
-        "kind": "youtube#video",
-        "videoId": "4sBoBsZB4Yc"
-      },
-      "snippet": {
-        "publishedAt": "2020-03-14T02:00:00.000Z",
-        "channelId": "UCOtHosOqPe9d6vLy-8LfHzQ",
-        "title": "North Shore, Hawaii Surfing | BIG MONDAY | Filmed by Jack Coleman",
-        "description": "Watch more on NobodySurf App: https://nobody.surf/Download Subscribe: https://www.youtube.com/NobodySurf?sub_confirmation=1 BIG MONDAY [5min] ...",
-        "thumbnails": {
-          "default": {
-            "url": "https://i.ytimg.com/vi/4sBoBsZB4Yc/default.jpg",
-            "width": 120,
-            "height": 90
-          },
-          "medium": {
-            "url": "https://i.ytimg.com/vi/4sBoBsZB4Yc/mqdefault.jpg",
-            "width": 320,
-            "height": 180
-          },
-          "high": {
-            "url": "https://i.ytimg.com/vi/4sBoBsZB4Yc/hqdefault.jpg",
-            "width": 480,
-            "height": 360
-          }
-        },
-        "channelTitle": "NobodySurf : Surfing Videos",
-        "liveBroadcastContent": "none"
-      }
-    },
     {
       "kind": "youtube#searchResult",
       "etag": "\"SJZWTG6xR0eGuCOh2bX6w3s4F94/z-4-8ZS7WBjxdAkQsCYIrkc2Yi4\"",
@@ -66,39 +33,6 @@
           },
           "high": {
             "url": "https://i.ytimg.com/vi/OU4d3O_VZCk/hqdefault.jpg",
-            "width": 480,
-            "height": 360
-          }
-        },
-        "channelTitle": "Jamie O'Brien",
-        "liveBroadcastContent": "none"
-      }
-    },
-    {
-      "kind": "youtube#searchResult",
-      "etag": "\"SJZWTG6xR0eGuCOh2bX6w3s4F94/_mOBjnA5mb03qReqVQdkZxSdaUQ\"",
-      "id": {
-        "kind": "youtube#video",
-        "videoId": "oci0CqUU5KI"
-      },
-      "snippet": {
-        "publishedAt": "2019-11-21T19:00:04.000Z",
-        "channelId": "UCo_q6aOlvPH7M-j_XGWVgXg",
-        "title": "ENDLESS SURF ON THE NORTH SHORE (HAWAII)",
-        "description": "SURFER AWARDS: HELP US PROVE THAT THE STAY PSYCHED COMMUNITY IS THE BEST VLOG FANS IN THE WORLD! VOTE HERE: ...",
-        "thumbnails": {
-          "default": {
-            "url": "https://i.ytimg.com/vi/oci0CqUU5KI/default.jpg",
-            "width": 120,
-            "height": 90
-          },
-          "medium": {
-            "url": "https://i.ytimg.com/vi/oci0CqUU5KI/mqdefault.jpg",
-            "width": 320,
-            "height": 180
-          },
-          "high": {
-            "url": "https://i.ytimg.com/vi/oci0CqUU5KI/hqdefault.jpg",
             "width": 480,
             "height": 360
           }
@@ -165,6 +99,72 @@
           },
           "high": {
             "url": "https://i.ytimg.com/vi/R86-eGa96bQ/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "Jamie O'Brien",
+        "liveBroadcastContent": "none"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "\"SJZWTG6xR0eGuCOh2bX6w3s4F94/yxmO5YZFScEXiQHvIJyAJc7Ophc\"",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "dnFxU2mik74"
+      },
+      "snippet": {
+        "publishedAt": "2020-02-09T19:00:05.000Z",
+        "channelId": "UCo_q6aOlvPH7M-j_XGWVgXg",
+        "title": "JAMIE O&#39;BRIEN NEAR DEATH SURFING PIPELINE (OAHU, HAWAII)",
+        "description": "SUBSCRIBE: https://www.youtube.com/jamieobrienjob FIND JAMIE ON INSTAGRAM: https://www.instagram.com/WHOISJOB/ EDITOR: ...",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/dnFxU2mik74/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/dnFxU2mik74/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/dnFxU2mik74/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "Jamie O'Brien",
+        "liveBroadcastContent": "none"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "\"SJZWTG6xR0eGuCOh2bX6w3s4F94/Q4uSEXp12CwRiMVDqNa7TmsGeHw\"",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "drQjl1rsj28"
+      },
+      "snippet": {
+        "publishedAt": "2020-02-20T19:00:04.000Z",
+        "channelId": "UCo_q6aOlvPH7M-j_XGWVgXg",
+        "title": "PERFECT BARRELS AT BANZAI PIPELINE  (POINT OF VIEW)",
+        "description": "WHAT IT REALLY LOOKS LIKE OUT AT BANZAI PIPELINE. BIG, STEEP, INTENSE WAVES, AND YOU GET THE FRONT ROW SEAT! CHECK OUT MY ...",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/drQjl1rsj28/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/drQjl1rsj28/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/drQjl1rsj28/hqdefault.jpg",
             "width": 480,
             "height": 360
           }

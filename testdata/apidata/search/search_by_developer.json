@@ -1,0 +1,178 @@
+{
+  "kind": "youtube#searchListResponse",
+  "etag": "\"SJZWTG6xR0eGuCOh2bX6w3s4F94/-_uuZ-sNfL41nlDe7y-H3-hTVR8\"",
+  "nextPageToken": "CAoQAA",
+  "prevPageToken": "CAUQAQ",
+  "regionCode": "US",
+  "pageInfo": {
+    "totalResults": 1000000,
+    "resultsPerPage": 5
+  },
+  "items": [
+    {
+      "kind": "youtube#searchResult",
+      "etag": "\"SJZWTG6xR0eGuCOh2bX6w3s4F94/0Qdy2kYX0gwN6vW9FaXr5bKR1e8\"",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "WuyFniRMrxY"
+      },
+      "snippet": {
+        "publishedAt": "2020-03-14T01:59:46.000Z",
+        "channelId": "UCeY0bbntWzzVIaj2z3QigXg",
+        "title": "NBC Nightly News Broadcast (Full) - March 13th, 2020 | NBC Nightly News",
+        "description": "Coronavirus pandemic: President Trump declares national emergency to combat coronavirus, already strained hospitals worry about what's to come, and ...",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/WuyFniRMrxY/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/WuyFniRMrxY/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/WuyFniRMrxY/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "NBC News",
+        "liveBroadcastContent": "none"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "\"SJZWTG6xR0eGuCOh2bX6w3s4F94/VrmRau0XKBBIRmWgTtLIcifdHnQ\"",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "VQIZkYkIynE"
+      },
+      "snippet": {
+        "publishedAt": "2020-03-15T12:43:32.000Z",
+        "channelId": "UCknLrEdhRCp1aegoMqRaCZg",
+        "title": "Coronavirus precautions sweep around the world | DW News",
+        "description": "While authorities around the world take ever more drastic measures to try to slow the spread of the coronavirus, the number of cases is rising. Indonesia and ...",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/VQIZkYkIynE/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/VQIZkYkIynE/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/VQIZkYkIynE/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "DW News",
+        "liveBroadcastContent": "none"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "\"SJZWTG6xR0eGuCOh2bX6w3s4F94/ZQL6qzIJxT1j-e6wqOssMFgBC7g\"",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "q_WM_pMp0Hg"
+      },
+      "snippet": {
+        "publishedAt": "2020-03-13T21:12:36.000Z",
+        "channelId": "UCeY0bbntWzzVIaj2z3QigXg",
+        "title": "Trump Holds News Conference On Coronavirus Pandemic | NBC News (Live Stream Recording)",
+        "description": "President Donald Trump holds a news conference on the coronavirus pandemic which is spreading across the United States. The president is expected to ...",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/q_WM_pMp0Hg/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/q_WM_pMp0Hg/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/q_WM_pMp0Hg/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "NBC News",
+        "liveBroadcastContent": "none"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "\"SJZWTG6xR0eGuCOh2bX6w3s4F94/VKr-2JYTn80JU9wfted23CwUrJU\"",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "wDbyThHkctA"
+      },
+      "snippet": {
+        "publishedAt": "2020-03-14T00:06:34.000Z",
+        "channelId": "UCBi2mrWuNuyYy4gbM6fU18Q",
+        "title": "ABC News Prime: Coronavirus national emergency, life under quarantine, stock market",
+        "description": "coronavirus #quarantine #nationalemergency #nyse SUBSCRIBE to ABC NEWS: https://bit.ly/2vZb6yP Watch More on http://abcnews.go.com/ LIKE ABC News ...",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/wDbyThHkctA/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/wDbyThHkctA/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/wDbyThHkctA/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "ABC News",
+        "liveBroadcastContent": "none"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "\"SJZWTG6xR0eGuCOh2bX6w3s4F94/kubYi5AYaeyfTjRY02WZFb1xipE\"",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "IQdYDkwtvoo"
+      },
+      "snippet": {
+        "publishedAt": "2020-03-13T22:41:09.000Z",
+        "channelId": "UC16niRr50-MSBwiO3YDb3RA",
+        "title": "Coronavirus: Europe at the epicentre of the pandemic - BBC News",
+        "description": "The World Health Organisation says Europe is now the epicentre, of the global coronavirus pandemic. The news emerged as organised sport, both professional ...",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/IQdYDkwtvoo/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/IQdYDkwtvoo/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/IQdYDkwtvoo/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "BBC News",
+        "liveBroadcastContent": "none"
+      }
+    }
+  ]
+}

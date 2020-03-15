@@ -2171,7 +2171,7 @@ class Api(object):
     def search_by_keywords(
         self,
         *,
-        keywords: Optional[str],
+        q: Optional[str],
         parts: Optional[Union[str, list, tuple, set]] = None,
         search_type: Optional[str] = None,
         count: Optional[int] = 25,
@@ -2187,7 +2187,7 @@ class Api(object):
         Note: A call to this method has a quota cost of 100 units.
 
         Args:
-            keywords (str):
+            q (str):
                 Your keywords can also use the Boolean NOT (-) and OR (|) operators to exclude videos or
                 to find videos that are associated with one of several search terms. For example,
                 to search for videos matching either "boating" or "sailing",
@@ -2230,7 +2230,7 @@ class Api(object):
         """
         return self.search(
             parts=parts,
-            q=keywords,
+            q=q,
             search_type=search_type,
             count=count,
             limit=limit,
@@ -2243,7 +2243,7 @@ class Api(object):
         self,
         *,
         parts: Optional[Union[str, list, tuple, set]],
-        keywords: Optional[str] = None,
+        q: Optional[str] = None,
         count: Optional[int] = 25,
         limit: Optional[int] = 25,
         page_token: Optional[str] = None,
@@ -2258,7 +2258,7 @@ class Api(object):
                 The resource parts for you want to retrieve.
                 If not provide, use default public parts.
                 You can pass this with single part str, comma-separated parts str or a list,tuple,set of parts.
-            keywords:
+            q:
                 Your keywords can also use the Boolean NOT (-) and OR (|) operators to exclude videos or
                 to find videos that are associated with one of several search terms. For example,
                 to search for videos matching either "boating" or "sailing",
@@ -2291,7 +2291,7 @@ class Api(object):
             for_developer=True,
             search_type="video",
             parts=parts,
-            q=keywords,
+            q=q,
             count=count,
             limit=limit,
             page_token=page_token,
@@ -2303,7 +2303,7 @@ class Api(object):
         self,
         *,
         parts: Optional[Union[str, list, tuple, set]],
-        keywords: Optional[str] = None,
+        q: Optional[str] = None,
         count: Optional[int] = 25,
         limit: Optional[int] = 25,
         page_token: Optional[str] = None,
@@ -2318,7 +2318,7 @@ class Api(object):
             video_definition, video_dimension, video_duration, video_license,
             video_embeddable, video_syndicated, video_type.
         Args:
-            keywords:
+            q:
                 Your keywords can also use the Boolean NOT (-) and OR (|) operators to exclude videos or
                 to find videos that are associated with one of several search terms. For example,
                 to search for videos matching either "boating" or "sailing",
@@ -2355,7 +2355,7 @@ class Api(object):
             for_mine=True,
             search_type="video",
             parts=parts,
-            q=keywords,
+            q=q,
             count=count,
             limit=limit,
             page_token=page_token,
