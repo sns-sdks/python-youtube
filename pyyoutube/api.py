@@ -2080,7 +2080,7 @@ class Api(object):
         relevance_language: Optional[str] = None,
         safe_search: Optional[str] = None,
         topic_id: Optional[str] = None,
-        search_type: Optional[str] = None,
+        search_type: Optional[Union[str, list, tuple, set]] = None,
         video_caption: Optional[str] = None,
         video_category_id: Optional[str] = None,
         video_definition: Optional[str] = None,
@@ -2101,6 +2101,10 @@ class Api(object):
             SearchListResponse or original data
         """
         parts = enf_parts(resource="search", value=parts)
+        if search_type is None:
+            search_type = "video,channel,playlist"
+        else:
+            search_type = enf_comma_separated(field="search_type", value=search_type)
 
         args = {
             "part": parts,
