@@ -1,0 +1,23 @@
+{
+  "publishedAt": "2016-03-30T16:59:12.000Z",
+  "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+  "title": "Hello World - Machine Learning Recipes #1",
+  "description": "Six lines of Python is all it takes to write your first machine learning program! In this episode, we'll briefly introduce what machine learning is and why it's ...",
+  "thumbnails": {
+    "default": {
+      "url": "https://i.ytimg.com/vi/cKxRvEZd3Mw/default.jpg",
+      "width": 120,
+      "height": 90
+    },
+    "medium": {
+      "url": "https://i.ytimg.com/vi/cKxRvEZd3Mw/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+    },
+    "high": {
+      "url": "https://i.ytimg.com/vi/cKxRvEZd3Mw/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+    }
+  }
+}

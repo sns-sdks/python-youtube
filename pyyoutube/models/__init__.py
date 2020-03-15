@@ -79,6 +79,12 @@ from .video_abuse_report_reason import (
     VideoAbuseReportReason,
     VideoAbuseReportReasonListResponse,
 )
+from .search_result import (
+    SearchResultId,
+    SearchResultSnippet,
+    SearchResult,
+    SearchListResponse,
+)
 
 __all__ = [
     "AccessToken",
@@ -118,6 +124,18 @@ __all__ = [
     "PlaylistItemListResponse",
     "PlaylistItemSnippet",
     "PlaylistItemStatus",
+    "PlaylistItemListResponse",
+    "Comment",
+    "CommentSnippet",
+    "CommentListResponse",
+    "CommentThread",
+    "CommentThreadSnippet",
+    "CommentThreadReplies",
+    "CommentThreadListResponse",
+    "SearchResult",
+    "SearchListResponse",
+    "SearchResultSnippet",
+    "SearchResultId",
     "PlaylistListResponse",
     "PlaylistSnippet",
     "PlaylistStatus",

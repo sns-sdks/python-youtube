@@ -2,7 +2,7 @@
     Main Api implementation.
 """
 
-from typing import Optional, List, Union
+from typing import Optional, List, Tuple, Union
 
 import requests
 from requests.models import Response
@@ -23,6 +23,7 @@ from pyyoutube.models import (
     CommentListResponse,
     GuideCategoryListResponse,
     VideoCategoryListResponse,
+    SearchListResponse,
     SubscriptionListResponse,
     I18nRegionListResponse,
     I18nLanguageListResponse,
@@ -2056,3 +2057,379 @@ class Api(object):
             return data
         else:
             return VideoAbuseReportReasonListResponse.from_dict(data)
+
+    def search(
+        self,
+        *,
+        parts: Optional[Union[str, list, tuple, set]] = None,
+        for_developer: Optional[bool] = None,
+        for_mine: Optional[bool] = None,
+        related_to_video_id: Optional[str] = None,
+        channel_id: Optional[str] = None,
+        channel_type: Optional[str] = None,
+        event_type: Optional[str] = None,
+        location: Optional[Tuple[float, float]] = None,
+        location_radius: Optional[str] = None,
+        count: Optional[int] = 10,
+        limit: Optional[int] = 10,
+        order: Optional[str] = None,
+        published_after: Optional[str] = None,
+        published_before: Optional[str] = None,
+        q: Optional[str] = None,
+        region_code: Optional[str] = None,
+        relevance_language: Optional[str] = None,
+        safe_search: Optional[str] = None,
+        topic_id: Optional[str] = None,
+        search_type: Optional[str] = None,
+        video_caption: Optional[str] = None,
+        video_category_id: Optional[str] = None,
+        video_definition: Optional[str] = None,
+        video_dimension: Optional[str] = None,
+        video_duration: Optional[str] = None,
+        video_embeddable: Optional[str] = None,
+        video_license: Optional[str] = None,
+        video_syndicated: Optional[str] = None,
+        video_type: Optional[str] = None,
+        page_token: Optional[str] = None,
+        return_json: Optional[bool] = False,
+    ) -> Union[SearchListResponse, dict]:
+        """
+        Main search api implementation.
+        You can find all parameters description at https://developers.google.com/youtube/v3/docs/search/list#parameters
+
+        Returns:
+            SearchListResponse or original data
+        """
+        parts = enf_parts(resource="search", value=parts)
+
+        args = {
+            "part": parts,
+            "maxResults": min(limit, count),
+        }
+        if for_developer:
+            args["forDeveloper"] = for_developer
+        if for_mine:
+            args["forMine"] = for_mine
+        if related_to_video_id:
+            args["relatedToVideoId"] = related_to_video_id
+        if channel_id:
+            args["channelId"] = channel_id
+        if channel_type:
+            args["channelType"] = channel_type
+        if event_type:
+            args["eventType"] = event_type
+        if location:
+            args["location"] = location
+        if location_radius:
+            args["locationRadius"] = location_radius
+        if order:
+            args["order"] = order
+        if published_after:
+            args["publishedAfter"] = published_after
+        if published_before:
+            args["publishedBefore"] = published_before
+        if q:
+            args["q"] = q
+        if region_code:
+            args["regionCode"] = region_code
+        if relevance_language:
+            args["relevanceLanguage"] = relevance_language
+        if safe_search:
+            args["safeSearch"] = safe_search
+        if topic_id:
+            args["topicId"] = topic_id
+        if search_type:
+            args["type"] = search_type
+        if video_caption:
+            args["videoCaption"] = video_caption
+        if video_category_id:
+            args["videoCategoryId"] = video_category_id
+        if video_definition:
+            args["videoDefinition"] = video_definition
+        if video_dimension:
+            args["videoDimension"] = video_dimension
+        if video_duration:
+            args["videoDuration"] = video_duration
+        if video_embeddable:
+            args["videoEmbeddable"] = video_embeddable
+        if video_license:
+            args["videoLicense"] = video_license
+        if video_syndicated:
+            args["videoSyndicated"] = video_syndicated
+        if video_type:
+            args["videoType"] = video_type
+        if page_token:
+            args["pageToken"] = page_token
+
+        res_data = self.paged_by_page_token(resource="search", args=args, count=count)
+
+        if return_json:
+            return res_data
+        else:
+            return SearchListResponse.from_dict(res_data)
+
+    def search_by_keywords(
+        self,
+        *,
+        q: Optional[str],
+        parts: Optional[Union[str, list, tuple, set]] = None,
+        search_type: Optional[str] = None,
+        count: Optional[int] = 25,
+        limit: Optional[int] = 25,
+        page_token: Optional[str] = None,
+        return_json: Optional[bool] = False,
+        **kwargs: Optional[dict],
+    ) -> Union[SearchListResponse, dict]:
+        """
+        This is simplest usage for search api. You can only passed the keywords to retrieve data from YouTube.
+        And the result will include videos,playlists and channels.
+
+        Note: A call to this method has a quota cost of 100 units.
+
+        Args:
+            q (str):
+                Your keywords can also use the Boolean NOT (-) and OR (|) operators to exclude videos or
+                to find videos that are associated with one of several search terms. For example,
+                to search for videos matching either "boating" or "sailing",
+                set the q parameter value to boating|sailing. Similarly,
+                to search for videos matching either "boating" or "sailing" but not "fishing",
+                set the q parameter value to boating|sailing -fishing.
+                Note that the pipe character must be URL-escaped when it is sent in your API request.
+                The URL-escaped value for the pipe character is %7C.
+            parts ((str,list,tuple,set) optional):
+                The resource parts for you want to retrieve.
+                If not provide, use default public parts.
+                You can pass this with single part str, comma-separated parts str or a list,tuple,set of parts.
+            search_type ((str,list,tuple,set), optional):
+                Parameter restricts a search query to only retrieve a particular type of resource.
+                You can pass this with single part str, comma-separated parts str or a list,tuple,set of parts.
+                The default value is video,channel,playlist
+                Acceptable values are:
+                    - channel
+                    - playlist
+                    - video
+            count (int, optional):
+                The count will retrieve videos data.
+                Default is 25.
+            limit (int, optional):
+                The maximum number of items each request retrieve.
+                For search, this should not be more than 50.
+                Default is 25.
+            page_token (str, optional):
+                The token of the page of search result to retrieve.
+                You can use this retrieve point result page directly.
+                And you should know about the the result set for YouTube.
+            return_json(bool, optional):
+                The return data type. If you set True JSON data will be returned.
+                False will return a pyyoutube.SearchListResponse instance.
+            kwargs:
+                If you want use this pass more args. You can use this.
+
+        Returns:
+            SearchListResponse or original data
+        """
+        return self.search(
+            parts=parts,
+            q=q,
+            search_type=search_type,
+            count=count,
+            limit=limit,
+            page_token=page_token,
+            return_json=return_json,
+            **kwargs,
+        )
+
+    def search_by_developer(
+        self,
+        *,
+        parts: Optional[Union[str, list, tuple, set]],
+        q: Optional[str] = None,
+        count: Optional[int] = 25,
+        limit: Optional[int] = 25,
+        page_token: Optional[str] = None,
+        return_json: Optional[bool] = False,
+        **kwargs,
+    ) -> Union[SearchListResponse, dict]:
+        """
+        Parameter restricts the search to only retrieve videos uploaded via the developer's application or website.
+
+        Args:
+            parts:
+                The resource parts for you want to retrieve.
+                If not provide, use default public parts.
+                You can pass this with single part str, comma-separated parts str or a list,tuple,set of parts.
+            q:
+                Your keywords can also use the Boolean NOT (-) and OR (|) operators to exclude videos or
+                to find videos that are associated with one of several search terms. For example,
+                to search for videos matching either "boating" or "sailing",
+                set the q parameter value to boating|sailing. Similarly,
+                to search for videos matching either "boating" or "sailing" but not "fishing",
+                set the q parameter value to boating|sailing -fishing.
+                Note that the pipe character must be URL-escaped when it is sent in your API request.
+                The URL-escaped value for the pipe character is %7C.
+            count:
+                The count will retrieve videos data.
+                Default is 25.
+            limit:
+                The maximum number of items each request retrieve.
+                For search, this should not be more than 50.
+                Default is 25.
+            page_token:
+                The token of the page of search result to retrieve.
+                You can use this retrieve point result page directly.
+                And you should know about the the result set for YouTube.
+            return_json:
+                The return data type. If you set True JSON data will be returned.
+                False will return a pyyoutube.SearchListResponse instance.
+            kwargs:
+                If you want use this pass more args. You can use this.
+
+        Returns:
+            SearchListResponse or original data
+        """
+        return self.search(
+            for_developer=True,
+            search_type="video",
+            parts=parts,
+            q=q,
+            count=count,
+            limit=limit,
+            page_token=page_token,
+            return_json=return_json,
+            **kwargs,
+        )
+
+    def search_by_mine(
+        self,
+        *,
+        parts: Optional[Union[str, list, tuple, set]],
+        q: Optional[str] = None,
+        count: Optional[int] = 25,
+        limit: Optional[int] = 25,
+        page_token: Optional[str] = None,
+        return_json: Optional[bool] = False,
+        **kwargs,
+    ) -> Union[SearchListResponse, dict]:
+        """
+        Parameter restricts the search to only retrieve videos owned by the authenticated user.
+
+        Note:
+            This methods can not use following parameters:
+            video_definition, video_dimension, video_duration, video_license,
+            video_embeddable, video_syndicated, video_type.
+        Args:
+            q:
+                Your keywords can also use the Boolean NOT (-) and OR (|) operators to exclude videos or
+                to find videos that are associated with one of several search terms. For example,
+                to search for videos matching either "boating" or "sailing",
+                set the q parameter value to boating|sailing. Similarly,
+                to search for videos matching either "boating" or "sailing" but not "fishing",
+                set the q parameter value to boating|sailing -fishing.
+                Note that the pipe character must be URL-escaped when it is sent in your API request.
+                The URL-escaped value for the pipe character is %7C.
+            parts ((str,list,tuple,set) optional):
+                The resource parts for you want to retrieve.
+                If not provide, use default public parts.
+                You can pass this with single part str, comma-separated parts str or a list,tuple,set of parts.
+            count (int, optional):
+                The count will retrieve videos data.
+                Default is 25.
+            limit (int, optional):
+                The maximum number of items each request retrieve.
+                For search, this should not be more than 50.
+                Default is 25.
+            page_token (str, optional):
+                The token of the page of search result to retrieve.
+                You can use this retrieve point result page directly.
+                And you should know about the the result set for YouTube.
+            return_json(bool, optional):
+                The return data type. If you set True JSON data will be returned.
+                False will return a pyyoutube.SearchListResponse instance.
+            kwargs:
+                If you want use this pass more args. You can use this.
+
+        Returns:
+            SearchListResponse or original data
+        """
+        return self.search(
+            for_mine=True,
+            search_type="video",
+            parts=parts,
+            q=q,
+            count=count,
+            limit=limit,
+            page_token=page_token,
+            return_json=return_json,
+            **kwargs,
+        )
+
+    def search_by_related_video(
+        self,
+        *,
+        related_to_video_id: str,
+        parts: Optional[Union[str, list, tuple, set]] = None,
+        region_code: Optional[str] = None,
+        relevance_language: Optional[str] = None,
+        safe_search: Optional[str] = None,
+        count: Optional[int] = 25,
+        limit: Optional[int] = 25,
+        page_token: Optional[str] = None,
+        return_json: Optional[bool] = False,
+    ) -> Union[SearchListResponse, dict]:
+        """
+        Retrieve a list of videos related to that video.
+
+        Args:
+            related_to_video_id:
+                 A YouTube video ID which result associated with.
+            parts:
+                The resource parts for you want to retrieve.
+                If not provide, use default public parts.
+                You can pass this with single part str, comma-separated parts str or a list,tuple,set of parts.
+            region_code:
+                Parameter instructs the API to return search results for videos
+                that can be viewed in the specified country.
+            relevance_language:
+                Parameter instructs the API to return search results that are most relevant to the specified language.
+            safe_search:
+                Parameter indicates whether the search results should include restricted content
+                as well as standard content.
+                Acceptable values are:
+                    - moderate – YouTube will filter some content from search results and, at the least,
+                      will filter content that is restricted in your locale. Based on their content,
+                      search results could be removed from search results or demoted in search results.
+                      This is the default parameter value.
+                    - none – YouTube will not filter the search result set.
+                    - strict – YouTube will try to exclude all restricted content from the search result set.
+                      Based on their content, search results could be removed from search results or
+                      demoted in search results.
+            count:
+                The count will retrieve videos data.
+                Default is 25.
+            limit:
+                The maximum number of items each request retrieve.
+                For search, this should not be more than 50.
+                Default is 25.
+            page_token:
+                The token of the page of search result to retrieve.
+                You can use this retrieve point result page directly.
+                And you should know about the the result set for YouTube.
+            return_json:
+                The return data type. If you set True JSON data will be returned.
+                False will return a pyyoutube.SearchListResponse instance.
+        Returns:
+            If you want use this pass more args. You can use this.
+        """
+
+        return self.search(
+            parts=parts,
+            related_to_video_id=related_to_video_id,
+            search_type="video",
+            region_code=region_code,
+            relevance_language=relevance_language,
+            safe_search=safe_search,
+            count=count,
+            limit=limit,
+            page_token=page_token,
+            return_json=return_json,
+        )
