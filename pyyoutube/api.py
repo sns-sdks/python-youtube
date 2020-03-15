@@ -2068,7 +2068,7 @@ class Api(object):
         channel_id: Optional[str] = None,
         channel_type: Optional[str] = None,
         event_type: Optional[str] = None,
-        location: Optional[Tuple[float, float]] = None,
+        location: Optional[str] = None,
         location_radius: Optional[str] = None,
         count: Optional[int] = 10,
         limit: Optional[int] = 10,
