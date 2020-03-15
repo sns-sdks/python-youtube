@@ -2,7 +2,7 @@
     Main Api implementation.
 """
 
-from typing import Optional, List, Tuple, Union
+from typing import Optional, List, Union
 
 import requests
 from requests.models import Response
@@ -69,6 +69,16 @@ class Api(object):
             >>> api.get_activities_by_channel()
             >>> api.get_activities_by_me()
             >>> api.get_captions_by_video()
+            >>> api.get_channel_sections_by_id()
+            >>> api.get_channel_sections_by_channel()
+            >>> api.get_i18n_regions()
+            >>> api.get_i18n_languages()
+            >>> api.get_video_abuse_report_reason()
+            >>> api.search()
+            >>> api.search_by_keywords()
+            >>> api.search_by_developer()
+            >>> api.search_by_mine()
+            >>> api.search_by_related_video()
     """
 
     BASE_URL = "https://www.googleapis.com/youtube/v3/"
@@ -2177,7 +2187,7 @@ class Api(object):
         *,
         q: Optional[str],
         parts: Optional[Union[str, list, tuple, set]] = None,
-        search_type: Optional[str] = None,
+        search_type: Optional[Union[str, list, tuple, set]] = None,
         count: Optional[int] = 25,
         limit: Optional[int] = 25,
         page_token: Optional[str] = None,
