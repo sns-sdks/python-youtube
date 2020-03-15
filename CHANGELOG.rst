@@ -1,6 +1,16 @@
 Changelog
 ---------
 
+Version 0.6.0
+=============
+
+What's New
+++++++++++
+
+Provide remain get apis. like activities, captions, channel_sections, i18n, video_abuse_report_reason, search resource and so on.
+
+You can see the `README`_ to get more detail for those api.
+
 
 Version 0.5.3
 =============

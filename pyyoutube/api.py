@@ -2,7 +2,7 @@
     Main Api implementation.
 """
 
-from typing import Optional, List, Tuple, Union
+from typing import Optional, List, Union
 
 import requests
 from requests.models import Response
@@ -69,6 +69,16 @@ class Api(object):
             >>> api.get_activities_by_channel()
             >>> api.get_activities_by_me()
             >>> api.get_captions_by_video()
+            >>> api.get_channel_sections_by_id()
+            >>> api.get_channel_sections_by_channel()
+            >>> api.get_i18n_regions()
+            >>> api.get_i18n_languages()
+            >>> api.get_video_abuse_report_reason()
+            >>> api.search()
+            >>> api.search_by_keywords()
+            >>> api.search_by_developer()
+            >>> api.search_by_mine()
+            >>> api.search_by_related_video()
     """
 
     BASE_URL = "https://www.googleapis.com/youtube/v3/"
@@ -2068,7 +2078,7 @@ class Api(object):
         channel_id: Optional[str] = None,
         channel_type: Optional[str] = None,
         event_type: Optional[str] = None,
-        location: Optional[Tuple[float, float]] = None,
+        location: Optional[str] = None,
         location_radius: Optional[str] = None,
         count: Optional[int] = 10,
         limit: Optional[int] = 10,
@@ -2080,7 +2090,7 @@ class Api(object):
         relevance_language: Optional[str] = None,
         safe_search: Optional[str] = None,
         topic_id: Optional[str] = None,
-        search_type: Optional[str] = None,
+        search_type: Optional[Union[str, list, tuple, set]] = None,
         video_caption: Optional[str] = None,
         video_category_id: Optional[str] = None,
         video_definition: Optional[str] = None,
@@ -2101,6 +2111,10 @@ class Api(object):
             SearchListResponse or original data
         """
         parts = enf_parts(resource="search", value=parts)
+        if search_type is None:
+            search_type = "video,channel,playlist"
+        else:
+            search_type = enf_comma_separated(field="search_type", value=search_type)
 
         args = {
             "part": parts,
@@ -2173,7 +2187,7 @@ class Api(object):
         *,
         q: Optional[str],
         parts: Optional[Union[str, list, tuple, set]] = None,
-        search_type: Optional[str] = None,
+        search_type: Optional[Union[str, list, tuple, set]] = None,
         count: Optional[int] = 25,
         limit: Optional[int] = 25,
         page_token: Optional[str] = None,

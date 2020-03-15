@@ -40,7 +40,7 @@ class ApiSearchTest(unittest.TestCase):
         with responses.RequestsMock() as m:
             m.add("GET", self.BASE_URL, json=search_by_location)
             res = self.api.search(
-                location=(21.5922529, -158.1147114),
+                location="21.5922529, -158.1147114",
                 location_radius="10mi",
                 q="surfing",
                 parts=["snippet"],

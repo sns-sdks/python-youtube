@@ -484,12 +484,112 @@ Get authorize user's channel sections::
 
 Get channel section detail info by his id::
 
-    In[24]: r1 = api.get_channel_section_by_id(section_id="UC_x5XG1OV2P6uZZ5FSM9Ttw.e-Fk7vMPqLE")
-    In[25]: r1
+    In[24]: r = api.get_channel_section_by_id(section_id="UC_x5XG1OV2P6uZZ5FSM9Ttw.e-Fk7vMPqLE")
+    In[25]: r
     Out[25]: ChannelSectionResponse(kind='youtube#channelSectionListResponse')
     In[26]: r1.items
     Out[26]: [ChannelSection(kind='youtube#channelSection', id='UC_x5XG1OV2P6uZZ5FSM9Ttw.e-Fk7vMPqLE')]
 
+-------------
+I18N RESOURCE
+-------------
+
+You can get a list of content regions that the YouTube website supports::
+
+    In[27]: r = api.get_i18n_regions(parts=["snippet"])
+    In[28]: r.items
+    Out[28]:
+    [I18nRegion(kind='youtube#i18nRegion', id='DZ', snippet=I18nRegionSnippet(gl='DZ', name='Algeria')),
+     I18nRegion(kind='youtube#i18nRegion', id='AR', snippet=I18nRegionSnippet(gl='AR', name='Argentina')),
+     I18nRegion(kind='youtube#i18nRegion', id='AU', snippet=I18nRegionSnippet(gl='AU', name='Australia'))
+     ...]
+
+You can get a list of application languages that the YouTube website supports::
+
+    In[29]: r = api.get_i18n_languages(parts=["snippet"])
+    In[30]: r.items
+    Out[30]:
+    [I18nLanguage(kind='youtube#i18nLanguage', id='af', snippet=I18nLanguageSnippet(hl='af', name='Afrikaans')),
+     I18nLanguage(kind='youtube#i18nLanguage', id='az', snippet=I18nLanguageSnippet(hl='az', name='Azerbaijani')),
+     I18nLanguage(kind='youtube#i18nLanguage', id='id', snippet=I18nLanguageSnippet(hl='id', name='Indonesian')),
+     ...]
+
+-------------------------
+VIDEO ABUSE REPORT REASON
+-------------------------
+
+You can retrieve a list of reasons that can be used to report abusive videos::
+
+    In[31]: r = api_with_token.get_video_abuse_report_reason(parts=["snippet"])
+    In[32]: r.items
+    Out[34]:
+    [VideoAbuseReportReason(kind='youtube#videoAbuseReportReason'),
+     VideoAbuseReportReason(kind='youtube#videoAbuseReportReason')]
+
+------
+SEARCH
+------
+
+You can use those methods to search the video,playlist,channel data. for more info, you can see the `Search Request Docs <https://developers.google.com/youtube/v3/docs/search/list>`_ .
+
+You can search different type of resource with keywords::
+
+    In[33]: r = api.search_by_keywords(q="surfing", search_type=["channel","video", "playlist"], count=5, limit=5)
+    In[34]: r.items
+    Out[34]:
+    [SearchResult(kind='youtube#searchResult'),
+     SearchResult(kind='youtube#searchResult'),
+     SearchResult(kind='youtube#searchResult'),
+     SearchResult(kind='youtube#searchResult'),
+     SearchResult(kind='youtube#searchResult')]
+
+You can search your app send videos::
+
+    In[35]: r = api_with_token.search_by_developer(q="news", count=1)
+    In[36]: r.items
+    Out[36]:
+    [SearchResult(kind='youtube#searchResult')]
+
+You can search your videos::
+
+    In[37]: r = api_with_token.search_by_mine(q="news", count=1)
+    In[38]: r.items
+    Out[39]:
+    [SearchResult(kind='youtube#searchResult')]
+
+Or you can build your request by ``search`` method, examples as follows::
+
+    In[40]: r = api.search(
+       ...:     location="21.5922529, -158.1147114",
+       ...:     location_radius="10mi",
+       ...:     q="surfing",
+       ...:     parts=["snippet"],
+       ...:     count=5,
+       ...:     published_after="2020-02-01T00:00:00Z",
+       ...:     published_before="2020-03-01T00:00:00Z",
+       ...:     safe_search="moderate",
+       ...:     search_type="video")
+    In[41]: r.items
+    Out[41]:
+    [SearchResult(kind='youtube#searchResult'),
+     SearchResult(kind='youtube#searchResult'),
+     SearchResult(kind='youtube#searchResult'),
+     SearchResult(kind='youtube#searchResult'),
+     SearchResult(kind='youtube#searchResult')]
+
+    In[42]: r = api.search(
+       ...:     event_type="live",
+       ...:     q="news",
+       ...:     count=3,
+       ...:     parts=["snippet"],
+       ...:     search_type="video",
+       ...:     topic_id="/m/09s1f",
+       ...:     order="viewCount")
+    In[43]: r.items
+    Out[43]:
+    [SearchResult(kind='youtube#searchResult'),
+     SearchResult(kind='youtube#searchResult'),
+     SearchResult(kind='youtube#searchResult')]
 
 ====
 TODO
@@ -510,8 +610,8 @@ Now this has follows api.
 - Activities Info
 - Captions Info
 - Channel Sections Info
+- Search Requests and simple usage.
 
 Doing
 
-- remain get api
 - post or other method.
