@@ -19,7 +19,7 @@ A Python wrapper around for YouTube Data API V3.
 THANKS
 ======
 
-This project structure is base on `Python-Twitter <https://github.com/bear/python-twitter>`_.
+Inspired by `Python-Twitter <https://github.com/bear/python-twitter>`_.
 
 Thanks a lot for Python-Twitter Developers.
 
