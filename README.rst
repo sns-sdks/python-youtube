@@ -35,7 +35,7 @@ Documentation
 
 You can view the latest ``python-youtube`` documentation at: https://python-youtube.readthedocs.io/en/latest/.
 
-Also view the full ``YouTube DATA API`` docs at: https://google-developers.appspot.com/youtube/v3/docs/.
+Also view the full ``YouTube DATA API`` docs at: https://developers.google.com/youtube/v3/docs/.
 
 ==========
 Installing
@@ -58,7 +58,7 @@ INSTANTIATE
 
 There provide two method to create instance the ``pyyoutube.Api``.
 
-You can just initialize with the an api key::
+You can just initialize with an api key::
 
     In [1]: from pyyoutube import Api
     In [2]: api = Api(api_key='your api key')
@@ -76,9 +76,9 @@ Now you can use the instance to get data from YouTube.
 CHANNEL DATA
 ------------
 
-Now library provide several ways to get channel's data.
+The library provides several ways to get channel's data.
 
-If not found channel. the property ``items`` will return with blank list.
+If a channel is not found, the property ``items`` will return with blank list.
 
 You can use channel id::
 
@@ -112,8 +112,8 @@ You can use channel id::
       ...
       }
 
-You can pass channel id with comma-separated id string or a list,tuple or set of ids to get multi channels.
-Many methods also provide this method.
+You can pass a channel id with comma-separated id string or a list, tuple or set of ids to get multiple channels.
+Many methods also provide this functionality.
 
 with ids::
 
@@ -136,13 +136,13 @@ If you have authorized, you can get your channels::
     Out[4]: Channel(kind='youtube#channel', id='UCa-vrCLQHviTOVnEKDOdetQ')
 
 .. note::
-    To get your channel, you must do authorize first, otherwise you will get error.
+    To get your channel, you must do authorization first, otherwise you will get an error.
 
 --------
 PLAYLIST
 --------
 
-There provide methods to get playlists by playlist id, channel id or get your self playlists.
+There are methods to get playlists by playlist id, channel id or get your own playlists.
 
 Get playlists by id::
 
@@ -150,7 +150,7 @@ Get playlists by id::
     In [6]: playlists_by_id.items
     Out[6]: [Playlist(kind='youtube#playlist', id='PLOU2XLYxmsIKpaV8h0AGE05so0fAwwfTw')]
 
-Get playlists by channel(If you want to get target channel all playlist, just provide the parameter ``count`` with ``None``)::
+Get playlists by channel (If you want to get all of atarget channel's playlists, just provide the parameter ``count=None``)::
 
     In [3]: playlists_by_channel = api.get_playlists(channel_id="UC_x5XG1OV2P6uZZ5FSM9Ttw")
     In [4]: playlists_by_channel.items
@@ -161,7 +161,7 @@ Get playlists by channel(If you want to get target channel all playlist, just pr
      Playlist(kind='youtube#playlist', id='PLOU2XLYxmsIKNr3Wfhm8o0TSojW7hEPPY'),
      Playlist(kind='youtube#playlist', id='PLOU2XLYxmsIJ8ItHmK4bRlY4GCzMgXLAJ')]
 
-Get your playlists(this need authorization)::
+Get your playlists(this requires authorization)::
 
     In [7]: playlists_by_mine = api.get_playlists(mine=True)
 
@@ -169,7 +169,7 @@ Get your playlists(this need authorization)::
 PLAYLIST ITEM
 -------------
 
-Similar you can get playlist items by playlist item id or playlist id.
+Similarly, you can get playlist items by playlist item id or playlist id.
 
 Get playlist items by id::
 
@@ -180,7 +180,7 @@ Get playlist items by id::
     Out[12]: [PlaylistItem(kind='youtube#playlistItem', id='UExPVTJYTFl4bXNJS3BhVjhoMEFHRTA1c28wZkF3d2ZUdy41NkI0NEY2RDEwNTU3Q0M2')]
 
 
-Get playlist items by playlist id(If you want to get target playlist all items, just provide the parameter ``count`` with ``None``)::
+Get playlist items by playlist id (If you want to get target playlist all items, just provide the parameter ``count=None``)::
 
     In [8]: playlist_item_by_playlist = api.get_playlist_items(playlist_id="PLOU2XLYxmsIKpaV8h0AGE05so0fAwwfTw", count=2)
 
@@ -195,7 +195,7 @@ Get playlist items by playlist id(If you want to get target playlist all items, 
 VIDEO
 -----
 
-You can get videos info by several methods.
+You can get a video's information by several methods.
 
 Get videos by video id(s)::
 
@@ -208,7 +208,7 @@ Get videos by video id(s)::
     Out[16]: [Video(kind='youtube#video', id='CvTApw9X8aA')]
 
 
-Get videos by chart(If you want to get all videos, just provide the parameter ``count`` with ``None``)::
+Get videos by chart (If you want to get all videos, just provide the parameter ``count=None``)::
 
     In [17]: video_by_chart = api.get_videos_by_chart(chart="mostPopular", region_code="US", count=2)
 
@@ -218,7 +218,7 @@ Get videos by chart(If you want to get all videos, just provide the parameter ``
      Video(kind='youtube#video', id='hDeuSfo_Ys0')]
 
 
-Get videos by your rating(this need authorization, also if you want to get all videos, just provide the parameter ``count`` with ``None``)::
+Get videos by your rating (this requires authorization, also if you want to get all videos, just provide the parameter ``count=None``)::
 
     In [25]: videos_by_rating = api.get_videos_by_myrating(rating="like", count=2)
 
@@ -226,7 +226,7 @@ Get videos by your rating(this need authorization, also if you want to get all v
 COMMENT THREAD
 --------------
 
-You can get comment thread info by id or some filter.
+You can get comment thread information by id or some filter.
 
 Get comment thread by id(s)::
 
@@ -238,7 +238,7 @@ Get comment thread by id(s)::
     [CommentThread(kind='youtube#commentThread', id='Ugz097FRhsQy5CVhAjp4AaABAg'),
      CommentThread(kind='youtube#commentThread', id='UgzhytyP79_PwaDd4UB4AaABAg')]
 
-Get all comment threads relate to channel(include comment threads for the channel's video, also if you want to get all comment threads, just provide the parameter ``count`` with ``None``)::
+Get all comment threads related to a channel (including comment threads for the channel's video, also if you want to get all comment threads, just provide the parameter ``count=None``)::
 
     In [19]: ct_by_all = api.get_comment_threads(all_to_channel_id="UC_x5XG1OV2P6uZZ5FSM9Ttw", count=2)
 
@@ -247,7 +247,7 @@ Get all comment threads relate to channel(include comment threads for the channe
     [CommentThread(kind='youtube#commentThread', id='UgwlB_Cza9WtzUWahYN4AaABAg'),
      CommentThread(kind='youtube#commentThread', id='UgyvoQJ2LsxCBwGEpMB4AaABAg')]
 
-Get comment threads only for the channel(If you want to get all comment threads, just provide the parameter ``count`` with ``None``)::
+Get comment threads only for the channel (If you want to get all comment threads, just provide the parameter ``count=None``)::
 
     In [3]: ct_by_channel = api.get_comment_threads(channel_id="UC_x5XG1OV2P6uZZ5FSM9Ttw", count=2)
 
@@ -256,7 +256,7 @@ Get comment threads only for the channel(If you want to get all comment threads,
     [CommentThread(kind='youtube#commentThread', id='UgyUBI0HsgL9emxcZpR4AaABAg'),
      CommentThread(kind='youtube#commentThread', id='Ugzi3lkqDPfIOirGFLh4AaABAg')]
 
-Get comment threads only for the video(If you want to get all comment threads, just provide the parameter ``count`` with ``None``)::
+Get comment threads only for the video (If you want to get all comment threads, just provide the parameter ``count=None``)::
 
     In [5]: ct_by_video = api.get_comment_threads(video_id="D-lhorsDlUQ", count=2)
 
@@ -269,10 +269,10 @@ Get comment threads only for the video(If you want to get all comment threads, j
 COMMENT
 -------
 
-You can get comment info by id or use the toplevel comment id to get replies.
+You can get comment information by id or use the top-level comment id to get replies.
 
 .. note::
-    The reply has the same structure as comment.
+    The reply has the same structure as a comment.
 
 Get comments by id(s)::
 
@@ -284,7 +284,7 @@ Get comments by id(s)::
     [Comment(kind='youtube#comment', id='UgxKREWxIgDrw8w2e_Z4AaABAg', snippet=CommentSnippet(authorDisplayName='Hieu Nguyen', likeCount=0)),
      Comment(kind='youtube#comment', id='UgyrVQaFfEdvaSzstj14AaABAg', snippet=CommentSnippet(authorDisplayName='Mani Kanta', likeCount=0))]
 
-Get replies by comment id(If you want to get all comments, just provide the parameter ``count`` with ``None``)::
+Get replies by comment id (If you want to get all comments, just provide the parameter ``count=None``)::
 
     In [13]: comment_by_parent = api.get_comments(parent_id="UgwYjZXfNCUTKPq9CZp4AaABAg")
 
@@ -295,7 +295,7 @@ Get replies by comment id(If you want to get all comments, just provide the para
 GUIDE CATEGORY
 --------------
 
-You can use category id or category belongs region's code to get guide categories.
+You can use category id or categories belonging to a region code to get guide categories.
 
 Get guide categories with id(s)::
 
@@ -330,7 +330,7 @@ Get guide categories with region code::
 VIDEO CATEGORY
 --------------
 
-Similar to guide category. you can get video category with id or region.
+Similar to guide category, you can get video category with id or region.
 
 Get video categories with id(s)::
 
@@ -357,13 +357,13 @@ Get video categories with region code::
 SUBSCRIPTIONS
 -------------
 
-You can get subscriptions info by id, by point channel or by yourself.
+You can get subscription information by id, by point channel, or your own.
 
 .. note::
-    If you want to get the subscriptions not set to public. You need do authorization first and get the access token.
+    If you want to get the subscriptions not set to public, you need do authorization first and get the access token.
     You can see the demo `A demo for get my subscription <examples/subscription.py>`_.
 
-Get subscriptions info by id(s), this need your token have the permission for the subscriptions belongs channel or user::
+To get subscription info by id(s), this needs your token to have the permission for the subscriptions belonging to a channel or user::
 
     In [6]: r = api.get_subscription_by_id(
        ...:     subscription_id=[
@@ -376,7 +376,7 @@ Get subscriptions info by id(s), this need your token have the permission for th
     [Subscription(kind='youtube#subscription', id='zqShTXi-2-Tx7TtwQqhCBwViE_j9IEgnmRmPnqJljxo', snippet=SubscriptionSnippet(title='PyCon 2015', description='')),
      Subscription(kind='youtube#subscription', id='zqShTXi-2-Rya5uUxEp3ZsPI3fZrFQnSXNQCwvHBGGo', snippet=SubscriptionSnippet(title='ikaros-life', description='This is a test channel.'))]
 
-Get yourself subscriptions, this need you do authorization first or give the authorized access token::
+Get your own subscriptions, this need you do authorization first or give the authorized access token::
 
     In [9]: r = api.get_subscription_by_me(
        ...:     mine=True,
@@ -409,7 +409,7 @@ Get public channel's subscriptions::
 ACTIVITIES
 ----------
 
-You can get activities by channel id. And can get your activities after you have done the authorize.
+You can get activities by channel id. You can also get your own activities after you have completed authorization.
 
 Get public channel activities::
 
@@ -453,7 +453,7 @@ If you already have caption id(s), you can get video caption by id(s)::
 CHANNEL SECTIONS
 ----------------
 
-You can get channel sections by self id or belonged channel id or you self channel.
+You can get channel sections by self id or belonged channel id or your own channel.
 
 Get channel sections by channel id::
 
@@ -473,7 +473,7 @@ Get channel sections by channel id::
      ChannelSection(kind='youtube#channelSection', id='UC_x5XG1OV2P6uZZ5FSM9Ttw.9_wU0qhEPR8'),
      ChannelSection(kind='youtube#channelSection', id='UC_x5XG1OV2P6uZZ5FSM9Ttw.npYvuMz0_es')]
 
-Get authorize user's channel sections::
+Get authorized user's channel sections::
 
     In[21]: r = api.get_channel_sections_by_channel(mine=True)
     In[23]: r.items
@@ -482,7 +482,7 @@ Get authorize user's channel sections::
      ChannelSection(kind='youtube#channelSection', id='UCa-vrCLQHviTOVnEKDOdetQ.LeAltgu_pbM'),
      ChannelSection(kind='youtube#channelSection', id='UCa-vrCLQHviTOVnEKDOdetQ.nGzAI5pLbMY')]
 
-Get channel section detail info by his id::
+Get channel section detail info by id::
 
     In[24]: r = api.get_channel_section_by_id(section_id="UC_x5XG1OV2P6uZZ5FSM9Ttw.e-Fk7vMPqLE")
     In[25]: r
@@ -530,7 +530,7 @@ You can retrieve a list of reasons that can be used to report abusive videos::
 SEARCH
 ------
 
-You can use those methods to search the video,playlist,channel data. for more info, you can see the `Search Request Docs <https://developers.google.com/youtube/v3/docs/search/list>`_ .
+You can use those methods to search the video,playlist,channel data. For more info, you can see the `Search Request Docs <https://developers.google.com/youtube/v3/docs/search/list>`_ .
 
 You can search different type of resource with keywords::
 
@@ -557,7 +557,7 @@ You can search your videos::
     Out[39]:
     [SearchResult(kind='youtube#searchResult')]
 
-Or you can build your request by ``search`` method, examples as follows::
+Or you can build your request using the ``search`` method::
 
     In[40]: r = api.search(
        ...:     location="21.5922529, -158.1147114",
