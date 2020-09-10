@@ -24,7 +24,8 @@ class ApiCaptionsTest(unittest.TestCase):
         # test parts
         with self.assertRaises(pyyoutube.PyYouTubeException):
             self.api_with_access_token.get_captions_by_video(
-                video_id=video_id, parts="id,not_part",
+                video_id=video_id,
+                parts="id,not_part",
             )
 
         # test by video
@@ -32,7 +33,9 @@ class ApiCaptionsTest(unittest.TestCase):
             m.add("GET", self.BASE_URL, json=self.CAPTIONS_BY_VIDEO)
 
             res = self.api_with_access_token.get_captions_by_video(
-                video_id=video_id, parts="id,snippet", return_json=True,
+                video_id=video_id,
+                parts="id,snippet",
+                return_json=True,
             )
             self.assertEqual(len(res["items"]), 2)
             self.assertEqual(res["items"][0]["snippet"]["videoId"], video_id)

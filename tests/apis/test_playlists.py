@@ -67,7 +67,9 @@ class ApiPlaylistTest(unittest.TestCase):
             m.add("GET", self.BASE_URL, json=self.PLAYLISTS_MINE)
 
             res_by_channel_id = self.api.get_playlists(
-                channel_id="UC_x5XG1OV2P6uZZ5FSM9Ttw", limit=10, count=13,
+                channel_id="UC_x5XG1OV2P6uZZ5FSM9Ttw",
+                limit=10,
+                count=13,
             )
             self.assertEqual(res_by_channel_id.pageInfo.totalResults, 422)
             self.assertEqual(len(res_by_channel_id.items), 13)
@@ -89,7 +91,8 @@ class ApiPlaylistTest(unittest.TestCase):
             m.add("GET", self.BASE_URL, json=self.PLAYLISTS_PAGED_2)
 
             res_by_channel_id = self.api.get_playlists(
-                channel_id="UC_x5XG1OV2P6uZZ5FSM9Ttw", count=None,
+                channel_id="UC_x5XG1OV2P6uZZ5FSM9Ttw",
+                count=None,
             )
             self.assertEqual(len(res_by_channel_id.items), 20)
 

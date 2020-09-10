@@ -104,7 +104,8 @@ class ApiCommentThreadTest(unittest.TestCase):
             m.add("GET", self.BASE_URL, json=self.COMMENT_THREAD_BY_SEARCH)
 
             res_by_search = self.api.get_comment_threads(
-                channel_id="UC_x5XG1OV2P6uZZ5FSM9Ttw", search_terms="Hello",
+                channel_id="UC_x5XG1OV2P6uZZ5FSM9Ttw",
+                search_terms="Hello",
             )
             self.assertEqual(res_by_search.pageInfo.totalResults, 1)
             self.assertEqual(
@@ -121,7 +122,9 @@ class ApiCommentThreadTest(unittest.TestCase):
             m.add("GET", self.BASE_URL, json=self.COMMENT_THREAD_BY_VIDEO_P_2)
 
             res_by_video = self.api.get_comment_threads(
-                video_id="F1UP7wRCPH8", count=8, limit=5,
+                video_id="F1UP7wRCPH8",
+                count=8,
+                limit=5,
             )
             self.assertEqual(len(res_by_video.items), 8)
             self.assertEqual(res_by_video.items[0].snippet.videoId, "F1UP7wRCPH8")
@@ -132,7 +135,8 @@ class ApiCommentThreadTest(unittest.TestCase):
             m.add("GET", self.BASE_URL, json=self.COMMENT_THREAD_BY_VIDEO_P_2)
 
             res_by_video = self.api.get_comment_threads(
-                video_id="F1UP7wRCPH8", count=None,
+                video_id="F1UP7wRCPH8",
+                count=None,
             )
             self.assertEqual(len(res_by_video.items), 10)
 
