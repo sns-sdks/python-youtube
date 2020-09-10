@@ -216,6 +216,8 @@ class VideoStatus(BaseModel, DatetimeTimeMixin):
     license: Optional[str] = field(default=None, repr=False)
     embeddable: Optional[bool] = field(default=None, repr=False)
     publicStatsViewable: Optional[bool] = field(default=None, repr=False)
+    madeForKids: Optional[bool] = field(default=None, repr=False)
+    selfDeclaredMadeForKids: Optional[bool] = field(default=None, repr=False)
 
 
 @dataclass
