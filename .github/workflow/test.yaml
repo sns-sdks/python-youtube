@@ -1,0 +1,71 @@
+name: Test
+
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.6, 3.7, 3.8]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Cache venv
+        uses: actions/cache@v2
+        with:
+          path: venv
+          key: ${{ matrix.python-version }}-poetry-${{ hashFiles('Pipfile') }}
+      - name: Install dependencies
+        run: |
+          python -m venv venv
+          . venv/bin/activate
+          python -m pip install --upgrade pip
+          make env
+      - name: Test with pytest
+        run: |
+          . venv/bin/activate
+          pytest
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          file: ./coverage.xml
+          files: ./coverage1.xml,./coverage2.xml
+          directory: ./coverage/reports/
+          flags: unittests
+          env_vars: OS,PYTHON
+          name: codecov-umbrella
+          fail_ci_if_error: true
+          path_to_write_report: ./coverage/codecov_report.gz
+  lint:
+    name: black
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: 3.7
+      - name: Cache venv
+        uses: actions/cache@v2
+        with:
+          path: venv
+          key: lintenv-v2
+      - name: Install dependencies
+        run: |
+          python -m venv venv
+          . venv/bin/activate
+          python -m pip install --upgrade pip black
+      - name: Black test
+        run: |
+          . venv/bin/activate
+          black --check .
