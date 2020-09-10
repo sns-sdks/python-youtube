@@ -79,7 +79,9 @@ class ApiPlaylistTest(unittest.TestCase):
             m.add("GET", self.BASE_URL, json=self.SUBSCRIPTIONS_BY_CHANNEL_P2)
 
             res = self.api.get_subscription_by_channel(
-                channel_id="UCAuUUnT6oDeKwE6v1NGQxug", count=None, limit=5,
+                channel_id="UCAuUUnT6oDeKwE6v1NGQxug",
+                count=None,
+                limit=5,
             )
 
             self.assertEqual(len(res.items), 7)
@@ -89,7 +91,9 @@ class ApiPlaylistTest(unittest.TestCase):
             m.add("GET", self.BASE_URL, json=self.SUBSCRIPTIONS_BY_CHANNEL_P1)
 
             res = self.api.get_subscription_by_channel(
-                channel_id="UCAuUUnT6oDeKwE6v1NGQxug", count=5, limit=5,
+                channel_id="UCAuUUnT6oDeKwE6v1NGQxug",
+                count=5,
+                limit=5,
             )
 
             self.assertEqual(len(res.items), 5)

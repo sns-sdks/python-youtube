@@ -60,7 +60,9 @@ class ApiCommentTest(unittest.TestCase):
             m.add("GET", self.BASE_URL, json=self.COMMENTS_PAGED_2)
 
             res_by_parent = self.api.get_comments(
-                parent_id="Ugw5zYU6n9pmIgAZWvN4AaABAg", parts="id,snippet", limit=2,
+                parent_id="Ugw5zYU6n9pmIgAZWvN4AaABAg",
+                parts="id,snippet",
+                limit=2,
             )
             self.assertEqual(res_by_parent.kind, "youtube#commentListResponse")
             self.assertEqual(len(res_by_parent.items), 3)

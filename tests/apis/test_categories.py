@@ -55,7 +55,8 @@ class ApiGuideCategoryTest(unittest.TestCase):
             self.assertEqual(res_by_multi.items[1].id, "GCQ3JlYXRvciBvbiB0aGUgUmlzZQ")
 
             res_by_region = self.api.get_guide_categories(
-                region_code="US", parts="id,snippet",
+                region_code="US",
+                parts="id,snippet",
             )
             self.assertEqual(len(res_by_region.items), 11)
             self.assertEqual(res_by_region.items[0].id, "GCQmVzdCBvZiBZb3VUdWJl")
@@ -89,20 +90,24 @@ class ApiVideoCategoryTest(unittest.TestCase):
             m.add("GET", self.BASE_URL, json=self.VIDEO_CATEGORY_BY_REGION)
 
             res_by_single = self.api.get_video_categories(
-                category_id="17", parts=["id", "snippet"], return_json=True,
+                category_id="17",
+                parts=["id", "snippet"],
+                return_json=True,
             )
             self.assertEqual(res_by_single["kind"], "youtube#videoCategoryListResponse")
             self.assertEqual(len(res_by_single["items"]), 1)
             self.assertEqual(res_by_single["items"][0]["id"], "17")
 
             res_by_multi = self.api.get_video_categories(
-                category_id=["17", "18"], parts="id,snippet",
+                category_id=["17", "18"],
+                parts="id,snippet",
             )
             self.assertEqual(len(res_by_multi.items), 2)
             self.assertEqual(res_by_multi.items[1].id, "18")
 
             res_by_region = self.api.get_video_categories(
-                region_code="US", parts="id,snippet",
+                region_code="US",
+                parts="id,snippet",
             )
             self.assertEqual(len(res_by_region.items), 32)
             self.assertEqual(res_by_region.items[0].id, "1")

@@ -2,8 +2,8 @@ Python YouTube
 
 A Python wrapper around for YouTube Data API V3.
 
-.. image:: https://travis-ci.org/sns-sdks/python-youtube.svg?branch=master
-    :target: https://travis-ci.org/sns-sdks/python-youtube
+.. image:: https://github.com/sns-sdks/python-youtube/workflows/Test/badge.svg
+    :target: https://github.com/sns-sdks/python-youtube/actions
 
 .. image:: https://readthedocs.org/projects/python-youtube/badge/?version=latest
     :target: https://python-youtube.readthedocs.io/en/latest/?badge=latest

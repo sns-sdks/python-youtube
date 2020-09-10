@@ -12,7 +12,8 @@ logger = logging.getLogger(__name__)
 
 
 def enf_comma_separated(
-    field: str, value: Optional[Union[str, list, tuple, set]],
+    field: str,
+    value: Optional[Union[str, list, tuple, set]],
 ):
     """
     Check to see if field's value type belong to correct type.

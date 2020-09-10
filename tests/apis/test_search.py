@@ -77,7 +77,10 @@ class ApiSearchTest(unittest.TestCase):
             m.add("GET", self.BASE_URL, json=search_channels)
 
             res_channels = self.api.search(
-                parts=["snippet"], channel_type="any", count=5, search_type="channel",
+                parts=["snippet"],
+                channel_type="any",
+                count=5,
+                search_type="channel",
             )
             self.assertEqual(res_channels.pageInfo.resultsPerPage, 5)
             self.assertEqual(
@@ -108,7 +111,9 @@ class ApiSearchTest(unittest.TestCase):
             self.assertEqual(len(res_json["items"]), 30)
 
             res = self.api.search_by_keywords(
-                q="surfing", parts=["id", "snippet"], count=25,
+                q="surfing",
+                parts=["id", "snippet"],
+                count=25,
             )
             self.assertEqual(res.pageInfo.resultsPerPage, 25)
             self.assertEqual(res.items[0].id.videoId, "-2IlD-x8wvY")
@@ -168,7 +173,9 @@ class ApiSearchTest(unittest.TestCase):
         with responses.RequestsMock() as m:
             m.add("GET", self.BASE_URL, json=search_by_mine)
 
-            res_mine = self.api.search_by_mine(parts=["snippet"],)
+            res_mine = self.api.search_by_mine(
+                parts=["snippet"],
+            )
 
             self.assertEqual(res_mine.pageInfo.totalResults, 2)
             self.assertEqual(

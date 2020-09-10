@@ -145,7 +145,10 @@ class ApiVideoTest(unittest.TestCase):
         with responses.RequestsMock() as m:
             m.add("GET", self.BASE_URL, json=self.VIDEOS_MYRATING_PAGED_1)
             res_by_my_rating = self.api_with_token.get_videos_by_myrating(
-                rating="like", parts=("id", "snippet", "player"), count=1, limit=2,
+                rating="like",
+                parts=("id", "snippet", "player"),
+                count=1,
+                limit=2,
             )
             self.assertEqual(res_by_my_rating.pageInfo.totalResults, 3)
             self.assertEqual(len(res_by_my_rating.items), 1)
@@ -156,7 +159,9 @@ class ApiVideoTest(unittest.TestCase):
             m.add("GET", self.BASE_URL, json=self.VIDEOS_MYRATING_PAGED_1)
             m.add("GET", self.BASE_URL, json=self.VIDEOS_MYRATING_PAGED_2)
             res_by_my_rating = self.api_with_token.get_videos_by_myrating(
-                rating="like", parts=("id", "snippet", "player"), count=None,
+                rating="like",
+                parts=("id", "snippet", "player"),
+                count=None,
             )
             self.assertEqual(res_by_my_rating.pageInfo.totalResults, 3)
 

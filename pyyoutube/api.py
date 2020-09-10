@@ -416,7 +416,10 @@ class Api(object):
             return UserProfile.from_dict(data)
 
     def paged_by_page_token(
-        self, resource: str, args: dict, count: Optional[int] = None,
+        self,
+        resource: str,
+        args: dict,
+        count: Optional[int] = None,
     ):
         """
         Response paged by response's page token. If not provide response token
