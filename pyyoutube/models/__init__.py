@@ -7,8 +7,6 @@ from .activity import (
 from .auth import AccessToken, UserProfile
 from .caption import Caption, CaptionListResponse, CaptionSnippet
 from .category import (
-    GuideCategory,
-    GuideCategoryListResponse,
     VideoCategory,
     VideoCategoryListResponse,
 )
@@ -115,8 +113,6 @@ __all__ = [
     "CommentThreadListResponse",
     "CommentThreadReplies",
     "CommentThreadSnippet",
-    "GuideCategory",
-    "GuideCategoryListResponse",
     "Playlist",
     "PlaylistContentDetails",
     "PlaylistItem",

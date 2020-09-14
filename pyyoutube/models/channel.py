@@ -80,8 +80,6 @@ class ChannelBrandingSetting(BaseModel):
     """
 
     channel: Optional[ChannelBrandingChannel] = field(default=None)
-    image: Optional[ChannelBrandingImage] = field(default=None)
-    hints: Optional[List[ChannelBrandingHint]] = field(default=None, repr=False)
 
 
 @dataclass
@@ -161,7 +159,6 @@ class ChannelStatistics(BaseModel):
     """
 
     viewCount: Optional[int] = field(default=None)
-    commentCount: Optional[int] = field(default=None, repr=False)
     subscriberCount: Optional[int] = field(default=None)
     hiddenSubscriberCount: Optional[bool] = field(default=None, repr=False)
     videoCount: Optional[int] = field(default=None, repr=False)

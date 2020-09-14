@@ -1,6 +1,6 @@
 """
     These are category related models.
-    Include VideoCategory and GuideCategory.
+    Include VideoCategory
 """
 from dataclasses import dataclass, field
 from typing import List, Optional
@@ -50,36 +50,3 @@ class VideoCategoryListResponse(BaseApiResponse):
     """
 
     items: Optional[List[VideoCategory]] = field(default=None, repr=False)
-
-
-@dataclass
-class GuideCategorySnippet(CategorySnippet):
-    """
-    A class representing guide category snippet info.
-
-    Refer: https://developers.google.com/youtube/v3/docs/guideCategories#snippet
-    """
-
-    ...
-
-
-@dataclass
-class GuideCategory(BaseResource):
-    """
-    A class representing guide category snippet.
-
-    Refer: https://developers.google.com/youtube/v3/docs/guideCategories
-    """
-
-    snippet: Optional[GuideCategorySnippet] = field(default=None, repr=False)
-
-
-@dataclass
-class GuideCategoryListResponse(BaseApiResponse):
-    """
-    A class representing the guide category's retrieve response info.
-
-    Refer: https://developers.google.com/youtube/v3/docs/guideCategories/list#response_1
-    """
-
-    items: Optional[List[GuideCategory]] = field(default=None, repr=False)

@@ -292,45 +292,10 @@ Get replies by comment id (If you want to get all comments, just provide the par
     Out[14]: [Comment(kind='youtube#comment', id='UgwYjZXfNCUTKPq9CZp4AaABAg.8yxhlQJogG18yz_cXK9Kcj', snippet=CommentSnippet(authorDisplayName='Marlon López', likeCount=0))]
 
 --------------
-GUIDE CATEGORY
---------------
-
-You can use category id or categories belonging to a region code to get guide categories.
-
-Get guide categories with id(s)::
-
-    In [16]: guide_category_by_id = api.get_guide_categories(category_id="GCQmVzdCBvZiBZb3VUdWJl,GCQ3JlYXRvciBvb
-        ...: iB0aGUgUmlzZQ")
-
-    In [17]: guide_category_by_id.items
-    Out[17]:
-    [GuideCategory(kind='youtube#guideCategory', id='GCQmVzdCBvZiBZb3VUdWJl'),
-     GuideCategory(kind='youtube#guideCategory', id='GCQ3JlYXRvciBvbiB0aGUgUmlzZQ')]
-
-Get guide categories with region code::
-
-    In [19]: guide_categories_by_region = api.get_guide_categories(region_code="US")
-
-    In [20]: guide_categories_by_region.items
-    Out[20]:
-    [GuideCategory(kind='youtube#guideCategory', id='GCQmVzdCBvZiBZb3VUdWJl'),
-     GuideCategory(kind='youtube#guideCategory', id='GCQ3JlYXRvciBvbiB0aGUgUmlzZQ'),
-     GuideCategory(kind='youtube#guideCategory', id='GCTXVzaWM'),
-     GuideCategory(kind='youtube#guideCategory', id='GCQ29tZWR5'),
-     GuideCategory(kind='youtube#guideCategory', id='GCRmlsbSAmIEVudGVydGFpbm1lbnQ'),
-     GuideCategory(kind='youtube#guideCategory', id='GCR2FtaW5n'),
-     GuideCategory(kind='youtube#guideCategory', id='GCQmVhdXR5ICYgRmFzaGlvbg'),
-     GuideCategory(kind='youtube#guideCategory', id='GCU3BvcnRz'),
-     GuideCategory(kind='youtube#guideCategory', id='GCVGVjaA'),
-     GuideCategory(kind='youtube#guideCategory', id='GCQ29va2luZyAmIEhlYWx0aA'),
-     GuideCategory(kind='youtube#guideCategory', id='GCTmV3cyAmIFBvbGl0aWNz')]
-
-
---------------
 VIDEO CATEGORY
 --------------
 
-Similar to guide category, you can get video category with id or region.
+You can get video category with id or region.
 
 Get video categories with id(s)::
 
@@ -605,7 +570,6 @@ Now this has follows api.
 - Comment Thread Info
 - Comment Info
 - Video Categories Info
-- Guide Categories Info
 - Subscriptions Info
 - Activities Info
 - Captions Info
