@@ -26,15 +26,3 @@ class CategoryModelTest(unittest.TestCase):
         self.assertEqual(m.kind, "youtube#videoCategoryListResponse")
         self.assertEqual(len(m.items), 1)
         self.assertEqual(m.items[0].id, "17")
-
-    def testGuideCategory(self) -> None:
-        m = models.GuideCategory.from_dict(self.GUIDE_CATEGORY_INFO)
-        self.assertEqual(m.id, "GCQmVzdCBvZiBZb3VUdWJl")
-        self.assertEqual(m.snippet.title, "Best of YouTube")
-
-    def testGuideCategoryListResponse(self) -> None:
-        m = models.GuideCategoryListResponse.from_dict(self.GUIDE_CATEGORY_RESPONSE)
-
-        self.assertEqual(m.kind, "youtube#guideCategoryListResponse")
-        self.assertEqual(len(m.items), 1)
-        self.assertEqual(m.items[0].id, "GCQmVzdCBvZiBZb3VUdWJl")
