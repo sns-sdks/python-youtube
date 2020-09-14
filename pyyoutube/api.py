@@ -1274,62 +1274,6 @@ class Api(object):
         else:
             return CommentListResponse.from_dict(res_data)
 
-    def _get_categories(
-        self,
-        *,
-        resource: str,
-        category_id: Optional[Union[str, list, tuple, set]] = None,
-        region_code: Optional[str] = None,
-        parts: Optional[Union[str, list, tuple, set]] = None,
-        hl: Optional[str] = "en_US",
-        return_json: Optional[bool] = False,
-    ):
-        """
-        This is the base method for get guide or video categories.
-
-        Args:
-            resource (str):
-                The category resource type.
-                 Acceptable values are: guideCategories, videoCategories.
-        Returns:
-            Model instance or original data.
-        """
-
-        if resource == "videoCategories":
-            data_model = VideoCategoryListResponse
-        else:
-            raise PyYouTubeException(
-                ErrorMessage(
-                    status_code=ErrorCode.INVALID_PARAMS,
-                    message="Parameter resource only accept for guideCategories or videoCategories",
-                )
-            )
-
-        args = {
-            "part": enf_parts(resource=resource, value=parts),
-            "hl": hl,
-        }
-
-        if category_id is not None:
-            args["id"] = enf_comma_separated(field="category_id", value=category_id)
-        elif region_code is not None:
-            args["regionCode"] = region_code
-        else:
-            raise PyYouTubeException(
-                ErrorMessage(
-                    status_code=ErrorCode.MISSING_PARAMS,
-                    message="Specify at least one of category_id or region_code",
-                )
-            )
-
-        resp = self._request(resource=resource, method="GET", args=args)
-        data = self._parse_response(resp)
-
-        if return_json:
-            return data
-        else:
-            return data_model.from_dict(data)
-
     def get_video_categories(
         self,
         *,
@@ -1364,14 +1308,30 @@ class Api(object):
         Returns:
             VideoCategoryListResponse or original data
         """
-        return self._get_categories(
-            resource="videoCategories",
-            category_id=category_id,
-            region_code=region_code,
-            parts=parts,
-            hl=hl,
-            return_json=return_json,
-        )
+        args = {
+            "part": enf_parts(resource="videoCategories", value=parts),
+            "hl": hl,
+        }
+
+        if category_id is not None:
+            args["id"] = enf_comma_separated(field="category_id", value=category_id)
+        elif region_code is not None:
+            args["regionCode"] = region_code
+        else:
+            raise PyYouTubeException(
+                ErrorMessage(
+                    status_code=ErrorCode.MISSING_PARAMS,
+                    message="Specify at least one of category_id or region_code",
+                )
+            )
+
+        resp = self._request(resource="videoCategories", method="GET", args=args)
+        data = self._parse_response(resp)
+
+        if return_json:
+            return data
+        else:
+            return VideoCategoryListResponse.from_dict(data)
 
     def get_subscription_by_id(
         self,
