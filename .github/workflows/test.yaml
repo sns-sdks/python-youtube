@@ -23,13 +23,13 @@ jobs:
         uses: actions/cache@v2
         with:
           path: venv
-          key: ${{ matrix.python-version }}-poetry-${{ hashFiles('Pipfile') }}
+          key: ${{ matrix.python-version }}-poetry-${{ hashFiles('pyproject.toml') }}
       - name: Install dependencies
         run: |
           python -m venv venv
           . venv/bin/activate
-          python -m pip install --upgrade pip
-          make env
+          python -m pip install --upgrade pip poetry
+          poetry install
       - name: Test with pytest
         run: |
           . venv/bin/activate
