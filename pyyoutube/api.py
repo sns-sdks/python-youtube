@@ -21,7 +21,6 @@ from pyyoutube.models import (
     VideoListResponse,
     CommentThreadListResponse,
     CommentListResponse,
-    GuideCategoryListResponse,
     VideoCategoryListResponse,
     SearchListResponse,
     SubscriptionListResponse,
@@ -1296,9 +1295,7 @@ class Api(object):
             Model instance or original data.
         """
 
-        if resource == "guideCategories":
-            data_model = GuideCategoryListResponse
-        elif resource == "videoCategories":
+        if resource == "videoCategories":
             data_model = VideoCategoryListResponse
         else:
             raise PyYouTubeException(

@@ -27,16 +27,6 @@ class ChannelModelTest(unittest.TestCase):
         m = models.ChannelBrandingSetting.from_dict(self.BRANDING_SETTINGS_INFO)
 
         self.assertEqual(m.channel.title, "Google Developers")
-        self.assertEqual(
-            m.image.bannerImageUrl,
-            (
-                "https://yt3.ggpht.com/vpeUmkxH-uuOYgdvyCXg5Bz4Rn5z2Yxj_"
-                "efZ2uN62WZeQFdro2PfumdcvvLJwn9G4mRFyriF7Vk=w1060-fcrop64=1,"
-                "00005a57ffffa5a8-k-c0xffffffff-no-nd-rj"
-            ),
-        )
-        self.assertEqual(len(m.hints), 2)
-        self.assertEqual(m.hints[0].property, "channel.banner.mobile.medium.image.url")
 
     def testChannelContentDetails(self) -> None:
         m = models.ChannelContentDetails.from_dict(self.CONTENT_DETAILS_INFO)
