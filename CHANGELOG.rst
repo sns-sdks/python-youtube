@@ -1,6 +1,15 @@
 Changelog
 ---------
 
+Version 0.6.1
+=============
+
+What's New
+++++++++++
+
+Remove deprecated api.
+
+
 Version 0.6.0
 =============
 
