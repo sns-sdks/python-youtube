@@ -5,7 +5,4 @@
 # 88         88       88    88   88 `8b  d8' 88  V888    88    `8b  d8' 88b  d88    88    88b  d88 88   8D 88.
 # 88         YP       YP    YP   YP  `Y88P'  VP   V8P    YP     `Y88P'  ~Y8888P'    YP    ~Y8888P' Y8888P' Y88888P
 
-
-VERSION = (0, 6, 0)
-
-__version__ = ".".join(map(str, VERSION))
+__version__ = "0.6.0"
