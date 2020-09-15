@@ -1,0 +1,37 @@
+[tool.poetry]
+name = "python-youtube"
+version = "0.6.0"
+description = "A Python wrapper around for YouTube Data API."
+authors = ["ikaroskun <merle.liukun@gmail.com>"]
+license = "Apache-2.0"
+keywords = ["youtube-api", "youtube-data-api", "youtube-sdk"]
+readme = "README.rst"
+homepage = "https://github.com/sns-sdks/python-youtube"
+repository = "https://github.com/sns-sdks/python-youtube"
+classifiers = [
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3.6",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Programming Language :: Python :: Implementation :: PyPy",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Intended Audience :: Developers",
+]
+
+[tool.poetry.dependencies]
+python = "^3.6"
+requests = "^2.24.0"
+requests-oauthlib = "^1.3.0"
+isodate = "^0.6.0"
+dataclasses-json = "^0.5.2"
+
+[tool.poetry.dev-dependencies]
+responses = "^0.12.0"
+pytest = "^6.0.2"
+pytest-cov = "^2.10.1"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
