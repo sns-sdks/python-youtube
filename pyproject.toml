@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "python-youtube"
-version = "0.6.2"
+version = "0.6.3"
 description = "A Python wrapper around for YouTube Data API."
 authors = ["ikaroskun <merle.liukun@gmail.com>"]
 license = "Apache-2.0"
