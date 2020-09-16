@@ -20,6 +20,11 @@ classifiers = [
     "Intended Audience :: Developers",
 ]
 
+packages = [
+    { include = "pyyoutube" },
+    { include = "tests", format = "sdist" },
+]
+
 [tool.poetry.dependencies]
 python = "^3.6"
 requests = "^2.24.0"
