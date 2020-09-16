@@ -37,4 +37,4 @@ jobs:
           PASSWORD: ${{ secrets.PYPI_TOKEN }}
         run: |
           . venv/bin/activate
-          poetry publish --username __token__ --password ${PASSWORD}%
+          poetry publish --username __token__ --password ${PASSWORD}
