@@ -2019,7 +2019,9 @@ class Api(object):
 
         if filter_by_member_channel_id:
             args["filterByMemberChannelId"] = enf_parts(
-                resource="filterByMemberChannelId", value=filter_by_member_channel_id
+                resource="filterByMemberChannelId",
+                value=filter_by_member_channel_id,
+                check=False,
             )
 
         res_data = self.paged_by_page_token(
@@ -2058,7 +2060,7 @@ class Api(object):
         """
 
         args = {
-            "part": enf_parts(resource="part", value=parts),
+            "part": enf_parts(resource="membershipsLevels", value=parts),
         }
 
         resp = self._request(resource="membershipsLevels", args=args)

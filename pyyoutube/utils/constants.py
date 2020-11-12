@@ -85,6 +85,16 @@ VIDEO_ABUSE_REPORT_REASON_PROPERTIES = {
     "snippet",
 }
 
+MEMBER_PROPERTIES = {
+    "id",
+    "snippet",
+}
+
+MEMBERSHIP_LEVEL_PROPERTIES = {
+    "id",
+    "snippet",
+}
+
 RESOURCE_PARTS_MAPPING = {
     "channels": CHANNEL_RESOURCE_PROPERTIES,
     "channelSections": CHANNEL_SECTIONS_PROPERTIES,
@@ -102,6 +112,8 @@ RESOURCE_PARTS_MAPPING = {
     "i18nRegions": I18N_REGION_PROPERTIES,
     "i18nLanguages": I18N_LANGUAGE_PROPERTIES,
     "videoAbuseReportReasons": VIDEO_ABUSE_REPORT_REASON_PROPERTIES,
+    "members": MEMBER_PROPERTIES,
+    "membershipsLevels": MEMBERSHIP_LEVEL_PROPERTIES,
 }
 
 TOPICS = {

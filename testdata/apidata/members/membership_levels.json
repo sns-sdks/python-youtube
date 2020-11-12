@@ -1,0 +1,28 @@
+{
+  "kind": "youtube#membershipsLevelListResponse",
+  "etag": "etag",
+  "items": [
+    {
+      "kind": "youtube#membershipsLevel",
+      "etag": "etag",
+      "id": "id",
+      "snippet": {
+        "creatorChannelId": "UCa-vrCLQHviTOVnEKDOdetQ",
+        "levelDetails": {
+          "displayName": "high"
+        }
+      }
+    },
+    {
+      "kind": "youtube#membershipsLevel",
+      "etag": "etag",
+      "id": "id",
+      "snippet": {
+        "creatorChannelId": "UCa-vrCLQHviTOVnEKDOdetQ",
+        "levelDetails": {
+          "displayName": "low"
+        }
+      }
+    }
+  ]
+}
