@@ -26,6 +26,8 @@ from pyyoutube.models import (
     SubscriptionListResponse,
     I18nRegionListResponse,
     I18nLanguageListResponse,
+    MemberListResponse,
+    MembershipsLevelListResponse,
     VideoAbuseReportReasonListResponse,
 )
 from pyyoutube.utils.params_checker import enf_comma_separated, enf_parts
@@ -1941,6 +1943,133 @@ class Api(object):
             return data
         else:
             return I18nLanguageListResponse.from_dict(data)
+
+    def get_members(
+        self,
+        *,
+        parts: Optional[Union[str, list, tuple, set]] = None,
+        mode: Optional[str] = "all_current",
+        count: Optional[int] = 5,
+        limit: Optional[int] = 5,
+        page_token: Optional[str] = None,
+        has_access_to_level: Optional[str] = None,
+        filter_by_member_channel_id: Optional[Union[str, list, tuple, set]] = None,
+        return_json: Optional[bool] = False,
+    ) -> Union[MemberListResponse, dict]:
+        """
+        Retrieve a list of members for a channel.
+
+        Args:
+            parts ((str,list,tuple,set) optional):
+                The resource parts for member you want to retrieve.
+                If not provide, use default public parts.
+                You can pass this with single part str, comma-separated parts str or a list,tuple,set of parts.
+            mode:
+                The mode parameter indicates which members will be included in the API response.
+                Set the parameter value to one of the following values:
+                    - all_current (default): List current members, from newest to oldest. When this value is used,
+                        the end of the list is reached when the API response does not contain a nextPageToken.
+                    - updates : List only members that joined or upgraded since the previous API call.
+                        Note that the first call starts a new stream of updates but does not actually return any members.
+                        To start retrieving the membership updates, you need to poll the endpoint using the
+                        nextPageToken at your desired frequency.
+                        Note that when this value is used, the API response always contains a nextPageToken.
+            count (int, optional):
+                The count will retrieve videos data.
+                Default is 5.
+            limit (int, optional):
+                The maximum number of items each request retrieve.
+                For members, this should not be more than 1000.
+                Default is 5.
+            page_token (str, optional):
+                The token of the page of search result to retrieve.
+                You can use this retrieve point result page directly.
+                And you should know about the the result set for YouTube.
+            has_access_to_level (str, optional):
+                The hasAccessToLevel parameter value is a level ID that specifies the minimum level
+                that members in the result set should have.
+            filter_by_member_channel_id ((str,list,tuple,set) optional):
+                A list of channel IDs that can be used to check the membership status of specific users.
+                A maximum of 100 channels can be specified per call.
+            return_json (bool, optional):
+                The return data type. If you set True JSON data will be returned.
+                False will return a pyyoutube.MemberListResponse instance.
+        Returns:
+            MemberListResponse or original data
+        """
+
+        if count is None:
+            limit = 1000
+        else:
+            limit = min(count, limit)
+
+        args = {
+            "part": enf_parts(resource="members", value=parts),
+            "maxResults": limit,
+        }
+
+        if mode:
+            args["mode"] = mode
+
+        if page_token is not None:
+            args["pageToken"] = page_token
+
+        if has_access_to_level:
+            args["hasAccessToLevel"] = has_access_to_level
+
+        if filter_by_member_channel_id:
+            args["filterByMemberChannelId"] = enf_parts(
+                resource="filterByMemberChannelId",
+                value=filter_by_member_channel_id,
+                check=False,
+            )
+
+        res_data = self.paged_by_page_token(
+            resource="members",
+            args=args,
+            count=count,
+        )
+        if return_json:
+            return res_data
+        else:
+            return MemberListResponse.from_dict(res_data)
+
+    def get_membership_levels(
+        self,
+        *,
+        parts: Optional[Union[str, list, tuple, set]] = None,
+        return_json: Optional[bool] = False,
+    ) -> Union[MembershipsLevelListResponse, dict]:
+        """
+        Retrieve membership levels for a channel
+
+        Notes:
+            This requires your authorization.
+
+        Args:
+            parts ((str,list,tuple,set) optional):
+                The resource parts for membership level you want to retrieve.
+                If not provide, use default public parts.
+                You can pass this with single part str, comma-separated parts str or a list,tuple,set of parts.
+            return_json (bool, optional):
+                The return data type. If you set True JSON data will be returned.
+                False will return a pyyoutube.MembershipsLevelListResponse instance.
+
+        Returns:
+            MembershipsLevelListResponse or original data
+        """
+
+        args = {
+            "part": enf_parts(resource="membershipsLevels", value=parts),
+        }
+
+        resp = self._request(resource="membershipsLevels", args=args)
+        data = self._parse_response(resp)
+
+        if return_json:
+            return data
+        else:
+            return MembershipsLevelListResponse.from_dict(data)
 
     def get_video_abuse_report_reason(
         self,

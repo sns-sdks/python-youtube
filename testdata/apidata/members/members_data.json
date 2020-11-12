@@ -1,0 +1,72 @@
+{
+  "kind": "youtube#memberListResponse",
+  "etag": "etag",
+  "pageInfo": {
+    "totalResults": 2,
+    "resultsPerPage": 5
+  },
+  "items": [
+    {
+      "kind": "youtube#member",
+      "etag": "etag",
+      "snippet": {
+        "creatorChannelId": "UCa-vrCLQHviTOVnEKDOdetQ",
+        "memberDetails": {
+          "channelId": "UCa-vrCLQHviTOVnEKDOdetQ",
+          "channelUrl": "https://www.youtube.com/channel/UCa-vrCLQHviTOVnEKDOdetQ",
+          "displayName": "ikaros-life",
+          "profileImageUrl": "https://yt3.ggpht.com/a-/AOh14Gg1_gYcI03VLDd3FMLUY5cb5O9RC9sElj26-1SR=s288-c-k-c0xffffffff-no-rj-mo"
+        },
+        "membershipsDetails": {
+          "highestAccessibleLevel": "string",
+          "highestAccessibleLevelDisplayName": "string",
+          "accessibleLevels": [
+            "string"
+          ],
+          "membershipsDuration": {
+            "memberSince": "2007-08-23T00:34:43Z",
+            "memberTotalDurationMonths": 5
+          },
+          "membershipsDurationAtLevel": [
+            {
+              "level": "string",
+              "memberSince": "2007-08-23T00:34:43Z",
+              "memberTotalDurationMonths": 6
+            }
+          ]
+        }
+      }
+    },
+    {
+      "kind": "youtube#member",
+      "etag": "etag",
+      "snippet": {
+        "creatorChannelId": "UCa-vrCLQHviTOVnEKDOdet1",
+        "memberDetails": {
+          "channelId": "UCa-vrCLQHviTOVnEKDOdet1",
+          "channelUrl": "https://www.youtube.com/channel/UCa-vrCLQHviTOVnEKDOdet1",
+          "displayName": "ikaros-life--1",
+          "profileImageUrl": "https://yt3.ggpht.com/a-/AOh14Gg1_gYcI03VLDd3FMLUY5cb5O9RC9sElj26-1SR=s288-c-k-c0xffffffff-no-rj-mo"
+        },
+        "membershipsDetails": {
+          "highestAccessibleLevel": "string",
+          "highestAccessibleLevelDisplayName": "string",
+          "accessibleLevels": [
+            "string"
+          ],
+          "membershipsDuration": {
+            "memberSince": "2007-08-23T00:34:43Z",
+            "memberTotalDurationMonths": 5
+          },
+          "membershipsDurationAtLevel": [
+            {
+              "level": "string",
+              "memberSince": "2007-08-23T00:34:43Z",
+              "memberTotalDurationMonths": 6
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

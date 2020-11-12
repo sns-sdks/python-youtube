@@ -1,0 +1,11 @@
+{
+  "kind": "youtube#membershipsLevel",
+  "etag": "etag",
+  "id": "id",
+  "snippet": {
+    "creatorChannelId": "UCa-vrCLQHviTOVnEKDOdetQ",
+    "levelDetails": {
+      "displayName": "high"
+    }
+  }
+}

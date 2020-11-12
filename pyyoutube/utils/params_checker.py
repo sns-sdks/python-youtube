@@ -53,7 +53,7 @@ def enf_comma_separated(
         )
 
 
-def enf_parts(resource: str, value: Optional[Union[str, list, tuple, set]]):
+def enf_parts(resource: str, value: Optional[Union[str, list, tuple, set]], check=True):
     """
     Check to see if value type belong to correct type, and if resource support the given part.
     If it is, return api need value, otherwise, raise a PyYouTubeException.
@@ -61,8 +61,10 @@ def enf_parts(resource: str, value: Optional[Union[str, list, tuple, set]]):
     Args:
         resource (str):
             Name of the resource you want to retrieve.
-        value (str, list, tuple, set, Optional)
+        value (str, list, tuple, set, Optional):
             Value for the part.
+        check (bool, optional):
+            Whether check the resource properties.
 
     Returns:
         Api needed part string
@@ -81,14 +83,14 @@ def enf_parts(resource: str, value: Optional[Union[str, list, tuple, set]]):
             )
         )
     # check parts whether support.
-    support_parts = RESOURCE_PARTS_MAPPING[resource]
-    if not support_parts.issuperset(parts):
-        not_support_parts = ",".join(parts.difference(support_parts))
-        raise PyYouTubeException(
-            ErrorMessage(
-                status_code=ErrorCode.INVALID_PARAMS,
-                message=f"Parts {not_support_parts} for resource {resource} not support",
+    if check:
+        support_parts = RESOURCE_PARTS_MAPPING[resource]
+        if not support_parts.issuperset(parts):
+            not_support_parts = ",".join(parts.difference(support_parts))
+            raise PyYouTubeException(
+                ErrorMessage(
+                    status_code=ErrorCode.INVALID_PARAMS,
+                    message=f"Parts {not_support_parts} for resource {resource} not support",
+                )
             )
-        )
-    else:
-        return ",".join(parts)
+    return ",".join(parts)
