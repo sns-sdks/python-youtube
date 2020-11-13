@@ -479,6 +479,37 @@ You can get a list of application languages that the YouTube website supports::
      I18nLanguage(kind='youtube#i18nLanguage', id='id', snippet=I18nLanguageSnippet(hl='id', name='Indonesian')),
      ...]
 
+
+-------
+MEMBER
+-------
+
+The API request must be authorized by the channel owner.
+
+You can retrieve a list of members (formerly known as "sponsors") for a channel::
+
+    In[31]: r = api_with_token.get_members(parts=["snippet"])
+    In[32]: r.items
+    Out[34]:
+    [MemberListResponse(kind='youtube#memberListResponse'),
+     MemberListResponse(kind='youtube#memberListResponse')]
+
+
+----------------
+MEMBERSHIP LEVEL
+----------------
+
+The API request must be authorized by the channel owner.
+
+You can retrieve a list membership levels for a channel::
+
+    In[31]: r = api_with_token.get_membership_levels(parts=["snippet"])
+    In[32]: r.items
+    Out[34]:
+    [MembershipsLevelListResponse(kind='youtube#membershipsLevelListResponse'),
+     MembershipsLevelListResponse(kind='youtube#membershipsLevelListResponse')]
+
+
 -------------------------
 VIDEO ABUSE REPORT REASON
 -------------------------
@@ -575,6 +606,8 @@ Now this has follows api.
 - Captions Info
 - Channel Sections Info
 - Search Requests and simple usage.
+- Members Info
+- Membership Level Info
 
 Doing
 
