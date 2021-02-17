@@ -151,8 +151,8 @@ class VideoTopicDetails(BaseTopicDetails):
     # This property has been deprecated as of November 10, 2016.
     # Any topics associated with a video are now returned by the topicDetails.relevantTopicIds[] property value.
     topicIds: Optional[List[str]] = field(default=None, repr=False)
-    relevantTopicIds: List[str] = field(default=None, repr=False)
-    topicCategories: List[str] = field(default=None)
+    relevantTopicIds: Optional[List[str]] = field(default=None, repr=False)
+    topicCategories: Optional[List[str]] = field(default=None)
 
     def __post_init__(self):
         """
