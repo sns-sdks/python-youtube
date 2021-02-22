@@ -41,10 +41,12 @@ Also view the full ``YouTube DATA API`` docs at: https://developers.google.com/y
 Installing
 ==========
 
-You can install this lib from `pypi`::
+You can install this lib from PyPI:
 
-    $pip install --upgrade python-youtube
-    ✨🍰✨
+.. code:: shell
+
+    pip install --upgrade python-youtube
+    # ✨🍰✨
 
 =====
 Using
@@ -58,15 +60,19 @@ INSTANTIATE
 
 There provide two method to create instance the ``pyyoutube.Api``.
 
-You can just initialize with an api key::
+You can just initialize with an api key:
 
-    In [1]: from pyyoutube import Api
-    In [2]: api = Api(api_key='your api key')
+.. code:: python
 
-If you want to get some authorization data. you need to initialize with an access token::
+    from pyyoutube import Api
+    api = Api(api_key='your api key')
 
-    In [1]: from pyyoutube import Api
-    In [2]: api = Api(api_key='your api key')
+If you want to get some authorization data. you need to initialize with an access token:
+
+.. code:: python
+
+    from pyyoutube import Api
+    api = Api(api_key='your api key')
 
 You can read the docs to see how to get an access token.
 
@@ -80,13 +86,14 @@ The library provides several ways to get channel's data.
 
 If a channel is not found, the property ``items`` will return with blank list.
 
-You can use channel id::
+You can use channel id:
 
-    In [3]: channel_by_id = api.get_channel_info(channel_id="UC_x5XG1OV2P6uZZ5FSM9Ttw")
-    In [4]: channel_by_id.items
-    Out[4]: [Channel(kind='youtube#channel', id='UC_x5XG1OV2P6uZZ5FSM9Ttw')]
-    In [6]: channel_by_id.items[0].to_dict()
-    Out[6]:
+.. code:: pycon
+
+    >>> channel_by_id = api.get_channel_info(channel_id="UC_x5XG1OV2P6uZZ5FSM9Ttw")
+    >>> channel_by_id.items
+    [Channel(kind='youtube#channel', id='UC_x5XG1OV2P6uZZ5FSM9Ttw')]
+    >>> channel_by_id.items[0].to_dict()
     {'kind': 'youtube#channel',
      'etag': '"j6xRRd8dTPVVptg711_CSPADRfg/AW8QEqbNRoIJv9KuzCIg0CG6aJA"',
      'id': 'UC_x5XG1OV2P6uZZ5FSM9Ttw',
@@ -115,25 +122,30 @@ You can use channel id::
 You can pass a channel id with comma-separated id string or a list, tuple or set of ids to get multiple channels.
 Many methods also provide this functionality.
 
-with ids::
+with ids:
 
-    In [9]: channel_by_ids = api.get_channel_info(channel_id="UC_x5XG1OV2P6uZZ5FSM9Ttw,UCa-vrCLQHviTOVnEKDOdetQ")
-    In [10]: channel_by_ids.items
-    Out[10]:
+.. code:: pycon
+
+    >>> channel_by_ids = api.get_channel_info(channel_id="UC_x5XG1OV2P6uZZ5FSM9Ttw,UCa-vrCLQHviTOVnEKDOdetQ")
+    >>> channel_by_ids.items
     [Channel(kind='youtube#channel', id='UC_x5XG1OV2P6uZZ5FSM9Ttw'),
      Channel(kind='youtube#channel', id='UCa-vrCLQHviTOVnEKDOdetQ')]
 
-You can also use channel name::
+You can also use channel name:
 
-    In [7]: channel_by_name = api.get_channel_info(channel_name="GoogleDevelopers")
-    In [8]: channel_by_name.items[0]
-    Out[8]: Channel(kind='youtube#channel', id='UC_x5XG1OV2P6uZZ5FSM9Ttw')
+.. code:: pycon
 
-If you have authorized, you can get your channels::
+    >>> channel_by_name = api.get_channel_info(channel_name="GoogleDevelopers")
+    >>> channel_by_name.items[0]
+    Channel(kind='youtube#channel', id='UC_x5XG1OV2P6uZZ5FSM9Ttw')
 
-    In [3]: channel_by_mine = api_with_authorization.get_channel_info(mine=True)
-    In [4]: channel_by_mine.items[0]
-    Out[4]: Channel(kind='youtube#channel', id='UCa-vrCLQHviTOVnEKDOdetQ')
+If you have authorized, you can get your channels:
+
+.. code:: pycon
+
+    >>> channel_by_mine = api_with_authorization.get_channel_info(mine=True)
+    >>> channel_by_mine.items[0]
+    Channel(kind='youtube#channel', id='UCa-vrCLQHviTOVnEKDOdetQ')
 
 .. note::
     To get your channel, you must do authorization first, otherwise you will get an error.
@@ -144,26 +156,31 @@ PLAYLIST
 
 There are methods to get playlists by playlist id, channel id or get your own playlists.
 
-Get playlists by id::
+Get playlists by id:
 
-    In [5]: playlists_by_id = api.get_playlist_by_id(playlist_id="PLOU2XLYxmsIKpaV8h0AGE05so0fAwwfTw")
-    In [6]: playlists_by_id.items
-    Out[6]: [Playlist(kind='youtube#playlist', id='PLOU2XLYxmsIKpaV8h0AGE05so0fAwwfTw')]
+.. code:: pycon
 
-Get playlists by channel (If you want to get all of atarget channel's playlists, just provide the parameter ``count=None``)::
+    >>> playlists_by_id = api.get_playlist_by_id(playlist_id="PLOU2XLYxmsIKpaV8h0AGE05so0fAwwfTw")
+    >>> playlists_by_id.items
+    [Playlist(kind='youtube#playlist', id='PLOU2XLYxmsIKpaV8h0AGE05so0fAwwfTw')]
 
-    In [3]: playlists_by_channel = api.get_playlists(channel_id="UC_x5XG1OV2P6uZZ5FSM9Ttw")
-    In [4]: playlists_by_channel.items
-    Out[4]:
+Get playlists by channel (If you want to get all of atarget channel's playlists, just provide the parameter ``count=None``):
+
+.. code:: pycon
+
+    >>> playlists_by_channel = api.get_playlists(channel_id="UC_x5XG1OV2P6uZZ5FSM9Ttw")
+    >>> playlists_by_channel.items
     [Playlist(kind='youtube#playlist', id='PLOU2XLYxmsIKpaV8h0AGE05so0fAwwfTw'),
      Playlist(kind='youtube#playlist', id='PLOU2XLYxmsIJO83u2UmyC8ud41AvUnhgj'),
      Playlist(kind='youtube#playlist', id='PLOU2XLYxmsILfV1LiUhDjbh1jkFjQWrYB'),
      Playlist(kind='youtube#playlist', id='PLOU2XLYxmsIKNr3Wfhm8o0TSojW7hEPPY'),
      Playlist(kind='youtube#playlist', id='PLOU2XLYxmsIJ8ItHmK4bRlY4GCzMgXLAJ')]
 
-Get your playlists(this requires authorization)::
+Get your playlists(this requires authorization):
 
-    In [7]: playlists_by_mine = api.get_playlists(mine=True)
+.. code:: python
+
+    playlists_by_mine = api.get_playlists(mine=True)
 
 -------------
 PLAYLIST ITEM
@@ -171,25 +188,28 @@ PLAYLIST ITEM
 
 Similarly, you can get playlist items by playlist item id or playlist id.
 
-Get playlist items by id::
+Get playlist items by id:
 
-    In [11]: playlist_item_by_id = api.get_playlist_item_by_id(playlist_item_id="UExPVTJYTFl4bXNJS3BhVjhoMEFHRTA
-    ...: 1c28wZkF3d2ZUdy41NkI0NEY2RDEwNTU3Q0M2")
+.. code:: pycon
 
-    In [12]: playlist_item_by_id.items
-    Out[12]: [PlaylistItem(kind='youtube#playlistItem', id='UExPVTJYTFl4bXNJS3BhVjhoMEFHRTA1c28wZkF3d2ZUdy41NkI0NEY2RDEwNTU3Q0M2')]
+    >>> playlist_item_by_id = api.get_playlist_item_by_id(playlist_item_id="UExPVTJYTFl4bXNJS3BhVjhoMEFHRTA"
+    ...     "1c28wZkF3d2ZUdy41NkI0NEY2RDEwNTU3Q0M2")
+
+    >>> playlist_item_by_id.items
+    [PlaylistItem(kind='youtube#playlistItem', id='UExPVTJYTFl4bXNJS3BhVjhoMEFHRTA1c28wZkF3d2ZUdy41NkI0NEY2RDEwNTU3Q0M2')]
 
 
-Get playlist items by playlist id (If you want to get target playlist all items, just provide the parameter ``count=None``)::
+Get playlist items by playlist id (If you want to get target playlist all items, just provide the parameter ``count=None``):
 
-    In [8]: playlist_item_by_playlist = api.get_playlist_items(playlist_id="PLOU2XLYxmsIKpaV8h0AGE05so0fAwwfTw", count=2)
+.. code:: pycon
 
-    In [10]: playlist_item_by_playlist.items
-    Out[10]:
+    >>> playlist_item_by_playlist = api.get_playlist_items(playlist_id="PLOU2XLYxmsIKpaV8h0AGE05so0fAwwfTw", count=2)
+
+    >>> playlist_item_by_playlist.items
     [PlaylistItem(kind='youtube#playlistItem', id='UExPVTJYTFl4bXNJS3BhVjhoMEFHRTA1c28wZkF3d2ZUdy41NkI0NEY2RDEwNTU3Q0M2'),
      PlaylistItem(kind='youtube#playlistItem', id='UExPVTJYTFl4bXNJS3BhVjhoMEFHRTA1c28wZkF3d2ZUdy4yODlGNEE0NkRGMEEzMEQy')]
-    In [13]: playlist_item_by_id.items[0].snippet.resourceId
-    Out[13]: ResourceId(kind='youtube#video', videoId='CvTApw9X8aA')
+    >>> playlist_item_by_id.items[0].snippet.resourceId
+    ResourceId(kind='youtube#video', videoId='CvTApw9X8aA')
 
 -----
 VIDEO
@@ -197,30 +217,35 @@ VIDEO
 
 You can get a video's information by several methods.
 
-Get videos by video id(s)::
+Get videos by video id(s):
 
-    In [14]: video_by_id = api.get_video_by_id(video_id="CvTApw9X8aA")
+.. code:: pycon
 
-    In [15]: video_by_id
-    Out[15]: VideoListResponse(kind='youtube#videoListResponse')
+    >>> video_by_id = api.get_video_by_id(video_id="CvTApw9X8aA")
 
-    In [16]: video_by_id.items
-    Out[16]: [Video(kind='youtube#video', id='CvTApw9X8aA')]
+    >>> video_by_id
+    VideoListResponse(kind='youtube#videoListResponse')
+
+    >>> video_by_id.items
+    [Video(kind='youtube#video', id='CvTApw9X8aA')]
 
 
-Get videos by chart (If you want to get all videos, just provide the parameter ``count=None``)::
+Get videos by chart (If you want to get all videos, just provide the parameter ``count=None``):
 
-    In [17]: video_by_chart = api.get_videos_by_chart(chart="mostPopular", region_code="US", count=2)
+.. code:: pycon
 
-    In [18]: video_by_chart.items
-    Out[18]:
+    >>> video_by_chart = api.get_videos_by_chart(chart="mostPopular", region_code="US", count=2)
+
+    >>> video_by_chart.items
     [Video(kind='youtube#video', id='RwnN2FVaHmw'),
      Video(kind='youtube#video', id='hDeuSfo_Ys0')]
 
 
-Get videos by your rating (this requires authorization, also if you want to get all videos, just provide the parameter ``count=None``)::
+Get videos by your rating (this requires authorization, also if you want to get all videos, just provide the parameter ``count=None``):
 
-    In [25]: videos_by_rating = api.get_videos_by_myrating(rating="like", count=2)
+.. code:: python
+
+    videos_by_rating = api.get_videos_by_myrating(rating="like", count=2)
 
 --------------
 COMMENT THREAD
@@ -228,40 +253,44 @@ COMMENT THREAD
 
 You can get comment thread information by id or some filter.
 
-Get comment thread by id(s)::
+Get comment thread by id(s):
 
-    In [9]: ct_by_id = api.get_comment_thread_by_id(comment_thread_id='Ugz097FRhsQy5CVhAjp4AaABAg,UgzhytyP79_Pwa
-       ...: Dd4UB4AaABAg')
+.. code:: pycon
 
-    In [10]: ct_by_id.items
-    Out[10]:
+    >>> ct_by_id = api.get_comment_thread_by_id(comment_thread_id='Ugz097FRhsQy5CVhAjp4AaABAg,UgzhytyP79_Pwa
+    ... Dd4UB4AaABAg')
+
+    >>> ct_by_id.items
     [CommentThread(kind='youtube#commentThread', id='Ugz097FRhsQy5CVhAjp4AaABAg'),
      CommentThread(kind='youtube#commentThread', id='UgzhytyP79_PwaDd4UB4AaABAg')]
 
-Get all comment threads related to a channel (including comment threads for the channel's video, also if you want to get all comment threads, just provide the parameter ``count=None``)::
+Get all comment threads related to a channel (including comment threads for the channel's video, also if you want to get all comment threads, just provide the parameter ``count=None``):
 
-    In [19]: ct_by_all = api.get_comment_threads(all_to_channel_id="UC_x5XG1OV2P6uZZ5FSM9Ttw", count=2)
+.. code:: pycon
 
-    In [20]: ct_by_all.items
-    Out[20]:
+    >>> ct_by_all = api.get_comment_threads(all_to_channel_id="UC_x5XG1OV2P6uZZ5FSM9Ttw", count=2)
+
+    >>> ct_by_all.items
     [CommentThread(kind='youtube#commentThread', id='UgwlB_Cza9WtzUWahYN4AaABAg'),
      CommentThread(kind='youtube#commentThread', id='UgyvoQJ2LsxCBwGEpMB4AaABAg')]
 
-Get comment threads only for the channel (If you want to get all comment threads, just provide the parameter ``count=None``)::
+Get comment threads only for the channel (If you want to get all comment threads, just provide the parameter ``count=None``):
 
-    In [3]: ct_by_channel = api.get_comment_threads(channel_id="UC_x5XG1OV2P6uZZ5FSM9Ttw", count=2)
+.. code:: pycon
 
-    In [4]: ct_by_channel.items
-    Out[4]:
+    >>> ct_by_channel = api.get_comment_threads(channel_id="UC_x5XG1OV2P6uZZ5FSM9Ttw", count=2)
+
+    >>> ct_by_channel.items
     [CommentThread(kind='youtube#commentThread', id='UgyUBI0HsgL9emxcZpR4AaABAg'),
      CommentThread(kind='youtube#commentThread', id='Ugzi3lkqDPfIOirGFLh4AaABAg')]
 
-Get comment threads only for the video (If you want to get all comment threads, just provide the parameter ``count=None``)::
+Get comment threads only for the video (If you want to get all comment threads, just provide the parameter ``count=None``):
 
-    In [5]: ct_by_video = api.get_comment_threads(video_id="D-lhorsDlUQ", count=2)
+.. code:: pycon
 
-    In [6]: ct_by_video.items
-    Out[6]:
+    >>> ct_by_video = api.get_comment_threads(video_id="D-lhorsDlUQ", count=2)
+
+    >>> ct_by_video.items
     [CommentThread(kind='youtube#commentThread', id='UgydxWWoeA7F1OdqypJ4AaABAg'),
      CommentThread(kind='youtube#commentThread', id='UgxKREWxIgDrw8w2e_Z4AaABAg')]
 
@@ -274,22 +303,25 @@ You can get comment information by id or use the top-level comment id to get rep
 .. note::
     The reply has the same structure as a comment.
 
-Get comments by id(s)::
+Get comments by id(s):
 
-    In [11]: comment_by_id = api.get_comment_by_id(comment_id='UgxKREWxIgDrw8w2e_Z4AaABAg,UgyrVQaFfEdvaSzstj14Aa
-        ...: ABAg')
+.. code:: pycon
 
-    In [12]: comment_by_id.items
-    Out[12]:
+    >>> comment_by_id = api.get_comment_by_id(comment_id='UgxKREWxIgDrw8w2e_Z4AaABAg,UgyrVQaFfEdvaSzstj14Aa
+    ... ABAg')
+
+    >>> comment_by_id.items
     [Comment(kind='youtube#comment', id='UgxKREWxIgDrw8w2e_Z4AaABAg', snippet=CommentSnippet(authorDisplayName='Hieu Nguyen', likeCount=0)),
      Comment(kind='youtube#comment', id='UgyrVQaFfEdvaSzstj14AaABAg', snippet=CommentSnippet(authorDisplayName='Mani Kanta', likeCount=0))]
 
-Get replies by comment id (If you want to get all comments, just provide the parameter ``count=None``)::
+Get replies by comment id (If you want to get all comments, just provide the parameter ``count=None``):
 
-    In [13]: comment_by_parent = api.get_comments(parent_id="UgwYjZXfNCUTKPq9CZp4AaABAg")
+.. code:: pycon
 
-    In [14]: comment_by_parent.items
-    Out[14]: [Comment(kind='youtube#comment', id='UgwYjZXfNCUTKPq9CZp4AaABAg.8yxhlQJogG18yz_cXK9Kcj', snippet=CommentSnippet(authorDisplayName='Marlon López', likeCount=0))]
+    >>> comment_by_parent = api.get_comments(parent_id="UgwYjZXfNCUTKPq9CZp4AaABAg")
+
+    >>> comment_by_parent.items
+    [Comment(kind='youtube#comment', id='UgwYjZXfNCUTKPq9CZp4AaABAg.8yxhlQJogG18yz_cXK9Kcj', snippet=CommentSnippet(authorDisplayName='Marlon López', likeCount=0))]
 
 --------------
 VIDEO CATEGORY
@@ -297,21 +329,23 @@ VIDEO CATEGORY
 
 You can get video category with id or region.
 
-Get video categories with id(s)::
+Get video categories with id(s):
 
-    In [21]: video_category_by_id = api.get_video_categories(category_id="17,18")
+.. code:: pycon
 
-    In [22]: video_category_by_id.items
-    Out[22]:
+    >>> video_category_by_id = api.get_video_categories(category_id="17,18")
+
+    >>> video_category_by_id.items
     [VideoCategory(kind='youtube#videoCategory', id='17'),
      VideoCategory(kind='youtube#videoCategory', id='18')]
 
-Get video categories with region code::
+Get video categories with region code:
 
-    In [23]: video_categories_by_region = api.get_video_categories(region_code="US")
+.. code:: pycon
 
-    In [24]: video_categories_by_region.items
-    Out[24]:
+    >>> video_categories_by_region = api.get_video_categories(region_code="US")
+
+    >>> video_categories_by_region.items
     [VideoCategory(kind='youtube#videoCategory', id='1'),
      VideoCategory(kind='youtube#videoCategory', id='2'),
      VideoCategory(kind='youtube#videoCategory', id='10'),
@@ -328,44 +362,47 @@ You can get subscription information by id, by point channel, or your own.
     If you want to get the subscriptions not set to public, you need do authorization first and get the access token.
     You can see the demo `A demo for get my subscription <examples/subscription.py>`_.
 
-To get subscription info by id(s), this needs your token to have the permission for the subscriptions belonging to a channel or user::
+To get subscription info by id(s), this needs your token to have the permission for the subscriptions belonging to a channel or user:
 
-    In [6]: r = api.get_subscription_by_id(
-       ...:     subscription_id=[
-       ...:         "zqShTXi-2-Tx7TtwQqhCBwViE_j9IEgnmRmPnqJljxo",
-       ...:         "zqShTXi-2-Rya5uUxEp3ZsPI3fZrFQnSXNQCwvHBGGo"])
-    In [7]: r
-    Out[7]: SubscriptionListResponse(kind='youtube#subscriptionListResponse')
-    In [8]: r.items
-    Out[8]:
+.. code:: pycon
+
+    >>> r = api.get_subscription_by_id(
+    ...         subscription_id=[
+    ...             "zqShTXi-2-Tx7TtwQqhCBwViE_j9IEgnmRmPnqJljxo",
+    ...             "zqShTXi-2-Rya5uUxEp3ZsPI3fZrFQnSXNQCwvHBGGo"])
+    >>> r
+    SubscriptionListResponse(kind='youtube#subscriptionListResponse')
+    >>> r.items
     [Subscription(kind='youtube#subscription', id='zqShTXi-2-Tx7TtwQqhCBwViE_j9IEgnmRmPnqJljxo', snippet=SubscriptionSnippet(title='PyCon 2015', description='')),
      Subscription(kind='youtube#subscription', id='zqShTXi-2-Rya5uUxEp3ZsPI3fZrFQnSXNQCwvHBGGo', snippet=SubscriptionSnippet(title='ikaros-life', description='This is a test channel.'))]
 
-Get your own subscriptions, this need you do authorization first or give the authorized access token::
+Get your own subscriptions, this need you do authorization first or give the authorized access token:
 
-    In [9]: r = api.get_subscription_by_me(
-       ...:     mine=True,
-       ...:     parts=["id", "snippet"],
-       ...:     count=2
-       ...:)
-    In [10]: r
-    Out[10]: SubscriptionListResponse(kind='youtube#subscriptionListResponse')
-    In [11]: r.items
-    Out[11]:
+.. code:: pycon
+
+    >>> r = api.get_subscription_by_me(
+    ...         mine=True,
+    ...         parts=["id", "snippet"],
+    ...         count=2
+    ... )
+    >>> r
+    SubscriptionListResponse(kind='youtube#subscriptionListResponse')
+    >>> r.items
     [Subscription(kind='youtube#subscription', id='zqShTXi-2-Tx7TtwQqhCBwtJ-Aho6DZeutqZiP4Q79Q', snippet=SubscriptionSnippet(title='Next Day Video', description='')),
      Subscription(kind='youtube#subscription', id='zqShTXi-2-Tx7TtwQqhCBwViE_j9IEgnmRmPnqJljxo', snippet=SubscriptionSnippet(title='PyCon 2015', description=''))]
 
-Get public channel's subscriptions::
+Get public channel's subscriptions:
 
-    In [12]: r = api.get_subscription_by_channel(
-    ...:     channel_id="UCAuUUnT6oDeKwE6v1NGQxug",
-    ...:     parts="id,snippet",
-    ...:     count=2
-    ...:     )
-    In [13]: r
-    Out[13]: SubscriptionListResponse(kind='youtube#subscriptionListResponse')
-    In [14]: r.items
-    Out[14]:
+.. code:: pycon
+
+    >>> r = api.get_subscription_by_channel(
+    ...      channel_id="UCAuUUnT6oDeKwE6v1NGQxug",
+    ...      parts="id,snippet",
+    ...      count=2
+    ... )
+    >>> r
+    SubscriptionListResponse(kind='youtube#subscriptionListResponse')
+    >>> r.items
     [Subscription(kind='youtube#subscription', id='FMP3Mleijt-52zZDGkHtR5KhwkvCcdQKWWWIA1j5eGc', snippet=SubscriptionSnippet(title='TEDx Talks', description="TEDx is an international community that organizes TED-style events anywhere and everywhere -- celebrating locally-driven ideas and elevating them to a global stage. TEDx events are produced independently of TED conferences, each event curates speakers on their own, but based on TED's format and rules.\n\nFor more information on using TED for commercial purposes (e.g. employee learning, in a film, or in an online course), please submit a media request using the link below.")),
      Subscription(kind='youtube#subscription', id='FMP3Mleijt_ZKvy5M-HhRlsqI4wXY7VmP5g8lvmRhVU', snippet=SubscriptionSnippet(title='TED Residency', description='The TED Residency program is an incubator for breakthrough ideas. It is free and open to all via a semi-annual competitive application. Those chosen as TED Residents spend four months at TED headquarters in New York City, working on their idea. Selection criteria include the strength of their idea, their character, and their ability to bring a fresh perspective and positive contribution to the diverse TED community.'))]
 
@@ -376,43 +413,48 @@ ACTIVITIES
 
 You can get activities by channel id. You can also get your own activities after you have completed authorization.
 
-Get public channel activities::
+Get public channel activities:
 
-    In [3]: r = api.get_activities_by_channel(channel_id="UC_x5XG1OV2P6uZZ5FSM9Ttw", count=2)
-    In [4]: r
-    Out[4]: ActivityListResponse(kind='youtube#activityListResponse')
-    In [5]: r.items
-    Out[5]:
+.. code:: pycon
+
+    >>> r = api.get_activities_by_channel(channel_id="UC_x5XG1OV2P6uZZ5FSM9Ttw", count=2)
+    >>> r
+    ActivityListResponse(kind='youtube#activityListResponse')
+    >>> r.items
     [Activity(kind='youtube#activity', id='MTUxNTc3NzM2MDAyODIxOTQxNDM0NjAwMA==', snippet=ActivitySnippet(title='2019 Year in Review - The Developer Show', description='Here to bring you the latest developer news from across Google this year is Developer Advocate Timothy Jordan. In this last week of the year, we’re taking a look back at some of the coolest and biggest announcements we covered in 2019! \n\nFollow Google Developers on Instagram → https://goo.gle/googledevs\n\nWatch more #DevShow → https://goo.gle/GDevShow\nSubscribe to Google Developers → https://goo.gle/developers')),
      Activity(kind='youtube#activity', id='MTUxNTc3MTI4NzIzODIxOTQxNDM0NzI4MA==', snippet=ActivitySnippet(title='GDE Promo - Lara Martin', description='Meet Lara Martin, a Flutter/Dart Google Developers Expert and get inspired by her journey. Watch now for a preview of her story! #GDESpotlights #IncludedWithGoogle\n\nLearn about the GDE program → https://goo.gle/2qWOvAy\n\nGoogle Developers Experts → https://goo.gle/GDE\nSubscribe to Google Developers → https://goo.gle/developers'))]
 
 
-Get your activities::
+Get your activities:
 
-    In [10]: r = api_with_token.get_activities_by_me()
-    In [11]: r.items
-    Out[11]:
+.. code:: pycon
+
+    >>> r = api_with_token.get_activities_by_me()
+    >>> r.items
     [Activity(kind='youtube#activity', id='MTUxNTc0OTk2MjI3NDE0MjYwMDY1NjAwODA=', snippet=ActivitySnippet(title='华山日出', description='冷冷的山头')),
      Activity(kind='youtube#activity', id='MTUxNTc0OTk1OTAyNDE0MjYwMDY1NTc2NDg=', snippet=ActivitySnippet(title='海上日出', description='美美美'))]
 
-Get your video captions::
+Get your video captions:
 
-    In [12]: r = api.get_captions_by_video(video_id="oHR3wURdJ94", parts=["id", "snippet"])
-    In [13]: r
-    Out[13]: CaptionListResponse(kind='youtube#captionListResponse')
-    In [14]: r.items
-    Out[14]:
+.. code:: pycon
+
+    >>> r = api.get_captions_by_video(video_id="oHR3wURdJ94", parts=["id", "snippet"])
+    >>> r
+    CaptionListResponse(kind='youtube#captionListResponse')
+    >>> r.items
     [Caption(kind='youtube#caption', id='SwPOvp0r7kd9ttt_XhcHdZthMwXG7Z0I', snippet=CaptionSnippet(videoId='oHR3wURdJ94', lastUpdated='2020-01-14T09:40:49.981Z')),
      Caption(kind='youtube#caption', id='fPMuDm722CIRcUAT3NTPQHQZJZJxt39kU7JvrHk8Kzs=', snippet=CaptionSnippet(videoId='oHR3wURdJ94', lastUpdated='2020-01-14T09:39:46.991Z'))]
 
 
-If you already have caption id(s), you can get video caption by id(s)::
+If you already have caption id(s), you can get video caption by id(s):
 
-    In [15]: r = api.get_captions_by_video(video_id="oHR3wURdJ94", parts=["id", "snippet"], caption_id="SwPOvp0r7kd9ttt_XhcHdZthMwXG7Z0I")
-    In [16]: r
-    Out[16]: CaptionListResponse(kind='youtube#captionListResponse')
-    In [17]: r.items
-    Out[17]: [Caption(kind='youtube#caption', id='SwPOvp0r7kd9ttt_XhcHdZthMwXG7Z0I', snippet=CaptionSnippet(videoId='oHR3wURdJ94', lastUpdated='2020-01-14T09:40:49.981Z'))]
+.. code:: pycon
+
+    >>> r = api.get_captions_by_video(video_id="oHR3wURdJ94", parts=["id", "snippet"], caption_id="SwPOvp0r7kd9ttt_XhcHdZthMwXG7Z0I")
+    >>> r
+    CaptionListResponse(kind='youtube#captionListResponse')
+    >>> r.items
+    [Caption(kind='youtube#caption', id='SwPOvp0r7kd9ttt_XhcHdZthMwXG7Z0I', snippet=CaptionSnippet(videoId='oHR3wURdJ94', lastUpdated='2020-01-14T09:40:49.981Z'))]
 
 ----------------
 CHANNEL SECTIONS
@@ -420,13 +462,14 @@ CHANNEL SECTIONS
 
 You can get channel sections by self id or belonged channel id or your own channel.
 
-Get channel sections by channel id::
+Get channel sections by channel id:
 
-    In[18]: r = api.get_channel_sections_by_channel(channel_id="UC_x5XG1OV2P6uZZ5FSM9Ttw")
-    In[19]: r
-    Out[19]: ChannelSectionResponse(kind='youtube#channelSectionListResponse')
-    In[20]: r.items
-    Out[20]:
+.. code:: pycon
+
+    >>> r = api.get_channel_sections_by_channel(channel_id="UC_x5XG1OV2P6uZZ5FSM9Ttw")
+    >>>> r
+    ChannelSectionResponse(kind='youtube#channelSectionListResponse')
+    >>> r.items
     [ChannelSection(kind='youtube#channelSection', id='UC_x5XG1OV2P6uZZ5FSM9Ttw.e-Fk7vMPqLE'),
      ChannelSection(kind='youtube#channelSection', id='UC_x5XG1OV2P6uZZ5FSM9Ttw.B8DTd9ZXJqM'),
      ChannelSection(kind='youtube#channelSection', id='UC_x5XG1OV2P6uZZ5FSM9Ttw.MfvRjkWLxgk'),
@@ -438,42 +481,47 @@ Get channel sections by channel id::
      ChannelSection(kind='youtube#channelSection', id='UC_x5XG1OV2P6uZZ5FSM9Ttw.9_wU0qhEPR8'),
      ChannelSection(kind='youtube#channelSection', id='UC_x5XG1OV2P6uZZ5FSM9Ttw.npYvuMz0_es')]
 
-Get authorized user's channel sections::
+Get authorized user's channel sections:
 
-    In[21]: r = api.get_channel_sections_by_channel(mine=True)
-    In[23]: r.items
-    Out[23]:
+.. code:: pycon
+
+    >>> r = api.get_channel_sections_by_channel(mine=True)
+    >>> r.items
     [ChannelSection(kind='youtube#channelSection', id='UCa-vrCLQHviTOVnEKDOdetQ.jNQXAC9IVRw'),
      ChannelSection(kind='youtube#channelSection', id='UCa-vrCLQHviTOVnEKDOdetQ.LeAltgu_pbM'),
      ChannelSection(kind='youtube#channelSection', id='UCa-vrCLQHviTOVnEKDOdetQ.nGzAI5pLbMY')]
 
-Get channel section detail info by id::
+Get channel section detail info by id:
 
-    In[24]: r = api.get_channel_section_by_id(section_id="UC_x5XG1OV2P6uZZ5FSM9Ttw.e-Fk7vMPqLE")
-    In[25]: r
-    Out[25]: ChannelSectionResponse(kind='youtube#channelSectionListResponse')
-    In[26]: r1.items
-    Out[26]: [ChannelSection(kind='youtube#channelSection', id='UC_x5XG1OV2P6uZZ5FSM9Ttw.e-Fk7vMPqLE')]
+.. code:: pycon
+
+    >>> r = api.get_channel_section_by_id(section_id="UC_x5XG1OV2P6uZZ5FSM9Ttw.e-Fk7vMPqLE")
+    >>> r
+    ChannelSectionResponse(kind='youtube#channelSectionListResponse')
+    >>> r1.items
+    [ChannelSection(kind='youtube#channelSection', id='UC_x5XG1OV2P6uZZ5FSM9Ttw.e-Fk7vMPqLE')]
 
 -------------
 I18N RESOURCE
 -------------
 
-You can get a list of content regions that the YouTube website supports::
+You can get a list of content regions that the YouTube website supports:
 
-    In[27]: r = api.get_i18n_regions(parts=["snippet"])
-    In[28]: r.items
-    Out[28]:
+.. code:: pycon
+
+    >>> r = api.get_i18n_regions(parts=["snippet"])
+    >>> r.items
     [I18nRegion(kind='youtube#i18nRegion', id='DZ', snippet=I18nRegionSnippet(gl='DZ', name='Algeria')),
      I18nRegion(kind='youtube#i18nRegion', id='AR', snippet=I18nRegionSnippet(gl='AR', name='Argentina')),
      I18nRegion(kind='youtube#i18nRegion', id='AU', snippet=I18nRegionSnippet(gl='AU', name='Australia'))
      ...]
 
-You can get a list of application languages that the YouTube website supports::
+You can get a list of application languages that the YouTube website supports:
 
-    In[29]: r = api.get_i18n_languages(parts=["snippet"])
-    In[30]: r.items
-    Out[30]:
+.. code:: pycon
+
+    >>> r = api.get_i18n_languages(parts=["snippet"])
+    >>> r.items
     [I18nLanguage(kind='youtube#i18nLanguage', id='af', snippet=I18nLanguageSnippet(hl='af', name='Afrikaans')),
      I18nLanguage(kind='youtube#i18nLanguage', id='az', snippet=I18nLanguageSnippet(hl='az', name='Azerbaijani')),
      I18nLanguage(kind='youtube#i18nLanguage', id='id', snippet=I18nLanguageSnippet(hl='id', name='Indonesian')),
@@ -486,11 +534,12 @@ MEMBER
 
 The API request must be authorized by the channel owner.
 
-You can retrieve a list of members (formerly known as "sponsors") for a channel::
+You can retrieve a list of members (formerly known as "sponsors") for a channel:
 
-    In[31]: r = api_with_token.get_members(parts=["snippet"])
-    In[32]: r.items
-    Out[34]:
+.. code:: pycon
+
+    >>> r = api_with_token.get_members(parts=["snippet"])
+    >>> r.items
     [MemberListResponse(kind='youtube#memberListResponse'),
      MemberListResponse(kind='youtube#memberListResponse')]
 
@@ -501,11 +550,12 @@ MEMBERSHIP LEVEL
 
 The API request must be authorized by the channel owner.
 
-You can retrieve a list membership levels for a channel::
+You can retrieve a list membership levels for a channel:
 
-    In[31]: r = api_with_token.get_membership_levels(parts=["snippet"])
-    In[32]: r.items
-    Out[34]:
+.. code:: pycon
+
+    >>> r = api_with_token.get_membership_levels(parts=["snippet"])
+    >>> r.items
     [MembershipsLevelListResponse(kind='youtube#membershipsLevelListResponse'),
      MembershipsLevelListResponse(kind='youtube#membershipsLevelListResponse')]
 
@@ -514,11 +564,12 @@ You can retrieve a list membership levels for a channel::
 VIDEO ABUSE REPORT REASON
 -------------------------
 
-You can retrieve a list of reasons that can be used to report abusive videos::
+You can retrieve a list of reasons that can be used to report abusive videos:
 
-    In[31]: r = api_with_token.get_video_abuse_report_reason(parts=["snippet"])
-    In[32]: r.items
-    Out[34]:
+.. code:: pycon
+
+    >>> r = api_with_token.get_video_abuse_report_reason(parts=["snippet"])
+    >>> r.items
     [VideoAbuseReportReason(kind='youtube#videoAbuseReportReason'),
      VideoAbuseReportReason(kind='youtube#videoAbuseReportReason')]
 
@@ -528,61 +579,64 @@ SEARCH
 
 You can use those methods to search the video,playlist,channel data. For more info, you can see the `Search Request Docs <https://developers.google.com/youtube/v3/docs/search/list>`_ .
 
-You can search different type of resource with keywords::
+You can search different type of resource with keywords:
 
-    In[33]: r = api.search_by_keywords(q="surfing", search_type=["channel","video", "playlist"], count=5, limit=5)
-    In[34]: r.items
-    Out[34]:
+.. code:: pycon
+
+    >>> r = api.search_by_keywords(q="surfing", search_type=["channel","video", "playlist"], count=5, limit=5)
+    >>> r.items
     [SearchResult(kind='youtube#searchResult'),
      SearchResult(kind='youtube#searchResult'),
      SearchResult(kind='youtube#searchResult'),
      SearchResult(kind='youtube#searchResult'),
      SearchResult(kind='youtube#searchResult')]
 
-You can search your app send videos::
+You can search your app send videos:
 
-    In[35]: r = api_with_token.search_by_developer(q="news", count=1)
-    In[36]: r.items
-    Out[36]:
+.. code:: pycon
+
+    >>> r = api_with_token.search_by_developer(q="news", count=1)
+    >>> r.items
     [SearchResult(kind='youtube#searchResult')]
 
-You can search your videos::
+You can search your videos:
 
-    In[37]: r = api_with_token.search_by_mine(q="news", count=1)
-    In[38]: r.items
-    Out[39]:
+.. code:: pycon
+
+    >>> r = api_with_token.search_by_mine(q="news", count=1)
+    >>> r.items
     [SearchResult(kind='youtube#searchResult')]
 
-Or you can build your request using the ``search`` method::
+Or you can build your request using the ``search`` method:
 
-    In[40]: r = api.search(
-       ...:     location="21.5922529, -158.1147114",
-       ...:     location_radius="10mi",
-       ...:     q="surfing",
-       ...:     parts=["snippet"],
-       ...:     count=5,
-       ...:     published_after="2020-02-01T00:00:00Z",
-       ...:     published_before="2020-03-01T00:00:00Z",
-       ...:     safe_search="moderate",
-       ...:     search_type="video")
-    In[41]: r.items
-    Out[41]:
+.. code:: pycon
+
+    >>> r = api.search(
+    ...     location="21.5922529, -158.1147114",
+    ...     location_radius="10mi",
+    ...     q="surfing",
+    ...     parts=["snippet"],
+    ...     count=5,
+    ...     published_after="2020-02-01T00:00:00Z",
+    ...     published_before="2020-03-01T00:00:00Z",
+    ...     safe_search="moderate",
+    ...     search_type="video")
+    >>> r.items
     [SearchResult(kind='youtube#searchResult'),
      SearchResult(kind='youtube#searchResult'),
      SearchResult(kind='youtube#searchResult'),
      SearchResult(kind='youtube#searchResult'),
      SearchResult(kind='youtube#searchResult')]
 
-    In[42]: r = api.search(
-       ...:     event_type="live",
-       ...:     q="news",
-       ...:     count=3,
-       ...:     parts=["snippet"],
-       ...:     search_type="video",
-       ...:     topic_id="/m/09s1f",
-       ...:     order="viewCount")
-    In[43]: r.items
-    Out[43]:
+    >>> r = api.search(
+    ...     event_type="live",
+    ...     q="news",
+    ...     count=3,
+    ...     parts=["snippet"],
+    ...     search_type="video",
+    ...     topic_id="/m/09s1f",
+    ...     order="viewCount")
+    >>> r.items
     [SearchResult(kind='youtube#searchResult'),
      SearchResult(kind='youtube#searchResult'),
      SearchResult(kind='youtube#searchResult')]
