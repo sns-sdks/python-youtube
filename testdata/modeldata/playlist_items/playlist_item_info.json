@@ -40,7 +40,9 @@
     "resourceId": {
       "kind": "youtube#video",
       "videoId": "D-lhorsDlUQ"
-    }
+    },
+    "videoOwnerChannelTitle": "Google Developers",
+    "videoOwnerChannelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw"
   },
   "contentDetails": {
     "videoId": "D-lhorsDlUQ",

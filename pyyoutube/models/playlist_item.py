@@ -37,6 +37,8 @@ class PlaylistItemSnippet(BaseModel, DatetimeTimeMixin):
     description: Optional[str] = field(default=None)
     thumbnails: Optional[Thumbnails] = field(default=None, repr=False)
     channelTitle: Optional[str] = field(default=None, repr=False)
+    videoOwnerChannelTitle: Optional[str] = field(default=None, repr=False)
+    videoOwnerChannelId: Optional[str] = field(default=None, repr=False)
     playlistId: Optional[str] = field(default=None, repr=False)
     position: Optional[int] = field(default=None, repr=False)
     resourceId: Optional[ResourceId] = field(default=None, repr=False)
