@@ -54,6 +54,7 @@ class PlaylistItemModelTest(unittest.TestCase):
         self.assertEqual(m.snippet.resourceId.videoId, "D-lhorsDlUQ")
         self.assertEqual(m.contentDetails.videoId, "D-lhorsDlUQ")
         self.assertEqual(m.status.privacyStatus, "public")
+        self.assertEqual(m.snippet.videoOwnerChannelId, "UC_x5XG1OV2P6uZZ5FSM9Ttw")
 
     def testPlaylistItemListResponse(self) -> None:
         m = models.PlaylistItemListResponse.from_dict(self.PLAYLIST_LIST_RESPONSE)
