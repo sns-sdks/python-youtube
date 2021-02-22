@@ -1,6 +1,18 @@
 Changelog
 ---------
 
+Version 0.7.0
+=============
+
+What's New
+++++++++++
+
+1. Add api methods for members and membership levels
+2. Add more examples for api
+3. Add fields for playlist item api
+4. fix some.
+
+
 Version 0.6.1
 =============
 
