@@ -34,15 +34,19 @@ class TestOAuthApi(unittest.TestCase):
         with self.assertRaises(pyyoutube.PyYouTubeException):
             self.api.refresh_token()
 
+        with self.assertRaises(pyyoutube.PyYouTubeException):
+            api = pyyoutube.Api(client_id="xx", client_secret="xx")
+            api.generate_access_token(authorization_response="str")
+
         with responses.RequestsMock() as m:
             m.add(
                 "POST", self.api.EXCHANGE_ACCESS_TOKEN_URL, json=self.ACCESS_TOKEN_INFO
             )
-            token = self.api.exchange_code_to_access_token(
+            token = self.api.generate_access_token(
                 authorization_response=redirect_response,
             )
             self.assertEqual(token.access_token, "access_token")
-            token_origin = self.api.exchange_code_to_access_token(
+            token_origin = self.api.generate_access_token(
                 authorization_response=redirect_response, return_json=True
             )
             self.assertEqual(token_origin["access_token"], "access_token")
@@ -51,6 +55,10 @@ class TestOAuthApi(unittest.TestCase):
             self.assertEqual(refresh_token.access_token, "access_token")
             refresh_token_origin = self.api.refresh_token(return_json=True)
             self.assertEqual(refresh_token_origin["refresh_token"], "refresh_token")
+
+            api = pyyoutube.Api(client_id="xx", client_secret="xx")
+            refresh_token = api.refresh_token(refresh_token="refresh_token")
+            self.assertEqual(refresh_token.refresh_token, "refresh_token")
 
     def testGetProfile(self) -> None:
         with self.assertRaises(pyyoutube.PyYouTubeException):

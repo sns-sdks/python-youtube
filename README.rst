@@ -62,19 +62,33 @@ There provide two method to create instance the ``pyyoutube.Api``.
 
 You can just initialize with an api key:
 
-.. code:: python
+.. code-block:: python
 
-    from pyyoutube import Api
-    api = Api(api_key='your api key')
+    >>> from pyyoutube import Api
+    >>> api = Api(api_key="your api key")
 
 If you want to get some authorization data. you need to initialize with an access token:
 
-.. code:: python
+.. code-block:: python
 
-    from pyyoutube import Api
-    api = Api(api_key='your api key')
+    >>> from pyyoutube import Api
+    >>> api = Api(access_token='your api key')
 
 You can read the docs to see how to get an access token.
+
+Or you can ask for user to do oauth flow:
+
+.. code-block:: python
+
+    >>> from pyyoutube import Api
+    >>> api = Api(client_id="client key", client_secret="client secret")
+    # Get authorization url
+    >>> api.get_authorization_url()
+    ('https://accounts.google.com/o/oauth2/v2/auth?response_type=code&client_id=id&redirect_uri=https%3A%2F%2Flocalhost%2F&scope=scope&state=PyYouTube&access_type=offline&prompt=select_account', 'PyYouTube')
+    # user to do
+    # copy the response url
+    >>> api.generate_access_token(authorization_response="link for response")
+    AccessToken(access_token='token', expires_in=3599, token_type='Bearer')
 
 Now you can use the instance to get data from YouTube.
 
@@ -88,7 +102,7 @@ If a channel is not found, the property ``items`` will return with blank list.
 
 You can use channel id:
 
-.. code:: pycon
+.. code-block:: python
 
     >>> channel_by_id = api.get_channel_info(channel_id="UC_x5XG1OV2P6uZZ5FSM9Ttw")
     >>> channel_by_id.items
@@ -124,7 +138,7 @@ Many methods also provide this functionality.
 
 with ids:
 
-.. code:: pycon
+.. code-block:: python
 
     >>> channel_by_ids = api.get_channel_info(channel_id="UC_x5XG1OV2P6uZZ5FSM9Ttw,UCa-vrCLQHviTOVnEKDOdetQ")
     >>> channel_by_ids.items
@@ -133,7 +147,7 @@ with ids:
 
 You can also use channel name:
 
-.. code:: pycon
+.. code-block:: python
 
     >>> channel_by_name = api.get_channel_info(channel_name="GoogleDevelopers")
     >>> channel_by_name.items[0]
@@ -141,7 +155,7 @@ You can also use channel name:
 
 If you have authorized, you can get your channels:
 
-.. code:: pycon
+.. code-block:: python
 
     >>> channel_by_mine = api_with_authorization.get_channel_info(mine=True)
     >>> channel_by_mine.items[0]
@@ -158,7 +172,7 @@ There are methods to get playlists by playlist id, channel id or get your own pl
 
 Get playlists by id:
 
-.. code:: pycon
+.. code-block:: python
 
     >>> playlists_by_id = api.get_playlist_by_id(playlist_id="PLOU2XLYxmsIKpaV8h0AGE05so0fAwwfTw")
     >>> playlists_by_id.items
@@ -166,7 +180,7 @@ Get playlists by id:
 
 Get playlists by channel (If you want to get all of atarget channel's playlists, just provide the parameter ``count=None``):
 
-.. code:: pycon
+.. code-block:: python
 
     >>> playlists_by_channel = api.get_playlists(channel_id="UC_x5XG1OV2P6uZZ5FSM9Ttw")
     >>> playlists_by_channel.items
@@ -190,7 +204,7 @@ Similarly, you can get playlist items by playlist item id or playlist id.
 
 Get playlist items by id:
 
-.. code:: pycon
+.. code-block:: python
 
     >>> playlist_item_by_id = api.get_playlist_item_by_id(playlist_item_id="UExPVTJYTFl4bXNJS3BhVjhoMEFHRTA"
     ...     "1c28wZkF3d2ZUdy41NkI0NEY2RDEwNTU3Q0M2")
@@ -201,7 +215,7 @@ Get playlist items by id:
 
 Get playlist items by playlist id (If you want to get target playlist all items, just provide the parameter ``count=None``):
 
-.. code:: pycon
+.. code-block:: python
 
     >>> playlist_item_by_playlist = api.get_playlist_items(playlist_id="PLOU2XLYxmsIKpaV8h0AGE05so0fAwwfTw", count=2)
 
@@ -219,7 +233,7 @@ You can get a video's information by several methods.
 
 Get videos by video id(s):
 
-.. code:: pycon
+.. code-block:: python
 
     >>> video_by_id = api.get_video_by_id(video_id="CvTApw9X8aA")
 
@@ -232,7 +246,7 @@ Get videos by video id(s):
 
 Get videos by chart (If you want to get all videos, just provide the parameter ``count=None``):
 
-.. code:: pycon
+.. code-block:: python
 
     >>> video_by_chart = api.get_videos_by_chart(chart="mostPopular", region_code="US", count=2)
 
@@ -255,7 +269,7 @@ You can get comment thread information by id or some filter.
 
 Get comment thread by id(s):
 
-.. code:: pycon
+.. code-block:: python
 
     >>> ct_by_id = api.get_comment_thread_by_id(comment_thread_id='Ugz097FRhsQy5CVhAjp4AaABAg,UgzhytyP79_Pwa
     ... Dd4UB4AaABAg')
@@ -266,7 +280,7 @@ Get comment thread by id(s):
 
 Get all comment threads related to a channel (including comment threads for the channel's video, also if you want to get all comment threads, just provide the parameter ``count=None``):
 
-.. code:: pycon
+.. code-block:: python
 
     >>> ct_by_all = api.get_comment_threads(all_to_channel_id="UC_x5XG1OV2P6uZZ5FSM9Ttw", count=2)
 
@@ -276,7 +290,7 @@ Get all comment threads related to a channel (including comment threads for the 
 
 Get comment threads only for the channel (If you want to get all comment threads, just provide the parameter ``count=None``):
 
-.. code:: pycon
+.. code-block:: python
 
     >>> ct_by_channel = api.get_comment_threads(channel_id="UC_x5XG1OV2P6uZZ5FSM9Ttw", count=2)
 
@@ -286,7 +300,7 @@ Get comment threads only for the channel (If you want to get all comment threads
 
 Get comment threads only for the video (If you want to get all comment threads, just provide the parameter ``count=None``):
 
-.. code:: pycon
+.. code-block:: python
 
     >>> ct_by_video = api.get_comment_threads(video_id="D-lhorsDlUQ", count=2)
 
@@ -305,7 +319,7 @@ You can get comment information by id or use the top-level comment id to get rep
 
 Get comments by id(s):
 
-.. code:: pycon
+.. code-block:: python
 
     >>> comment_by_id = api.get_comment_by_id(comment_id='UgxKREWxIgDrw8w2e_Z4AaABAg,UgyrVQaFfEdvaSzstj14Aa
     ... ABAg')
@@ -316,7 +330,7 @@ Get comments by id(s):
 
 Get replies by comment id (If you want to get all comments, just provide the parameter ``count=None``):
 
-.. code:: pycon
+.. code-block:: python
 
     >>> comment_by_parent = api.get_comments(parent_id="UgwYjZXfNCUTKPq9CZp4AaABAg")
 
@@ -331,7 +345,7 @@ You can get video category with id or region.
 
 Get video categories with id(s):
 
-.. code:: pycon
+.. code-block:: python
 
     >>> video_category_by_id = api.get_video_categories(category_id="17,18")
 
@@ -341,7 +355,7 @@ Get video categories with id(s):
 
 Get video categories with region code:
 
-.. code:: pycon
+.. code-block:: python
 
     >>> video_categories_by_region = api.get_video_categories(region_code="US")
 
@@ -364,7 +378,7 @@ You can get subscription information by id, by point channel, or your own.
 
 To get subscription info by id(s), this needs your token to have the permission for the subscriptions belonging to a channel or user:
 
-.. code:: pycon
+.. code-block:: python
 
     >>> r = api.get_subscription_by_id(
     ...         subscription_id=[
@@ -378,7 +392,7 @@ To get subscription info by id(s), this needs your token to have the permission 
 
 Get your own subscriptions, this need you do authorization first or give the authorized access token:
 
-.. code:: pycon
+.. code-block:: python
 
     >>> r = api.get_subscription_by_me(
     ...         mine=True,
@@ -393,7 +407,7 @@ Get your own subscriptions, this need you do authorization first or give the aut
 
 Get public channel's subscriptions:
 
-.. code:: pycon
+.. code-block:: python
 
     >>> r = api.get_subscription_by_channel(
     ...      channel_id="UCAuUUnT6oDeKwE6v1NGQxug",
@@ -415,7 +429,7 @@ You can get activities by channel id. You can also get your own activities after
 
 Get public channel activities:
 
-.. code:: pycon
+.. code-block:: python
 
     >>> r = api.get_activities_by_channel(channel_id="UC_x5XG1OV2P6uZZ5FSM9Ttw", count=2)
     >>> r
@@ -427,7 +441,7 @@ Get public channel activities:
 
 Get your activities:
 
-.. code:: pycon
+.. code-block:: python
 
     >>> r = api_with_token.get_activities_by_me()
     >>> r.items
@@ -436,7 +450,7 @@ Get your activities:
 
 Get your video captions:
 
-.. code:: pycon
+.. code-block:: python
 
     >>> r = api.get_captions_by_video(video_id="oHR3wURdJ94", parts=["id", "snippet"])
     >>> r
@@ -448,7 +462,7 @@ Get your video captions:
 
 If you already have caption id(s), you can get video caption by id(s):
 
-.. code:: pycon
+.. code-block:: python
 
     >>> r = api.get_captions_by_video(video_id="oHR3wURdJ94", parts=["id", "snippet"], caption_id="SwPOvp0r7kd9ttt_XhcHdZthMwXG7Z0I")
     >>> r
@@ -464,7 +478,7 @@ You can get channel sections by self id or belonged channel id or your own chann
 
 Get channel sections by channel id:
 
-.. code:: pycon
+.. code-block:: python
 
     >>> r = api.get_channel_sections_by_channel(channel_id="UC_x5XG1OV2P6uZZ5FSM9Ttw")
     >>>> r
@@ -483,7 +497,7 @@ Get channel sections by channel id:
 
 Get authorized user's channel sections:
 
-.. code:: pycon
+.. code-block:: python
 
     >>> r = api.get_channel_sections_by_channel(mine=True)
     >>> r.items
@@ -493,7 +507,7 @@ Get authorized user's channel sections:
 
 Get channel section detail info by id:
 
-.. code:: pycon
+.. code-block:: python
 
     >>> r = api.get_channel_section_by_id(section_id="UC_x5XG1OV2P6uZZ5FSM9Ttw.e-Fk7vMPqLE")
     >>> r
@@ -507,7 +521,7 @@ I18N RESOURCE
 
 You can get a list of content regions that the YouTube website supports:
 
-.. code:: pycon
+.. code-block:: python
 
     >>> r = api.get_i18n_regions(parts=["snippet"])
     >>> r.items
@@ -518,7 +532,7 @@ You can get a list of content regions that the YouTube website supports:
 
 You can get a list of application languages that the YouTube website supports:
 
-.. code:: pycon
+.. code-block:: python
 
     >>> r = api.get_i18n_languages(parts=["snippet"])
     >>> r.items
@@ -536,7 +550,7 @@ The API request must be authorized by the channel owner.
 
 You can retrieve a list of members (formerly known as "sponsors") for a channel:
 
-.. code:: pycon
+.. code-block:: python
 
     >>> r = api_with_token.get_members(parts=["snippet"])
     >>> r.items
@@ -552,7 +566,7 @@ The API request must be authorized by the channel owner.
 
 You can retrieve a list membership levels for a channel:
 
-.. code:: pycon
+.. code-block:: python
 
     >>> r = api_with_token.get_membership_levels(parts=["snippet"])
     >>> r.items
@@ -566,7 +580,7 @@ VIDEO ABUSE REPORT REASON
 
 You can retrieve a list of reasons that can be used to report abusive videos:
 
-.. code:: pycon
+.. code-block:: python
 
     >>> r = api_with_token.get_video_abuse_report_reason(parts=["snippet"])
     >>> r.items
@@ -581,7 +595,7 @@ You can use those methods to search the video,playlist,channel data. For more in
 
 You can search different type of resource with keywords:
 
-.. code:: pycon
+.. code-block:: python
 
     >>> r = api.search_by_keywords(q="surfing", search_type=["channel","video", "playlist"], count=5, limit=5)
     >>> r.items
@@ -593,7 +607,7 @@ You can search different type of resource with keywords:
 
 You can search your app send videos:
 
-.. code:: pycon
+.. code-block:: python
 
     >>> r = api_with_token.search_by_developer(q="news", count=1)
     >>> r.items
@@ -601,7 +615,7 @@ You can search your app send videos:
 
 You can search your videos:
 
-.. code:: pycon
+.. code-block:: python
 
     >>> r = api_with_token.search_by_mine(q="news", count=1)
     >>> r.items
@@ -609,7 +623,7 @@ You can search your videos:
 
 Or you can build your request using the ``search`` method:
 
-.. code:: pycon
+.. code-block:: python
 
     >>> r = api.search(
     ...     location="21.5922529, -158.1147114",

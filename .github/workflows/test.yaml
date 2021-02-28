@@ -19,21 +19,18 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: ${{ matrix.python-version }}
-      - name: Cache venv
+      - name: Cache pip
         uses: actions/cache@v2
         with:
-          path: venv
+          path: ~/.cache/pip
           key: ${{ matrix.python-version }}-poetry-${{ hashFiles('pyproject.toml') }}
       - name: Install dependencies
         run: |
-          python -m venv venv
-          . venv/bin/activate
           python -m pip install --upgrade pip poetry
           poetry install
       - name: Test with pytest
         run: |
-          . venv/bin/activate
-          pytest
+          poetry run pytest
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v1
         with:
@@ -48,18 +45,13 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
         with:
-          python-version: 3.7
-      - name: Cache venv
+          python-version: 3.8
+      - name: Cache pip
         uses: actions/cache@v2
         with:
-          path: venv
+          path: ~/.cache/pip
           key: lintenv-v2
       - name: Install dependencies
-        run: |
-          python -m venv venv
-          . venv/bin/activate
-          python -m pip install --upgrade pip black
+        run: python -m pip install --upgrade pip black
       - name: Black test
-        run: |
-          . venv/bin/activate
-          black --check .
+        run: black --check .
