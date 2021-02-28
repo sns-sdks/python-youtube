@@ -156,7 +156,10 @@ class Api(object):
             self._timeout = self.DEFAULT_TIMEOUT
 
     def get_authorization_url(
-        self, redirect_uri: Optional[str] = None, scope: Optional[List[str]] = None, **kwargs
+        self,
+        redirect_uri: Optional[str] = None,
+        scope: Optional[List[str]] = None,
+        **kwargs,
     ) -> (str, str):
         """
         Build authorization url to do authorize.
@@ -263,7 +266,8 @@ class Api(object):
 
         auth = HTTPBasicAuth(self._client_id, self._client_secret)
         new_token = oauth_session.refresh_token(
-            self.EXCHANGE_ACCESS_TOKEN_URL, refresh_token=refresh_token,
+            self.EXCHANGE_ACCESS_TOKEN_URL,
+            refresh_token=refresh_token,
             auth=auth,
         )
         self._access_token = oauth_session.access_token

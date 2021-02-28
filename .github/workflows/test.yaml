@@ -29,7 +29,8 @@ jobs:
           python -m pip install --upgrade pip poetry
           poetry install
       - name: Test with pytest
-        run: pytest
+        run: |
+          poetry run pytest
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v1
         with:
