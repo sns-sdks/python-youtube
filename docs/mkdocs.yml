@@ -1,0 +1,29 @@
+site_name: Python-Youtube Docs
+site_description: Docs for python-youtube library
+repo_url: https://github.com/sns-sdks/python-youtube
+
+
+theme:
+  name: material
+  features:
+    - navigation.tabs
+
+nav:
+  - Introduction: index.md
+  - Installation: installation.md
+  - Getting Start: getting_started.md
+  - Authorization: authorization.md
+
+extra:
+  social:
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/realllkk520
+    - icon: fontawesome/brands/github
+      link: https://github.com/sns-sdks/python-youtube
+
+
+markdown_extensions:
+  - codehilite
+  - admonition
+  - pymdownx.superfences
+  - pymdownx.emoji
