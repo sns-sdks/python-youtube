@@ -72,7 +72,7 @@ Then you will get a Connection Error, don't worry. This just because we set the 
 Now you need to copy the full url in the browser address bar. Then back to you console.
 
 ```
-In [4]: token = api.exchange_code_to_access_token(authorization_response="the whole url")
+In [4]: token = api.generate_access_token(authorization_response="the whole url")
 
 In [5]: token
 Out[5]: AccessToken(access_token='access token', expires_in=3600, token_type='Bearer')
