@@ -1,18 +1,38 @@
 site_name: Python-Youtube Docs
 site_description: Docs for python-youtube library
 repo_url: https://github.com/sns-sdks/python-youtube
+copyright: Copyright &copy; 2019 - 2021 Ikaros kun
 
 
 theme:
   name: material
   features:
     - navigation.tabs
+  palette:
+    # Light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to dark mode
+
+    # Dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: blue
+      accent: blue
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to light mode
 
 nav:
   - Introduction: index.md
   - Installation: installation.md
   - Getting Start: getting_started.md
   - Authorization: authorization.md
+  - Changelog: CHANGELOG.md
 
 extra:
   social:
