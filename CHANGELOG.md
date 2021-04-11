@@ -1,5 +1,16 @@
 # Changelog
 
+## Version 0.8.0
+
+#### Broken Change
+
+Modify the auth flow methods.
+
+#### What's New
+
+1. add python3.9 tests
+2. New docs
+
 ## Version 0.7.0
 
 #### What's New
