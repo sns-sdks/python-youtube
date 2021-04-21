@@ -5,8 +5,8 @@ A Python wrapper around for YouTube Data API V3.
 .. image:: https://github.com/sns-sdks/python-youtube/workflows/Test/badge.svg
     :target: https://github.com/sns-sdks/python-youtube/actions
 
-.. image:: https://readthedocs.org/projects/python-youtube/badge/?version=latest
-    :target: https://python-youtube.readthedocs.io/en/latest/?badge=latest
+.. image:: https://img.shields.io/badge/Docs-passing-brightgreen
+    :target: https://sns-sdks.github.io/python-youtube/
     :alt: Documentation Status
 
 .. image:: https://codecov.io/gh/sns-sdks/python-youtube/branch/master/graph/badge.svg
@@ -33,7 +33,7 @@ Library provides an easy way to use YouTube Data API V3.
 Documentation
 =============
 
-You can view the latest ``python-youtube`` documentation at: https://python-youtube.readthedocs.io/en/latest/.
+You can view the latest ``python-youtube`` documentation at: https://sns-sdks.github.io/python-youtube/.
 
 Also view the full ``YouTube DATA API`` docs at: https://developers.google.com/youtube/v3/docs/.
 
@@ -659,9 +659,9 @@ Or you can build your request using the ``search`` method:
 TODO
 ====
 
-Now this has follows api.
+The following apis are now available:
 
-- OAuth Demo
+- OAuth Flow
 - Channel Info
 - Playlist Info
 - PlaylistItem Info
@@ -679,4 +679,4 @@ Now this has follows api.
 
 Doing
 
-- post or other method.
+- Update, Insert and so on.
