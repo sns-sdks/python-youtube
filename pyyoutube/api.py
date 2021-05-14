@@ -1787,7 +1787,6 @@ class Api(object):
         *,
         section_id: Union[str, list, tuple, set],
         parts: Optional[Union[str, list, tuple, set]] = None,
-        hl: Optional[str] = "en_US",
         return_json: Optional[bool] = False,
     ) -> Union[ChannelSectionResponse, dict]:
         """
@@ -1801,9 +1800,6 @@ class Api(object):
                 The resource parts for channel section you want to retrieve.
                 If not provide, use default public parts.
                 You can pass this with single part str, comma-separated parts str or a list,tuple,set of parts.
-            hl:
-                If provide this. Will return playlist's language localized info.
-                This value need https://developers.google.com/youtube/v3/docs/i18nLanguages.
             return_json:
                 The return data type. If you set True JSON data will be returned.
                 False will return a pyyoutube.ChannelSectionResponse instance.
@@ -1813,7 +1809,6 @@ class Api(object):
 
         args = {
             "id": enf_comma_separated(field="section_id", value=section_id),
-            "hl": hl,
             "part": enf_parts(resource="channelSections", value=parts),
         }
 
@@ -1831,7 +1826,6 @@ class Api(object):
         channel_id: Optional[str] = None,
         mine: bool = False,
         parts: Optional[Union[str, list, tuple, set]] = None,
-        hl: Optional[str] = "en_US",
         return_json: Optional[bool] = False,
     ) -> Union[ChannelSectionResponse, dict]:
         """
@@ -1847,9 +1841,6 @@ class Api(object):
                 The resource parts for channel section you want to retrieve.
                 If not provide, use default public parts.
                 You can pass this with single part str, comma-separated parts str or a list,tuple,set of parts.
-            hl:
-                If provide this. Will return playlist's language localized info.
-                This value need https://developers.google.com/youtube/v3/docs/i18nLanguages.
             return_json:
                 The return data type. If you set True JSON data will be returned.
                 False will return a pyyoutube.ChannelSectionResponse instance.
@@ -1858,7 +1849,6 @@ class Api(object):
         """
 
         args = {
-            "hl": hl,
             "part": enf_parts(resource="channelSections", value=parts),
         }
 

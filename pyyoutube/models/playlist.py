@@ -34,7 +34,6 @@ class PlaylistSnippet(BaseModel, DatetimeTimeMixin):
     description: Optional[str] = field(default=None)
     thumbnails: Optional[Thumbnails] = field(default=None, repr=False)
     channelTitle: Optional[str] = field(default=None, repr=False)
-    tags: Optional[List[str]] = field(default=None, repr=False)
     defaultLanguage: Optional[str] = field(default=None, repr=False)
     localized: Optional[Localized] = field(default=None, repr=False)
 

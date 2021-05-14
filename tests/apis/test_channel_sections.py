@@ -36,7 +36,6 @@ class ApiChannelSectionTest(unittest.TestCase):
             self.assertEqual(section_res.kind, "youtube#channelSectionListResponse")
             self.assertEqual(len(section_res.items), 1)
             self.assertEqual(section_res.items[0].id, section_id)
-            self.assertEqual(section_res.items[0].localizations.zh_CN.title, "我的操作诶")
 
             section_multi_res = self.api.get_channel_sections_by_id(
                 section_id=section_ids, parts=["id", "snippet"], return_json=True
@@ -67,7 +66,4 @@ class ApiChannelSectionTest(unittest.TestCase):
 
             self.assertEqual(
                 section_by_me["items"][2]["id"], "UCa-vrCLQHviTOVnEKDOdetQ.nGzAI5pLbMY"
-            )
-            self.assertEqual(
-                section_by_me["items"][2]["localizations"]["zh-TW"]["title"], "妳是誰"
             )

@@ -8,7 +8,6 @@
       "id": "UCa-vrCLQHviTOVnEKDOdetQ.jNQXAC9IVRw",
       "snippet": {
         "type": "recentUploads",
-        "style": "horizontalRow",
         "channelId": "UCa-vrCLQHviTOVnEKDOdetQ",
         "position": 0
       }
@@ -19,7 +18,6 @@
       "id": "UCa-vrCLQHviTOVnEKDOdetQ.LeAltgu_pbM",
       "snippet": {
         "type": "allPlaylists",
-        "style": "horizontalRow",
         "channelId": "UCa-vrCLQHviTOVnEKDOdetQ",
         "position": 1
       }
@@ -30,40 +28,14 @@
       "id": "UCa-vrCLQHviTOVnEKDOdetQ.nGzAI5pLbMY",
       "snippet": {
         "type": "multiplePlaylists",
-        "style": "horizontalRow",
         "channelId": "UCa-vrCLQHviTOVnEKDOdetQ",
         "title": "我的操作诶",
-        "position": 2,
-        "defaultLanguage": "zh-CN",
-        "localized": {
-          "title": "My Ops"
-        }
+        "position": 2
       },
       "contentDetails": {
         "playlists": [
           "PLBaidt0ilCManGDIKr8UVBFZwN_UvMKvS",
           "PLBaidt0ilCMbUdj0EppB710c_X5OuCP2g"
-        ]
-      },
-      "localizations": {
-        "zh-CN": {
-          "title": "我的操作诶"
-        },
-        "en": {
-          "title": "My Ops"
-        },
-        "ko": {
-          "title": "리우 쿤"
-        },
-        "zh-TW": {
-          "title": "妳是誰"
-        }
-      },
-      "targeting": {
-        "countries": [
-          "US",
-          "KR",
-          "CN"
         ]
       }
     }
