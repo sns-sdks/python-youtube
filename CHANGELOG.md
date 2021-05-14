@@ -1,35 +1,52 @@
 # Changelog
 
+## Version 0.8.1
+
+### Deprecation
+
+Detail at: https://developers.google.com/youtube/v3/revision_history#may-12,-2021
+
+- Remove channel resource in brandingSettings for channel.
+- Remove localizations,targeting resource and some snippet resource for channelSection.
+- Remove tags in snippet for playlist. 
+
+### Broken Change
+
+Methods `get_channel_sections_by_channel`, `get_channel_section_by_id` has remove parameter `hl`.
+
+
 ## Version 0.8.0
 
-#### Broken Change
+### Broken Change
 
 Modify the auth flow methods.
 
-#### What's New
+### What's New
 
 1. add python3.9 tests
 2. New docs
 
+
 ## Version 0.7.0
 
-#### What's New
+### What's New
 
 1. Add api methods for members and membership levels
 2. Add more examples for api
 3. Add fields for playlist item api
 4. fix some.
 
+
 ## Version 0.6.1
 
-#### What's New
+### What's New
 
 Remove deprecated api.
 
 
 ## Version 0.6.0
 
-#### What's New
+### What's New
 
 Provide remain get apis. like activities, captions, channel_sections, i18n, video_abuse_report_reason, search resource and so on.
 
@@ -38,7 +55,7 @@ You can see the `README`_ to get more detail for those api.
 
 ## Version 0.5.3
 
-#### What's New
+### What's New
 
 Provide the page token parameter to skip data have retrieved.
 
@@ -66,7 +83,7 @@ Out[2]: 'CAUQAQ'
 
 ## Version 0.5.2
 
-#### What's New
+### What's New
 
 Now you can use authorized access token to get your subscriptions.
 You can to the demo [A demo for get my subscription](https://github.com/sns-sdks/python-youtube/blob/master/examples/subscription.py) to see simple usage.
@@ -80,7 +97,7 @@ Or you can see the [subscriptions usage](https://github.com/sns-sdks/python-yout
 
 ## Version 0.5.1
 
-#### What's New
+### What's New
 
 Now some apis can get all target items just by one method call.
 
@@ -98,13 +115,13 @@ You can see the [README](https://github.com/sns-sdks/python-youtube/blob/master/
 
 ## Version 0.5.0
 
-#### **Broken Change**
+### **Broken Change**
 
 Now introduce new model ApiResponse representing the response from youtube, so previous usage has been invalidated.
 
 You need to read the docs [README](https://github.com/sns-sdks/python-youtube/blob/master/README.rst) to get the simple new usage.
 
-#### What's New
+### What's New
 
 Split some method into multiple usage, for example get video has been split three methods:
 
