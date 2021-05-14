@@ -31,7 +31,7 @@ python = "^3.6"
 requests = "^2.24.0"
 requests-oauthlib = "^1.3.0"
 isodate = "^0.6.0"
-dataclasses-json = "^0.5.2"
+dataclasses-json = "^0.5.3"
 
 [tool.poetry.dev-dependencies]
 responses = "^0.12.0"
