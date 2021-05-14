@@ -20,15 +20,10 @@ class ChannelBrandingChannel(BaseModel):
     title: Optional[str] = field(default=None)
     description: Optional[str] = field(default=None)
     keywords: Optional[str] = field(default=None, repr=False)
-    defaultTab: Optional[str] = field(default=None, repr=False)
     trackingAnalyticsAccountId: Optional[str] = field(default=None, repr=False)
     moderateComments: Optional[bool] = field(default=None, repr=False)
-    showRelatedChannels: Optional[bool] = field(default=None, repr=False)
-    showBrowseView: Optional[bool] = field(default=None, repr=False)
-    featuredChannelsTitle: Optional[str] = field(default=None, repr=False)
-    featuredChannelsUrls: Optional[List[str]] = field(default=None, repr=False)
     unsubscribedTrailer: Optional[str] = field(default=None, repr=False)
-    profileColor: Optional[str] = field(default=None, repr=False)
+    defaultLanguage: Optional[str] = field(default=None, repr=False)
     country: Optional[str] = field(default=None, repr=False)
 
 

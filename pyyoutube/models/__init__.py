@@ -24,7 +24,6 @@ from .channel_section import (
     ChannelSection,
     ChannelSectionContentDetails,
     ChannelSectionSnippet,
-    ChannelSectionTargeting,
     ChannelSectionResponse,
 )
 from .comment import (
@@ -106,7 +105,6 @@ __all__ = [
     "ChannelSection",
     "ChannelSectionContentDetails",
     "ChannelSectionSnippet",
-    "ChannelSectionTargeting",
     "ChannelSectionResponse",
     "Comment",
     "CommentListResponse",

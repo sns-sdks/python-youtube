@@ -8,40 +8,14 @@
       "id": "UCa-vrCLQHviTOVnEKDOdetQ.nGzAI5pLbMY",
       "snippet": {
         "type": "multiplePlaylists",
-        "style": "horizontalRow",
         "channelId": "UCa-vrCLQHviTOVnEKDOdetQ",
         "title": "我的操作诶",
-        "position": 2,
-        "defaultLanguage": "zh-CN",
-        "localized": {
-          "title": "My Ops"
-        }
+        "position": 2
       },
       "contentDetails": {
         "playlists": [
           "PLBaidt0ilCManGDIKr8UVBFZwN_UvMKvS",
           "PLBaidt0ilCMbUdj0EppB710c_X5OuCP2g"
-        ]
-      },
-      "localizations": {
-        "zh-CN": {
-          "title": "我的操作诶"
-        },
-        "en": {
-          "title": "My Ops"
-        },
-        "zh-TW": {
-          "title": "妳是誰"
-        },
-        "ko": {
-          "title": "리우 쿤"
-        }
-      },
-      "targeting": {
-        "countries": [
-          "US",
-          "KR",
-          "CN"
         ]
       }
     }
