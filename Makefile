@@ -38,6 +38,9 @@ docs:
 	$(MAKE) -C docs html
 
 lint:
+	black .
+
+lint-check:
 	black --check .
 
 test:
