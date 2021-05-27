@@ -30,7 +30,7 @@ theme:
 nav:
   - Introduction: index.md
   - Installation: installation.md
-  - Getting Start: getting_started.md
+  - Getting Started: getting_started.md
   - Authorization: authorization.md
   - Changelog: CHANGELOG.md
 
