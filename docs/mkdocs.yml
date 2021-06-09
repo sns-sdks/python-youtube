@@ -1,5 +1,6 @@
 site_name: Python-Youtube Docs
 site_description: Docs for python-youtube library
+site_url: https://sns-sdks.github.io/python-youtube/
 repo_url: https://github.com/sns-sdks/python-youtube
 copyright: Copyright &copy; 2019 - 2021 Ikaros kun
 
