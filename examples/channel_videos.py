@@ -25,7 +25,7 @@ def get_videos(channel_name):
     for item in playlist_item_res.items:
         video_id = item.contentDetails.videoId
         video_res = api.get_video_by_id(video_id=video_id)
-        videos = video_res.items
+        videos.extend(video_res.items)
     return videos
 
 
