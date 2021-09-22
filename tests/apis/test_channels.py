@@ -63,7 +63,7 @@ class ApiChannelTest(unittest.TestCase):
             self.assertEqual(res_by_channel_id.items[0].id, "UC_x5XG1OV2P6uZZ5FSM9Ttw")
 
             res_by_channel_name = self.api.get_channel_info(
-                channel_name="GoogleDevelopers", return_json=True
+                for_username="GoogleDevelopers", return_json=True
             )
             self.assertEqual(
                 res_by_channel_name["items"][0]["id"], "UC_x5XG1OV2P6uZZ5FSM9Ttw"
