@@ -479,7 +479,7 @@ class Api(object):
         self,
         *,
         channel_id: Optional[Union[str, list, tuple, set]] = None,
-        channel_name: Optional[str] = None,
+        for_username: Optional[str] = None,
         mine: Optional[bool] = None,
         parts: Optional[Union[str, list, tuple, set]] = None,
         hl: str = "en_US",
@@ -498,8 +498,10 @@ class Api(object):
             channel_id ((str,list,tuple,set), optional):
                 The id or comma-separated id string for youtube channel which you want to get.
                 You can also pass this with an id list, tuple, set.
-            channel_name (str, optional):
-                The name for youtube channel which you want to get.
+            for_username (str, optional):
+                The name for YouTube username which you want to get.
+                Note: This name may the old youtube version's channel's user's username, Not the the channle name.
+                Refer: https://developers.google.com/youtube/v3/guides/working_with_channel_ids
             mine (bool, optional):
                 If you have give the authorization. Will return your channels.
                 Must provide the access token.
@@ -520,8 +522,8 @@ class Api(object):
             "part": enf_parts(resource="channels", value=parts),
             "hl": hl,
         }
-        if channel_name is not None:
-            args["forUsername"] = channel_name
+        if for_username is not None:
+            args["forUsername"] = for_username
         elif channel_id is not None:
             args["id"] = enf_comma_separated("channel_id", channel_id)
         elif mine is not None:

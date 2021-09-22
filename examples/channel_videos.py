@@ -11,9 +11,9 @@ import pyyoutube
 API_KEY = "xxx"  # replace this with your api key.
 
 
-def get_videos(channel_name):
+def get_videos(channel_id):
     api = pyyoutube.Api(api_key=API_KEY)
-    channel_res = api.get_channel_info(channel_name=channel_name)
+    channel_res = api.get_channel_info(channel_id=channel_id)
 
     playlist_id = channel_res.items[0].contentDetails.relatedPlaylists.uploads
 
@@ -30,8 +30,8 @@ def get_videos(channel_name):
 
 
 def processor():
-    channel_name = "googledevelopers"
-    videos = get_videos(channel_name)
+    channel_id = "UC_x5XG1OV2P6uZZ5FSM9Ttw"
+    videos = get_videos(channel_id)
 
     with open("videos.json", "w+") as f:
         for video in videos:
