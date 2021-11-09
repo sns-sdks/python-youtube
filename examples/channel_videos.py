@@ -7,31 +7,35 @@ Last use get_video_by_id to get videos data.
 """
 
 import pyyoutube
-
-API_KEY = "xxx"  # replace this with your api key.
-
-
-def get_videos(channel_id):
-    api = pyyoutube.Api(api_key=API_KEY)
-    channel_res = api.get_channel_info(channel_id=channel_id)
-
-    playlist_id = channel_res.items[0].contentDetails.relatedPlaylists.uploads
-
-    playlist_item_res = api.get_playlist_items(
-        playlist_id=playlist_id, count=10, limit=6
-    )
-
-    videos = []
-    for item in playlist_item_res.items:
-        video_id = item.contentDetails.videoId
-        video_res = api.get_video_by_id(video_id=video_id)
-        videos.extend(video_res.items)
-    return videos
+import asyncio
+import aiohttp
 
 
-def processor():
+API_KEY = "AIzaSyAm7omealQcFfwnlujF6Xuif8mL7kE7uKg"  # replace this with your api key.
+
+
+async def get_videos(channel_id):
+    async with aiohttp.ClientSession() as session:
+        api = pyyoutube.Api(session, api_key=API_KEY)
+        channel_res = await api.get_channel_info(channel_id=channel_id)
+
+        playlist_id = channel_res.items[0].contentDetails.relatedPlaylists.uploads
+
+        playlist_item_res = await api.get_playlist_items(
+            playlist_id=playlist_id, count=10, limit=6
+        )
+
+        videos = []
+        for item in playlist_item_res.items:
+            video_id = item.contentDetails.videoId
+            video_res = await api.get_video_by_id(video_id=video_id)
+            videos.extend(video_res.items)
+        return videos
+
+
+async def processor():
     channel_id = "UC_x5XG1OV2P6uZZ5FSM9Ttw"
-    videos = get_videos(channel_id)
+    videos = await get_videos(channel_id)
 
     with open("videos.json", "w+") as f:
         for video in videos:
@@ -40,4 +44,4 @@ def processor():
 
 
 if __name__ == "__main__":
-    processor()
+    asyncio.run(processor())

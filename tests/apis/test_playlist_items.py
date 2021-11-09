@@ -6,7 +6,7 @@ import responses
 import pyyoutube
 
 
-class ApiPlaylistItemTest(unittest.TestCase):
+class ApiPlaylistItemTest(unittest.IsolatedAsyncioTestCase):
     BASE_PATH = "testdata/apidata/playlist_items/"
     BASE_URL = "https://www.googleapis.com/youtube/v3/playlistItems"
 
@@ -22,14 +22,14 @@ class ApiPlaylistItemTest(unittest.TestCase):
         PLAYLIST_ITEM_FILTER = json.loads(f.read().decode("utf-8"))
 
     def setUp(self) -> None:
-        self.api = pyyoutube.Api(api_key="api key")
+        self.api = pyyoutube.Api(self.session, api_key="api key")
 
-    def testGetPlaylistItemById(self) -> None:
+    async def testGetPlaylistItemById(self) -> None:
         with responses.RequestsMock() as m:
             m.add("GET", self.BASE_URL, json=self.PLAYLIST_ITEM_INFO_SINGLE)
             m.add("GET", self.BASE_URL, json=self.PLAYLIST_ITEM_INFO_MULTI)
 
-            res_by_single_id = self.api.get_playlist_item_by_id(
+            res_by_single_id = await self.api.get_playlist_item_by_id(
                 playlist_item_id="UExPVTJYTFl4bXNJSlhzSDJodEcxZzBOVWpIR3E2MlE3aS41NkI0NEY2RDEwNTU3Q0M2",
                 parts="id,snippet",
                 return_json=True,
@@ -42,7 +42,7 @@ class ApiPlaylistItemTest(unittest.TestCase):
                 "UExPVTJYTFl4bXNJSlhzSDJodEcxZzBOVWpIR3E2MlE3aS41NkI0NEY2RDEwNTU3Q0M2",
             )
 
-            res_by_multi_id = self.api.get_playlist_item_by_id(
+            res_by_multi_id = await self.api.get_playlist_item_by_id(
                 playlist_item_id=[
                     "UExPVTJYTFl4bXNJSlhzSDJodEcxZzBOVWpIR3E2MlE3aS41NkI0NEY2RDEwNTU3Q0M2",
                     "UExPVTJYTFl4bXNJSlhzSDJodEcxZzBOVWpIR3E2MlE3aS4yODlGNEE0NkRGMEEzMEQy",
@@ -56,16 +56,16 @@ class ApiPlaylistItemTest(unittest.TestCase):
                 "UExPVTJYTFl4bXNJSlhzSDJodEcxZzBOVWpIR3E2MlE3aS4yODlGNEE0NkRGMEEzMEQy",
             )
 
-    def testGetPlaylistItems(self) -> None:
+    async def testGetPlaylistItems(self) -> None:
         with self.assertRaises(pyyoutube.PyYouTubeException):
-            self.api.get_playlist_items(playlist_id="id", parts="id,not_part")
+            await self.api.get_playlist_items(playlist_id="id", parts="id,not_part")
 
         # test paged
         with responses.RequestsMock() as m:
             m.add("GET", self.BASE_URL, json=self.PLAYLIST_ITEM_PAGED_1)
             m.add("GET", self.BASE_URL, json=self.PLAYLIST_ITEM_PAGED_2)
 
-            res_by_playlist = self.api.get_playlist_items(
+            res_by_playlist = await self.api.get_playlist_items(
                 playlist_id="PLOU2XLYxmsIKpaV8h0AGE05so0fAwwfTw",
                 parts="id,snippet",
                 limit=10,
@@ -83,7 +83,7 @@ class ApiPlaylistItemTest(unittest.TestCase):
         with responses.RequestsMock() as m:
             m.add("GET", self.BASE_URL, json=self.PLAYLIST_ITEM_PAGED_1)
 
-            res_by_playlist = self.api.get_playlist_items(
+            res_by_playlist = await self.api.get_playlist_items(
                 playlist_id="PLOU2XLYxmsIKpaV8h0AGE05so0fAwwfTw",
                 parts="id,snippet",
                 limit=10,
@@ -102,7 +102,7 @@ class ApiPlaylistItemTest(unittest.TestCase):
             m.add("GET", self.BASE_URL, json=self.PLAYLIST_ITEM_PAGED_1)
             m.add("GET", self.BASE_URL, json=self.PLAYLIST_ITEM_PAGED_2)
 
-            res_by_playlist = self.api.get_playlist_items(
+            res_by_playlist = await self.api.get_playlist_items(
                 playlist_id="PLOU2XLYxmsIKpaV8h0AGE05so0fAwwfTw",
                 parts="id,snippet",
                 count=None,
@@ -114,7 +114,7 @@ class ApiPlaylistItemTest(unittest.TestCase):
         with responses.RequestsMock() as m:
             m.add("GET", self.BASE_URL, json=self.PLAYLIST_ITEM_FILTER)
 
-            res_by_filter = self.api.get_playlist_items(
+            res_by_filter = await self.api.get_playlist_items(
                 playlist_id="PLOU2XLYxmsIKpaV8h0AGE05so0fAwwfTw",
                 parts=("id", "snippet"),
                 video_id="VCv-KKIkLns",
@@ -131,7 +131,7 @@ class ApiPlaylistItemTest(unittest.TestCase):
         with responses.RequestsMock() as m:
             m.add("GET", self.BASE_URL, json=self.PLAYLIST_ITEM_PAGED_2)
 
-            res_by_playlist = self.api.get_playlist_items(
+            res_by_playlist = await self.api.get_playlist_items(
                 playlist_id="PLOU2XLYxmsIKpaV8h0AGE05so0fAwwfTw",
                 parts="id,snippet",
                 page_token="CAoQAA",

@@ -5,12 +5,12 @@ from requests import Response
 from pyyoutube.error import ErrorCode, ErrorMessage, PyYouTubeException
 
 
-class ErrorTest(unittest.TestCase):
+class ErrorTest(unittest.IsolatedAsyncioTestCase):
     BASE_PATH = "testdata/"
     with open(BASE_PATH + "error_response.json", "rb") as f:
         ERROR_DATA = f.read()
 
-    def testResponseError(self) -> None:
+    async def testResponseError(self) -> None:
         response = Response()
         response.status_code = 400
         response._content = self.ERROR_DATA
@@ -24,7 +24,7 @@ class ErrorTest(unittest.TestCase):
         self.assertEqual(repr(ex), error_msg)
         self.assertTrue(str(ex), error_msg)
 
-    def testErrorMessage(self):
+    async def testErrorMessage(self):
         response = ErrorMessage(status_code=ErrorCode.HTTP_ERROR, message="error")
 
         ex = PyYouTubeException(response=response)

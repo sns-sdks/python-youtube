@@ -4,8 +4,8 @@ from pyyoutube import youtube_utils as utils
 from pyyoutube.error import PyYouTubeException
 
 
-class UtilsTest(unittest.TestCase):
-    def testDurationConvert(self):
+class UtilsTest(unittest.IsolatedAsyncioTestCase):
+    async def testDurationConvert(self):
         duration = "PT14H23M42S"
         self.assertEqual(utils.get_video_duration(duration), 51822)
 

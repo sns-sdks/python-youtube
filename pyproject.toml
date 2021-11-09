@@ -32,11 +32,14 @@ requests = "^2.24.0"
 requests-oauthlib = "^1.3.0"
 isodate = "^0.6.0"
 dataclasses-json = "^0.5.3"
+aiohttp = "^3.8.0"
+
 
 [tool.poetry.dev-dependencies]
 responses = "^0.12.0"
 pytest = "^6.0.2"
 pytest-cov = "^2.10.1"
+asyncio = "^3.4.3"
 
 [build-system]
 requires = ["poetry>=0.12"]

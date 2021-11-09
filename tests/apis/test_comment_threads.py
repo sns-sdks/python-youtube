@@ -1,13 +1,15 @@
 import json
 import unittest
+import aiohttp
 
 import responses
 import pyyoutube
 
 
-class ApiCommentThreadTest(unittest.TestCase):
+class ApiCommentThreadTest(unittest.IsolatedAsyncioTestCase):
     BASE_PATH = "testdata/apidata/comment_threads/"
     BASE_URL = "https://www.googleapis.com/youtube/v3/commentThreads"
+    session = aiohttp.ClientSession()
 
     with open(BASE_PATH + "comment_thread_single.json", "rb") as f:
         COMMENT_THREAD_INFO_SINGLE = json.loads(f.read().decode("utf-8"))
@@ -25,13 +27,13 @@ class ApiCommentThreadTest(unittest.TestCase):
         COMMENT_THREAD_BY_VIDEO_P_2 = json.loads(f.read().decode("utf-8"))
 
     def setUp(self) -> None:
-        self.api = pyyoutube.Api(api_key="api key")
-        self.api_with_token = pyyoutube.Api(access_token="access token")
+        self.api = pyyoutube.Api(self.session, api_key="api key")
+        self.api_with_token = pyyoutube.Api(self.session, access_token="access token")
 
-    def testGetCommentThreadById(self) -> None:
+    async def testGetCommentThreadById(self) -> None:
         # test parts
         with self.assertRaises(pyyoutube.PyYouTubeException):
-            self.api.get_comment_thread_by_id(
+            await self.api.get_comment_thread_by_id(
                 comment_thread_id="id", parts="id,not_part"
             )
 
@@ -39,7 +41,7 @@ class ApiCommentThreadTest(unittest.TestCase):
             m.add("GET", self.BASE_URL, json=self.COMMENT_THREAD_INFO_SINGLE)
             m.add("GET", self.BASE_URL, json=self.COMMENT_THREAD_INFO_MULTI)
 
-            res_by_single_id = self.api.get_comment_thread_by_id(
+            res_by_single_id = await self.api.get_comment_thread_by_id(
                 comment_thread_id="UgxKREWxIgDrw8w2e_Z4AaABAg",
                 parts="id,snippet",
                 text_format="plain_text",
@@ -53,7 +55,7 @@ class ApiCommentThreadTest(unittest.TestCase):
                 res_by_single_id["items"][0]["id"], "UgxKREWxIgDrw8w2e_Z4AaABAg"
             )
 
-            res_by_multi_id = self.api.get_comment_thread_by_id(
+            res_by_multi_id = await self.api.get_comment_thread_by_id(
                 comment_thread_id=[
                     "UgxKREWxIgDrw8w2e_Z4AaABAg",
                     "UgyrVQaFfEdvaSzstj14AaABAg",
@@ -63,13 +65,13 @@ class ApiCommentThreadTest(unittest.TestCase):
             self.assertEqual(res_by_multi_id.pageInfo.totalResults, 2)
             self.assertEqual(res_by_multi_id.items[1].id, "UgyrVQaFfEdvaSzstj14AaABAg")
 
-    def testGetCommentThreads(self) -> None:
+    async def testGetCommentThreads(self) -> None:
         # test no params
         with self.assertRaises(pyyoutube.PyYouTubeException):
-            self.api.get_comment_threads()
+            await self.api.get_comment_threads()
         # test parts
         with self.assertRaises(pyyoutube.PyYouTubeException):
-            self.api.get_comment_threads(all_to_channel_id="id", parts="id,not_part")
+            await self.api.get_comment_threads(all_to_channel_id="id", parts="id,not_part")
 
         # test with all to channel.
         with responses.RequestsMock() as m:
@@ -91,7 +93,7 @@ class ApiCommentThreadTest(unittest.TestCase):
         with responses.RequestsMock() as m:
             m.add("GET", self.BASE_URL, json=self.COMMENT_THREAD_BY_CHANNEL)
 
-            res_by_channel = self.api.get_comment_threads(
+            res_by_channel = await self.api.get_comment_threads(
                 channel_id="UC_x5XG1OV2P6uZZ5FSM9Ttw",
             )
             self.assertEqual(res_by_channel.pageInfo.totalResults, 2)
@@ -103,7 +105,7 @@ class ApiCommentThreadTest(unittest.TestCase):
         with responses.RequestsMock() as m:
             m.add("GET", self.BASE_URL, json=self.COMMENT_THREAD_BY_SEARCH)
 
-            res_by_search = self.api.get_comment_threads(
+            res_by_search = await self.api.get_comment_threads(
                 channel_id="UC_x5XG1OV2P6uZZ5FSM9Ttw",
                 search_terms="Hello",
             )
@@ -121,7 +123,7 @@ class ApiCommentThreadTest(unittest.TestCase):
             m.add("GET", self.BASE_URL, json=self.COMMENT_THREAD_BY_VIDEO_P_1)
             m.add("GET", self.BASE_URL, json=self.COMMENT_THREAD_BY_VIDEO_P_2)
 
-            res_by_video = self.api.get_comment_threads(
+            res_by_video = await self.api.get_comment_threads(
                 video_id="F1UP7wRCPH8",
                 count=8,
                 limit=5,
@@ -134,7 +136,7 @@ class ApiCommentThreadTest(unittest.TestCase):
             m.add("GET", self.BASE_URL, json=self.COMMENT_THREAD_BY_VIDEO_P_1)
             m.add("GET", self.BASE_URL, json=self.COMMENT_THREAD_BY_VIDEO_P_2)
 
-            res_by_video = self.api.get_comment_threads(
+            res_by_video = await self.api.get_comment_threads(
                 video_id="F1UP7wRCPH8",
                 count=None,
             )
@@ -144,7 +146,7 @@ class ApiCommentThreadTest(unittest.TestCase):
         with responses.RequestsMock() as m:
             m.add("GET", self.BASE_URL, json=self.COMMENT_THREAD_BY_VIDEO_P_2)
 
-            res_by_video = self.api.get_comment_threads(
+            res_by_video = await self.api.get_comment_threads(
                 video_id="F1UP7wRCPH8",
                 count=None,
                 page_token="QURTSl9pMzdZOUVzMkI0czlmRmNjSVBPcTBTdzVzajUydDVnbE5SNElWS0l5WU12amYweVotdzF5c1hTNmxzUmVIcEZXbmVEVFMzNVJmWk82TVVwUlB2LWh5aUpOQlA5TGQzTWZEcHlTeTd2dlNGRUFZaVF0cmtJd01BTHlnOG0=",

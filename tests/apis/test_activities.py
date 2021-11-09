@@ -1,14 +1,17 @@
+import asyncio
 import json
 import unittest
+import aiohttp
 
 import responses
 
 import pyyoutube
 
 
-class ApiActivitiesTest(unittest.TestCase):
+class ApiActivitiesTest(unittest.IsolatedAsyncioTestCase):
     BASE_PATH = "testdata/apidata/activities/"
     BASE_URL = "https://www.googleapis.com/youtube/v3/activities"
+    session = aiohttp.ClientSession()
 
     with open(BASE_PATH + "activities_by_channel_p1.json", "rb") as f:
         ACTIVITIES_CHANNEL_P1 = json.loads(f.read().decode("utf-8"))
@@ -21,20 +24,20 @@ class ApiActivitiesTest(unittest.TestCase):
         ACTIVITIES_MINE_P2 = json.loads(f.read().decode("utf-8"))
 
     def setUp(self) -> None:
-        self.api = pyyoutube.Api(api_key="api key")
+        self.api = pyyoutube.Api(self.session, api_key="api key")
         self.api_with_access_token = pyyoutube.Api(access_token="token")
 
-    def testGetChannelActivities(self) -> None:
+    async def testGetChannelActivities(self) -> None:
         # test parts
         with self.assertRaises(pyyoutube.PyYouTubeException):
-            self.api.get_activities_by_channel(channel_id="id", parts="id,not_part")
+            await self.api.get_activities_by_channel(channel_id="id", parts="id,not_part")
 
         # test get all activities
         with responses.RequestsMock() as m:
             m.add("GET", self.BASE_URL, json=self.ACTIVITIES_CHANNEL_P1)
             m.add("GET", self.BASE_URL, json=self.ACTIVITIES_CHANNEL_P2)
 
-            res = self.api.get_activities_by_channel(
+            res = await self.api.get_activities_by_channel(
                 channel_id="UC_x5XG1OV2P6uZZ5FSM9Ttw",
                 parts="id,snippet",
                 before="2019-11-1T00:00:00.000Z",
@@ -48,7 +51,7 @@ class ApiActivitiesTest(unittest.TestCase):
         with responses.RequestsMock() as m:
             m.add("GET", self.BASE_URL, json=self.ACTIVITIES_CHANNEL_P2)
 
-            res = self.api.get_activities_by_channel(
+            res = await self.api.get_activities_by_channel(
                 channel_id="UC_x5XG1OV2P6uZZ5FSM9Ttw",
                 parts="id,snippet",
                 count=None,
@@ -57,17 +60,17 @@ class ApiActivitiesTest(unittest.TestCase):
             )
             self.assertEqual(len(res["items"]), 3)
 
-    def testGetMineActivities(self) -> None:
+    async def testGetMineActivities(self) -> None:
         # test parts
         with self.assertRaises(pyyoutube.PyYouTubeException):
-            self.api_with_access_token.get_activities_by_me(parts="id,not_part")
+            await self.api_with_access_token.get_activities_by_me(parts="id,not_part")
 
         # test get all activities
         with responses.RequestsMock() as m:
             m.add("GET", self.BASE_URL, json=self.ACTIVITIES_MINE_P1)
             m.add("GET", self.BASE_URL, json=self.ACTIVITIES_MINE_P2)
 
-            res = self.api_with_access_token.get_activities_by_me(
+            res = await self.api_with_access_token.get_activities_by_me(
                 parts="id,snippet",
                 before="2019-11-1T00:00:00.000Z",
                 after="2019-12-1T00:00:00.000Z",
@@ -80,7 +83,7 @@ class ApiActivitiesTest(unittest.TestCase):
         with responses.RequestsMock() as m:
             m.add("GET", self.BASE_URL, json=self.ACTIVITIES_MINE_P2)
 
-            res = self.api_with_access_token.get_activities_by_me(
+            res = await self.api_with_access_token.get_activities_by_me(
                 parts="id,snippet",
                 before="2019-11-1T00:00:00.000Z",
                 after="2019-12-1T00:00:00.000Z",

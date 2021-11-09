@@ -2,7 +2,8 @@
     Main Api implementation.
 """
 
-from typing import Optional, List, Union
+from typing import Optional, List, Tuple, Union
+import aiohttp
 
 import requests
 from requests.auth import HTTPBasicAuth
@@ -100,6 +101,7 @@ class Api(object):
 
     def __init__(
         self,
+        session: aiohttp.ClientSession,
         client_id: Optional[str] = None,
         client_secret: Optional[str] = None,
         api_key: Optional[str] = None,
@@ -136,7 +138,7 @@ class Api(object):
         self._access_token = access_token
         self._refresh_token = None  # This keep current user's refresh token.
         self._timeout = timeout
-        self.session = requests.Session()
+        self.session = session
         self._oauth_session = None
         self.proxies = proxies
 
@@ -155,12 +157,15 @@ class Api(object):
         if self._timeout is None:
             self._timeout = self.DEFAULT_TIMEOUT
 
-    def get_authorization_url(
+    async def create_session(self):
+        self.session = aiohttp.ClientSession()
+
+    async def get_authorization_url(
         self,
         redirect_uri: Optional[str] = None,
         scope: Optional[List[str]] = None,
         **kwargs,
-    ) -> (str, str):
+    ) -> Tuple[str, str]:
         """
         Build authorization url to do authorize.
 
@@ -199,7 +204,7 @@ class Api(object):
 
         return authorization_url, state
 
-    def generate_access_token(
+    async def generate_access_token(
         self, authorization_response: str, return_json: bool = False
     ) -> Union[dict, AccessToken]:
         """
@@ -236,7 +241,7 @@ class Api(object):
         else:
             return AccessToken.from_dict(token)
 
-    def refresh_token(
+    async def refresh_token(
         self, refresh_token: Optional[str] = None, return_json: bool = False
     ) -> Union[dict, AccessToken]:
         """
@@ -277,7 +282,7 @@ class Api(object):
             return AccessToken.from_dict(new_token)
 
     @staticmethod
-    def _parse_response(response: Response) -> dict:
+    async def _parse_response(response: aiohttp.ClientResponse) -> dict:
         """
         Parse response data and check whether errors exists.
 
@@ -287,9 +292,10 @@ class Api(object):
         Return:
              response's data
         """
-        data = response.json()
+        data = await response.json()
         if "error" in data:
             raise PyYouTubeException(response)
+        response.close()
         return data
 
     @staticmethod
@@ -306,9 +312,9 @@ class Api(object):
         items = data["items"]
         return items
 
-    def _request(
+    async def _request(
         self, resource, method=None, args=None, post_args=None, enforce_auth=True
-    ) -> Response:
+    ) -> aiohttp.ClientResponse:
         """
         Main request sender.
 
@@ -328,6 +334,9 @@ class Api(object):
         Returns:
             response
         """
+        if not self.session:
+            await self.create_session()
+
         if method is None:
             method = "GET"
 
@@ -360,22 +369,26 @@ class Api(object):
                 args[key] = access_token
 
         try:
-            response = self.session.request(
+            if self.proxies:
+                proxy = self.proxies["https"]
+            else:
+                proxy = None
+            response = await self.session.request(
                 method=method,
                 url=self.BASE_URL + resource,
                 timeout=self._timeout,
                 params=args,
                 data=post_args,
-                proxies=self.proxies,
-            )
+                proxy=proxy,
+            ) 
+            return response
         except requests.HTTPError as e:
             raise PyYouTubeException(
-                ErrorMessage(status_code=ErrorCode.HTTP_ERROR, message=e.args[0])
+                ErrorMessage(status_code=ErrorCode.HTTP_ERROR,
+                             message=e.args[0])
             )
-        else:
-            return response
 
-    def get_profile(
+    async def get_profile(
         self, access_token: Optional[str] = None, return_json: Optional[bool] = False
     ) -> Union[dict, UserProfile]:
         """
@@ -409,15 +422,16 @@ class Api(object):
             )
         except requests.HTTPError as e:
             raise PyYouTubeException(
-                ErrorMessage(status_code=ErrorCode.HTTP_ERROR, message=e.args[0])
+                ErrorMessage(status_code=ErrorCode.HTTP_ERROR,
+                             message=e.args[0])
             )
-        data = self._parse_response(response)
+        data = await self._parse_response(response)
         if return_json:
             return data
         else:
             return UserProfile.from_dict(data)
 
-    def paged_by_page_token(
+    async def paged_by_page_token(
         self,
         resource: str,
         args: dict,
@@ -448,8 +462,8 @@ class Api(object):
             if page_token is not None:
                 args["pageToken"] = page_token
 
-            resp = self._request(resource=resource, method="GET", args=args)
-            data = self._parse_response(resp)  # origin response
+            resp = await self._request(resource=resource, method="GET", args=args)
+            data = await self._parse_response(resp)  # origin response
             # set page token
             page_token = data.get("nextPageToken")
             prev_page_token = data.get("prevPageToken")
@@ -475,7 +489,7 @@ class Api(object):
         res_data["prevPageToken"] = prev_page_token
         return res_data
 
-    def get_channel_info(
+    async def get_channel_info(
         self,
         *,
         channel_id: Optional[Union[str, list, tuple, set]] = None,
@@ -536,15 +550,15 @@ class Api(object):
                 )
             )
 
-        resp = self._request(resource="channels", method="GET", args=args)
+        resp = await self._request(resource="channels", method="GET", args=args)
 
-        data = self._parse_response(resp)
+        data = await self._parse_response(resp)
         if return_json:
             return data
         else:
             return ChannelListResponse.from_dict(data)
 
-    def get_playlist_by_id(
+    async def get_playlist_by_id(
         self,
         *,
         playlist_id: Union[str, list, tuple, set],
@@ -578,15 +592,15 @@ class Api(object):
             "hl": hl,
         }
 
-        resp = self._request(resource="playlists", method="GET", args=args)
-        data = self._parse_response(resp)
+        resp = await self._request(resource="playlists", method="GET", args=args)
+        data = await self._parse_response(resp)
 
         if return_json:
             return data
         else:
             return PlaylistListResponse.from_dict(data)
 
-    def get_playlists(
+    async def get_playlists(
         self,
         *,
         channel_id: Optional[str] = None,
@@ -659,7 +673,7 @@ class Api(object):
         if page_token is not None:
             args["pageToken"] = page_token
 
-        res_data = self.paged_by_page_token(
+        res_data = await self.paged_by_page_token(
             resource="playlists", args=args, count=count
         )
         if return_json:
@@ -667,7 +681,7 @@ class Api(object):
         else:
             return PlaylistListResponse.from_dict(res_data)
 
-    def get_playlist_item_by_id(
+    async def get_playlist_item_by_id(
         self,
         *,
         playlist_item_id: Union[str, list, tuple, set],
@@ -698,15 +712,15 @@ class Api(object):
             "part": enf_parts(resource="playlistItems", value=parts),
         }
 
-        resp = self._request(resource="playlistItems", method="GET", args=args)
-        data = self._parse_response(resp)
+        resp = await self._request(resource="playlistItems", method="GET", args=args)
+        data = await self._parse_response(resp)
 
         if return_json:
             return data
         else:
             return PlaylistItemListResponse.from_dict(data)
 
-    def get_playlist_items(
+    async def get_playlist_items(
         self,
         *,
         playlist_id: str,
@@ -764,7 +778,7 @@ class Api(object):
         if page_token is not None:
             args["pageToken"] = page_token
 
-        res_data = self.paged_by_page_token(
+        res_data = await self.paged_by_page_token(
             resource="playlistItems", args=args, count=count
         )
         if return_json:
@@ -772,7 +786,7 @@ class Api(object):
         else:
             return PlaylistItemListResponse.from_dict(res_data)
 
-    def get_video_by_id(
+    async def get_video_by_id(
         self,
         *,
         video_id: Union[str, list, tuple, set],
@@ -822,15 +836,15 @@ class Api(object):
         if max_width is not None:
             args["maxWidth"] = max_width
 
-        resp = self._request(resource="videos", method="GET", args=args)
-        data = self._parse_response(resp)
+        resp = await self._request(resource="videos", method="GET", args=args)
+        data = await self._parse_response(resp)
 
         if return_json:
             return data
         else:
             return VideoListResponse.from_dict(data)
 
-    def get_videos_by_chart(
+    async def get_videos_by_chart(
         self,
         *,
         chart: str,
@@ -915,13 +929,14 @@ class Api(object):
         if page_token is not None:
             args["pageToken"] = page_token
 
-        res_data = self.paged_by_page_token(resource="videos", args=args, count=count)
+        res_data = await self.paged_by_page_token(
+            resource="videos", args=args, count=count)
         if return_json:
             return res_data
         else:
             return VideoListResponse.from_dict(res_data)
 
-    def get_videos_by_myrating(
+    async def get_videos_by_myrating(
         self,
         *,
         rating: str,
@@ -1003,13 +1018,14 @@ class Api(object):
         if page_token is not None:
             args["pageToken"] = page_token
 
-        res_data = self.paged_by_page_token(resource="videos", args=args, count=count)
+        res_data = await self.paged_by_page_token(
+            resource="videos", args=args, count=count)
         if return_json:
             return res_data
         else:
             return VideoListResponse.from_dict(res_data)
 
-    def get_comment_thread_by_id(
+    async def get_comment_thread_by_id(
         self,
         *,
         comment_thread_id: Union[str, list, tuple, set],
@@ -1045,15 +1061,16 @@ class Api(object):
             "textFormat": text_format,
         }
 
-        resp = self._request(resource="commentThreads", method="GET", args=args)
-        data = self._parse_response(resp)
+        resp = await self._request(resource="commentThreads",
+                                   method="GET", args=args)
+        data = await self._parse_response(resp)
 
         if return_json:
             return data
         else:
             return CommentThreadListResponse.from_dict(data)
 
-    def get_comment_threads(
+    async def get_comment_threads(
         self,
         *,
         all_to_channel_id: Optional[str] = None,
@@ -1160,7 +1177,7 @@ class Api(object):
         if page_token is not None:
             args["pageToken"] = page_token
 
-        res_data = self.paged_by_page_token(
+        res_data = await self.paged_by_page_token(
             resource="commentThreads", args=args, count=count
         )
         if return_json:
@@ -1168,7 +1185,7 @@ class Api(object):
         else:
             return CommentThreadListResponse.from_dict(res_data)
 
-    def get_comment_by_id(
+    async def get_comment_by_id(
         self,
         *,
         comment_id: Union[str, list, tuple, set],
@@ -1205,15 +1222,15 @@ class Api(object):
             "textFormat": text_format,
         }
 
-        resp = self._request(resource="comments", method="GET", args=args)
-        data = self._parse_response(resp)
+        resp = await self._request(resource="comments", method="GET", args=args)
+        data = await self._parse_response(resp)
 
         if return_json:
             return data
         else:
             return CommentListResponse.from_dict(data)
 
-    def get_comments(
+    async def get_comments(
         self,
         *,
         parent_id: str,
@@ -1274,13 +1291,14 @@ class Api(object):
         if page_token is not None:
             args["pageToken"] = page_token
 
-        res_data = self.paged_by_page_token(resource="comments", args=args, count=count)
+        res_data = await self.paged_by_page_token(
+            resource="comments", args=args, count=count)
         if return_json:
             return res_data
         else:
             return CommentListResponse.from_dict(res_data)
 
-    def get_video_categories(
+    async def get_video_categories(
         self,
         *,
         category_id: Optional[Union[str, list, tuple, set]] = None,
@@ -1320,7 +1338,8 @@ class Api(object):
         }
 
         if category_id is not None:
-            args["id"] = enf_comma_separated(field="category_id", value=category_id)
+            args["id"] = enf_comma_separated(
+                field="category_id", value=category_id)
         elif region_code is not None:
             args["regionCode"] = region_code
         else:
@@ -1331,15 +1350,16 @@ class Api(object):
                 )
             )
 
-        resp = self._request(resource="videoCategories", method="GET", args=args)
-        data = self._parse_response(resp)
+        resp = await self._request(resource="videoCategories",
+                                   method="GET", args=args)
+        data = await self._parse_response(resp)
 
         if return_json:
             return data
         else:
             return VideoCategoryListResponse.from_dict(data)
 
-    def get_subscription_by_id(
+    async def get_subscription_by_id(
         self,
         *,
         subscription_id: Union[str, list, tuple, set],
@@ -1372,15 +1392,15 @@ class Api(object):
             "part": enf_parts(resource="subscriptions", value=parts),
         }
 
-        resp = self._request(resource="subscriptions", method="GET", args=args)
-        data = self._parse_response(resp)
+        resp = await self._request(resource="subscriptions", method="GET", args=args)
+        data = await self._parse_response(resp)
 
         if return_json:
             return data
         else:
             return SubscriptionListResponse.from_dict(data)
 
-    def get_subscription_by_channel(
+    async def get_subscription_by_channel(
         self,
         *,
         channel_id: str,
@@ -1457,7 +1477,7 @@ class Api(object):
         if page_token is not None:
             args["pageToken"] = page_token
 
-        res_data = self.paged_by_page_token(
+        res_data = await self.paged_by_page_token(
             resource="subscriptions", args=args, count=count
         )
         if return_json:
@@ -1465,7 +1485,7 @@ class Api(object):
         else:
             return SubscriptionListResponse.from_dict(res_data)
 
-    def get_subscription_by_me(
+    async def get_subscription_by_me(
         self,
         *,
         mine: Optional[bool] = None,
@@ -1565,7 +1585,7 @@ class Api(object):
         if page_token is not None:
             args["pageToken"] = page_token
 
-        res_data = self.paged_by_page_token(
+        res_data = await self.paged_by_page_token(
             resource="subscriptions", args=args, count=count
         )
         if return_json:
@@ -1573,7 +1593,7 @@ class Api(object):
         else:
             return SubscriptionListResponse.from_dict(res_data)
 
-    def get_activities_by_channel(
+    async def get_activities_by_channel(
         self,
         *,
         channel_id: str,
@@ -1646,7 +1666,7 @@ class Api(object):
         if page_token is not None:
             args["pageToken"] = page_token
 
-        res_data = self.paged_by_page_token(
+        res_data = await self.paged_by_page_token(
             resource="activities", args=args, count=count
         )
 
@@ -1655,7 +1675,7 @@ class Api(object):
         else:
             return ActivityListResponse.from_dict(res_data)
 
-    def get_activities_by_me(
+    async def get_activities_by_me(
         self,
         *,
         parts: Optional[Union[str, list, tuple, set]] = None,
@@ -1728,7 +1748,7 @@ class Api(object):
         if page_token is not None:
             args["pageToken"] = page_token
 
-        res_data = self.paged_by_page_token(
+        res_data = await self.paged_by_page_token(
             resource="activities", args=args, count=count
         )
 
@@ -1737,7 +1757,7 @@ class Api(object):
         else:
             return ActivityListResponse.from_dict(res_data)
 
-    def get_captions_by_video(
+    async def get_captions_by_video(
         self,
         *,
         video_id: str,
@@ -1776,15 +1796,15 @@ class Api(object):
         if caption_id is not None:
             args["id"] = enf_comma_separated("caption_id", caption_id)
 
-        resp = self._request(resource="captions", method="GET", args=args)
-        data = self._parse_response(resp)
+        resp = await self._request(resource="captions", method="GET", args=args)
+        data = await self._parse_response(resp)
 
         if return_json:
             return data
         else:
             return CaptionListResponse.from_dict(data)
 
-    def get_channel_sections_by_id(
+    async def get_channel_sections_by_id(
         self,
         *,
         section_id: Union[str, list, tuple, set],
@@ -1814,15 +1834,15 @@ class Api(object):
             "part": enf_parts(resource="channelSections", value=parts),
         }
 
-        resp = self._request(resource="channelSections", args=args)
-        data = self._parse_response(resp)
+        resp = await self._request(resource="channelSections", args=args)
+        data = await self._parse_response(resp)
 
         if return_json:
             return data
         else:
             return ChannelSectionResponse.from_dict(data)
 
-    def get_channel_sections_by_channel(
+    async def get_channel_sections_by_channel(
         self,
         *,
         channel_id: Optional[str] = None,
@@ -1859,15 +1879,15 @@ class Api(object):
         else:
             args["channelId"] = channel_id
 
-        resp = self._request(resource="channelSections", args=args)
-        data = self._parse_response(resp)
+        resp = await self._request(resource="channelSections", args=args)
+        data = await self._parse_response(resp)
 
         if return_json:
             return data
         else:
             return ChannelSectionResponse.from_dict(data)
 
-    def get_i18n_regions(
+    async def get_i18n_regions(
         self,
         *,
         parts: Optional[Union[str, list, tuple, set]] = None,
@@ -1892,17 +1912,18 @@ class Api(object):
             I18nRegionListResponse or origin data
         """
 
-        args = {"hl": hl, "part": enf_parts(resource="i18nRegions", value=parts)}
+        args = {"hl": hl, "part": enf_parts(
+            resource="i18nRegions", value=parts)}
 
-        resp = self._request(resource="i18nRegions", args=args)
-        data = self._parse_response(resp)
+        resp = await self._request(resource="i18nRegions", args=args)
+        data = await self._parse_response(resp)
 
         if return_json:
             return data
         else:
             return I18nRegionListResponse.from_dict(data)
 
-    def get_i18n_languages(
+    async def get_i18n_languages(
         self,
         *,
         parts: Optional[Union[str, list, tuple, set]] = None,
@@ -1928,17 +1949,18 @@ class Api(object):
             I18nLanguageListResponse or original data.
         """
 
-        args = {"hl": hl, "part": enf_parts(resource="i18nLanguages", value=parts)}
+        args = {"hl": hl, "part": enf_parts(
+            resource="i18nLanguages", value=parts)}
 
-        resp = self._request(resource="i18nLanguages", args=args)
-        data = self._parse_response(resp)
+        resp = await self._request(resource="i18nLanguages", args=args)
+        data = await self._parse_response(resp)
 
         if return_json:
             return data
         else:
             return I18nLanguageListResponse.from_dict(data)
 
-    def get_members(
+    async def get_members(
         self,
         *,
         parts: Optional[Union[str, list, tuple, set]] = None,
@@ -1947,7 +1969,8 @@ class Api(object):
         limit: Optional[int] = 5,
         page_token: Optional[str] = None,
         has_access_to_level: Optional[str] = None,
-        filter_by_member_channel_id: Optional[Union[str, list, tuple, set]] = None,
+        filter_by_member_channel_id: Optional[Union[str,
+                                                    list, tuple, set]] = None,
         return_json: Optional[bool] = False,
     ) -> Union[MemberListResponse, dict]:
         """
@@ -2018,7 +2041,7 @@ class Api(object):
                 check=False,
             )
 
-        res_data = self.paged_by_page_token(
+        res_data = await self.paged_by_page_token(
             resource="members",
             args=args,
             count=count,
@@ -2028,7 +2051,7 @@ class Api(object):
         else:
             return MemberListResponse.from_dict(res_data)
 
-    def get_membership_levels(
+    async def get_membership_levels(
         self,
         *,
         parts: Optional[Union[str, list, tuple, set]] = None,
@@ -2057,15 +2080,15 @@ class Api(object):
             "part": enf_parts(resource="membershipsLevels", value=parts),
         }
 
-        resp = self._request(resource="membershipsLevels", args=args)
-        data = self._parse_response(resp)
+        resp = await self._request(resource="membershipsLevels", args=args)
+        data = await self._parse_response(resp)
 
         if return_json:
             return data
         else:
             return MembershipsLevelListResponse.from_dict(data)
 
-    def get_video_abuse_report_reason(
+    async def get_video_abuse_report_reason(
         self,
         *,
         parts: Optional[Union[str, list, tuple, set]] = None,
@@ -2098,15 +2121,15 @@ class Api(object):
             "hl": hl,
         }
 
-        resp = self._request(resource="videoAbuseReportReasons", args=args)
-        data = self._parse_response(resp)
+        resp = await self._request(resource="videoAbuseReportReasons", args=args)
+        data = await self._parse_response(resp)
 
         if return_json:
             return data
         else:
             return VideoAbuseReportReasonListResponse.from_dict(data)
 
-    def search(
+    async def search(
         self,
         *,
         parts: Optional[Union[str, list, tuple, set]] = None,
@@ -2152,7 +2175,8 @@ class Api(object):
         if search_type is None:
             search_type = "video,channel,playlist"
         else:
-            search_type = enf_comma_separated(field="search_type", value=search_type)
+            search_type = enf_comma_separated(
+                field="search_type", value=search_type)
 
         args = {
             "part": parts,
@@ -2213,14 +2237,15 @@ class Api(object):
         if page_token:
             args["pageToken"] = page_token
 
-        res_data = self.paged_by_page_token(resource="search", args=args, count=count)
+        res_data = await self.paged_by_page_token(
+            resource="search", args=args, count=count)
 
         if return_json:
             return res_data
         else:
             return SearchListResponse.from_dict(res_data)
 
-    def search_by_keywords(
+    async def search_by_keywords(
         self,
         *,
         q: Optional[str],
@@ -2280,7 +2305,7 @@ class Api(object):
         Returns:
             SearchListResponse or original data
         """
-        return self.search(
+        return await self.search(
             parts=parts,
             q=q,
             search_type=search_type,
@@ -2291,7 +2316,7 @@ class Api(object):
             **kwargs,
         )
 
-    def search_by_developer(
+    async def search_by_developer(
         self,
         *,
         parts: Optional[Union[str, list, tuple, set]],
@@ -2339,7 +2364,7 @@ class Api(object):
         Returns:
             SearchListResponse or original data
         """
-        return self.search(
+        return await self.search(
             for_developer=True,
             search_type="video",
             parts=parts,
@@ -2351,7 +2376,7 @@ class Api(object):
             **kwargs,
         )
 
-    def search_by_mine(
+    async def search_by_mine(
         self,
         *,
         parts: Optional[Union[str, list, tuple, set]],
@@ -2403,7 +2428,7 @@ class Api(object):
         Returns:
             SearchListResponse or original data
         """
-        return self.search(
+        return await self.search(
             for_mine=True,
             search_type="video",
             parts=parts,
@@ -2415,7 +2440,7 @@ class Api(object):
             **kwargs,
         )
 
-    def search_by_related_video(
+    async def search_by_related_video(
         self,
         *,
         related_to_video_id: str,
@@ -2473,7 +2498,7 @@ class Api(object):
             If you want use this pass more args. You can use this.
         """
 
-        return self.search(
+        return await self.search(
             parts=parts,
             related_to_video_id=related_to_video_id,
             search_type="video",

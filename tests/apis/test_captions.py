@@ -6,7 +6,7 @@ import responses
 import pyyoutube
 
 
-class ApiCaptionsTest(unittest.TestCase):
+class ApiCaptionsTest(unittest.IsolatedAsyncioTestCase):
     BASE_PATH = "testdata/apidata/captions/"
     BASE_URL = "https://www.googleapis.com/youtube/v3/captions"
 
@@ -18,12 +18,12 @@ class ApiCaptionsTest(unittest.TestCase):
     def setUp(self) -> None:
         self.api_with_access_token = pyyoutube.Api(access_token="token")
 
-    def testGetCaptionByVideo(self) -> None:
+    async def testGetCaptionByVideo(self) -> None:
         video_id = "oHR3wURdJ94"
 
         # test parts
         with self.assertRaises(pyyoutube.PyYouTubeException):
-            self.api_with_access_token.get_captions_by_video(
+            await self.api_with_access_token.get_captions_by_video(
                 video_id=video_id,
                 parts="id,not_part",
             )
@@ -32,7 +32,7 @@ class ApiCaptionsTest(unittest.TestCase):
         with responses.RequestsMock() as m:
             m.add("GET", self.BASE_URL, json=self.CAPTIONS_BY_VIDEO)
 
-            res = self.api_with_access_token.get_captions_by_video(
+            res = await self.api_with_access_token.get_captions_by_video(
                 video_id=video_id,
                 parts="id,snippet",
                 return_json=True,
@@ -44,7 +44,7 @@ class ApiCaptionsTest(unittest.TestCase):
         with responses.RequestsMock() as m:
             m.add("GET", self.BASE_URL, json=self.CAPTIONS_FILTER_ID)
 
-            res = self.api_with_access_token.get_captions_by_video(
+            res = await self.api_with_access_token.get_captions_by_video(
                 video_id=video_id,
                 parts=["id", "snippet"],
                 caption_id="SwPOvp0r7kd9ttt_XhcHdZthMwXG7Z0I",

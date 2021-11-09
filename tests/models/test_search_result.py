@@ -4,7 +4,7 @@ import unittest
 import pyyoutube.models as models
 
 
-class SearchResultModelTest(unittest.TestCase):
+class SearchResultModelTest(unittest.IsolatedAsyncioTestCase):
     BASE_PATH = "testdata/modeldata/search_result/"
 
     with open(BASE_PATH + "search_result_id.json", "rb") as f:
@@ -16,11 +16,11 @@ class SearchResultModelTest(unittest.TestCase):
     with open(BASE_PATH + "search_result_api_response.json", "rb") as f:
         SEARCH_RES_API_INFO = json.loads(f.read().decode("utf-8"))
 
-    def testSearchResultId(self):
+    async def testSearchResultId(self):
         m = models.SearchResultId.from_dict(self.SEARCH_RES_ID_INFO)
         self.assertEqual(m.kind, "youtube#playlist")
 
-    def testSearchResultSnippet(self):
+    async def testSearchResultSnippet(self):
         m = models.SearchResultSnippet.from_dict(self.SEARCH_RES_SNIPPET_INFO)
 
         self.assertEqual(m.channelId, "UC_x5XG1OV2P6uZZ5FSM9Ttw")
@@ -32,12 +32,12 @@ class SearchResultModelTest(unittest.TestCase):
             m.thumbnails.default.url, "https://i.ytimg.com/vi/cKxRvEZd3Mw/default.jpg"
         )
 
-    def testSearchResult(self):
+    async def testSearchResult(self):
         m = models.SearchResult.from_dict(self.SEARCH_RES_INFO)
         self.assertEqual(m.kind, "youtube#searchResult")
         self.assertEqual(m.id.videoId, "fq4N0hgOWzU")
 
-    def testSearchListResponse(self):
+    async def testSearchListResponse(self):
         m = models.SearchListResponse.from_dict(self.SEARCH_RES_API_INFO)
 
         self.assertEqual(m.kind, "youtube#searchListResponse")

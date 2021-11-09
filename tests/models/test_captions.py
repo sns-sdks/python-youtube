@@ -4,7 +4,7 @@ import unittest
 import pyyoutube.models as models
 
 
-class CaptionModelTest(unittest.TestCase):
+class CaptionModelTest(unittest.IsolatedAsyncioTestCase):
     BASE_PATH = "testdata/modeldata/captions/"
 
     with open(BASE_PATH + "caption_snippet.json", "rb") as f:
@@ -14,7 +14,7 @@ class CaptionModelTest(unittest.TestCase):
     with open(BASE_PATH + "caption_response.json", "rb") as f:
         CAPTION_RESPONSE = json.loads(f.read().decode("utf-8"))
 
-    def testCaptionSnippet(self):
+    async def testCaptionSnippet(self):
         m = models.CaptionSnippet.from_dict(self.CAPTION_SNIPPET)
 
         self.assertEqual(m.videoId, "oHR3wURdJ94")
@@ -23,13 +23,13 @@ class CaptionModelTest(unittest.TestCase):
             "2020-01-14T09:40:49.981000+00:00",
         )
 
-    def testCaption(self):
+    async def testCaption(self):
         m = models.Caption.from_dict(self.CAPTION_INFO)
 
         self.assertEqual(m.id, "SwPOvp0r7kd9ttt_XhcHdZthMwXG7Z0I")
         self.assertEqual(m.snippet.videoId, "oHR3wURdJ94")
 
-    def testCaptionListResponse(self):
+    async def testCaptionListResponse(self):
         m = models.CaptionListResponse.from_dict(self.CAPTION_RESPONSE)
 
         self.assertEqual(m.kind, "youtube#captionListResponse")

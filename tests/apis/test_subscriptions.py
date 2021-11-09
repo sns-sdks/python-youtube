@@ -6,7 +6,7 @@ import responses
 import pyyoutube
 
 
-class ApiPlaylistTest(unittest.TestCase):
+class ApiPlaylistTest(unittest.IsolatedAsyncioTestCase):
     BASE_PATH = "testdata/apidata/subscriptions/"
     BASE_URL = "https://www.googleapis.com/youtube/v3/subscriptions"
 
@@ -28,13 +28,13 @@ class ApiPlaylistTest(unittest.TestCase):
         SUBSCRIPTIONS_BY_MINE_FILTER = json.loads(f.read().decode("utf-8"))
 
     def setUp(self) -> None:
-        self.api = pyyoutube.Api(api_key="api key")
+        self.api = pyyoutube.Api(self.session, api_key="api key")
         self.api_with_access_token = pyyoutube.Api(access_token="access token")
 
-    def testGetSubscriptionById(self) -> None:
+    async def testGetSubscriptionById(self) -> None:
         # test params checker
         with self.assertRaises(pyyoutube.PyYouTubeException):
-            self.api_with_access_token.get_subscription_by_id(
+            await self.api_with_access_token.get_subscription_by_id(
                 subscription_id="id", parts="id,not_part"
             )
 
@@ -42,7 +42,7 @@ class ApiPlaylistTest(unittest.TestCase):
             m.add("GET", self.BASE_URL, json=self.SUBSCRIPTIONS_ZERO)
             m.add("GET", self.BASE_URL, json=self.SUBSCRIPTIONS_BY_ID)
 
-            res_zero = self.api.get_subscription_by_id(
+            res_zero = await self.api.get_subscription_by_id(
                 subscription_id=(
                     "zqShTXi-2-Tx7TtwQqhCBwViE_j9IEgnmRmPnqJljxo,"
                     "zqShTXi-2-Rya5uUxEp3ZsPI3fZrFQnSXNQCwvHBGGo"
@@ -53,7 +53,7 @@ class ApiPlaylistTest(unittest.TestCase):
             self.assertEqual(len(res_zero["items"]), 0)
             self.assertEqual(res_zero["pageInfo"]["totalResults"], 0)
 
-            res_by_id = self.api_with_access_token.get_subscription_by_id(
+            res_by_id = await self.api_with_access_token.get_subscription_by_id(
                 subscription_id=[
                     "zqShTXi-2-Tx7TtwQqhCBwViE_j9IEgnmRmPnqJljxo",
                     "zqShTXi-2-Rya5uUxEp3ZsPI3fZrFQnSXNQCwvHBGGo",
@@ -66,10 +66,10 @@ class ApiPlaylistTest(unittest.TestCase):
                 res_by_id.items[0].id, "zqShTXi-2-Tx7TtwQqhCBwViE_j9IEgnmRmPnqJljxo"
             )
 
-    def testGetSubscriptionByChannel(self) -> None:
+    async def testGetSubscriptionByChannel(self) -> None:
         # test params checker
         with self.assertRaises(pyyoutube.PyYouTubeException):
-            self.api_with_access_token.get_subscription_by_channel(
+            await self.api_with_access_token.get_subscription_by_channel(
                 channel_id="id", parts="id,not_part"
             )
 
@@ -78,7 +78,7 @@ class ApiPlaylistTest(unittest.TestCase):
             m.add("GET", self.BASE_URL, json=self.SUBSCRIPTIONS_BY_CHANNEL_P1)
             m.add("GET", self.BASE_URL, json=self.SUBSCRIPTIONS_BY_CHANNEL_P2)
 
-            res = self.api.get_subscription_by_channel(
+            res = await self.api.get_subscription_by_channel(
                 channel_id="UCAuUUnT6oDeKwE6v1NGQxug",
                 count=None,
                 limit=5,
@@ -90,7 +90,7 @@ class ApiPlaylistTest(unittest.TestCase):
         with responses.RequestsMock() as m:
             m.add("GET", self.BASE_URL, json=self.SUBSCRIPTIONS_BY_CHANNEL_P1)
 
-            res = self.api.get_subscription_by_channel(
+            res = await self.api.get_subscription_by_channel(
                 channel_id="UCAuUUnT6oDeKwE6v1NGQxug",
                 count=5,
                 limit=5,
@@ -102,7 +102,7 @@ class ApiPlaylistTest(unittest.TestCase):
         with responses.RequestsMock() as m:
             m.add("GET", self.BASE_URL, json=self.SUBSCRIPTIONS_BY_CHANNEL_P1)
 
-            res = self.api.get_subscription_by_channel(
+            res = await self.api.get_subscription_by_channel(
                 channel_id="UCAuUUnT6oDeKwE6v1NGQxug",
                 for_channel_id=["UCsT0YIqwnpJCM-mx7-gSA4Q", "UCtC8aQzdEHAmuw8YvtH1CcQ"],
                 count=2,
@@ -115,7 +115,7 @@ class ApiPlaylistTest(unittest.TestCase):
         with responses.RequestsMock() as m:
             m.add("GET", self.BASE_URL, json=self.SUBSCRIPTIONS_BY_CHANNEL_P2)
 
-            res = self.api.get_subscription_by_channel(
+            res = await self.api.get_subscription_by_channel(
                 channel_id="UCAuUUnT6oDeKwE6v1NGQxug",
                 count=None,
                 limit=5,
@@ -124,17 +124,17 @@ class ApiPlaylistTest(unittest.TestCase):
 
             self.assertEqual(len(res.items), 2)
 
-    def testGetSubscriptionByMe(self) -> None:
+    async def testGetSubscriptionByMe(self) -> None:
         # test not have required parameters
         with self.assertRaises(pyyoutube.PyYouTubeException):
-            self.api_with_access_token.get_subscription_by_me()
+            await self.api_with_access_token.get_subscription_by_me()
 
         # test get all data
         with responses.RequestsMock() as m:
             m.add("GET", self.BASE_URL, json=self.SUBSCRIPTIONS_BY_MINE_P1)
             m.add("GET", self.BASE_URL, json=self.SUBSCRIPTIONS_BY_MINE_P2)
 
-            sub = self.api_with_access_token.get_subscription_by_me(
+            sub = await self.api_with_access_token.get_subscription_by_me(
                 mine=True,
                 parts=["id", "snippet"],
                 order="alphabetically",
@@ -151,7 +151,7 @@ class ApiPlaylistTest(unittest.TestCase):
         with responses.RequestsMock() as m:
             m.add("GET", self.BASE_URL, json=self.SUBSCRIPTIONS_BY_MINE_P1)
 
-            sub = self.api_with_access_token.get_subscription_by_me(
+            sub = await self.api_with_access_token.get_subscription_by_me(
                 mine=True,
                 parts="id,snippet",
                 order="alphabetically",
@@ -167,7 +167,7 @@ class ApiPlaylistTest(unittest.TestCase):
         with responses.RequestsMock() as m:
             m.add("GET", self.BASE_URL, json=self.SUBSCRIPTIONS_BY_MINE_FILTER)
 
-            sub = self.api_with_access_token.get_subscription_by_me(
+            sub = await self.api_with_access_token.get_subscription_by_me(
                 mine=True,
                 parts="id,snippet",
                 for_channel_id="UC_x5XG1OV2P6uZZ5FSM9Ttw,UCa-vrCLQHviTOVnEKDOdetQ",
@@ -181,12 +181,12 @@ class ApiPlaylistTest(unittest.TestCase):
         with responses.RequestsMock() as m:
             m.add("GET", self.BASE_URL, json=self.SUBSCRIPTIONS_ZERO)
 
-            recent = self.api_with_access_token.get_subscription_by_me(
+            recent = await self.api_with_access_token.get_subscription_by_me(
                 recent_subscriber=True
             )
             self.assertEqual(len(recent.items), 0)
 
-            subscriber = self.api_with_access_token.get_subscription_by_me(
+            subscriber = await self.api_with_access_token.get_subscription_by_me(
                 subscriber=True
             )
             self.assertEqual(len(subscriber.items), 0)
@@ -195,7 +195,7 @@ class ApiPlaylistTest(unittest.TestCase):
         with responses.RequestsMock() as m:
             m.add("GET", self.BASE_URL, json=self.SUBSCRIPTIONS_BY_MINE_P2)
 
-            sub = self.api_with_access_token.get_subscription_by_me(
+            sub = await self.api_with_access_token.get_subscription_by_me(
                 mine=True,
                 parts=["id", "snippet"],
                 order="alphabetically",

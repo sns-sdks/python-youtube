@@ -1,14 +1,16 @@
 import json
 import unittest
+import aiohttp
 
 import responses
 
 import pyyoutube
 
 
-class ApiVideoTest(unittest.TestCase):
+class ApiVideoTest(unittest.IsolatedAsyncioTestCase):
     BASE_PATH = "testdata/apidata/videos/"
     BASE_URL = "https://www.googleapis.com/youtube/v3/videos"
+    session = aiohttp.ClientSession()
 
     with open(BASE_PATH + "videos_info_single.json", "rb") as f:
         VIDEOS_INFO_SINGLE = json.loads(f.read().decode("utf-8"))
@@ -24,18 +26,18 @@ class ApiVideoTest(unittest.TestCase):
         VIDEOS_MYRATING_PAGED_2 = json.loads(f.read().decode("utf-8"))
 
     def setUp(self) -> None:
-        self.api = pyyoutube.Api(api_key="api key")
-        self.api_with_token = pyyoutube.Api(access_token="token")
+        self.api = pyyoutube.Api(self.session, api_key="api key")
+        self.api_with_token = pyyoutube.Api(self.session, access_token="token")
 
-    def testGetVideoById(self) -> None:
+    async def testGetVideoById(self) -> None:
         with self.assertRaises(pyyoutube.PyYouTubeException):
-            self.api.get_video_by_id(video_id="id", parts="id,not_part")
+            await self.api.get_video_by_id(video_id="id", parts="id,not_part")
 
         with responses.RequestsMock() as m:
             m.add("GET", self.BASE_URL, json=self.VIDEOS_INFO_SINGLE)
             m.add("GET", self.BASE_URL, json=self.VIDEOS_INFO_MULTI)
 
-            res_by_single_id = self.api.get_video_by_id(
+            res_by_single_id = await self.api.get_video_by_id(
                 video_id="D-lhorsDlUQ",
                 parts="id,snippet,player",
                 max_height=480,
@@ -55,23 +57,23 @@ class ApiVideoTest(unittest.TestCase):
                 ),
             )
 
-            res_by_multi_id = self.api.get_video_by_id(
+            res_by_multi_id = await self.api.get_video_by_id(
                 video_id=["D-lhorsDlUQ", "ovdbrdCIP7U"]
             )
             self.assertEqual(res_by_multi_id.pageInfo.totalResults, 2)
             self.assertEqual(len(res_by_multi_id.items), 2)
             self.assertEqual(res_by_multi_id.items[0].id, "D-lhorsDlUQ")
 
-    def testGetVideoByChart(self) -> None:
+    async def testGetVideoByChart(self) -> None:
         with self.assertRaises(pyyoutube.PyYouTubeException):
-            self.api.get_videos_by_chart(chart="mostPopular", parts="id,not_part")
+            await self.api.get_videos_by_chart(chart="mostPopular", parts="id,not_part")
 
         # test paged
         with responses.RequestsMock() as m:
             m.add("GET", self.BASE_URL, json=self.VIDEOS_CHART_PAGED_1)
             m.add("GET", self.BASE_URL, json=self.VIDEOS_CHART_PAGED_2)
 
-            res_by_chart = self.api.get_videos_by_chart(
+            res_by_chart = await self.api.get_videos_by_chart(
                 chart="mostPopular",
                 region_code="US",
                 category_id="0",
@@ -90,7 +92,7 @@ class ApiVideoTest(unittest.TestCase):
         with responses.RequestsMock() as m:
             m.add("GET", self.BASE_URL, json=self.VIDEOS_CHART_PAGED_1)
 
-            res_by_chart = self.api.get_videos_by_chart(chart="mostPopular", count=3)
+            res_by_chart = await self.api.get_videos_by_chart(chart="mostPopular", count=3)
             self.assertEqual(res_by_chart.pageInfo.totalResults, 8)
             self.assertEqual(len(res_by_chart.items), 3)
             self.assertEqual(res_by_chart.items[0].id, "hDeuSfo_Ys0")
@@ -100,34 +102,34 @@ class ApiVideoTest(unittest.TestCase):
             m.add("GET", self.BASE_URL, json=self.VIDEOS_CHART_PAGED_1)
             m.add("GET", self.BASE_URL, json=self.VIDEOS_CHART_PAGED_2)
 
-            res_by_chart = self.api.get_videos_by_chart(chart="mostPopular", count=None)
+            res_by_chart = await self.api.get_videos_by_chart(chart="mostPopular", count=None)
             self.assertEqual(res_by_chart.pageInfo.totalResults, 8)
 
         # test use page token
         with responses.RequestsMock() as m:
             m.add("GET", self.BASE_URL, json=self.VIDEOS_CHART_PAGED_2)
 
-            res_by_chart = self.api.get_videos_by_chart(
+            res_by_chart = await self.api.get_videos_by_chart(
                 chart="mostPopular", count=None, page_token="CAUQAA"
             )
             self.assertEqual(len(res_by_chart.items), 3)
 
-    def testGetVideoByMyRating(self) -> None:
+    async def testGetVideoByMyRating(self) -> None:
         with self.assertRaises(pyyoutube.PyYouTubeException):
-            self.api_with_token.get_videos_by_myrating(
+            await self.api_with_token.get_videos_by_myrating(
                 rating="like", parts="id,not_part"
             )
 
         # test need authorization
         with self.assertRaises(pyyoutube.PyYouTubeException):
-            self.api.get_videos_by_myrating(rating="like", parts="id,not_part")
+            await self.api.get_videos_by_myrating(rating="like", parts="id,not_part")
 
         # test paged
         with responses.RequestsMock() as m:
             m.add("GET", self.BASE_URL, json=self.VIDEOS_MYRATING_PAGED_1)
             m.add("GET", self.BASE_URL, json=self.VIDEOS_MYRATING_PAGED_2)
 
-            res_by_my_rating = self.api_with_token.get_videos_by_myrating(
+            res_by_my_rating = await self.api_with_token.get_videos_by_myrating(
                 rating="like",
                 parts=("id", "snippet", "player"),
                 max_height=480,
@@ -144,7 +146,7 @@ class ApiVideoTest(unittest.TestCase):
         # test count
         with responses.RequestsMock() as m:
             m.add("GET", self.BASE_URL, json=self.VIDEOS_MYRATING_PAGED_1)
-            res_by_my_rating = self.api_with_token.get_videos_by_myrating(
+            res_by_my_rating = await self.api_with_token.get_videos_by_myrating(
                 rating="like",
                 parts=("id", "snippet", "player"),
                 count=1,
@@ -158,7 +160,7 @@ class ApiVideoTest(unittest.TestCase):
         with responses.RequestsMock() as m:
             m.add("GET", self.BASE_URL, json=self.VIDEOS_MYRATING_PAGED_1)
             m.add("GET", self.BASE_URL, json=self.VIDEOS_MYRATING_PAGED_2)
-            res_by_my_rating = self.api_with_token.get_videos_by_myrating(
+            res_by_my_rating = await self.api_with_token.get_videos_by_myrating(
                 rating="like",
                 parts=("id", "snippet", "player"),
                 count=None,
@@ -169,7 +171,7 @@ class ApiVideoTest(unittest.TestCase):
         with responses.RequestsMock() as m:
             m.add("GET", self.BASE_URL, json=self.VIDEOS_MYRATING_PAGED_2)
 
-            res_by_my_rating = self.api_with_token.get_videos_by_myrating(
+            res_by_my_rating = awaitself.api_with_token.get_videos_by_myrating(
                 rating="like",
                 parts=("id", "snippet", "player"),
                 count=None,

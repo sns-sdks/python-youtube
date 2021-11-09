@@ -4,7 +4,7 @@ import unittest
 import pyyoutube.models as models
 
 
-class PlaylistItemModelTest(unittest.TestCase):
+class PlaylistItemModelTest(unittest.IsolatedAsyncioTestCase):
     BASE_PATH = "testdata/modeldata/playlist_items/"
 
     with open(BASE_PATH + "playlist_item_content_details.json", "rb") as f:
@@ -18,7 +18,7 @@ class PlaylistItemModelTest(unittest.TestCase):
     with open(BASE_PATH + "playlist_item_api_response.json", "rb") as f:
         PLAYLIST_LIST_RESPONSE = json.loads(f.read().decode("utf-8"))
 
-    def testPlaylistItemContentDetails(self) -> None:
+    async def testPlaylistItemContentDetails(self) -> None:
         m = models.PlaylistItemContentDetails.from_dict(self.CONTENT_DETAILS_INFO)
 
         self.assertEqual(m.videoId, "D-lhorsDlUQ")
@@ -27,7 +27,7 @@ class PlaylistItemModelTest(unittest.TestCase):
             "2019-03-21T20:37:49+00:00",
         )
 
-    def testPlaylistItemSnippet(self) -> None:
+    async def testPlaylistItemSnippet(self) -> None:
         m = models.PlaylistItemSnippet.from_dict(self.SNIPPET_INFO)
 
         self.assertEqual(
@@ -39,12 +39,12 @@ class PlaylistItemModelTest(unittest.TestCase):
         )
         self.assertEqual(m.resourceId.videoId, "D-lhorsDlUQ")
 
-    def testPlaylistItemStatus(self) -> None:
+    async def testPlaylistItemStatus(self) -> None:
         m = models.PlaylistItemStatus.from_dict(self.STATUS_INFO)
 
         self.assertEqual(m.privacyStatus, "public")
 
-    def testPlaylistItem(self) -> None:
+    async def testPlaylistItem(self) -> None:
         m = models.PlaylistItem.from_dict(self.PLAYLIST_ITEM_INFO)
 
         self.assertEqual(
@@ -56,7 +56,7 @@ class PlaylistItemModelTest(unittest.TestCase):
         self.assertEqual(m.status.privacyStatus, "public")
         self.assertEqual(m.snippet.videoOwnerChannelId, "UC_x5XG1OV2P6uZZ5FSM9Ttw")
 
-    def testPlaylistItemListResponse(self) -> None:
+    async def testPlaylistItemListResponse(self) -> None:
         m = models.PlaylistItemListResponse.from_dict(self.PLAYLIST_LIST_RESPONSE)
 
         self.assertEqual(m.kind, "youtube#playlistItemListResponse")

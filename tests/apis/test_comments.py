@@ -6,7 +6,7 @@ import responses
 import pyyoutube
 
 
-class ApiCommentTest(unittest.TestCase):
+class ApiCommentTest(unittest.IsolatedAsyncioTestCase):
     BASE_PATH = "testdata/apidata/comments/"
     BASE_URL = "https://www.googleapis.com/youtube/v3/comments"
 
@@ -20,18 +20,18 @@ class ApiCommentTest(unittest.TestCase):
         COMMENTS_PAGED_2 = json.loads(f.read().decode("utf-8"))
 
     def setUp(self) -> None:
-        self.api = pyyoutube.Api(api_key="api key")
+        self.api = pyyoutube.Api(self.session, api_key="api key")
 
-    def testGetCommentById(self) -> None:
+    async def testGetCommentById(self) -> None:
         # test parts
         with self.assertRaises(pyyoutube.PyYouTubeException):
-            self.api.get_comment_by_id(comment_id="id", parts="id,not_part")
+            await self.api.get_comment_by_id(comment_id="id", parts="id,not_part")
 
         with responses.RequestsMock() as m:
             m.add("GET", self.BASE_URL, json=self.COMMENTS_INFO_SINGLE)
             m.add("GET", self.BASE_URL, json=self.COMMENTS_INFO_MULTI)
 
-            res_by_single = self.api.get_comment_by_id(
+            res_by_single = await self.api.get_comment_by_id(
                 comment_id="UgyUBI0HsgL9emxcZpR4AaABAg",
                 parts=["id", "snippet"],
                 return_json=True,
@@ -42,24 +42,24 @@ class ApiCommentTest(unittest.TestCase):
                 res_by_single["items"][0]["id"], "UgyUBI0HsgL9emxcZpR4AaABAg"
             )
 
-            res_by_multi = self.api.get_comment_by_id(
+            res_by_multi = await self.api.get_comment_by_id(
                 comment_id=["UgyUBI0HsgL9emxcZpR4AaABAg", "Ugzi3lkqDPfIOirGFLh4AaABAg"],
                 parts=("id", "snippet"),
             )
             self.assertEqual(len(res_by_multi.items), 2)
             self.assertEqual(res_by_multi.items[1].id, "Ugzi3lkqDPfIOirGFLh4AaABAg")
 
-    def testGetCommentsByParentId(self) -> None:
+    async def testGetCommentsByParentId(self) -> None:
         # test parts
         with self.assertRaises(pyyoutube.PyYouTubeException):
-            self.api.get_comments(parent_id="id", parts="id,not_part")
+            await self.api.get_comments(parent_id="id", parts="id,not_part")
 
         # test paged
         with responses.RequestsMock() as m:
             m.add("GET", self.BASE_URL, json=self.COMMENTS_PAGED_1)
             m.add("GET", self.BASE_URL, json=self.COMMENTS_PAGED_2)
 
-            res_by_parent = self.api.get_comments(
+            res_by_parent = await self.api.get_comments(
                 parent_id="Ugw5zYU6n9pmIgAZWvN4AaABAg",
                 parts="id,snippet",
                 limit=2,
@@ -75,7 +75,7 @@ class ApiCommentTest(unittest.TestCase):
         with responses.RequestsMock() as m:
             m.add("GET", self.BASE_URL, json=self.COMMENTS_PAGED_1)
 
-            res_by_parent = self.api.get_comments(
+            res_by_parent = await self.api.get_comments(
                 parent_id="Ugw5zYU6n9pmIgAZWvN4AaABAg",
                 parts="id,snippet",
                 count=2,
@@ -92,7 +92,7 @@ class ApiCommentTest(unittest.TestCase):
         with responses.RequestsMock() as m:
             m.add("GET", self.BASE_URL, json=self.COMMENTS_PAGED_1)
             m.add("GET", self.BASE_URL, json=self.COMMENTS_PAGED_2)
-            res_by_parent = self.api.get_comments(
+            res_by_parent = await self.api.get_comments(
                 parent_id="Ugw5zYU6n9pmIgAZWvN4AaABAg", parts="id,snippet", count=None
             )
             self.assertEqual(len(res_by_parent.items), 3)
@@ -100,7 +100,7 @@ class ApiCommentTest(unittest.TestCase):
         # test use page token
         with responses.RequestsMock() as m:
             m.add("GET", self.BASE_URL, json=self.COMMENTS_PAGED_2)
-            res_by_parent = self.api.get_comments(
+            res_by_parent = await self.api.get_comments(
                 parent_id="Ugw5zYU6n9pmIgAZWvN4AaABAg",
                 parts="id,snippet",
                 count=None,

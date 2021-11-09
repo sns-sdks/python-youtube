@@ -4,7 +4,7 @@ import pyyoutube
 import pyyoutube.models as models
 
 
-class VideoModelTest(unittest.TestCase):
+class VideoModelTest(unittest.IsolatedAsyncioTestCase):
     BASE_PATH = "testdata/modeldata/videos/"
 
     with open(BASE_PATH + "video_content_details.json", "rb") as f:
@@ -22,7 +22,7 @@ class VideoModelTest(unittest.TestCase):
     with open(BASE_PATH + "video_api_response.json", "rb") as f:
         VIDEO_API_RESPONSE = json.loads(f.read().decode("utf-8"))
 
-    def testVideoContentDetails(self) -> None:
+    async def testVideoContentDetails(self) -> None:
         m = models.VideoContentDetails.from_dict(self.CONTENT_DETAILS_INFO)
 
         self.assertEqual(m.duration, "PT21M7S")
@@ -37,7 +37,7 @@ class VideoModelTest(unittest.TestCase):
             m.duration = "error datetime"
             m.get_video_seconds_duration()
 
-    def testVideoTopicDetails(self) -> None:
+    async def testVideoTopicDetails(self) -> None:
         m = models.VideoTopicDetails.from_dict(self.TOPIC_DETAILS_INFO)
 
         self.assertEqual(m.topicIds[0], "/m/02jjt")
@@ -48,7 +48,7 @@ class VideoModelTest(unittest.TestCase):
         self.assertEqual(full_topics[0].id, "/m/02jjt")
         self.assertEqual(full_topics[0].description, "Entertainment (parent topic)")
 
-    def testVideoSnippet(self) -> None:
+    async def testVideoSnippet(self) -> None:
         m = models.VideoSnippet.from_dict(self.SNIPPET_INFO)
 
         self.assertEqual(
@@ -70,12 +70,12 @@ class VideoModelTest(unittest.TestCase):
             m.localized.title, "What are Actions on Google (Assistant on Air)"
         )
 
-    def testVideoStatistics(self) -> None:
+    async def testVideoStatistics(self) -> None:
         m = models.VideoStatistics.from_dict(self.STATISTICS_INFO)
 
         self.assertEqual(m.viewCount, "8087")
 
-    def testVideoStatus(self) -> None:
+    async def testVideoStatus(self) -> None:
         m = models.VideoStatus.from_dict(self.STATUS_INFO)
 
         self.assertEqual(m.uploadStatus, "processed")
@@ -84,7 +84,7 @@ class VideoModelTest(unittest.TestCase):
             m.string_to_datetime(m.publishAt).isoformat(), "2019-03-21T20:37:49+00:00"
         )
 
-    def testVideo(self) -> None:
+    async def testVideo(self) -> None:
         m = models.Video.from_dict(self.VIDEO_INFO)
 
         self.assertEqual(m.id, "D-lhorsDlUQ")
@@ -92,7 +92,7 @@ class VideoModelTest(unittest.TestCase):
             m.snippet.title, "What are Actions on Google (Assistant on Air)"
         )
 
-    def testVideoListResponse(self) -> None:
+    async def testVideoListResponse(self) -> None:
         m = models.VideoListResponse.from_dict(self.VIDEO_API_RESPONSE)
         self.assertEqual(m.kind, "youtube#videoListResponse")
         self.assertEqual(m.pageInfo.totalResults, 1)

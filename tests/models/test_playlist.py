@@ -4,7 +4,7 @@ import unittest
 import pyyoutube.models as models
 
 
-class PlaylistModelTest(unittest.TestCase):
+class PlaylistModelTest(unittest.IsolatedAsyncioTestCase):
     BASE_PATH = "testdata/modeldata/playlists/"
 
     with open(BASE_PATH + "playlist_content_details.json", "rb") as f:
@@ -18,12 +18,12 @@ class PlaylistModelTest(unittest.TestCase):
     with open(BASE_PATH + "playlist_api_response.json", "rb") as f:
         PLAYLIST_RESPONSE_INFO = json.loads(f.read().decode("utf-8"))
 
-    def testPlayListContentDetails(self) -> None:
+    async def testPlayListContentDetails(self) -> None:
         m = models.PlaylistContentDetails.from_dict(self.CONTENT_DETAILS_INFO)
 
         self.assertEqual(m.itemCount, 4)
 
-    def testPlayListSnippet(self) -> None:
+    async def testPlayListSnippet(self) -> None:
         m = models.PlaylistSnippet.from_dict(self.SNIPPET_INFO)
 
         self.assertEqual(
@@ -35,19 +35,19 @@ class PlaylistModelTest(unittest.TestCase):
         )
         self.assertEqual(m.localized.title, "Assistant on Air")
 
-    def testPlayListStatus(self) -> None:
+    async def testPlayListStatus(self) -> None:
         m = models.PlaylistStatus.from_dict(self.STATUS_INFO)
 
         self.assertEqual(m.privacyStatus, "public")
 
-    def testPlayList(self) -> None:
+    async def testPlayList(self) -> None:
         m = models.Playlist.from_dict(self.PLAYLIST_INFO)
 
         self.assertEqual(m.id, "PLOU2XLYxmsIJpufeMHncnQvFOe0K3MhVp")
         self.assertEqual(m.player, None)
         self.assertEqual(m.snippet.title, "Assistant on Air")
 
-    def testPlaylistListResponse(self) -> None:
+    async def testPlaylistListResponse(self) -> None:
         m = models.PlaylistListResponse.from_dict(self.PLAYLIST_RESPONSE_INFO)
 
         self.assertEqual(m.kind, "youtube#playlistListResponse")

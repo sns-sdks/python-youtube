@@ -1,5 +1,6 @@
 import json
 import unittest
+import aiohttp
 
 import responses
 from requests import HTTPError
@@ -7,8 +8,9 @@ from requests import HTTPError
 import pyyoutube
 
 
-class TestOAuthApi(unittest.TestCase):
+class TestOAuthApi(unittest.IsolatedAsyncioTestCase):
     BASE_PATH = "testdata/apidata/"
+    session = aiohttp.ClientSession()
 
     with open(BASE_PATH + "access_token.json", "rb") as f:
         ACCESS_TOKEN_INFO = json.loads(f.read().decode("utf-8"))
@@ -18,12 +20,12 @@ class TestOAuthApi(unittest.TestCase):
     def setUp(self) -> None:
         self.api = pyyoutube.Api(client_id="xx", client_secret="xx")
 
-    def testInitApi(self) -> None:
+    async def testInitApi(self) -> None:
         with self.assertRaises(pyyoutube.PyYouTubeException):
             pyyoutube.Api()
 
-    def testOAuth(self) -> None:
-        url, statue = self.api.get_authorization_url()
+    async def testOAuth(self) -> None:
+        url, statue = await self.api.get_authorization_url()
         self.assertEqual(statue, "PyYouTube")
 
         redirect_response = (
@@ -32,48 +34,48 @@ class TestOAuthApi(unittest.TestCase):
         )
 
         with self.assertRaises(pyyoutube.PyYouTubeException):
-            self.api.refresh_token()
+            await self.api.refresh_token()
 
         with self.assertRaises(pyyoutube.PyYouTubeException):
             api = pyyoutube.Api(client_id="xx", client_secret="xx")
-            api.generate_access_token(authorization_response="str")
+            await api.generate_access_token(authorization_response="str")
 
         with responses.RequestsMock() as m:
             m.add(
-                "POST", self.api.EXCHANGE_ACCESS_TOKEN_URL, json=self.ACCESS_TOKEN_INFO
+                "POST", await self.api.EXCHANGE_ACCESS_TOKEN_URL, json=self.ACCESS_TOKEN_INFO
             )
-            token = self.api.generate_access_token(
+            token = await self.api.generate_access_token(
                 authorization_response=redirect_response,
             )
             self.assertEqual(token.access_token, "access_token")
-            token_origin = self.api.generate_access_token(
+            token_origin = await self.api.generate_access_token(
                 authorization_response=redirect_response, return_json=True
             )
             self.assertEqual(token_origin["access_token"], "access_token")
 
-            refresh_token = self.api.refresh_token()
+            refresh_token = await self.api.refresh_token()
             self.assertEqual(refresh_token.access_token, "access_token")
-            refresh_token_origin = self.api.refresh_token(return_json=True)
+            refresh_token_origin = await self.api.refresh_token(return_json=True)
             self.assertEqual(refresh_token_origin["refresh_token"], "refresh_token")
 
             api = pyyoutube.Api(client_id="xx", client_secret="xx")
             refresh_token = api.refresh_token(refresh_token="refresh_token")
             self.assertEqual(refresh_token.refresh_token, "refresh_token")
 
-    def testGetProfile(self) -> None:
+    async def testGetProfile(self) -> None:
         with self.assertRaises(pyyoutube.PyYouTubeException):
-            self.api.get_profile()
+            await self.api.get_profile()
 
         self.api._access_token = "access_token"
         with responses.RequestsMock() as m:
-            m.add("GET", self.api.USER_INFO_URL, json=self.USER_PROFILE_INFO)
-            profile = self.api.get_profile()
+            m.add("GET", await self.api.USER_INFO_URL, json=self.USER_PROFILE_INFO)
+            profile = await self.api.get_profile()
             self.assertEqual(profile.given_name, "kun")
 
-            profile_origin = self.api.get_profile(return_json=True)
+            profile_origin = await self.api.get_profile(return_json=True)
             self.assertEqual(profile_origin["given_name"], "kun")
 
         with responses.RequestsMock() as m:
-            m.add("GET", self.api.USER_INFO_URL, body=HTTPError("Exception"))
+            m.add("GET", await self.api.USER_INFO_URL, body=HTTPError("Exception"))
             with self.assertRaises(pyyoutube.PyYouTubeException):
-                self.api.get_profile()
+                await self.api.get_profile()

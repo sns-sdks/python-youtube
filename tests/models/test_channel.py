@@ -3,7 +3,7 @@ import unittest
 import pyyoutube.models as models
 
 
-class ChannelModelTest(unittest.TestCase):
+class ChannelModelTest(unittest.IsolatedAsyncioTestCase):
     BASE_PATH = "testdata/modeldata/channels/"
 
     with open(BASE_PATH + "channel_branding_settings.json", "rb") as f:
@@ -23,17 +23,17 @@ class ChannelModelTest(unittest.TestCase):
     with open(BASE_PATH + "channel_api_response.json", "rb") as f:
         CHANNEL_API_RESPONSE = json.loads(f.read().decode("utf-8"))
 
-    def testChannelBrandingSettings(self) -> None:
+    async def testChannelBrandingSettings(self) -> None:
         m = models.ChannelBrandingSetting.from_dict(self.BRANDING_SETTINGS_INFO)
 
         self.assertEqual(m.channel.title, "Google Developers")
 
-    def testChannelContentDetails(self) -> None:
+    async def testChannelContentDetails(self) -> None:
         m = models.ChannelContentDetails.from_dict(self.CONTENT_DETAILS_INFO)
 
         self.assertEqual(m.relatedPlaylists.uploads, "UU_x5XG1OV2P6uZZ5FSM9Ttw")
 
-    def testChannelTopicDetails(self) -> None:
+    async def testChannelTopicDetails(self) -> None:
         m = models.ChannelTopicDetails.from_dict(self.TOPIC_DETAILS_INFO)
 
         self.assertEqual(m.topicIds[0], "/m/019_rr")
@@ -43,7 +43,7 @@ class ChannelModelTest(unittest.TestCase):
         self.assertEqual(full_topics[0].id, "/m/019_rr")
         self.assertEqual(full_topics[0].description, "Lifestyle (parent topic)")
 
-    def testChannelSnippet(self) -> None:
+    async def testChannelSnippet(self) -> None:
         m = models.ChannelSnippet.from_dict(self.SNIPPET_INFO)
 
         self.assertEqual(m.title, "Google Developers")
@@ -56,22 +56,22 @@ class ChannelModelTest(unittest.TestCase):
         published_at = m.string_to_datetime(m.publishedAt)
         self.assertEqual(published_at.isoformat(), "2007-08-23T00:34:43+00:00")
 
-    def testChannelStatistics(self) -> None:
+    async def testChannelStatistics(self) -> None:
         m = models.ChannelStatistics.from_dict(self.STATISTICS_INFO)
 
         self.assertEqual(m.viewCount, "160361638")
 
-    def testChannelStatus(self) -> None:
+    async def testChannelStatus(self) -> None:
         m = models.ChannelStatus.from_dict(self.STATUS_INFO)
 
         self.assertEqual(m.privacyStatus, "public")
 
-    def testChannel(self) -> None:
+    async def testChannel(self) -> None:
         m = models.Channel.from_dict(self.CHANNEL_INFO)
 
         self.assertEqual(m.id, "UC_x5XG1OV2P6uZZ5FSM9Ttw")
 
-    def testChannelListResponse(self) -> None:
+    async def testChannelListResponse(self) -> None:
         m = models.ChannelListResponse.from_dict(self.CHANNEL_API_RESPONSE)
 
         self.assertEqual(m.kind, "youtube#channelListResponse")

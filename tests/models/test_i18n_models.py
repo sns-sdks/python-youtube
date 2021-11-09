@@ -5,7 +5,7 @@ import unittest
 import pyyoutube.models as models
 
 
-class I18nModelTest(unittest.TestCase):
+class I18nModelTest(unittest.IsolatedAsyncioTestCase):
     BASE_PATH = "testdata/modeldata/i18ns/"
 
     with open(BASE_PATH + "region_info.json", "rb") as f:
@@ -17,25 +17,25 @@ class I18nModelTest(unittest.TestCase):
     with open(BASE_PATH + "language_res.json", "rb") as f:
         LANGUAGE_RES = json.loads(f.read().decode("utf-8"))
 
-    def testI18nRegion(self) -> None:
+    async def testI18nRegion(self) -> None:
         m = models.I18nRegion.from_dict(self.REGION_INFO)
 
         self.assertEqual(m.id, "DZ")
         self.assertEqual(m.snippet.gl, "DZ")
 
-    def testI18nRegionResponse(self) -> None:
+    async def testI18nRegionResponse(self) -> None:
         m = models.I18nRegionListResponse.from_dict(self.REGION_RES)
 
         self.assertEqual(m.kind, "youtube#i18nRegionListResponse")
         self.assertEqual(len(m.items), 2)
 
-    def testI18nLanguage(self) -> None:
+    async def testI18nLanguage(self) -> None:
         m = models.I18nLanguage.from_dict(self.LANGUAGE_INFO)
 
         self.assertEqual(m.id, "af")
         self.assertEqual(m.snippet.hl, "af")
 
-    def testI18nLanguageResponse(self) -> None:
+    async def testI18nLanguageResponse(self) -> None:
         m = models.I18nRegionListResponse.from_dict(self.LANGUAGE_RES)
 
         self.assertEqual(m.kind, "youtube#i18nLanguageListResponse")
