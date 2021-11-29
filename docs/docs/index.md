@@ -11,7 +11,7 @@ With the YouTube Data API, you can add a variety of YouTube features to your app
 
 Use the API to upload videos, manage playlists and subscriptions, update channel settings, and more.
 
-This library provides a Python interface for the [YouTube DATA API](https://google-developers.appspot.com/youtube/v3/docs/).
+This library provides a Python interface for the [YouTube DATA API](https://developers.google.com/youtube/v3).
 
 Library could work on Python 3.6+.
 
