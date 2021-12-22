@@ -34,10 +34,6 @@ class TestOAuthApi(unittest.TestCase):
         with self.assertRaises(pyyoutube.PyYouTubeException):
             self.api.refresh_token()
 
-        with self.assertRaises(pyyoutube.PyYouTubeException):
-            api = pyyoutube.Api(client_id="xx", client_secret="xx")
-            api.generate_access_token(authorization_response="str")
-
         with responses.RequestsMock() as m:
             m.add(
                 "POST", self.api.EXCHANGE_ACCESS_TOKEN_URL, json=self.ACCESS_TOKEN_INFO

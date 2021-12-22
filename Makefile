@@ -44,6 +44,9 @@ lint-check:
 	black --check .
 
 test:
+	pytest -s
+
+tests-html:
 	pytest -s --cov-report term --cov-report html
 
 # v0.1.0 -> v0.2.0

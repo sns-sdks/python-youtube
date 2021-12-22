@@ -8,7 +8,7 @@ from .base import BaseModel
 class AccessToken(BaseModel):
     """
     A class representing for access token.
-    Refer: https://developers.google.com/youtube/v3/guides/auth/installed-apps#obtainingaccesstokens
+    Refer: https://developers.google.com/youtube/v3/guides/auth/server-side-web-apps#exchange-authorization-code
     """
 
     access_token: Optional[str] = field(default=None)
@@ -16,7 +16,7 @@ class AccessToken(BaseModel):
     refresh_token: Optional[str] = field(default=None, repr=False)
     scope: Optional[List[str]] = field(default=None, repr=False)
     token_type: Optional[str] = field(default=None)
-    id_token: Optional[str] = field(default=None, repr=False)
+    expires_at: Optional[float] = field(default=None, repr=False)
 
 
 @dataclass
