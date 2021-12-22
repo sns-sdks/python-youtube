@@ -137,7 +137,6 @@ class Api(object):
         self._refresh_token = None  # This keep current user's refresh token.
         self._timeout = timeout
         self.session = requests.Session()
-        self._oauth_session = None
         self.proxies = proxies
 
         if not (
@@ -154,6 +153,42 @@ class Api(object):
 
         if self._timeout is None:
             self._timeout = self.DEFAULT_TIMEOUT
+
+    def _get_oauth_session(
+        self,
+        redirect_uri: Optional[str] = None,
+        scope: Optional[List[str]] = None,
+        **kwargs,
+    ) -> OAuth2Session:
+        """
+        Build a request session for OAuth.
+
+        Args:
+            redirect_uri(str, optional)
+                Determines how Google's authorization server sends a response to your app.
+                If not provide will use default https://localhost/
+            scope (list, optional)
+                The scope you want give permission.
+                If you not provide, will use default scope.
+            kwargs(dict, optional)
+                Some other params you want provide.
+
+        Returns:
+            OAuth2 Session
+        """
+        if redirect_uri is None:
+            redirect_uri = self.DEFAULT_REDIRECT_URI
+
+        if scope is None:
+            scope = self.DEFAULT_SCOPE
+
+        return OAuth2Session(
+            client_id=self._client_id,
+            scope=scope,
+            redirect_uri=redirect_uri,
+            state=self.DEFAULT_STATE,
+            **kwargs,
+        )
 
     def get_authorization_url(
         self,
@@ -177,20 +212,12 @@ class Api(object):
         Returns:
             The uri you can open on browser to do authorize.
         """
-
-        if redirect_uri is None:
-            redirect_uri = self.DEFAULT_REDIRECT_URI
-
-        if scope is None:
-            scope = self.DEFAULT_SCOPE
-
-        self._oauth_session = OAuth2Session(
-            client_id=self._client_id,
-            scope=scope,
+        oauth_session = self._get_oauth_session(
             redirect_uri=redirect_uri,
-            state=self.DEFAULT_STATE,
+            scope=scope,
+            **kwargs,
         )
-        authorization_url, state = self._oauth_session.authorization_url(
+        authorization_url, state = oauth_session.authorization_url(
             self.AUTHORIZATION_URL,
             access_type="offline",
             prompt="select_account",
@@ -200,7 +227,12 @@ class Api(object):
         return authorization_url, state
 
     def generate_access_token(
-        self, authorization_response: str, return_json: bool = False
+        self,
+        authorization_response: str,
+        redirect_uri: Optional[str] = None,
+        scope: Optional[List[str]] = None,
+        return_json: bool = False,
+        **kwargs,
     ) -> Union[dict, AccessToken]:
         """
         Use the google auth response to get access token
@@ -208,29 +240,34 @@ class Api(object):
         Args:
             authorization_response (str)
                 The response url which google redirect.
+            redirect_uri(str, optional)
+                Determines how Google's authorization server sends a response to your app.
+                If not provide will use default https://localhost/
+            scope (list, optional)
+                The scope you want give permission.
+                If you not provide, will use default scope.
             return_json(bool, optional)
                 The return data type. If you set True JSON data will be returned.
                 False will return pyyoutube.AccessToken
-
+            kwargs(dict, optional)
+                Some other params you want provide.
         Return:
             Retrieved access token's info, pyyoutube.AccessToken instance.
         """
-        if not self._oauth_session:
-            raise PyYouTubeException(
-                ErrorMessage(
-                    status_code=ErrorCode.AUTHORIZE_URL_FIRST,
-                    message="You must get authorization url first",
-                )
-            )
 
-        token = self._oauth_session.fetch_token(
+        oauth_session = self._get_oauth_session(
+            redirect_uri=redirect_uri,
+            scope=scope,
+            **kwargs,
+        )
+        token = oauth_session.fetch_token(
             self.EXCHANGE_ACCESS_TOKEN_URL,
             client_secret=self._client_secret,
             authorization_response=authorization_response,
             proxies=self.proxies,
         )
-        self._access_token = self._oauth_session.access_token
-        self._refresh_token = self._oauth_session.token["refresh_token"]
+        self._access_token = oauth_session.access_token
+        self._refresh_token = oauth_session.token["refresh_token"]
         if return_json:
             return token
         else:
@@ -250,8 +287,9 @@ class Api(object):
         Return:
             Retrieved new access token's info,  pyyoutube.AccessToken instance.
         """
-        if refresh_token is None:
-            refresh_token = self._refresh_token
+
+        refresh_token = refresh_token if refresh_token else self._refresh_token
+
         if refresh_token is None:
             raise PyYouTubeException(
                 ErrorMessage(
@@ -260,10 +298,7 @@ class Api(object):
                 )
             )
 
-        oauth_session = self._oauth_session
-        if oauth_session is None:
-            oauth_session = OAuth2Session(client_id=self._client_id)
-
+        oauth_session = OAuth2Session(client_id=self._client_id)
         auth = HTTPBasicAuth(self._client_id, self._client_secret)
         new_token = oauth_session.refresh_token(
             self.EXCHANGE_ACCESS_TOKEN_URL,

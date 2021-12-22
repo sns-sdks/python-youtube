@@ -1,11 +1,1 @@
-{
-  "access_token": "access_token",
-  "id_token": "id_token",
-  "expires_in": 3600,
-  "token_type": "Bearer",
-  "scope": [
-    "https://www.googleapis.com/auth/userinfo.profile",
-    "https://www.googleapis.com/auth/youtube"
-  ],
-  "refresh_token": "refresh_token"
-}
+{"access_token":"access_token","expires_in":3599,"refresh_token":"refresh_token","scope":["https://www.googleapis.com/auth/youtube","https://www.googleapis.com/auth/userinfo.profile"],"token_type":"Bearer","expires_at":1640180492.4104881}

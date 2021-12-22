@@ -27,7 +27,7 @@ def get_subscriptions():
         "\nCopy the whole url if you finished the step to authorize:\n"
     )
 
-    api.generate_access_token(authorization_response=auth_response)
+    api.generate_access_token(authorization_response=auth_response, scope=scope)
 
     sub_res = api.get_subscription_by_me(mine=True, parts="id,snippet", count=None)
 
