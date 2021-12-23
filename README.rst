@@ -149,8 +149,8 @@ You can also use channel name:
 
 .. code-block:: python
 
-    >>> channel_by_name = api.get_channel_info(channel_name="GoogleDevelopers")
-    >>> channel_by_name.items[0]
+    >>> channel_by_username = api.get_channel_info(for_username="GoogleDevelopers")
+    >>> channel_by_username.items[0]
     Channel(kind='youtube#channel', id='UC_x5XG1OV2P6uZZ5FSM9Ttw')
 
 If you have authorized, you can get your channels:
