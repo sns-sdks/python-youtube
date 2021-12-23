@@ -28,9 +28,9 @@ $ make build
 
 ## Testing
 
-If you have been installing the requirements use ``pipenv install --dev``.
+If you have been installing the requirements use ``make env``.
 You can use following command to test the code
 
 ```shell
-$ make test
+$ make tests-html
 ```
