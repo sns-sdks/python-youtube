@@ -42,7 +42,7 @@ class Topic(BaseModel):
 
     Refer:
         https://developers.google.com/youtube/v3/docs/channels#topicDetails.topicIds[]
-        https://google-developers.appspot.com/youtube/v3/docs/videos#topicDetails.topicIds[]
+        https://developers.google.com/youtube/v3/docs/videos#topicDetails.topicIds[]
 
     This model is customized for parsing topic id. YouTube Data Api not return this.
     """
@@ -54,7 +54,7 @@ class Topic(BaseModel):
 @dataclass
 class BaseTopicDetails(BaseModel):
     """
-    This is a base model for chanel or video topic details.
+    This is the base model for channel or video topic details.
     """
 
     topicIds: List[str] = field(default=None, repr=False)
@@ -83,7 +83,7 @@ class Localized(BaseModel):
 
     Refer:
         https://developers.google.com/youtube/v3/docs/channels#snippet.localized
-        https://google-developers.appspot.com/youtube/v3/docs/videos#snippet.localized
+        https://developers.google.com/youtube/v3/docs/videos#snippet.localized
     """
 
     title: Optional[str] = field(default=None)

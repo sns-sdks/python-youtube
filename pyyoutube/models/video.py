@@ -25,7 +25,7 @@ class RegionRestriction(BaseModel):
     """
     A class representing the video content details region restriction info
 
-    Refer: https://google-developers.appspot.com/youtube/v3/docs/videos#contentDetails.regionRestriction
+    Refer: https://developers.google.com/youtube/v3/docs/videos#contentDetails.regionRestriction
     """
 
     allowed: List[str] = field(default=None)
@@ -37,7 +37,7 @@ class ContentRating(BaseModel):
     """
     A class representing the video content rating info.
 
-    Refer: https://google-developers.appspot.com/youtube/v3/docs/videos#contentDetails.contentRating
+    Refer: https://developers.google.com/youtube/v3/docs/videos#contentDetails.contentRating
     """
 
     acbRating: Optional[str] = field(default=None, repr=False)

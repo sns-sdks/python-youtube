@@ -1,6 +1,6 @@
 This doc is a simple tutorial to show how to use this library to get data from YouTube DATA API.
 
-You can get the whole description for YouTube API at [YouTube API Reference](https://google-developers.appspot.com/youtube/v3/docs/).
+You can get the whole description for YouTube API at [YouTube API Reference](https://developers.google.com/youtube/v3/docs/).
 
 ## Prerequisite
 
