@@ -17,4 +17,4 @@ Library could work on Python 3.6+.
 
 !!! tip "Tips"
 
-    This library only have `DATA API`, Not contains `Analytics API` and `Live Streaming API`.
+    This library only have `DATA API`, Not contains `Analytics and Reporting APIs` and `Live Streaming API`.

@@ -110,7 +110,7 @@ class ChannelTopicDetails(BaseTopicDetails):
 
     # Important:
     # topicIds maybe has deprecated.
-    # see more: https://google-developers.appspot.com/youtube/v3/revision_history#november-10-2016
+    # see more: https://developers.google.com/youtube/v3/revision_history#november-10-2016
     topicIds: Optional[List[str]] = field(default=None, repr=False)
     topicCategories: Optional[List[str]] = field(default=None)
 
