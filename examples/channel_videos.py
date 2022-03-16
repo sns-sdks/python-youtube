@@ -17,7 +17,9 @@ def get_videos(channel_id):
 
     playlist_id = channel_info.items[0].contentDetails.relatedPlaylists.uploads
 
-    uploads_playlist_items = api.get_playlist_items(playlist_id=playlist_id, count=10, limit=6)
+    uploads_playlist_items = api.get_playlist_items(
+        playlist_id=playlist_id, count=10, limit=6
+    )
 
     videos = []
     for item in uploads_playlist_items.items:
