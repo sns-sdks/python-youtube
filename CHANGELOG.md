@@ -1,6 +1,16 @@
 # Changelog
 
-## Version 0.8.1
+All notable changes to this project will be documented in this file.
+
+## Version 0.8.2 (2022-03-16)
+
+### What's New
+
+- Update OAuth's functions.
+- Update for examples.
+
+
+## Version 0.8.1 (2021-05-14)
 
 ### Deprecation
 
