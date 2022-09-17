@@ -40,6 +40,7 @@ VIDEO_RESOURCE_PROPERTIES = {
     "statistics",
     "status",
     "topicDetails",
+    "liveStreamingDetails",
 }
 
 COMMENT_THREAD_RESOURCE_PROPERTIES = {"id", "replies", "snippet"}
