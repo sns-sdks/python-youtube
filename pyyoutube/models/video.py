@@ -250,7 +250,9 @@ class Video(BaseResource):
     statistics: Optional[VideoStatistics] = field(default=None, repr=False)
     topicDetails: Optional[VideoTopicDetails] = field(default=None, repr=False)
     player: Optional[Player] = field(default=None, repr=False)
-    liveStreamingDetails: Optional[VideoLiveStreamingDetails] = field(default=None, repr=False)
+    liveStreamingDetails: Optional[VideoLiveStreamingDetails] = field(
+        default=None, repr=False
+    )
 
 
 @dataclass
