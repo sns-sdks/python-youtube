@@ -139,6 +139,7 @@ class Client:
         method: str = "GET",
         params: Optional[dict] = None,
         data: Optional[dict] = None,
+        json: Optional[dict] = None,
         enforce_auth: bool = True,
         **kwargs,
     ):
@@ -153,6 +154,8 @@ class Client:
                 Object to send in the query string of the request.
             data:
                 Object to send in the body of the request.
+            json:
+                Object json to send in the body of the request.
             enforce_auth:
                 Whether to use user credentials.
             kwargs:
@@ -228,7 +231,7 @@ class Client:
                 If not provide will use default https://localhost/
             scope:
                 Permission scope for authorization.
-                see more: https://developers.google.com/youtube/v3/guides/auth/client-side-web-apps#identify-access-scopes
+                see more: https://developers.google.com/identity/protocols/oauth2/scopes#youtube
             state:
                 State sting for authorization.
             **kwargs:
@@ -368,3 +371,35 @@ class Client:
         self.access_token = token["access_token"]
         self.refresh_token = token.get("refresh_token")
         return token if return_json else AccessToken.from_dict(token)
+
+    def refresh_access_token(
+        self, refresh_token: str, return_json: bool = False, **kwargs
+    ) -> Union[dict, AccessToken]:
+        """Refresh new access token.
+
+        Args:
+            refresh_token:
+                The refresh token returned from the authorization code exchange.
+            return_json:
+                Type for returned data. If you set True JSON data will be returned.
+            **kwargs:
+                Additional parameters for request.
+
+        Returns:
+            Access token data.
+        """
+        response = self.request(
+            method="POST",
+            path=self.EXCHANGE_ACCESS_TOKEN_URL,
+            data={
+                "client_id": self.client_id,
+                "client_secret": self.client_secret,
+                "refresh_token": refresh_token,
+                "grant_type": "refresh_token",
+            },
+            enforce_auth=False,
+            proxies=self.proxies,
+            **kwargs,
+        )
+        data = self.parse_response(response)
+        return data if return_json else AccessToken.from_dict(data)

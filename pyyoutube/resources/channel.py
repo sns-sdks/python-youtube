@@ -154,7 +154,7 @@ class Channel(Resource):
             method="PUT",
             path="channels",
             params=params,
-            data=body,
+            json=body,
         )
         data = self._client.parse_response(response=response)
         return data if return_json else ChannelListResponse.from_dict(data)
