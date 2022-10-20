@@ -28,6 +28,7 @@ class Client:
     BASE_URL = "https://www.googleapis.com/youtube/v3/"
     AUTHORIZATION_URL = "https://accounts.google.com/o/oauth2/v2/auth"
     EXCHANGE_ACCESS_TOKEN_URL = "https://oauth2.googleapis.com/token"
+    REVOKE_TOKEN_URL = "https://oauth2.googleapis.com/revoke"
 
     DEFAULT_REDIRECT_URI = "https://localhost/"
     DEFAULT_SCOPE = [
@@ -189,7 +190,8 @@ class Client:
                 method=method,
                 url=path,
                 params=params,
-                json=data,
+                data=data,
+                json=json,
                 proxies=self.proxies,
                 timeout=self.timeout,
                 **kwargs,
@@ -403,3 +405,34 @@ class Client:
         )
         data = self.parse_response(response)
         return data if return_json else AccessToken.from_dict(data)
+
+    def revoke_access_token(
+        self,
+        token: str,
+    ) -> bool:
+        """Revoke token.
+
+        Notes:
+            If the token is an access token which has a corresponding refresh token,
+            the refresh token will also be revoked.
+
+        Args:
+            token:
+                Can be an access token or a refresh token.
+
+        Returns:
+            Revoked status
+
+        Raises:
+            PyYouTubeException: When occur errors.
+        """
+        response = self.request(
+            method="POST",
+            path=self.REVOKE_TOKEN_URL,
+            params={"token": token},
+            enforce_auth=False,
+            proxies=self.proxies,
+        )
+        if response.ok:
+            return True
+        self.parse_response(response)
