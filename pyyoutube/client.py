@@ -168,39 +168,25 @@ class Client:
         if not path.startswith("http"):
             path = self.BASE_URL + path
 
-        # Access Token first
-        key, access_token = None, None
-        if self.access_token is not None:
-            key, access_token = "access_token", self.access_token
-        elif self.api_key is not None:
-            key, access_token = "key", self.api_key
-
-        if access_token is None and enforce_auth:
-            raise PyYouTubeException(
-                ErrorMessage(
-                    status_code=ErrorCode.MISSING_PARAMS,
-                    message="You must provide your credentials.",
-                )
-            )
-
+        # Add credentials to request
         if enforce_auth:
-            if method == "GET":
-                if not params:
-                    params = {key: access_token}
-                elif key not in params:
-                    params[key] = access_token
-            elif method == "POST":
-                if not data:
-                    data = {key: access_token}
-                elif key not in data:
-                    data[key] = access_token
+            if self.api_key is None and self.access_token is None:
+                raise PyYouTubeException(
+                    ErrorMessage(
+                        status_code=ErrorCode.MISSING_PARAMS,
+                        message="You must provide your credentials.",
+                    )
+                )
+            else:
+                self.add_token_to_headers()
+                params = self.add_api_key_to_params(params=params)
 
         try:
             response = self.session.request(
                 method=method,
                 url=path,
                 params=params,
-                data=data,
+                json=data,
                 proxies=self.proxies,
                 timeout=self.timeout,
                 **kwargs,
@@ -211,6 +197,21 @@ class Client:
             )
         else:
             return response
+
+    def add_token_to_headers(self):
+        if self.access_token:
+            self.session.headers.update(
+                {"Authorization": f"Bearer {self.access_token}"}
+            )
+
+    def add_api_key_to_params(self, params: Optional[dict] = None):
+        if not self.api_key:
+            return params
+        if params is None:
+            params = {"key": self.api_key}
+        else:
+            params["key"] = self.api_key
+        return params
 
     def _get_oauth_session(
         self,
