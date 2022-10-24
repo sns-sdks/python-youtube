@@ -5,11 +5,11 @@ from typing import Optional, Union
 
 from pyyoutube.error import PyYouTubeException, ErrorMessage, ErrorCode
 from pyyoutube.resources.base_resource import Resource
-from pyyoutube.models import ChannelListResponse
+from pyyoutube.models import Channel, ChannelListResponse
 from pyyoutube.utils.params_checker import enf_parts
 
 
-class Channel(Resource):
+class ChannelResource(Resource):
     """A channel resource contains information about a YouTube channel.
 
     References: https://developers.google.com/youtube/v3/docs/channels
@@ -111,7 +111,7 @@ class Channel(Resource):
     def update(
         self,
         part: str,
-        body: Optional[dict],
+        body: Union[dict, Channel],
         on_behalf_of_content_owner: Optional[str] = None,
         return_json: bool = False,
         **kwargs,
@@ -126,7 +126,7 @@ class Channel(Resource):
                 The part parameter serves two purposes in this operation. It identifies the properties
                 that the write operation will set as well as the properties that the API response will include.
             body:
-                Provide a channel resource in the request body.
+                Provide channel data in the request body. You can give dataclass or just a dict with data.
             on_behalf_of_content_owner:
                 The onBehalfOfContentOwner parameter indicates that the request's authorization
                 credentials identify a YouTube CMS user who is acting on behalf of the content

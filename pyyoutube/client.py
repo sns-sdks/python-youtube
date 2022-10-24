@@ -11,6 +11,7 @@ from requests.structures import CaseInsensitiveDict
 from requests_oauthlib.oauth2_session import OAuth2Session
 
 import pyyoutube.resources as resources
+from pyyoutube.models.base import BaseModel
 from pyyoutube.error import ErrorCode, ErrorMessage, PyYouTubeException
 from pyyoutube.models import (
     AccessToken,
@@ -37,7 +38,7 @@ class Client:
     ]
     DEFAULT_STATE = "Python-YouTube"
 
-    channel = resources.Channel()
+    channel = resources.ChannelResource()
 
     def __new__(cls, *args, **kwargs):
         self = super().__new__(cls)
@@ -184,6 +185,10 @@ class Client:
             else:
                 self.add_token_to_headers()
                 params = self.add_api_key_to_params(params=params)
+
+        # If json is dataclass convert to dict
+        if isinstance(json, BaseModel):
+            json = json.to_dict_ignore_none()
 
         try:
             response = self.session.request(

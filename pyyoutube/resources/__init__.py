@@ -1,1 +1,1 @@
-from .channel import Channel  # noqa
+from .channel import ChannelResource  # noqa
