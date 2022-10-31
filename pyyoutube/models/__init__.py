@@ -1,6 +1,6 @@
 from .activity import *  # noqa
 from .auth import AccessToken, UserProfile
-from .caption import Caption, CaptionListResponse, CaptionSnippet
+from .caption import *  # noqa
 from .category import (
     VideoCategory,
     VideoCategoryListResponse,
