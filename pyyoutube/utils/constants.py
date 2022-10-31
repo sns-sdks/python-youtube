@@ -2,6 +2,12 @@
     some constants for YouTube
 """
 
+ACTIVITIES_RESOURCE_PROPERTIES = {
+    "id",
+    "snippet",
+    "contentDetails",
+}
+
 CHANNEL_RESOURCE_PROPERTIES = {
     "id",
     "brandingSettings",
@@ -60,12 +66,6 @@ SUBSCRIPTION_RESOURCE_PROPERTIES = {
     "subscriberSnippet",
 }
 
-ACTIVITIES_RESOURCE_PROPERTIES = {
-    "id",
-    "snippet",
-    "contentDetails",
-}
-
 CAPTIONS_RESOURCE_PROPERTIES = {
     "id",
     "snippet",
@@ -97,6 +97,7 @@ MEMBERSHIP_LEVEL_PROPERTIES = {
 }
 
 RESOURCE_PARTS_MAPPING = {
+    "activities": ACTIVITIES_RESOURCE_PROPERTIES,
     "channels": CHANNEL_RESOURCE_PROPERTIES,
     "channelSections": CHANNEL_SECTIONS_PROPERTIES,
     "playlists": PLAYLIST_RESOURCE_PROPERTIES,
@@ -108,7 +109,6 @@ RESOURCE_PARTS_MAPPING = {
     "guideCategories": GUIDE_CATEGORY_RESOURCE_PROPERTIES,
     "search": SEARCH_RESOURCE_PROPERTIES,
     "subscriptions": SUBSCRIPTION_RESOURCE_PROPERTIES,
-    "activities": ACTIVITIES_RESOURCE_PROPERTIES,
     "captions": CAPTIONS_RESOURCE_PROPERTIES,
     "i18nRegions": I18N_REGION_PROPERTIES,
     "i18nLanguages": I18N_LANGUAGE_PROPERTIES,

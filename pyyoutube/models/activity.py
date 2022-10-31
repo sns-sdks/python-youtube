@@ -11,24 +11,6 @@ from .mixins import DatetimeTimeMixin
 
 
 @dataclass
-class ActivitySnippet(BaseModel, DatetimeTimeMixin):
-    """
-    A class representing the activity snippet resource info.
-
-    Refer: https://developers.google.com/youtube/v3/docs/activities#snippet
-    """
-
-    publishedAt: Optional[str] = field(default=None, repr=False)
-    channelId: Optional[str] = field(default=None, repr=False)
-    title: Optional[str] = field(default=None)
-    description: Optional[str] = field(default=None)
-    thumbnails: Optional[Thumbnails] = field(default=None, repr=False)
-    channelTitle: Optional[str] = field(default=None, repr=False)
-    type: Optional[str] = field(default=None, repr=False)
-    groupId: Optional[str] = field(default=None, repr=False)
-
-
-@dataclass
 class ActivityContentDetailsUpload(BaseModel):
     """
     A class representing the activity contentDetails upload resource info.
@@ -128,8 +110,8 @@ class ActivityContentDetailsSocial(BaseModel):
     Refer: https://developers.google.com/youtube/v3/docs/activities#contentDetails.social
     """
 
-    resourceId: Optional[ResourceId] = field(default=None)
     type: Optional[str] = field(default=None)
+    resourceId: Optional[ResourceId] = field(default=None)
     author: Optional[str] = field(default=None)
     referenceUrl: Optional[str] = field(default=None)
     imageUrl: Optional[str] = field(default=None)
@@ -144,6 +126,24 @@ class ActivityContentDetailsChannelItem(BaseModel):
     """
 
     resourceId: Optional[ResourceId] = field(default=None)
+
+
+@dataclass
+class ActivitySnippet(BaseModel, DatetimeTimeMixin):
+    """
+    A class representing the activity snippet resource info.
+
+    Refer: https://developers.google.com/youtube/v3/docs/activities#snippet
+    """
+
+    publishedAt: Optional[str] = field(default=None, repr=False)
+    channelId: Optional[str] = field(default=None, repr=False)
+    title: Optional[str] = field(default=None)
+    description: Optional[str] = field(default=None)
+    thumbnails: Optional[Thumbnails] = field(default=None, repr=False)
+    channelTitle: Optional[str] = field(default=None, repr=False)
+    type: Optional[str] = field(default=None, repr=False)
+    groupId: Optional[str] = field(default=None, repr=False)
 
 
 @dataclass

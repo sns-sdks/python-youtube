@@ -9,7 +9,7 @@ from pyyoutube.models import Channel, ChannelListResponse
 from pyyoutube.utils.params_checker import enf_parts
 
 
-class ChannelResource(Resource):
+class ChannelsResource(Resource):
     """A channel resource contains information about a YouTube channel.
 
     References: https://developers.google.com/youtube/v3/docs/channels

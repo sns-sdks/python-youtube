@@ -38,7 +38,8 @@ class Client:
     ]
     DEFAULT_STATE = "Python-YouTube"
 
-    channel = resources.ChannelResource()
+    activities = resources.ActivitiesResource()
+    channels = resources.ChannelsResource()
 
     def __new__(cls, *args, **kwargs):
         self = super().__new__(cls)

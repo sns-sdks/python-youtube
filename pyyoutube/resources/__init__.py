@@ -1,1 +1,2 @@
-from .channel import ChannelResource  # noqa
+from .activities import ActivitiesResource  # noqa
+from .channels import ChannelsResource  # noqa
