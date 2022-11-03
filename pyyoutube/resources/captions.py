@@ -3,6 +3,8 @@
 """
 from typing import Optional, Union
 
+from requests import Response
+
 from pyyoutube.resources.base_resource import Resource
 from pyyoutube.models import Caption, CaptionListResponse
 from pyyoutube.utils.params_checker import enf_comma_separated, enf_parts
@@ -107,3 +109,84 @@ class CaptionsResource(Resource):
         )
         data = self._client.parse_response(response=response)
         return data if return_json else CaptionListResponse.from_dict(data)
+
+    def download(
+        self,
+        caption_id: str,
+        on_behalf_of_content_owner: Optional[str] = None,
+        tfmt: Optional[str] = None,
+        tlang: Optional[str] = None,
+        **kwargs,
+    ) -> Response:
+        """Downloads a caption track.
+
+        Args:
+            caption_id:
+                ID for the caption track that is being deleted.
+            on_behalf_of_content_owner:
+                This parameter can only be used in a properly authorized request.
+                Note: This parameter is intended exclusively for YouTube content partners.
+            tfmt:
+                Specifies that the caption track should be returned in a specific format.
+                Supported values are:
+                    sbv – SubViewer subtitle
+                    scc – Scenarist Closed Caption format
+                    srt – SubRip subtitle
+                    ttml – Timed Text Markup Language caption
+                    vtt – Web Video Text Tracks caption
+            tlang:
+                Specifies that the API response should return a translation of the specified caption track.
+            **kwargs:
+                Additional parameters for system parameters.
+                Refer: https://cloud.google.com/apis/docs/system-parameters.
+
+        Returns:
+            Response form YouTube.
+        """
+        params = {
+            "id": caption_id,
+            "onBehalfOfContentOwner": on_behalf_of_content_owner,
+            "tfmt": tfmt,
+            "tlang": tlang,
+            **kwargs,
+        }
+        response = self._client.request(
+            path=f"captions/{caption_id}",
+            params=params,
+        )
+        return response
+
+    def delete(
+        self,
+        caption_id: str,
+        on_behalf_of_content_owner: Optional[str] = None,
+        **kwargs,
+    ) -> bool:
+        """Deletes a specified caption track.
+
+        Args:
+            caption_id:
+                ID for the caption track that is being deleted.
+            on_behalf_of_content_owner:
+                This parameter can only be used in a properly authorized request.
+                Note: This parameter is intended exclusively for YouTube content partners.
+            **kwargs:
+                Additional parameters for system parameters.
+                Refer: https://cloud.google.com/apis/docs/system-parameters.
+
+        Returns:
+            Delete status
+
+        Raises:
+            PyYouTubeException: Request not success.
+        """
+        params = {
+            "id": caption_id,
+            "onBehalfOfContentOwner": on_behalf_of_content_owner,
+            **kwargs,
+        }
+
+        response = self._client.request(path="captions", params=params)
+        if response.ok:
+            return True
+        self._client.parse_response(response=response)
