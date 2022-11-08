@@ -38,7 +38,7 @@ class ChannelsResource(Resource):
                 The parameter specifies a YouTube username, thereby requesting
                 the channel associated with that username.
             id:
-                The  parameter specifies a comma-separated list of the YouTube channel ID(s)
+                The parameter specifies a comma-separated list of the YouTube channel ID(s)
                 for the resource(s) that are being retrieved.
             managed_by_me:
                 Set this parameter's value to true to instruct the API to only return channels

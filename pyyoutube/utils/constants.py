@@ -22,9 +22,7 @@ CHANNEL_RESOURCE_PROPERTIES = {
 CHANNEL_SECTIONS_PROPERTIES = {
     "id",
     "contentDetails",
-    "localizations",
     "snippet",
-    "targeting",
 }
 
 PLAYLIST_RESOURCE_PROPERTIES = {
