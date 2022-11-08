@@ -60,6 +60,7 @@ class CaptionsResource(Resource):
         data = self._client.parse_response(response=response)
         return data if return_json else CaptionListResponse.from_dict(data)
 
+    # TODO upload file
     def insert(
         self,
         part: str,
@@ -110,6 +111,7 @@ class CaptionsResource(Resource):
         data = self._client.parse_response(response=response)
         return data if return_json else CaptionListResponse.from_dict(data)
 
+    # TODO upload file
     def update(
         self,
         part: str,

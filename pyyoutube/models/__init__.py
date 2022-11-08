@@ -6,6 +6,7 @@ from .category import (
     VideoCategoryListResponse,
 )
 from .channel import *  # noqa
+from .channel_banner import *  # noqa
 from .channel_section import (
     ChannelSection,
     ChannelSectionContentDetails,
