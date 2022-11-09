@@ -8,6 +8,11 @@ ACTIVITIES_RESOURCE_PROPERTIES = {
     "contentDetails",
 }
 
+CAPTIONS_RESOURCE_PROPERTIES = {
+    "id",
+    "snippet",
+}
+
 CHANNEL_RESOURCE_PROPERTIES = {
     "id",
     "brandingSettings",
@@ -25,61 +30,16 @@ CHANNEL_SECTIONS_PROPERTIES = {
     "snippet",
 }
 
-PLAYLIST_RESOURCE_PROPERTIES = {
-    "id",
-    "contentDetails",
-    "localizations",
-    "player",
-    "snippet",
-    "status",
-}
-
-PLAYLIST_ITEM_RESOURCE_PROPERTIES = {"id", "contentDetails", "snippet", "status"}
-
-VIDEO_RESOURCE_PROPERTIES = {
-    "id",
-    "contentDetails",
-    "player",
-    "snippet",
-    "statistics",
-    "status",
-    "topicDetails",
-    "liveStreamingDetails",
-}
-
-COMMENT_THREAD_RESOURCE_PROPERTIES = {"id", "replies", "snippet"}
-
 COMMENT_RESOURCE_PROPERTIES = {"id", "snippet"}
 
-VIDEO_CATEGORY_RESOURCE_PROPERTIES = {"id", "snippet"}
-
-GUIDE_CATEGORY_RESOURCE_PROPERTIES = {"id", "snippet"}
-
-SEARCH_RESOURCE_PROPERTIES = {"id", "snippet"}
-
-SUBSCRIPTION_RESOURCE_PROPERTIES = {
-    "id",
-    "snippet",
-    "contentDetails",
-    "subscriberSnippet",
-}
-
-CAPTIONS_RESOURCE_PROPERTIES = {
-    "id",
-    "snippet",
-}
-
-I18N_REGION_PROPERTIES = {
-    "id",
-    "snippet",
-}
+COMMENT_THREAD_RESOURCE_PROPERTIES = {"id", "replies", "snippet"}
 
 I18N_LANGUAGE_PROPERTIES = {
     "id",
     "snippet",
 }
 
-VIDEO_ABUSE_REPORT_REASON_PROPERTIES = {
+I18N_REGION_PROPERTIES = {
     "id",
     "snippet",
 }
@@ -94,25 +54,65 @@ MEMBERSHIP_LEVEL_PROPERTIES = {
     "snippet",
 }
 
+PLAYLIST_ITEM_RESOURCE_PROPERTIES = {"id", "contentDetails", "snippet", "status"}
+
+PLAYLIST_RESOURCE_PROPERTIES = {
+    "id",
+    "contentDetails",
+    "localizations",
+    "player",
+    "snippet",
+    "status",
+}
+
+SEARCH_RESOURCE_PROPERTIES = {"id", "snippet"}
+
+SUBSCRIPTION_RESOURCE_PROPERTIES = {
+    "id",
+    "snippet",
+    "contentDetails",
+    "subscriberSnippet",
+}
+
+VIDEO_ABUSE_REPORT_REASON_PROPERTIES = {
+    "id",
+    "snippet",
+}
+
+VIDEO_CATEGORY_RESOURCE_PROPERTIES = {"id", "snippet"}
+
+VIDEO_RESOURCE_PROPERTIES = {
+    "id",
+    "contentDetails",
+    "player",
+    "snippet",
+    "statistics",
+    "status",
+    "topicDetails",
+    "liveStreamingDetails",
+}
+
+GUIDE_CATEGORY_RESOURCE_PROPERTIES = {"id", "snippet"}
+
 RESOURCE_PARTS_MAPPING = {
     "activities": ACTIVITIES_RESOURCE_PROPERTIES,
+    "captions": CAPTIONS_RESOURCE_PROPERTIES,
     "channels": CHANNEL_RESOURCE_PROPERTIES,
     "channelSections": CHANNEL_SECTIONS_PROPERTIES,
-    "playlists": PLAYLIST_RESOURCE_PROPERTIES,
-    "playlistItems": PLAYLIST_ITEM_RESOURCE_PROPERTIES,
-    "videos": VIDEO_RESOURCE_PROPERTIES,
-    "commentThreads": COMMENT_THREAD_RESOURCE_PROPERTIES,
     "comments": COMMENT_RESOURCE_PROPERTIES,
-    "videoCategories": VIDEO_CATEGORY_RESOURCE_PROPERTIES,
-    "guideCategories": GUIDE_CATEGORY_RESOURCE_PROPERTIES,
-    "search": SEARCH_RESOURCE_PROPERTIES,
-    "subscriptions": SUBSCRIPTION_RESOURCE_PROPERTIES,
-    "captions": CAPTIONS_RESOURCE_PROPERTIES,
-    "i18nRegions": I18N_REGION_PROPERTIES,
+    "commentThreads": COMMENT_THREAD_RESOURCE_PROPERTIES,
     "i18nLanguages": I18N_LANGUAGE_PROPERTIES,
-    "videoAbuseReportReasons": VIDEO_ABUSE_REPORT_REASON_PROPERTIES,
+    "i18nRegions": I18N_REGION_PROPERTIES,
     "members": MEMBER_PROPERTIES,
     "membershipsLevels": MEMBERSHIP_LEVEL_PROPERTIES,
+    "playlistItems": PLAYLIST_ITEM_RESOURCE_PROPERTIES,
+    "playlists": PLAYLIST_RESOURCE_PROPERTIES,
+    "search": SEARCH_RESOURCE_PROPERTIES,
+    "subscriptions": SUBSCRIPTION_RESOURCE_PROPERTIES,
+    "videoAbuseReportReasons": VIDEO_ABUSE_REPORT_REASON_PROPERTIES,
+    "videoCategories": VIDEO_CATEGORY_RESOURCE_PROPERTIES,
+    "videos": VIDEO_RESOURCE_PROPERTIES,
+    "guideCategories": GUIDE_CATEGORY_RESOURCE_PROPERTIES,
 }
 
 TOPICS = {

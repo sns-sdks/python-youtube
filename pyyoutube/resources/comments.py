@@ -31,7 +31,7 @@ class CommentsResource(Resource):
 
         Args:
             parts:
-                Comma-separated list of one or more channel resource properties.
+                Comma-separated list of one or more comment resource properties.
             comment_id:
                 Specifies a comma-separated list of comment IDs for the resources that are being retrieved.
             parent_id:
@@ -86,8 +86,8 @@ class CommentsResource(Resource):
 
     def insert(
         self,
-        part: str,
         body: Union[dict, Comment],
+        parts: Optional[Union[str, list, tuple, set]] = None,
         return_json: bool = False,
         **kwargs,
     ) -> Union[dict, Comment]:
@@ -97,11 +97,10 @@ class CommentsResource(Resource):
             To create a top-level comment, use the commentThreads.insert method.
 
         Args:
-            part:
-                The part parameter serves two purposes in this operation. It identifies the properties
-                that the write operation will set as well as the properties that the API response will include.
             body:
                 Provide a comment resource in the request body. You can give dataclass or just a dict with data.
+            parts:
+                Comma-separated list of one or more comment resource properties.
             return_json:
                 Type for returned data. If you set True JSON data will be returned.
             **kwargs:
@@ -112,7 +111,7 @@ class CommentsResource(Resource):
             Comment data.
         """
 
-        params = {"part": part, **kwargs}
+        params = {"part": enf_parts(resource="comments", value=parts), **kwargs}
         response = self._client.request(
             method="POST",
             path="comments",
@@ -124,19 +123,18 @@ class CommentsResource(Resource):
 
     def update(
         self,
-        part: str,
         body: Union[dict, Comment],
+        parts: Optional[Union[str, list, tuple, set]] = None,
         return_json: bool = False,
         **kwargs,
     ) -> Union[dict, Comment]:
         """Modifies a comment.
 
         Args:
-            part:
-                The part parameter serves two purposes in this operation. It identifies the properties
-                that the write operation will set as well as the properties that the API response will include.
             body:
                 Provide a comment resource in the request body. You can give dataclass or just a dict with data.
+            parts:
+                Comma-separated list of one or more comment resource properties.
             return_json:
                 Type for returned data. If you set True JSON data will be returned.
             **kwargs:
@@ -147,7 +145,7 @@ class CommentsResource(Resource):
             Comment updated data.
 
         """
-        params = {"part": part, **kwargs}
+        params = {"part": enf_parts(resource="comments", value=parts), **kwargs}
         response = self._client.request(
             method="PUT",
             path="comments",

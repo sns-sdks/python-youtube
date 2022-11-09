@@ -36,7 +36,7 @@ class CommentThreadsResource(Resource):
 
         Args:
             parts:
-                Comma-separated list of one or more channel resource properties.
+                Comma-separated list of one or more comment thread resource properties.
             all_threads_related_to_channel_id:
                 Instructs the API to return all comment threads associated with the specified channel.
             channel_id:
@@ -129,7 +129,7 @@ class CommentThreadsResource(Resource):
             body:
                 Provide a commentThread resource in the request body. You can give dataclass or just a dict with data.
             parts:
-                Comma-separated list of one or more channel thread resource properties.
+                Comma-separated list of one or more comment thread resource properties.
             return_json:
                 Type for returned data. If you set True JSON data will be returned.
             **kwargs:
