@@ -410,7 +410,6 @@ class Client:
                 "grant_type": "refresh_token",
             },
             enforce_auth=False,
-            proxies=self.proxies,
             **kwargs,
         )
         data = self.parse_response(response)
@@ -441,7 +440,6 @@ class Client:
             path=self.REVOKE_TOKEN_URL,
             params={"token": token},
             enforce_auth=False,
-            proxies=self.proxies,
         )
         if response.ok:
             return True
