@@ -22,7 +22,7 @@ class ApiI18nTest(unittest.TestCase):
         with responses.RequestsMock() as m:
             m.add("GET", self.REGION_URL, json=self.REGIONS_RES)
 
-            regions = self.api.get_i18n_regions(parts=["id", "snippet"])
+            regions = self.api.get_i18n_regions(parts=["snippet"])
             self.assertEqual(regions.kind, "youtube#i18nRegionListResponse")
             self.assertEqual(len(regions.items), 4)
             self.assertEqual(regions.items[0].id, "VE")
@@ -34,7 +34,7 @@ class ApiI18nTest(unittest.TestCase):
         with responses.RequestsMock() as m:
             m.add("GET", self.LANGUAGE_URL, json=self.LANGUAGE_RES)
 
-            languages = self.api.get_i18n_languages(parts=["id", "snippet"])
+            languages = self.api.get_i18n_languages(parts=["snippet"])
             self.assertEqual(len(languages.items), 5)
             self.assertEqual(languages.items[0].id, "zh-CN")
 
