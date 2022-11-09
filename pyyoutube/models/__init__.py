@@ -10,6 +10,7 @@ from .channel_banner import *  # noqa
 from .channel_section import *  # noqa
 from .comment import *  # noqa
 from .comment_thread import *  # noqa
+from .i18n import *  # noqa
 from .playlist import (
     Playlist,
     PlaylistContentDetails,
@@ -39,12 +40,6 @@ from .video import (
     VideoStatistics,
     VideoStatus,
     VideoTopicDetails,
-)
-from .i18n import (
-    I18nRegion,
-    I18nRegionListResponse,
-    I18nLanguage,
-    I18nLanguageListResponse,
 )
 
 from .video_abuse_report_reason import (
