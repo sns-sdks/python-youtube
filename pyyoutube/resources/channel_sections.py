@@ -4,7 +4,7 @@
 
 from typing import Optional, Union
 
-from pyyoutube import PyYouTubeException, ErrorMessage, ErrorCode
+from pyyoutube.error import PyYouTubeException, ErrorMessage, ErrorCode
 from pyyoutube.resources.base_resource import Resource
 from pyyoutube.models import ChannelSection, ChannelSectionListResponse
 from pyyoutube.utils.params_checker import enf_comma_separated, enf_parts
