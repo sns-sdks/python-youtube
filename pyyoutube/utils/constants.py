@@ -36,10 +36,7 @@ COMMENT_THREAD_RESOURCE_PROPERTIES = {"id", "replies", "snippet"}
 
 I18N_LANGUAGE_PROPERTIES = {"snippet"}
 
-I18N_REGION_PROPERTIES = {
-    "id",
-    "snippet",
-}
+I18N_REGION_PROPERTIES = {"snippet"}
 
 MEMBER_PROPERTIES = {
     "id",

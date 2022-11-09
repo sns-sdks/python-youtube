@@ -1,19 +1,19 @@
 """
-    i18n language resource implementation.
+    i18n regions resource implementation.
 """
 
 from typing import Optional, Union
 
 from pyyoutube.resources.base_resource import Resource
-from pyyoutube.models import I18nLanguageListResponse
+from pyyoutube.models import I18nRegionListResponse
 from pyyoutube.utils.params_checker import enf_parts
 
 
-class I18nLanguagesResource(Resource):
-    """An i18nLanguage resource identifies an application language that the YouTube website supports.
-    The application language can also be referred to as a UI language
+class I18nRegionsResource(Resource):
+    """An i18nRegion resource identifies a geographic area that a YouTube user can select as
+    the preferred content region.
 
-    References: https://developers.google.com/youtube/v3/docs/i18nLanguages
+    References: https://developers.google.com/youtube/v3/docs/i18nRegions
     """
 
     def list(
@@ -22,12 +22,12 @@ class I18nLanguagesResource(Resource):
         hl: Optional[str] = None,
         return_json: bool = False,
         **kwargs: Optional[dict],
-    ) -> Union[dict, I18nLanguageListResponse]:
-        """Returns a list of application languages that the YouTube website supports.
+    ) -> Union[dict, I18nRegionListResponse]:
+        """Returns a list of content regions that the YouTube website supports.
 
         Args:
             parts:
-                Comma-separated list of one or more i18n languages resource properties.
+                Comma-separated list of one or more i18n regions resource properties.
                 Accepted values: snippet.
             hl:
                 Specifies the language that should be used for text values in the API response.
@@ -39,13 +39,13 @@ class I18nLanguagesResource(Resource):
                 Refer: https://cloud.google.com/apis/docs/system-parameters.
 
         Returns:
-            i18n language data
+            i18n regions data.
         """
         params = {
-            "part": enf_parts(resource="i18nLanguages", value=parts),
+            "part": enf_parts(resource="i18nRegions", value=parts),
             "hl": hl,
             **kwargs,
         }
-        response = self._client.request(path="i18nLanguages", params=params)
+        response = self._client.request(path="i18nRegions", params=params)
         data = self._client.parse_response(response=response)
-        return data if return_json else I18nLanguageListResponse.from_dict(data)
+        return data if return_json else I18nRegionListResponse.from_dict(data)
