@@ -40,6 +40,8 @@ class Client:
 
     activities = resources.ActivitiesResource()
     channels = resources.ChannelsResource()
+    comments = resources.CommentsResource()
+    commentThreads = resources.CommentThreadsResource()
 
     def __new__(cls, *args, **kwargs):
         self = super().__new__(cls)

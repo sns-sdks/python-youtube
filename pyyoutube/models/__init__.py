@@ -9,6 +9,7 @@ from .channel import *  # noqa
 from .channel_banner import *  # noqa
 from .channel_section import *  # noqa
 from .comment import *  # noqa
+from .comment_thread import *  # noqa
 from .playlist import (
     Playlist,
     PlaylistContentDetails,

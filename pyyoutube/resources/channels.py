@@ -69,7 +69,7 @@ class ChannelsResource(Resource):
                 The parameter identifies a specific page in the result set that should be returned.
             return_json:
                 Type for returned data. If you set True JSON data will be returned.
-            kwargs:
+            **kwargs:
                 Additional parameters for system parameters.
                 Refer: https://cloud.google.com/apis/docs/system-parameters.
 
