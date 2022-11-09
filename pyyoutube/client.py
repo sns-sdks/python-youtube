@@ -40,6 +40,7 @@ class Client:
 
     activities = resources.ActivitiesResource()
     channels = resources.ChannelsResource()
+    channelSections = resources.ChannelSectionsResource()
     comments = resources.CommentsResource()
     commentThreads = resources.CommentThreadsResource()
     i18nLanguages = resources.I18nLanguagesResource()
