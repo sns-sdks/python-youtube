@@ -115,7 +115,7 @@ class ChannelsResource(Resource):
         on_behalf_of_content_owner: Optional[str] = None,
         return_json: bool = False,
         **kwargs,
-    ) -> Union[dict, ChannelListResponse]:
+    ) -> Union[dict, Channel]:
         """Updates a channel's metadata.
 
         Note that this method currently only supports updates to the channel resource's brandingSettings,
@@ -157,4 +157,4 @@ class ChannelsResource(Resource):
             json=body,
         )
         data = self._client.parse_response(response=response)
-        return data if return_json else ChannelListResponse.from_dict(data)
+        return data if return_json else Channel.from_dict(data)

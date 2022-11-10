@@ -25,3 +25,8 @@ def helpers():
 @pytest.fixture(scope="class")
 def authed_cli():
     return Client(access_token="access token")
+
+
+@pytest.fixture(scope="class")
+def key_cli():
+    return Client(api_key="api key")
