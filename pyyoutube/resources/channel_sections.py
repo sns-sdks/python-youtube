@@ -88,8 +88,8 @@ class ChannelSectionsResource(Resource):
 
     def insert(
         self,
-        part: str,
         body: Union[dict, ChannelSection],
+        parts: Optional[Union[str, list, tuple, set]] = None,
         on_behalf_of_content_owner: Optional[str] = None,
         on_behalf_of_content_owner_channel: Optional[str] = None,
         return_json: bool = False,
@@ -99,7 +99,7 @@ class ChannelSectionsResource(Resource):
         A channel can create a maximum of 10 shelves.
 
         Args:
-            part:
+            parts:
                 The part parameter serves two purposes in this operation. It identifies the properties
                 that the write operation will set as well as the properties that the API response will include.
                 Accept values:
@@ -134,7 +134,7 @@ class ChannelSectionsResource(Resource):
             Channel section data.
         """
         params = {
-            "part": part,
+            "part": enf_parts(resource="channelSections", value=parts),
             "onBehalfOfContentOwner": on_behalf_of_content_owner,
             "onBehalfOfContentOwnerChannel": on_behalf_of_content_owner_channel,
             **kwargs,
@@ -150,8 +150,8 @@ class ChannelSectionsResource(Resource):
 
     def update(
         self,
-        part: str,
         body: Union[dict, ChannelSection],
+        parts: Optional[Union[str, list, tuple, set]] = None,
         on_behalf_of_content_owner: Optional[str] = None,
         return_json: bool = False,
         **kwargs,
@@ -159,7 +159,7 @@ class ChannelSectionsResource(Resource):
         """Updates a channel section.
 
         Args:
-            part:
+            parts:
                 The part parameter serves two purposes in this operation. It identifies the properties
                 that the write operation will set as well as the properties that the API response will include.
                 Accept values:
@@ -186,7 +186,7 @@ class ChannelSectionsResource(Resource):
             Channel section data.
         """
         params = {
-            "part": part,
+            "part": enf_parts(resource="channelSections", value=parts),
             "onBehalfOfContentOwner": on_behalf_of_content_owner,
             **kwargs,
         }
