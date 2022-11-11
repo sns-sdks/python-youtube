@@ -26,6 +26,7 @@ class TestChannelsResource(BaseTestCase):
                 id=self.channel_id,
             )
             assert res.items[0].id == self.channel_id
+            assert key_cli.channels.api_key == "api key"
 
             res = key_cli.channels.list(
                 parts=["id", "snippet"], for_username="googledevelopers"

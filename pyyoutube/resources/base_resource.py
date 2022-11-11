@@ -4,7 +4,7 @@
 from typing import Optional, TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from pyyoutube import Client
+    from pyyoutube import Client  # pragma: no cover
 
 
 class Resource:
