@@ -1,0 +1,21 @@
+{
+  "kind": "youtube#comment",
+  "etag": "lTl2Wjqipb6KqrmPU04DLigrzrg",
+  "id": "Ugy_CAftKrIUCyPr9GR4AaABAg.9iPXEClD9lW9iPXLqKy_Pt",
+  "snippet": {
+    "textDisplay": "wow",
+    "textOriginal": "wow",
+    "parentId": "Ugy_CAftKrIUCyPr9GR4AaABAg",
+    "authorDisplayName": "ikaros data",
+    "authorProfileImageUrl": "https://yt3.ggpht.com/ytc/AMLnZu-fT-p35OYe0OaSzOmrQY8KEjXVHMgPxyj-hV2r=s48-c-k-c0x00ffffff-no-rj",
+    "authorChannelUrl": "http://www.youtube.com/channel/UCa-vrCLQHviTOVnEKDOdetQ",
+    "authorChannelId": {
+      "value": "UCa-vrCLQHviTOVnEKDOdetQ"
+    },
+    "canRate": true,
+    "viewerRating": "none",
+    "likeCount": 0,
+    "publishedAt": "2022-11-14T10:23:02Z",
+    "updatedAt": "2022-11-14T10:23:02Z"
+  }
+}
