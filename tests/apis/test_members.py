@@ -22,7 +22,7 @@ class ApiMembersTest(unittest.TestCase):
         with responses.RequestsMock() as m:
             m.add("GET", self.MEMBERS_URL, json=self.MEMBERS_RES)
 
-            members = self.api.get_members(parts=["id", "snippet"])
+            members = self.api.get_members(parts=["snippet"])
             self.assertEqual(members.kind, "youtube#memberListResponse")
             self.assertEqual(len(members.items), 2)
 
