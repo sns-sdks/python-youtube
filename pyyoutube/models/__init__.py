@@ -11,6 +11,7 @@ from .channel_section import *  # noqa
 from .comment import *  # noqa
 from .comment_thread import *  # noqa
 from .i18n import *  # noqa
+from .member import *  # noqa
 from .playlist import (
     Playlist,
     PlaylistContentDetails,
@@ -52,5 +53,4 @@ from .search_result import (
     SearchResult,
     SearchListResponse,
 )
-from .member import Member, MemberListResponse
 from .memberships_level import MembershipsLevel, MembershipsLevelListResponse
