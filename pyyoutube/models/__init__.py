@@ -12,6 +12,7 @@ from .comment import *  # noqa
 from .comment_thread import *  # noqa
 from .i18n import *  # noqa
 from .member import *  # noqa
+from .memberships_level import *  # noqa
 from .playlist import (
     Playlist,
     PlaylistContentDetails,
@@ -53,4 +54,3 @@ from .search_result import (
     SearchResult,
     SearchListResponse,
 )
-from .memberships_level import MembershipsLevel, MembershipsLevelListResponse

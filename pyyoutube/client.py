@@ -46,6 +46,7 @@ class Client:
     i18nLanguages = resources.I18nLanguagesResource()
     i18nRegions = resources.I18nRegionsResource()
     members = resources.MembersResource()
+    membershipsLevels = resources.MembershipLevelsResource()
 
     def __new__(cls, *args, **kwargs):
         self = super().__new__(cls)

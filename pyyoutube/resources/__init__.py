@@ -6,3 +6,4 @@ from .comment_threads import CommentThreadsResource  # noqa
 from .i18n_languages import I18nLanguagesResource  # noqa
 from .i18n_regions import I18nRegionsResource  # noqa
 from .members import MembersResource  # noqa
+from .membership_levels import MembershipLevelsResource  # noqa
