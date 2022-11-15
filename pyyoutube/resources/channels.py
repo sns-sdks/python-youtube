@@ -34,6 +34,8 @@ class ChannelsResource(Resource):
         Args:
             parts:
                 Comma-separated list of one or more channel resource properties.
+                Accepted values: id,auditDetails,brandingSettings,contentDetails,contentOwnerDetails,
+                localizations,snippet,statistics,status,topicDetails
             for_username:
                 The parameter specifies a YouTube username, thereby requesting
                 the channel associated with that username.
