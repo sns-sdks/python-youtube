@@ -47,6 +47,7 @@ class Client:
     i18nRegions = resources.I18nRegionsResource()
     members = resources.MembersResource()
     membershipsLevels = resources.MembershipLevelsResource()
+    playlistItems = resources.PlaylistItemsResource()
 
     def __new__(cls, *args, **kwargs):
         self = super().__new__(cls)

@@ -21,6 +21,8 @@ class PlaylistItemContentDetails(BaseModel, DatetimeTimeMixin):
     videoId: Optional[str] = field(default=None)
     note: Optional[str] = field(default=None, repr=False)
     videoPublishedAt: Optional[str] = field(default=None)
+    startAt: Optional[str] = field(default=None, repr=False)
+    endAt: Optional[str] = field(default=None, repr=False)
 
 
 @dataclass

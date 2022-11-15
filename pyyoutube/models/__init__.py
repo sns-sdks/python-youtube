@@ -13,19 +13,13 @@ from .comment_thread import *  # noqa
 from .i18n import *  # noqa
 from .member import *  # noqa
 from .memberships_level import *  # noqa
+from .playlist_item import *  # noqa
 from .playlist import (
     Playlist,
     PlaylistContentDetails,
     PlaylistListResponse,
     PlaylistSnippet,
     PlaylistStatus,
-)
-from .playlist_item import (
-    PlaylistItem,
-    PlaylistItemContentDetails,
-    PlaylistItemListResponse,
-    PlaylistItemSnippet,
-    PlaylistItemStatus,
 )
 from .subscription import (
     Subscription,

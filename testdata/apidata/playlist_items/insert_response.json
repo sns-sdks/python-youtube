@@ -1,0 +1,47 @@
+{
+  "kind": "youtube#playlistItem",
+  "etag": "4Bl2u6s8N1Jkkz1AHN4E-tw4OQQ",
+  "id": "UExCYWlkdDBpbENNYW5HRElLcjhVVkJGWndOX1V2TUt2Uy4wMTcyMDhGQUE4NTIzM0Y5",
+  "snippet": {
+    "publishedAt": "2022-11-15T13:38:09Z",
+    "channelId": "UCa-vrCLQHviTOVnEKDOdetQ",
+    "title": "Lecture 6: Version Control (git) (2020)",
+    "description": "You can find the lecture notes and exercises for this lecture at https://missing.csail.mit.edu/2020/version-control/\n\nHelp us caption & translate this video!\n\nhttps://amara.org/v/C1Ef9/",
+    "thumbnails": {
+      "default": {
+        "url": "https://i.ytimg.com/vi/2sjqTHE0zok/default.jpg",
+        "width": 120,
+        "height": 90
+      },
+      "medium": {
+        "url": "https://i.ytimg.com/vi/2sjqTHE0zok/mqdefault.jpg",
+        "width": 320,
+        "height": 180
+      },
+      "high": {
+        "url": "https://i.ytimg.com/vi/2sjqTHE0zok/hqdefault.jpg",
+        "width": 480,
+        "height": 360
+      },
+      "standard": {
+        "url": "https://i.ytimg.com/vi/2sjqTHE0zok/sddefault.jpg",
+        "width": 640,
+        "height": 480
+      },
+      "maxres": {
+        "url": "https://i.ytimg.com/vi/2sjqTHE0zok/maxresdefault.jpg",
+        "width": 1280,
+        "height": 720
+      }
+    },
+    "channelTitle": "ikaros data",
+    "playlistId": "PLBaidt0ilCManGDIKr8UVBFZwN_UvMKvS",
+    "position": 0,
+    "resourceId": {
+      "kind": "youtube#video",
+      "videoId": "2sjqTHE0zok"
+    },
+    "videoOwnerChannelTitle": "Missing Semester",
+    "videoOwnerChannelId": "UCuXy5tCgEninup9cGplbiFw"
+  }
+}
