@@ -97,7 +97,7 @@ class PlaylistItemsResource(Resource):
 
     def insert(
         self,
-        body: Optional[dict, PlaylistItem],
+        body: Union[dict, PlaylistItem],
         parts: Optional[Union[str, list, tuple, set]] = None,
         on_behalf_of_content_owner: Optional[str] = None,
         return_json: bool = False,
@@ -144,7 +144,7 @@ class PlaylistItemsResource(Resource):
 
     def update(
         self,
-        body: Optional[dict, PlaylistItem],
+        body: Union[dict, PlaylistItem],
         parts: Optional[Union[str, list, tuple, set]] = None,
         on_behalf_of_content_owner: Optional[str] = None,
         return_json: bool = False,
