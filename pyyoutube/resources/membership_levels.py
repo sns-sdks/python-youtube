@@ -40,6 +40,6 @@ class MembershipLevelsResource(Resource):
             "part": enf_parts(resource="membershipsLevels", value=parts),
             **kwargs,
         }
-        response = self._client.request(path="channels", params=params)
+        response = self._client.request(path="membershipsLevels", params=params)
         data = self._client.parse_response(response=response)
         return data if return_json else MembershipsLevelListResponse.from_dict(data)
