@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, asdict
 from typing import Type, TypeVar
 
 from dataclasses_json import DataClassJsonMixin
@@ -16,3 +16,8 @@ class BaseModel(DataClassJsonMixin):
         # save original data for lookup
         cls._json = kvs
         return _decode_dataclass(cls, kvs, infer_missing)
+
+    def to_dict_ignore_none(self):
+        return asdict(
+            obj=self, dict_factory=lambda x: {k: v for (k, v) in x if v is not None}
+        )

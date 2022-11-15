@@ -51,8 +51,13 @@ class PyYouTubeException(Exception):
         elif isinstance(self.response, Response):
             res_data = self.response.json()
             if "error" in res_data:
-                self.status_code = res_data["error"]["code"]
-                self.message = res_data["error"]["message"]
+                error = res_data["error"]
+                if isinstance(error, dict):
+                    self.status_code = res_data["error"]["code"]
+                    self.message = res_data["error"]["message"]
+                else:
+                    self.status_code = self.response.status_code
+                    self.message = error
                 self.error_type = "YouTubeException"
 
     def __repr__(self):

@@ -1,0 +1,15 @@
+{
+  "kind": "youtube#channelSection",
+  "etag": "VNVb0NhdJ8VHoZaVCqGVqfaRrVU",
+  "id": "UCa-vrCLQHviTOVnEKDOdetQ.Zx4DA4xg9IM",
+  "snippet": {
+    "type": "multipleplaylists",
+    "channelId": "UCa-vrCLQHviTOVnEKDOdetQ",
+    "position": 4
+  },
+  "contentDetails": {
+    "playlists": [
+      "PLBaidt0ilCMbUdj0EppB710c_X5OuCP2g"
+    ]
+  }
+}

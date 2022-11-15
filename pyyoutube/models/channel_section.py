@@ -2,12 +2,11 @@
     Those are models related to channel sections.
 """
 
-from dataclasses import dataclass, field, make_dataclass
-from dataclasses_json import config
-from typing import List, Optional, Any
+from dataclasses import dataclass, field
+from typing import List, Optional
 
 from .base import BaseModel
-from .common import Localized, BaseResource, BaseApiResponse
+from .common import BaseResource, BaseApiResponse
 
 
 @dataclass
@@ -41,7 +40,7 @@ class ChannelSection(BaseResource):
     """
     A class representing the channel section info.
 
-    Refer: https://developers.google.com/youtube/v3/docs/channelSections
+    Refer: https://developers.google.com/youtube/v3/docs/channelSections#properties
     """
 
     snippet: Optional[ChannelSectionSnippet] = field(default=None, repr=False)
@@ -59,3 +58,8 @@ class ChannelSectionResponse(BaseApiResponse):
     """
 
     items: Optional[List[ChannelSection]] = field(default=None, repr=False)
+
+
+@dataclass
+class ChannelSectionListResponse(ChannelSectionResponse):
+    ...

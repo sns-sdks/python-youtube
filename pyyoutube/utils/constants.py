@@ -2,6 +2,17 @@
     some constants for YouTube
 """
 
+ACTIVITIES_RESOURCE_PROPERTIES = {
+    "id",
+    "snippet",
+    "contentDetails",
+}
+
+CAPTIONS_RESOURCE_PROPERTIES = {
+    "id",
+    "snippet",
+}
+
 CHANNEL_RESOURCE_PROPERTIES = {
     "id",
     "brandingSettings",
@@ -16,10 +27,28 @@ CHANNEL_RESOURCE_PROPERTIES = {
 CHANNEL_SECTIONS_PROPERTIES = {
     "id",
     "contentDetails",
-    "localizations",
     "snippet",
-    "targeting",
 }
+
+COMMENT_RESOURCE_PROPERTIES = {"id", "snippet"}
+
+COMMENT_THREAD_RESOURCE_PROPERTIES = {"id", "replies", "snippet"}
+
+I18N_LANGUAGE_PROPERTIES = {"snippet"}
+
+I18N_REGION_PROPERTIES = {"snippet"}
+
+MEMBER_PROPERTIES = {
+    "id",
+    "snippet",
+}
+
+MEMBERSHIP_LEVEL_PROPERTIES = {
+    "id",
+    "snippet",
+}
+
+PLAYLIST_ITEM_RESOURCE_PROPERTIES = {"id", "contentDetails", "snippet", "status"}
 
 PLAYLIST_RESOURCE_PROPERTIES = {
     "id",
@@ -30,7 +59,21 @@ PLAYLIST_RESOURCE_PROPERTIES = {
     "status",
 }
 
-PLAYLIST_ITEM_RESOURCE_PROPERTIES = {"id", "contentDetails", "snippet", "status"}
+SEARCH_RESOURCE_PROPERTIES = {"id", "snippet"}
+
+SUBSCRIPTION_RESOURCE_PROPERTIES = {
+    "id",
+    "snippet",
+    "contentDetails",
+    "subscriberSnippet",
+}
+
+VIDEO_ABUSE_REPORT_REASON_PROPERTIES = {
+    "id",
+    "snippet",
+}
+
+VIDEO_CATEGORY_RESOURCE_PROPERTIES = {"id", "snippet"}
 
 VIDEO_RESOURCE_PROPERTIES = {
     "id",
@@ -43,78 +86,27 @@ VIDEO_RESOURCE_PROPERTIES = {
     "liveStreamingDetails",
 }
 
-COMMENT_THREAD_RESOURCE_PROPERTIES = {"id", "replies", "snippet"}
-
-COMMENT_RESOURCE_PROPERTIES = {"id", "snippet"}
-
-VIDEO_CATEGORY_RESOURCE_PROPERTIES = {"id", "snippet"}
-
 GUIDE_CATEGORY_RESOURCE_PROPERTIES = {"id", "snippet"}
 
-SEARCH_RESOURCE_PROPERTIES = {"id", "snippet"}
-
-SUBSCRIPTION_RESOURCE_PROPERTIES = {
-    "id",
-    "snippet",
-    "contentDetails",
-    "subscriberSnippet",
-}
-
-ACTIVITIES_RESOURCE_PROPERTIES = {
-    "id",
-    "snippet",
-    "contentDetails",
-}
-
-CAPTIONS_RESOURCE_PROPERTIES = {
-    "id",
-    "snippet",
-}
-
-I18N_REGION_PROPERTIES = {
-    "id",
-    "snippet",
-}
-
-I18N_LANGUAGE_PROPERTIES = {
-    "id",
-    "snippet",
-}
-
-VIDEO_ABUSE_REPORT_REASON_PROPERTIES = {
-    "id",
-    "snippet",
-}
-
-MEMBER_PROPERTIES = {
-    "id",
-    "snippet",
-}
-
-MEMBERSHIP_LEVEL_PROPERTIES = {
-    "id",
-    "snippet",
-}
-
 RESOURCE_PARTS_MAPPING = {
-    "channels": CHANNEL_RESOURCE_PROPERTIES,
-    "channelSections": CHANNEL_SECTIONS_PROPERTIES,
-    "playlists": PLAYLIST_RESOURCE_PROPERTIES,
-    "playlistItems": PLAYLIST_ITEM_RESOURCE_PROPERTIES,
-    "videos": VIDEO_RESOURCE_PROPERTIES,
-    "commentThreads": COMMENT_THREAD_RESOURCE_PROPERTIES,
-    "comments": COMMENT_RESOURCE_PROPERTIES,
-    "videoCategories": VIDEO_CATEGORY_RESOURCE_PROPERTIES,
-    "guideCategories": GUIDE_CATEGORY_RESOURCE_PROPERTIES,
-    "search": SEARCH_RESOURCE_PROPERTIES,
-    "subscriptions": SUBSCRIPTION_RESOURCE_PROPERTIES,
     "activities": ACTIVITIES_RESOURCE_PROPERTIES,
     "captions": CAPTIONS_RESOURCE_PROPERTIES,
-    "i18nRegions": I18N_REGION_PROPERTIES,
+    "channels": CHANNEL_RESOURCE_PROPERTIES,
+    "channelSections": CHANNEL_SECTIONS_PROPERTIES,
+    "comments": COMMENT_RESOURCE_PROPERTIES,
+    "commentThreads": COMMENT_THREAD_RESOURCE_PROPERTIES,
     "i18nLanguages": I18N_LANGUAGE_PROPERTIES,
-    "videoAbuseReportReasons": VIDEO_ABUSE_REPORT_REASON_PROPERTIES,
+    "i18nRegions": I18N_REGION_PROPERTIES,
     "members": MEMBER_PROPERTIES,
     "membershipsLevels": MEMBERSHIP_LEVEL_PROPERTIES,
+    "playlistItems": PLAYLIST_ITEM_RESOURCE_PROPERTIES,
+    "playlists": PLAYLIST_RESOURCE_PROPERTIES,
+    "search": SEARCH_RESOURCE_PROPERTIES,
+    "subscriptions": SUBSCRIPTION_RESOURCE_PROPERTIES,
+    "videoAbuseReportReasons": VIDEO_ABUSE_REPORT_REASON_PROPERTIES,
+    "videoCategories": VIDEO_CATEGORY_RESOURCE_PROPERTIES,
+    "videos": VIDEO_RESOURCE_PROPERTIES,
+    "guideCategories": GUIDE_CATEGORY_RESOURCE_PROPERTIES,
 }
 
 TOPICS = {
