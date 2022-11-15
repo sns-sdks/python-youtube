@@ -1,0 +1,14 @@
+{
+  "error": {
+    "code": 403,
+    "message": "The caller does not have permission",
+    "errors": [
+      {
+        "message": "Permission denied.",
+        "domain": "youtube.CoreErrorDomain",
+        "reason": "SERVICE_UNAVAILABLE"
+      }
+    ],
+    "status": "PERMISSION_DENIED"
+  }
+}

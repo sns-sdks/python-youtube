@@ -10,6 +10,9 @@ class ErrorTest(unittest.TestCase):
     with open(BASE_PATH + "error_response.json", "rb") as f:
         ERROR_DATA = f.read()
 
+    with open(BASE_PATH + "error_response_simple.json", "rb") as f:
+        ERROR_DATA_SIMPLE = f.read()
+
     def testResponseError(self) -> None:
         response = Response()
         response.status_code = 400
@@ -23,6 +26,14 @@ class ErrorTest(unittest.TestCase):
         error_msg = "YouTubeException(status_code=400,message=Bad Request)"
         self.assertEqual(repr(ex), error_msg)
         self.assertTrue(str(ex), error_msg)
+
+    def testResponseErrorSimple(self) -> None:
+        response = Response()
+        response.status_code = 400
+        response._content = self.ERROR_DATA_SIMPLE
+
+        ex = PyYouTubeException(response=response)
+        self.assertEqual(ex.status_code, 400)
 
     def testErrorMessage(self):
         response = ErrorMessage(status_code=ErrorCode.HTTP_ERROR, message="error")

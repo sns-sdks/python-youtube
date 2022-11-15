@@ -1,20 +1,40 @@
 """
     These are channel related models.
+
+    References: https://developers.google.com/youtube/v3/docs/channels#properties
 """
 from dataclasses import dataclass, field
 from typing import List, Optional
 
 from .base import BaseModel
-from .common import BaseResource, BaseTopicDetails, Thumbnails, BaseApiResponse
+from .common import (
+    BaseResource,
+    BaseTopicDetails,
+    Thumbnails,
+    BaseApiResponse,
+    Localized,
+)
 from .mixins import DatetimeTimeMixin
 
 
 @dataclass
-class ChannelBrandingChannel(BaseModel):
+class RelatedPlaylists(BaseModel):
+    """
+    A class representing the channel's related playlists info
+
+    References: https://developers.google.com/youtube/v3/docs/channels#contentDetails.relatedPlaylists
+    """
+
+    likes: Optional[str] = field(default=None, repr=False)
+    uploads: Optional[str] = field(default=None)
+
+
+@dataclass
+class ChannelBrandingSettingChannel(BaseModel):
     """
     A class representing the channel branding setting's channel info.
 
-    Refer: https://developers.google.com/youtube/v3/docs/channels#brandingSettings.channel
+    References: https://developers.google.com/youtube/v3/docs/channels#brandingSettings.channel
     """
 
     title: Optional[str] = field(default=None)
@@ -28,103 +48,14 @@ class ChannelBrandingChannel(BaseModel):
 
 
 @dataclass
-class ChannelBrandingImage(BaseModel):
+class ChannelBrandingSettingImage(BaseModel):
     """
     A class representing the channel branding setting's image info.
 
-    Refer: https://developers.google.com/youtube/v3/docs/channels#brandingSettings.image
+    References: https://developers.google.com/youtube/v3/docs/channels#brandingSettings.image
     """
 
-    bannerImageUrl: Optional[str] = field(default=None)
-    bannerMobileImageUrl: Optional[str] = field(default=None, repr=False)
-    watchIconImageUrl: Optional[str] = field(default=None, repr=False)
-    trackingImageUrl: Optional[str] = field(default=None, repr=False)
-    bannerTabletLowImageUrl: Optional[str] = field(default=None, repr=False)
-    bannerTabletImageUrl: Optional[str] = field(default=None, repr=None)
-    bannerTabletHdImageUrl: Optional[str] = field(default=None, repr=None)
-    bannerTabletExtraHdImageUrl: Optional[str] = field(default=None, repr=None)
-    bannerMobileLowImageUrl: Optional[str] = field(default=None, repr=None)
-    bannerMobileMediumHdImageUrl: Optional[str] = field(default=None, repr=None)
-    bannerMobileHdImageUrl: Optional[str] = field(default=None, repr=None)
-    bannerMobileExtraHdImageUrl: Optional[str] = field(default=None, repr=None)
-    bannerTvImageUrl: Optional[str] = field(default=None, repr=None)
-    bannerTvLowImageUrl: Optional[str] = field(default=None, repr=None)
-    bannerTvMediumImageUrl: Optional[str] = field(default=None, repr=None)
-    bannerTvHighImageUrl: Optional[str] = field(default=None, repr=None)
-    bannerExternalUrl: Optional[str] = field(default=None, repr=None)
-
-
-@dataclass
-class ChannelBrandingHint(BaseModel):
-    """
-    A class representing the channel branding setting's hint info.
-
-    Refer: https://developers.google.com/youtube/v3/docs/channels#brandingSettings.hints
-    """
-
-    property: Optional[str] = field(default=None)
-    value: Optional[str] = field(default=None)
-
-
-@dataclass
-class ChannelBrandingSetting(BaseModel):
-    """
-    A class representing the channel branding settings info.
-
-    Refer: https://developers.google.com/youtube/v3/docs/channels#brandingSettings
-    """
-
-    channel: Optional[ChannelBrandingChannel] = field(default=None)
-
-
-@dataclass
-class RelatedPlaylists(BaseModel):
-    """
-    A class representing the channel's related playlist info
-
-    Refer: https://developers.google.com/youtube/v3/docs/channels#contentDetails.relatedPlaylists
-    """
-
-    likes: Optional[str] = field(default=None, repr=False)
-    uploads: Optional[str] = field(default=None)
-
-
-@dataclass
-class ChannelContentDetails(BaseModel):
-    """
-    A class representing the channel's content info.
-
-    Refer: https://developers.google.com/youtube/v3/docs/channels#contentDetails
-    """
-
-    relatedPlaylists: Optional[RelatedPlaylists] = field(default=None)
-
-
-@dataclass
-class ChannelTopicDetails(BaseTopicDetails):
-    """
-    A class representing the channel's topic detail info.
-
-    Refer: https://developers.google.com/youtube/v3/docs/channels#topicDetails
-    """
-
-    # Important:
-    # topicIds maybe has deprecated.
-    # see more: https://developers.google.com/youtube/v3/revision_history#november-10-2016
-    topicIds: Optional[List[str]] = field(default=None, repr=False)
-    topicCategories: Optional[List[str]] = field(default=None)
-
-
-@dataclass
-class Localized(BaseModel):
-    """
-    A class representing the channel snippet localized info.
-
-    Refer: https://developers.google.com/youtube/v3/docs/channels#snippet.localized
-    """
-
-    title: Optional[str] = field(default=None)
-    description: Optional[str] = field(default=None, repr=False)
+    bannerExternalUrl: Optional[str] = field(default=None, repr=False)
 
 
 @dataclass
@@ -132,7 +63,7 @@ class ChannelSnippet(BaseModel, DatetimeTimeMixin):
     """
     A class representing the channel snippet info.
 
-    Refer: https://developers.google.com/youtube/v3/docs/channels#snippet
+    References: https://developers.google.com/youtube/v3/docs/channels#snippet
     """
 
     title: Optional[str] = field(default=None)
@@ -146,11 +77,22 @@ class ChannelSnippet(BaseModel, DatetimeTimeMixin):
 
 
 @dataclass
+class ChannelContentDetails(BaseModel):
+    """
+    A class representing the channel's content info.
+
+    References: https://developers.google.com/youtube/v3/docs/channels#contentDetails
+    """
+
+    relatedPlaylists: Optional[RelatedPlaylists] = field(default=None)
+
+
+@dataclass
 class ChannelStatistics(BaseModel):
     """
     A class representing the Channel's statistics info.
 
-    Refer: https://developers.google.com/youtube/v3/docs/channels#statistics
+    References: https://developers.google.com/youtube/v3/docs/channels#statistics
     """
 
     viewCount: Optional[int] = field(default=None)
@@ -160,16 +102,69 @@ class ChannelStatistics(BaseModel):
 
 
 @dataclass
+class ChannelTopicDetails(BaseTopicDetails):
+    """
+    A class representing the channel's topic detail info.
+
+    References: https://developers.google.com/youtube/v3/docs/channels#topicDetails
+    """
+
+    # Important:
+    # topicIds maybe has deprecated.
+    # see more: https://developers.google.com/youtube/v3/revision_history#november-10-2016
+    topicIds: Optional[List[str]] = field(default=None, repr=False)
+    topicCategories: Optional[List[str]] = field(default=None)
+
+
+@dataclass
 class ChannelStatus(BaseModel):
     """
     A class representing the channel's status info.
 
-    Refer: https://developers.google.com/youtube/v3/docs/channels#status
+    References: https://developers.google.com/youtube/v3/docs/channels#status
     """
 
     privacyStatus: Optional[str] = field(default=None)
     isLinked: Optional[bool] = field(default=None, repr=False)
     longUploadsStatus: Optional[str] = field(default=None, repr=False)
+    madeForKids: Optional[bool] = field(default=None, repr=False)
+    selfDeclaredMadeForKids: Optional[bool] = field(default=None, repr=False)
+
+
+@dataclass
+class ChannelBrandingSetting(BaseModel):
+    """
+    A class representing the channel branding settings info.
+
+    References: https://developers.google.com/youtube/v3/docs/channels#brandingSettings
+    """
+
+    channel: Optional[ChannelBrandingSettingChannel] = field(default=None)
+    image: Optional[ChannelBrandingSettingImage] = field(default=None)
+
+
+@dataclass
+class ChannelAuditDetails(BaseModel):
+    """A class representing the channel audit details info.
+
+    References: https://developers.google.com/youtube/v3/docs/channels#auditDetails
+    """
+
+    overallGoodStanding: Optional[bool] = field(default=None)
+    communityGuidelinesGoodStanding: Optional[bool] = field(default=None, repr=True)
+    copyrightStrikesGoodStanding: Optional[bool] = field(default=None, repr=True)
+    contentIdClaimsGoodStanding: Optional[bool] = field(default=None, repr=True)
+
+
+@dataclass
+class ChannelContentOwnerDetails(BaseModel):
+    """A class representing the channel data relevant for YouTube Partners.
+
+    References: https://developers.google.com/youtube/v3/docs/channels#contentOwnerDetails
+    """
+
+    contentOwner: Optional[str] = field(default=None)
+    timeLinked: Optional[str] = field(default=None)
 
 
 @dataclass
@@ -177,7 +172,7 @@ class Channel(BaseResource):
     """
     A class representing the channel's info.
 
-    Refer: https://developers.google.com/youtube/v3/docs/channels
+    References: https://developers.google.com/youtube/v3/docs/channels
     """
 
     snippet: Optional[ChannelSnippet] = field(default=None, repr=False)
@@ -186,6 +181,11 @@ class Channel(BaseResource):
     topicDetails: Optional[ChannelTopicDetails] = field(default=None, repr=False)
     status: Optional[ChannelStatus] = field(default=None, repr=False)
     brandingSettings: Optional[ChannelBrandingSetting] = field(default=None, repr=False)
+    auditDetails: Optional[ChannelAuditDetails] = field(default=None, repr=False)
+    contentOwnerDetails: Optional[ChannelContentOwnerDetails] = field(
+        default=None, repr=False
+    )
+    localizations: Optional[dict] = field(default=None, repr=False)
 
 
 @dataclass
@@ -193,7 +193,7 @@ class ChannelListResponse(BaseApiResponse):
     """
     A class representing the channel's retrieve response info.
 
-    Refer: https://developers.google.com/youtube/v3/docs/channels/list#response_1
+    References: https://developers.google.com/youtube/v3/docs/channels/list#response
     """
 
     items: Optional[List[Channel]] = field(default=None, repr=False)
