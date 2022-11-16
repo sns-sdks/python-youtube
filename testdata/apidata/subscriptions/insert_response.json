@@ -1,0 +1,47 @@
+{
+  "kind": "youtube#subscription",
+  "etag": "BBbHqFIch0N1EhR1bwn0s3MofFg",
+  "id": "POsnRIYsMcp1Cghr_Fsh-6uFZRcIHmTKzzByiv9ZAro",
+  "snippet": {
+    "publishedAt": "2022-11-16T11:02:09.19802Z",
+    "title": "iQIYI 综艺精选",
+    "description": "www.iq.com\n\niQIYI is an innovative market-leading online entertainment service and one of the largest internet companies in terms of user base in China. Over 1500 hit films and 180 TV shows are available FOR FREE on our global platform with multilingual subtitles in Mandarin, English, Malay, Indonesian, Thai and Vietnamese. \nWebsite: http://bit.ly/iqjxweb\n\nClick the link below to download iQIYI App and explore thousands of highly popular original and professionally-produced content.\nApp: http://bit.ly/iqjxapp\n\nFollow us on Facebook and know everything about your favorite shows!\nFacebook: https://bit.ly/iqiyifb\nInstagram: https://bit.ly/iqiyiins\nTwitter: https://bit.ly/iqiyitw",
+    "resourceId": {
+      "kind": "youtube#channel",
+      "channelId": "UCQ6ptCagG3W0Bf4lexvnBEg"
+    },
+    "channelId": "UCa-vrCLQHviTOVnEKDOdetQ",
+    "thumbnails": {
+      "default": {
+        "url": "https://yt3.ggpht.com/kszyCtmb0Bsjo-Pwp6lhZnAA6wMP8gzqNU9qZOj-b9p2GvwF4yygtPBzuRpmGUPtymByYol9Oj8=s88-c-k-c0x00ffffff-no-rj"
+      },
+      "medium": {
+        "url": "https://yt3.ggpht.com/kszyCtmb0Bsjo-Pwp6lhZnAA6wMP8gzqNU9qZOj-b9p2GvwF4yygtPBzuRpmGUPtymByYol9Oj8=s240-c-k-c0x00ffffff-no-rj"
+      },
+      "high": {
+        "url": "https://yt3.ggpht.com/kszyCtmb0Bsjo-Pwp6lhZnAA6wMP8gzqNU9qZOj-b9p2GvwF4yygtPBzuRpmGUPtymByYol9Oj8=s800-c-k-c0x00ffffff-no-rj"
+      }
+    }
+  },
+  "contentDetails": {
+    "totalItemCount": 6986,
+    "newItemCount": 0,
+    "activityType": "all"
+  },
+  "subscriberSnippet": {
+    "title": "ikaros data",
+    "description": "This is a test channel.",
+    "channelId": "UCa-vrCLQHviTOVnEKDOdetQ",
+    "thumbnails": {
+      "default": {
+        "url": "https://yt3.ggpht.com/ytc/AMLnZu-fT-p35OYe0OaSzOmrQY8KEjXVHMgPxyj-hV2r=s88-c-k-c0x00ffffff-no-rj"
+      },
+      "medium": {
+        "url": "https://yt3.ggpht.com/ytc/AMLnZu-fT-p35OYe0OaSzOmrQY8KEjXVHMgPxyj-hV2r=s240-c-k-c0x00ffffff-no-rj"
+      },
+      "high": {
+        "url": "https://yt3.ggpht.com/ytc/AMLnZu-fT-p35OYe0OaSzOmrQY8KEjXVHMgPxyj-hV2r=s800-c-k-c0x00ffffff-no-rj"
+      }
+    }
+  }
+}
