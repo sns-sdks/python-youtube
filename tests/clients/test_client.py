@@ -33,7 +33,7 @@ class TestClient(BaseTestCase):
         with pytest.raises(PyYouTubeException):
             with responses.RequestsMock() as m:
                 m.add(method="GET", url=self.url, body=HTTPError("Exception"))
-                key_cli.channels.list(id="xxxxx")
+                key_cli.channels.list(channel_id="xxxxx")
 
     def test_parse_response(self, key_cli, helpers):
         with pytest.raises(PyYouTubeException):

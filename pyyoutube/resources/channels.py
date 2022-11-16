@@ -6,7 +6,7 @@ from typing import Optional, Union
 from pyyoutube.error import PyYouTubeException, ErrorMessage, ErrorCode
 from pyyoutube.resources.base_resource import Resource
 from pyyoutube.models import Channel, ChannelListResponse
-from pyyoutube.utils.params_checker import enf_parts
+from pyyoutube.utils.params_checker import enf_comma_separated, enf_parts
 
 
 class ChannelsResource(Resource):
@@ -19,7 +19,7 @@ class ChannelsResource(Resource):
         self,
         parts: Optional[Union[str, list, tuple, set]] = None,
         for_username: Optional[str] = None,
-        id: Optional[str] = None,
+        channel_id: Optional[Union[str, list, tuple, set]] = None,
         managed_by_me: Optional[bool] = None,
         mine: Optional[bool] = None,
         hl: Optional[str] = None,
@@ -39,7 +39,7 @@ class ChannelsResource(Resource):
             for_username:
                 The parameter specifies a YouTube username, thereby requesting
                 the channel associated with that username.
-            id:
+            channel_id:
                 The parameter specifies a comma-separated list of the YouTube channel ID(s)
                 for the resource(s) that are being retrieved.
             managed_by_me:
@@ -92,8 +92,8 @@ class ChannelsResource(Resource):
         }
         if for_username is not None:
             params["forUsername"] = for_username
-        elif id is not None:
-            params["id"] = id
+        elif channel_id is not None:
+            params["id"] = enf_comma_separated(field="channel_id", value=channel_id)
         elif managed_by_me is not None:
             params["managedByMe"] = managed_by_me
         elif mine is not None:

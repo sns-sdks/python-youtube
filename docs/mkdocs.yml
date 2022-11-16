@@ -30,6 +30,7 @@ theme:
 
 nav:
   - Introduction: index.md
+  - Introduce Structure: introduce-new-structure.md
   - Installation: installation.md
   - Getting Started: getting_started.md
   - Authorization: authorization.md
