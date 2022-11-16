@@ -31,7 +31,7 @@ Library provides an easy way to use YouTube Data API V3.
 
 .. 
 
-    Recently, we are working on the new structure for the library. `Read docs <docs/introduce-new-structure.md>`_ to get more detail.
+    Recently, we are working on the new structure for the library. `Read docs <docs/docs/introduce-new-structure.md>`_ to get more detail.
 
 =============
 Documentation
