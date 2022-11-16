@@ -10,3 +10,4 @@ from .membership_levels import MembershipLevelsResource  # noqa
 from .playlist_items import PlaylistItemsResource  # noqa
 from .playlists import PlaylistsResource  # noqa
 from .search import SearchResource  # noqa
+from .subscriptions import SubscriptionsResource  # noqa
