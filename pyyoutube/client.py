@@ -49,6 +49,7 @@ class Client:
     membershipsLevels = resources.MembershipLevelsResource()
     playlistItems = resources.PlaylistItemsResource()
     playlists = resources.PlaylistsResource()
+    search = resources.SearchResource()
 
     def __new__(cls, *args, **kwargs):
         self = super().__new__(cls)
