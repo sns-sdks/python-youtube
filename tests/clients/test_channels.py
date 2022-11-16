@@ -23,7 +23,7 @@ class TestChannelsResource(BaseTestCase):
 
             res = key_cli.channels.list(
                 parts="id,snippet",
-                id=self.channel_id,
+                channel_id=self.channel_id,
             )
             assert res.items[0].id == self.channel_id
             assert key_cli.channels.api_key == "api key"
@@ -54,7 +54,7 @@ class TestChannelsResource(BaseTestCase):
 
             res = authed_cli.channels.list(
                 parts="id,snippet,statistics,contentDetails,brandingSettings",
-                id="UC_x5XG1OV2P6uZZ5FSM9Ttw,UCK8sQmJBp8GCxrOtXWBpyEA",
+                channel_id="UC_x5XG1OV2P6uZZ5FSM9Ttw,UCK8sQmJBp8GCxrOtXWBpyEA",
             )
             assert len(res.items) == 2
 
