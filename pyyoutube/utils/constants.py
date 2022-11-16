@@ -2,16 +2,9 @@
     some constants for YouTube
 """
 
-ACTIVITIES_RESOURCE_PROPERTIES = {
-    "id",
-    "snippet",
-    "contentDetails",
-}
+ACTIVITIES_RESOURCE_PROPERTIES = {"id", "snippet", "contentDetails"}
 
-CAPTIONS_RESOURCE_PROPERTIES = {
-    "id",
-    "snippet",
-}
+CAPTIONS_RESOURCE_PROPERTIES = {"id", "snippet"}
 
 CHANNEL_RESOURCE_PROPERTIES = {
     "id",
@@ -24,11 +17,7 @@ CHANNEL_RESOURCE_PROPERTIES = {
     "topicDetails",
 }
 
-CHANNEL_SECTIONS_PROPERTIES = {
-    "id",
-    "contentDetails",
-    "snippet",
-}
+CHANNEL_SECTIONS_PROPERTIES = {"id", "contentDetails", "snippet"}
 
 COMMENT_RESOURCE_PROPERTIES = {"id", "snippet"}
 
@@ -38,14 +27,9 @@ I18N_LANGUAGE_PROPERTIES = {"snippet"}
 
 I18N_REGION_PROPERTIES = {"snippet"}
 
-MEMBER_PROPERTIES = {
-    "snippet",
-}
+MEMBER_PROPERTIES = {"snippet"}
 
-MEMBERSHIP_LEVEL_PROPERTIES = {
-    "id",
-    "snippet",
-}
+MEMBERSHIP_LEVEL_PROPERTIES = {"id", "snippet"}
 
 PLAYLIST_ITEM_RESOURCE_PROPERTIES = {"id", "contentDetails", "snippet", "status"}
 
@@ -67,10 +51,7 @@ SUBSCRIPTION_RESOURCE_PROPERTIES = {
     "subscriberSnippet",
 }
 
-VIDEO_ABUSE_REPORT_REASON_PROPERTIES = {
-    "id",
-    "snippet",
-}
+VIDEO_ABUSE_REPORT_REASON_PROPERTIES = {"id", "snippet"}
 
 VIDEO_CATEGORY_RESOURCE_PROPERTIES = {"id", "snippet"}
 

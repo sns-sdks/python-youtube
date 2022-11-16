@@ -1,0 +1,33 @@
+{
+  "kind": "youtube#playlist",
+  "etag": "Gw0SW_V3Hy1XNqjAJB1v1Q0ZmB4",
+  "id": "PLBaidt0ilCMZN8XPVB5iXY6FlSYGeyn2n",
+  "snippet": {
+    "publishedAt": "2022-11-16T04:12:59Z",
+    "channelId": "UCa-vrCLQHviTOVnEKDOdetQ",
+    "title": "Test playlist",
+    "description": "",
+    "thumbnails": {
+      "default": {
+        "url": "https://i.ytimg.com/img/no_thumbnail.jpg",
+        "width": 120,
+        "height": 90
+      },
+      "medium": {
+        "url": "https://i.ytimg.com/img/no_thumbnail.jpg",
+        "width": 320,
+        "height": 180
+      },
+      "high": {
+        "url": "https://i.ytimg.com/img/no_thumbnail.jpg",
+        "width": 480,
+        "height": 360
+      }
+    },
+    "channelTitle": "ikaros data",
+    "localized": {
+      "title": "Test playlist",
+      "description": ""
+    }
+  }
+}
