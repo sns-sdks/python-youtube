@@ -15,6 +15,7 @@ from .member import *  # noqa
 from .memberships_level import *  # noqa
 from .playlist_item import *  # noqa
 from .playlist import *  # noqa
+from .search_result import *  # noqa
 from .subscription import (
     Subscription,
     SubscriptionContentDetails,
@@ -35,10 +36,4 @@ from .video import (
 from .video_abuse_report_reason import (
     VideoAbuseReportReason,
     VideoAbuseReportReasonListResponse,
-)
-from .search_result import (
-    SearchResultId,
-    SearchResultSnippet,
-    SearchResult,
-    SearchListResponse,
 )
