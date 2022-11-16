@@ -8,3 +8,4 @@ from .i18n_regions import I18nRegionsResource  # noqa
 from .members import MembersResource  # noqa
 from .membership_levels import MembershipLevelsResource  # noqa
 from .playlist_items import PlaylistItemsResource  # noqa
+from .playlists import PlaylistsResource  # noqa
