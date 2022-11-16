@@ -16,13 +16,7 @@ from .memberships_level import *  # noqa
 from .playlist_item import *  # noqa
 from .playlist import *  # noqa
 from .search_result import *  # noqa
-from .subscription import (
-    Subscription,
-    SubscriptionContentDetails,
-    SubscriptionListResponse,
-    SubscriptionSnippet,
-    SubscriptionSubscriberSnippet,
-)
+from .subscription import *  # noqa
 from .video import (
     Video,
     VideoContentDetails,

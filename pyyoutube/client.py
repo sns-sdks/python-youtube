@@ -50,6 +50,7 @@ class Client:
     playlistItems = resources.PlaylistItemsResource()
     playlists = resources.PlaylistsResource()
     search = resources.SearchResource()
+    subscriptions = resources.SubscriptionsResource()
 
     def __new__(cls, *args, **kwargs):
         self = super().__new__(cls)
