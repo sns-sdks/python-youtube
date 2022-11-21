@@ -11,3 +11,4 @@ from .playlist_items import PlaylistItemsResource  # noqa
 from .playlists import PlaylistsResource  # noqa
 from .search import SearchResource  # noqa
 from .subscriptions import SubscriptionsResource  # noqa
+from .video_abuse_report_reasons import VideoAbuseReportReasonsResource  # noqa
