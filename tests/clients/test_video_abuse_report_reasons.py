@@ -11,7 +11,7 @@ class TestVideoAbuseReportReasonsResource(BaseTestCase):
             m.add(
                 method="GET",
                 url=self.url,
-                json=self.load_json("abuse_reasons/abuse_reason.json", helpers)
+                json=self.load_json("abuse_reasons/abuse_reason.json", helpers),
             )
 
             res = authed_cli.videoAbuseReportReasons.list(
