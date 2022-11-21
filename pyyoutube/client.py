@@ -52,6 +52,7 @@ class Client:
     search = resources.SearchResource()
     subscriptions = resources.SubscriptionsResource()
     videoAbuseReportReasons = resources.VideoAbuseReportReasonsResource()
+    videoCategories = resources.VideoCategoriesResource()
 
     def __new__(cls, *args, **kwargs):
         self = super().__new__(cls)
