@@ -35,7 +35,7 @@ class ApiVideoCategoryTest(unittest.TestCase):
 
             res_by_single = self.api.get_video_categories(
                 category_id="17",
-                parts=["id", "snippet"],
+                parts=["snippet"],
                 return_json=True,
             )
             self.assertEqual(res_by_single["kind"], "youtube#videoCategoryListResponse")
@@ -44,14 +44,14 @@ class ApiVideoCategoryTest(unittest.TestCase):
 
             res_by_multi = self.api.get_video_categories(
                 category_id=["17", "18"],
-                parts="id,snippet",
+                parts="snippet",
             )
             self.assertEqual(len(res_by_multi.items), 2)
             self.assertEqual(res_by_multi.items[1].id, "18")
 
             res_by_region = self.api.get_video_categories(
                 region_code="US",
-                parts="id,snippet",
+                parts="snippet",
             )
             self.assertEqual(len(res_by_region.items), 32)
             self.assertEqual(res_by_region.items[0].id, "1")
