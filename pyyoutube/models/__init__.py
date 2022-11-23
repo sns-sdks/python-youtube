@@ -15,12 +15,4 @@ from .playlist import *  # noqa
 from .search_result import *  # noqa
 from .subscription import *  # noqa
 from .video_abuse_report_reason import *  # noqa
-from .video import (
-    Video,
-    VideoContentDetails,
-    VideoListResponse,
-    VideoSnippet,
-    VideoStatistics,
-    VideoStatus,
-    VideoTopicDetails,
-)
+from .video import *  # noqa

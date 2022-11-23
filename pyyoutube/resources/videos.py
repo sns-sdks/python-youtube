@@ -6,7 +6,12 @@ from typing import Optional, Union
 
 from pyyoutube.error import PyYouTubeException, ErrorCode, ErrorMessage
 from pyyoutube.resources.base_resource import Resource
-from pyyoutube.models import Video, VideoListResponse
+from pyyoutube.models import (
+    Video,
+    VideoListResponse,
+    VideoGetRatingResponse,
+    VideoReportAbuse,
+)
 from pyyoutube.utils.params_checker import enf_comma_separated, enf_parts
 
 
@@ -138,7 +143,7 @@ class VideosResource(Resource):
                 The onBehalfOfContentOwner parameter indicates that the request's authorization
                 credentials identify a YouTube CMS user who is acting on behalf of the content
                 owner specified in the parameter value. This parameter is intended for YouTube
-                content partners that own and manage many different YouTube channels. It allows
+                content partners that own and manage many difference YouTube channels. It allows
                 content owners to authenticate once and get access to all their video and channel
                 data, without having to provide authentication credentials for each individual channel.
                 The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
@@ -164,3 +169,160 @@ class VideosResource(Resource):
         )
         data = self._client.parse_response(response=response)
         return data if return_json else Video.from_dict(data)
+
+    def rate(
+        self,
+        video_id: str,
+        rating: Optional[str] = None,
+        **kwargs: Optional[dict],
+    ) -> bool:
+        """Add a like or dislike rating to a video or remove a rating from a video.
+
+        Args:
+            video_id:
+                Specifies the YouTube video ID of the video that is being rated or having its rating removed.
+            rating:
+                Specifies the rating to record.
+                Acceptable values are:
+                    - dislike: Records that the authenticated user disliked the video.
+                    - like: Records that the authenticated user liked the video.
+                    - none: Removes any rating that the authenticated user had previously set for the video.
+            **kwargs:
+                Additional parameters for system parameters.
+                Refer: https://cloud.google.com/apis/docs/system-parameters.
+
+        Returns:
+            Video rating status
+        """
+        params = {
+            "id": video_id,
+            "rating": rating,
+            **kwargs,
+        }
+        response = self._client.request(
+            method="PUT",
+            path="videos/rate",
+            params=params,
+        )
+        if response.ok:
+            return True
+        self._client.parse_response(response=response)
+
+    def get_rating(
+        self,
+        video_id: Optional[Union[str, list, tuple, set]],
+        on_behalf_of_content_owner: Optional[str] = None,
+        return_json: bool = False,
+        **kwargs: Optional[dict],
+    ) -> Union[dict, VideoGetRatingResponse]:
+        """Retrieves the ratings that the authorized user gave to a list of specified videos.
+
+        Args:
+            video_id:
+                Specifies a comma-separated list of the YouTube video ID(s).
+            on_behalf_of_content_owner:
+                The onBehalfOfContentOwner parameter indicates that the request's authorization
+                credentials identify a YouTube CMS user who is acting on behalf of the content
+                owner specified in the parameter value. This parameter is intended for YouTube
+                content partners that own and manage many different YouTube channels. It allows
+                content owners to authenticate once and get access to all their video and channel
+                data, without having to provide authentication credentials for each individual channel.
+                The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+            return_json:
+                Type for returned data. If you set True JSON data will be returned.
+            **kwargs:
+                Additional parameters for system parameters.
+                Refer: https://cloud.google.com/apis/docs/system-parameters.
+
+        Returns:
+            Video rating data.
+        """
+
+        params = {
+            "id": enf_comma_separated(field="video_id", value=video_id),
+            "onBehalfOfContentOwner": on_behalf_of_content_owner,
+            **kwargs,
+        }
+        response = self._client.request(path="videos/getRating", params=params)
+        data = self._client.parse_response(response=response)
+        return data if return_json else VideoGetRatingResponse.from_dict(data)
+
+    def report_abuse(
+        self,
+        body: Optional[dict, VideoReportAbuse],
+        on_behalf_of_content_owner: Optional[str] = None,
+        **kwargs: Optional[dict],
+    ) -> bool:
+        """Reports a video for containing abusive content.
+
+        Args:
+            body:
+                Provide report abuse data in the request body. You can give dataclass or just a dict with data.
+            on_behalf_of_content_owner:
+                The onBehalfOfContentOwner parameter indicates that the request's authorization
+                credentials identify a YouTube CMS user who is acting on behalf of the content
+                owner specified in the parameter value. This parameter is intended for YouTube
+                content partners that own and manage many different YouTube channels. It allows
+                content owners to authenticate once and get access to all their video and channel
+                data, without having to provide authentication credentials for each individual channel.
+                The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+            **kwargs:
+                Additional parameters for system parameters.
+                Refer: https://cloud.google.com/apis/docs/system-parameters.
+
+        Returns:
+            report status.
+        """
+        params = {
+            "onBehalfOfContentOwner": on_behalf_of_content_owner,
+            **kwargs,
+        }
+        response = self._client.request(
+            method="POST",
+            path="videos/reportAbuse",
+            params=params,
+            json=body,
+        )
+        if response.ok:
+            return True
+        self._client.parse_response(response=response)
+
+    def delete(
+        self,
+        video_id: str,
+        on_behalf_of_content_owner: Optional[str] = None,
+        **kwargs: Optional[dict],
+    ) -> bool:
+        """Deletes a YouTube video.
+
+        Args:
+            video_id:
+                Specifies the YouTube video ID for the resource that is being deleted.
+            on_behalf_of_content_owner:
+                The onBehalfOfContentOwner parameter indicates that the request's authorization
+                credentials identify a YouTube CMS user who is acting on behalf of the content
+                owner specified in the parameter value. This parameter is intended for YouTube
+                content partners that own and manage many different YouTube channels. It allows
+                content owners to authenticate once and get access to all their video and channel
+                data, without having to provide authentication credentials for each individual channel.
+                The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+            **kwargs:
+                Additional parameters for system parameters.
+                Refer: https://cloud.google.com/apis/docs/system-parameters.
+
+        Returns:
+            video delete status.
+        """
+        params = {
+            "id": video_id,
+            "onBehalfOfContentOwner": on_behalf_of_content_owner,
+            **kwargs,
+        }
+        response = self._client.request(
+            method="DELETE",
+            path="videos",
+            params=params,
+        )
+        if response.ok:
+            return True
+        self._client.parse_response(response=response)
