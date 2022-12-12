@@ -6,6 +6,7 @@ from typing import Optional, Union
 
 from pyyoutube.error import PyYouTubeException, ErrorCode, ErrorMessage
 from pyyoutube.resources.base_resource import Resource
+from pyyoutube.media import Media, MediaUpload
 from pyyoutube.models import (
     Video,
     VideoListResponse,
@@ -120,6 +121,73 @@ class VideosResource(Resource):
         response = self._client.request(path="videos", params=params)
         data = self._client.parse_response(response=response)
         return data if return_json else VideoListResponse.from_dict(data)
+
+    def insert(
+        self,
+        body: Union[dict, Video],
+        media: Media,
+        parts: Optional[Union[str, list, tuple, set]] = None,
+        notify_subscribers: Optional[bool] = None,
+        on_behalf_of_content_owner: Optional[str] = None,
+        on_behalf_of_content_owner_channel: Optional[str] = None,
+        **kwargs,
+    ) -> MediaUpload:
+        """Uploads a video to YouTube and optionally sets the video's metadata.
+
+        Args:
+            body:
+                Provide video data in the request body. You can give dataclass or just a dict with data.
+            media:
+                Media data to upload.
+            parts:
+                Comma-separated list of one or more channel resource properties.
+                Accepted values: id,contentDetails,fileDetails,liveStreamingDetails,
+                localizations,player,processingDetails,recordingDetails,snippet,statistics,
+                status,suggestions,topicDetails
+            notify_subscribers:
+                Indicates whether YouTube should send a notification about the new video to users who
+                subscribe to the video's channel
+            on_behalf_of_content_owner:
+                The onBehalfOfContentOwner parameter indicates that the request's authorization
+                credentials identify a YouTube CMS user who is acting on behalf of the content
+                owner specified in the parameter value. This parameter is intended for YouTube
+                content partners that own and manage many different YouTube channels. It allows
+                content owners to authenticate once and get access to all their video and channel
+                data, without having to provide authentication credentials for each individual channel.
+                The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+            on_behalf_of_content_owner_channel:
+                The onBehalfOfContentOwnerChannel parameter specifies the YouTube channel ID of the channel
+                to which a video is being added. This parameter is required when a request specifies a value
+                for the onBehalfOfContentOwner parameter, and it can only be used in conjunction with that
+                parameter. In addition, the request must be authorized using a CMS account that is linked to
+                the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel
+                that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content
+                owner that the onBehalfOfContentOwner parameter specifies.
+            return_json:
+                Type for returned data. If you set True JSON data will be returned.
+            **kwargs:
+                Additional parameters for system parameters.
+                Refer: https://cloud.google.com/apis/docs/system-parameters.
+        Returns:
+            Video data.
+
+        """
+        params = {
+            "part": enf_parts(resource="videos", value=parts),
+            "notifySubscribers": notify_subscribers,
+            "onBehalfOfContentOwner": on_behalf_of_content_owner,
+            "onBehalfOfContentOwnerChannel": on_behalf_of_content_owner_channel,
+            **kwargs,
+        }
+
+        # Build a media upload instance.
+        media_upload = MediaUpload(
+            client=self._client,
+            media=media,
+            params=params,
+            body=body.to_dict_ignore_none(),
+        )
+        return media_upload
 
     def update(
         self,
@@ -249,7 +317,7 @@ class VideosResource(Resource):
 
     def report_abuse(
         self,
-        body: Optional[dict, VideoReportAbuse],
+        body: Optional[Union[dict, VideoReportAbuse]],
         on_behalf_of_content_owner: Optional[str] = None,
         **kwargs: Optional[dict],
     ) -> bool:
