@@ -165,7 +165,7 @@ class MediaUpload:
         Returns:
             (UploadProgress, response body)
         """
-        if resp.ok:
+        if resp.status_code in [200, 201]:
             return None, self.client.parse_response(response=resp)
         elif resp.status_code == 308:
             try:
