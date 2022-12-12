@@ -134,6 +134,34 @@ class VideosResource(Resource):
     ) -> MediaUpload:
         """Uploads a video to YouTube and optionally sets the video's metadata.
 
+        Example:
+
+            import pyyoutube.models as mds
+            from pyyoutube.media import Media
+
+            body = mds.Video(
+                snippet=mds.VideoSnippet(
+                    title="video title",
+                    description="video description"
+                )
+            )
+
+            media = Media(filename="video.mp4")
+
+            upload = client.videos.insert(
+                body=body,
+                media=media,
+                parts=["snippet"],
+            )
+
+            response = None
+            while response is None:
+                status, response = upload.next_chunk()
+                if status:
+                    print(f"Upload {int(status.progress() * 100)} complete.")
+
+            print(f"Response body: {response}")
+
         Args:
             body:
                 Provide video data in the request body. You can give dataclass or just a dict with data.

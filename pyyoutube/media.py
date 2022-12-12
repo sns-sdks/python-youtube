@@ -3,13 +3,13 @@
 """
 import mimetypes
 import os
-from typing import Optional, IO
+from typing import IO, Optional, Tuple
 
 from requests import Response
 
 from pyyoutube.error import PyYouTubeException, ErrorMessage, ErrorCode
 
-DEFAULT_CHUNK_SIZE = 100 * 1024 * 1024
+DEFAULT_CHUNK_SIZE = 20 * 1024 * 1024
 
 
 class Media:
@@ -75,9 +75,32 @@ class Media:
         self.fd.seek(begin)
         return self.fd.read(length)
 
-    @classmethod
-    def new_from_json(cls, data: dict):
-        return Media(**data)
+
+class MediaUploadProgress:
+    def __init__(self, progressed_seize: int, total_size: int):
+        """
+        Args:
+            progressed_seize: Bytes sent so far.
+            total_size: Total bytes in complete upload, or None if the total
+            upload size isn't known ahead of time.
+        """
+        self.progressed_seize = progressed_seize
+        self.total_size = total_size
+
+    def progress(self) -> float:
+        """Percent of upload completed, as a float.
+
+        Returns:
+          the percentage complete as a float, returning 0.0 if the total size of
+          the upload is unknown.
+        """
+        if self.total_size is not None and self.total_size != 0:
+            return float(self.progressed_seize) / float(self.total_size)
+        else:
+            return 0.0
+
+    def __repr__(self) -> str:
+        return f"Media upload {int(self.progress() * 100)} complete."
 
 
 class MediaUpload:
@@ -87,9 +110,9 @@ class MediaUpload:
         media: Media,
         params: Optional[dict] = None,
         body: Optional[dict] = None,
-    ):
-        """
-        Instance to upload a file.
+    ) -> None:
+        """Constructor for upload a file.
+
         Args:
             client: Client instance.
             media: Media instance.
@@ -107,13 +130,17 @@ class MediaUpload:
         self.resumable_uri = None  # Real uri to upload media.
         self.resumable_progress = 0  # The bytes that have been uploaded.
 
-    def next_chunk(self):
+    def next_chunk(self) -> Tuple[Optional[MediaUploadProgress], Optional[dict]]:
+        """Execute the next step of a resumable upload.
+
+        Returns:
+            The body will be None until the resumable media is fully uploaded.
+        """
         if self.media.size is None:
             size = "*"
         else:
             size = str(self.media.size)
 
-        # 1231244
         if self.resumable_uri is None:
             start_headers = {
                 "X-Upload-Content-Type": self.media.mimetype,
@@ -157,13 +184,16 @@ class MediaUpload:
         )
         return self.process_response(resp)
 
-    def process_response(self, resp: Response):
-        """
+    def process_response(
+        self, resp: Response
+    ) -> Tuple[Optional[MediaUploadProgress], Optional[dict]]:
+        """Process the response from chunk upload.
+
         Args:
             resp: Response for request.
 
         Returns:
-            (UploadProgress, response body)
+            The body will be None until the resumable media is fully uploaded.
         """
         if resp.status_code in [200, 201]:
             return None, self.client.parse_response(response=resp)
@@ -182,15 +212,3 @@ class MediaUpload:
             MediaUploadProgress(self.resumable_progress, self.media.size),
             None,
         )
-
-
-class MediaUploadProgress:
-    def __init__(self, progressed_seize, total_size):
-        self.progressed_seize = progressed_seize
-        self.total_size = total_size
-
-    def progress(self):
-        if self.total_size is not None and self.total_size != 0:
-            return float(self.progressed_seize) / float(self.total_size)
-        else:
-            return 0.0
