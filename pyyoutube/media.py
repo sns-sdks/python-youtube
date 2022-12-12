@@ -125,7 +125,7 @@ class MediaUpload:
                 is_upload=True,
                 headers=start_headers,
             )
-            if resp.status == 200 and "location" in resp.headers:
+            if resp.status_code == 200 and "location" in resp.headers:
                 self.resumable_uri = resp.headers["location"]
             else:
                 raise PyYouTubeException(resp)
