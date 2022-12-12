@@ -149,7 +149,7 @@ class MediaUpload:
                 "Content-Range"
             ] = f"bytes {self.resumable_progress}-{chunk_end}/{size}"
 
-        resp, content = self.client.request(
+        resp = self.client.request(
             path=self.resumable_uri,
             method="PUT",
             data=data,
