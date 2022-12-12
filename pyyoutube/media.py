@@ -115,7 +115,7 @@ class MediaUpload:
             start_headers = {
                 "X-Upload-Content-Type": self.media.mimetype,
                 "X-Upload-Content-Length": size,
-                "content-length": len(self.body or ""),
+                "content-length": str(len(str(self.body or ""))),
             }
             resp = self.client.request(
                 method="POST",
