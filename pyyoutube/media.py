@@ -101,6 +101,9 @@ class MediaUpload:
         self.params = params
         self.body = body
 
+        if self.params is not None:
+            self.params["uploadType"] = "resumable"
+
         self.resumable_uri = None  # Real uri to upload media.
         self.resumable_progress = 0  # The bytes that have been uploaded.
 
@@ -149,7 +152,7 @@ class MediaUpload:
         resp, content = self.client.request(
             path=self.resumable_uri,
             method="PUT",
-            body=data,
+            data=data,
             headers=headers,
         )
         return self.process_response(resp)
