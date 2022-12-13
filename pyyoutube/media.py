@@ -136,10 +136,7 @@ class MediaUpload:
         Returns:
             The body will be None until the resumable media is fully uploaded.
         """
-        if self.media.size is None:
-            size = "*"
-        else:
-            size = str(self.media.size)
+        size = str(self.media.size)
 
         if self.resumable_uri is None:
             start_headers = {
@@ -171,6 +168,9 @@ class MediaUpload:
         headers = {
             "Content-Length": str(chunk_end - self.resumable_progress + 1),
         }
+        # An empty file results in chunk_end = -1 and size = 0
+        # sending "bytes 0--1/0" results in an invalid request
+        # Only add header "Content-Range" if chunk_end != -1
         if chunk_end != -1:
             headers[
                 "Content-Range"

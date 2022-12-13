@@ -1,0 +1,72 @@
+{
+  "kind": "youtube#video",
+  "etag": "\"j6xRRd8dTPVVptg711_CSPADRfg/dbCtFPFQrd6OMTnWAYrcpZDPai0\"",
+  "id": "D-lhorsDlUQ",
+  "snippet": {
+    "publishedAt": "2019-03-21T20:37:49.000Z",
+    "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+    "title": "What are Actions on Google (Assistant on Air)",
+    "description": "In the first episode of Assistant on Air, Luke Davis and guest Jessica Dene Early-Cha introduce the concept of Actions on Google, and talk about common terminology.\n\nActions on Google docs → http://bit.ly/2YabdS5\n\nOther episodes of Assistant on Air → https://goo.gle/2X0nBqG\nSubscribe to Google Devs for the latest Actions on Google videos →  https://bit.ly/googledevs",
+    "thumbnails": {
+      "default": {
+        "url": "https://i.ytimg.com/vi/D-lhorsDlUQ/default.jpg",
+        "width": 120,
+        "height": 90
+      },
+      "medium": {
+        "url": "https://i.ytimg.com/vi/D-lhorsDlUQ/mqdefault.jpg",
+        "width": 320,
+        "height": 180
+      },
+      "high": {
+        "url": "https://i.ytimg.com/vi/D-lhorsDlUQ/hqdefault.jpg",
+        "width": 480,
+        "height": 360
+      },
+      "standard": {
+        "url": "https://i.ytimg.com/vi/D-lhorsDlUQ/sddefault.jpg",
+        "width": 640,
+        "height": 480
+      },
+      "maxres": {
+        "url": "https://i.ytimg.com/vi/D-lhorsDlUQ/maxresdefault.jpg",
+        "width": 1280,
+        "height": 720
+      }
+    },
+    "channelTitle": "Google Developers",
+    "tags": [
+      "Google",
+      "developers",
+      "aog",
+      "Actions on Google",
+      "Assistant",
+      "Google Assistant",
+      "actions",
+      "google home",
+      "actions on google",
+      "google assistant developers",
+      "google assistant sdk",
+      "Actions on google developers",
+      "smarthome developers",
+      "common terminology",
+      "custom action on google",
+      "google assistant in your app",
+      "add google assistant",
+      "assistant on air",
+      "how to use google assistant on air",
+      "Actions on Google how to"
+    ],
+    "categoryId": "28",
+    "liveBroadcastContent": "none",
+    "defaultLanguage": "en",
+    "localized": {
+      "title": "What are Actions on Google (Assistant on Air)",
+      "description": "In the first episode of Assistant on Air, Luke Davis and guest Jessica Dene Early-Cha introduce the concept of Actions on Google, and talk about common terminology.\n\nActions on Google docs → http://bit.ly/2YabdS5\n\nOther episodes of Assistant on Air → https://goo.gle/2X0nBqG\nSubscribe to Google Devs for the latest Actions on Google videos →  https://bit.ly/googledevs"
+    },
+    "defaultAudioLanguage": "en"
+  },
+  "player": {
+    "embedHtml": "\u003ciframe width=\"480\" height=\"270\" src=\"//www.youtube.com/embed/D-lhorsDlUQ\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen\u003e\u003c/iframe\u003e"
+  }
+}
