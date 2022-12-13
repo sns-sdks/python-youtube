@@ -296,7 +296,7 @@ class VideosResource(Resource):
             **kwargs,
         }
         response = self._client.request(
-            method="PUT",
+            method="POST",
             path="videos/rate",
             params=params,
         )
@@ -306,7 +306,7 @@ class VideosResource(Resource):
 
     def get_rating(
         self,
-        video_id: Optional[Union[str, list, tuple, set]],
+        video_id: Union[str, list, tuple, set],
         on_behalf_of_content_owner: Optional[str] = None,
         return_json: bool = False,
         **kwargs: Optional[dict],
