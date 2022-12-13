@@ -13,6 +13,7 @@ from .playlist_items import PlaylistItemsResource  # noqa
 from .playlists import PlaylistsResource  # noqa
 from .search import SearchResource  # noqa
 from .subscriptions import SubscriptionsResource  # noqa
+from .thumbnails import ThumbnailsResource  # noqa
 from .video_abuse_report_reasons import VideoAbuseReportReasonsResource  # noqa
 from .video_categories import VideoCategoriesResource  # noqa
 from .videos import VideosResource  # noqa
