@@ -264,3 +264,37 @@ class VideoListResponse(BaseApiResponse):
     """
 
     items: Optional[List[Video]] = field(default=None, repr=False)
+
+
+@dataclass
+class VideoReportAbuse(BaseModel):
+    """
+    A class representing the video report abuse body.
+    """
+
+    videoId: Optional[str] = field(default=None)
+    reasonId: Optional[str] = field(default=None)
+    secondaryReasonId: Optional[str] = field(default=None)
+    comments: Optional[str] = field(default=None)
+    language: Optional[str] = field(default=None)
+
+
+@dataclass
+class VideoRatingItem(BaseModel):
+    """
+    A class representing the video rating item info.
+    """
+
+    videoId: Optional[str] = field(default=None)
+    rating: Optional[str] = field(default=None)
+
+
+@dataclass
+class VideoGetRatingResponse(BaseApiResponse):
+    """
+    A class representing the video rating response.
+
+    References: https://developers.google.com/youtube/v3/docs/videos/getRating#properties
+    """
+
+    items: Optional[List[VideoRatingItem]] = field(default=None, repr=False)

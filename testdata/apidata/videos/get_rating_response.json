@@ -1,0 +1,10 @@
+{
+  "kind": "youtube#videoGetRatingResponse",
+  "etag": "jHmA6WPghQxwUKfIGg5LVYotT3Y",
+  "items": [
+    {
+      "videoId": "D-lhorsDlUQ",
+      "rating": "none"
+    }
+  ]
+}

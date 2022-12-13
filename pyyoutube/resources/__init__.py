@@ -13,3 +13,4 @@ from .search import SearchResource  # noqa
 from .subscriptions import SubscriptionsResource  # noqa
 from .video_abuse_report_reasons import VideoAbuseReportReasonsResource  # noqa
 from .video_categories import VideoCategoriesResource  # noqa
+from .videos import VideosResource  # noqa

@@ -27,6 +27,7 @@ class Client:
     """Client for YouTube resource"""
 
     BASE_URL = "https://www.googleapis.com/youtube/v3/"
+    BASE_UPLOAD_URL = "https://www.googleapis.com/upload/youtube/v3/"
     AUTHORIZATION_URL = "https://accounts.google.com/o/oauth2/v2/auth"
     EXCHANGE_ACCESS_TOKEN_URL = "https://oauth2.googleapis.com/token"
     REVOKE_TOKEN_URL = "https://oauth2.googleapis.com/revoke"
@@ -53,6 +54,7 @@ class Client:
     subscriptions = resources.SubscriptionsResource()
     videoAbuseReportReasons = resources.VideoAbuseReportReasonsResource()
     videoCategories = resources.VideoCategoriesResource()
+    videos = resources.VideosResource()
 
     def __new__(cls, *args, **kwargs):
         self = super().__new__(cls)
@@ -157,6 +159,7 @@ class Client:
         data: Optional[dict] = None,
         json: Optional[dict] = None,
         enforce_auth: bool = True,
+        is_upload: bool = False,
         **kwargs,
     ):
         """Send request to YouTube.
@@ -174,6 +177,8 @@ class Client:
                 Object json to send in the body of the request.
             enforce_auth:
                 Whether to use user credentials.
+            is_upload:
+                Whether it is an upload job.
             kwargs:
                 Additional parameters for request.
 
@@ -185,7 +190,8 @@ class Client:
                                 Request http error.
         """
         if not path.startswith("http"):
-            path = self.BASE_URL + path
+            base_url = self.BASE_UPLOAD_URL if is_upload else self.BASE_URL
+            path = base_url + path
 
         # Add credentials to request
         if enforce_auth:
