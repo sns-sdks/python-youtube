@@ -6,6 +6,7 @@ from typing import Optional, Union
 from requests import Response
 
 from pyyoutube.resources.base_resource import Resource
+from pyyoutube.media import Media, MediaUpload
 from pyyoutube.models import Caption, CaptionListResponse
 from pyyoutube.utils.params_checker import enf_comma_separated, enf_parts
 
@@ -60,24 +61,25 @@ class CaptionsResource(Resource):
         data = self._client.parse_response(response=response)
         return data if return_json else CaptionListResponse.from_dict(data)
 
-    # TODO upload file
     def insert(
         self,
-        part: str,
         body: Union[dict, Caption],
+        media: Media,
+        parts: Optional[Union[str, list, tuple, set]] = None,
         on_behalf_of_content_owner: Optional[str] = None,
         sync: Optional[bool] = None,
-        return_json: bool = False,
         **kwargs,
-    ) -> Union[dict, CaptionListResponse]:
+    ) -> MediaUpload:
         """Uploads a caption track.
 
         Args:
-            part:
-                The part parameter specifies the caption resource parts that
-                the API response will include. Set the parameter value to snippet.
             body:
                 Provide caption data in the request body. You can give dataclass or just a dict with data.
+            media:
+                Caption media data to upload.
+            parts:
+                The part parameter specifies the caption resource parts that
+                the API response will include. Set the parameter value to snippet.
             on_behalf_of_content_owner:
                 This parameter can only be used in a properly authorized request.
                 Note: This parameter is intended exclusively for YouTube content partners.
@@ -86,8 +88,6 @@ class CaptionsResource(Resource):
                 file with the audio track of the video.
                 If you set the value to true, YouTube will disregard any time codes that are in the uploaded
                 caption file and generate new time codes for the captions.
-            return_json:
-                Type for returned data. If you set True JSON data will be returned.
             **kwargs:
                 Additional parameters for system parameters.
                 Refer: https://cloud.google.com/apis/docs/system-parameters.
@@ -97,38 +97,41 @@ class CaptionsResource(Resource):
         """
 
         params = {
-            "part": part,
+            "part": enf_parts(resource="captions", value=parts),
             "onBehalfOfContentOwner": on_behalf_of_content_owner,
             "sync": sync,
             **kwargs,
         }
-        response = self._client.request(
-            method="POST",
-            path="",
+        # Build a media upload instance.
+        media_upload = MediaUpload(
+            client=self._client,
+            resource="captions",
+            media=media,
             params=params,
-            json=body,
+            body=body.to_dict_ignore_none(),
         )
-        data = self._client.parse_response(response=response)
-        return data if return_json else CaptionListResponse.from_dict(data)
+        return media_upload
 
-    # TODO upload file
     def update(
         self,
-        part: str,
         body: Union[dict, Caption],
+        media: Optional[Media] = None,
+        parts: Optional[Union[str, list, tuple, set]] = None,
         on_behalf_of_content_owner: Optional[str] = None,
         sync: Optional[bool] = None,
         return_json: bool = False,
         **kwargs,
-    ) -> Union[dict, CaptionListResponse]:
+    ) -> Union[dict, CaptionListResponse, MediaUpload]:
         """Updates a caption track.
 
         Args:
-            part:
-                The part parameter specifies the caption resource parts that
-                the API response will include. Set the parameter value to snippet.
             body:
                 Provide caption data in the request body. You can give dataclass or just a dict with data.
+            media:
+                New caption media.
+            parts:
+                The part parameter specifies the caption resource parts that
+                the API response will include. Set the parameter value to snippet.
             on_behalf_of_content_owner:
                 This parameter can only be used in a properly authorized request.
                 Note: This parameter is intended exclusively for YouTube content partners.
@@ -147,19 +150,30 @@ class CaptionsResource(Resource):
 
         """
         params = {
-            "part": part,
+            "part": enf_parts(resource="captions", value=parts),
             "onBehalfOfContentOwner": on_behalf_of_content_owner,
             "sync": sync,
             **kwargs,
         }
+        if media is not None:
+            # Build a media upload instance.
+            media_upload = MediaUpload(
+                client=self._client,
+                resource="captions",
+                media=media,
+                params=params,
+                body=body.to_dict_ignore_none(),
+            )
+            return media_upload
+
         response = self._client.request(
             method="PUT",
-            path="",
+            path="captions",
             params=params,
             json=body,
         )
         data = self._client.parse_response(response=response)
-        return data if return_json else CaptionListResponse.from_dict(data)
+        return data if return_json else Caption.from_dict(data)
 
     def download(
         self,

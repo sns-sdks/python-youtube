@@ -1,4 +1,5 @@
 from .activities import ActivitiesResource  # noqa
+from .captions import CaptionsResource  # noqa
 from .channels import ChannelsResource  # noqa
 from .channel_sections import ChannelSectionsResource  # noqa
 from .comments import CommentsResource  # noqa

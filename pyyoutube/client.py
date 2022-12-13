@@ -40,6 +40,7 @@ class Client:
     DEFAULT_STATE = "Python-YouTube"
 
     activities = resources.ActivitiesResource()
+    captions = resources.CaptionsResource()
     channels = resources.ChannelsResource()
     channelSections = resources.ChannelSectionsResource()
     comments = resources.CommentsResource()

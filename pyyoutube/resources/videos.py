@@ -191,8 +191,6 @@ class VideosResource(Resource):
                 the content owner that the onBehalfOfContentOwner parameter specifies. Finally, the channel
                 that the onBehalfOfContentOwnerChannel parameter value specifies must be linked to the content
                 owner that the onBehalfOfContentOwner parameter specifies.
-            return_json:
-                Type for returned data. If you set True JSON data will be returned.
             **kwargs:
                 Additional parameters for system parameters.
                 Refer: https://cloud.google.com/apis/docs/system-parameters.
@@ -211,6 +209,7 @@ class VideosResource(Resource):
         # Build a media upload instance.
         media_upload = MediaUpload(
             client=self._client,
+            resource="videos",
             media=media,
             params=params,
             body=body.to_dict_ignore_none(),
