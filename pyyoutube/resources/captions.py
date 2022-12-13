@@ -121,7 +121,7 @@ class CaptionsResource(Resource):
         sync: Optional[bool] = None,
         return_json: bool = False,
         **kwargs,
-    ) -> Union[dict, CaptionListResponse, MediaUpload]:
+    ) -> Union[dict, Caption, MediaUpload]:
         """Updates a caption track.
 
         Args:
@@ -251,7 +251,7 @@ class CaptionsResource(Resource):
             **kwargs,
         }
 
-        response = self._client.request(path="captions", params=params)
+        response = self._client.request(path="captions", method="DELETE", params=params)
         if response.ok:
             return True
         self._client.parse_response(response=response)

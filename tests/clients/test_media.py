@@ -47,6 +47,7 @@ class TestMediaUpload:
         media = Media(fd=io.StringIO("1234567890"), mimetype="video/mp4", chunk_size=5)
         upload = MediaUpload(
             client=authed_cli,
+            resource="videos",
             media=media,
             params={"part": "snippet"},
             body={"body": '{"snippet": {dasd}}'},
@@ -89,6 +90,7 @@ class TestMediaUpload:
         )
         upload = MediaUpload(
             client=authed_cli,
+            resource="videos",
             media=media,
             params={"part": "snippet"},
             body={"body": '{"snippet": {dasd}}'},
