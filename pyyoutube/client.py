@@ -54,6 +54,7 @@ class Client:
     playlists = resources.PlaylistsResource()
     search = resources.SearchResource()
     subscriptions = resources.SubscriptionsResource()
+    thumbnails = resources.ThumbnailsResource()
     videoAbuseReportReasons = resources.VideoAbuseReportReasonsResource()
     videoCategories = resources.VideoCategoriesResource()
     videos = resources.VideosResource()
