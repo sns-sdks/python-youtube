@@ -107,6 +107,7 @@ class MediaUpload:
     def __init__(
         self,
         client,
+        resource: str,
         media: Media,
         params: Optional[dict] = None,
         body: Optional[dict] = None,
@@ -114,15 +115,22 @@ class MediaUpload:
         """Constructor for upload a file.
 
         Args:
-            client: Client instance.
-            media: Media instance.
-            params: Parameters for the request.
-            body: Body for the request.
+            client:
+                Client instance.
+            resource:
+                Resource like videos,captions and so on.
+            media:
+                Media instance.
+            params:
+                Parameters for the request.
+            body:
+                Body for the request.
         """
         self.client = client
         self.media = media
         self.params = params
         self.body = body
+        self.resource = resource
 
         if self.params is not None:
             self.params["uploadType"] = "resumable"
@@ -146,7 +154,7 @@ class MediaUpload:
             }
             resp = self.client.request(
                 method="POST",
-                path="videos",
+                path=self.resource,
                 params=self.params,
                 json=self.body,
                 is_upload=True,

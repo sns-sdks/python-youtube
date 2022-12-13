@@ -1,0 +1,19 @@
+{
+  "kind": "youtube#caption",
+  "etag": "R7KYT4aJbHp2wxlTmtFuKJ4pmF8",
+  "id": "AUieDabWmL88_xoRtxyxjTMtmvdoF9dLTW3WxfJvaThUXkNptljUijDFS-kDjyA",
+  "snippet": {
+    "videoId": "zxTVeyG1600",
+    "lastUpdated": "2022-12-13T08:20:45.636548Z",
+    "trackKind": "standard",
+    "language": "ja",
+    "name": "\\u65e5\\u6587\\u5b57\\u5e55",
+    "audioTrackType": "unknown",
+    "isCC": false,
+    "isLarge": false,
+    "isEasyReader": false,
+    "isDraft": false,
+    "isAutoSynced": false,
+    "status": "serving"
+  }
+}
