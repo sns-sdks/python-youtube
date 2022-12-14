@@ -16,3 +16,4 @@ from .search_result import *  # noqa
 from .subscription import *  # noqa
 from .video_abuse_report_reason import *  # noqa
 from .video import *  # noqa
+from .watermark import *  # noqa
