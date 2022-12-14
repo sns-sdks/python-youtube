@@ -58,6 +58,7 @@ class Client:
     videoAbuseReportReasons = resources.VideoAbuseReportReasonsResource()
     videoCategories = resources.VideoCategoriesResource()
     videos = resources.VideosResource()
+    watermarks = resources.WatermarksResource()
 
     def __new__(cls, *args, **kwargs):
         self = super().__new__(cls)
