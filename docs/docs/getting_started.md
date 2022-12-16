@@ -54,9 +54,10 @@ Now you have generated one api key.
 
 Use this key. You can retrieve public data for YouTube data by our library
 
-```pythonregexp
-In [1]: import pyyoutube
-In [2]: api = pyyoutube.Api(api_key='your api key')
+```python
+from pyyoutube import Client
+
+cli = Client(api_key="your api key")
 ```
 
 If you want to get some examples to see, check out the [examples](https://github.com/sns-sdks/python-youtube/tree/master/examples).

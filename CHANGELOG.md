@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## Version 0.9.0 (in development)
+
+### What's New
+
+- Introduce new `Client` to operate YouTube DATA API. [#120](https://github.com/sns-sdks/python-youtube/issues/120).
+
 ## Version 0.8.3 (2022-10-17)
 
 ### What's New

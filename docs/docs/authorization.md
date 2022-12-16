@@ -30,11 +30,11 @@ Now we can begin do the follows step.
 Initialize the api instance with you app credentials
 
 ```
-In [1]: from pyyoutube import Api
+In [1]: from pyyoutube import Client
 
-In [2]: api = Api(client_id="you client id", client_secret="you client secret")
+In [2]: cli = Client(client_id="you client id", client_secret="you client secret")
 
-In [3]: api.get_authorization_url()
+In [3]: cli.get_authorize_url()
 Out[3]:
 ('https://accounts.google.com/o/oauth2/v2/auth?response_type=code&client_id=client_id&redirect_uri=https%3A%2F%2Flocalhost%2F&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fyoutube+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile&state=PyYouTube&access_type=offline&prompt=select_account',
  'PyYouTube')
@@ -72,7 +72,7 @@ Then you will get a Connection Error, don't worry. This just because we set the 
 Now you need to copy the full url in the browser address bar. Then back to you console.
 
 ```
-In [4]: token = api.generate_access_token(authorization_response="the whole url")
+In [4]: token = cli.generate_access_token(authorization_response="the whole url")
 
 In [5]: token
 Out[5]: AccessToken(access_token='access token', expires_in=3600, token_type='Bearer')
@@ -87,21 +87,12 @@ now you have got your access token to visit your self data.
 For example, you can get your playlists.
 
 ```
-In [6]: playlists = api.get_playlists(mine=True)
+In [6]: playlists = cli.playlists.list(mine=True)
 
 In [7]: playlists.items
 Out[7]:
 [Playlist(kind='youtube#playlist', id='PLBaidt0ilCManGDIKr8UVBFZwN_UvMKvS'),
  Playlist(kind='youtube#playlist', id='PLBaidt0ilCMbUdj0EppB710c_X5OuCP2g')]
-```
-
-get your self profile.
-
-```
-In [8]: profile = api.get_profile()
-
-In [9]: profile
-Out[9]: UserProfile(id='110109920178558006671', name='ikaros-life')
 ```
 
 !!! note "Tips"

@@ -31,6 +31,9 @@ theme:
 nav:
   - Introduction: index.md
   - Introduce Structure: introduce-new-structure.md
+  - Usage:
+      - Work With `Api`: usage/work-with-api.md
+      - Work With `Client`: usage/work-with-client.md
   - Installation: installation.md
   - Getting Started: getting_started.md
   - Authorization: authorization.md
