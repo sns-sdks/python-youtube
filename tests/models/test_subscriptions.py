@@ -4,17 +4,17 @@ import pyyoutube.models as models
 
 
 class SubscriptionModelTest(unittest.TestCase):
-    BASE_PATH = "testdata/modeldata/subscriptions/"
+    base_path = "testdata/modeldata/subscriptions/"
 
-    with open(BASE_PATH + "snippet.json", "rb") as f:
+    with open(f"{base_path}snippet.json", "rb") as f:
         SNIPPETS = json.loads(f.read().decode("utf-8"))
-    with open(BASE_PATH + "contentDetails.json", "rb") as f:
+    with open(f"{base_path}contentDetails.json", "rb") as f:
         CONTENT_DETAILS = json.loads(f.read().decode("utf-8"))
-    with open(BASE_PATH + "subscriberSnippet.json", "rb") as f:
+    with open(f"{base_path}subscriberSnippet.json", "rb") as f:
         SUBSCRIBER_SNIPPET = json.loads(f.read().decode("utf-8"))
-    with open(BASE_PATH + "subscription.json", "rb") as f:
+    with open(f"{base_path}subscription.json", "rb") as f:
         SUBSCRIPTION_INFO = json.loads(f.read().decode("utf-8"))
-    with open(BASE_PATH + "resp.json", "rb") as f:
+    with open(f"{base_path}resp.json", "rb") as f:
         SUBSCRIPTION_RESPONSE = json.loads(f.read().decode("utf-8"))
 
     def testSubscriptionSnippet(self) -> None:

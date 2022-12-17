@@ -7,14 +7,14 @@ import pyyoutube
 
 
 class ApiVideoCategoryTest(unittest.TestCase):
-    BASE_PATH = "testdata/apidata/categories/"
-    BASE_URL = "https://www.googleapis.com/youtube/v3/videoCategories"
+    base_path = "testdata/apidata/categories/"
+    base_url = "https://www.googleapis.com/youtube/v3/videoCategories"
 
-    with open(BASE_PATH + "video_category_single.json", "rb") as f:
+    with open(f"{base_path}video_category_single.json", "rb") as f:
         VIDEO_CATEGORY_SINGLE = json.loads(f.read().decode("utf-8"))
-    with open(BASE_PATH + "video_category_multi.json", "rb") as f:
+    with open(f"{base_path}video_category_multi.json", "rb") as f:
         VIDEO_CATEGORY_MULTI = json.loads(f.read().decode("utf-8"))
-    with open(BASE_PATH + "video_category_by_region.json", "rb") as f:
+    with open(f"{base_path}video_category_by_region.json", "rb") as f:
         VIDEO_CATEGORY_BY_REGION = json.loads(f.read().decode("utf-8"))
 
     def setUp(self) -> None:
@@ -29,9 +29,9 @@ class ApiVideoCategoryTest(unittest.TestCase):
             self.api.get_video_categories(category_id="id", parts="id,not_part")
 
         with responses.RequestsMock() as m:
-            m.add("GET", self.BASE_URL, json=self.VIDEO_CATEGORY_SINGLE)
-            m.add("GET", self.BASE_URL, json=self.VIDEO_CATEGORY_MULTI)
-            m.add("GET", self.BASE_URL, json=self.VIDEO_CATEGORY_BY_REGION)
+            m.add("GET", self.base_url, json=self.VIDEO_CATEGORY_SINGLE)
+            m.add("GET", self.base_url, json=self.VIDEO_CATEGORY_MULTI)
+            m.add("GET", self.base_url, json=self.VIDEO_CATEGORY_BY_REGION)
 
             res_by_single = self.api.get_video_categories(
                 category_id="17",

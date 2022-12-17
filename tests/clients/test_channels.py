@@ -7,7 +7,7 @@ import pyyoutube.models as mds
 
 
 class TestChannelsResource(BaseTestCase):
-    RESOURCE = "channels"
+    resource = "channels"
     channel_id = "UC_x5XG1OV2P6uZZ5FSM9Ttw"
 
     def test_list(self, helpers, authed_cli, key_cli):

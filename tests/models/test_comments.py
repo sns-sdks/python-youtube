@@ -5,13 +5,13 @@ import pyyoutube.models as models
 
 
 class CommentModelModelTest(unittest.TestCase):
-    BASE_PATH = "testdata/modeldata/comments/"
+    base_path = "testdata/modeldata/comments/"
 
-    with open(BASE_PATH + "comment_snippet.json", "rb") as f:
+    with open(f"{base_path}comment_snippet.json", "rb") as f:
         SNIPPET_INFO = json.loads(f.read().decode("utf-8"))
-    with open(BASE_PATH + "comment_info.json", "rb") as f:
+    with open(f"{base_path}comment_info.json", "rb") as f:
         COMMENT_INFO = json.loads(f.read().decode("utf-8"))
-    with open(BASE_PATH + "comment_api_response.json", "rb") as f:
+    with open(f"{base_path}comment_api_response.json", "rb") as f:
         COMMENT_API_INFO = json.loads(f.read().decode("utf-8"))
 
     def testCommentSnippet(self) -> None:
@@ -42,15 +42,15 @@ class CommentModelModelTest(unittest.TestCase):
 
 
 class CommentThreadModelTest(unittest.TestCase):
-    BASE_PATH = "testdata/modeldata/comments/"
+    base_path = "testdata/modeldata/comments/"
 
-    with open(BASE_PATH + "comment_thread_snippet.json", "rb") as f:
+    with open(f"{base_path}comment_thread_snippet.json", "rb") as f:
         SNIPPET_INFO = json.loads(f.read().decode("utf-8"))
-    with open(BASE_PATH + "comment_thread_replies.json", "rb") as f:
+    with open(f"{base_path}comment_thread_replies.json", "rb") as f:
         REPLIES_INFO = json.loads(f.read().decode("utf-8"))
-    with open(BASE_PATH + "comment_thread_info.json", "rb") as f:
+    with open(f"{base_path}comment_thread_info.json", "rb") as f:
         COMMENT_THREAD_INFO = json.loads(f.read().decode("utf-8"))
-    with open(BASE_PATH + "comment_thread_api_response.json", "rb") as f:
+    with open(f"{base_path}comment_thread_api_response.json", "rb") as f:
         COMMENT_THREAD_API_INFO = json.loads(f.read().decode("utf-8"))
 
     def testCommentThreadSnippet(self) -> None:

@@ -7,16 +7,16 @@ import pyyoutube
 
 
 class ApiCommentTest(unittest.TestCase):
-    BASE_PATH = "testdata/apidata/comments/"
-    BASE_URL = "https://www.googleapis.com/youtube/v3/comments"
+    base_path = "testdata/apidata/comments/"
+    base_url = "https://www.googleapis.com/youtube/v3/comments"
 
-    with open(BASE_PATH + "comments_single.json", "rb") as f:
+    with open(f"{base_path}comments_single.json", "rb") as f:
         COMMENTS_INFO_SINGLE = json.loads(f.read().decode("utf-8"))
-    with open(BASE_PATH + "comments_multi.json", "rb") as f:
+    with open(f"{base_path}comments_multi.json", "rb") as f:
         COMMENTS_INFO_MULTI = json.loads(f.read().decode("utf-8"))
-    with open(BASE_PATH + "comments_by_parent_paged_1.json", "rb") as f:
+    with open(f"{base_path}comments_by_parent_paged_1.json", "rb") as f:
         COMMENTS_PAGED_1 = json.loads(f.read().decode("utf-8"))
-    with open(BASE_PATH + "comments_by_parent_paged_2.json", "rb") as f:
+    with open(f"{base_path}comments_by_parent_paged_2.json", "rb") as f:
         COMMENTS_PAGED_2 = json.loads(f.read().decode("utf-8"))
 
     def setUp(self) -> None:
@@ -28,8 +28,8 @@ class ApiCommentTest(unittest.TestCase):
             self.api.get_comment_by_id(comment_id="id", parts="id,not_part")
 
         with responses.RequestsMock() as m:
-            m.add("GET", self.BASE_URL, json=self.COMMENTS_INFO_SINGLE)
-            m.add("GET", self.BASE_URL, json=self.COMMENTS_INFO_MULTI)
+            m.add("GET", self.base_url, json=self.COMMENTS_INFO_SINGLE)
+            m.add("GET", self.base_url, json=self.COMMENTS_INFO_MULTI)
 
             res_by_single = self.api.get_comment_by_id(
                 comment_id="UgyUBI0HsgL9emxcZpR4AaABAg",
@@ -56,8 +56,8 @@ class ApiCommentTest(unittest.TestCase):
 
         # test paged
         with responses.RequestsMock() as m:
-            m.add("GET", self.BASE_URL, json=self.COMMENTS_PAGED_1)
-            m.add("GET", self.BASE_URL, json=self.COMMENTS_PAGED_2)
+            m.add("GET", self.base_url, json=self.COMMENTS_PAGED_1)
+            m.add("GET", self.base_url, json=self.COMMENTS_PAGED_2)
 
             res_by_parent = self.api.get_comments(
                 parent_id="Ugw5zYU6n9pmIgAZWvN4AaABAg",
@@ -73,7 +73,7 @@ class ApiCommentTest(unittest.TestCase):
 
         # test count
         with responses.RequestsMock() as m:
-            m.add("GET", self.BASE_URL, json=self.COMMENTS_PAGED_1)
+            m.add("GET", self.base_url, json=self.COMMENTS_PAGED_1)
 
             res_by_parent = self.api.get_comments(
                 parent_id="Ugw5zYU6n9pmIgAZWvN4AaABAg",
@@ -90,8 +90,8 @@ class ApiCommentTest(unittest.TestCase):
 
         # test get all comments
         with responses.RequestsMock() as m:
-            m.add("GET", self.BASE_URL, json=self.COMMENTS_PAGED_1)
-            m.add("GET", self.BASE_URL, json=self.COMMENTS_PAGED_2)
+            m.add("GET", self.base_url, json=self.COMMENTS_PAGED_1)
+            m.add("GET", self.base_url, json=self.COMMENTS_PAGED_2)
             res_by_parent = self.api.get_comments(
                 parent_id="Ugw5zYU6n9pmIgAZWvN4AaABAg", parts="id,snippet", count=None
             )
@@ -99,7 +99,7 @@ class ApiCommentTest(unittest.TestCase):
 
         # test use page token
         with responses.RequestsMock() as m:
-            m.add("GET", self.BASE_URL, json=self.COMMENTS_PAGED_2)
+            m.add("GET", self.base_url, json=self.COMMENTS_PAGED_2)
             res_by_parent = self.api.get_comments(
                 parent_id="Ugw5zYU6n9pmIgAZWvN4AaABAg",
                 parts="id,snippet",

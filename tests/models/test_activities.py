@@ -5,15 +5,15 @@ import pyyoutube.models as models
 
 
 class ActivityModelTest(unittest.TestCase):
-    BASE_PATH = "testdata/modeldata/activities/"
+    base_path = "testdata/modeldata/activities/"
 
-    with open(BASE_PATH + "activity_contentDetails.json", "rb") as f:
+    with open(f"{base_path}activity_contentDetails.json", "rb") as f:
         ACTIVITY_CONTENT_DETAILS = json.loads(f.read().decode("utf-8"))
-    with open(BASE_PATH + "activity_snippet.json", "rb") as f:
+    with open(f"{base_path}activity_snippet.json", "rb") as f:
         ACTIVITY_SNIPPET = json.loads(f.read().decode("utf-8"))
-    with open(BASE_PATH + "activity.json", "rb") as f:
+    with open(f"{base_path}activity.json", "rb") as f:
         ACTIVITY = json.loads(f.read().decode("utf-8"))
-    with open(BASE_PATH + "activity_response.json", "rb") as f:
+    with open(f"{base_path}activity_response.json", "rb") as f:
         ACTIVITY_RESPONSE = json.loads(f.read().decode("utf-8"))
 
     def testActivityContentDetails(self) -> None:

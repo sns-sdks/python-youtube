@@ -7,7 +7,7 @@ from pyyoutube.error import PyYouTubeException
 
 
 class TestPlaylistItemsResource(BaseTestCase):
-    RESOURCE = "playlistItems"
+    resource = "playlistItems"
 
     def test_list(self, helpers, key_cli):
         with pytest.raises(PyYouTubeException):
@@ -30,7 +30,9 @@ class TestPlaylistItemsResource(BaseTestCase):
             assert len(res.items) == 10
 
             res = key_cli.playlistItems.list(
-                playlist_item_id="UExPVTJYTFl4bXNJS3BhVjhoMEFHRTA1c28wZkF3d2ZUdy41NkI0NEY2RDEwNTU3Q0M2",
+                playlist_item_id=(
+                    "UExPVTJYTFl4bXNJS3BhVjhoMEFHRTA1c28wZkF3d2ZUdy41NkI0NEY2RDEwNTU3Q0M2"
+                ),
                 parts=["id", "snippet"],
             )
             assert (

@@ -6,10 +6,10 @@ import pyyoutube
 
 
 class ApiVideoAbuseReason(unittest.TestCase):
-    BASE_PATH = "testdata/apidata/abuse_reasons/"
-    BASE_URL = "https://www.googleapis.com/youtube/v3/videoAbuseReportReasons"
+    base_path = "testdata/apidata/abuse_reasons/"
+    base_url = "https://www.googleapis.com/youtube/v3/videoAbuseReportReasons"
 
-    with open(BASE_PATH + "abuse_reason.json", "rb") as f:
+    with open(f"{base_path}abuse_reason.json", "rb") as f:
         ABUSE_REASON_RES = json.loads(f.read().decode("utf-8"))
 
     def setUp(self) -> None:
@@ -17,15 +17,13 @@ class ApiVideoAbuseReason(unittest.TestCase):
 
     def testGetVideoAbuseReportReason(self) -> None:
         with responses.RequestsMock() as m:
-            m.add("GET", self.BASE_URL, json=self.ABUSE_REASON_RES)
+            m.add("GET", self.base_url, json=self.ABUSE_REASON_RES)
 
             abuse_res = self.api_with_token.get_video_abuse_report_reason(
                 parts=["id", "snippet"],
             )
 
-            self.assertEqual(
-                abuse_res.kind, "youtube#videoAbuseReportReasonListResponse"
-            )
+            self.assertEqual(abuse_res.kind, "youtube#videoAbuseReportReasonListResponse")
             self.assertEqual(len(abuse_res.items), 3)
 
             abuse_res_json = self.api_with_token.get_video_abuse_report_reason(

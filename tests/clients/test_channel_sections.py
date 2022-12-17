@@ -7,7 +7,7 @@ from pyyoutube.error import PyYouTubeException
 
 
 class TestChannelBannersResource(BaseTestCase):
-    RESOURCE = "channelSections"
+    resource = "channelSections"
 
     def test_list(self, helpers, authed_cli, key_cli):
         with pytest.raises(PyYouTubeException):

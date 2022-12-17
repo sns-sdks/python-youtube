@@ -4,7 +4,7 @@ from .base import BaseTestCase
 
 
 class TestSearchResource(BaseTestCase):
-    RESOURCE = "search"
+    resource = "search"
 
     def test_list(self, helpers, authed_cli, key_cli):
         with responses.RequestsMock() as m:

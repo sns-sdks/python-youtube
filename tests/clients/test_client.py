@@ -4,15 +4,15 @@
 import pytest
 
 import responses
-from requests import Response, HTTPError
+from requests import HTTPError
 
 from .base import BaseTestCase
 from pyyoutube import Client, PyYouTubeException
 
 
 class TestClient(BaseTestCase):
-    BASE_PATH = "testdata"
-    RESOURCE = "channels"
+    base_path = "testdata"
+    resource = "channels"
 
     def test_initial(self):
         with pytest.raises(PyYouTubeException):
@@ -20,6 +20,10 @@ class TestClient(BaseTestCase):
 
         cli = Client(api_key="key", headers={"HA": "P"})
         assert cli.session.headers["HA"] == "P"
+
+    def test_convert_json_to_dict(self):
+        result = Client.convert_json_to_dict({"test": "test"})
+        assert result == {"test": "test"}
 
     def test_request(self, key_cli):
         with pytest.raises(PyYouTubeException):

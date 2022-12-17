@@ -10,7 +10,7 @@ from pyyoutube.media import Media
 
 
 class TestVideosResource(BaseTestCase):
-    RESOURCE = "videos"
+    resource = "videos"
 
     def test_list(self, helpers, authed_cli, key_cli):
         with pytest.raises(PyYouTubeException):

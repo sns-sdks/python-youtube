@@ -7,18 +7,18 @@ import pyyoutube
 
 
 class ApiPlaylistTest(unittest.TestCase):
-    BASE_PATH = "testdata/apidata/playlists/"
-    BASE_URL = "https://www.googleapis.com/youtube/v3/playlists"
+    base_path = "testdata/apidata/playlists/"
+    base_url = "https://www.googleapis.com/youtube/v3/playlists"
 
-    with open(BASE_PATH + "playlists_single.json", "rb") as f:
+    with open(f"{base_path}playlists_single.json", "rb") as f:
         PLAYLISTS_INFO_SINGLE = json.loads(f.read().decode("utf-8"))
-    with open(BASE_PATH + "playlists_multi.json", "rb") as f:
+    with open(f"{base_path}playlists_multi.json", "rb") as f:
         PLAYLISTS_INFO_MULTI = json.loads(f.read().decode("utf-8"))
-    with open(BASE_PATH + "playlists_paged_1.json", "rb") as f:
+    with open(f"{base_path}playlists_paged_1.json", "rb") as f:
         PLAYLISTS_PAGED_1 = json.loads(f.read().decode("utf-8"))
-    with open(BASE_PATH + "playlists_paged_2.json", "rb") as f:
+    with open(f"{base_path}playlists_paged_2.json", "rb") as f:
         PLAYLISTS_PAGED_2 = json.loads(f.read().decode("utf-8"))
-    with open(BASE_PATH + "playlists_mine.json", "rb") as f:
+    with open(f"{base_path}playlists_mine.json", "rb") as f:
         PLAYLISTS_MINE = json.loads(f.read().decode("utf-8"))
 
     def setUp(self) -> None:
@@ -27,8 +27,8 @@ class ApiPlaylistTest(unittest.TestCase):
 
     def testGetPlaylistById(self) -> None:
         with responses.RequestsMock() as m:
-            m.add("GET", self.BASE_URL, json=self.PLAYLISTS_INFO_SINGLE)
-            m.add("GET", self.BASE_URL, json=self.PLAYLISTS_INFO_MULTI)
+            m.add("GET", self.base_url, json=self.PLAYLISTS_INFO_SINGLE)
+            m.add("GET", self.base_url, json=self.PLAYLISTS_INFO_MULTI)
 
             res_by_playlist_id = self.api.get_playlist_by_id(
                 playlist_id="PLOU2XLYxmsIJXsH2htG1g0NUjHGq62Q7i",
@@ -62,9 +62,9 @@ class ApiPlaylistTest(unittest.TestCase):
             self.api.get_playlists()
 
         with responses.RequestsMock() as m:
-            m.add("GET", self.BASE_URL, json=self.PLAYLISTS_PAGED_1)
-            m.add("GET", self.BASE_URL, json=self.PLAYLISTS_PAGED_2)
-            m.add("GET", self.BASE_URL, json=self.PLAYLISTS_MINE)
+            m.add("GET", self.base_url, json=self.PLAYLISTS_PAGED_1)
+            m.add("GET", self.base_url, json=self.PLAYLISTS_PAGED_2)
+            m.add("GET", self.base_url, json=self.PLAYLISTS_MINE)
 
             res_by_channel_id = self.api.get_playlists(
                 channel_id="UC_x5XG1OV2P6uZZ5FSM9Ttw",
@@ -87,8 +87,8 @@ class ApiPlaylistTest(unittest.TestCase):
 
         # test for all items
         with responses.RequestsMock() as m:
-            m.add("GET", self.BASE_URL, json=self.PLAYLISTS_PAGED_1)
-            m.add("GET", self.BASE_URL, json=self.PLAYLISTS_PAGED_2)
+            m.add("GET", self.base_url, json=self.PLAYLISTS_PAGED_1)
+            m.add("GET", self.base_url, json=self.PLAYLISTS_PAGED_2)
 
             res_by_channel_id = self.api.get_playlists(
                 channel_id="UC_x5XG1OV2P6uZZ5FSM9Ttw",
@@ -98,7 +98,7 @@ class ApiPlaylistTest(unittest.TestCase):
 
         # test for page token
         with responses.RequestsMock() as m:
-            m.add("GET", self.BASE_URL, json=self.PLAYLISTS_PAGED_2)
+            m.add("GET", self.base_url, json=self.PLAYLISTS_PAGED_2)
 
             res_by_channel_id = self.api.get_playlists(
                 channel_id="UC_x5XG1OV2P6uZZ5FSM9Ttw", count=None, page_token="CAoQAA"

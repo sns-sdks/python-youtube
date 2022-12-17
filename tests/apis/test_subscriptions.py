@@ -7,24 +7,24 @@ import pyyoutube
 
 
 class ApiPlaylistTest(unittest.TestCase):
-    BASE_PATH = "testdata/apidata/subscriptions/"
-    BASE_URL = "https://www.googleapis.com/youtube/v3/subscriptions"
+    base_path = "testdata/apidata/subscriptions/"
+    base_url = "https://www.googleapis.com/youtube/v3/subscriptions"
 
-    with open(BASE_PATH + "subscription_zero.json", "rb") as f:
+    with open(f"{base_path}subscription_zero.json", "rb") as f:
         SUBSCRIPTIONS_ZERO = json.loads(f.read().decode("utf-8"))
-    with open(BASE_PATH + "subscriptions_by_id.json", "rb") as f:
+    with open(f"{base_path}subscriptions_by_id.json", "rb") as f:
         SUBSCRIPTIONS_BY_ID = json.loads(f.read().decode("utf-8"))
-    with open(BASE_PATH + "subscriptions_by_channel_p1.json", "rb") as f:
+    with open(f"{base_path}subscriptions_by_channel_p1.json", "rb") as f:
         SUBSCRIPTIONS_BY_CHANNEL_P1 = json.loads(f.read().decode("utf-8"))
-    with open(BASE_PATH + "subscriptions_by_channel_p2.json", "rb") as f:
+    with open(f"{base_path}subscriptions_by_channel_p2.json", "rb") as f:
         SUBSCRIPTIONS_BY_CHANNEL_P2 = json.loads(f.read().decode("utf-8"))
-    with open(BASE_PATH + "subscriptions_by_channel_with_filter.json", "rb") as f:
+    with open(f"{base_path}subscriptions_by_channel_with_filter.json", "rb") as f:
         SUBSCRIPTIONS_BY_CHANNEL_FILTER = json.loads(f.read().decode("utf-8"))
-    with open(BASE_PATH + "subscriptions_by_mine_p1.json", "rb") as f:
+    with open(f"{base_path}subscriptions_by_mine_p1.json", "rb") as f:
         SUBSCRIPTIONS_BY_MINE_P1 = json.loads(f.read().decode("utf-8"))
-    with open(BASE_PATH + "subscriptions_by_mine_p2.json", "rb") as f:
+    with open(f"{base_path}subscriptions_by_mine_p2.json", "rb") as f:
         SUBSCRIPTIONS_BY_MINE_P2 = json.loads(f.read().decode("utf-8"))
-    with open(BASE_PATH + "subscriptions_by_mine_filter.json", "rb") as f:
+    with open(f"{base_path}subscriptions_by_mine_filter.json", "rb") as f:
         SUBSCRIPTIONS_BY_MINE_FILTER = json.loads(f.read().decode("utf-8"))
 
     def setUp(self) -> None:
@@ -39,8 +39,8 @@ class ApiPlaylistTest(unittest.TestCase):
             )
 
         with responses.RequestsMock() as m:
-            m.add("GET", self.BASE_URL, json=self.SUBSCRIPTIONS_ZERO)
-            m.add("GET", self.BASE_URL, json=self.SUBSCRIPTIONS_BY_ID)
+            m.add("GET", self.base_url, json=self.SUBSCRIPTIONS_ZERO)
+            m.add("GET", self.base_url, json=self.SUBSCRIPTIONS_BY_ID)
 
             res_zero = self.api.get_subscription_by_id(
                 subscription_id=(
@@ -75,8 +75,8 @@ class ApiPlaylistTest(unittest.TestCase):
 
         # test count is None
         with responses.RequestsMock() as m:
-            m.add("GET", self.BASE_URL, json=self.SUBSCRIPTIONS_BY_CHANNEL_P1)
-            m.add("GET", self.BASE_URL, json=self.SUBSCRIPTIONS_BY_CHANNEL_P2)
+            m.add("GET", self.base_url, json=self.SUBSCRIPTIONS_BY_CHANNEL_P1)
+            m.add("GET", self.base_url, json=self.SUBSCRIPTIONS_BY_CHANNEL_P2)
 
             res = self.api.get_subscription_by_channel(
                 channel_id="UCAuUUnT6oDeKwE6v1NGQxug",
@@ -88,7 +88,7 @@ class ApiPlaylistTest(unittest.TestCase):
 
         # test count
         with responses.RequestsMock() as m:
-            m.add("GET", self.BASE_URL, json=self.SUBSCRIPTIONS_BY_CHANNEL_P1)
+            m.add("GET", self.base_url, json=self.SUBSCRIPTIONS_BY_CHANNEL_P1)
 
             res = self.api.get_subscription_by_channel(
                 channel_id="UCAuUUnT6oDeKwE6v1NGQxug",
@@ -100,7 +100,7 @@ class ApiPlaylistTest(unittest.TestCase):
 
         # test filter
         with responses.RequestsMock() as m:
-            m.add("GET", self.BASE_URL, json=self.SUBSCRIPTIONS_BY_CHANNEL_P1)
+            m.add("GET", self.base_url, json=self.SUBSCRIPTIONS_BY_CHANNEL_P1)
 
             res = self.api.get_subscription_by_channel(
                 channel_id="UCAuUUnT6oDeKwE6v1NGQxug",
@@ -113,7 +113,7 @@ class ApiPlaylistTest(unittest.TestCase):
 
         # test use page token
         with responses.RequestsMock() as m:
-            m.add("GET", self.BASE_URL, json=self.SUBSCRIPTIONS_BY_CHANNEL_P2)
+            m.add("GET", self.base_url, json=self.SUBSCRIPTIONS_BY_CHANNEL_P2)
 
             res = self.api.get_subscription_by_channel(
                 channel_id="UCAuUUnT6oDeKwE6v1NGQxug",
@@ -131,8 +131,8 @@ class ApiPlaylistTest(unittest.TestCase):
 
         # test get all data
         with responses.RequestsMock() as m:
-            m.add("GET", self.BASE_URL, json=self.SUBSCRIPTIONS_BY_MINE_P1)
-            m.add("GET", self.BASE_URL, json=self.SUBSCRIPTIONS_BY_MINE_P2)
+            m.add("GET", self.base_url, json=self.SUBSCRIPTIONS_BY_MINE_P1)
+            m.add("GET", self.base_url, json=self.SUBSCRIPTIONS_BY_MINE_P2)
 
             sub = self.api_with_access_token.get_subscription_by_me(
                 mine=True,
@@ -149,7 +149,7 @@ class ApiPlaylistTest(unittest.TestCase):
 
         # test count
         with responses.RequestsMock() as m:
-            m.add("GET", self.BASE_URL, json=self.SUBSCRIPTIONS_BY_MINE_P1)
+            m.add("GET", self.base_url, json=self.SUBSCRIPTIONS_BY_MINE_P1)
 
             sub = self.api_with_access_token.get_subscription_by_me(
                 mine=True,
@@ -165,7 +165,7 @@ class ApiPlaylistTest(unittest.TestCase):
 
         # test filter channel id
         with responses.RequestsMock() as m:
-            m.add("GET", self.BASE_URL, json=self.SUBSCRIPTIONS_BY_MINE_FILTER)
+            m.add("GET", self.base_url, json=self.SUBSCRIPTIONS_BY_MINE_FILTER)
 
             sub = self.api_with_access_token.get_subscription_by_me(
                 mine=True,
@@ -179,7 +179,7 @@ class ApiPlaylistTest(unittest.TestCase):
 
         # test remain
         with responses.RequestsMock() as m:
-            m.add("GET", self.BASE_URL, json=self.SUBSCRIPTIONS_ZERO)
+            m.add("GET", self.base_url, json=self.SUBSCRIPTIONS_ZERO)
 
             recent = self.api_with_access_token.get_subscription_by_me(
                 recent_subscriber=True
@@ -193,7 +193,7 @@ class ApiPlaylistTest(unittest.TestCase):
 
         # test get all data
         with responses.RequestsMock() as m:
-            m.add("GET", self.BASE_URL, json=self.SUBSCRIPTIONS_BY_MINE_P2)
+            m.add("GET", self.base_url, json=self.SUBSCRIPTIONS_BY_MINE_P2)
 
             sub = self.api_with_access_token.get_subscription_by_me(
                 mine=True,

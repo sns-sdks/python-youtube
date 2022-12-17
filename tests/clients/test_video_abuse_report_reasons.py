@@ -4,7 +4,7 @@ from .base import BaseTestCase
 
 
 class TestVideoAbuseReportReasonsResource(BaseTestCase):
-    RESOURCE = "videoAbuseReportReasons"
+    resource = "videoAbuseReportReasons"
 
     def test_list(self, helpers, authed_cli):
         with responses.RequestsMock() as m:

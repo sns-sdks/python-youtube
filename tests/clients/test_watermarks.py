@@ -14,7 +14,7 @@ from pyyoutube.media import Media
 
 
 class TestWatermarksResource(BaseTestCase):
-    RESOURCE = "watermarks"
+    resource = "watermarks"
 
     def test_set(self, authed_cli):
         body = mds.Watermark(

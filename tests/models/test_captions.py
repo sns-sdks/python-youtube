@@ -5,13 +5,13 @@ import pyyoutube.models as models
 
 
 class CaptionModelTest(unittest.TestCase):
-    BASE_PATH = "testdata/modeldata/captions/"
+    base_path = "testdata/modeldata/captions/"
 
-    with open(BASE_PATH + "caption_snippet.json", "rb") as f:
+    with open(f"{base_path}caption_snippet.json", "rb") as f:
         CAPTION_SNIPPET = json.loads(f.read().decode("utf-8"))
-    with open(BASE_PATH + "caption.json", "rb") as f:
+    with open(f"{base_path}caption.json", "rb") as f:
         CAPTION_INFO = json.loads(f.read().decode("utf-8"))
-    with open(BASE_PATH + "caption_response.json", "rb") as f:
+    with open(f"{base_path}caption_response.json", "rb") as f:
         CAPTION_RESPONSE = json.loads(f.read().decode("utf-8"))
 
     def testCaptionSnippet(self):

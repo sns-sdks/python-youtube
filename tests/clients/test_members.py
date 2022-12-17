@@ -4,7 +4,7 @@ from .base import BaseTestCase
 
 
 class TestMembersResource(BaseTestCase):
-    RESOURCE = "members"
+    resource = "members"
 
     def test_list(self, helpers, authed_cli):
         with responses.RequestsMock() as m:

@@ -2,7 +2,7 @@
     New Client for YouTube API
 """
 import inspect
-from typing import List, Optional, Tuple, Union
+from typing import List, Optional, Tuple, Union, Dict, Any
 
 import requests
 from requests import Response
@@ -10,13 +10,12 @@ from requests.sessions import merge_setting
 from requests.structures import CaseInsensitiveDict
 from requests_oauthlib.oauth2_session import OAuth2Session
 
-import pyyoutube.resources as resources
-from pyyoutube.models.base import BaseModel
-from pyyoutube.error import ErrorCode, ErrorMessage, PyYouTubeException
-from pyyoutube.models import (
-    AccessToken,
-)
-from pyyoutube.resources.base_resource import Resource
+from . import resources
+from . import constants
+from .models.base import BaseModel
+from .error import ErrorCode, ErrorMessage, PyYouTubeException
+from .models import AccessToken
+from .resources.base_resource import Resource
 
 
 def _is_resource_endpoint(obj):
@@ -155,6 +154,12 @@ class Client:
             raise PyYouTubeException(response)
         return data
 
+    @staticmethod
+    def convert_json_to_dict(json: Optional[Dict]) -> Dict[str, Any]:
+        if isinstance(json, BaseModel):
+            return json.to_dict_ignore_none()
+        return json
+
     def request(
         self,
         path: str,
@@ -210,9 +215,7 @@ class Client:
                 self.add_token_to_headers()
                 params = self.add_api_key_to_params(params=params)
 
-        # If json is dataclass convert to dict
-        if isinstance(json, BaseModel):
-            json = json.to_dict_ignore_none()
+        json = self.convert_json_to_dict(json)
 
         try:
             response = self.session.request(
@@ -234,9 +237,7 @@ class Client:
 
     def add_token_to_headers(self):
         if self.access_token:
-            self.session.headers.update(
-                {"Authorization": f"Bearer {self.access_token}"}
-            )
+            self.session.headers.update({"Authorization": f"Bearer {self.access_token}"})
 
     def add_api_key_to_params(self, params: Optional[dict] = None):
         if not self.api_key:
@@ -406,8 +407,7 @@ class Client:
     def refresh_access_token(
         self, refresh_token: str, return_json: bool = False, **kwargs
     ) -> Union[dict, AccessToken]:
-        """Refresh new access token.
-
+        """
         Args:
             refresh_token:
                 The refresh token returned from the authorization code exchange.
@@ -434,25 +434,11 @@ class Client:
         data = self.parse_response(response)
         return data if return_json else AccessToken.from_dict(data)
 
-    def revoke_access_token(
-        self,
-        token: str,
-    ) -> bool:
-        """Revoke token.
-
+    def revoke_access_token(self, token: str) -> bool:
+        """
         Notes:
             If the token is an access token which has a corresponding refresh token,
             the refresh token will also be revoked.
-
-        Args:
-            token:
-                Can be an access token or a refresh token.
-
-        Returns:
-            Revoked status
-
-        Raises:
-            PyYouTubeException: When occur errors.
         """
         response = self.request(
             method="POST",

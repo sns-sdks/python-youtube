@@ -5,17 +5,17 @@ import pyyoutube.models as models
 
 
 class PlaylistItemModelTest(unittest.TestCase):
-    BASE_PATH = "testdata/modeldata/playlist_items/"
+    base_path = "testdata/modeldata/playlist_items/"
 
-    with open(BASE_PATH + "playlist_item_content_details.json", "rb") as f:
+    with open(f"{base_path}playlist_item_content_details.json", "rb") as f:
         CONTENT_DETAILS_INFO = json.loads(f.read().decode("utf-8"))
-    with open(BASE_PATH + "playlist_item_snippet.json", "rb") as f:
+    with open(f"{base_path}playlist_item_snippet.json", "rb") as f:
         SNIPPET_INFO = json.loads(f.read().decode("utf-8"))
-    with open(BASE_PATH + "playlist_item_status.json", "rb") as f:
+    with open(f"{base_path}playlist_item_status.json", "rb") as f:
         STATUS_INFO = json.loads(f.read().decode("utf-8"))
-    with open(BASE_PATH + "playlist_item_info.json", "rb") as f:
+    with open(f"{base_path}playlist_item_info.json", "rb") as f:
         PLAYLIST_ITEM_INFO = json.loads(f.read().decode("utf-8"))
-    with open(BASE_PATH + "playlist_item_api_response.json", "rb") as f:
+    with open(f"{base_path}playlist_item_api_response.json", "rb") as f:
         PLAYLIST_LIST_RESPONSE = json.loads(f.read().decode("utf-8"))
 
     def testPlaylistItemContentDetails(self) -> None:

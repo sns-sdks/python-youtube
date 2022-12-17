@@ -1,16 +1,11 @@
-"""
-    Base class
-"""
-
-
 class BaseTestCase:
-    BASE_PATH = "testdata/apidata"
-    BASE_URL = "https://www.googleapis.com/youtube/v3"
-    RESOURCE = "CHANNELS"
+    base_path = "testdata/apidata"
+    base_url = "https://www.googleapis.com/youtube/v3"
+    resource = "CHANNELS"
 
     @property
     def url(self):
-        return f"{self.BASE_URL}/{self.RESOURCE}"
+        return f"{self.base_url}/{self.resource}"
 
     def load_json(self, filename, helpers):
-        return helpers.load_json(f"{self.BASE_PATH}/{filename}")
+        return helpers.load_json(f"{self.base_path}/{filename}")

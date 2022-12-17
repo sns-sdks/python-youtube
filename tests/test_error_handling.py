@@ -6,11 +6,11 @@ from pyyoutube.error import ErrorCode, ErrorMessage, PyYouTubeException
 
 
 class ErrorTest(unittest.TestCase):
-    BASE_PATH = "testdata/"
-    with open(BASE_PATH + "error_response.json", "rb") as f:
+    base_path = "testdata/"
+    with open(f"{base_path}error_response.json", "rb") as f:
         ERROR_DATA = f.read()
 
-    with open(BASE_PATH + "error_response_simple.json", "rb") as f:
+    with open(f"{base_path}error_response_simple.json", "rb") as f:
         ERROR_DATA_SIMPLE = f.read()
 
     def testResponseError(self) -> None:

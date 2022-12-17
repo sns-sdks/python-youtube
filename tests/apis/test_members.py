@@ -6,13 +6,13 @@ import pyyoutube
 
 
 class ApiMembersTest(unittest.TestCase):
-    BASE_PATH = "testdata/apidata/members/"
+    base_path = "testdata/apidata/members/"
     MEMBERS_URL = "https://www.googleapis.com/youtube/v3/members"
     MEMBERSHIP_LEVEL_URL = "https://www.googleapis.com/youtube/v3/membershipsLevels"
 
-    with open(BASE_PATH + "members_data.json", "rb") as f:
+    with open(f"{base_path}members_data.json", "rb") as f:
         MEMBERS_RES = json.loads(f.read().decode("utf-8"))
-    with open(BASE_PATH + "membership_levels.json", "rb") as f:
+    with open(f"{base_path}membership_levels.json", "rb") as f:
         MEMBERSHIP_LEVEL_RES = json.loads(f.read().decode("utf-8"))
 
     def setUp(self) -> None:

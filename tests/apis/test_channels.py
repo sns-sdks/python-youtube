@@ -8,12 +8,12 @@ import responses
 
 
 class ApiChannelTest(unittest.TestCase):
-    BASE_PATH = "testdata/apidata/"
-    BASE_URL = "https://www.googleapis.com/youtube/v3/channels"
+    base_path = "testdata/apidata/"
+    base_url = "https://www.googleapis.com/youtube/v3/channels"
 
-    with open(BASE_PATH + "channel_info_single.json", "rb") as f:
+    with open(f"{base_path}channel_info_single.json", "rb") as f:
         CHANNELS_INFO_SINGLE = json.loads(f.read().decode("utf-8"))
-    with open(BASE_PATH + "channel_info_multi.json", "rb") as f:
+    with open(f"{base_path}channel_info_multi.json", "rb") as f:
         CHANNELS_INFO_MULTI = json.loads(f.read().decode("utf-8"))
 
     def setUp(self) -> None:
@@ -24,14 +24,14 @@ class ApiChannelTest(unittest.TestCase):
             api = pyyoutube.Api(client_id="id", client_secret="secret")
             api._request("channels", post_args={"a": "a"})
         with responses.RequestsMock() as m:
-            m.add("POST", self.BASE_URL, json={})
+            m.add("POST", self.base_url, json={})
             api = pyyoutube.Api(access_token="access token")
             res = api._request("channels", post_args={"a": "a"})
             self.assertTrue(res)
 
         with self.assertRaises(pyyoutube.PyYouTubeException):
             with responses.RequestsMock() as m:
-                m.add("GET", self.BASE_URL, body=HTTPError("Exception"))
+                m.add("GET", self.base_url, body=HTTPError("Exception"))
                 self.api.get_channel_info(channel_id="channel_id", parts="id,snippet")
 
     # TODO need to separate.
@@ -40,7 +40,7 @@ class ApiChannelTest(unittest.TestCase):
             error_response = json.loads(f.read().decode("utf-8"))
 
         with responses.RequestsMock() as m:
-            m.add("GET", self.BASE_URL, json=error_response, status=400)
+            m.add("GET", self.base_url, json=error_response, status=400)
 
             with self.assertRaises(pyyoutube.PyYouTubeException):
                 self.api.get_channel_info(
@@ -55,7 +55,7 @@ class ApiChannelTest(unittest.TestCase):
             self.api.get_channel_info()
 
         with responses.RequestsMock() as m:
-            m.add("GET", self.BASE_URL, json=self.CHANNELS_INFO_SINGLE)
+            m.add("GET", self.base_url, json=self.CHANNELS_INFO_SINGLE)
 
             res_by_channel_id = self.api.get_channel_info(
                 channel_id="UC_x5XG1OV2P6uZZ5FSM9Ttw", parts="id,snippet,statistics"
@@ -73,7 +73,7 @@ class ApiChannelTest(unittest.TestCase):
             self.assertEqual(res_by_mine.items[0].id, "UC_x5XG1OV2P6uZZ5FSM9Ttw")
 
         with responses.RequestsMock() as m:
-            m.add("GET", self.BASE_URL, json=self.CHANNELS_INFO_MULTI)
+            m.add("GET", self.base_url, json=self.CHANNELS_INFO_MULTI)
 
             res_by_channel_id_list = self.api.get_channel_info(
                 channel_id="UC_x5XG1OV2P6uZZ5FSM9Ttw,UCK8sQmJBp8GCxrOtXWBpyEA",

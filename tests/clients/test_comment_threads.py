@@ -7,7 +7,7 @@ from pyyoutube.error import PyYouTubeException
 
 
 class TestCommentThreadsResource(BaseTestCase):
-    RESOURCE = "commentThreads"
+    resource = "commentThreads"
 
     def test_list(self, helpers, key_cli):
         with pytest.raises(PyYouTubeException):

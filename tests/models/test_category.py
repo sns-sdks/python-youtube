@@ -5,15 +5,15 @@ import pyyoutube.models as models
 
 
 class CategoryModelTest(unittest.TestCase):
-    BASE_PATH = "testdata/modeldata/categories/"
+    base_path = "testdata/modeldata/categories/"
 
-    with open(BASE_PATH + "video_category_info.json", "rb") as f:
+    with open(f"{base_path}video_category_info.json", "rb") as f:
         VIDEO_CATEGORY_INFO = json.loads(f.read().decode("utf-8"))
-    with open(BASE_PATH + "video_category_response.json", "rb") as f:
+    with open(f"{base_path}video_category_response.json", "rb") as f:
         VIDEO_CATEGORY_RESPONSE = json.loads(f.read().decode("utf-8"))
-    with open(BASE_PATH + "guide_category_info.json", "rb") as f:
+    with open(f"{base_path}guide_category_info.json", "rb") as f:
         GUIDE_CATEGORY_INFO = json.loads(f.read().decode("utf-8"))
-    with open(BASE_PATH + "guide_category_response.json", "rb") as f:
+    with open(f"{base_path}guide_category_response.json", "rb") as f:
         GUIDE_CATEGORY_RESPONSE = json.loads(f.read().decode("utf-8"))
 
     def testVideoCategory(self) -> None:

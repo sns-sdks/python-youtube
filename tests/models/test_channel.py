@@ -4,23 +4,23 @@ import pyyoutube.models as models
 
 
 class ChannelModelTest(unittest.TestCase):
-    BASE_PATH = "testdata/modeldata/channels/"
+    base_path = "testdata/modeldata/channels/"
 
-    with open(BASE_PATH + "channel_branding_settings.json", "rb") as f:
+    with open(f"{base_path}channel_branding_settings.json", "rb") as f:
         BRANDING_SETTINGS_INFO = json.loads(f.read().decode("utf-8"))
-    with open(BASE_PATH + "channel_content_details.json", "rb") as f:
+    with open(f"{base_path}channel_content_details.json", "rb") as f:
         CONTENT_DETAILS_INFO = json.loads(f.read().decode("utf-8"))
-    with open(BASE_PATH + "channel_topic_details.json", "rb") as f:
+    with open(f"{base_path}channel_topic_details.json", "rb") as f:
         TOPIC_DETAILS_INFO = json.loads(f.read().decode("utf-8"))
-    with open(BASE_PATH + "channel_snippet.json", "rb") as f:
+    with open(f"{base_path}channel_snippet.json", "rb") as f:
         SNIPPET_INFO = json.loads(f.read().decode("utf-8"))
-    with open(BASE_PATH + "channel_statistics.json", "rb") as f:
+    with open(f"{base_path}channel_statistics.json", "rb") as f:
         STATISTICS_INFO = json.loads(f.read().decode("utf-8"))
-    with open(BASE_PATH + "channel_status.json", "rb") as f:
+    with open(f"{base_path}channel_status.json", "rb") as f:
         STATUS_INFO = json.loads(f.read().decode("utf-8"))
-    with open(BASE_PATH + "channel_info.json", "rb") as f:
+    with open(f"{base_path}channel_info.json", "rb") as f:
         CHANNEL_INFO = json.loads(f.read().decode("utf-8"))
-    with open(BASE_PATH + "channel_api_response.json", "rb") as f:
+    with open(f"{base_path}channel_api_response.json", "rb") as f:
         CHANNEL_API_RESPONSE = json.loads(f.read().decode("utf-8"))
 
     def testChannelBrandingSettings(self) -> None:

@@ -13,7 +13,7 @@ from pyyoutube.media import Media
 
 
 class TestCaptionsResource(BaseTestCase):
-    RESOURCE = "captions"
+    resource = "captions"
 
     def test_list(self, helpers, key_cli):
         with responses.RequestsMock() as m:

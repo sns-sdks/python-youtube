@@ -7,7 +7,7 @@ from pyyoutube.error import PyYouTubeException
 
 
 class TestCommentsResource(BaseTestCase):
-    RESOURCE = "comments"
+    resource = "comments"
 
     def test_list(self, helpers, key_cli):
         with pytest.raises(PyYouTubeException):
@@ -17,17 +17,13 @@ class TestCommentsResource(BaseTestCase):
             m.add(
                 method="GET",
                 url=self.url,
-                json=self.load_json(
-                    "comments/comments_by_parent_paged_1.json", helpers
-                ),
+                json=self.load_json("comments/comments_by_parent_paged_1.json", helpers),
             )
             res = key_cli.comments.list(
                 parts=["id", "snippet"],
                 parent_id="Ugw5zYU6n9pmIgAZWvN4AaABAg",
             )
-            assert (
-                res.items[0].id == "Ugw5zYU6n9pmIgAZWvN4AaABAg.91zT3cYb5B291za6voUoRh"
-            )
+            assert res.items[0].id == "Ugw5zYU6n9pmIgAZWvN4AaABAg.91zT3cYb5B291za6voUoRh"
             assert res.items[0].snippet.parentId == "Ugw5zYU6n9pmIgAZWvN4AaABAg"
 
             res = key_cli.comments.list(

@@ -7,12 +7,12 @@ import pyyoutube
 
 
 class ApiCaptionsTest(unittest.TestCase):
-    BASE_PATH = "testdata/apidata/captions/"
-    BASE_URL = "https://www.googleapis.com/youtube/v3/captions"
+    base_path = "testdata/apidata/captions/"
+    base_url = "https://www.googleapis.com/youtube/v3/captions"
 
-    with open(BASE_PATH + "captions_by_video.json", "rb") as f:
+    with open(f"{base_path}captions_by_video.json", "rb") as f:
         CAPTIONS_BY_VIDEO = json.loads(f.read().decode("utf-8"))
-    with open(BASE_PATH + "captions_filter_by_id.json", "rb") as f:
+    with open(f"{base_path}captions_filter_by_id.json", "rb") as f:
         CAPTIONS_FILTER_ID = json.loads(f.read().decode("utf-8"))
 
     def setUp(self) -> None:
@@ -30,7 +30,7 @@ class ApiCaptionsTest(unittest.TestCase):
 
         # test by video
         with responses.RequestsMock() as m:
-            m.add("GET", self.BASE_URL, json=self.CAPTIONS_BY_VIDEO)
+            m.add("GET", self.base_url, json=self.CAPTIONS_BY_VIDEO)
 
             res = self.api_with_access_token.get_captions_by_video(
                 video_id=video_id,
@@ -42,7 +42,7 @@ class ApiCaptionsTest(unittest.TestCase):
 
         # test filter id
         with responses.RequestsMock() as m:
-            m.add("GET", self.BASE_URL, json=self.CAPTIONS_FILTER_ID)
+            m.add("GET", self.base_url, json=self.CAPTIONS_FILTER_ID)
 
             res = self.api_with_access_token.get_captions_by_video(
                 video_id=video_id,

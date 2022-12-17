@@ -5,17 +5,17 @@ import pyyoutube.models as models
 
 
 class PlaylistModelTest(unittest.TestCase):
-    BASE_PATH = "testdata/modeldata/playlists/"
+    base_path = "testdata/modeldata/playlists/"
 
-    with open(BASE_PATH + "playlist_content_details.json", "rb") as f:
+    with open(f"{base_path}playlist_content_details.json", "rb") as f:
         CONTENT_DETAILS_INFO = json.loads(f.read().decode("utf-8"))
-    with open(BASE_PATH + "playlist_snippet.json", "rb") as f:
+    with open(f"{base_path}playlist_snippet.json", "rb") as f:
         SNIPPET_INFO = json.loads(f.read().decode("utf-8"))
-    with open(BASE_PATH + "playlist_status.json", "rb") as f:
+    with open(f"{base_path}playlist_status.json", "rb") as f:
         STATUS_INFO = json.loads(f.read().decode("utf-8"))
-    with open(BASE_PATH + "playlist_info.json", "rb") as f:
+    with open(f"{base_path}playlist_info.json", "rb") as f:
         PLAYLIST_INFO = json.loads(f.read().decode("utf-8"))
-    with open(BASE_PATH + "playlist_api_response.json", "rb") as f:
+    with open(f"{base_path}playlist_api_response.json", "rb") as f:
         PLAYLIST_RESPONSE_INFO = json.loads(f.read().decode("utf-8"))
 
     def testPlayListContentDetails(self) -> None:

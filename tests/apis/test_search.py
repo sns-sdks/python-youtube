@@ -7,25 +7,25 @@ import pyyoutube
 
 
 class ApiSearchTest(unittest.TestCase):
-    BASE_PATH = "testdata/apidata/search/"
-    BASE_URL = "https://www.googleapis.com/youtube/v3/search"
+    base_path = "testdata/apidata/search/"
+    base_url = "https://www.googleapis.com/youtube/v3/search"
 
     def setUp(self) -> None:
         self.api = pyyoutube.Api(api_key="api key")
 
     def testSearch(self) -> None:
-        with open(self.BASE_PATH + "search_videos_by_channel.json", "rb") as f:
+        with open(f"{self.base_path}search_videos_by_channel.json", "rb") as f:
             search_videos_by_channel = json.loads(f.read().decode("utf-8"))
-        with open(self.BASE_PATH + "search_by_location.json", "rb") as f:
+        with open(f"{self.base_path}search_by_location.json", "rb") as f:
             search_by_location = json.loads(f.read().decode("utf-8"))
-        with open(self.BASE_PATH + "search_by_event.json", "rb") as f:
+        with open(f"{self.base_path}search_by_event.json", "rb") as f:
             search_by_event = json.loads(f.read().decode("utf-8"))
-        with open(self.BASE_PATH + "search_channels.json", "rb") as f:
+        with open(f"{self.base_path}search_channels.json", "rb") as f:
             search_channels = json.loads(f.read().decode("utf-8"))
 
         # test search videos with channel
         with responses.RequestsMock() as m:
-            m.add("GET", self.BASE_URL, json=search_videos_by_channel)
+            m.add("GET", self.base_url, json=search_videos_by_channel)
 
             res = self.api.search(
                 parts="snippet",
@@ -38,7 +38,7 @@ class ApiSearchTest(unittest.TestCase):
 
         # test search locations
         with responses.RequestsMock() as m:
-            m.add("GET", self.BASE_URL, json=search_by_location)
+            m.add("GET", self.base_url, json=search_by_location)
             res = self.api.search(
                 location="21.5922529, -158.1147114",
                 location_radius="10mi",
@@ -56,7 +56,7 @@ class ApiSearchTest(unittest.TestCase):
 
         # test search event
         with responses.RequestsMock() as m:
-            m.add("GET", self.BASE_URL, json=search_by_event)
+            m.add("GET", self.base_url, json=search_by_event)
             res = self.api.search(
                 event_type="live",
                 q="news",
@@ -74,7 +74,7 @@ class ApiSearchTest(unittest.TestCase):
 
         # test search channel
         with responses.RequestsMock() as m:
-            m.add("GET", self.BASE_URL, json=search_channels)
+            m.add("GET", self.base_url, json=search_channels)
 
             res_channels = self.api.search(
                 parts=["snippet"],
@@ -88,9 +88,9 @@ class ApiSearchTest(unittest.TestCase):
             )
 
     def testSearchByKeywords(self) -> None:
-        with open(self.BASE_PATH + "search_by_keywords_p1.json", "rb") as f:
+        with open(f"{self.base_path}search_by_keywords_p1.json", "rb") as f:
             res_p1 = json.loads(f.read().decode("utf-8"))
-        with open(self.BASE_PATH + "search_by_keywords_p2.json", "rb") as f:
+        with open(f"{self.base_path}search_by_keywords_p2.json", "rb") as f:
             res_p2 = json.loads(f.read().decode("utf-8"))
 
         # test parts
@@ -99,8 +99,8 @@ class ApiSearchTest(unittest.TestCase):
 
         # test response
         with responses.RequestsMock() as m:
-            m.add("GET", self.BASE_URL, json=res_p1)
-            m.add("GET", self.BASE_URL, json=res_p2)
+            m.add("GET", self.base_url, json=res_p1)
+            m.add("GET", self.base_url, json=res_p2)
 
             res_json = self.api.search_by_keywords(
                 q="surfing", count=30, limit=25, return_json=True
@@ -120,11 +120,11 @@ class ApiSearchTest(unittest.TestCase):
             self.assertEqual(res.items[0].snippet.channelId, "UCeYue9Nbodzg3T1Nt88E3fg")
 
     def testSearchByRelatedToVideoId(self) -> None:
-        with open(self.BASE_PATH + "search_by_related_video.json", "rb") as f:
+        with open(f"{self.base_path}search_by_related_video.json", "rb") as f:
             search_by_related_video = json.loads(f.read().decode("utf-8"))
 
         with responses.RequestsMock() as m:
-            m.add("GET", self.BASE_URL, json=search_by_related_video)
+            m.add("GET", self.base_url, json=search_by_related_video)
 
             res = self.api.search_by_related_video(
                 related_to_video_id="Ks-_Mh1QhMc",
@@ -140,11 +140,11 @@ class ApiSearchTest(unittest.TestCase):
             self.assertEqual(res.items[0].snippet.channelId, "UCAuUUnT6oDeKwE6v1NGQxug")
 
     def testSearchByDeveloper(self) -> None:
-        with open(self.BASE_PATH + "search_by_developer.json", "rb") as f:
+        with open(f"{self.base_path}search_by_developer.json", "rb") as f:
             search_by_developer = json.loads(f.read().decode("utf-8"))
 
         with responses.RequestsMock() as m:
-            m.add("GET", self.BASE_URL, json=search_by_developer)
+            m.add("GET", self.base_url, json=search_by_developer)
 
             res_dev = self.api.search_by_developer(
                 parts=["snippet"],
@@ -167,11 +167,11 @@ class ApiSearchTest(unittest.TestCase):
             )
 
     def testSearchByMine(self) -> None:
-        with open(self.BASE_PATH + "search_by_mine.json", "rb") as f:
+        with open(f"{self.base_path}search_by_mine.json", "rb") as f:
             search_by_mine = json.loads(f.read().decode("utf-8"))
 
         with responses.RequestsMock() as m:
-            m.add("GET", self.BASE_URL, json=search_by_mine)
+            m.add("GET", self.base_url, json=search_by_mine)
 
             res_mine = self.api.search_by_mine(
                 parts=["snippet"],

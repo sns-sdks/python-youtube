@@ -4,7 +4,7 @@ from .base import BaseTestCase
 
 
 class TestI18nLanguagesResource(BaseTestCase):
-    RESOURCE = "i18nLanguages"
+    resource = "i18nLanguages"
 
     def test_list(self, helpers, key_cli):
         with responses.RequestsMock() as m:
@@ -20,7 +20,7 @@ class TestI18nLanguagesResource(BaseTestCase):
 
 
 class TestI18nRegionsResource(BaseTestCase):
-    RESOURCE = "i18nRegions"
+    resource = "i18nRegions"
 
     def test_list(self, helpers, key_cli):
         with responses.RequestsMock() as m:

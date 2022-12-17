@@ -5,11 +5,11 @@ import pyyoutube.models as models
 
 
 class ChannelSectionModelTest(unittest.TestCase):
-    BASE_PATH = "testdata/modeldata/channel_sections/"
+    base_path = "testdata/modeldata/channel_sections/"
 
-    with open(BASE_PATH + "channel_section_info.json", "rb") as f:
+    with open(f"{base_path}channel_section_info.json", "rb") as f:
         CHANNEL_SECTION_INFO = json.loads(f.read().decode("utf-8"))
-    with open(BASE_PATH + "channel_section_response.json", "rb") as f:
+    with open(f"{base_path}channel_section_response.json", "rb") as f:
         CHANNEL_SECTION_RESPONSE = json.loads(f.read().decode("utf-8"))
 
     def testChannelSection(self) -> None:

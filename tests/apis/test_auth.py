@@ -8,11 +8,11 @@ import pyyoutube
 
 
 class TestOAuthApi(unittest.TestCase):
-    BASE_PATH = "testdata/apidata/"
+    base_path = "testdata/apidata/"
 
-    with open(BASE_PATH + "access_token.json", "rb") as f:
+    with open(f"{base_path}access_token.json", "rb") as f:
         ACCESS_TOKEN_INFO = json.loads(f.read().decode("utf-8"))
-    with open(BASE_PATH + "user_profile.json", "rb") as f:
+    with open(f"{base_path}user_profile.json", "rb") as f:
         USER_PROFILE_INFO = json.loads(f.read().decode("utf-8"))
 
     def setUp(self) -> None:
@@ -35,9 +35,7 @@ class TestOAuthApi(unittest.TestCase):
             self.api.refresh_token()
 
         with responses.RequestsMock() as m:
-            m.add(
-                "POST", self.api.EXCHANGE_ACCESS_TOKEN_URL, json=self.ACCESS_TOKEN_INFO
-            )
+            m.add("POST", self.api.EXCHANGE_ACCESS_TOKEN_URL, json=self.ACCESS_TOKEN_INFO)
             token = self.api.generate_access_token(
                 authorization_response=redirect_response,
             )

@@ -6,14 +6,14 @@ import responses
 
 
 class ApiChannelSectionTest(unittest.TestCase):
-    BASE_PATH = "testdata/apidata/channel_sections/"
-    BASE_URL = "https://www.googleapis.com/youtube/v3/channelSections"
+    base_path = "testdata/apidata/channel_sections/"
+    base_url = "https://www.googleapis.com/youtube/v3/channelSections"
 
-    with open(BASE_PATH + "channel_sections_by_id.json", "rb") as f:
+    with open(f"{base_path}channel_sections_by_id.json", "rb") as f:
         CHANNEL_SECTIONS_BY_ID = json.loads(f.read().decode("utf-8"))
-    with open(BASE_PATH + "channel_sections_by_ids.json", "rb") as f:
+    with open(f"{base_path}channel_sections_by_ids.json", "rb") as f:
         CHANNEL_SECTIONS_BY_IDS = json.loads(f.read().decode("utf-8"))
-    with open(BASE_PATH + "channel_sections_by_channel.json", "rb") as f:
+    with open(f"{base_path}channel_sections_by_channel.json", "rb") as f:
         CHANNEL_SECTIONS_BY_CHANNEL = json.loads(f.read().decode("utf-8"))
 
     def setUp(self) -> None:
@@ -27,8 +27,8 @@ class ApiChannelSectionTest(unittest.TestCase):
         ]
 
         with responses.RequestsMock() as m:
-            m.add("GET", self.BASE_URL, json=self.CHANNEL_SECTIONS_BY_ID)
-            m.add("GET", self.BASE_URL, json=self.CHANNEL_SECTIONS_BY_IDS)
+            m.add("GET", self.base_url, json=self.CHANNEL_SECTIONS_BY_ID)
+            m.add("GET", self.base_url, json=self.CHANNEL_SECTIONS_BY_IDS)
 
             section_res = self.api.get_channel_sections_by_id(
                 section_id=section_id,
@@ -48,7 +48,7 @@ class ApiChannelSectionTest(unittest.TestCase):
         channel_id = "UCa-vrCLQHviTOVnEKDOdetQ"
 
         with responses.RequestsMock() as m:
-            m.add("GET", self.BASE_URL, json=self.CHANNEL_SECTIONS_BY_CHANNEL)
+            m.add("GET", self.base_url, json=self.CHANNEL_SECTIONS_BY_CHANNEL)
 
             section_by_channel = self.api.get_channel_sections_by_channel(
                 channel_id=channel_id,

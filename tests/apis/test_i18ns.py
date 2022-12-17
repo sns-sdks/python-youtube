@@ -6,13 +6,13 @@ import pyyoutube
 
 
 class ApiI18nTest(unittest.TestCase):
-    BASE_PATH = "testdata/apidata/i18ns/"
+    base_path = "testdata/apidata/i18ns/"
     REGION_URL = "https://www.googleapis.com/youtube/v3/i18nRegions"
     LANGUAGE_URL = "https://www.googleapis.com/youtube/v3/i18nLanguages"
 
-    with open(BASE_PATH + "regions_res.json", "rb") as f:
+    with open(f"{base_path}regions_res.json", "rb") as f:
         REGIONS_RES = json.loads(f.read().decode("utf-8"))
-    with open(BASE_PATH + "language_res.json", "rb") as f:
+    with open(f"{base_path}language_res.json", "rb") as f:
         LANGUAGE_RES = json.loads(f.read().decode("utf-8"))
 
     def setUp(self) -> None:

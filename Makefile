@@ -1,4 +1,6 @@
-all: help clean lint test
+all: help clean lint test check
+
+FOLDERS=tests pyyoutube
 
 .PHONY: all
 
@@ -38,10 +40,14 @@ docs:
 	$(MAKE) -C docs html
 
 lint:
-	black .
+	isort ${FOLDERS} 
+	black ${FOLDERS}
 
-lint-check:
-	black --check .
+check:
+	isort --df -c ${FOLDERS}
+	black ${FOLDERS} --check
+	flake8 ${FOLDERS}
+	mypy ${FOLDERS}
 
 test:
 	pytest -s

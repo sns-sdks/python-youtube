@@ -5,9 +5,9 @@ import pyyoutube.models as models
 
 
 class MemberModelTest(unittest.TestCase):
-    BASE_PATH = "testdata/modeldata/members/"
+    base_path = "testdata/modeldata/members/"
 
-    with open(BASE_PATH + "member_info.json", "rb") as f:
+    with open(f"{base_path}member_info.json", "rb") as f:
         MEMBER_INFO = json.loads(f.read().decode("utf-8"))
 
     def testMember(self) -> None:
@@ -19,9 +19,9 @@ class MemberModelTest(unittest.TestCase):
 
 
 class MembershipLevelModelTest(unittest.TestCase):
-    BASE_PATH = "testdata/modeldata/members/"
+    base_path = "testdata/modeldata/members/"
 
-    with open(BASE_PATH + "membership_level.json", "rb") as f:
+    with open(f"{base_path}membership_level.json", "rb") as f:
         MEMBERSHIP_LEVEL_INFO = json.loads(f.read().decode("utf-8"))
 
     def testMembershipLevel(self) -> None:

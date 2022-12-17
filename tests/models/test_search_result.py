@@ -5,15 +5,15 @@ import pyyoutube.models as models
 
 
 class SearchResultModelTest(unittest.TestCase):
-    BASE_PATH = "testdata/modeldata/search_result/"
+    base_path = "testdata/modeldata/search_result/"
 
-    with open(BASE_PATH + "search_result_id.json", "rb") as f:
+    with open(f"{base_path}search_result_id.json", "rb") as f:
         SEARCH_RES_ID_INFO = json.loads(f.read().decode("utf-8"))
-    with open(BASE_PATH + "search_result_snippet.json", "rb") as f:
+    with open(f"{base_path}search_result_snippet.json", "rb") as f:
         SEARCH_RES_SNIPPET_INFO = json.loads(f.read().decode("utf-8"))
-    with open(BASE_PATH + "search_result.json", "rb") as f:
+    with open(f"{base_path}search_result.json", "rb") as f:
         SEARCH_RES_INFO = json.loads(f.read().decode("utf-8"))
-    with open(BASE_PATH + "search_result_api_response.json", "rb") as f:
+    with open(f"{base_path}search_result_api_response.json", "rb") as f:
         SEARCH_RES_API_INFO = json.loads(f.read().decode("utf-8"))
 
     def testSearchResultId(self):

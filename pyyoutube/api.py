@@ -9,8 +9,8 @@ from requests.auth import HTTPBasicAuth
 from requests.models import Response
 from requests_oauthlib.oauth2_session import OAuth2Session
 
-from pyyoutube.error import ErrorCode, ErrorMessage, PyYouTubeException
-from pyyoutube.models import (
+from .error import ErrorCode, ErrorMessage, PyYouTubeException
+from .models import (
     AccessToken,
     UserProfile,
     ActivityListResponse,
@@ -31,7 +31,7 @@ from pyyoutube.models import (
     MembershipsLevelListResponse,
     VideoAbuseReportReasonListResponse,
 )
-from pyyoutube.utils.params_checker import enf_comma_separated, enf_parts
+from .utils.params_checker import enf_comma_separated, enf_parts
 
 
 class Api(object):
@@ -583,9 +583,7 @@ class Api(object):
         if page_token is not None:
             args["pageToken"] = page_token
 
-        res_data = self.paged_by_page_token(
-            resource="activities", args=args, count=count
-        )
+        res_data = self.paged_by_page_token(resource="activities", args=args, count=count)
 
         if return_json:
             return res_data
@@ -665,9 +663,7 @@ class Api(object):
         if page_token is not None:
             args["pageToken"] = page_token
 
-        res_data = self.paged_by_page_token(
-            resource="activities", args=args, count=count
-        )
+        res_data = self.paged_by_page_token(resource="activities", args=args, count=count)
 
         if return_json:
             return res_data
@@ -1122,7 +1118,10 @@ class Api(object):
             raise PyYouTubeException(
                 ErrorMessage(
                     status_code=ErrorCode.MISSING_PARAMS,
-                    message=f"Specify at least one of all_to_channel_id, channel_id or video_id",
+                    message=(
+                        f"Specify at least one of all_to_channel_id, channel_id or"
+                        f" video_id"
+                    ),
                 )
             )
 
@@ -1562,9 +1561,7 @@ class Api(object):
         if page_token is not None:
             args["pageToken"] = page_token
 
-        res_data = self.paged_by_page_token(
-            resource="playlists", args=args, count=count
-        )
+        res_data = self.paged_by_page_token(resource="playlists", args=args, count=count)
         if return_json:
             return res_data
         else:
@@ -2164,7 +2161,9 @@ class Api(object):
             raise PyYouTubeException(
                 ErrorMessage(
                     status_code=ErrorCode.MISSING_PARAMS,
-                    message=f"Must specify at least one of mine,recent_subscriber,subscriber.",
+                    message=(
+                        f"Must specify at least one of mine,recent_subscriber,subscriber."
+                    ),
                 )
             )
 

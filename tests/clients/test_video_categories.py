@@ -6,7 +6,7 @@ from pyyoutube.error import PyYouTubeException
 
 
 class TestVideoCategoriesResource(BaseTestCase):
-    RESOURCE = "videoCategories"
+    resource = "videoCategories"
 
     def test_list(self, helpers, key_cli):
         with pytest.raises(PyYouTubeException):
@@ -16,9 +16,7 @@ class TestVideoCategoriesResource(BaseTestCase):
             m.add(
                 method="GET",
                 url=self.url,
-                json=self.load_json(
-                    "categories/video_category_by_region.json", helpers
-                ),
+                json=self.load_json("categories/video_category_by_region.json", helpers),
             )
             res = key_cli.videoCategories.list(
                 parts=["snippet"],

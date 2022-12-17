@@ -5,21 +5,21 @@ import pyyoutube.models as models
 
 
 class VideoModelTest(unittest.TestCase):
-    BASE_PATH = "testdata/modeldata/videos/"
+    base_path = "testdata/modeldata/videos/"
 
-    with open(BASE_PATH + "video_content_details.json", "rb") as f:
+    with open(f"{base_path}video_content_details.json", "rb") as f:
         CONTENT_DETAILS_INFO = json.loads(f.read().decode("utf-8"))
-    with open(BASE_PATH + "video_topic_details.json", "rb") as f:
+    with open(f"{base_path}video_topic_details.json", "rb") as f:
         TOPIC_DETAILS_INFO = json.loads(f.read().decode("utf-8"))
-    with open(BASE_PATH + "video_snippet.json", "rb") as f:
+    with open(f"{base_path}video_snippet.json", "rb") as f:
         SNIPPET_INFO = json.loads(f.read().decode("utf-8"))
-    with open(BASE_PATH + "video_statistics.json", "rb") as f:
+    with open(f"{base_path}video_statistics.json", "rb") as f:
         STATISTICS_INFO = json.loads(f.read().decode("utf-8"))
-    with open(BASE_PATH + "video_status.json", "rb") as f:
+    with open(f"{base_path}video_status.json", "rb") as f:
         STATUS_INFO = json.loads(f.read().decode("utf-8"))
-    with open(BASE_PATH + "video_info.json", "rb") as f:
+    with open(f"{base_path}video_info.json", "rb") as f:
         VIDEO_INFO = json.loads(f.read().decode("utf-8"))
-    with open(BASE_PATH + "video_api_response.json", "rb") as f:
+    with open(f"{base_path}video_api_response.json", "rb") as f:
         VIDEO_API_RESPONSE = json.loads(f.read().decode("utf-8"))
 
     def testVideoContentDetails(self) -> None:
@@ -88,9 +88,7 @@ class VideoModelTest(unittest.TestCase):
         m = models.Video.from_dict(self.VIDEO_INFO)
 
         self.assertEqual(m.id, "D-lhorsDlUQ")
-        self.assertEqual(
-            m.snippet.title, "What are Actions on Google (Assistant on Air)"
-        )
+        self.assertEqual(m.snippet.title, "What are Actions on Google (Assistant on Air)")
 
     def testVideoListResponse(self) -> None:
         m = models.VideoListResponse.from_dict(self.VIDEO_API_RESPONSE)

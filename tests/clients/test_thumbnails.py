@@ -8,7 +8,7 @@ from pyyoutube.media import Media
 
 
 class TestThumbnailsResource(BaseTestCase):
-    RESOURCE = "thumbnails"
+    resource = "thumbnails"
 
     def test_set(self, authed_cli):
         video_id = "zxTVeyG1600"

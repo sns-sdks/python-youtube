@@ -6,15 +6,15 @@ import pyyoutube.models as models
 
 
 class I18nModelTest(unittest.TestCase):
-    BASE_PATH = "testdata/modeldata/i18ns/"
+    base_path = "testdata/modeldata/i18ns/"
 
-    with open(BASE_PATH + "region_info.json", "rb") as f:
+    with open(f"{base_path}region_info.json", "rb") as f:
         REGION_INFO = json.loads(f.read().decode("utf-8"))
-    with open(BASE_PATH + "region_res.json", "rb") as f:
+    with open(f"{base_path}region_res.json", "rb") as f:
         REGION_RES = json.loads(f.read().decode("utf-8"))
-    with open(BASE_PATH + "language_info.json", "rb") as f:
+    with open(f"{base_path}language_info.json", "rb") as f:
         LANGUAGE_INFO = json.loads(f.read().decode("utf-8"))
-    with open(BASE_PATH + "language_res.json", "rb") as f:
+    with open(f"{base_path}language_res.json", "rb") as f:
         LANGUAGE_RES = json.loads(f.read().decode("utf-8"))
 
     def testI18nRegion(self) -> None:

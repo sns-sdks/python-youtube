@@ -7,18 +7,18 @@ import pyyoutube
 
 
 class ApiActivitiesTest(unittest.TestCase):
-    BASE_PATH = "testdata/apidata/activities/"
-    BASE_URL = "https://www.googleapis.com/youtube/v3/activities"
+    base_path = "testdata/apidata/activities/"
+    base_url = "https://www.googleapis.com/youtube/v3/activities"
 
-    with open(BASE_PATH + "activities_by_channel_p1.json", "rb") as f:
-        ACTIVITIES_CHANNEL_P1 = json.loads(f.read().decode("utf-8"))
-    with open(BASE_PATH + "activities_by_channel_p2.json", "rb") as f:
-        ACTIVITIES_CHANNEL_P2 = json.loads(f.read().decode("utf-8"))
+    with open(f"{base_path}activities_by_channel_p1.json", "rb") as f:
+        activities_channel_p1 = json.loads(f.read().decode("utf-8"))
+    with open(f"{base_path}activities_by_channel_p2.json", "rb") as f:
+        activities_channel_p2 = json.loads(f.read().decode("utf-8"))
 
-    with open(BASE_PATH + "activities_by_mine_p1.json", "rb") as f:
-        ACTIVITIES_MINE_P1 = json.loads(f.read().decode("utf-8"))
-    with open(BASE_PATH + "activities_by_mine_p2.json", "rb") as f:
-        ACTIVITIES_MINE_P2 = json.loads(f.read().decode("utf-8"))
+    with open(f"{base_path}activities_by_mine_p1.json", "rb") as f:
+        activities_mine_p1 = json.loads(f.read().decode("utf-8"))
+    with open(f"{base_path}activities_by_mine_p2.json", "rb") as f:
+        activities_mine_p2 = json.loads(f.read().decode("utf-8"))
 
     def setUp(self) -> None:
         self.api = pyyoutube.Api(api_key="api key")
@@ -31,8 +31,8 @@ class ApiActivitiesTest(unittest.TestCase):
 
         # test get all activities
         with responses.RequestsMock() as m:
-            m.add("GET", self.BASE_URL, json=self.ACTIVITIES_CHANNEL_P1)
-            m.add("GET", self.BASE_URL, json=self.ACTIVITIES_CHANNEL_P2)
+            m.add("GET", self.base_url, json=self.activities_channel_p1)
+            m.add("GET", self.base_url, json=self.activities_channel_p2)
 
             res = self.api.get_activities_by_channel(
                 channel_id="UC_x5XG1OV2P6uZZ5FSM9Ttw",
@@ -46,7 +46,7 @@ class ApiActivitiesTest(unittest.TestCase):
 
         # test get by page token
         with responses.RequestsMock() as m:
-            m.add("GET", self.BASE_URL, json=self.ACTIVITIES_CHANNEL_P2)
+            m.add("GET", self.base_url, json=self.activities_channel_p2)
 
             res = self.api.get_activities_by_channel(
                 channel_id="UC_x5XG1OV2P6uZZ5FSM9Ttw",
@@ -64,8 +64,8 @@ class ApiActivitiesTest(unittest.TestCase):
 
         # test get all activities
         with responses.RequestsMock() as m:
-            m.add("GET", self.BASE_URL, json=self.ACTIVITIES_MINE_P1)
-            m.add("GET", self.BASE_URL, json=self.ACTIVITIES_MINE_P2)
+            m.add("GET", self.base_url, json=self.activities_mine_p1)
+            m.add("GET", self.base_url, json=self.activities_mine_p2)
 
             res = self.api_with_access_token.get_activities_by_me(
                 parts="id,snippet",
@@ -78,7 +78,7 @@ class ApiActivitiesTest(unittest.TestCase):
 
         # test page token
         with responses.RequestsMock() as m:
-            m.add("GET", self.BASE_URL, json=self.ACTIVITIES_MINE_P2)
+            m.add("GET", self.base_url, json=self.activities_mine_p2)
 
             res = self.api_with_access_token.get_activities_by_me(
                 parts="id,snippet",

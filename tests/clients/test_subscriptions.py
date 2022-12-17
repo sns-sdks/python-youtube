@@ -7,7 +7,7 @@ from pyyoutube.error import PyYouTubeException
 
 
 class TestSubscriptionsResource(BaseTestCase):
-    RESOURCE = "subscriptions"
+    resource = "subscriptions"
 
     def test_list(self, helpers, key_cli, authed_cli):
         with pytest.raises(PyYouTubeException):
