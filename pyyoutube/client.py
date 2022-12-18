@@ -71,14 +71,14 @@ class Client:
 
     def __init__(
         self,
-        client_id: Optional[str] = None,
-        client_secret: Optional[str] = None,
-        access_token: Optional[str] = None,
-        refresh_token: Optional[str] = None,
-        api_key: Optional[str] = None,
-        timeout: Optional[int] = None,
-        proxies: Optional[dict] = None,
-        headers: Optional[dict] = None,
+        client_id: str = "",
+        client_secret: str = "",
+        access_token: str = "",
+        refresh_token: str = "",
+        api_key: str = "",
+        timeout: int = constants.DEFAULT_TIMEOUT,
+        proxies: Dict = {},
+        headers: Dict = {},
     ) -> None:
         """Class initial
 
@@ -116,15 +116,28 @@ class Client:
         self.merge_headers()
 
         # Auth settings
-        if not (
-            (self.client_id and self.client_secret) or self.api_key or self.access_token
-        ):
+        if self.has_not_authentification_credentials():
             raise PyYouTubeException(
                 ErrorMessage(
                     status_code=ErrorCode.MISSING_PARAMS,
                     message="Must specify either client key info or api key.",
                 )
             )
+
+    def has_neither_client_id_or_secret(self) -> bool:
+        return not bool(self.client_id and self.client_secret)
+
+    def has_not_api_key(self) -> bool:
+        return not bool(self.api_key)
+
+    def has_not_access_token(self) -> bool:
+        return not bool(self.access_token)
+
+    def has_not_authentification(self) -> bool:
+        return self.has_not_access_token() or self.has_not_api_key()
+
+    def has_not_authentification_credentials(self) -> bool:
+        return self.has_neither_client_id_or_secret() or self.has_not_authentification()
 
     def merge_headers(self):
         """Merge custom headers to session."""
@@ -204,7 +217,7 @@ class Client:
 
         # Add credentials to request
         if enforce_auth:
-            if self.api_key is None and self.access_token is None:
+            if not self.api_key and not self.access_token:
                 raise PyYouTubeException(
                     ErrorMessage(
                         status_code=ErrorCode.MISSING_PARAMS,

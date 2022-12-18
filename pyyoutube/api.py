@@ -2,7 +2,7 @@
     Main Api implementation.
 """
 
-from typing import Optional, List, Union
+from typing import Optional, List, Union, Dict, Tuple
 
 import requests
 from requests.auth import HTTPBasicAuth
@@ -32,6 +32,7 @@ from .models import (
     VideoAbuseReportReasonListResponse,
 )
 from .utils.params_checker import enf_comma_separated, enf_parts
+from . import constants
 
 
 class Api(object):
@@ -98,13 +99,15 @@ class Api(object):
     DEFAULT_TIMEOUT = 10
     DEFAULT_QUOTA = 10000  # this quota reset at 00:00:00(GMT-7) every day.
 
+    _refresh_token: str = ""  # This keep current user's refresh token.
+
     def __init__(
         self,
         client_id: Optional[str] = None,
         client_secret: Optional[str] = None,
         api_key: Optional[str] = None,
         access_token: Optional[str] = None,
-        timeout: Optional[int] = None,
+        timeout: int = constants.DEFAULT_TIMEOUT,
         proxies: Optional[dict] = None,
     ) -> None:
         """
@@ -134,7 +137,6 @@ class Api(object):
         self._client_secret = client_secret
         self._api_key = api_key
         self._access_token = access_token
-        self._refresh_token = None  # This keep current user's refresh token.
         self._timeout = timeout
         self.session = requests.Session()
         self.proxies = proxies
@@ -151,13 +153,11 @@ class Api(object):
                 )
             )
 
-        if self._timeout is None:
-            self._timeout = self.DEFAULT_TIMEOUT
-
     def _get_oauth_session(
         self,
-        redirect_uri: Optional[str] = None,
-        scope: Optional[List[str]] = None,
+        redirect_uri: str,
+        scope: List[str],
+        state: str,
         **kwargs,
     ) -> OAuth2Session:
         """
@@ -176,26 +176,22 @@ class Api(object):
         Returns:
             OAuth2 Session
         """
-        if redirect_uri is None:
-            redirect_uri = self.DEFAULT_REDIRECT_URI
-
-        if scope is None:
-            scope = self.DEFAULT_SCOPE
 
         return OAuth2Session(
             client_id=self._client_id,
             scope=scope,
             redirect_uri=redirect_uri,
-            state=self.DEFAULT_STATE,
+            state=state,
             **kwargs,
         )
 
     def get_authorization_url(
         self,
-        redirect_uri: Optional[str] = None,
-        scope: Optional[List[str]] = None,
+        redirect_uri: str = constants.DEFAULT_REDIRECT_URI,
+        scope: List[str] = constants.DEFAULT_SCOPE,
+        state: str = constants.DEFAULT_STATE,
         **kwargs,
-    ) -> (str, str):
+    ) -> Tuple[str, str]:
         """
         Build authorization url to do authorize.
 
@@ -215,10 +211,11 @@ class Api(object):
         oauth_session = self._get_oauth_session(
             redirect_uri=redirect_uri,
             scope=scope,
+            state=state,
             **kwargs,
         )
         authorization_url, state = oauth_session.authorization_url(
-            self.AUTHORIZATION_URL,
+            constants.AUTHORIZATION_URL,
             access_type="offline",
             prompt="select_account",
             **kwargs,
@@ -229,8 +226,9 @@ class Api(object):
     def generate_access_token(
         self,
         authorization_response: str,
-        redirect_uri: Optional[str] = None,
-        scope: Optional[List[str]] = None,
+        redirect_uri: str = constants.DEFAULT_REDIRECT_URI,
+        scope: List[str] = constants.DEFAULT_SCOPE,
+        state: str = constants.DEFAULT_STATE,
         return_json: bool = False,
         **kwargs,
     ) -> Union[dict, AccessToken]:
@@ -258,10 +256,11 @@ class Api(object):
         oauth_session = self._get_oauth_session(
             redirect_uri=redirect_uri,
             scope=scope,
+            state=state,
             **kwargs,
         )
         token = oauth_session.fetch_token(
-            self.EXCHANGE_ACCESS_TOKEN_URL,
+            constants.EXCHANGE_ACCESS_TOKEN_URL,
             client_secret=self._client_secret,
             authorization_response=authorization_response,
             proxies=self.proxies,
@@ -274,8 +273,10 @@ class Api(object):
             return AccessToken.from_dict(token)
 
     def refresh_token(
-        self, refresh_token: Optional[str] = None, return_json: bool = False
-    ) -> Union[dict, AccessToken]:
+        self,
+        refresh_token: str = "",
+        return_json: bool = False,
+    ) -> Union[Dict, AccessToken]:
         """
         Refresh token by api return refresh token.
 
@@ -290,7 +291,7 @@ class Api(object):
 
         refresh_token = refresh_token if refresh_token else self._refresh_token
 
-        if refresh_token is None:
+        if not refresh_token:
             raise PyYouTubeException(
                 ErrorMessage(
                     status_code=ErrorCode.MISSING_PARAMS,
@@ -342,7 +343,12 @@ class Api(object):
         return items
 
     def _request(
-        self, resource, method=None, args=None, post_args=None, enforce_auth=True
+        self,
+        resource,
+        method: str = "GET",
+        args: Dict = {},
+        post_args=None,
+        enforce_auth=True,
     ) -> Response:
         """
         Main request sender.
@@ -363,13 +369,8 @@ class Api(object):
         Returns:
             response
         """
-        if method is None:
-            method = "GET"
 
-        if args is None:
-            args = dict()
-
-        if post_args is not None:
+        if post_args:
             method = "POST"
 
         key = None

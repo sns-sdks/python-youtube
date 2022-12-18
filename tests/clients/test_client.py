@@ -21,6 +21,19 @@ class TestClient(BaseTestCase):
         cli = Client(api_key="key", headers={"HA": "P"})
         assert cli.session.headers["HA"] == "P"
 
+    def test_has_client_id_and_secret(self):
+        assert Client(api_key="key").has_client_id_and_secret() is False
+        client = Client(api_key="key", client_id="client", client_secret="secret")
+        assert client.has_client_id_and_secret() is True
+
+    def test_has_api_key(self):
+        assert Client().has_api_key() is False
+        assert Client(api_key="key").has_api_key() is True
+
+    def test_has_access_token(self):
+        assert Client(api_key="key").has_access_token() is False
+        assert Client(access_token="access-token").has_access_token() is True
+
     def test_convert_json_to_dict(self):
         result = Client.convert_json_to_dict({"test": "test"})
         assert result == {"test": "test"}

@@ -11,9 +11,9 @@ class TestOAuthApi(unittest.TestCase):
     base_path = "testdata/apidata/"
 
     with open(f"{base_path}access_token.json", "rb") as f:
-        ACCESS_TOKEN_INFO = json.loads(f.read().decode("utf-8"))
+        access_token_info = json.loads(f.read().decode("utf-8"))
     with open(f"{base_path}user_profile.json", "rb") as f:
-        USER_PROFILE_INFO = json.loads(f.read().decode("utf-8"))
+        user_profile_info = json.loads(f.read().decode("utf-8"))
 
     def setUp(self) -> None:
         self.api = pyyoutube.Api(client_id="xx", client_secret="xx")
@@ -35,7 +35,7 @@ class TestOAuthApi(unittest.TestCase):
             self.api.refresh_token()
 
         with responses.RequestsMock() as m:
-            m.add("POST", self.api.EXCHANGE_ACCESS_TOKEN_URL, json=self.ACCESS_TOKEN_INFO)
+            m.add("POST", self.api.EXCHANGE_ACCESS_TOKEN_URL, json=self.access_token_info)
             token = self.api.generate_access_token(
                 authorization_response=redirect_response,
             )
@@ -60,7 +60,7 @@ class TestOAuthApi(unittest.TestCase):
 
         self.api._access_token = "access_token"
         with responses.RequestsMock() as m:
-            m.add("GET", self.api.USER_INFO_URL, json=self.USER_PROFILE_INFO)
+            m.add("GET", self.api.USER_INFO_URL, json=self.user_profile_info)
             profile = self.api.get_profile()
             self.assertEqual(profile.given_name, "kun")
 
