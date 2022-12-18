@@ -21,18 +21,30 @@ class TestClient(BaseTestCase):
         cli = Client(api_key="key", headers={"HA": "P"})
         assert cli.session.headers["HA"] == "P"
 
-    def test_has_client_id_and_secret(self):
-        assert Client(api_key="key").has_client_id_and_secret() is False
-        client = Client(api_key="key", client_id="client", client_secret="secret")
-        assert client.has_client_id_and_secret() is True
+    def test_has_neither_client_id_and_secret(self):
+        assert Client(api_key="key").has_neither_client_id_and_secret() is True
+        client = Client(client_id="client", client_secret="secret")
+        assert client.has_neither_client_id_and_secret() is False
 
-    def test_has_api_key(self):
-        assert Client().has_api_key() is False
-        assert Client(api_key="key").has_api_key() is True
+    def test_has_not_api_key(self):
+        assert Client(access_token="access-token").has_not_api_key() is True
+        assert Client(api_key="key").has_not_api_key() is False
 
     def test_has_access_token(self):
-        assert Client(api_key="key").has_access_token() is False
-        assert Client(access_token="access-token").has_access_token() is True
+        assert Client(api_key="key").has_not_access_token() is True
+        assert Client(access_token="access-token").has_not_access_token() is False
+
+    def test_has_not_authentification(self):
+        assert Client(client_id="client", client_secret="secret").has_not_authentification() is True
+        assert Client(access_token="access-token").has_not_authentification() is False
+        assert Client(api_key="key").has_not_authentification() is False
+
+    def test_has_not_authentication_credentials(self):
+        with pytest.raises(PyYouTubeException):
+            Client().has_not_authentication_credentials()
+        assert Client(client_id="client", client_secret="secret").has_not_authentication_credentials() is False
+        assert Client(access_token="access-token").has_not_authentication_credentials() is False
+        assert Client(api_key="key").has_not_authentication_credentials() is False
 
     def test_convert_json_to_dict(self):
         result = Client.convert_json_to_dict({"test": "test"})

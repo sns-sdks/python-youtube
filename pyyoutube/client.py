@@ -114,9 +114,8 @@ class Client:
 
         self.session = requests.Session()
         self.merge_headers()
-
         # Auth settings
-        if self.has_not_authentification_credentials():
+        if self.has_not_authentication_credentials():
             raise PyYouTubeException(
                 ErrorMessage(
                     status_code=ErrorCode.MISSING_PARAMS,
@@ -124,20 +123,20 @@ class Client:
                 )
             )
 
-    def has_neither_client_id_or_secret(self) -> bool:
-        return not bool(self.client_id and self.client_secret)
+    def has_neither_client_id_and_secret(self) -> bool:
+        return not (self.client_id and self.client_secret)
 
     def has_not_api_key(self) -> bool:
-        return not bool(self.api_key)
+        return not self.api_key
 
     def has_not_access_token(self) -> bool:
-        return not bool(self.access_token)
+        return not self.access_token
 
     def has_not_authentification(self) -> bool:
-        return self.has_not_access_token() or self.has_not_api_key()
+        return self.has_not_access_token() and self.has_not_api_key()
 
-    def has_not_authentification_credentials(self) -> bool:
-        return self.has_neither_client_id_or_secret() or self.has_not_authentification()
+    def has_not_authentication_credentials(self) -> bool:
+        return self.has_neither_client_id_and_secret() and self.has_not_authentification()
 
     def merge_headers(self):
         """Merge custom headers to session."""

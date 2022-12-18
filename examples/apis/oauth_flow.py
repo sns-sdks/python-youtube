@@ -1,11 +1,12 @@
 """
     This example demonstrates how to perform authorization.
 """
+import os
 
 from pyyoutube import Api
 
-CLIENT_ID = "xxx"  # Your app id
-CLIENT_SECRET = "xxx"  # Your app secret
+CLIENT_ID = os.environ.get("CLIENT_ID")  # Your app id
+CLIENT_SECRET = os.environ.get("CLIENT_SECRET")  # Your app secret
 SCOPE = [
     "https://www.googleapis.com/auth/youtube",
     "https://www.googleapis.com/auth/youtube.force-ssl",

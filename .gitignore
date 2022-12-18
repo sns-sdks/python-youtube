@@ -123,3 +123,5 @@ node_modules/
 package-lock.json
 package.json
 
+client_secrets.json
+.env
