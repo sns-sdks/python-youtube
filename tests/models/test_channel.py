@@ -59,7 +59,7 @@ class ChannelModelTest(unittest.TestCase):
     def testChannelStatistics(self) -> None:
         m = models.ChannelStatistics.from_dict(self.STATISTICS_INFO)
 
-        self.assertEqual(m.viewCount, "160361638")
+        self.assertEqual(m.viewCount, 160361638)
 
     def testChannelStatus(self) -> None:
         m = models.ChannelStatus.from_dict(self.STATUS_INFO)

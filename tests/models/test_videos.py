@@ -73,7 +73,7 @@ class VideoModelTest(unittest.TestCase):
     def testVideoStatistics(self) -> None:
         m = models.VideoStatistics.from_dict(self.STATISTICS_INFO)
 
-        self.assertEqual(m.viewCount, "8087")
+        self.assertEqual(m.viewCount, 8087)
 
     def testVideoStatus(self) -> None:
         m = models.VideoStatus.from_dict(self.STATUS_INFO)
