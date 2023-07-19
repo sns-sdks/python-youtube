@@ -104,7 +104,7 @@ Get channel detail:
     ...
     }
 
-To get more usage to see our `docs <docs/docs/usage/work-with-client.md>`_, or `examples <examples/clients>`_
+To get more usage to see our `client docs <docs/docs/usage/work-with-client.md>`_, or `client examples <examples/clients>`_
 
 Work with API
 ----------------
@@ -184,4 +184,4 @@ Get channel detail:
         ...
        }
 
-To get more usage to see our `docs <docs/docs/usage/work-with-api.md>`_, or `examples <examples/apis>`_
+To get more usage to see our `api docs <docs/docs/usage/work-with-api.md>`_, or `api examples <examples/apis>`_
