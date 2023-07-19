@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## Version 0.9.1 (2023-07-19)
+
+### What's New
+
+- upgrade poetry. Thanks for [@blaggacao](https://github.com/blaggacao)
+
 ## Version 0.9.0 (2022-12-26)
 
 ### What's New
