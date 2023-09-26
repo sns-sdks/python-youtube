@@ -162,6 +162,8 @@ class CommentsResource(Resource):
     ) -> bool:
         """Expresses the caller's opinion that one or more comments should be flagged as spam.
 
+        Deprecated at [2023.09.12](https://developers.google.com/youtube/v3/revision_history#september-12,-2023)
+
         Args:
             comment_id:
                 ID for the target comment.

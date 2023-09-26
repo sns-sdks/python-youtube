@@ -46,6 +46,7 @@ class SearchResource(Resource):
         video_duration: Optional[str] = None,
         video_embeddable: Optional[str] = None,
         video_license: Optional[str] = None,
+        video_paid_product_placement: Optional[str] = None,
         video_syndicated: Optional[str] = None,
         video_type: Optional[str] = None,
         return_json: bool = False,
@@ -71,6 +72,7 @@ class SearchResource(Resource):
                 Parameter restricts the search to only retrieve videos owned by the authenticated user.
             related_to_video_id:
                 Parameter retrieves a list of videos that are related to the video that the parameter value identifies.
+                Deprecated at [2023.08.07](https://developers.google.com/youtube/v3/revision_history#august-7,-2023)
             channel_id:
                 Indicates that the API response should only contain resources created by the channel.
             channel_type:
@@ -182,6 +184,12 @@ class SearchResource(Resource):
                     - creativeCommon – Only return videos that have a Creative Commons license.
                         Users can reuse videos with this license in other videos that they create. Learn more.
                     - youtube – Only return videos that have the standard YouTube license.
+            video_paid_product_placement:
+                Parameter filters search results to only include videos that the creator has denoted as
+                having a paid promotion.
+                Acceptable values are:
+                    - any – Return all videos, regardless of whether they contain paid promotions.
+                    - true – Only retrieve videos with paid promotions.
             video_syndicated:
                 Parameter lets you to restrict a search to only videos that can be played outside youtube.com.
                 Acceptable values are:
@@ -229,6 +237,7 @@ class SearchResource(Resource):
             "videoDuration": video_duration,
             "videoEmbeddable": video_embeddable,
             "videoLicense": video_license,
+            "videoPaidProductPlacement": video_paid_product_placement,
             "videoSyndicated": video_syndicated,
             "videoType": video_type,
             **kwargs,
