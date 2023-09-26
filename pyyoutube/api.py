@@ -1600,6 +1600,7 @@ class Api(object):
         video_duration: Optional[str] = None,
         video_embeddable: Optional[str] = None,
         video_license: Optional[str] = None,
+        video_paid_product_placement: Optional[str] = None,
         video_syndicated: Optional[str] = None,
         video_type: Optional[str] = None,
         page_token: Optional[str] = None,
@@ -1670,6 +1671,8 @@ class Api(object):
             args["videoEmbeddable"] = video_embeddable
         if video_license:
             args["videoLicense"] = video_license
+        if video_paid_product_placement:
+            args["videoPaidProductPlacement"] = video_paid_product_placement
         if video_syndicated:
             args["videoSyndicated"] = video_syndicated
         if video_type:
