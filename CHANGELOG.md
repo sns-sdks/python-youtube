@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## Version 0.9.2 (2023-09-26)
+
+### What's New
+
+- Add new parameter for search method
+- Mark some parameter or method to be deprecated.
+
 ## Version 0.9.1 (2023-07-19)
 
 ### What's New
