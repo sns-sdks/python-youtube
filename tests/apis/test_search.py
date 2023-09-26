@@ -158,6 +158,7 @@ class ApiSearchTest(unittest.TestCase):
                 video_duration="any",
                 video_embeddable="any",
                 video_license="any",
+                video_paid_product_placement="any",
                 video_syndicated="any",
                 video_type="any",
             )
