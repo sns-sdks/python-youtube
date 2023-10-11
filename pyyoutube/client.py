@@ -18,6 +18,8 @@ from pyyoutube.models import (
 )
 from pyyoutube.resources.base_resource import Resource
 
+import json
+
 
 def _is_resource_endpoint(obj):
     return isinstance(obj, Resource)
@@ -77,6 +79,7 @@ class Client:
         access_token: Optional[str] = None,
         refresh_token: Optional[str] = None,
         api_key: Optional[str] = None,
+        client_secret_path: Optional[str] = None,
         timeout: Optional[int] = None,
         proxies: Optional[dict] = None,
         headers: Optional[dict] = None,
@@ -94,6 +97,8 @@ class Client:
                 Refresh Token for user.
             api_key:
                 API key for your app which generated from api console.
+            client_secret_path:
+                path to the client_secret.json file provided by google console 
             timeout:
                 Timeout for every request.
             proxies:
@@ -116,9 +121,14 @@ class Client:
         self.session = requests.Session()
         self.merge_headers()
 
+        if not self._has_client_data() and client_secret_path is not None:
+            # try to use client_secret file
+            self._from_client_secrets_file(client_secret_path)
+
         # Auth settings
         if not (
-            (self.client_id and self.client_secret) or self.api_key or self.access_token
+            self._has_auth_credentials() or
+            self._has_client_data()
         ):
             raise PyYouTubeException(
                 ErrorMessage(
@@ -126,6 +136,68 @@ class Client:
                     message="Must specify either client key info or api key.",
                 )
             )
+
+    def _from_client_secrets_file(self, client_secret_path: str):
+        """Set credentials from client_sectet file
+
+        Args:
+            client_secret_path:
+                path to the client_secret.json file, provided by google console
+
+        Raises:
+            PyYouTubeException: missing required key, client_secret file not in 'web' format.
+        """
+        try:
+            secrets_data = None
+
+            with open(client_secret_path, "r") as f:
+                secrets_data = json.load(f)
+
+            # For now only 'web' client_secret files are support,
+            # some 'installed' type files can have missing 'client_secret' key
+            if "web" in secrets_data:
+                secrets_data = secrets_data["web"]
+
+                self.client_id = secrets_data["client_id"]
+                self.client_secret = secrets_data["client_secret"]
+
+                # Set default redirect to first defined in client_secrets file
+                if "redirect_uris" in secrets_data and len(secrets_data["redirect_uris"]) > 0:
+                    self.DEFAULT_REDIRECT_URI = secrets_data["redirect_uris"][0]
+
+                return
+
+            else:
+                raise PyYouTubeException(
+                    ErrorMessage(
+                        status_code=ErrorCode.INVALID_PARAMS,
+                        message="Only 'web' client_secret file are supported.",
+                    )
+                )
+
+        except KeyError as ke:
+            raise PyYouTubeException(
+                ErrorMessage(
+                    status_code=ErrorCode.INVALID_PARAMS,
+                    message=f"client_secret file is missing required key: '{ke.args[0]}'",
+                )
+            )
+
+        except Exception:
+            # Not sure if catching any other error and
+            # wrapping it in a PyYouTubeException is a good idea
+            raise PyYouTubeException(
+                ErrorMessage(
+                    status_code=ErrorCode.INVALID_PARAMS,
+                    message="Can not load from client_secret file.",
+                )
+            )
+
+    def _has_auth_credentials(self) -> bool:
+        return self.api_key or self.access_token
+
+    def _has_client_data(self) -> bool:
+        return (self.client_id and self.client_secret)
 
     def merge_headers(self):
         """Merge custom headers to session."""
@@ -227,7 +299,8 @@ class Client:
             )
         except requests.HTTPError as e:
             raise PyYouTubeException(
-                ErrorMessage(status_code=ErrorCode.HTTP_ERROR, message=e.args[0])
+                ErrorMessage(status_code=ErrorCode.HTTP_ERROR,
+                             message=e.args[0])
             )
         else:
             return response
