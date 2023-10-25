@@ -98,7 +98,7 @@ class Client:
             api_key:
                 API key for your app which generated from api console.
             client_secret_path:
-                path to the client_secret.json file provided by google console 
+                path to the client_secret.json file provided by google console
             timeout:
                 Timeout for every request.
             proxies:
@@ -126,10 +126,7 @@ class Client:
             self._from_client_secrets_file(client_secret_path)
 
         # Auth settings
-        if not (
-            self._has_auth_credentials() or
-            self._has_client_data()
-        ):
+        if not (self._has_auth_credentials() or self._has_client_data()):
             raise PyYouTubeException(
                 ErrorMessage(
                     status_code=ErrorCode.MISSING_PARAMS,
@@ -162,7 +159,10 @@ class Client:
                 self.client_secret = secrets_data["client_secret"]
 
                 # Set default redirect to first defined in client_secrets file
-                if "redirect_uris" in secrets_data and len(secrets_data["redirect_uris"]) > 0:
+                if (
+                    "redirect_uris" in secrets_data
+                    and len(secrets_data["redirect_uris"]) > 0
+                ):
                     self.DEFAULT_REDIRECT_URI = secrets_data["redirect_uris"][0]
 
                 return
@@ -197,7 +197,7 @@ class Client:
         return self.api_key or self.access_token
 
     def _has_client_data(self) -> bool:
-        return (self.client_id and self.client_secret)
+        return self.client_id and self.client_secret
 
     def merge_headers(self):
         """Merge custom headers to session."""
@@ -299,8 +299,7 @@ class Client:
             )
         except requests.HTTPError as e:
             raise PyYouTubeException(
-                ErrorMessage(status_code=ErrorCode.HTTP_ERROR,
-                             message=e.args[0])
+                ErrorMessage(status_code=ErrorCode.HTTP_ERROR, message=e.args[0])
             )
         else:
             return response
