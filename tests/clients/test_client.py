@@ -21,6 +21,15 @@ class TestClient(BaseTestCase):
         cli = Client(api_key="key", headers={"HA": "P"})
         assert cli.session.headers["HA"] == "P"
 
+    def test_client_secret_web(self):
+        filename = "apidata/client_secret_web.json"
+        client_secret_path = f"{self.BASE_PATH}/{filename}"
+        cli = Client(client_secret_path=client_secret_path)
+
+        assert cli.client_id == "client_id"
+        assert cli.client_secret == "client_secret"
+        assert cli.DEFAULT_REDIRECT_URI == "http://localhost:5000/oauth2callback"
+
     def test_request(self, key_cli):
         with pytest.raises(PyYouTubeException):
             cli = Client(client_id="id", client_secret="secret")
