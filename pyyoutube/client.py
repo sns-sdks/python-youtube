@@ -2,6 +2,7 @@
     New Client for YouTube API
 """
 import inspect
+import json
 from typing import List, Optional, Tuple, Union
 
 import requests
@@ -17,8 +18,6 @@ from pyyoutube.models import (
     AccessToken,
 )
 from pyyoutube.resources.base_resource import Resource
-
-import json
 
 
 def _is_resource_endpoint(obj):
@@ -144,54 +143,28 @@ class Client:
         Raises:
             PyYouTubeException: missing required key, client_secret file not in 'web' format.
         """
-        try:
-            secrets_data = None
 
-            with open(client_secret_path, "r") as f:
-                secrets_data = json.load(f)
+        with open(client_secret_path, "r") as f:
+            secrets_data = json.load(f)
 
-            # For now only 'web' client_secret files are support,
-            # some 'installed' type files can have missing 'client_secret' key
-            if "web" in secrets_data:
-                secrets_data = secrets_data["web"]
-
-                self.client_id = secrets_data["client_id"]
-                self.client_secret = secrets_data["client_secret"]
-
-                # Set default redirect to first defined in client_secrets file
-                if (
-                    "redirect_uris" in secrets_data
-                    and len(secrets_data["redirect_uris"]) > 0
-                ):
-                    self.DEFAULT_REDIRECT_URI = secrets_data["redirect_uris"][0]
-
-                return
-
-            else:
-                raise PyYouTubeException(
-                    ErrorMessage(
-                        status_code=ErrorCode.INVALID_PARAMS,
-                        message="Only 'web' client_secret file are supported.",
-                    )
-                )
-
-        except KeyError as ke:
+        # For now only 'web' client_secret files are support,
+        # some 'installed' type files can have missing 'client_secret' key
+        if "web" not in secrets_data:
             raise PyYouTubeException(
                 ErrorMessage(
                     status_code=ErrorCode.INVALID_PARAMS,
-                    message=f"client_secret file is missing required key: '{ke.args[0]}'",
+                    message="Only 'web' type client_secret files are supported.",
                 )
             )
 
-        except Exception:
-            # Not sure if catching any other error and
-            # wrapping it in a PyYouTubeException is a good idea
-            raise PyYouTubeException(
-                ErrorMessage(
-                    status_code=ErrorCode.INVALID_PARAMS,
-                    message="Can not load from client_secret file.",
-                )
-            )
+        secrets_data = secrets_data["web"]
+
+        self.client_id = secrets_data["client_id"]
+        self.client_secret = secrets_data["client_secret"]
+
+        # Set default redirect to first defined in client_secrets file
+        if "redirect_uris" in secrets_data and len(secrets_data["redirect_uris"]) > 0:
+            self.DEFAULT_REDIRECT_URI = secrets_data["redirect_uris"][0]
 
     def _has_auth_credentials(self) -> bool:
         return self.api_key or self.access_token
