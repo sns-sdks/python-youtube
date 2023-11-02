@@ -2,6 +2,7 @@
     New Client for YouTube API
 """
 import inspect
+import json
 from typing import List, Optional, Tuple, Union
 
 import requests
@@ -77,6 +78,7 @@ class Client:
         access_token: Optional[str] = None,
         refresh_token: Optional[str] = None,
         api_key: Optional[str] = None,
+        client_secret_path: Optional[str] = None,
         timeout: Optional[int] = None,
         proxies: Optional[dict] = None,
         headers: Optional[dict] = None,
@@ -94,6 +96,8 @@ class Client:
                 Refresh Token for user.
             api_key:
                 API key for your app which generated from api console.
+            client_secret_path:
+                path to the client_secret.json file provided by google console
             timeout:
                 Timeout for every request.
             proxies:
@@ -116,16 +120,68 @@ class Client:
         self.session = requests.Session()
         self.merge_headers()
 
+        if not self._has_client_data() and client_secret_path is not None:
+            # try to use client_secret file
+            self._from_client_secrets_file(client_secret_path)
+
         # Auth settings
-        if not (
-            (self.client_id and self.client_secret) or self.api_key or self.access_token
-        ):
+        if not (self._has_auth_credentials() or self._has_client_data()):
             raise PyYouTubeException(
                 ErrorMessage(
                     status_code=ErrorCode.MISSING_PARAMS,
                     message="Must specify either client key info or api key.",
                 )
             )
+
+    def _from_client_secrets_file(self, client_secret_path: str):
+        """Set credentials from client_sectet file
+
+        Args:
+            client_secret_path:
+                path to the client_secret.json file, provided by google console
+
+        Raises:
+            PyYouTubeException: missing required key, client_secret file not in 'web' format.
+        """
+
+        with open(client_secret_path, "r") as f:
+            secrets_data = json.load(f)
+
+        credentials = None
+        for secrets_type in ["web", "installed"]:
+            if secrets_type in secrets_data:
+                credentials = secrets_data[secrets_type]
+
+        if not credentials:
+            raise PyYouTubeException(
+                ErrorMessage(
+                    status_code=ErrorCode.INVALID_PARAMS,
+                    message="Only 'web' and 'installed' type client_secret files are supported.",
+                )
+            )
+
+        # check for reqiered fields
+        for field in ["client_secret", "client_id"]:
+            if field not in credentials:
+                raise PyYouTubeException(
+                    ErrorMessage(
+                        status_code=ErrorCode.MISSING_PARAMS,
+                        message=f"missing required field '{field}'.",
+                    )
+                )
+
+        self.client_id = credentials["client_id"]
+        self.client_secret = credentials["client_secret"]
+
+        # Set default redirect to first defined in client_secrets file if any
+        if "redirect_uris" in credentials and len(credentials["redirect_uris"]) > 0:
+            self.DEFAULT_REDIRECT_URI = credentials["redirect_uris"][0]
+
+    def _has_auth_credentials(self) -> bool:
+        return self.api_key or self.access_token
+
+    def _has_client_data(self) -> bool:
+        return self.client_id and self.client_secret
 
     def merge_headers(self):
         """Merge custom headers to session."""
