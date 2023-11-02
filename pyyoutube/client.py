@@ -166,7 +166,7 @@ class Client:
                 raise PyYouTubeException(
                     ErrorMessage(
                         status_code=ErrorCode.MISSING_PARAMS,
-                        message=f"file is missing required field '{field}'.",
+                        message=f"missing required field '{field}'.",
                     )
                 )
 
