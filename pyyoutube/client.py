@@ -147,24 +147,35 @@ class Client:
         with open(client_secret_path, "r") as f:
             secrets_data = json.load(f)
 
-        # For now only 'web' client_secret files are support,
-        # some 'installed' type files can have missing 'client_secret' key
-        if "web" not in secrets_data:
+        credentials = None
+        for secrets_type in ["web", "installed"]:
+            if secrets_type in secrets_data:
+                credentials = secrets_data[secrets_type]
+
+        if not credentials:
             raise PyYouTubeException(
                 ErrorMessage(
                     status_code=ErrorCode.INVALID_PARAMS,
-                    message="Only 'web' type client_secret files are supported.",
+                    message="Only 'web' and 'installed' type client_secret files are supported.",
                 )
             )
 
-        secrets_data = secrets_data["web"]
+        # check for reqiered fields
+        for field in ["client_secret", "client_id"]:
+            if field not in credentials:
+                raise PyYouTubeException(
+                    ErrorMessage(
+                        status_code=ErrorCode.MISSING_PARAMS,
+                        message=f"file is missing required field '{field}'.",
+                    )
+                )
 
-        self.client_id = secrets_data["client_id"]
-        self.client_secret = secrets_data["client_secret"]
+        self.client_id = credentials["client_id"]
+        self.client_secret = credentials["client_secret"]
 
-        # Set default redirect to first defined in client_secrets file
-        if "redirect_uris" in secrets_data and len(secrets_data["redirect_uris"]) > 0:
-            self.DEFAULT_REDIRECT_URI = secrets_data["redirect_uris"][0]
+        # Set default redirect to first defined in client_secrets file if any
+        if "redirect_uris" in credentials and len(credentials["redirect_uris"]) > 0:
+            self.DEFAULT_REDIRECT_URI = credentials["redirect_uris"][0]
 
     def _has_auth_credentials(self) -> bool:
         return self.api_key or self.access_token
