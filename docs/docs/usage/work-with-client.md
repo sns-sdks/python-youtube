@@ -41,6 +41,23 @@ cli.generate_access_token(authorization_response="redirected url")
 # AccessToken(access_token='token', expires_in=3599, token_type='Bearer')
 ```
 
+### from client_secret
+
+Only `web` and some `installed` type client_secrets are supported.
+
+The fields `client_id` and `client_secret` must be set.
+
+If the field `redirect_uris` has 1 or more values set, the `Client.DEFAULT_REDIRECT_URI` will be set to the first entrie.
+
+```python
+from pyyoutube import Client
+
+file_path = "path/to/client_secret.json"
+cli = Client(client_secret_path=file_path)
+
+# Then go through auth flow descriped above
+```
+
 Once initialize client. Then you can operate API to get data.
 
 ## Usage
