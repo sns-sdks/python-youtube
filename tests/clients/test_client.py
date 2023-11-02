@@ -22,13 +22,35 @@ class TestClient(BaseTestCase):
         assert cli.session.headers["HA"] == "P"
 
     def test_client_secret_web(self):
-        filename = "apidata/client_secret_web.json"
+        filename = "apidata/client_secrets/client_secret_web.json"
         client_secret_path = f"{self.BASE_PATH}/{filename}"
         cli = Client(client_secret_path=client_secret_path)
 
         assert cli.client_id == "client_id"
         assert cli.client_secret == "client_secret"
         assert cli.DEFAULT_REDIRECT_URI == "http://localhost:5000/oauth2callback"
+
+    def test_client_secret_installed(self):
+        filename_good = "apidata/client_secrets/client_secret_installed_good.json"
+        client_secret_good_path = f"{self.BASE_PATH}/{filename_good}"
+
+        cli = Client(client_secret_path=client_secret_good_path)
+
+        assert cli.client_id == "client_id"
+        assert cli.client_secret == "client_secret"
+
+    def test_client_secret_bad(self):
+        filename_bad = "apidata/client_secrets/client_secret_installed_bad.json"
+        filename_unsupported = "apidata/client_secrets/client_secret_unsupported.json"
+
+        client_secret_bad_path = f"{self.BASE_PATH}/{filename_bad}"
+        client_secret_unsupported_path = f"{self.BASE_PATH}/{filename_unsupported}"
+
+        with pytest.raises(PyYouTubeException):
+            Client(client_secret_path=client_secret_bad_path)
+
+        with pytest.raises(PyYouTubeException):
+            Client(client_secret_path=client_secret_unsupported_path)
 
     def test_request(self, key_cli):
         with pytest.raises(PyYouTubeException):
