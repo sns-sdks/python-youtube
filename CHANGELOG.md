@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## Version 0.9.3 (2023-11-22)
+
+### What's New
+
+- Add initial client with client_secret file. Thanks for [@pidi3000](https://github.com/pidi3000)
+
+
 ## Version 0.9.2 (2023-09-26)
 
 ### What's New
