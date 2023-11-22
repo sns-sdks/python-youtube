@@ -36,6 +36,7 @@ class CommentSnippet(BaseModel, DatetimeTimeMixin):
         default=None, repr=False
     )
     channelId: Optional[str] = field(default=None, repr=False)
+    # videoId has deprecated, see https://developers.google.com/youtube/v3/revision_history#november-09,-2023
     videoId: Optional[str] = field(default=None, repr=False)
     textDisplay: Optional[str] = field(default=None, repr=False)
     textOriginal: Optional[str] = field(default=None, repr=False)
