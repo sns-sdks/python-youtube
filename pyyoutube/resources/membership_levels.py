@@ -1,6 +1,7 @@
 """
     Membership levels resource implementation.
 """
+
 from typing import Optional, Union
 
 from pyyoutube.models import MembershipsLevelListResponse

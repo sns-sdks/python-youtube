@@ -1,6 +1,7 @@
 """
     Activities resource implementation
 """
+
 from typing import Optional, Union
 
 from pyyoutube.error import PyYouTubeException, ErrorMessage, ErrorCode

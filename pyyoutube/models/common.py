@@ -1,6 +1,7 @@
 """
     These are common models for multi resource.
 """
+
 from dataclasses import dataclass, field
 from typing import Optional, List
 

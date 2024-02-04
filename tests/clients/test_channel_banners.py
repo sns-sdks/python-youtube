@@ -1,6 +1,7 @@
 """
     Tests for channel banners
 """
+
 import io
 
 from .base import BaseTestCase

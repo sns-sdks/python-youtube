@@ -1,6 +1,7 @@
 """
     Channel banners resource implementation.
 """
+
 from typing import Optional
 
 from pyyoutube.resources.base_resource import Resource

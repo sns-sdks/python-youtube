@@ -29,6 +29,12 @@ class TestChannelsResource(BaseTestCase):
             assert key_cli.channels.api_key == "api key"
 
             res = key_cli.channels.list(
+                parts="id,snippet",
+                for_handle="@googledevelopers",
+            )
+            assert res.items[0].snippet.customUrl == "@googledevelopers"
+
+            res = key_cli.channels.list(
                 parts=["id", "snippet"], for_username="googledevelopers"
             )
             assert res.items[0].snippet.title == "Google Developers"

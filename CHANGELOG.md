@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+
+## Version 0.9.4 (development)
+
+### What's New
+
+- Add new parameter `for_handle` to get channel by handle.  
+
+
 ## Version 0.9.3 (2023-11-22)
 
 ### What's New

@@ -13,7 +13,7 @@
       "snippet": {
         "title": "Google Developers",
         "description": "The Google Developers channel features talks from events, educational series, best practices, tips, and the latest updates across our products and platforms.",
-        "customUrl": "googledevelopers",
+        "customUrl": "@googledevelopers",
         "publishedAt": "2007-08-23T00:34:43.000Z",
         "thumbnails": {
           "default": {

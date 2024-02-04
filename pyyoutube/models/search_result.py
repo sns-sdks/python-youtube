@@ -1,6 +1,7 @@
 """
     These are search result related models.
 """
+
 from dataclasses import dataclass, field
 from typing import Optional, List
 

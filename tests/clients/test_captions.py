@@ -1,6 +1,7 @@
 """
     Tests for captions resources.
 """
+
 import io
 
 import pytest

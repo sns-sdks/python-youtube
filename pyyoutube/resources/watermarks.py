@@ -1,6 +1,7 @@
 """
     Watermarks resource implementation.
 """
+
 from typing import Optional, Union
 
 from pyyoutube.resources.base_resource import Resource

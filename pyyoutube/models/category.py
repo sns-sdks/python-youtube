@@ -2,6 +2,7 @@
     These are category related models.
     Include VideoCategory
 """
+
 from dataclasses import dataclass, field
 from typing import List, Optional
 

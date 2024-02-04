@@ -1,6 +1,7 @@
 """
     Tests for client.
 """
+
 import pytest
 
 import responses
