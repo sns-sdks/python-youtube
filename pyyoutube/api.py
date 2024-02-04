@@ -725,6 +725,7 @@ class Api(object):
         self,
         *,
         channel_id: Optional[Union[str, list, tuple, set]] = None,
+        for_handle: Optional[str] = None,
         for_username: Optional[str] = None,
         mine: Optional[bool] = None,
         parts: Optional[Union[str, list, tuple, set]] = None,
@@ -744,6 +745,11 @@ class Api(object):
             channel_id ((str,list,tuple,set), optional):
                 The id or comma-separated id string for youtube channel which you want to get.
                 You can also pass this with an id list, tuple, set.
+            for_handle (str, optional):
+                The parameter specifies a YouTube handle, thereby requesting the channel associated with that handle.
+                The parameter value can be prepended with an @ symbol. For example, to retrieve the resource for
+                the "Google for Developers" channel, set the forHandle parameter value to
+                either GoogleDevelopers or @GoogleDevelopers.
             for_username (str, optional):
                 The name for YouTube username which you want to get.
                 Note: This name may the old youtube version's channel's user's username, Not the the channel name.
@@ -768,7 +774,9 @@ class Api(object):
             "part": enf_parts(resource="channels", value=parts),
             "hl": hl,
         }
-        if for_username is not None:
+        if for_handle is not None:
+            args["forHandle"] = for_handle
+        elif for_username is not None:
             args["forUsername"] = for_username
         elif channel_id is not None:
             args["id"] = enf_comma_separated("channel_id", channel_id)

@@ -18,6 +18,7 @@ class ChannelsResource(Resource):
     def list(
         self,
         parts: Optional[Union[str, list, tuple, set]] = None,
+        for_handle: Optional[str] = None,
         for_username: Optional[str] = None,
         channel_id: Optional[Union[str, list, tuple, set]] = None,
         managed_by_me: Optional[bool] = None,
@@ -36,6 +37,11 @@ class ChannelsResource(Resource):
                 Comma-separated list of one or more channel resource properties.
                 Accepted values: id,auditDetails,brandingSettings,contentDetails,contentOwnerDetails,
                 localizations,snippet,statistics,status,topicDetails
+            for_handle:
+                The parameter specifies a YouTube handle, thereby requesting the channel associated with that handle.
+                The parameter value can be prepended with an @ symbol. For example, to retrieve the resource for
+                the "Google for Developers" channel, set the forHandle parameter value to
+                either GoogleDevelopers or @GoogleDevelopers.
             for_username:
                 The parameter specifies a YouTube username, thereby requesting
                 the channel associated with that username.
@@ -90,7 +96,9 @@ class ChannelsResource(Resource):
             "pageToken": page_token,
             **kwargs,
         }
-        if for_username is not None:
+        if for_handle is not None:
+            params["forHandle"] = for_handle
+        elif for_username is not None:
             params["forUsername"] = for_username
         elif channel_id is not None:
             params["id"] = enf_comma_separated(field="channel_id", value=channel_id)
