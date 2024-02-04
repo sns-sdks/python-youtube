@@ -1,6 +1,7 @@
 """
     Tests for media upload.
 """
+
 import io
 
 import pytest

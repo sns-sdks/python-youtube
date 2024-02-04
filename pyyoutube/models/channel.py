@@ -3,6 +3,7 @@
 
     References: https://developers.google.com/youtube/v3/docs/channels#properties
 """
+
 from dataclasses import dataclass, field
 from typing import List, Optional
 

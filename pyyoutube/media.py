@@ -1,6 +1,7 @@
 """
     Media object to upload.
 """
+
 import mimetypes
 import os
 from typing import IO, Optional, Tuple
@@ -180,9 +181,9 @@ class MediaUpload:
         # sending "bytes 0--1/0" results in an invalid request
         # Only add header "Content-Range" if chunk_end != -1
         if chunk_end != -1:
-            headers[
-                "Content-Range"
-            ] = f"bytes {self.resumable_progress}-{chunk_end}/{size}"
+            headers["Content-Range"] = (
+                f"bytes {self.resumable_progress}-{chunk_end}/{size}"
+            )
 
         resp = self.client.request(
             path=self.resumable_uri,

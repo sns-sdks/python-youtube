@@ -61,5 +61,4 @@ class ChannelSectionResponse(BaseApiResponse):
 
 
 @dataclass
-class ChannelSectionListResponse(ChannelSectionResponse):
-    ...
+class ChannelSectionListResponse(ChannelSectionResponse): ...

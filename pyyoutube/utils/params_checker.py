@@ -1,6 +1,7 @@
 """
     function's params checker.
 """
+
 import logging
 
 from typing import Optional, Union

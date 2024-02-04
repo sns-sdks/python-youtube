@@ -1,6 +1,7 @@
 """
     These are playlist related models.
 """
+
 from dataclasses import dataclass, field
 from typing import Optional, List
 

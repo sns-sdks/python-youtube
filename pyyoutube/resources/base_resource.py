@@ -1,6 +1,7 @@
 """
     Base resource class.
 """
+
 from typing import Optional, TYPE_CHECKING
 
 if TYPE_CHECKING:

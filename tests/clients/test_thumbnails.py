@@ -1,6 +1,7 @@
 """
     Tests for thumbnails.
 """
+
 import io
 
 from .base import BaseTestCase

@@ -1,6 +1,7 @@
 """
     These are some mixin for models
 """
+
 import datetime
 from typing import Optional
 

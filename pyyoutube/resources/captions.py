@@ -1,6 +1,7 @@
 """
     Captions resource implementation
 """
+
 from typing import Optional, Union
 
 from requests import Response

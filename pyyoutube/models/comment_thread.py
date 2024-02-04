@@ -1,6 +1,7 @@
 """
     These are comment threads related models.
 """
+
 from dataclasses import dataclass, field
 from typing import Optional, List
 
