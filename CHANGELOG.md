@@ -3,11 +3,12 @@
 All notable changes to this project will be documented in this file.
 
 
-## Version 0.9.4 (development)
+## Version 0.9.4 (2024-02-18)
 
 ### What's New
 
 - Add new parameter `for_handle` to get channel by handle.  
+- fix some wrong error message.
 
 
 ## Version 0.9.3 (2023-11-22)
