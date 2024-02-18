@@ -102,7 +102,7 @@ class PlaylistsResource(Resource):
             raise PyYouTubeException(
                 ErrorMessage(
                     status_code=ErrorCode.MISSING_PARAMS,
-                    message=f"Specify at least one of channel_id, playlist_id or mine",
+                    message="Specify at least one of channel_id, playlist_id or mine",
                 )
             )
         response = self._client.request(path="playlists", params=params)
