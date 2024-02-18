@@ -108,7 +108,7 @@ class CommentThreadsResource(Resource):
             raise PyYouTubeException(
                 ErrorMessage(
                     status_code=ErrorCode.MISSING_PARAMS,
-                    message="Specify at least one of all_threads_related_to_channel_id, channel_id, thread_id or video_id",
+                    message="Specify at least one of all_threads_related_to_channel_id,channel_id,thread_id or video_id",
                 )
             )
         response = self._client.request(path="commentThreads", params=params)

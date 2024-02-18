@@ -79,7 +79,7 @@ class ChannelSectionsResource(Resource):
             raise PyYouTubeException(
                 ErrorMessage(
                     status_code=ErrorCode.MISSING_PARAMS,
-                    message=f"Specify at least one of for_username, id, managedByMe or mine",
+                    message="Specify at least one of channel_id, section_id or mine",
                 )
             )
         response = self._client.request(path="channelSections", params=params)

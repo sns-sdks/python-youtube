@@ -111,7 +111,7 @@ class ChannelsResource(Resource):
             raise PyYouTubeException(
                 ErrorMessage(
                     status_code=ErrorCode.MISSING_PARAMS,
-                    message=f"Specify at least one of for_username,channel_id,managedByMe or mine",
+                    message="Specify at least one of for_handle,for_username,channel_id,managedByMe or mine",
                 )
             )
 
