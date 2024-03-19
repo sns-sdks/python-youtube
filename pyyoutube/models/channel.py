@@ -42,6 +42,8 @@ class ChannelBrandingSettingChannel(BaseModel):
     description: Optional[str] = field(default=None)
     keywords: Optional[str] = field(default=None, repr=False)
     trackingAnalyticsAccountId: Optional[str] = field(default=None, repr=False)
+    # Important:
+    # moderateComments has been deprecated at March 7, 2024.
     moderateComments: Optional[bool] = field(default=None, repr=False)
     unsubscribedTrailer: Optional[str] = field(default=None, repr=False)
     defaultLanguage: Optional[str] = field(default=None, repr=False)

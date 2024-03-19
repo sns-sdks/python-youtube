@@ -89,6 +89,8 @@ class CaptionsResource(Resource):
                 file with the audio track of the video.
                 If you set the value to true, YouTube will disregard any time codes that are in the uploaded
                 caption file and generate new time codes for the captions.
+                Important:
+                    This parameter will be deprecated at April 12, 2024.
             **kwargs:
                 Additional parameters for system parameters.
                 Refer: https://cloud.google.com/apis/docs/system-parameters.
@@ -141,6 +143,8 @@ class CaptionsResource(Resource):
                 file with the audio track of the video.
                 If you set the value to true, YouTube will disregard any time codes that are in the uploaded
                 caption file and generate new time codes for the captions.
+                Important:
+                    This parameter will be deprecated at April 12, 2024.
             return_json:
                 Type for returned data. If you set True JSON data will be returned.
             **kwargs:
