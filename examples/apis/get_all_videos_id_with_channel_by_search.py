@@ -11,21 +11,25 @@ API_KEY = "xxx"  # replace this with your api key.
 
 def get_all_videos_id_by_channel(channel_id, limit=50, count=50):
     api = pyyoutube.Api(api_key=API_KEY)
-    res = api.search(channel_id=channel_id, limit=limit, count=count)
-    next_page = res.nextPageToken
+
     videos = []
+    next_page = None
 
-    while next_page:
-        next_page = res.nextPageToken
-        for item in res.items:
-            if item.id.videoId:
-                videos.append(item.id.videoId)
-
+    while True:
         res = api.search(
             channel_id=channel_id,
             limit=limit,
             count=count,
-            page_token=res.nextPageToken,
+            page_token=next_page,
         )
+
+        next_page = res.nextPageToken
+
+        for item in res.items:
+            if item.id.videoId:
+                videos.append(item.id.videoId)
+
+        if not next_page:
+            break
 
     return videos
