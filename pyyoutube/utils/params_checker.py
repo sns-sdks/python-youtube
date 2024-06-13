@@ -83,6 +83,10 @@ def enf_parts(resource: str, value: Optional[Union[str, list, tuple, set]], chec
                 message=f"Parameter (parts) must be single str,comma-separated str,list,tuple or set",
             )
         )
+
+    # Remove leading/trailing whitespaces
+    parts = set({part.strip() for part in parts})
+
     # check parts whether support.
     if check:
         support_parts = RESOURCE_PARTS_MAPPING[resource]
