@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## Version 0.9.5 (2024-08-09)
+
+### What's New
+
+- Make video regionRestriction fields to Optional. Thanks for [@pidi3000](https://github.com/pidi3000)
+- Modify some examples. Thanks for [@pidi3000](https://github.com/pidi3000)
+- fix enf_parts for part with whitespaces. Thanks for [@pidi3000](https://github.com/pidi3000)
+
 
 ## Version 0.9.4 (2024-02-18)
 
@@ -10,13 +18,11 @@ All notable changes to this project will be documented in this file.
 - Add new parameter `for_handle` to get channel by handle.  
 - fix some wrong error message.
 
-
 ## Version 0.9.3 (2023-11-22)
 
 ### What's New
 
 - Add initial client with client_secret file. Thanks for [@pidi3000](https://github.com/pidi3000)
-
 
 ## Version 0.9.2 (2023-09-26)
 
