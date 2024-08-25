@@ -222,6 +222,17 @@ class VideoStatus(BaseModel, DatetimeTimeMixin):
 
 
 @dataclass
+class VideoRecordingDetails(BaseModel, DatetimeTimeMixin):
+    """
+    A class representing the video recording details.
+
+    Refer: https://developers.google.com/youtube/v3/docs/videos#recordingDetails
+    """
+
+    recordingDate: Optional[str] = field(default=None, repr=False)
+
+
+@dataclass
 class VideoLiveStreamingDetails(BaseModel, DatetimeTimeMixin):
     """
     A class representing the video live streaming details.
@@ -251,6 +262,7 @@ class Video(BaseResource):
     statistics: Optional[VideoStatistics] = field(default=None, repr=False)
     topicDetails: Optional[VideoTopicDetails] = field(default=None, repr=False)
     player: Optional[Player] = field(default=None, repr=False)
+    recordingDetails: Optional[VideoRecordingDetails] = field(default=None, repr=False)
     liveStreamingDetails: Optional[VideoLiveStreamingDetails] = field(
         default=None, repr=False
     )

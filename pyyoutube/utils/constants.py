@@ -63,6 +63,7 @@ VIDEO_RESOURCE_PROPERTIES = {
     "statistics",
     "status",
     "topicDetails",
+    "recordingDetails",
     "liveStreamingDetails",
 }
 
