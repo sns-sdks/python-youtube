@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## Version 0.9.6 (2024-09-09)
+
+### What's New
+
+-Add new part field `recordingDetails` for video resource. Thanks for [@vmx](https://github.com/vmx)
+
+
 ## Version 0.9.5 (2024-08-09)
 
 ### What's New
@@ -9,7 +16,6 @@ All notable changes to this project will be documented in this file.
 - Make video regionRestriction fields to Optional. Thanks for [@pidi3000](https://github.com/pidi3000)
 - Modify some examples. Thanks for [@pidi3000](https://github.com/pidi3000)
 - fix enf_parts for part with whitespaces. Thanks for [@pidi3000](https://github.com/pidi3000)
-
 
 ## Version 0.9.4 (2024-02-18)
 
