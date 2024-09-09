@@ -21,6 +21,8 @@ class VideoModelTest(unittest.TestCase):
         VIDEO_INFO = json.loads(f.read().decode("utf-8"))
     with open(BASE_PATH + "video_api_response.json", "rb") as f:
         VIDEO_API_RESPONSE = json.loads(f.read().decode("utf-8"))
+    with open(BASE_PATH + "video_recording_details.json", "rb") as f:
+        RECORDING_DETAILS = json.loads(f.read().decode("utf-8"))
 
     def testVideoContentDetails(self) -> None:
         m = models.VideoContentDetails.from_dict(self.CONTENT_DETAILS_INFO)
@@ -97,3 +99,11 @@ class VideoModelTest(unittest.TestCase):
         self.assertEqual(m.kind, "youtube#videoListResponse")
         self.assertEqual(m.pageInfo.totalResults, 1)
         self.assertEqual(m.items[0].id, "D-lhorsDlUQ")
+
+    def testVideoRecordingDetails(self) -> None:
+        m = models.VideoRecordingDetails.from_dict(self.RECORDING_DETAILS)
+
+        self.assertEqual(
+            m.string_to_datetime(m.recordingDate).isoformat(),
+            "2024-07-03T00:00:00+00:00",
+        )
