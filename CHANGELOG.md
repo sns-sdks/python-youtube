@@ -2,12 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## Version 0.9.7 (2024-10-28)
+
+### What's New
+
+- Fix dependencies.
+
 ## Version 0.9.6 (2024-09-09)
 
 ### What's New
 
 -Add new part field `recordingDetails` for video resource. Thanks for [@vmx](https://github.com/vmx)
-
 
 ## Version 0.9.5 (2024-08-09)
 
