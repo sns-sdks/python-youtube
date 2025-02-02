@@ -1,6 +1,6 @@
 Python YouTube
 
-A Python wrapper around for YouTube Data API V3.
+A Python wrapper for the YouTube Data API V3.
 
 .. image:: https://github.com/sns-sdks/python-youtube/workflows/Test/badge.svg
     :target: https://github.com/sns-sdks/python-youtube/actions
@@ -21,17 +21,17 @@ THANKS
 
 Inspired by `Python-Twitter <https://github.com/bear/python-twitter>`_.
 
-Thanks a lot for Python-Twitter Developers.
+Thanks a lot to Python-Twitter Developers.
 
 ============
 Introduction
 ============
 
-Library provides an easy way to use YouTube Data API V3.
+This library provides an easy way to use the YouTube Data API V3.
 
 .. 
 
-    Recently, we are working on the new structure for the library. `Read docs <docs/docs/introduce-new-structure.md>`_ to get more detail.
+    We have recently been working on the new structure for the library. `Read docs <docs/docs/introduce-new-structure.md>`_ to get more detail.
 
 =============
 Documentation
@@ -56,21 +56,21 @@ You can install this lib from PyPI:
 Using
 =====
 
-Now, the library covers all resource methods, including ``insert``,``update`` and so on.
+The library covers all resource methods, including ``insert``,``update``, and so on.
 
-Currently, we recommend using ``pyyoutube.Client`` to operate DATA API. It has more features.
+We recommend using the ``pyyoutube.Client`` to operate DATA API. It is more modern and feature rich than ``pyyoutube.Api``.
 
 Work with Client
 ----------------
 
-You can just initialize with an api key:
+You can initialize with an api key:
 
 .. code-block:: python
 
     >>> from pyyoutube import Client
     >>> client = Client(api_key="your api key")
 
-If you want to get some authorization data. you need to initialize with an access token:
+To access additional data that requires authorization, you need to initialize with an access token:
 
 .. code-block:: python
 
@@ -79,7 +79,7 @@ If you want to get some authorization data. you need to initialize with an acces
 
 You can read the docs to see how to get an access token.
 
-Or you can ask for user to do oauth flow:
+Or you can ask for user to do OAuth:
 
 .. code-block:: python
 
@@ -104,14 +104,14 @@ Get channel detail:
     ...
     }
 
-To get more usage to see our `client docs <docs/docs/usage/work-with-client.md>`_, or `client examples <examples/clients>`_
+See the `client docs <docs/docs/usage/work-with-client.md>`_, or `client examples <examples/clients>`_, for additional usage
 
 Work with API
 ----------------
 
 ..
 
-    We still support the old way for the sake of compatibility with older users.
+    For compatibility with older code, we continue to support the old way.
 
 You can just initialize with an api key:
 
@@ -120,7 +120,7 @@ You can just initialize with an api key:
     >>> from pyyoutube import Api
     >>> api = Api(api_key="your api key")
 
-If you want to get some authorization data. you need to initialize with an access token:
+To access additional data that requires authorization, you need to initialize with an access token:
 
 .. code-block:: python
 
@@ -129,7 +129,7 @@ If you want to get some authorization data. you need to initialize with an acces
 
 You can read the docs to see how to get an access token.
 
-Or you can ask for user to do oauth flow:
+Or you can ask for user to do OAuth flow:
 
 .. code-block:: python
 
@@ -184,4 +184,4 @@ Get channel detail:
         ...
        }
 
-To get more usage to see our `api docs <docs/docs/usage/work-with-api.md>`_, or `api examples <examples/apis>`_
+See the `api docs <docs/docs/usage/work-with-api.md>`_, or `api examples <examples/apis>`_, for additional usage.

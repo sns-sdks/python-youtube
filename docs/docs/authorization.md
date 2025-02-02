@@ -1,20 +1,20 @@
-If you want to get some more data for your channel. You need provide the authorization first.
+If you want to get more data for your channel, You need provide the authorization.
 
-So, this doc show how to do authorize.
+This doc shows how to authorize a client.
 
 ## Prerequisite
 
-At the beginning. You must know what is authorization.
+To begin with, you must know what authorization is.
 
 You can see some information at the [Official Documentation](https://developers.google.com/youtube/v3/guides/authentication).
 
-Then you need have an app with the [Access scopes](https://developers.google.com/youtube/v3/guides/auth/server-side-web-apps#identify-access-scopes) approval by YouTube.
+You will need to create an app with [Access scope](https://developers.google.com/youtube/v3/guides/auth/server-side-web-apps#identify-access-scopes) approval by YouTube.
 
-If everything goes well. Now let do a simple authorize with `Python-Youtube` library.
+Once complete, you will be able to do a simple authorize with `Python-Youtube` library.
 
 ## Get authorization url
 
-Suppose now we want to get user's permission to manage his youtube account.
+Suppose now we want to get user's permission to manage their YouTube account.
 
 For the `Python-YouTube` library, the default scopes are:
 
@@ -23,11 +23,11 @@ For the `Python-YouTube` library, the default scopes are:
 
 You can get more scope information at [Access scopes](https://developers.google.com/youtube/v3/guides/auth/server-side-web-apps#identify-access-scopes).
 
-And We set the default redirect url is `https://localhost/`.
+(The defailt redirect URI used in PyYoutube is `https://localhost/`)
 
-Now we can begin do the follows step.
+We can now perform the following steps:
 
-Initialize the api instance with you app credentials
+Initialize the api instance with your app credentials
 
 ```
 In [1]: from pyyoutube import Client
@@ -40,46 +40,47 @@ Out[3]:
  'PyYouTube')
 ```
 
-Now you get the authorization url, you just need copy the link, and open browser to paste the link, click the enter bar.
+Open your broswer of choice and copy the link returned by `get_authorize_url()` into the searchbar.
 
 ## Do authorization
 
-If you enter the url. you will see this.
+On entering the URL, you will see the following:
 
 ![auth-1-chose-account](images/auth-1-chose-account.png)
 
-Now you need to chose or enter you google account with youtube.
+Select the account to authorize your app to read data from.
 
-If your app have not got the approval from youtube. You will get an warning from youtube. If you have been approved, you will
-see the next image show directly.
+If your app is not approved for use, you will recieve a warning. You can prevent this by adding your chosen Google account as a test member on your created OAuth application.
+Otherwise, you will see the following:
 
 ![auth-2-not-approval](images/auth-2-not-approval.png)
 
-For now, you need to click the button ``Advanced``, then click the ``Go to Python-YouTube (unsafe)``.
+You will need to click ``Advanced``, then click the ``Go to Python-YouTube (unsafe)``.
 
 ![auth-3-advanced](images/auth-3-advanced.png)
 
-Now you can get a window to give permissions.
+You should now see a window to select permissions granted to the application.
 
 ![auth-4-allow-permission](images/auth-4-allow-permission.png)
 
-click the blue button `allow` to give the permission.
+Click `allow` to give the permission.
 
-Then you will get a Connection Error, don't worry. This just because we set the redirect link to `localhost`.
+You will see a Connection Error, as the link is redirecting to `localhost`. This is standard behaviour, so don't close the window or return to a previous page!
 
 ## Retrieve access token
 
-Now you need to copy the full url in the browser address bar. Then back to you console.
+Copy the full redicted URL from the browser address bar, and return to your original console.
 
 ```
-In [4]: token = cli.generate_access_token(authorization_response="the whole url")
+In [4]: token = cli.generate_access_token(authorization_response="$redirect_url")
 
 In [5]: token
 Out[5]: AccessToken(access_token='access token', expires_in=3600, token_type='Bearer')
 ```
     
+(Replace `$redirect_url` with the URL you copied)
 
-now you have got your access token to visit your self data.
+You now have an access token to view your account data.
 
 
 ## Get your data
@@ -97,4 +98,4 @@ Out[7]:
 
 !!! note "Tips"
 
-    If you have some confuse. you need to read the [Authorize Requests](https://developers.google.com/youtube/v3/guides/authentication) first.
+    If you are confused, it is beneficial to read the [Authorize Requests](https://developers.google.com/youtube/v3/guides/authentication) guide first.
