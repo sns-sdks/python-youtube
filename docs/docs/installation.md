@@ -17,7 +17,7 @@ $ pip install --upgrade python-youtube
 ```
 
 
-Also, you can build this library from source code
+You can also build this library from source
 
 ```shell
 $ git clone https://github.com/sns-sdks/python-youtube.git
@@ -28,8 +28,8 @@ $ make build
 
 ## Testing
 
-If you have been installing the requirements use ``make env``.
-You can use following command to test the code
+Run `make env` after you have installed the project requirements.
+Once completed, you can run code tests with
 
 ```shell
 $ make tests-html
