@@ -7,6 +7,7 @@ from .channel_banner import *  # noqa
 from .channel_section import *  # noqa
 from .comment import *  # noqa
 from .comment_thread import *  # noqa
+from .common import *  # noqa
 from .i18n import *  # noqa
 from .member import *  # noqa
 from .memberships_level import *  # noqa
