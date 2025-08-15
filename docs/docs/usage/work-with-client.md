@@ -20,7 +20,7 @@ from pyyoutube import Client
 cli = Client(api_key="your api key")
 ```
 
-If you want to update your channel data. or upload video. You need initialize with `access token`, Or do auth flow.
+If you want to update your channel data. or upload video. You need to initialize with `access token`, or do the auth flow.
 
 ```python
 from pyyoutube import Client
@@ -47,7 +47,7 @@ Only `web` and some `installed` type client_secrets are supported.
 
 The fields `client_id` and `client_secret` must be set.
 
-If the field `redirect_uris` has 1 or more values set, the `Client.DEFAULT_REDIRECT_URI` will be set to the first entrie.
+`Client.DEFAULT_REDIRECT_URI` will be set the first entry of the field `redirect_uris`.
 
 ```python
 from pyyoutube import Client
@@ -58,13 +58,13 @@ cli = Client(client_secret_path=file_path)
 # Then go through auth flow descriped above
 ```
 
-Once initialize client. Then you can operate API to get data.
+Once initialize to the client, you can operate the API to get data.
 
 ## Usage
 
 ### Channel Resource
 
-The API supports the following methods for `channels` resources:
+The API supports the following methods for the `channels` resources:
 
 - list: Returns a collection of zero or more channel resources that match the request criteria.
 - update: Updates a channel's metadata. Note that this method currently only supports updates to the channel resource's

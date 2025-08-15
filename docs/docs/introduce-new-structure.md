@@ -2,12 +2,12 @@ This doc will show you the new api structure for this library.
 
 ## Brief
 
-To make the package easier to maintain and easy to use. We are shifted to using classes for different YouTube resources in an easier, higher-level programming experience.
+To make the package easier to maintain and easy to use. We have shifted to using classes for different YouTube resources in an easier, higher-level, programming experience.
 
 ![structure-uml](images/structure-uml.png)
 
 
-In this structure, every resource will have self class. And to operate with YouTube API.
+In this structure, every resource has a self class.
 
 ## Simple usage
 

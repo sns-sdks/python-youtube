@@ -13,7 +13,7 @@ Use the API to upload videos, manage playlists and subscriptions, update channel
 
 This library provides a Python interface for the [YouTube DATA API](https://developers.google.com/youtube/v3).
 
-Library could work on Python 3.6+.
+This library has works on all Python versions 3.6 and newer.
 
 !!! tip "Tips"
 
