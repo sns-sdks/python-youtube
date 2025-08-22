@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## Version 0.9.8 (2025-08-22)
+
+### What's New
+
+- Fix dependencies and update docs. Thanks for [@sagarvora](https://github.com/sagarvora)
+
 ## Version 0.9.7 (2024-10-28)
 
 ### What's New
