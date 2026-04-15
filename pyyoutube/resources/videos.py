@@ -45,7 +45,7 @@ class VideosResource(Resource):
             parts:
                 Comma-separated list of one or more channel resource properties.
                 Accepted values: id,contentDetails,fileDetails,liveStreamingDetails,
-                localizations,player,processingDetails,recordingDetails,snippet,statistics,
+                localizations,paidProductPlacementDetails,player,processingDetails,recordingDetails,snippet,statistics,
                 status,suggestions,topicDetails
             chart:
                 Identifies the chart that you want to retrieve.

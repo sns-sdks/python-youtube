@@ -249,6 +249,11 @@ class VideoLiveStreamingDetails(BaseModel, DatetimeTimeMixin):
 
 
 @dataclass
+class PaidProductPlacementDetail(BaseModel):
+    hasPaidProductPlacement: Optional[dataclass] = field(default=None, repr=False)
+
+
+@dataclass
 class Video(BaseResource):
     """
     A class representing the video info.
@@ -264,6 +269,9 @@ class Video(BaseResource):
     player: Optional[Player] = field(default=None, repr=False)
     recordingDetails: Optional[VideoRecordingDetails] = field(default=None, repr=False)
     liveStreamingDetails: Optional[VideoLiveStreamingDetails] = field(
+        default=None, repr=False
+    )
+    paidProductPlacementDetail: Optional[PaidProductPlacementDetail] = field(
         default=None, repr=False
     )
 

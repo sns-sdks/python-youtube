@@ -23,6 +23,8 @@ class VideoModelTest(unittest.TestCase):
         VIDEO_API_RESPONSE = json.loads(f.read().decode("utf-8"))
     with open(BASE_PATH + "video_recording_details.json", "rb") as f:
         RECORDING_DETAILS = json.loads(f.read().decode("utf-8"))
+    with open(BASE_PATH + "video_paid_product_placement_details.json", "rb") as f:
+        PAID_PRODUCT_PLACEMENT_DETAILS = json.loads(f.read().decode("utf-8"))
 
     def testVideoContentDetails(self) -> None:
         m = models.VideoContentDetails.from_dict(self.CONTENT_DETAILS_INFO)
@@ -107,3 +109,10 @@ class VideoModelTest(unittest.TestCase):
             m.string_to_datetime(m.recordingDate).isoformat(),
             "2024-07-03T00:00:00+00:00",
         )
+
+    def testPaidProductPlacementDetail(self) -> None:
+        m = models.PaidProductPlacementDetail.from_dict(
+            self.PAID_PRODUCT_PLACEMENT_DETAILS
+        )
+
+        self.assertTrue(m.hasPaidProductPlacement)

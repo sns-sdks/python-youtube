@@ -65,6 +65,7 @@ VIDEO_RESOURCE_PROPERTIES = {
     "topicDetails",
     "recordingDetails",
     "liveStreamingDetails",
+    "paidProductPlacementDetails",
 }
 
 GUIDE_CATEGORY_RESOURCE_PROPERTIES = {"id", "snippet"}
