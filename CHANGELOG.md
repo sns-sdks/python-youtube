@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## Version 0.9.9 (2026-04-17)
+
+### What's New
+
+- Add new part field `paidProductPlacementDetail` for video resource. Thanks for [@sarod](https://github.com/sarod)
+- Add new method to subscribe or unsubscribe to a YouTube channel's push notifications via PubSubHubbub.
+- Upgrade to python 3.9
+
 ## Version 0.9.8 (2025-08-22)
 
 ### What's New
