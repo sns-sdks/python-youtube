@@ -33,6 +33,7 @@ class Client:
     AUTHORIZATION_URL = "https://accounts.google.com/o/oauth2/v2/auth"
     EXCHANGE_ACCESS_TOKEN_URL = "https://oauth2.googleapis.com/token"
     REVOKE_TOKEN_URL = "https://oauth2.googleapis.com/revoke"
+    HUB_URL = "https://pubsubhubbub.appspot.com/subscribe"
 
     DEFAULT_REDIRECT_URI = "https://localhost/"
     DEFAULT_SCOPE = [
@@ -518,5 +519,71 @@ class Client:
             enforce_auth=False,
         )
         if response.ok:
+            return True
+        self.parse_response(response)
+
+    def subscribe_push_notification(
+        self,
+        channel_id: str,
+        callback_url: str,
+        mode: str = "subscribe",
+        lease_seconds: Optional[int] = None,
+        secret: Optional[str] = None,
+        verify: str = "async",
+    ) -> bool:
+        """Subscribe or unsubscribe to a YouTube channel's push notifications via PubSubHubbub.
+
+        When a subscribed channel publishes a new video or updates an existing one,
+        Google will send a notification to the callback_url.
+
+        Args:
+            channel_id:
+                The YouTube channel ID to subscribe to.
+            callback_url:
+                The URL that will receive push notifications from the hub.
+                Must be publicly accessible.
+            mode:
+                Either "subscribe" or "unsubscribe".
+            lease_seconds:
+                How long (in seconds) the subscription should remain active.
+                If omitted, the hub uses its own default (typically ~432000, i.e. 5 days).
+            secret:
+                A secret string used to compute an HMAC-SHA1 signature on each notification,
+                allowing you to verify the payload came from the hub.
+            verify:
+                Verification mode. Either "async" (default) or "sync".
+
+        Returns:
+            True if the hub accepted the request (HTTP 202 Accepted).
+
+        Raises:
+            PyYouTubeException: If the hub returns an error response.
+
+        References:
+            https://developers.google.com/youtube/v3/guides/push_notifications
+            https://pubsubhubbub.github.io/PubSubHubbub/pubsubhubbub-core-0.4.html
+        """
+        topic_url = f"https://www.youtube.com/xml/feeds/videos.xml?channel_id={channel_id}"
+
+        data = {
+            "hub.callback": callback_url,
+            "hub.mode": mode,
+            "hub.topic": topic_url,
+            "hub.verify": verify,
+        }
+        if lease_seconds is not None:
+            data["hub.lease_seconds"] = str(lease_seconds)
+        if secret is not None:
+            data["hub.secret"] = secret
+
+        response = self.request(
+            method="POST",
+            path=self.HUB_URL,
+            data=data,
+            enforce_auth=False,
+        )
+
+        # Hub returns 202 Accepted on success (async) or 204 No Content (sync)
+        if response.status_code in (202, 204):
             return True
         self.parse_response(response)

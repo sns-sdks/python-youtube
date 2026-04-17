@@ -113,3 +113,68 @@ class TestClient(BaseTestCase):
                     status=400,
                 )
                 cli.revoke_access_token(token="token")
+
+    def test_subscribe_push_notification(self):
+        HUB_URL = "https://pubsubhubbub.appspot.com/subscribe"
+        cli = Client(client_id="id", client_secret="secret")
+
+        # subscribe returns True on 202 Accepted
+        with responses.RequestsMock() as m:
+            m.add(method="POST", url=HUB_URL, status=202)
+            result = cli.subscribe_push_notification(
+                channel_id="UCxxxxxx",
+                callback_url="https://example.com/webhook",
+            )
+            assert result is True
+            # verify hub.mode and hub.topic were sent correctly
+            assert m.calls[0].request.body is not None
+            assert "hub.mode=subscribe" in m.calls[0].request.body
+            assert "UCxxxxxx" in m.calls[0].request.body
+
+        # unsubscribe returns True on 202 Accepted
+        with responses.RequestsMock() as m:
+            m.add(method="POST", url=HUB_URL, status=202)
+            result = cli.subscribe_push_notification(
+                channel_id="UCxxxxxx",
+                callback_url="https://example.com/webhook",
+                mode="unsubscribe",
+            )
+            assert result is True
+            assert "hub.mode=unsubscribe" in m.calls[0].request.body
+
+        # sync verify returns True on 204 No Content
+        with responses.RequestsMock() as m:
+            m.add(method="POST", url=HUB_URL, status=204)
+            result = cli.subscribe_push_notification(
+                channel_id="UCxxxxxx",
+                callback_url="https://example.com/webhook",
+                verify="sync",
+            )
+            assert result is True
+
+        # optional params: lease_seconds and secret are included in request body
+        with responses.RequestsMock() as m:
+            m.add(method="POST", url=HUB_URL, status=202)
+            cli.subscribe_push_notification(
+                channel_id="UCxxxxxx",
+                callback_url="https://example.com/webhook",
+                lease_seconds=432000,
+                secret="mysecret",
+            )
+            body = m.calls[0].request.body
+            assert "hub.lease_seconds=432000" in body
+            assert "hub.secret=mysecret" in body
+
+        # hub error raises PyYouTubeException
+        with pytest.raises(PyYouTubeException):
+            with responses.RequestsMock() as m:
+                m.add(
+                    method="POST",
+                    url=HUB_URL,
+                    json={"error": {"code": 400, "message": "bad request"}},
+                    status=400,
+                )
+                cli.subscribe_push_notification(
+                    channel_id="UCxxxxxx",
+                    callback_url="https://example.com/webhook",
+                )
