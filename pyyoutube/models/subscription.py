@@ -1,5 +1,5 @@
 """
-  These are subscription related models.
+These are subscription related models.
 """
 
 from dataclasses import dataclass, field

@@ -1,5 +1,5 @@
 """
-    Base resource class.
+Base resource class.
 """
 
 from typing import Optional, TYPE_CHECKING

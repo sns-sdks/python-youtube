@@ -1,5 +1,5 @@
 """
-    These are video related models.
+These are video related models.
 """
 
 from dataclasses import dataclass, field

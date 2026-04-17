@@ -1,5 +1,5 @@
 """
-    Tests for media upload.
+Tests for media upload.
 """
 
 import io

@@ -1,6 +1,6 @@
 """
-    These are category related models.
-    Include VideoCategory
+These are category related models.
+Include VideoCategory
 """
 
 from dataclasses import dataclass, field

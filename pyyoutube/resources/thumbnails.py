@@ -1,5 +1,5 @@
 """
-    Thumbnails resources implementation.
+Thumbnails resources implementation.
 """
 
 from typing import Optional

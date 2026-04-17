@@ -1,7 +1,7 @@
 """
-    These are channel related models.
+These are channel related models.
 
-    References: https://developers.google.com/youtube/v3/docs/channels#properties
+References: https://developers.google.com/youtube/v3/docs/channels#properties
 """
 
 from dataclasses import dataclass, field

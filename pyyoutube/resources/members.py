@@ -1,5 +1,5 @@
 """
-    Members resource implementation.
+Members resource implementation.
 """
 
 from typing import Optional, Union

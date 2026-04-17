@@ -1,5 +1,5 @@
 """
-    Video abuse report reasons resource implementation.
+Video abuse report reasons resource implementation.
 """
 
 from typing import Optional, Union

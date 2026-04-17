@@ -1,5 +1,5 @@
 """
-    These are i18n language and region related models.
+These are i18n language and region related models.
 """
 
 from dataclasses import dataclass, field

@@ -1,9 +1,8 @@
 """
-    This example demonstrates how to perform authorization.
+This example demonstrates how to perform authorization.
 """
 
 from pyyoutube import Client
-
 
 CLIENT_ID = "xxx"  # Your app id
 CLIENT_SECRET = "xxx"  # Your app secret

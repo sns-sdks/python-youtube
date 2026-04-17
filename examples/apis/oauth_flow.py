@@ -1,5 +1,5 @@
 """
-    This example demonstrates how to perform authorization.
+This example demonstrates how to perform authorization.
 """
 
 from pyyoutube import Api

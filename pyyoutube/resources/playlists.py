@@ -1,5 +1,5 @@
 """
-    Playlist resource implementation.
+Playlist resource implementation.
 """
 
 from typing import Optional, Union

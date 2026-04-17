@@ -1,7 +1,7 @@
 """
-    There are channel banner related models
+There are channel banner related models
 
-    References: https://developers.google.com/youtube/v3/docs/channelBanners#properties
+References: https://developers.google.com/youtube/v3/docs/channelBanners#properties
 """
 
 from dataclasses import dataclass, field

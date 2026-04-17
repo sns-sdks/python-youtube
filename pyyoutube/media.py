@@ -1,5 +1,5 @@
 """
-    Media object to upload.
+Media object to upload.
 """
 
 import mimetypes

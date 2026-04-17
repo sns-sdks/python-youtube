@@ -1,5 +1,5 @@
 """
-    Tests for channel banners
+Tests for channel banners
 """
 
 import io

@@ -1,5 +1,5 @@
 """
-    Captions resource implementation
+Captions resource implementation
 """
 
 from typing import Optional, Union

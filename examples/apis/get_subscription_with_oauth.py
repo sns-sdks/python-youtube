@@ -1,5 +1,5 @@
 """
-    This demo show how to use this library to do authorization and get your subscription.
+This demo show how to use this library to do authorization and get your subscription.
 """
 
 import pyyoutube

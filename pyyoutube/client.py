@@ -1,5 +1,5 @@
 """
-    New Client for YouTube API
+New Client for YouTube API
 """
 
 import inspect

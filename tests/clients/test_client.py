@@ -1,5 +1,5 @@
 """
-    Tests for client.
+Tests for client.
 """
 
 import pytest

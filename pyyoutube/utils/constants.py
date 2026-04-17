@@ -1,5 +1,5 @@
 """
-    some constants for YouTube
+some constants for YouTube
 """
 
 ACTIVITIES_RESOURCE_PROPERTIES = {"id", "snippet", "contentDetails"}

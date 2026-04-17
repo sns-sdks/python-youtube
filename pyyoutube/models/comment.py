@@ -1,5 +1,5 @@
 """
-    These are comment related models.
+These are comment related models.
 """
 
 from dataclasses import dataclass, field

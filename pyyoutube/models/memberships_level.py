@@ -1,5 +1,5 @@
 """
-    These are membership level related models.
+These are membership level related models.
 """
 
 from dataclasses import dataclass, field

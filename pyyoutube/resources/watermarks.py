@@ -1,5 +1,5 @@
 """
-    Watermarks resource implementation.
+Watermarks resource implementation.
 """
 
 from typing import Optional, Union
