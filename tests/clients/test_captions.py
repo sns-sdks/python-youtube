@@ -1,5 +1,5 @@
 """
-    Tests for captions resources.
+Tests for captions resources.
 """
 
 import io
@@ -35,15 +35,11 @@ class TestCaptionsResource(BaseTestCase):
                 name="日文字幕", language="ja", videoId=video_id, isDraft=True
             )
         )
-        media = Media(
-            io.StringIO(
-                """
+        media = Media(io.StringIO("""
         1
         00:00:00,036 --> 00:00:00,703
         ジメジメした天気
-        """
-            )
-        )
+        """))
 
         upload = authed_cli.captions.insert(
             body=body,
@@ -59,13 +55,11 @@ class TestCaptionsResource(BaseTestCase):
             snippet=mds.CaptionSnippet(videoId="zxTVeyG1600", isDraft=False),
         )
         media = Media(
-            io.StringIO(
-                """
+            io.StringIO("""
                 1
                 00:00:00,036 --> 00:00:00,703
                 ジメジメした天気
-                """
-            ),
+                """),
         )
 
         upload = authed_cli.captions.update(

@@ -1,5 +1,5 @@
 """
-    This provide some common utils methods for YouTube resource.
+This provide some common utils methods for YouTube resource.
 """
 
 import isodate

@@ -1,5 +1,5 @@
 """
-    i18n language resource implementation.
+i18n language resource implementation.
 """
 
 from typing import Optional, Union

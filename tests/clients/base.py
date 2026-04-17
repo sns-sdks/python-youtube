@@ -1,5 +1,5 @@
 """
-    Base class
+Base class
 """
 
 

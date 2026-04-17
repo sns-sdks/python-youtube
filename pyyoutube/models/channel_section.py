@@ -1,5 +1,5 @@
 """
-    Those are models related to channel sections.
+Those are models related to channel sections.
 """
 
 from dataclasses import dataclass, field

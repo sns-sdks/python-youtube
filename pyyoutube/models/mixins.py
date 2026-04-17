@@ -1,5 +1,5 @@
 """
-    These are some mixin for models
+These are some mixin for models
 """
 
 import datetime

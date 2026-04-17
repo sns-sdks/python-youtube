@@ -1,5 +1,5 @@
 """
-    Subscription resource implementation.
+Subscription resource implementation.
 """
 
 from typing import Optional, Union

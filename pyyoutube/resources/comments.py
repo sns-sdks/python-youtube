@@ -1,5 +1,5 @@
 """
-    Comment resource implementation.
+Comment resource implementation.
 """
 
 from typing import Optional, Union

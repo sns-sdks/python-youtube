@@ -1,5 +1,5 @@
 """
-    Tests for thumbnails.
+Tests for thumbnails.
 """
 
 import io

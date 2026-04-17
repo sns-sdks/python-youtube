@@ -1,5 +1,5 @@
 """
-    i18n regions resource implementation.
+i18n regions resource implementation.
 """
 
 from typing import Optional, Union

@@ -1,5 +1,5 @@
 """
-    These are activity related models.
+These are activity related models.
 """
 
 from dataclasses import dataclass, field

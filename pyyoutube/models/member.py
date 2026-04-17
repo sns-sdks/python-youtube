@@ -1,5 +1,5 @@
 """
-    These are member related models.
+These are member related models.
 """
 
 from dataclasses import dataclass, field

@@ -1,5 +1,5 @@
 """
-    function's params checker.
+function's params checker.
 """
 
 import logging

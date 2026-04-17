@@ -1,5 +1,5 @@
 """
-    Comment threads resource implementation.
+Comment threads resource implementation.
 """
 
 from typing import Optional, Union

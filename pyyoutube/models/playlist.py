@@ -1,5 +1,5 @@
 """
-    These are playlist related models.
+These are playlist related models.
 """
 
 from dataclasses import dataclass, field

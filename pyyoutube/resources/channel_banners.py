@@ -1,5 +1,5 @@
 """
-    Channel banners resource implementation.
+Channel banners resource implementation.
 """
 
 from typing import Optional

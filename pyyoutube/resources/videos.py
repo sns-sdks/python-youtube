@@ -1,5 +1,5 @@
 """
-    Videos resource implementation.
+Videos resource implementation.
 """
 
 from typing import Optional, Union

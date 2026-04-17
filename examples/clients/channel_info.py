@@ -1,5 +1,5 @@
 """
-    This example demonstrates how to retrieve information for a channel.
+This example demonstrates how to retrieve information for a channel.
 """
 
 from pyyoutube import Client

@@ -1,5 +1,5 @@
 """
-    These are watermark related models.
+These are watermark related models.
 """
 
 from dataclasses import dataclass, field

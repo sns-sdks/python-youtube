@@ -1,5 +1,5 @@
 """
-    These are caption related models
+These are caption related models
 """
 
 from dataclasses import dataclass, field

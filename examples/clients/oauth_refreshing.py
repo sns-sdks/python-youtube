@@ -1,12 +1,11 @@
 """
-    This example demonstrates how to automatically (re)generate tokens for continuous OAuth.
-    We store the Access Token in a seperate .env file to be used later.
+This example demonstrates how to automatically (re)generate tokens for continuous OAuth.
+We store the Access Token in a seperate .env file to be used later.
 """
 
 from pyyoutube import Client
 from json import loads, dumps
 from pathlib import Path
-
 
 CLIENT_ID = "xxx"  # Your app id
 CLIENT_SECRET = "xxx"  # Your app secret

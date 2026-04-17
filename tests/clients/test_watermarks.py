@@ -1,5 +1,5 @@
 """
-    Tests for watermarks.
+Tests for watermarks.
 """
 
 import io

@@ -1,5 +1,5 @@
 """
-    Activities resource implementation
+Activities resource implementation
 """
 
 from typing import Optional, Union

@@ -1,5 +1,5 @@
 """
-    Search resource implementation.
+Search resource implementation.
 """
 
 from typing import Optional, Union

@@ -1,5 +1,5 @@
 """
-    Video categories resource implementation.
+Video categories resource implementation.
 """
 
 from typing import Optional, Union

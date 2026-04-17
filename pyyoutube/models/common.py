@@ -1,5 +1,5 @@
 """
-    These are common models for multi resource.
+These are common models for multi resource.
 """
 
 from dataclasses import dataclass, field

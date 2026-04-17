@@ -1,5 +1,5 @@
 """
-    These are video abuse report reason related models.
+These are video abuse report reason related models.
 """
 
 from dataclasses import dataclass, field

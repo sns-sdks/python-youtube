@@ -1,5 +1,5 @@
 """
-    These are comment threads related models.
+These are comment threads related models.
 """
 
 from dataclasses import dataclass, field

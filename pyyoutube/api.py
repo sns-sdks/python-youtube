@@ -1,5 +1,5 @@
 """
-    Main Api implementation.
+Main Api implementation.
 """
 
 from typing import Optional, List, Union

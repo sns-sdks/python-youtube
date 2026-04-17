@@ -1,5 +1,5 @@
 """
-    Membership levels resource implementation.
+Membership levels resource implementation.
 """
 
 from typing import Optional, Union

@@ -1,5 +1,5 @@
 """
-    Channel resource implementation.
+Channel resource implementation.
 """
 
 from typing import Optional, Union

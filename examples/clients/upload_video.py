@@ -1,5 +1,5 @@
 """
-    This example demonstrates how to upload a video.
+This example demonstrates how to upload a video.
 """
 
 import pyyoutube.models as mds

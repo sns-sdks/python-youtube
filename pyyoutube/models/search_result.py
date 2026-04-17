@@ -1,5 +1,5 @@
 """
-    These are search result related models.
+These are search result related models.
 """
 
 from dataclasses import dataclass, field
