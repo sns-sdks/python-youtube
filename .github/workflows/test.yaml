@@ -52,7 +52,7 @@ jobs:
         with:
           python-version: 3.8
       - name: Cache pip
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: ~/.cache/pip
           key: lintenv-v2
