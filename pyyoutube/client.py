@@ -563,7 +563,9 @@ class Client:
             https://developers.google.com/youtube/v3/guides/push_notifications
             https://pubsubhubbub.github.io/PubSubHubbub/pubsubhubbub-core-0.4.html
         """
-        topic_url = f"https://www.youtube.com/xml/feeds/videos.xml?channel_id={channel_id}"
+        topic_url = (
+            f"https://www.youtube.com/xml/feeds/videos.xml?channel_id={channel_id}"
+        )
 
         data = {
             "hub.callback": callback_url,

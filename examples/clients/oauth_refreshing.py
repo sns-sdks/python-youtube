@@ -12,13 +12,14 @@ CLIENT_ID = "xxx"  # Your app id
 CLIENT_SECRET = "xxx"  # Your app secret
 CLIENT_SECRET_PATH = None  # or your path/to/client_secret_web.json
 
-TOKEN_PERSISTENT_PATH = None # path/to/persistent_token_storage_location
+TOKEN_PERSISTENT_PATH = None  # path/to/persistent_token_storage_location
 
 SCOPE = [
     "https://www.googleapis.com/auth/youtube",
     "https://www.googleapis.com/auth/youtube.force-ssl",
     "https://www.googleapis.com/auth/userinfo.profile",
 ]
+
 
 def do_refresh():
     token_location = Path(TOKEN_PERSISTENT_PATH)
@@ -27,13 +28,12 @@ def do_refresh():
     token_data = {}
     if token_location.exists():
         token_data = loads(token_location.read_text())
-    
 
     cli = Client(
         client_id=CLIENT_ID,
         client_secret=CLIENT_SECRET,
         access_token=token_data.get("access_token"),
-        refresh_token=token_data.get("refresh_token")
+        refresh_token=token_data.get("refresh_token"),
     )
     # or if you want to use a web type client_secret.json
     # cli = Client(
@@ -49,7 +49,9 @@ def do_refresh():
 
         response_uri = input("Input youtube redirect uri:\n")
 
-        token = cli.generate_access_token(authorization_response=response_uri, scope=SCOPE)
+        token = cli.generate_access_token(
+            authorization_response=response_uri, scope=SCOPE
+        )
         print(f"Your token: {token}")
 
     # Otherwise, refresh the access token if it has expired
@@ -65,16 +67,14 @@ def do_refresh():
     token_location.mkdir(parents=True, exist_ok=True)
     token_location.write_text(
         dumps(
-            {
-                "access_token": token.access_token,
-                "refresh_token": token.refresh_token
-            }
+            {"access_token": token.access_token, "refresh_token": token.refresh_token}
         )
     )
 
     # Now you can do things with the client
     resp = cli.channels.list(mine=True)
     print(f"Your channel id: {resp.items[0].id}")
+
 
 if __name__ == "__main__":
     do_refresh()
